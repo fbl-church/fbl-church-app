@@ -1,0 +1,13 @@
+{
+  "webRoles": {
+    "EMPLOYEE": "Employee",
+    "CORPORATE_USER": "Corporate User",
+    "CUSTOMER_SERVICE_MANAGER": "Customer Service Manager",
+    "ASSISTANT_MANAGER": "Assistant Manager",
+    "STORE_MANAGER": "Store Manager",
+    "DISTRICT_MANAGER": "District Manager",
+    "REGIONAL": "Regional",
+    "SITE_ADMIN": "Site Admin",
+    "ADMIN": "Admin"
+  }
+}

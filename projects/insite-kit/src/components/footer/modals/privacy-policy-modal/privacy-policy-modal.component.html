@@ -1,0 +1,20 @@
+<ik-modal #privacyModal name="privacyModal">
+  <ik-modal-header title="Privacy Policy"></ik-modal-header>
+  <ik-modal-body>
+    <div class="modal-content-text">
+      The Marc's website uses both session cookies (which expire when you close
+      your browser) and local storage cookies (which remain on your hard drive
+      for an extended period of time) to help enhance your site experience.
+      These cookies do not contain or collect any personal data and are used to
+      deliver content relative to your interests in the site.
+    </div>
+  </ik-modal-body>
+  <ik-modal-action-bar>
+    <button
+      class="btn btn-flat btn-primary btn-right btn-modal"
+      (click)="privacyModal.close()"
+    >
+      Okay
+    </button>
+  </ik-modal-action-bar>
+</ik-modal>

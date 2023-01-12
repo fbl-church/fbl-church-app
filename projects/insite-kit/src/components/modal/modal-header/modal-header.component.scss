@@ -1,0 +1,27 @@
+.ik-modal-header {
+  background-color: #eaeaea;
+  border-radius: 4px 4px 0px 0px;
+  padding: 10px;
+
+  &.info {
+    background-color: #417cf2;
+  }
+
+  &.danger {
+    background-color: #ff3648;
+  }
+
+  &.warning {
+    background-color: #ffab30;
+  }
+}
+
+.ik-modal-header .ik-title {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+
+  &.default {
+    color: black;
+  }
+}

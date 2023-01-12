@@ -1,0 +1,19 @@
+.chip {
+  min-height: 115px;
+  border-radius: 15px;
+  background: linear-gradient(to bottom, #ffffff 12%, #fffff5 100%);
+  cursor: pointer;
+  margin-top: 50px;
+  padding: 16px;
+}
+
+.title {
+  font-weight: 700;
+  text-align: center;
+}
+
+.message {
+  display: block;
+  word-wrap: break-word;
+  text-align: center;
+}

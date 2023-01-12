@@ -1,0 +1,29 @@
+<div class="notification-toaster">
+  <div class="notification-toast-details">
+    <ik-icon
+      classOverride="notification-toast-icon"
+      [icon]="notificationBellIcon"
+    ></ik-icon>
+
+    <div>
+      <div
+        *ngIf="title"
+        class="notification-title"
+        [class]="options.titleClass"
+        [attr.aria-label]="title"
+      >
+        {{ title }}
+      </div>
+      <div
+        *ngIf="message"
+        role="alert"
+        aria-live="polite"
+        class="custom-message"
+        [class]="options.messageClass"
+        [attr.aria-label]="message"
+      >
+        {{ message }}
+      </div>
+    </div>
+  </div>
+</div>

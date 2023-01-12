@@ -1,0 +1,90 @@
+.login-container {
+  width: 35%;
+  margin: 15em auto;
+  padding: 10px;
+  background-color: transparent;
+}
+
+.login-input {
+  border-radius: 30px;
+  padding: 12px 12px 12px 35px;
+  width: 95%;
+  font-size: 16px;
+  border-style: hidden;
+  background: #504C5B;
+  opacity: 0.8;
+  margin: 10px 0px;
+  border: 1px solid #504C5B;
+  color: white;
+  font-weight: 600;
+  transition: all 0.5s ease;
+}
+
+.login-title {
+  color: #fff;
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.login-input:focus {
+  border-bottom: 2.5px solid #FC3168;
+  width: 98%;
+  border-radius: 15px;
+}
+
+.login-input::placeholder { 
+  color: white;
+  opacity: 1;
+}
+
+.login-button {
+  width: 50%;
+  margin: 15px auto;
+}
+
+.icon {
+  position: absolute;
+  padding: 22px 12px;
+  min-width: 40px;
+  color: white;
+  z-index: 100;
+}
+
+.forgot-password-text {
+  color: #b1b1b1;
+  margin-left: 25px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.create-account-text {
+  color: #b1b1b1;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.link-text {
+  color: rgb(116, 163, 250);
+}
+
+@media screen and (max-width: 1200px) {
+  .login-container {
+    width: 50%;
+    margin: 20em auto;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .login-container {
+    width: 90%;
+    margin: 15em auto;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .login-container {
+    width: 95%;
+    margin: 10em auto;
+  }
+}

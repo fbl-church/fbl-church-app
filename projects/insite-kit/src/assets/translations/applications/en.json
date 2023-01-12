@@ -1,0 +1,49 @@
+{
+  "apps": {
+    "user": "Users",
+    "store": "Stores",
+    "calendar": "Calendar",
+    "blockDates": "Block Dates",
+    "report": "Reports",
+    "requestTracker": "Request Tracker",
+    "notification": "Notifications"
+  },
+  "appIcons": {
+    "user": {
+      "title": "Users",
+      "message": "Track's a users details and the their associated vacations.",
+      "icon": "user",
+      "page": "user"
+    },
+    "store": {
+      "title": "Stores",
+      "message": "Detailed information about the Marc's stores in the state of Ohio.",
+      "icon": "store",
+      "page": "store"
+    },
+    "calendar": {
+      "title": "Calendar",
+      "message": "Shows a visual display of a calendar with all of the users vacations.",
+      "icon": "calendar",
+      "page": "calendar"
+    },
+    "blockDates": {
+      "title": "Block Dates",
+      "message": "List of dates that a user is not able to take a vacation on.",
+      "icon": "block",
+      "page": "blockDates"
+    },
+    "report": {
+      "title": "Reports",
+      "message": "Report information of stores, users, and the users vacations.",
+      "icon": "report",
+      "page": "report"
+    },
+    "requestTracker": {
+      "title": "Request Tracker",
+      "message": "Tracks requested vacations and their review status.",
+      "icon": "request-tracker",
+      "page": "requestTracker"
+    }
+  }
+}

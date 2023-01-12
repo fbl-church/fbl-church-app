@@ -1,0 +1,20 @@
+<div class="chip" (click)="routeToApp()">
+  <div class="row">
+    <div
+      class="title col-12"
+      [ngStyle]="{
+        color: titleColor,
+        'font-size': titleFont,
+        'text-align': textAlign
+      }"
+    >
+      {{ title }}
+    </div>
+    <div
+      class="message col-12"
+      [ngStyle]="{ 'font-size': descriptionFont, 'text-align': textAlign }"
+    >
+      {{ description }}
+    </div>
+  </div>
+</div>

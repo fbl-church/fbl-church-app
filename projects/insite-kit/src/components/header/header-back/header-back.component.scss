@@ -1,0 +1,26 @@
+.back-arrow {
+  content: url(../../../assets/images/icons/back-arrow-icon.png);
+  width: 30px;
+  height: auto;
+  display: inline-block;
+  transition: transform 0.2s;
+  margin-right: 10px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.back-arrow:hover {
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 1030px) {
+  .back-arrow {
+    width: 25px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .back-arrow {
+    width: 16px;
+  }
+}

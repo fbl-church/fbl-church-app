@@ -1,0 +1,49 @@
+.content {
+  padding-bottom: 24px;
+  display: block;
+}
+
+.padding-info {
+  padding: 24px;
+}
+
+.APPROVED {
+  color: #20c283;
+  font-weight: bold !important;
+}
+
+.DENIED {
+  color: #ff3648;
+  font-weight: bold !important;
+}
+
+.PENDING {
+  color: #f0ae4c;
+  font-weight: bold !important;
+}
+
+.EXPIRED {
+  color: #cc0001;
+  font-weight: bold !important;
+}
+
+.label-text {
+  font-size: 20px;
+  font-weight: 400;
+  padding-left: 10px;
+  overflow-wrap: break-word;
+}
+
+@media screen and (max-width: 500px) {
+  .label-header {
+    font-size: 18px !important;
+  }
+
+  .label-text {
+    font-size: 16px;
+  }
+
+  .padding-info {
+    padding: 16px;
+  }
+}

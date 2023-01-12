@@ -1,0 +1,71 @@
+/**
+ * ngx-toastr overrides
+ */
+ :host {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 6px;
+    color: #000;
+    pointer-events: all;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  .toast-container {
+    pointer-events:all;
+    cursor: pointer;
+    position: fixed;
+    z-index: 999999;
+  }
+  
+  .toast-top-right {
+    top: 32px;
+    right: 16px;
+  }
+  
+  /**
+   * Custom Notification Message Classes
+   */
+  .notification-toast-icon {
+    align-self: center;
+    border-radius: 20%;
+    background: linear-gradient(to bottom, #1e90ff 12%, #3399ff 73%);
+    margin-right: 20px;
+    padding: 6px 10px;
+    color: black;
+    font-size: 24px;
+  }
+  
+  .notification-toaster {
+    display: flex;
+    color: black;
+    background-color: white;
+    min-height: 80px;
+    border-radius: 10px;
+    border: 1px solid white;
+    box-shadow: 1px 2px 6px #000;
+    margin-bottom: 10px;
+  }
+  
+  .notification-toast-details {
+    margin: 0 15px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .notification-title {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .notification-message {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 15px;
+  }
+
+  @media screen and (max-width: 450px) {
+    .toast-top-right {
+      right: 0;
+    }
+  }

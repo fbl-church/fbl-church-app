@@ -1,0 +1,50 @@
+<ik-modal #contactAdminModal name="contactAdminModal">
+  <ik-modal-header title="Contact Us" type="info"></ik-modal-header>
+  <ng-container *ngIf="!loading; else loader">
+    <ik-modal-body>
+      <form [formGroup]="form">
+        <div class="row">
+          <div class="col-8">
+            <div class="label-header">Recipient</div>
+            <input
+              type="input"
+              readonly
+              class="form-input__shadow type-input-margin-top noClick"
+              placeholder="Samuel Butler (Admin)"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12">
+            <div class="label-header spacer-margin">Message</div>
+            <textarea
+              formControlName="message"
+              rows="4"
+              cols="50"
+              class="form-input__shadow textarea-margin"
+            ></textarea>
+          </div>
+        </div>
+      </form>
+    </ik-modal-body>
+    <ik-modal-action-bar>
+      <button
+        class="btn btn-flat btn-primary btn-right btn-modal"
+        [disabled]="this.form.invalid"
+        (click)="sendMessage()"
+      >
+        Send
+      </button>
+      <button
+        class="btn btn-flat btn-default btn-right btn-modal"
+        (click)="contactAdminModal.close()"
+      >
+        Close
+      </button>
+    </ik-modal-action-bar>
+  </ng-container>
+</ik-modal>
+
+<ng-template #loader>
+  <ik-loading-indicator></ik-loading-indicator>
+</ng-template>

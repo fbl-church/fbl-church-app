@@ -1,0 +1,49 @@
+<ik-card [padding]="false">
+  <div [ngClass]="{ 'grid-padding': padding }">
+    <ng-content select="ik-card-header"></ng-content>
+    <ng-content select="ik-grid-search"></ng-content>
+    <table *ngIf="!loading; else loader" class="grid-table">
+      <thead *ngIf="dataLoader?.length > 0">
+        <tr>
+          <th
+            *ngFor="let column of columns.toArray()"
+            class="column-header"
+            [ngClass]="{ 'header-padding': !padding }"
+          >
+            <ng-content select="ik-grid-column"></ng-content>
+            <strong>{{ column.label }}</strong>
+          </th>
+        </tr>
+      </thead>
+      <tr
+        *ngFor="let row of gridContent; let rowIndex = index"
+        class="content-row"
+      >
+        <td
+          *ngFor="let value of row"
+          class="grid-content"
+          [ngClass]="{ 'content-ellipsis': !overflowEnabled }"
+          (click)="onRowClick(rowIndex)"
+        >
+          <ng-container *ngIf="isDate(value); else notDate">
+            {{ value | date: "longDate" }}
+          </ng-container>
+          <ng-template #notDate>
+            {{ value }}
+          </ng-template>
+        </td>
+      </tr>
+    </table>
+    <ng-content select="ik-grid-pager"></ng-content>
+    <ng-container *ngIf="dataLoader?.length <= 0 && !loading">
+      <label class="item-label-margin label-text left no-data-margin">{{
+        "No" + " " + translationKey
+      }}</label>
+    </ng-container>
+  </div>
+  <ng-content select="ik-grid-show-all"></ng-content>
+</ik-card>
+
+<ng-template #loader>
+  <ik-loading-indicator></ik-loading-indicator>
+</ng-template>

@@ -1,0 +1,58 @@
+.header-title {
+  width: auto;
+  height: auto;
+  display: inline-block;
+  height: 50px;
+  text-align: center;
+  font-size: 45px;
+  font-family: emoji, sans-serif;
+  font-weight: 600;
+}
+
+.header-margin {
+  margin-bottom: 25px;
+}
+
+.back-arrow {
+  content: url(../../assets/images/icons/back-arrow-icon.png);
+  width: 30px;
+  height: auto;
+  display: inline-block;
+  transition: transform 0.2s;
+  margin-right: 10px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.back-arrow:hover {
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 1030px) {
+  .header-title {
+    font-size: 35px;
+  }
+
+  .back-arrow {
+    width: 25px;
+  }
+
+  .header-margin {
+    margin-bottom: 15px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header-title {
+    font-size: 25px;
+    padding-top: 10px;
+  }
+
+  .back-arrow {
+    width: 16px;
+  }
+
+  .header-margin {
+    margin-bottom: 0;
+  }
+}

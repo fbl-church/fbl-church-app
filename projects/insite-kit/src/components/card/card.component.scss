@@ -1,0 +1,44 @@
+.detail {
+  width: 100%;
+}
+
+.detail .left-column {
+  padding-right: 24px;
+  float: left;
+}
+
+.detail .right-column {
+  float: right;
+}
+
+.border-none {
+  border: none;
+}
+
+.card {
+  width: 100%;
+  display: inline-block;
+  height: auto;
+  border-radius: 1em;
+  background: linear-gradient(to bottom, #ffffff 12%, #ffffff 100%);
+}
+
+.margin-card__bottom {
+  margin-bottom: 25px;
+}
+
+.padding-card {
+  padding: 20px;
+}
+
+.detail .content {
+  padding: 24px;
+  width: 50%;
+  display: inline-block;
+}
+
+.content .label-text {
+  font-size: 20px;
+  font-weight: 400;
+  padding-left: 10px;
+}

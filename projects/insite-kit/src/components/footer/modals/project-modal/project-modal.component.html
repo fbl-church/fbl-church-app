@@ -1,0 +1,35 @@
+<ik-modal #projectModal name="projectModal">
+  <ik-modal-header title="Project Source"></ik-modal-header>
+  <ik-modal-body>
+    <div class="modal-content-text">
+      These are the links to the Marc's website source code. These links are
+      only useful to the developers working on the site and anyone who has read
+      privileges to the code. If you are not authorized to view these links then
+      you will not be able to see the source code.
+    </div>
+    <div class="overall-link-content">
+      <div class="content-links">
+        Link to API Code:
+        <a
+          href="https://github.com/sambutler1017/marcs-microservice"
+          target="_blank"
+          >Marc's API</a
+        >
+      </div>
+      <div class="content-links">
+        Link to UI Code:
+        <a href="https://github.com/sambutler1017/marcs-app" target="_blank"
+          >Marc's UI</a
+        >
+      </div>
+    </div>
+  </ik-modal-body>
+  <ik-modal-action-bar>
+    <button
+      class="btn btn-flat btn-primary btn-right btn-modal"
+      (click)="projectModal.close()"
+    >
+      Okay
+    </button>
+  </ik-modal-action-bar>
+</ik-modal>

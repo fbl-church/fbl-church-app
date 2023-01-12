@@ -1,0 +1,102 @@
+.grid-table {
+  table-layout: fixed;
+}
+
+*:focus {
+  outline: none;
+}
+
+.grid-content {
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 15px;
+  text-align: left;
+}
+
+.content-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.column-header {
+  font-size: 25px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.header-padding {
+  padding-left: 15px;
+}
+
+.content-row:nth-child(even) {
+  background-color: #f1e8dc;
+}
+
+.content-row:nth-child(odd) {
+  background-color: white;
+}
+
+.content-row:hover {
+  background-color: #ccebff;
+}
+
+td {
+  text-align: center;
+}
+
+thead {
+  line-height: 60px;
+  border-bottom: 1px solid #d2d4d6;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 1em;
+  overflow: hidden;
+}
+
+.item-label-margin {
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.back-arrow {
+  content: url(../../assets/images/icons/back-arrow-icon.png);
+  width: 34px;
+  height: auto;
+  display: inline-block;
+  transition: transform 0.2s;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.back-arrow:hover {
+  transform: scale(1.1);
+}
+
+.no-data-margin {
+  margin: 25px;
+}
+
+.grid-padding {
+  padding: 20px;
+}
+
+@media screen and (max-width: 570px) {
+  .grid-content {
+    font-size: 14px;
+    padding: 12px 5px 12px 12px;
+  }
+
+  .column-header {
+    font-size: 15px;
+    padding-left: 10px;
+  }
+
+  .grid-padding {
+    padding: 5px;
+  }
+}

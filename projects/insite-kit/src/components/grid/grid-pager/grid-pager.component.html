@@ -1,0 +1,23 @@
+<div *ngIf="dataLength > 0" class="grid-footer">
+  <div
+    class="left-arrow inline-block left"
+    (click)="onPreviousPageClick()"
+  ></div>
+  <div
+    *ngFor="let page of pages"
+    class="inline-block left"
+    [ngClass]="{
+      active: page.active,
+      'page-number': page.pageNum <= this.totalPages && page.pageNum > 0
+    }"
+    (click)="pageClick(page.pageNum)"
+  >
+    <div *ngIf="page.pageNum <= this.totalPages && page.pageNum > 0">
+      {{ page.pageNum }}
+    </div>
+  </div>
+  <div class="right-arrow inline-block left" (click)="onNextPageClick()"></div>
+  <label class="item-label-margin label-text right">{{
+    dataLength + " " + translationKey
+  }}</label>
+</div>

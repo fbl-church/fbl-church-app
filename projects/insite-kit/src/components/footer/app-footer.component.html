@@ -1,0 +1,16 @@
+<footer>
+  <div class="copyright">Powered by Heroku | © Copyright 2020-2022</div>
+  <div class="row">
+    <div class="content-link col-4" (click)="contact.modal.open()">
+      Contact Us
+    </div>
+    <div class="content-link col-4" (click)="project.modal.open()">Project</div>
+    <div class="content-link col-4" (click)="privacy.modal.open()">
+      Privacy Policy
+    </div>
+  </div>
+</footer>
+
+<ik-contact-admin-modal #contact></ik-contact-admin-modal>
+<ik-project-modal #project></ik-project-modal>
+<ik-privacy-policy-modal #privacy></ik-privacy-policy-modal>

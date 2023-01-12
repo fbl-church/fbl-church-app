@@ -1,0 +1,79 @@
+.chip {
+  display: table-caption;
+  height: 130px;
+  width: 313px;
+  border-radius: 15px;
+  transition: transform 0.2s; /* Animation */
+  background: linear-gradient(to bottom, #ffffff 12%, #fffff5 100%);
+  cursor: pointer;
+  margin-top: 50px;
+}
+
+.chip-disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.chip:hover {
+  transform: scale(1.1);
+}
+
+.title {
+  font-size: 18px;
+  margin-top: 12px;
+  float: left;
+  font-weight: 700;
+  display: block;
+}
+
+.message {
+  margin-right: 5px;
+  font-size: 16px;
+  display: block;
+  word-wrap: break-word;
+  text-align: left;
+}
+
+.icon {
+  margin: 15px 22px 15px 10px;
+  float: left;
+  height: 100px;
+  width: 100px;
+  border-radius: 20%;
+  background: linear-gradient(to bottom, #1e90ff 12%, #3399ff 73%);
+  &.user {
+    padding: 8px;
+    content: url(../../assets/images/app-icons/user-icon.png);
+  }
+  &.store {
+    padding: 8px;
+    content: url(../../assets/images/app-icons/store-icon.png);
+  }
+  &.calendar {
+    padding: 8px;
+    content: url(../../assets/images/app-icons/calendar-icon.png);
+  }
+  &.block {
+    content: url(../../assets/images/app-icons/block-icon.png);
+  }
+  &.report {
+    padding: 8px;
+    content: url(../../assets/images/app-icons/report-icon.png);
+  }
+  &.request-tracker {
+    padding: 8px;
+    content: url(../../assets/images/app-icons/request-tracker-icon.png);
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .chip:hover {
+    transform: scale(1.06);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .chip:hover {
+    transform: scale(1);
+  }
+}

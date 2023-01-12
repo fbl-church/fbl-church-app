@@ -1,0 +1,5 @@
+<div class="content" [ngClass]="{'padding-info': padding}">
+  <div class="label-header">{{ header }}</div>
+  <div [ngClass]="contentColor" class="label-text">{{ text }}</div>
+  <ng-content></ng-content>
+</div>
