@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'projects/insite-kit/src/service/auth-service/auth.guard';
-import { HomeComponent } from './pages/home/home.component';
 import { LoginOverviewComponent } from './pages/login/login-overview/login-overview.component';
 import { LoginComponent } from './pages/login/login.component';
 import { WelcomeOverviewComponent } from './pages/welcome/welcome-overview/welcome-overview.component';
@@ -17,9 +16,53 @@ const routes: Routes = [
     path: '',
     component: WelcomeComponent,
     children: [
-      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
-        path: 'welcome',
+        path: 'home',
+        component: WelcomeOverviewComponent,
+      },
+    ],
+  },
+  {
+    path: '',
+    component: WelcomeComponent,
+    children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      {
+        path: 'register',
+        component: WelcomeOverviewComponent,
+      },
+    ],
+  },
+  {
+    path: '',
+    component: WelcomeComponent,
+    children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      {
+        path: 'news',
+        component: WelcomeOverviewComponent,
+      },
+    ],
+  },
+  {
+    path: '',
+    component: WelcomeComponent,
+    children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      {
+        path: 'about',
+        component: WelcomeOverviewComponent,
+      },
+    ],
+  },
+  {
+    path: '',
+    component: WelcomeComponent,
+    children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      {
+        path: 'contact',
         component: WelcomeOverviewComponent,
       },
     ],
@@ -43,8 +86,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'home',
-        component: HomeComponent,
+        path: 'authRoute',
+        component: null,
         pathMatch: 'full',
       },
     ],
