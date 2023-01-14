@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BaseInitModule } from 'src/app/shared/modules/base-init.module';
+import { BaseInitModule } from 'src/app/common/base-init.module';
 import { NewsOverviewComponent } from './news-overview/news-overview.component';
 import { NewsComponent } from './news.component';
 

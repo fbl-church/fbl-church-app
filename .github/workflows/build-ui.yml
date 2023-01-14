@@ -1,0 +1,26 @@
+# Build UI application.
+
+name: FB Awana UI Build
+
+on:
+  push:
+    branches:
+      - "**"
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: FB Awana UI Build
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.16.0
+      - name: npm dependencies
+        run: npm install
+      - name: Run Build
+        run: npm run build --if-present
+      - name: Run Test
+        run: npm run test:headless

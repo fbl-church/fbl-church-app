@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BaseInitModule } from 'src/app/shared/modules/base-init.module';
+import { BaseInitModule } from 'src/app/common/base-init.module';
 import { RegistrationOverviewComponent } from './registration-overview/registration-overview.component';
 import { RegistrationComponent } from './registration.component';
 

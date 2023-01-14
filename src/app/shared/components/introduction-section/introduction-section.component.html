@@ -1,0 +1,17 @@
+<div
+  class="introduction-container"
+  [ngStyle]="{
+    'background-image':
+      'url(' + '../../../../assets/images/' + introBackground + ')'
+  }"
+>
+  <div class="introduction-content">
+    <div class="introduction-text">
+      <h1 class="introduction-title">{{ introTitle }}</h1>
+      <p class="introduction-body">
+        {{ introBody }}
+      </p>
+    </div>
+  </div>
+  <ng-content></ng-content>
+</div>

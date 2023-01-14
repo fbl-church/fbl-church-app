@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'projects/insite-kit/src/service/auth-service/auth.guard';
 import { LoginOverviewComponent } from './login/login-overview/login-overview.component';
 import { LoginComponent } from './login/login.component';
-import { AuthenticatedLayoutComponent } from './shared/components/authenticated-layout/authenticated-layout.component';
 import { BaseLayoutComponent } from './shared/components/base-layout/base-layout.component';
 import { AboutOverviewComponent } from './welcome/about/about-overview/about-overview.component';
 import { AboutComponent } from './welcome/about/about.component';
@@ -95,18 +94,18 @@ const routes: Routes = [
     ],
   },
   // Authenticated Routes
-  {
-    path: 'dashboard',
-    component: AuthenticatedLayoutComponent,
-    canActivate: [AuthGuard],
-    children: [
-      {
-        path: 'authRoute',
-        component: null,
-        pathMatch: 'full',
-      },
-    ],
-  },
+  // {
+  //   path: 'dashboard',
+  //   component: AuthenticatedLayoutComponent,
+  //   canActivate: [AuthGuard],
+  //   children: [
+  //     {
+  //       path: 'authRoute',
+  //       component: null,
+  //       pathMatch: 'full',
+  //     },
+  //   ],
+  // },
   { path: '**', redirectTo: 'home' },
 ];
 

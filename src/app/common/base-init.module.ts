@@ -7,11 +7,12 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InsiteKitModule } from 'projects/insite-kit/src/insite-kit.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 /**
  * Base init module will export all the needed modules for a component
  * to build. These will be imported into all the page modules and be
- * used in the test bed as well/
+ * used in the test bed as well.
  *
  * @author Sam Butler
  * @since August 18, 2022
@@ -27,6 +28,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     ReactiveFormsModule,
     FontAwesomeModule,
     InsiteKitModule,
+    SharedModule,
   ],
 })
 export class BaseInitModule {}
