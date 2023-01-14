@@ -5,7 +5,6 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ToastrModule } from 'ngx-toastr';
 import { AppIconCardComponent } from './components/app-icon-card/app-icon-card.component';
-import { AppPageComponent } from './components/app-page/app-page.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { CardHeaderComponent } from './components/card-header/card-header.component';
 import { CardInfoComponent } from './components/card-info/card-info.component';
@@ -29,9 +28,6 @@ import { ModalActionBarComponent } from './components/modal/modal-action-bar/mod
 import { ModalBodyComponent } from './components/modal/modal-body/modal-body.component';
 import { ModalHeaderComponent } from './components/modal/modal-header/modal-header.component';
 import { ModalComponent } from './components/modal/modal.component';
-import { AppNavbarComponent } from './components/navbar/app-navbar/app-navbar.component';
-import { HomeImageComponent } from './components/navbar/home-navbar/home-image/home-image.component';
-import { HomeNavbarComponent } from './components/navbar/home-navbar/home-navbar.component';
 import { NotificationPopupComponent } from './components/notificaiton-popup/notification-popup.component';
 import { FeatureAccessDirective } from './directives/featureAccess/feature-access.directive';
 import { WebRoleRestrictionAccessDirective } from './directives/webRoleRestrictionAccess/webRole-restriction-access.directive';
@@ -48,9 +44,6 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppIconCardComponent,
-    AppPageComponent,
-    HomeNavbarComponent,
-    AppNavbarComponent,
     GridComponent,
     GridColumnComponent,
     GridPagerComponent,
@@ -59,7 +52,6 @@ export function tokenGetter() {
     CardComponent,
     CardInfoComponent,
     LoadingIndicatorComponent,
-    HomeImageComponent,
     FeatureAccessDirective,
     WebRoleRestrictionAccessDirective,
     CardHeaderComponent,
@@ -99,9 +91,6 @@ export function tokenGetter() {
   ],
   exports: [
     AppIconCardComponent,
-    HomeNavbarComponent,
-    AppNavbarComponent,
-    AppPageComponent,
     GridComponent,
     GridColumnComponent,
     GridPagerComponent,
@@ -110,7 +99,6 @@ export function tokenGetter() {
     CardComponent,
     CardInfoComponent,
     LoadingIndicatorComponent,
-    HomeImageComponent,
     FeatureAccessDirective,
     WebRoleRestrictionAccessDirective,
     CardHeaderComponent,

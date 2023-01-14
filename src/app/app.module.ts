@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { InsiteKitModule } from 'projects/insite-kit/src/insite-kit.module';
-import { BaseInitModule } from 'src/app/common/base-init.module';
+import { BaseInitModule } from 'src/app/shared/modules/base-init.module';
 import { AppComponent } from './app.component';
-import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
+import { PagesModule } from './welcome/pages.module';
 
 @NgModule({
   imports: [InsiteKitModule, BaseInitModule, SharedModule, PagesModule],

@@ -1,13 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'projects/insite-kit/src/service/auth-service/auth.guard';
-import { AboutOverviewComponent } from './pages/about/about-overview/about-overview.component';
-import { AboutComponent } from './pages/about/about.component';
-import { LoginOverviewComponent } from './pages/login/login-overview/login-overview.component';
-import { LoginComponent } from './pages/login/login.component';
-import { WelcomeOverviewComponent } from './pages/welcome/welcome-overview/welcome-overview.component';
-import { WelcomeComponent } from './pages/welcome/welcome.component';
+import { LoginOverviewComponent } from './login/login-overview/login-overview.component';
+import { LoginComponent } from './login/login.component';
 import { AuthenticatedLayoutComponent } from './shared/components/authenticated-layout/authenticated-layout.component';
+import { BaseLayoutComponent } from './shared/components/base-layout/base-layout.component';
+import { AboutOverviewComponent } from './welcome/about/about-overview/about-overview.component';
+import { AboutComponent } from './welcome/about/about.component';
+import { ContactOverviewComponent } from './welcome/contact/contact-overview/contact-overview.component';
+import { ContactComponent } from './welcome/contact/contact.component';
+import { HomeOverviewComponent } from './welcome/home/home-overview/home-overview.component';
+import { HomeComponent } from './welcome/home/home.component';
+import { NewsOverviewComponent } from './welcome/news/news-overview/news-overview.component';
+import { NewsComponent } from './welcome/news/news.component';
+import { RegistrationOverviewComponent } from './welcome/registration/registration-overview/registration-overview.component';
+import { RegistrationComponent } from './welcome/registration/registration.component';
 
 /**
  * Make sure to add back CanActivate on Home
@@ -16,56 +23,62 @@ const routes: Routes = [
   // Unauthenticated Routes
   {
     path: '',
-    component: WelcomeComponent,
+    component: BaseLayoutComponent,
     children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
-        path: 'home',
-        component: WelcomeOverviewComponent,
+        path: '',
+        component: HomeComponent,
+        children: [
+          { path: '', redirectTo: 'home', pathMatch: 'full' },
+          {
+            path: 'home',
+            component: HomeOverviewComponent,
+          },
+        ],
       },
-    ],
-  },
-  {
-    path: '',
-    component: WelcomeComponent,
-    children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
-        path: 'register',
-        component: WelcomeOverviewComponent,
+        path: '',
+        component: RegistrationComponent,
+        children: [
+          { path: '', redirectTo: 'home', pathMatch: 'full' },
+          {
+            path: 'register',
+            component: RegistrationOverviewComponent,
+          },
+        ],
       },
-    ],
-  },
-  {
-    path: '',
-    component: WelcomeComponent,
-    children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
-        path: 'news',
-        component: WelcomeOverviewComponent,
+        path: '',
+        component: NewsComponent,
+        children: [
+          { path: '', redirectTo: 'home', pathMatch: 'full' },
+          {
+            path: 'news',
+            component: NewsOverviewComponent,
+          },
+        ],
       },
-    ],
-  },
-  {
-    path: '',
-    component: AboutComponent,
-    children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
-        path: 'about',
-        component: AboutOverviewComponent,
+        path: '',
+        component: AboutComponent,
+        children: [
+          { path: '', redirectTo: 'home', pathMatch: 'full' },
+          {
+            path: 'about',
+            component: AboutOverviewComponent,
+          },
+        ],
       },
-    ],
-  },
-  {
-    path: '',
-    component: WelcomeComponent,
-    children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
-        path: 'contact',
-        component: WelcomeOverviewComponent,
+        path: '',
+        component: ContactComponent,
+        children: [
+          { path: '', redirectTo: 'home', pathMatch: 'full' },
+          {
+            path: 'contact',
+            component: ContactOverviewComponent,
+          },
+        ],
       },
     ],
   },
@@ -83,7 +96,7 @@ const routes: Routes = [
   },
   // Authenticated Routes
   {
-    path: '',
+    path: 'dashboard',
     component: AuthenticatedLayoutComponent,
     canActivate: [AuthGuard],
     children: [
