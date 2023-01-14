@@ -1,0 +1,40 @@
+.welcome-content {
+    min-height: 85%;
+    position: relative;
+    color:white;
+    margin: auto;
+    width: 75%;
+    text-align: left;
+}
+
+.welcome-text {
+    max-width: 575px;
+}
+
+.welcome-title {
+    font: 72px/1 Garamond,Georgia,"Times New Roman",Times,serif;
+    margin-bottom: 50px;
+}
+
+.welcome-body {
+    max-width: 500px;
+    font-size: 21px;
+    font-family: system-ui;
+}
+
+.welcome-container {
+    margin-top: 75px;
+    padding-top: 190px;
+    padding-bottom: 100px;
+    width: 100%;
+    height: 80%;
+    background-size: 100% 100% !important;
+    background-image: url("../../../../assets/images/what-is-awana-background.jpg");
+    background-color: #ffffff;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: scroll;
+    text-align: center;
+    position: absolute;
+}

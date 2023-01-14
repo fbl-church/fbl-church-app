@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppTestBed } from 'src/test/test-bed';
 import { setupTests } from 'src/test/test-setup';
-import { WelcomeNavbarComponent } from './welcome-navbar.component';
+import { AwanaNavbarComponent } from './awana-navbar.component';
 
-describe('WelcomeNavbarComponent', () => {
-  let component: WelcomeNavbarComponent;
-  let fixture: ComponentFixture<WelcomeNavbarComponent>;
+describe('AwanaNavbarComponent', () => {
+  let component: AwanaNavbarComponent;
+  let fixture: ComponentFixture<AwanaNavbarComponent>;
 
   setupTests(async () => AppTestBed.setup());
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WelcomeNavbarComponent);
+    fixture = TestBed.createComponent(AwanaNavbarComponent);
     component = fixture.componentInstance;
 
     fixture.detectChanges();

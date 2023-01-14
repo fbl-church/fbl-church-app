@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'projects/insite-kit/src/service/auth-service/auth.guard';
+import { AboutOverviewComponent } from './pages/about/about-overview/about-overview.component';
+import { AboutComponent } from './pages/about/about.component';
 import { LoginOverviewComponent } from './pages/login/login-overview/login-overview.component';
 import { LoginComponent } from './pages/login/login.component';
 import { WelcomeOverviewComponent } from './pages/welcome/welcome-overview/welcome-overview.component';
@@ -47,12 +49,12 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: WelcomeComponent,
+    component: AboutComponent,
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
         path: 'about',
-        component: WelcomeOverviewComponent,
+        component: AboutOverviewComponent,
       },
     ],
   },

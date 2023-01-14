@@ -24,7 +24,6 @@
 
 .nav-menu ul {
     list-style-type: none;
-    margin-right: 40px;
     display: inline-block;
     margin-top: 0;
     margin-bottom: 0;
@@ -34,7 +33,7 @@
 
 .nav-menu li {
     float: left;
-    margin-right: 50px;
+    margin-right: 45px;
 }
 
 .nav-menu ul li a {
@@ -75,7 +74,7 @@
 .awana-logo {
     width: 220px;
     height: 50%;
-    background-image: url("../../../../../assets/images/awana-logo.png");
+    background-image: url("../../../../assets/images/awana-logo.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -83,3 +82,9 @@
     text-align: center;
     position: absolute;
 }
+
+@media screen and (max-width: 1200px) {
+    .nav-menu {
+      display: none;
+    }
+  }
