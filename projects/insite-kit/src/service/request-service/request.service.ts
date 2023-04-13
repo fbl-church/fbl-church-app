@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UrlService } from '../url-service/url.service';
@@ -26,14 +26,17 @@ export class RequestService {
    * @param params params to add to endpoint
    * @returns observable of the passed in object
    */
-  get<T>(url: string, params?: Map<string, string[]>): Observable<T> {
+  get<T>(
+    url: string,
+    params?: Map<string, string[]>
+  ): Observable<HttpResponse<T>> {
     let endpoint = `${this.urlService.getAPIUrl()}/${url}?`;
     if (params) {
-      params.forEach((value, key) => {
-        endpoint = `${endpoint}${key}=${value}&`;
-      });
+      params.forEach(
+        (value, key) => (endpoint = `${endpoint}${key}=${value}&`)
+      );
     }
-    return this.http.get<T>(endpoint.slice(0, -1));
+    return this.http.get<T>(endpoint.slice(0, -1), { observe: 'response' });
   }
 
   /**

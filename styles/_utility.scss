@@ -6,6 +6,22 @@ a {
   text-decoration: none !important;
 }
 
+.row > h2 {
+  color: #1e90ff;
+  margin-top: 0;
+}
+
+.link-text {
+  font-size: 14px;
+}
+
+.text-label {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 5px;
+  padding-left: 0 !important;
+}
+
 .center {
   display: inline-table;
   width: 90%;

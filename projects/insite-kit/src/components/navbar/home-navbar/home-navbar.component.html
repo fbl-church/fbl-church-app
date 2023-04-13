@@ -1,0 +1,22 @@
+<nav class="app-navbar">
+  <div class="app-logo inline-block" (click)="onLogoClick()">
+    {{ titleName }}
+  </div>
+  <div
+    class="dropdown"
+    *featureAccess="[Application.GLOBAL, Feature.PROFILE, Access.READ]"
+  >
+    <div class="profile inline-block"></div>
+    <div class="dropdown-content">
+      <div (click)="onProfileClick()">Profile</div>
+      <div (click)="onLogOutClick()">Log Out</div>
+    </div>
+  </div>
+  <div class="bell" *ngIf="notificationAccess" (click)="onBellClick()">
+    <span class="bell-num" *ngIf="notificationCount > 0">{{
+      notificationCount
+    }}</span>
+  </div>
+</nav>
+<ik-general-notification></ik-general-notification>
+<ik-user-notification></ik-user-notification>

@@ -14,6 +14,7 @@ export class InfoCardComponent {
   @Input() descriptionFont = '18px';
   @Input() pageRoute: string;
   @Input() textAlign = 'center';
+  @Input() marginTop = '50px';
 
   constructor(private router: Router) {}
 

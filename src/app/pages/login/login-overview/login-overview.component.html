@@ -1,0 +1,64 @@
+<div class="login-container">
+  <form id="loginForm" [formGroup]="form">
+    <div class="row">
+      <div class="login-title">FB LaGrange Awana</div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="inputcontainer">
+          <fa-icon [icon]="usernameIcon" class="icon"></fa-icon>
+          <input
+            type="email"
+            id="username"
+            formControlName="username"
+            class="login-input"
+            placeholder="Email"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="inputcontainer">
+          <fa-icon [icon]="passwordIcon" class="icon"></fa-icon>
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            class="login-input"
+            placeholder="Password"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <a routerLink="#" class="left forgot-password-text">Forgot Password?</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button
+          id="loginButton"
+          class="btn btn-round btn-primary login-button"
+          (click)="onLoginClick()"
+          *ngIf="!loading; else loader"
+        >
+          Login
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <p class="create-account-text">
+          Don't have an account?
+          <a routerLink="/register" class="link-text">Register Here!</a>
+        </p>
+      </div>
+    </div>
+  </form>
+</div>
+
+<ng-template #loader>
+  <ik-loading-indicator type="ellipsis"></ik-loading-indicator>
+</ng-template>

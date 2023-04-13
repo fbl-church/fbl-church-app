@@ -25,7 +25,7 @@ export class UserNotificationComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptionService.init();
-    return this.subscriptionService
+    this.subscriptionService
       .listen(this.USER_SOCKET_URL, true)
       .pipe(
         tap((res) => this.popupService.showNotification(res)),

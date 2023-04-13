@@ -3,7 +3,7 @@
     <ng-content select="ik-card-header"></ng-content>
     <ng-content select="ik-grid-search"></ng-content>
     <table *ngIf="!loading; else loader" class="grid-table">
-      <thead *ngIf="dataLoader?.length > 0">
+      <thead *ngIf="data?.body.length > 0">
         <tr>
           <th
             *ngFor="let column of columns.toArray()"
@@ -15,29 +15,26 @@
           </th>
         </tr>
       </thead>
-      <tr
-        *ngFor="let row of gridContent; let rowIndex = index"
-        class="content-row"
-      >
+      <tr *ngFor="let row of data.body" class="content-row">
         <td
-          *ngFor="let value of row"
+          *ngFor="let col of columns.toArray()"
           class="grid-content"
           [ngClass]="{ 'content-ellipsis': !overflowEnabled }"
-          (click)="onRowClick(rowIndex)"
+          (click)="onRowClick(row)"
         >
-          <ng-container *ngIf="isDate(value); else notDate">
-            {{ value | date: "longDate" }}
+          <ng-container *ngIf="isDate(row[col.field]); else notDate">
+            {{ row[col.field] | date: "longDate" }}
           </ng-container>
           <ng-template #notDate>
-            {{ value }}
+            {{ row[col.field] }}
           </ng-template>
         </td>
       </tr>
     </table>
     <ng-content select="ik-grid-pager"></ng-content>
-    <ng-container *ngIf="dataLoader?.length <= 0 && !loading">
+    <ng-container *ngIf="data?.body.length <= 0 && !loading">
       <label class="item-label-margin label-text left no-data-margin">{{
-        "No" + " " + translationKey
+        "No" + " " + gridPager.key
       }}</label>
     </ng-container>
   </div>

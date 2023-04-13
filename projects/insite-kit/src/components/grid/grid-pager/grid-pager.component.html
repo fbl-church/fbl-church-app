@@ -1,8 +1,7 @@
-<div *ngIf="dataLength > 0" class="grid-footer">
-  <div
-    class="left-arrow inline-block left"
-    (click)="onPreviousPageClick()"
-  ></div>
+<div *ngIf="dataLength > 0 && visible" class="grid-footer">
+  <div class="arrow inline-block left" (click)="onPreviousPageClick()">
+    <ik-icon size="20px" [icon]="backwardStepIcon" color="black"></ik-icon>
+  </div>
   <div
     *ngFor="let page of pages"
     class="inline-block left"
@@ -16,8 +15,10 @@
       {{ page.pageNum }}
     </div>
   </div>
-  <div class="right-arrow inline-block left" (click)="onNextPageClick()"></div>
+  <div class="arrow inline-block left" (click)="onNextPageClick()">
+    <ik-icon size="20px" [icon]="forwardStepIcon" color="black"></ik-icon>
+  </div>
   <label class="item-label-margin label-text right">{{
-    dataLength + " " + translationKey
+    dataLength + " " + key
   }}</label>
 </div>

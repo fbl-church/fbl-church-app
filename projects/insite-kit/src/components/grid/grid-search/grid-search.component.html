@@ -1,5 +1,6 @@
 <input
   class="search"
   placeholder="Search"
+  [value]="currentSearch"
   (change)="onSearch($event.srcElement.value)"
 />

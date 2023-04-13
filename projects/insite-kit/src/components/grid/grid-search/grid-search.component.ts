@@ -8,6 +8,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class GridSearchComponent {
   @Output() search = new EventEmitter<any>();
 
+  currentSearch = '';
+
   onSearch(value: string) {
     this.search.emit(value.trim());
   }

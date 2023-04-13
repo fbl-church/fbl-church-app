@@ -12,4 +12,5 @@ export const STOMP_SOCKET_CONFIG: RxStompConfig = {
   // Set to 0 to disable
   // Typical value 500 (500 milli seconds)
   reconnectDelay: 5000,
+  connectionTimeout: 5000,
 };

@@ -34,9 +34,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/angular-calendar/css/angular-calendar.css",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/ngx-toastr/toastr.css",
               "styles/styles.scss"
             ],
             "scripts": [
@@ -52,13 +49,7 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "optimization": {
-                "scripts": true,
-                "styles": {
-                  "minify": true,
-                  "inlineCritical": false
-                }
-              },
+              "optimization": true,
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -74,18 +65,12 @@
             },
             "local": {
               "outputHashing": "none",
-              "sourceMap": false,
+              "sourceMap": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "optimization": {
-                "scripts": true,
-                "styles": {
-                  "minify": true,
-                  "inlineCritical": false
-                }
-              },
+              "optimization": false,
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -128,18 +113,6 @@
               "src/**/*.ts",
               "src/**/*.html"
             ]
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "fb-awana-app:serve"
-          },
-          "configurations": {
-            "prod": {
-              "devServerTarget": "fb-awana-app:serve:prod"
-            }
           }
         },
         "test": {

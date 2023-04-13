@@ -12,8 +12,6 @@ import { STOMP_SOCKET_CONFIG } from './stomp.config';
   providedIn: 'root',
 })
 export class SubscriptionService extends RxStomp {
-  private readonly SOCKET_URL = '/queue/user/notification';
-
   constructor(
     private readonly jwt: JwtService,
     private readonly urlService: UrlService
@@ -36,10 +34,12 @@ export class SubscriptionService extends RxStomp {
   }
 
   /**
-   * Kill the websocket connection.
+   * Disconnects all STOMP socket connections.
    */
   disconnect() {
-    this.deactivate();
+    if (this.active) {
+      this.deactivate();
+    }
   }
 
   /**
@@ -69,7 +69,7 @@ export class SubscriptionService extends RxStomp {
    * @param ses The unique user session id.
    * @returns String of the built socket path.
    */
-  buildSocketPath(des: string, uuid: string, userSes: boolean): string {
+  private buildSocketPath(des: string, uuid: string, userSes: boolean): string {
     return userSes ? `${des}-${uuid}` : des;
   }
 
@@ -79,7 +79,7 @@ export class SubscriptionService extends RxStomp {
    *
    * @returns Observable of the session id.
    */
-  subscriptionSession() {
+  private subscriptionSession() {
     return this.serverHeaders$.pipe(map((session) => session['user-name']));
   }
 }

@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import {
+  faBackwardStep,
+  faForwardStep,
+} from '@fortawesome/free-solid-svg-icons';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'ik-grid-pager',
@@ -7,71 +11,50 @@ import { Router } from '@angular/router';
   styleUrls: ['./grid-pager.component.scss'],
 })
 export class GridPagerComponent {
-  dataLength: number = 0;
-  translationKey: string = '';
-  storageTag = 'gridCurrentPage';
+  @Input() pageSize = 15;
+  @Input() key = '';
+  @Input() visible = true;
 
-  totalPages: number = 0;
-  pageSize: number = 0;
-  pageIndex: number = 0;
+  backwardStepIcon = faBackwardStep;
+  forwardStepIcon = faForwardStep;
+
+  dataLength = 0;
+  totalPages = 0;
+  activePage = 1;
   pages: any;
 
-  constructor(private readonly router: Router) {}
+  pageChange = new Subject<number>();
 
-  initPager(
-    length: number,
-    index: number,
-    size: number,
-    key: string,
-    tag: string
-  ) {
-    this.dataLength = length;
-    this.pageIndex = index;
-    this.pageSize = size;
-    this.translationKey = key;
-    this.storageTag = tag;
-    this.setFooter();
+  update(dataSize: number, page: number) {
+    this.dataLength = dataSize;
+    this.activePage = page;
+    this.totalPages = Math.ceil(dataSize / this.pageSize);
+    this.updatePageFooter(this.activePage);
   }
 
-  setFooter() {
-    this.totalPages = Math.ceil(this.dataLength / this.pageSize);
-    this.updatePageFooter(this.pageIndex);
-  }
-
-  updateRoute(index: number) {
-    localStorage.setItem(this.storageTag, `${index}`);
-    this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate([], { state: { currentPage: index } });
+  triggerPageChange(page: number) {
+    this.pageChange.next(page);
   }
 
   pageClick(page: number) {
-    this.pageIndex = page * this.pageSize - this.pageSize;
-    this.updateRoute(this.pageIndex);
+    this.activePage = page;
+    this.triggerPageChange(this.activePage);
   }
 
   onNextPageClick() {
-    if (this.pageIndex < this.dataLength) {
-      this.updateRoute(this.pageIndex);
+    if (this.activePage < this.totalPages) {
+      this.triggerPageChange(++this.activePage);
     }
   }
 
   onPreviousPageClick() {
-    if (this.pageIndex > this.pageSize) {
-      this.pageIndex =
-        this.pageIndex - this.pageSize - this.calculatePageRowSize();
-      this.updateRoute(this.pageIndex);
+    if (this.activePage > 1) {
+      this.triggerPageChange(--this.activePage);
     }
   }
 
-  calculatePageRowSize() {
-    const resultsLeft = this.dataLength - this.pageIndex;
-    return resultsLeft === 0 ? this.dataLength % this.pageSize : this.pageSize;
-  }
-
-  updatePageFooter(index: number) {
-    this.pageIndex = index;
-
-    const page = Math.ceil(this.pageIndex / this.pageSize);
+  updatePageFooter(page: number) {
+    this.activePage = page;
 
     if (page === 1) {
       this.pages = [

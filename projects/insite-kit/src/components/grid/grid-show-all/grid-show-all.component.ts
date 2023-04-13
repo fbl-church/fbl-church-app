@@ -10,7 +10,7 @@ export class GridShowAllComponent {
 
   dataLength = 0;
 
-  init(length: number) {
+  update(length: number) {
     this.dataLength = length;
   }
 

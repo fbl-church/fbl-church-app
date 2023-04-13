@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppTestBed } from 'src/test/test-bed';
+import { FBAwanaTestBed } from 'src/test/test-bed';
 import { setupTests } from 'src/test/test-setup';
 import { AuthenticatedLayoutComponent } from './authenticated-layout.component';
 
@@ -7,7 +7,7 @@ describe('AuthenticatedLayoutComponent', () => {
   let component: AuthenticatedLayoutComponent;
   let fixture: ComponentFixture<AuthenticatedLayoutComponent>;
 
-  setupTests(async () => AppTestBed.setup());
+  setupTests(async () => FBAwanaTestBed.setup());
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AuthenticatedLayoutComponent);

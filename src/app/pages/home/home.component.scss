@@ -1,0 +1,36 @@
+.centered-text-image {
+  margin-top: -100px;
+  transform: translate(-50%, -50%);
+  font-size: 80px;
+  font-weight: 700;
+  transition: 0.5s; /* Animation */
+  margin-left: 500px;
+  width: 1000px;
+  color: white;
+}
+
+@media screen and (max-width: 1200px) {
+  .centered-text-image {
+    margin-left: 360px;
+  }
+  .app-icon:last-child {
+    margin-bottom: 25px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .centered-text-image {
+    display: none;
+  }
+
+  .home-margin {
+    margin-top: -10px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .home-margin {
+    margin-top: 70px;
+    margin-bottom: 50px;
+  }
+}

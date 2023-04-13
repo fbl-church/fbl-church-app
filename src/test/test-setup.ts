@@ -1,4 +1,4 @@
-import  jasmine  from 'jasmine';
+import jasmine from'jasmine';
 
 /**
  * Wrapper function to initialize a TestBed configuration with global before/after methods defined.

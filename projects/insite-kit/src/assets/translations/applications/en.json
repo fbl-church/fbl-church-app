@@ -3,9 +3,9 @@
     "user": "Users",
     "store": "Stores",
     "calendar": "Calendar",
-    "blockDates": "Block Dates",
+    "block-dates": "Block Dates",
     "report": "Reports",
-    "requestTracker": "Request Tracker",
+    "request-tracker": "Request Tracker",
     "notification": "Notifications"
   },
   "appIcons": {
@@ -27,11 +27,11 @@
       "icon": "calendar",
       "page": "calendar"
     },
-    "blockDates": {
+    "block-dates": {
       "title": "Block Dates",
       "message": "List of dates that a user is not able to take a vacation on.",
       "icon": "block",
-      "page": "blockDates"
+      "page": "block-dates"
     },
     "report": {
       "title": "Reports",
@@ -39,11 +39,11 @@
       "icon": "report",
       "page": "report"
     },
-    "requestTracker": {
+    "request-tracker": {
       "title": "Request Tracker",
       "message": "Tracks requested vacations and their review status.",
       "icon": "request-tracker",
-      "page": "requestTracker"
+      "page": "request-tracker"
     }
   }
 }

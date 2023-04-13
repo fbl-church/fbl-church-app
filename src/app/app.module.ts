@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
-import { BaseInitModule } from 'src/app/common/base-init.module';
+import { AuthGuard } from '../../projects/insite-kit/src/service/auth-service/auth.guard';
 import { AppComponent } from './app.component';
-import { LoginModule } from './login/login.module';
-import { WelcomeModule } from './welcome/welcome.module';
+import { PagesModule } from './pages/pages.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  imports: [BaseInitModule, WelcomeModule, LoginModule],
   declarations: [AppComponent],
+  imports: [SharedModule, PagesModule],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

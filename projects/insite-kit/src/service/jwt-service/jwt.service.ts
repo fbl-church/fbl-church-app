@@ -11,7 +11,7 @@ export const TOKEN_NAME = 'token';
 })
 export class JwtService {
   constructor(
-    private router: Router,
+    private readonly router: Router,
     private readonly jwtHelperService: JwtHelperService
   ) {}
 

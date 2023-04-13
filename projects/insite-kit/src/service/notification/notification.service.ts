@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RequestService } from 'projects/insite-kit/src/service/request-service/request.service';
 import { Observable, Subject } from 'rxjs';
@@ -18,7 +19,9 @@ export class NotificationService {
    * @param params to filter request on
    * @returns observable of the returned request
    */
-  getNotifications(params?: Map<string, string[]>): Observable<Notification[]> {
+  getNotifications(
+    params?: Map<string, string[]>
+  ): Observable<HttpResponse<Notification[]>> {
     return this.requestService.get<Notification[]>(this.BASE_PATH, params);
   }
 
@@ -28,7 +31,7 @@ export class NotificationService {
    * @param id The id of the notificaiton to get.
    * @returns Notification observable
    */
-  getNotificationById(id: number): Observable<Notification> {
+  getNotificationById(id: number): Observable<HttpResponse<Notification>> {
     return this.requestService.get<Notification>(`${this.BASE_PATH}/${id}`);
   }
 

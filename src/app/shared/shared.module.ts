@@ -4,32 +4,37 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ToastrModule } from 'ngx-toastr';
 import { InsiteKitModule } from 'projects/insite-kit/src/insite-kit.module';
+import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from '../app-routing.module';
 import { AuthenticatedLayoutComponent } from './components/authenticated-layout/authenticated-layout.component';
-import { AwanaNavbarComponent } from './components/awana-navbar/awana-navbar.component';
-import { BaseLayoutComponent } from './components/base-layout/base-layout.component';
-import { IntroductionSectionComponent } from './components/introduction-section/introduction-section.component';
-
 @NgModule({
+  declarations: [AuthenticatedLayoutComponent],
   imports: [
     BrowserModule,
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
+    InsiteKitModule.forRoot(environment),
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+    }),
+  ],
+  exports: [
+    BrowserModule,
+    RouterModule,
+    AppRoutingModule,
+    HttpClientModule,
     InsiteKitModule,
-  ],
-  declarations: [
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ToastrModule,
     AuthenticatedLayoutComponent,
-    AwanaNavbarComponent,
-    BaseLayoutComponent,
-    IntroductionSectionComponent,
   ],
-  exports: [AwanaNavbarComponent, IntroductionSectionComponent],
 })
 export class SharedModule {}

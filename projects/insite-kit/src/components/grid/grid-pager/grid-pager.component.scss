@@ -3,13 +3,13 @@
   height: 38px;
   text-align: center;
   font-size: 25px;
-  border-radius: 10px;
+  border-radius: 8px;
   margin: 0 2px 5px 2px;
   cursor: pointer;
 }
 
 .page-number:hover {
-  background-color: #e8e8e8;
+  background-color: #E3E4E5;
 }
 
 .active {
@@ -17,32 +17,22 @@
   pointer-events: none;
 }
 
-.left-arrow {
-  content: url(../../../assets/images/icons/left-arrow-icon-page.png);
+.arrow {
   transition: transform 0.2s;
   cursor: pointer;
-  width: 30px;
-  margin: 2px 5px 0 5px;
+  margin: 3px 5px 0 5px;
 }
 
-.left-arrow:hover {
-  transform: scale(1.2);
-}
-
-.right-arrow {
-  content: url(../../../assets/images/icons/right-arrow-icon-page.png);
-  transition: transform 0.2s;
-  cursor: pointer;
-  width: 30px;
-  margin: 2px 5px 0 5px;
-}
-
-.right-arrow:hover {
+.arrow:hover {
   transform: scale(1.1);
 }
 
+.arrow:disabled {
+  color: #E3E4E5;
+}
+
 .grid-footer {
-  margin-top: 10px;
+  margin: 10px 2px;
 }
 
 @media screen and (max-width: 570px) {
@@ -53,13 +43,7 @@
     margin: 3px 2px 5px;
   }
 
-  .left-arrow {
-    width: 25px;
-    margin: 5px 5px 0 5px;
-  }
-
-  .right-arrow {
-    width: 25px;
-    margin: 5px 5px 0 5px;
+  .arrow {
+    margin: 4px 5px 0 5px;
   }
 }

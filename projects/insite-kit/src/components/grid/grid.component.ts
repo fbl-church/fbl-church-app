@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import {
   AfterViewInit,
   Component,
@@ -10,11 +11,12 @@ import {
   Output,
   QueryList,
 } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
+import { GridDataloader } from '../../models/grid.model';
 import { GridColumnComponent } from './grid-column/grid-column.component';
 import { GridPagerComponent } from './grid-pager/grid-pager.component';
+import { GridParamBuilder } from './grid-param-builder/grid-param-builder.component';
 import { GridSearchComponent } from './grid-search/grid-search.component';
 import { GridShowAllComponent } from './grid-show-all/grid-show-all.component';
 
@@ -29,26 +31,22 @@ export class GridComponent implements OnChanges, OnDestroy, AfterViewInit {
   @ContentChild(GridShowAllComponent) gridShowAll: GridShowAllComponent;
   @ContentChild(GridSearchComponent) gridSearch: GridSearchComponent;
 
-  @Input() dataLoader: any[] = [];
-  @Input() translationKey: any;
-  @Input() pageSize = 15;
+  @Input() dataLoader: GridDataloader;
   @Input() padding = true;
   @Input() basePath = '';
   @Input() overflowEnabled = false;
-  @Input() storageTag = 'gridCurrentPage';
-  @Input() alwaysDestroy = false;
-  @Input() idTag = 'id';
 
   @Output() rowClick = new EventEmitter<any>();
 
-  gridContent = [[]];
-  gridIndex = 0;
-
+  activePage = 1;
   loading = true;
-  destroy = new Subject<void>();
   initialLoadComplete = false;
 
-  constructor(private readonly router: Router) {}
+  destroy = new Subject<void>();
+  stopListeningForData = new Subject<void>();
+  dataSubject = new Subject<HttpResponse<any[]>>();
+
+  data: HttpResponse<any[]>;
 
   ngAfterViewInit() {
     this.checkDataLoader();
@@ -70,111 +68,108 @@ export class GridComponent implements OnChanges, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy() {
-    if (this.isNewAppRoute() || this.alwaysDestroy) {
-      localStorage.removeItem(this.storageTag);
-    }
+    this.stopListeningForData.next();
     this.destroy.next();
   }
 
   initGrid() {
-    this.gridIndex = Number(localStorage.getItem(this.storageTag)) | 0;
-    this.loading = false;
+    this.activePage = 1;
 
-    this.addGridPager();
-    this.addGridShowAll();
-    this.addGridSearch();
-    this.getPageData();
-    this.listenToRoute();
+    this.initSearchSubscription();
+    this.initPageChangeSubscription();
+    this.initDataSubscription();
+
+    this.loadData();
+  }
+
+  initSearchSubscription() {
+    if (!this.gridSearch) {
+      return;
+    }
+
+    this.gridSearch.search
+      .pipe(
+        tap(() => (this.activePage = 1)),
+        takeUntil(this.destroy)
+      )
+      .subscribe((s) => this.loadData(s));
+  }
+
+  initDataSubscription() {
+    this.dataSubject
+      .pipe(
+        tap((res) => (this.data = res)),
+        tap(() => this.updatePager()),
+        tap(() => this.updateShowAll()),
+        takeUntil(this.destroy)
+      )
+      .subscribe(() => (this.loading = false));
+  }
+
+  initPageChangeSubscription() {
+    if (!this.gridPager) {
+      return;
+    }
+
+    this.gridPager.pageChange
+      .pipe(
+        tap((page) => (this.activePage = page)),
+        takeUntil(this.destroy)
+      )
+      .subscribe(() => this.loadData());
+  }
+
+  loadData(search?: string) {
+    this.loading = true;
+    this.stopListeningForData.next();
+
+    this.dataLoader
+      .call(this, this.getGridParams(search).build())
+      .pipe(takeUntil(this.stopListeningForData))
+      .subscribe((res: HttpResponse<any[]>) => this.updateData(res));
+  }
+
+  getGridParams(search?: string): GridParamBuilder {
+    return new GridParamBuilder()
+      .withPaging(this.activePage, this.gridPager.pageSize)
+      .withSearch(search);
+  }
+
+  updateData(response: HttpResponse<any[]>) {
+    this.dataSubject.next(response);
+  }
+
+  updatePager() {
+    if (!this.gridPager) {
+      return;
+    }
+
+    const total = Number(this.data.headers.get('total-count'));
+    this.gridPager.update(total, this.activePage);
+  }
+
+  updateShowAll() {
+    if (!this.gridShowAll) {
+      return;
+    }
+
+    this.gridShowAll.update(this.data.body.length);
+  }
+
+  onRowClick(event: any) {
+    this.rowClick.emit(event);
   }
 
   refresh() {
-    this.loading = true;
+    this.loadData();
   }
 
-  addGridPager() {
-    if (this.gridPager) {
-      this.gridPager.initPager(
-        this.dataLoader.length,
-        this.gridIndex,
-        this.pageSize,
-        this.translationKey,
-        this.storageTag
-      );
-    } else {
-      this.gridIndex = 0;
-    }
-  }
-
-  addGridShowAll() {
-    if (this.gridShowAll) {
-      this.gridShowAll.init(this.dataLoader.length);
-    }
-  }
-
-  addGridSearch() {
-    if (this.gridSearch) {
-      this.gridSearch.search.pipe(takeUntil(this.destroy)).subscribe(() => {
-        this.loading = true;
-        this.gridPager.updateRoute(0);
-      });
-    }
-  }
-
-  getDataById(id: any) {
-    return this.dataLoader.find((v) => v[this.idTag] === id);
-  }
-
-  listenToRoute() {
-    this.router.events
-      .pipe(
-        filter((e) => e instanceof NavigationEnd),
-        takeUntil(this.destroy)
-      )
-      .subscribe(() => this.onGridChange());
-  }
-
-  onGridChange() {
-    this.gridIndex = Number(localStorage.getItem(this.storageTag));
-    this.getPageData();
-  }
-
-  onRowClick(event: number) {
-    this.rowClick.emit(
-      this.dataLoader[event + this.gridIndex - this.gridContent.length]
-    );
-  }
-
-  getPageData() {
-    this.gridContent = [];
-
-    for (let i = 0; i < this.pageSize && this.dataLoader[this.gridIndex]; i++) {
-      this.gridContent.push(Object.values(this.getRowData(this.gridIndex++)));
-    }
-
-    if (this.gridPager) {
-      this.gridPager.updatePageFooter(this.gridIndex);
-    }
-  }
-
-  getRowData(index: number) {
-    const arrayData = [];
-    this.columns?.forEach((col) => {
-      const val = this.dataLoader[index][col.field];
-      arrayData.push(val ? val : '-');
-    });
-    return arrayData;
-  }
-
-  isDate(value: any) {
+  isDate(value: any): boolean {
     if (typeof value === 'number') {
       return false;
     } else {
       let dateWrapper = new Date(value);
       return !isNaN(dateWrapper.getDate());
     }
-  }
-
-  isNewAppRoute() {
-    return !this.router.url.includes(`/${this.basePath}`);
   }
 }

@@ -1,8 +1,6 @@
+import { HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-export type GridDataObservable = Observable<any[]>;
+export type GridDataloader = (params: any) => Observable<HttpResponse<any[]>>;
 
-export interface GridColumn {
-  label?: string;
-  field?: string;
-}
+export type GridQueryParams = Map<string, string[]>;

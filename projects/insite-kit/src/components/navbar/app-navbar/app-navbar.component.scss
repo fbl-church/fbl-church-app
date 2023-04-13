@@ -1,0 +1,245 @@
+.app-navbar {
+  min-height: 50px;
+  height: 80px;
+  border: 1px solid transparent;
+  background: #f6f6f6;
+  position: fixed;
+  width: 100%;
+  overflow: hidden;
+  z-index: 1000;
+  box-shadow: 5px 5px 20px grey;
+}
+
+.app-title {
+  font-size: 60px;
+  color: #178bff;
+  font-weight: 700;
+  text-align: left;
+  height: 74px;
+  float: left;
+  margin-left: 10px;
+  margin-top: -6px;
+  cursor: pointer;
+}
+
+.home {
+  content: url(../../../assets/images/nav-icons/home-icon.png);
+  height: 40px;
+  width: 40px;
+  float: left;
+  margin-top: 16px;
+  margin-right: 5px;
+  margin-left: 5px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.5s; /* Animation */
+}
+
+.profile {
+  content: url(../../../assets/images/nav-icons/profile-icon.jpg);
+  height: 50px;
+  width: 50px;
+  float: right;
+  margin-top: 14px;
+  margin-right: 5px;
+  cursor: pointer;
+  color: black;
+  transition: transform 0.5s; /* Animation */
+}
+
+.bell {
+  position: relative;
+  display: block;
+  height: 40px;
+  width: 40px;
+  float: right;
+  margin-top: 19px;
+  margin-right: 5px;
+  background: url(../../../assets/images/nav-icons/notification-bell.png);
+  background-size: contain;
+  cursor: pointer;
+}
+
+.bell-num {
+  position: absolute;
+  right: -4px;
+  top: -5px;
+  color: #fff;
+  width: 22px;
+  height: 22px;
+  background: red;
+  border-radius: 100%;
+}
+
+/* The dropdown container */
+.dropdown {
+  float: right;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar div:hover,
+.dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  border-radius: 10px;
+  top: 63px;
+  right: 15px;
+  position: fixed;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content div {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content div:hover {
+  border-radius: 10px;
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/**
+ * Media Value changes
+ */
+
+@media screen and (max-width: 850px) {
+  .bell-num {
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .app-title {
+    font-size: 50px;
+    margin-top: 2px;
+  }
+
+  .home {
+    height: 30px !important;
+    width: 30px !important;
+    margin-top: 24px !important;
+  }
+
+  .profile {
+    height: 40px !important;
+    width: 40px !important;
+    margin-top: 22px !important;
+  }
+
+  .bell {
+    height: 30px !important;
+    width: 30px !important;
+    margin-top: 27px !important;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .app-title {
+    font-size: 40px;
+    margin-top: 11px;
+  }
+
+  .home {
+    margin-right: 0 !important;
+  }
+
+  .app-navbar {
+    height: 80px !important;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .app-title {
+    font-size: 31px;
+    margin-top: 18px;
+  }
+
+  .home {
+    height: 25px !important;
+    width: 25px !important;
+    margin-top: 26px !important;
+  }
+
+  .profile {
+    height: 40px !important;
+    width: 40px !important;
+    margin-top: 18px !important;
+  }
+
+  .bell {
+    height: 30px !important;
+    width: 30px !important;
+    margin-top: 23px !important;
+  }
+
+  .app-navbar {
+    height: 70px !important;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .app-title {
+    font-size: 25px;
+    margin-top: 14px;
+  }
+
+  .home {
+    height: 20px !important;
+    width: 20px !important;
+    margin-top: 22px !important;
+  }
+
+  .profile {
+    height: 32px !important;
+    width: 32px !important;
+    margin-top: 17px !important;
+  }
+
+  .bell {
+    height: 22px !important;
+    width: 22px !important;
+    margin-top: 22px !important;
+  }
+
+  .bell-num {
+    padding: 0px 5px;
+  }
+
+  .app-navbar {
+    height: 60px !important;
+  }
+}

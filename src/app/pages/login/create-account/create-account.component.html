@@ -1,0 +1,74 @@
+<div class="login-container">
+  <form id="createAccountForm" [formGroup]="form">
+    <div class="row">
+      <div class="login-title">Create Account</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-xs-12">
+        <input
+          type="text"
+          id="firstName"
+          formControlName="firstName"
+          class="login-input__small"
+          placeholder="First Name"
+        />
+      </div>
+      <div class="col-sm-6 col-xs-12">
+        <input
+          type="text"
+          id="lastName"
+          formControlName="lastName"
+          class="login-input__small"
+          placeholder="Last Name"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="login-input"
+          placeholder="Email"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="login-input"
+          placeholder="Password"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button
+          id="createAccountButton"
+          class="btn btn-round btn-primary login-button"
+          (click)="onCreateAccountClick()"
+          [disabled]="form.invalid"
+          *ngIf="!loading; else loader"
+        >
+          Create
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <p class="create-account-text">
+          Already Have an account?
+          <a routerLink="/login" class="link-text">Sign In!</a>
+        </p>
+      </div>
+    </div>
+  </form>
+</div>
+
+<ng-template #loader>
+  <ik-loading-indicator type="ellipsis"></ik-loading-indicator>
+</ng-template>
