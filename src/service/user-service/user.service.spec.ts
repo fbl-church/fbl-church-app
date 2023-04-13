@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { PasswordUpdate, RequestService, User } from 'insite-kit';
+import { PasswordUpdate } from 'projects/insite-kit/src/model/password-update.model';
+import { User } from 'projects/insite-kit/src/model/user.model';
+import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { FBAwanaTestBed } from 'src/test/test-bed';
 import { setupTests } from 'src/test/test-setup';
 import { UserService } from './user.service';

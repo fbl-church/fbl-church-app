@@ -1,0 +1,176 @@
+* {
+  font-family: emoji, sans-serif;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.center {
+  display: inline-table;
+  width: 90%;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-cell {
+  display: table-cell;
+}
+.inline {
+  display: inline;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.block {
+  display: block;
+}
+
+.flex {
+  display: flex;
+}
+
+.inline-display {
+  display: inline;
+}
+
+.width-full {
+  width: 100% !important;
+}
+
+.width-half {
+  width: 50% !important;
+}
+
+.margin-top-none {
+  margin-top: 0 !important;
+}
+
+.margin-top {
+  margin-top: 10px;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-none {
+  float: none !important;
+}
+
+.label-text {
+  margin-top: 5px;
+  font-size: 18px;
+  margin-right: 5px;
+  margin-bottom: 0;
+}
+
+.right {
+  float: right !important;
+}
+
+.left {
+  float: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-danger {
+  color: #d43f3a;
+}
+
+.text-success {
+  color: #43a047;
+}
+
+.text-default {
+  color: #33333f;
+}
+
+.leftColumn {
+  float: left;
+  padding-right: 50px;
+}
+
+.rightColumn {
+  float: right;
+}
+
+.column-wide {
+  width: 60%;
+}
+
+.column-narrow {
+  width: 40%;
+}
+
+.column-half {
+  width: 50%;
+}
+
+.content__card-padding-none .card .padding-card {
+  padding: 0;
+}
+
+.left-column {
+  float: left;
+  width: 50%;
+}
+
+.right-column {
+  float: left;
+  width: 50%;
+}
+
+.padding_bottom--small {
+  padding-bottom: 45px;
+}
+
+.margin-none {
+  margin: 0;
+}
+
+.label-header {
+  font-size: 22px;
+  font-weight: 600;
+  font-family: emoji, sans-serif;
+}
+
+button,
+input {
+  outline: none !important;
+}
+
+@media screen and (max-width: 900px) {
+  .center {
+    margin-top: 50px;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .leftColumn {
+    float: none;
+    padding: 0;
+  }
+
+  .rightColumn {
+    float: none;
+    padding: 0;
+  }
+
+  .column-wide {
+    width: 100%;
+  }
+
+  .column-narrow {
+    width: 100%;
+  }
+
+  .column-half {
+    width: 100%;
+  }
+}

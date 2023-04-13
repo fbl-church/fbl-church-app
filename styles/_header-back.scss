@@ -1,0 +1,27 @@
+.back-arrow {
+  display: inline-block;
+  transition: transform 0.2s;
+  margin-right: 20px;
+  margin-left: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 2.5rem;
+}
+
+.back-arrow:hover {
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 1030px) {
+  .back-arrow {
+    font-size: 2rem;
+    margin-right: 15px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .back-arrow {
+    font-size: 1.5rem;
+    margin-right: 10px;
+  }
+}

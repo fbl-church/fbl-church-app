@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { InsiteKitModule } from 'insite-kit';
+import { InsiteKitModule } from 'projects/insite-kit/src/insite-kit.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 
 /**

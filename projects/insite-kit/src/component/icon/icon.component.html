@@ -1,0 +1,11 @@
+<fa-icon
+  *ngIf="icon"
+  [ngStyle]="
+    !classOverride && {
+      fontSize: size,
+      color: color
+    }
+  "
+  [ngClass]="classOverride"
+  [icon]="icon"
+></fa-icon>

@@ -1,0 +1,49 @@
+.page-number {
+  width: 38px;
+  height: 38px;
+  text-align: center;
+  font-size: 25px;
+  border-radius: 8px;
+  margin: 0 2px 5px 2px;
+  cursor: pointer;
+}
+
+.page-number:hover {
+  background-color: #E3E4E5;
+}
+
+.active {
+  background-color: #81befa;
+  pointer-events: none;
+}
+
+.arrow {
+  transition: transform 0.2s;
+  cursor: pointer;
+  margin: 3px 5px 0 5px;
+}
+
+.arrow:hover {
+  transform: scale(1.1);
+}
+
+.arrow:disabled {
+  color: #E3E4E5;
+}
+
+.grid-footer {
+  margin: 10px 2px;
+}
+
+@media screen and (max-width: 570px) {
+  .page-number {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    margin: 3px 2px 5px;
+  }
+
+  .arrow {
+    margin: 4px 5px 0 5px;
+  }
+}

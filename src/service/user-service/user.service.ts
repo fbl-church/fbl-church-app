@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { PasswordUpdate, RequestService, User } from 'insite-kit';
+import { PasswordUpdate } from 'projects/insite-kit/src/model/password-update.model';
+import { User } from 'projects/insite-kit/src/model/user.model';
+import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { Observable } from 'rxjs';
 
 @Injectable({

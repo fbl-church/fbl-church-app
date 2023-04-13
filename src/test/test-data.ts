@@ -1,4 +1,6 @@
-import { AuthToken, User, WebRole } from 'insite-kit';
+import { AuthToken } from 'projects/insite-kit/src/model/auth-token.model';
+import { WebRole } from 'projects/insite-kit/src/model/common.model';
+import { User } from 'projects/insite-kit/src/model/user.model';
 
 class FBAwanaDataObject {
   getUser(): User[] {
@@ -25,6 +27,10 @@ class FBAwanaDataObject {
       expireDate: '2022-07-29T22:27:26',
       user: this.getUser()[0],
     };
+  }
+
+  getToken(): string {
+    return 'eyJhbGciOiJIUzUxMiJ9.eyJ3ZWJSb2xlIjoiVVNFUiIsImZpcnN0TmFtZSI6IlRlc3QiLCJsYXN0TmFtZSI6IlVzZXIiLCJwYXNzd29yZFJlc2V0IjpmYWxzZSwiZW52IjoiTE9DQUwiLCJleHAiOjE2NTk1NjM5NDEsInVzZXJJZCI6NiwiaWF0IjoxNjU5NTQ1OTQxLCJlbWFpbCI6InRlc3RAdXNlci5jb20ifQ.LpzHXld-0KnFeZckcE3iFO8dk49kQMmZkXaY75GhcW3hbIsvy5-fwtfFHoCQGfoRfo7WatLGp15nWLi64c2vEA';
   }
 }
 

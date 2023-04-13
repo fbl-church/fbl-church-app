@@ -1,0 +1,30 @@
+.app-container {
+  margin: 125px 2.25rem 0 2.25rem;
+  height: auto;
+  width: 90%;
+  position: relative;
+  text-align: left;
+  padding-bottom: 50px;
+}
+
+.flex-one {
+  flex: 1;
+}
+
+@media screen and (max-width: 1800px) {
+  .app-container {
+    width: 95%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .app-container {
+    margin: 125px 15px 0 15px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .app-container {
+    margin-top: 90px;
+  }
+}

@@ -34,10 +34,7 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/angular-calendar/css/angular-calendar.css",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/ngx-toastr/toastr.css",
-              "./node_modules/insite-kit/assets/styles.css"
+              "styles/styles.scss"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",

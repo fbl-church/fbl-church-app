@@ -1,0 +1,22 @@
+<nav class="app-navbar">
+  <ik-icon
+    classOverride="nav-icons__left"
+    [icon]="sideBarOpen ? closeIcon : menuIcon"
+    (click)="onMenuClick()"
+  ></ik-icon>
+
+  <div class="app-title inline-block">{{ appName }}</div>
+  <div (click)="onProfileClick()">
+    <ik-icon
+      classOverride="nav-icons__right"
+      [icon]="profileIcon"
+      (click)="onProfileClick()"
+    ></ik-icon>
+  </div>
+  <ik-icon
+    classOverride="nav-icons__right"
+    [icon]="notificationBellIcon"
+  ></ik-icon>
+</nav>
+<!-- <ik-insite-user-notification></ik-insite-user-notification>
+<ik-insite-general-notification></ik-insite-general-notification> -->

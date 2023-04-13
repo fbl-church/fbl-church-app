@@ -1,0 +1,20 @@
+<div class="ik-banner" [ngClass]="type">
+  <ik-icon
+    *ngIf="type === 'info'"
+    [icon]="infoIcon"
+    classOverride="banner-icon"
+  ></ik-icon>
+  <ik-icon
+    *ngIf="type === 'danger'"
+    [icon]="dangerIcon"
+    classOverride="banner-icon"
+  ></ik-icon>
+  <ik-icon
+    *ngIf="type === 'warning'"
+    [icon]="warningIcon"
+    classOverride="banner-icon"
+  ></ik-icon>
+  <div class="banner-content" [ngClass]="type">
+    <ng-content></ng-content>
+  </div>
+</div>

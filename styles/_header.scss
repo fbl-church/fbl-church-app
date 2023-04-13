@@ -1,0 +1,37 @@
+.header-title {
+  width: auto;
+  height: auto;
+  display: inline-block;
+  height: 50px;
+  text-align: center;
+  font-size: 45px;
+  font-family: emoji, sans-serif;
+  font-weight: 600;
+  color: white;
+}
+
+.header-margin {
+  margin-bottom: 25px;
+}
+
+
+@media screen and (max-width: 1030px) {
+  .header-title {
+    font-size: 35px;
+  }
+
+  .header-margin {
+    margin-bottom: 15px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header-title {
+    font-size: 25px;
+    padding-top: 10px;
+  }
+
+  .header-margin {
+    margin-bottom: 0;
+  }
+}

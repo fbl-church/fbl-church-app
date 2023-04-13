@@ -1,0 +1,28 @@
+.ik-modal-header {
+  background-color: #EAEAEA;
+  padding: 10px;
+
+  &.info {
+    background-color: #417cf2;
+    border-bottom: 0.5px solid #417cf2;
+    box-shadow: 0 1px 5px #417cf2;
+  }
+
+  &.danger {
+    background-color: #ff3648;
+    border-bottom: 0.5px solid #ff3648;
+    box-shadow: 0 1px 5px #ff3648;
+  }
+
+  &.warning {
+    background-color: #ffab30;
+    border-bottom: 0.5px solid #ffab30;
+    box-shadow: 0 1px 5px #ffab30;
+  }
+}
+
+.ik-modal-header .ik-title {
+  color: #222B45;
+  font-weight: bold;
+  font-size: 20px;
+}

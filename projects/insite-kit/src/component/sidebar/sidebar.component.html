@@ -1,0 +1,26 @@
+<div class="sidenav" id="sideBarNav" #sidebarNav>
+  <div (click)="route('/home')">
+    <ik-icon classOverride="nav-icon" [icon]="homeIcon"></ik-icon>
+    <span class="nav-category">Home</span>
+  </div>
+  <div (click)="route('/users')">
+    <ik-icon classOverride="nav-icon" [icon]="usersIcon"></ik-icon>
+    <span class="nav-category">Users</span>
+  </div>
+  <div (click)="route('/about')">
+    <ik-icon classOverride="nav-icon" [icon]="aboutIcon"></ik-icon>
+    <span class="nav-category">About</span>
+  </div>
+  <div (click)="route('/repo')">
+    <ik-icon classOverride="nav-icon" [icon]="gitIcon"></ik-icon>
+    <span class="nav-category">Repositories</span>
+  </div>
+  <div (click)="route('/contact')">
+    <ik-icon classOverride="nav-icon" [icon]="contactIcon"></ik-icon>
+    <span class="nav-category">Contact</span>
+  </div>
+  <div (click)="route('/settings')">
+    <ik-icon classOverride="nav-icon" [icon]="settingsIcon"></ik-icon>
+    <span class="nav-category">Settings</span>
+  </div>
+</div>
