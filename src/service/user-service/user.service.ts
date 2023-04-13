@@ -1,23 +1,15 @@
-import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Application, User } from 'projects/insite-kit/src/models/user.model';
-import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
-import { RequestService } from 'projects/insite-kit/src/service/request-service/request.service';
+import { PasswordUpdate, RequestService, User } from 'insite-kit';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  readonly BASE_USER_PATH = 'api/user-app/user-profile';
-  readonly BASE_USER_STATUS_PATH = 'api/user-app/user-status';
-  readonly BASE_USER_CREDENTIALS_PATH = 'api/user-app/user-credentials';
+  readonly BASE_USER_PATH = 'api/user-app/profile';
+  readonly BASE_USER_CREDENTIALS_PATH = 'api/user-app/credentials';
 
-  constructor(
-    private readonly request: RequestService,
-    private readonly commonService: CommonService
-  ) {}
+  constructor(private readonly request: RequestService) {}
 
   /**
    * Get a list of users based on the given request
@@ -25,15 +17,8 @@ export class UserService {
    * @param params to filter on
    * @returns User object
    */
-  getUsers(params?: Map<string, string[]>): Observable<HttpResponse<User[]>> {
-    return this.request.get<User[]>(this.BASE_USER_PATH, params).pipe(
-      tap((v) =>
-        v.body.forEach((u) => {
-          u.formattedRole = this.commonService.getFormattedRole(u.webRole);
-          u.formattedName = this.commonService.getFormattedName(u);
-        })
-      )
-    );
+  getUsers(params?: Map<string, string[]>): Observable<User[]> {
+    return this.request.get<User[]>(this.BASE_USER_PATH, params);
   }
 
   /**
@@ -41,7 +26,7 @@ export class UserService {
    *
    * @returns User object of the current user.
    */
-  getCurrentUser(): Observable<HttpResponse<User>> {
+  getCurrentUser(): Observable<User> {
     return this.request.get<User>(`${this.BASE_USER_PATH}/current-user`);
   }
 
@@ -51,19 +36,20 @@ export class UserService {
    * @param params user id for the user to get
    * @returns User object
    */
-  getUserById(id: number): Observable<HttpResponse<User>> {
+  getUserById(id: number): Observable<User> {
     return this.request.get<User>(`${this.BASE_USER_PATH}/${id.toString()}`);
   }
 
   /**
-   * Gets the users applications that they have access too for the given user id.
+   * This will check to see if the email exists already. Used to see if a user can create
+   * an account with the email they have chosen.
    *
-   * @param id The id of the user to get applications for.
-   * @returns List of Application object
+   * @param email The email to check.
+   * @returns Boolean of the status of the email.
    */
-  getUserAppsById(id: number): Observable<HttpResponse<Application[]>> {
-    return this.request.get<Application[]>(
-      `${this.BASE_USER_PATH}/${id}/application-access`
+  doesEmailExist(email: string): Observable<boolean> {
+    return this.request.get<boolean>(
+      `${this.BASE_USER_PATH}/check-email?email=${email}`
     );
   }
 
@@ -102,21 +88,56 @@ export class UserService {
   }
 
   /**
+   * This will update the current users password for the given password update
+   * object
+   *
+   * @param passUpdate The object that contains the current password and new password.
+   * @returns The user object of the user that was updated.
+   */
+  updateUserPassword(passUpdate: PasswordUpdate): Observable<User> {
+    return this.request.put<User>(
+      `${this.BASE_USER_CREDENTIALS_PATH}/password`,
+      passUpdate
+    );
+  }
+
+  /**
+   * This will update the users password for the given password update
+   * object and user id.
+   *
+   * @param userId The user that needs updated.
+   * @param passUpdate The object that contains the current password and new password.
+   * @returns The user object of the user that was updated.
+   */
+  updateUserPasswordById(
+    userId: number,
+    passUpdate: PasswordUpdate
+  ): Observable<User> {
+    return this.request.put<User>(
+      `${this.BASE_USER_CREDENTIALS_PATH}/password/${userId.toString()}`,
+      passUpdate
+    );
+  }
+
+  /**
+   * This will reset the users password for the given password update object.
+   *
+   * @param passUpdate The password update object the password needs to be.
+   * @returns User Object of the user that was updated.
+   */
+  resetUserPassword(passUpdate: PasswordUpdate): Observable<User> {
+    return this.request.put<User>(
+      `${this.BASE_USER_CREDENTIALS_PATH}/password/reset`,
+      passUpdate
+    );
+  }
+
+  /**
    * Delete the user associated to the given id.
    *
    * @param id of the user to be deleted.
    */
   deleteUser(id: number): Observable<any> {
     return this.request.delete<any>(`${this.BASE_USER_PATH}/${id}`);
-  }
-
-  /**
-   * Checks to see if the given user id has access to the application.
-   *
-   * @param id The user id to check.
-   * @returns Boolean if the user has app access or not.
-   */
-  hasAppAccess(id: number): Observable<boolean> {
-    return this.getUserById(id).pipe(map((res) => res.body.appAccess));
   }
 }

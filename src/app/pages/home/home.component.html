@@ -1,20 +1,3 @@
-<ik-home-navbar></ik-home-navbar>
-<ik-home-image></ik-home-image>
-<div class="home-margin row">
-  <ng-container *ngFor="let app of apps">
-    <div
-      class="col-xs-12 col-sm-6 col-md-6 col-lg-4 app-icon"
-      *ngIf="app?.title"
-    >
-      <ik-icon-card
-        *ngIf="app?.title"
-        class=""
-        [paragraph]="app.message"
-        [appName]="app.title"
-        [icon]="app.icon"
-        [pageRoute]="app.page"
-      ></ik-icon-card>
-    </div>
-  </ng-container>
+<div class="row">
+  Hello World
 </div>
-<ik-footer></ik-footer>

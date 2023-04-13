@@ -1,22 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { JwtService } from 'insite-kit';
 import { FBAwanaTestBed } from 'src/test/test-bed';
 import { setupTests } from 'src/test/test-setup';
-import { HomeComponent } from './home.component';
+import { ProfileComponent } from './profile.component';
 
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
-  let jwtService: JwtService;
+describe('ProfileComponent', () => {
+  let component: ProfileComponent;
+  let fixture: ComponentFixture<ProfileComponent>;
 
   setupTests(async () => FBAwanaTestBed.setup());
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(ProfileComponent);
     component = fixture.componentInstance;
-    jwtService = TestBed.inject(JwtService);
-
-    spyOn(jwtService, 'get').and.returnValue('testName');
 
     fixture.detectChanges();
   });

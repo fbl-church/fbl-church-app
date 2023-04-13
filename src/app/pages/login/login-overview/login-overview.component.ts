@@ -3,8 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
-import { AuthService } from 'projects/insite-kit/src/service/auth-service/auth.service';
-import { PopupService } from 'projects/insite-kit/src/service/popup/popup.service';
+import { AuthService, PopupService } from 'insite-kit';
 
 @Component({
   selector: 'app-login-overview',

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'projects/insite-kit/src/models/user.model';
-import { PopupService } from 'projects/insite-kit/src/service/popup/popup.service';
+import { PopupService, User } from 'insite-kit';
 import { UserService } from 'src/service/user-service/user.service';
 
 @Component({

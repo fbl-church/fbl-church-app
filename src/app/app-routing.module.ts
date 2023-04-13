@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '../../projects/insite-kit/src/service/auth-service/auth.guard';
+import { AuthGuard } from 'insite-kit';
 import { HomeComponent } from './pages/home/home.component';
 import { CreateAccountComponent } from './pages/login/create-account/create-accountcomponent';
 import { LoginOverviewComponent } from './pages/login/login-overview/login-overview.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { UserComponent } from './pages/users/user.component';
 import { AuthenticatedLayoutComponent } from './shared/components/authenticated-layout/authenticated-layout.component';
 
 /**
@@ -33,11 +35,20 @@ const routes: Routes = [
   {
     path: '',
     component: AuthenticatedLayoutComponent,
-    canActivate: [AuthGuard],
     children: [
       {
         path: 'home',
         component: HomeComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'users',
+        component: UserComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
         pathMatch: 'full',
       },
     ],

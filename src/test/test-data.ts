@@ -1,10 +1,14 @@
-import { AuthToken } from 'projects/insite-kit/src/models/auth-token.model';
-import { WebRole } from 'projects/insite-kit/src/models/common.model';
-import { User } from 'projects/insite-kit/src/models/user.model';
+import { AuthToken, User, WebRole } from 'insite-kit';
 
-class HydroDataObject {
+class FBAwanaDataObject {
   getUser(): User[] {
     return [
+      {
+        firstName: 'Test',
+        lastName: 'Admin',
+        email: 'Test@Admin.com',
+        webRole: WebRole.ADMIN,
+      },
       {
         firstName: 'Test',
         lastName: 'User',
@@ -24,4 +28,4 @@ class HydroDataObject {
   }
 }
 
-export const TestData = new HydroDataObject();
+export const TestData = new FBAwanaDataObject();

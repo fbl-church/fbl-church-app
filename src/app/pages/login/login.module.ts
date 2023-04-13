@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { BaseInitModule } from 'src/app/common/base-init.module';
 import { CreateAccountComponent } from './create-account/create-accountcomponent';
 import { LoginOverviewComponent } from './login-overview/login-overview.component';
 import { LoginComponent } from './login.component';
 
 @NgModule({
-  imports: [SharedModule],
+  imports: [BaseInitModule],
   declarations: [
     LoginComponent,
     LoginOverviewComponent,

@@ -1,12 +1,12 @@
 /**
- * Default configuration for running the application locally. It will default to production
- * endpoints but not start as a production application.
+ * Default configuration for running the application locally.
  *
  * @author Sam Butler
  * @since February 25, 2022
  */
 export const environment = {
+  tag: '',
   production: false,
   isLocal: false,
-  apiUrl: 'fb-awana-microservice.herokuapp.com',
+  apiUrl: '',
 };

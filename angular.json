@@ -34,7 +34,10 @@
               "src/assets"
             ],
             "styles": [
-              "styles/styles.scss"
+              "./node_modules/angular-calendar/css/angular-calendar.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-toastr/toastr.css",
+              "./node_modules/insite-kit/assets/styles.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
@@ -49,7 +52,13 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "optimization": true,
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                }
+              },
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -65,12 +74,18 @@
             },
             "local": {
               "outputHashing": "none",
-              "sourceMap": true,
+              "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "optimization": false,
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                }
+              },
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",

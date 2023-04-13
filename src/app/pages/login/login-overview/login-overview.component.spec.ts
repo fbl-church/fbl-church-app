@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { AuthService } from 'projects/insite-kit/src/service/auth-service/auth.service';
-import { PopupService } from 'projects/insite-kit/src/service/popup/popup.service';
+import { AuthService, PopupService } from 'insite-kit';
 import { of, throwError } from 'rxjs';
 import { FBAwanaTestBed } from 'src/test/test-bed';
 import { TestData } from 'src/test/test-data';

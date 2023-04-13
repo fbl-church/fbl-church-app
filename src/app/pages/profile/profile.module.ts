@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BaseInitModule } from 'src/app/common/base-init.module';
-import { HomeComponent } from './home.component';
+import { ProfileComponent } from './profile.component';
 
 @NgModule({
   imports: [BaseInitModule],
-  declarations: [HomeComponent],
+  declarations: [ProfileComponent],
 })
-export class HomeModule {}
+export class ProfileModule {}

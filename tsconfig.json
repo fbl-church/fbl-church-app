@@ -7,16 +7,14 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
     "module": "es2020",
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
-    "types":["jquery"]
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["es2018","dom"],
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
