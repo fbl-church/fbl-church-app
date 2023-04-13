@@ -1,5 +1,5 @@
 /**
- * Configuration for testing locally. This requires the marcs-microservice to be
+ * Configuration for testing locally. This requires the fb-awana-microservice to be
  * running locally as well and requires a locally signed jwt.
  *
  * @author Sam Butler
