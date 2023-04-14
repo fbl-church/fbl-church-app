@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import {
+  faChartSimple,
   faCircleInfo,
   faClose,
   faEnvelope,
@@ -28,6 +29,7 @@ export class SidebarComponent {
   usersIcon = faUsers;
   gitIcon = faGithub;
   settingsIcon = faGear;
+  reportIcon = faChartSimple;
 
   constructor(private readonly router: Router) {}
 
