@@ -27,7 +27,7 @@ describe('UserService', () => {
     service.getUsers(userMap);
 
     expect(requestService.get).toHaveBeenCalledWith(
-      'api/user-app/profile',
+      'api/user-app/user-profile',
       userMap
     );
   });
@@ -35,19 +35,21 @@ describe('UserService', () => {
   it('should call get current user endpoint', () => {
     service.getCurrentUser();
     expect(requestService.get).toHaveBeenCalledWith(
-      'api/user-app/profile/current-user'
+      'api/user-app/user-profile/current-user'
     );
   });
 
   it('should call get user by id endpoint', () => {
     service.getUserById(1);
-    expect(requestService.get).toHaveBeenCalledWith('api/user-app/profile/1');
+    expect(requestService.get).toHaveBeenCalledWith(
+      'api/user-app/user-profile/1'
+    );
   });
 
   it('should call to check if email exist', () => {
     service.doesEmailExist('fake@mail.com');
     expect(requestService.get).toHaveBeenCalledWith(
-      'api/user-app/profile/check-email?email=fake@mail.com'
+      'api/user-app/user-profile/check-email?email=fake@mail.com'
     );
   });
 
@@ -61,7 +63,7 @@ describe('UserService', () => {
 
     service.createUser(newUser);
     expect(requestService.post).toHaveBeenCalledWith(
-      'api/user-app/profile',
+      'api/user-app/user-profile',
       newUser
     );
   });
@@ -73,7 +75,7 @@ describe('UserService', () => {
 
     service.updateUserProfile(updatedUser);
     expect(requestService.put).toHaveBeenCalledWith(
-      'api/user-app/profile',
+      'api/user-app/user-profile',
       updatedUser
     );
   });
@@ -85,7 +87,7 @@ describe('UserService', () => {
 
     service.updateUserProfileById(12, updatedUser);
     expect(requestService.put).toHaveBeenCalledWith(
-      'api/user-app/profile/12',
+      'api/user-app/user-profile/12',
       updatedUser
     );
   });
@@ -98,7 +100,7 @@ describe('UserService', () => {
 
     service.updateUserPassword(newPass);
     expect(requestService.put).toHaveBeenCalledWith(
-      'api/user-app/credentials/password',
+      'api/user-app/user-credentials/password',
       newPass
     );
   });
@@ -111,7 +113,7 @@ describe('UserService', () => {
 
     service.updateUserPasswordById(1, newPass);
     expect(requestService.put).toHaveBeenCalledWith(
-      'api/user-app/credentials/password/1',
+      'api/user-app/user-credentials/password/1',
       newPass
     );
   });
@@ -121,7 +123,7 @@ describe('UserService', () => {
 
     service.resetUserPassword(newPass);
     expect(requestService.put).toHaveBeenCalledWith(
-      'api/user-app/credentials/password/reset',
+      'api/user-app/user-credentials/password/reset',
       newPass
     );
   });
@@ -129,7 +131,7 @@ describe('UserService', () => {
   it('should delete user', () => {
     service.deleteUser(10);
     expect(requestService.delete).toHaveBeenCalledWith(
-      'api/user-app/profile/10'
+      'api/user-app/user-profile/10'
     );
   });
 });

@@ -13,6 +13,7 @@
   user-select: none;
   font-weight: 600;
   margin: 15px 0;
+  color:white;
 
   &,
   &:active,
@@ -76,7 +77,6 @@
   $hover-from,
   $active-border
 ) {
-  color: $color;
   border-color: $border;
   background: linear-gradient(to bottom, $from 0%, $to 100%);
   box-shadow: inset 0 1px $gloss, 0 1px 2px rgba(0, 0, 0, 0.2);
@@ -105,7 +105,6 @@
 }
 
 @mixin btn-flat($active, $hover, $normal, $active-color, $color, $disabled) {
-  color: $color;
   border-color: transparent;
   background: $normal;
   box-shadow: none;
@@ -143,7 +142,6 @@
   $border
 ) {
   border-radius: 30px;
-  color: $color;
   border-color: $border;
   background: $normal;
   box-shadow: none;
@@ -197,24 +195,12 @@
       #b0bec5,
       transparent
     );
-
-    &__swap {
-      @include btn-round(
-        #ffffff,
-        #90a4ae,
-        #ffffff,
-        #ffffff,
-        #eceff1,
-        #b0bec5,
-        #455a64
-      );
-    }
   }
 }
 
 .btn-primary {
   @include btn-variant(
-    #007fe5,
+    #0095FF,
     #64b5f6,
     #42a5f5,
     #bbdefb,
@@ -224,31 +210,19 @@
   );
 
   &.btn-flat {
-    @include btn-flat(#007fe5, #64b5f6, #42a5f5, #bbdefb, #e3f2fd, #90caf9);
+    @include btn-flat(#0095FF, #5bb0f7, #0095FF, #bbdefb, #e3f2fd, #85c4f8);
   }
 
   &.btn-round {
     @include btn-round(
-      #007fe5,
+      #0095FF,
       #239cff,
-      #007fe5,
+      #0095FF,
       #bbdefb,
       #e3f2fd,
       #6cb9f8,
       transparent
     );
-
-    &__swap {
-      @include btn-round(
-        #ffffff,
-        #007fe5,
-        #ffffff,
-        #ffffff,
-        #007fe5,
-        #c9e4fd,
-        #007fe5
-      );
-    }
   }
 }
 
@@ -293,18 +267,6 @@
       #80deea,
       transparent
     );
-
-    &__swap {
-      @include btn-round(
-        #ffffff,
-        #4dd0e1,
-        #ffffff,
-        #ffffff,
-        #e0f7fa,
-        #80deea,
-        #0097a7
-      );
-    }
   }
 }
 
@@ -333,24 +295,12 @@
       #ffcc80,
       transparent
     );
-
-    &__swap {
-      @include btn-round(
-        #ffffff,
-        #ffb74d,
-        #ffffff,
-        #ffffff,
-        #fff3e0,
-        #ffcc80,
-        #f57c00
-      );
-    }
   }
 }
 
 .btn-danger {
   @include btn-variant(
-    #f4511e,
+    #ff4943,
     #ff8a65,
     #ff7043,
     #ffccbc,
@@ -360,7 +310,7 @@
   );
 
   &.btn-flat {
-    @include btn-flat(#f4511e, #ff8a65, #ff7043, #ffccbc, #fbe9e7, #ffab91);
+    @include btn-flat(#ff4943, #ff7c65, #ff4943, #ffccbc, #fbe9e7, #ffab91);
   }
 
   &.btn-round {
@@ -373,18 +323,6 @@
       #ffab91,
       transparent
     );
-
-    &__swap {
-      @include btn-round(
-        #ffffff,
-        #ff8a65,
-        #ffffff,
-        #ffffff,
-        #fbe9e7,
-        #ffab91,
-        #e64a19
-      );
-    }
   }
 }
 

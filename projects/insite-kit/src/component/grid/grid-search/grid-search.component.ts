@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'ik-grid-search',
@@ -6,6 +7,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class GridSearchComponent {
   @Output() search = new EventEmitter<any>();
+  searchIcon = faSearch;
 
   currentSearch = '';
 

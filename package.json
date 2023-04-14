@@ -7,17 +7,15 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
     "build": "ng build",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
-    "e2e": "ng e2e",
     "test": "ng test --code-coverage --source-map=false",
     "test:watch": "ng test --code-coverage --source-map=false --watch",
     "test:sourcemaps": "ng test --code-coverage --source-map=true",
     "test:sourcemaps:watch": "ng test --code-coverage --source-map=true --watch",
     "test:headless": "ng test --watch=false --code-coverage --source-map=true --browsers=ChromeHeadless",
-    "serve": "ng serve --live-reload --configuration local",
+    "serve": "ng serve --configuration local",
     "package:refresh": "rm package-lock.json && npm i",
     "heroku-postbuild": "ng build --configuration ${ENV}"
   },

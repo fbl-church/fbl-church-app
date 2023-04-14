@@ -46,7 +46,6 @@ export class LoginOverviewComponent implements OnInit {
         },
         error: (err) => {
           this.popupService.error('Invalid email or password!');
-          this.router.navigate(['/home']);
           this.loading = false;
         },
       });

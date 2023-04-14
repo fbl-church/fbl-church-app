@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PasswordUpdate } from 'projects/insite-kit/src/model/password-update.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
@@ -8,8 +9,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  readonly BASE_USER_PATH = 'api/user-app/profile';
-  readonly BASE_USER_CREDENTIALS_PATH = 'api/user-app/credentials';
+  readonly BASE_USER_PATH = 'api/user-app/user-profile';
+  readonly BASE_USER_CREDENTIALS_PATH = 'api/user-app/user-credentials';
 
   constructor(private readonly request: RequestService) {}
 
@@ -19,7 +20,7 @@ export class UserService {
    * @param params to filter on
    * @returns User object
    */
-  getUsers(params?: Map<string, string[]>): Observable<User[]> {
+  getUsers(params?: Map<string, string[]>): Observable<HttpResponse<User[]>> {
     return this.request.get<User[]>(this.BASE_USER_PATH, params);
   }
 
@@ -49,7 +50,7 @@ export class UserService {
    * @param email The email to check.
    * @returns Boolean of the status of the email.
    */
-  doesEmailExist(email: string): Observable<boolean> {
+  doesEmailExist(email: string): Observable<HttpResponse<boolean>> {
     return this.request.get<boolean>(
       `${this.BASE_USER_PATH}/check-email?email=${email}`
     );

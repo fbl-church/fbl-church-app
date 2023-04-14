@@ -1,6 +1,13 @@
-<input
-  class="search"
-  placeholder="Search"
-  [value]="currentSearch"
-  (change)="onSearch($event.srcElement.value)"
-/>
+<div class="grid-search--container">
+  <ik-icon
+    [icon]="searchIcon"
+    classOverride="grid-search--icon"
+    class="grid-search--icon-align"
+  ></ik-icon>
+  <input
+    class="search"
+    placeholder="Search"
+    [value]="currentSearch"
+    (change)="onSearch($event.srcElement.value)"
+  />
+</div>

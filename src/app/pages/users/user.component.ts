@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from 'projects/insite-kit/src/model/user.model';
+import { Component } from '@angular/core';
 import { UserService } from 'src/service/user-service/user.service';
 
 @Component({
@@ -7,14 +6,14 @@ import { UserService } from 'src/service/user-service/user.service';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
 })
-export class UserComponent implements OnInit {
-  dataloader: User[];
+export class UserComponent {
+  dataloader: any;
 
-  constructor(private readonly userService: UserService) {}
-
-  ngOnInit() {
-    this.userService.getUsers().subscribe((res) => (this.dataloader = res));
+  constructor(private userService: UserService) {
+    this.dataloader = (params: any) => this.getUserDataLoader(params);
   }
 
-  onSearch(value: any) {}
+  getUserDataLoader(params?: Map<string, string[]>) {
+    return this.userService.getUsers(params);
+  }
 }

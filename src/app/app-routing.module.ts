@@ -35,6 +35,7 @@ const routes: Routes = [
   {
     path: '',
     component: AuthenticatedLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'home',

@@ -1,13 +1,32 @@
 .search {
+  color: #222B45;
   border-radius: 10px;
-  background: #e9e7e7;
-  padding: 15px;
+  background: #F7F9FC;
+  border: 1px solid #e4e9f2;
+  padding: 10px;
   font-size: 20px;
   width: 100%;
 }
 
 input {
   border-style: hidden;
+}
+
+.grid-search--icon {
+  color: #222B45;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.grid-search--icon-align {
+  position: absolute;
+  right: 10px;
+}
+
+.grid-search--container {
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
 @media screen and (max-width: 570px) {

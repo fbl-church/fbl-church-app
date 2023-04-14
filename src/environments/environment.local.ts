@@ -9,5 +9,5 @@ export const environment = {
   tag: 'LOCAL',
   production: false,
   isLocal: true,
-  apiUrl: 'localhost:8000',
+  apiUrl: 'marcs-microservice.herokuapp.com',
 };
