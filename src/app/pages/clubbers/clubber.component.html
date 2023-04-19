@@ -1,14 +1,14 @@
-<ik-header title="Workers">
+<ik-header title="Clubbers">
   <button class="btn btn-primary btn-flat btn-size btn-right">
     <ik-icon [icon]="addCirlce" classOverride="add-icon"></ik-icon>
-    Add User
+    Add Clubber
   </button>
 </ik-header>
-<ik-grid basePath="users" [dataLoader]="dataloader">
+<ik-grid basePath="clubbers" [dataLoader]="dataloader">
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="First Name" field="firstName"></ik-grid-column>
   <ik-grid-column label="Last Name" field="lastName"></ik-grid-column>
-  <ik-grid-column label="Email" field="email"></ik-grid-column>
-  <ik-grid-column label="Role" field="webRole"></ik-grid-column>
-  <ik-grid-pager key="Users"></ik-grid-pager>
+  <ik-grid-column label="Group" field="churchGroup"></ik-grid-column>
+  <ik-grid-column label="Created" field="insertDate"></ik-grid-column>
+  <ik-grid-pager key="Clubbers"></ik-grid-pager>
 </ik-grid>

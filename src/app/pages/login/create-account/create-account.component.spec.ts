@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { of, throwError } from 'rxjs';
-import { UserService } from 'src/service/user-service/user.service';
+import { UserService } from 'src/service/users/user.service';
 import { FBAwanaTestBed } from 'src/test/test-bed';
 import { TestData } from 'src/test/test-data';
 import { TestDOM } from 'src/test/test-dom';

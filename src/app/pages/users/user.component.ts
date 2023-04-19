@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
-import { UserService } from 'src/service/user-service/user.service';
+import { UserService } from 'src/service/users/user.service';
 
 @Component({
   selector: 'app-user',

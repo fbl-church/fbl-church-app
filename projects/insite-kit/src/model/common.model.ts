@@ -5,6 +5,14 @@ export enum WebRole {
   ADMIN = 4,
 }
 
+export enum ChurchGroup {
+  CUBBIES = 'CUBBIES',
+  SPARKS = 'SPARKS',
+  TNT_GIRLS = 'TNT_GIRLS',
+  TNT_BOYS = 'TNT_BOYS',
+  CROSS_CHECK = 'CROSS_CHECK',
+}
+
 export enum Access {
   CREATE = 'c',
   READ = 'r',

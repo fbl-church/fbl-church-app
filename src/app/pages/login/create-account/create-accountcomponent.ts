@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
-import { UserService } from 'src/service/user-service/user.service';
+import { UserService } from 'src/service/users/user.service';
 
 @Component({
   selector: 'app-create-account',

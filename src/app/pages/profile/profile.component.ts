@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'projects/insite-kit/src/model/user.model';
-import { UserService } from 'src/service/user-service/user.service';
+import { UserService } from 'src/service/users/user.service';
 
 @Component({
   selector: 'app-profile',

@@ -26,30 +26,23 @@ describe('UserService', () => {
     const userMap = new Map().set('userId', 1);
     service.getUsers(userMap);
 
-    expect(requestService.get).toHaveBeenCalledWith(
-      'api/user-app/user-profile',
-      userMap
-    );
+    expect(requestService.get).toHaveBeenCalledWith('api/users', userMap);
   });
 
   it('should call get current user endpoint', () => {
     service.getCurrentUser();
-    expect(requestService.get).toHaveBeenCalledWith(
-      'api/user-app/user-profile/current-user'
-    );
+    expect(requestService.get).toHaveBeenCalledWith('api/users/current-user');
   });
 
   it('should call get user by id endpoint', () => {
     service.getUserById(1);
-    expect(requestService.get).toHaveBeenCalledWith(
-      'api/user-app/user-profile/1'
-    );
+    expect(requestService.get).toHaveBeenCalledWith('api/users/1');
   });
 
   it('should call to check if email exist', () => {
     service.doesEmailExist('fake@mail.com');
     expect(requestService.get).toHaveBeenCalledWith(
-      'api/user-app/user-profile/check-email?email=fake@mail.com'
+      'api/users/check-email?email=fake@mail.com'
     );
   });
 
@@ -62,10 +55,7 @@ describe('UserService', () => {
     };
 
     service.createUser(newUser);
-    expect(requestService.post).toHaveBeenCalledWith(
-      'api/user-app/user-profile',
-      newUser
-    );
+    expect(requestService.post).toHaveBeenCalledWith('api/users', newUser);
   });
 
   it('should call endpoint to update user', () => {
@@ -74,10 +64,7 @@ describe('UserService', () => {
     };
 
     service.updateUserProfile(updatedUser);
-    expect(requestService.put).toHaveBeenCalledWith(
-      'api/user-app/user-profile',
-      updatedUser
-    );
+    expect(requestService.put).toHaveBeenCalledWith('api/users', updatedUser);
   });
 
   it('should call endpoint to update user by id', () => {
@@ -87,7 +74,7 @@ describe('UserService', () => {
 
     service.updateUserProfileById(12, updatedUser);
     expect(requestService.put).toHaveBeenCalledWith(
-      'api/user-app/user-profile/12',
+      'api/users/12',
       updatedUser
     );
   });
@@ -100,7 +87,7 @@ describe('UserService', () => {
 
     service.updateUserPassword(newPass);
     expect(requestService.put).toHaveBeenCalledWith(
-      'api/user-app/user-credentials/password',
+      'api/users/credentials/password',
       newPass
     );
   });
@@ -113,7 +100,7 @@ describe('UserService', () => {
 
     service.updateUserPasswordById(1, newPass);
     expect(requestService.put).toHaveBeenCalledWith(
-      'api/user-app/user-credentials/password/1',
+      'api/users/credentials/password/1',
       newPass
     );
   });
@@ -123,15 +110,13 @@ describe('UserService', () => {
 
     service.resetUserPassword(newPass);
     expect(requestService.put).toHaveBeenCalledWith(
-      'api/user-app/user-credentials/password/reset',
+      'api/users/credentials/password/reset',
       newPass
     );
   });
 
   it('should delete user', () => {
     service.deleteUser(10);
-    expect(requestService.delete).toHaveBeenCalledWith(
-      'api/user-app/user-profile/10'
-    );
+    expect(requestService.delete).toHaveBeenCalledWith('api/users/10');
   });
 });
