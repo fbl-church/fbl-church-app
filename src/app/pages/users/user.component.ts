@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from 'src/service/user-service/user.service';
 
 @Component({
@@ -8,6 +9,7 @@ import { UserService } from 'src/service/user-service/user.service';
 })
 export class UserComponent {
   dataloader: any;
+  addCirlce = faCirclePlus;
 
   constructor(private userService: UserService) {
     this.dataloader = (params: any) => this.getUserDataLoader(params);

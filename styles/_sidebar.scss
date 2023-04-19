@@ -21,7 +21,7 @@
   transition: all .3s ease-out;
   border-bottom: 1px solid #EDF1F7;
   line-height: 1.5rem;
-  color: #8F9BB3;
+  color: #656e7e;
   display: flex;
 }
 
@@ -29,17 +29,22 @@
   color:#3366FF
 }
 
-.nav-icon {
+.sidebar-icon {
   margin: 0 1rem 0 0;
   font-size: 16px;
 }
 
-.nav-category  {
+.sidebar-category  {
   font-size: 20px;
 }
 
+.sidebar-category__active {
+  color:#3366FF !important;
+  border-left: 5px solid #3366FF !important;
+}
+
 @media screen and (max-height: 680px) {
-  .sidenav div {
+  .sidenav a {
     padding: 1rem 1rem;
   }
 

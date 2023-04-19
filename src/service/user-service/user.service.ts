@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  readonly BASE_USER_PATH = 'api/user-app/user-profile';
-  readonly BASE_USER_CREDENTIALS_PATH = 'api/user-app/user-credentials';
+  readonly BASE_USER_PATH = 'api/users';
+  readonly BASE_USER_CREDENTIALS_PATH = 'api/users/credentials';
 
   constructor(private readonly request: RequestService) {}
 

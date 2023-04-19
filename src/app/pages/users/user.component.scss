@@ -14,3 +14,13 @@
 .chart-container {
   display: flex;
 }
+
+.add-icon {
+  margin-right: 5px;
+}
+
+@media screen and (max-width: 500px) {
+  .add-icon {
+    font-size: 18px
+  }
+}

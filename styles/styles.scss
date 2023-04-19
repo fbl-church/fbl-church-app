@@ -28,4 +28,7 @@
 @import "indicator-light";
 @import "ngx-toastr/toastr";
 @import "bootstrap/dist/css/bootstrap.css";
-@import "angular-calendar/css/angular-calendar.css"
+@import "angular-calendar/css/angular-calendar.css";
+
+// App Components
+@import "../src/app/pages/users/user.component";

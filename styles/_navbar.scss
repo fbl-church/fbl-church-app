@@ -2,7 +2,7 @@
   min-height: 50px;
   height: 80px;
   border: 1px solid transparent;
-  background: white;
+  background: #0095FF;
   position: fixed;
   width: 100%;
   overflow: hidden;
@@ -11,38 +11,38 @@
 }
 
 .app-title {
-  font-size: 40px;
-  color: #222B45;
+  font-size: 30px;
+  color: white;
   font-weight: 600;
   text-align: left;
   height: auto;
   float: left;
   margin-left: 40px;
-  margin-top: 9px;
+  margin-top: 16px;
   cursor: pointer;
 }
 
 .nav-icons {
   font-size: 30px;
   width: 30px;
-  height: 30px;
+  // height: 30px;
   float: left;
   margin-top: 16px;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
+  color: white;
 
   &__left {
     @extend .nav-icons;
     float: left;
     margin-left: 15px;
-    color: #8F9BB3;
+    
   }
   
   &__right {
     @extend .nav-icons;
     float: right;
     margin-right: 15px;
-    color: #8F9BB3;
   }
 }
 
@@ -60,7 +60,6 @@
 /* The dropdown container */
 .dropdown {
   float: right;
-  overflow: hidden;
 }
 
 /* Dropdown button */
@@ -85,7 +84,7 @@
 .dropdown-content {
   display: none;
   border-radius: 10px;
-  top: 63px;
+  top: 58px;
   right: 15px;
   position: fixed;
   background-color: #f9f9f9;

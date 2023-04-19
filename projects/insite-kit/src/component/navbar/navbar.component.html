@@ -6,12 +6,16 @@
   ></ik-icon>
 
   <div class="app-title inline-block">{{ appName }}</div>
-  <div (click)="onProfileClick()">
+  <div class="dropdown">
     <ik-icon
+      class="dropdown"
       classOverride="nav-icons__right"
       [icon]="profileIcon"
-      (click)="onProfileClick()"
     ></ik-icon>
+    <div class="dropdown-content">
+      <div (click)="onProfileClick()">Profile</div>
+      <div (click)="onLogOutClick()">Log Out</div>
+    </div>
   </div>
   <ik-icon
     classOverride="nav-icons__right"
