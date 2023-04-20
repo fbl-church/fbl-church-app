@@ -37,6 +37,7 @@ import { SidebarComponent } from './component/sidebar/sidebar.component';
 import { BasicHttpInterceptorService } from './service/interceptor/http-interceptor.service';
 import { UsernamePipe } from './service/pipe/format-user-name.pipe';
 import { NotificationMessagePipe } from './service/pipe/notification-message.pipe';
+import { WebRoleTranslationPipe } from './service/pipe/web-role-translation.pipe';
 import { InisteGeneralNotificationComponent } from './subscription/insite-general-notification/insite-general-notification.component';
 import { InisteUserNotificationComponent } from './subscription/insite-user-notification/insite-user-notification.component';
 
@@ -48,6 +49,7 @@ export function tokenGetter() {
   declarations: [
     UsernamePipe,
     NotificationMessagePipe,
+    WebRoleTranslationPipe,
     NavbarComponent,
     SidebarComponent,
     InsitePageComponent,
@@ -98,6 +100,7 @@ export function tokenGetter() {
   exports: [
     UsernamePipe,
     NotificationMessagePipe,
+    WebRoleTranslationPipe,
     NavbarComponent,
     SidebarComponent,
     InsitePageComponent,

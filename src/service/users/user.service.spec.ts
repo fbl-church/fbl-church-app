@@ -1,7 +1,9 @@
+import { HttpResponse } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { PasswordUpdate } from 'projects/insite-kit/src/model/password-update.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
+import { of } from 'rxjs';
 import { FBAwanaTestBed } from 'src/test/test-bed';
 import { setupTests } from 'src/test/test-setup';
 import { UserService } from './user.service';
@@ -16,7 +18,7 @@ describe('UserService', () => {
     service = TestBed.inject(UserService);
     requestService = TestBed.inject(RequestService);
 
-    spyOn(requestService, 'get');
+    spyOn(requestService, 'get').and.returnValue(of(new HttpResponse({})));
     spyOn(requestService, 'post');
     spyOn(requestService, 'put');
     spyOn(requestService, 'delete');
@@ -55,6 +57,21 @@ describe('UserService', () => {
     };
 
     service.createUser(newUser);
+    expect(requestService.post).toHaveBeenCalledWith(
+      'api/users/add-user',
+      newUser
+    );
+  });
+
+  it('should call endpoint to register a new user', () => {
+    const newUser: User = {
+      firstName: 'Test',
+      lastName: 'Test',
+      email: 'Test@mail.com',
+      password: 'testPassword',
+    };
+
+    service.register(newUser);
     expect(requestService.post).toHaveBeenCalledWith('api/users', newUser);
   });
 

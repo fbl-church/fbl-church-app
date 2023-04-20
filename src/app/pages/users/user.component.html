@@ -1,14 +1,20 @@
-<ik-header title="Workers">
-  <button class="btn btn-primary btn-flat btn-size btn-right">
+<ik-header title="Users">
+  <button
+    (click)="onAddUser()"
+    class="btn btn-primary btn-flat btn-size btn-right"
+  >
     <ik-icon [icon]="addCirlce" classOverride="add-icon"></ik-icon>
     Add User
   </button>
 </ik-header>
-<ik-grid basePath="users" [dataLoader]="dataloader">
+<ik-grid
+  basePath="users"
+  [dataLoader]="dataloader"
+  (rowClick)="onRowClick($event)"
+>
   <ik-grid-search></ik-grid-search>
-  <ik-grid-column label="First Name" field="firstName"></ik-grid-column>
-  <ik-grid-column label="Last Name" field="lastName"></ik-grid-column>
+  <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
   <ik-grid-column label="Email" field="email"></ik-grid-column>
-  <ik-grid-column label="Role" field="webRole"></ik-grid-column>
+  <ik-grid-column label="Role" field="formattedRole"></ik-grid-column>
   <ik-grid-pager key="Users"></ik-grid-pager>
 </ik-grid>

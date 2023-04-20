@@ -7,7 +7,7 @@
   width: 100%;
   overflow: hidden;
   z-index: 1000;
-  box-shadow: 0 .5rem 1rem 0 rgba(44, 51, 73, .1);
+  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 4px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
 }
 
 .app-title {
@@ -25,7 +25,6 @@
 .nav-icons {
   font-size: 30px;
   width: 30px;
-  // height: 30px;
   float: left;
   margin-top: 16px;
   cursor: pointer;

@@ -1,9 +1,12 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { WebRole } from 'projects/insite-kit/src/model/common.model';
 import { PasswordUpdate } from 'projects/insite-kit/src/model/password-update.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
+import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
+import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +15,11 @@ export class UserService {
   readonly BASE_USER_PATH = 'api/users';
   readonly BASE_USER_CREDENTIALS_PATH = 'api/users/credentials';
 
-  constructor(private readonly request: RequestService) {}
+  constructor(
+    private readonly request: RequestService,
+    private readonly commonService: CommonService,
+    private readonly jwt: JwtService
+  ) {}
 
   /**
    * Get a list of users based on the given request
@@ -21,7 +28,14 @@ export class UserService {
    * @returns User object
    */
   getUsers(params?: Map<string, string[]>): Observable<HttpResponse<User[]>> {
-    return this.request.get<User[]>(this.BASE_USER_PATH, params);
+    return this.request.get<User[]>(this.BASE_USER_PATH, params).pipe(
+      tap((v) =>
+        v.body.forEach((u) => {
+          u.formattedRole = this.commonService.getFormattedRole(u.webRole);
+          u.formattedName = this.commonService.getFormattedName(u);
+        })
+      )
+    );
   }
 
   /**
@@ -57,12 +71,24 @@ export class UserService {
   }
 
   /**
-   * This will create a user for the given object, but will default to a user web role object.
+   * This will create a user. This method is used when creating an existing user with elevated permissions
+   * is creating an account for another user.
    *
    * @param user The user to be created.
    * @returns The user that was created.
    */
   createUser(user: User): Observable<User> {
+    return this.request.post<User>(`${this.BASE_USER_PATH}/add-user`, user);
+  }
+
+  /**
+   * This is called when a new user is registering. Meaning this user needs to be reviewed before they
+   * are able to access the website.
+   *
+   * @param user The user to be created.
+   * @returns The user that was created.
+   */
+  register(user: User): Observable<User> {
     return this.request.post<User>(this.BASE_USER_PATH, user);
   }
 
@@ -142,5 +168,28 @@ export class UserService {
    */
   deleteUser(id: number): Observable<any> {
     return this.request.delete<any>(`${this.BASE_USER_PATH}/${id}`);
+  }
+
+  /**
+   * Helper method to determine what roles the user is able to create.
+   *
+   * @returns Returns a list of roles the user is able to create
+   */
+  getAllowedRolesToCreate(): string[] {
+    const userRank: number = Number(WebRole[this.jwt.get('webRole')]);
+    return this.getRolesAsMap()
+      .filter((e) => e.rank <= userRank)
+      .map((e) => e.name);
+  }
+
+  /**
+   * Parses the roles enum into a map
+   *
+   * @returns The map of the roles enum.
+   */
+  getRolesAsMap(): { name: string; rank: any }[] {
+    return Object.entries(WebRole)
+      .map(([name, rank]) => ({ name, rank }))
+      .filter((v) => Number.isInteger(v.rank));
   }
 }

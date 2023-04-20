@@ -1,0 +1,15 @@
+{
+  "webRoles": {
+    "USER": "User",
+    "TNT_LEADER": "T&T Leader",
+    "TNT_HELPER": "T&T Helper",
+    "SPARKS_LEADER": "Sparks Leader",
+    "SPARKS_HELPER": "Sparks Helper",
+    "CUBBIES_LEADER": "Cubbies Leader",
+    "CUBBIES_HELPER": "Cubbies Helper",
+    "CROSS_CHECK_LEADER": "Cross Check Leader",
+    "CROSS_CHECK_HELPER": "Cross Check Helper",
+    "SITE_ADMIN": "Site Admin",
+    "ADMIN": "Admin"
+  }
+}

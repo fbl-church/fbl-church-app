@@ -8,6 +8,7 @@
   "scripts": {
     "ng": "ng",
     "build": "ng build",
+    "build:production": "ng build --configuration production",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
     "test": "ng test --code-coverage --source-map=false",
@@ -15,7 +16,8 @@
     "test:sourcemaps": "ng test --code-coverage --source-map=true",
     "test:sourcemaps:watch": "ng test --code-coverage --source-map=true --watch",
     "test:headless": "ng test --watch=false --code-coverage --source-map=true --browsers=ChromeHeadless",
-    "serve": "ng serve --configuration local",
+    "serve": "ng serve",
+    "serve:production": "ng serve --configuration production",
     "package:refresh": "rm package-lock.json && npm i",
     "heroku-postbuild": "ng build --configuration ${ENV}"
   },

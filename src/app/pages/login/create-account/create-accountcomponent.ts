@@ -44,7 +44,7 @@ export class CreateAccountComponent implements OnInit {
       password: this.form.value.password,
     };
 
-    this.userService.createUser(user).subscribe(
+    this.userService.register(user).subscribe(
       (res) => {
         this.loading = false;
         this.popupService.success('Account successfully created!');

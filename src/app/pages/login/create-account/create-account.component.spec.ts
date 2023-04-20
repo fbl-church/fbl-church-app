@@ -26,7 +26,7 @@ describe('CreateAccountComponent', () => {
     router = TestBed.inject(Router);
     popupService = TestBed.inject(PopupService);
 
-    spyOn(userService, 'createUser').and.returnValue(of(TestData.getUser()[0]));
+    spyOn(userService, 'register').and.returnValue(of(TestData.getUser()[0]));
     spyOn(router, 'navigate');
     spyOn(popupService, 'error');
     spyOn(popupService, 'success');
@@ -57,7 +57,7 @@ describe('CreateAccountComponent', () => {
     fixture.detectChanges();
     TestDOM.click('#createAccountButton');
 
-    expect(userService.createUser).toHaveBeenCalledWith({
+    expect(userService.register).toHaveBeenCalledWith({
       firstName: 'Test',
       lastName: 'Admin',
       email: 'Test@Admin.com',
@@ -71,7 +71,7 @@ describe('CreateAccountComponent', () => {
   });
 
   it('should error for creating user and show error message', () => {
-    userService.createUser.and.returnValue(throwError(of('INVALID')));
+    userService.register.and.returnValue(throwError(of('INVALID')));
     TestDOM.updateForm('#createAccountForm', {
       firstName: 'ERROR',
       lastName: 'ERROR',

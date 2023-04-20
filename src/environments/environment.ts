@@ -5,8 +5,8 @@
  * @since February 25, 2022
  */
 export const environment = {
-  tag: '',
+  tag: 'LOCAL',
   production: false,
-  isLocal: false,
-  apiUrl: '',
+  isLocal: true,
+  apiUrl: 'localhost:8000',
 };

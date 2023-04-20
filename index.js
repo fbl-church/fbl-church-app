@@ -11,14 +11,5 @@ app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname + "/dist/fb-awana-app/index.html"));
 });
 
-// Start the app by listening on the default Heroku port
-
-let profile = process.env?.ENV ? process.env?.ENV : "local";
-if (profile === "prod") {
-  profile = "PRODUCTION";
-} else {
-  profile = "LOCAL";
-}
-
-console.log(`Active Profile: ${profile}`);
+console.log("Application Succesfully Started!");
 app.listen(process.env.PORT || 8080);

@@ -1,8 +1,15 @@
 export enum WebRole {
-  USER = 1,
-  SYSTEM_USER = 2,
-  DEVELOPER = 3,
-  ADMIN = 4,
+  USER = 100,
+  TNT_LEADER = 300,
+  TNT_HELPER = 200,
+  SPARKS_LEADER = 300,
+  SPARKS_HELPER = 200,
+  CUBBIES_LEADER = 300,
+  CUBBIES_HELPER = 200,
+  CROSS_CHECK_LEADER = 300,
+  CROSS_CHECK_HELPER = 200,
+  SITE_ADMIN = 500,
+  ADMIN = 1000,
 }
 
 export enum ChurchGroup {

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { default as webRolesJson } from 'projects/insite-kit/src/assets/translations/web-roles/en.json';
 
 @Injectable({
   providedIn: 'root',
@@ -42,6 +43,11 @@ export class CommonService {
     const year = dateValue.getFullYear();
 
     return `${month}/${day}/${year}`;
+  }
+
+  getFormattedRole(value: string) {
+    const role = Object.values(webRolesJson)[0][value];
+    return role ? role : '-';
   }
 
   /**

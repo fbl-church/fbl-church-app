@@ -7,6 +7,8 @@ import { CreateAccountComponent } from './pages/login/create-account/create-acco
 import { LoginOverviewComponent } from './pages/login/login-overview/login-overview.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { CreateUserComponent } from './pages/users/create-user/create-user.component';
+import { UserDetailComponent } from './pages/users/user-detail/user-detail.component';
 import { UserComponent } from './pages/users/user.component';
 import { AuthenticatedLayoutComponent } from './shared/components/authenticated-layout/authenticated-layout.component';
 
@@ -46,6 +48,16 @@ const routes: Routes = [
       {
         path: 'users',
         component: UserComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'users/create',
+        component: CreateUserComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'users/:id/details',
+        component: UserDetailComponent,
         pathMatch: 'full',
       },
       {

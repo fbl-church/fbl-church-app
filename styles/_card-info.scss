@@ -3,8 +3,22 @@
   display: block;
 }
 
-.padding-info {
+.card-info__padding {
   padding: 24px;
+}
+
+.card-info__label-header {
+  color: #222B45;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: emoji, sans-serif;
+}
+
+.card-info__label-text {
+  font-size: 20px;
+  font-weight: 400;
+  padding-left: 10px;
+  overflow-wrap: break-word;
 }
 
 .APPROVED {
@@ -27,23 +41,16 @@
   color:white
 }
 
-.label-text {
-  font-size: 20px;
-  font-weight: 400;
-  padding-left: 10px;
-  overflow-wrap: break-word;
-}
-
 @media screen and (max-width: 500px) {
-  .label-header {
+  .card__label-header {
     font-size: 18px !important;
   }
 
-  .label-text {
+  .card-info__label-text {
     font-size: 16px;
   }
 
-  .padding-info {
+  .card-info__padding {
     padding: 16px;
   }
 }

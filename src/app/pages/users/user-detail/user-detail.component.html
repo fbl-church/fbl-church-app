@@ -1,0 +1,17 @@
+<div *ngIf="!loading; else loader">
+  <ik-header title="{{ userData | formatUserName }}">
+    <ik-header-back (back)="onBackClick()"></ik-header-back>
+    <div class="inline-display header-buttons">
+      <button class="btn btn-danger btn-flat btn-size btn-right h-button">
+        Delete User
+      </button>
+      <button class="btn btn-default btn-flat btn-size btn-right h-button">
+        Reset Password
+      </button>
+    </div>
+  </ik-header>
+</div>
+
+<ng-template #loader>
+  <ik-loading></ik-loading>
+</ng-template>

@@ -1,0 +1,17 @@
+<ik-header title="Create User"
+  ><ik-header-back (back)="onCancelClick()"></ik-header-back>
+</ik-header>
+
+<app-user-form
+  *ngIf="!loading; else loader"
+  [disableSave]="disableSave"
+  rightActionButton="Save User"
+  leftActionButton="Cancel"
+  (cancel)="onCancelClick()"
+  (save)="onSaveClick($event)"
+>
+</app-user-form>
+
+<ng-template #loader>
+  <ik-loading></ik-loading>
+</ng-template>
