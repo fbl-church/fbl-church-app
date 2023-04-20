@@ -1,51 +1,12 @@
-.detail {
-  width: 100%;
-}
-
-.detail .left-column {
-  padding-right: 24px;
-  float: left;
-}
-
-.detail .right-column {
-  float: right;
-}
-
-.border-none {
-  border: none;
-}
-
 .card {
   width: 100%;
   display: inline-block;
   height: auto;
-  border-radius: 1em;
-  background: white;
-  color:white;
-  border: 1px solid #d6dbe3;
-  // box-shadow: 0 .5rem 1rem 0 rgba(44, 51, 73, .1);
+  border-radius: 5px;
+  border: 0.0625rem solid #e4e9f2;
+  background: linear-gradient(to bottom, #ffffff 12%, #ffffff 100%);
 }
 
-.margin-card__bottom {
+.card__margin-bottom {
   margin-bottom: 25px;
-}
-
-.rightColumn > .card {
-  margin-bottom: 30px;
-}
-
-.padding-card {
-  padding: 20px;
-}
-
-.detail .content {
-  padding: 24px;
-  width: 50%;
-  display: inline-block;
-}
-
-.content .label-text {
-  font-size: 20px;
-  font-weight: 400;
-  padding-left: 10px;
 }

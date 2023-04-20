@@ -2,6 +2,7 @@ import { HttpResponse } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { PasswordUpdate } from 'projects/insite-kit/src/model/password-update.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
+import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { of } from 'rxjs';
 import { FBAwanaTestBed } from 'src/test/test-bed';
@@ -11,17 +12,20 @@ import { UserService } from './user.service';
 describe('UserService', () => {
   let service: UserService;
   let requestService: RequestService;
+  let jwt: JwtService;
 
   setupTests(async () => FBAwanaTestBed.setup());
 
   beforeEach(() => {
     service = TestBed.inject(UserService);
     requestService = TestBed.inject(RequestService);
+    jwt = TestBed.inject(JwtService);
 
     spyOn(requestService, 'get').and.returnValue(of(new HttpResponse({})));
     spyOn(requestService, 'post');
     spyOn(requestService, 'put');
     spyOn(requestService, 'delete');
+    spyOn(jwt, 'getUserId').and.returnValue(1);
   });
 
   it('should call get users endpoint', () => {
@@ -33,7 +37,7 @@ describe('UserService', () => {
 
   it('should call get current user endpoint', () => {
     service.getCurrentUser();
-    expect(requestService.get).toHaveBeenCalledWith('api/users/current-user');
+    expect(requestService.get).toHaveBeenCalledWith('api/users/1');
   });
 
   it('should call get user by id endpoint', () => {
