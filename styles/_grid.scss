@@ -1,3 +1,5 @@
+@import "variables";
+
 .grid-table {
   table-layout: fixed;
 }
@@ -7,7 +9,7 @@
 }
 
 .grid-content {
-  color: #222B45;
+  color: $base-text-color;
   cursor: pointer;
   font-size: 18px;
   font-weight: 500;
@@ -22,7 +24,7 @@
 }
 
 .column-header {
-  color: #222B45;
+  color: $base-text-color;
   font-size: 25px;
   font-weight: 500;
   text-align: left;
@@ -33,7 +35,7 @@
 }
 
 .content-row:nth-child(even) {
-  background-color: #F7F9FC;
+  background-color: #f7f9fc;
 }
 
 .content-row:nth-child(odd) {
@@ -41,7 +43,7 @@
 }
 
 .content-row:hover {
-  background-color: #EDF1F7;
+  background-color: #edf1f7;
 }
 
 td {

@@ -1,9 +1,11 @@
+@import "variables";
+
 .ik-modal-body {
   font-size: 15px;
 }
 
 .modal-background {
-  color: #222B45;
+  color: $base-text-color;
   background: white;
 }
 

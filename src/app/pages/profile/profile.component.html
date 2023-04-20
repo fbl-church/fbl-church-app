@@ -7,29 +7,12 @@
       </button>
     </div>
   </ik-header>
-  <ik-card [padding]="false" class="leftColumn column-wide">
-    <ik-card-header title="Details"></ik-card-header>
-    <div class="flex">
-      <div class="left-column">
-        <ik-card-info
-          header="First Name"
-          [text]="currentUser.firstName"
-        ></ik-card-info>
-        <ik-card-info header="Role" [text]="currentUser.webRole"></ik-card-info>
-      </div>
-      <div class="right-column">
-        <ik-card-info
-          header="Last Name"
-          [text]="currentUser.lastName"
-        ></ik-card-info>
-        <ik-card-info
-          header="App Access"
-          text="GRANTED"
-          contentColor="APPROVED"
-        ></ik-card-info>
-      </div>
-    </div>
-  </ik-card>
+  <div class="layout__left-column layout__column-wide">
+    <app-user-details-card
+      [user]="currentUser"
+      [editEnabled]="true"
+    ></app-user-details-card>
+  </div>
 </div>
 
 <ng-template #loader>

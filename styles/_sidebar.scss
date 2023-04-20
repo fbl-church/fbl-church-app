@@ -7,7 +7,7 @@
   bottom: 100px;
   left: 0;
   background-color: white;
-  box-shadow: 0 .5rem 1rem 0 rgba(44, 51, 73, .1);
+  box-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, 0.1);
   overflow-x: hidden;
   padding-top: 20px;
   transition: 0.5s;
@@ -18,15 +18,15 @@
   padding: 1.5rem 1rem;
   text-decoration: none;
   display: block;
-  transition: all .3s ease-out;
-  border-bottom: 1px solid #EDF1F7;
+  transition: all 0.3s ease-out;
+  border-bottom: 1px solid #edf1f7;
   line-height: 1.5rem;
   color: #656e7e;
   display: flex;
 }
 
 .sidenav div:hover {
-  color:#3366FF
+  color: #3366ff;
 }
 
 .sidebar-icon {
@@ -34,13 +34,13 @@
   font-size: 16px;
 }
 
-.sidebar-category  {
+.sidebar-category {
   font-size: 20px;
 }
 
 .sidebar-category__active {
-  color:#3366FF !important;
-  border-left: 5px solid #3366FF !important;
+  color: #3366ff !important;
+  border-left: 5px solid #3366ff !important;
 }
 
 @media screen and (max-height: 680px) {
@@ -52,21 +52,21 @@
     margin: 0 1rem 0 0;
     font-size: 14px;
   }
-  
-  .nav-category  {
+
+  .nav-category {
     font-size: 18px;
   }
 }
 
 @media screen and (max-width: 555px) {
   .sidenav {
-    top: 80px;
+    top: 70px;
   }
 }
 
 @media screen and (max-width: 440px) {
-  .sidenav { 
-    top: 70px;
+  .sidenav {
+    top: 60px;
   }
 }
 
@@ -74,7 +74,7 @@
   .sidenav {
     padding-top: 15px;
   }
-  
+
   .sidenav div {
     font-size: 18px;
   }

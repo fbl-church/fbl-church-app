@@ -2,11 +2,20 @@
   width: 100%;
   display: inline-block;
   height: auto;
-  border-radius: 5px;
+  border-radius: 8px;
   border: 0.0625rem solid #e4e9f2;
   background: linear-gradient(to bottom, #ffffff 12%, #ffffff 100%);
 }
 
 .card__margin-bottom {
   margin-bottom: 25px;
+}
+
+.card__left-column {
+  float: left;
+  padding-right: 50px;
+}
+
+.card__right-column {
+  float: right;
 }

@@ -1,3 +1,5 @@
+@import "variables";
+
 /**
  * ngx-toastr overrides
  */
@@ -12,7 +14,7 @@
 }
 
 .toast-container {
-  pointer-events:all;
+  pointer-events: all;
   cursor: pointer;
   position: fixed;
   z-index: 999999;
@@ -39,10 +41,10 @@
 .notification-toaster {
   display: flex;
   color: white;
-  background-color: #222B45;
+  background-color: $base-text-color;
   min-height: 80px;
   border-radius: 10px;
-  border: 1px solid #222B45;
+  border: 1px solid $base-text-color;
   box-shadow: 2px 2px 4px rgb(0 0 0);
   margin-bottom: 10px;
 }

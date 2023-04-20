@@ -1,24 +1,24 @@
 <nav class="app-navbar">
   <ik-icon
-    classOverride="nav-icons__left"
+    classOverride="app-navbar__icons__left"
     [icon]="sideBarOpen ? closeIcon : menuIcon"
     (click)="onMenuClick()"
   ></ik-icon>
 
-  <div class="app-title inline-block">{{ appName }}</div>
-  <div class="dropdown">
+  <div class="app-navbar__title inline-block">{{ appName }}</div>
+  <div class="app-navbar__dropdown">
     <ik-icon
-      class="dropdown"
-      classOverride="nav-icons__right"
+      class="app-navbar__dropdown"
+      classOverride="app-navbar__icons__right"
       [icon]="profileIcon"
     ></ik-icon>
-    <div class="dropdown-content">
+    <div class="app-navbar__dropdown-content">
       <div (click)="onProfileClick()">Profile</div>
       <div (click)="onLogOutClick()">Log Out</div>
     </div>
   </div>
   <ik-icon
-    classOverride="nav-icons__right"
+    classOverride="app-navbar__icons__right"
     [icon]="notificationBellIcon"
   ></ik-icon>
 </nav>

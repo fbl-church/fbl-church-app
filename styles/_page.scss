@@ -1,14 +1,10 @@
 .app-container {
-  margin: 125px 2.25rem 0 2.25rem;
+  margin: 125px auto 0;
   height: auto;
   width: 90%;
   position: relative;
   text-align: left;
   padding-bottom: 50px;
-}
-
-.flex-one {
-  flex: 1;
 }
 
 @media screen and (max-width: 1800px) {
@@ -17,14 +13,20 @@
   }
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 1030px) {
   .app-container {
-    margin: 125px 15px 0 15px;
+    width: 97%;
   }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 600px) {
   .app-container {
-    margin-top: 90px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .app-container {
+    margin: 90px 0 0 0;
   }
 }

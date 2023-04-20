@@ -2,15 +2,16 @@
   min-height: 50px;
   height: 80px;
   border: 1px solid transparent;
-  background: #0095FF;
+  background: #0095ff;
   position: fixed;
   width: 100%;
   overflow: hidden;
   z-index: 1000;
-  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 4px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0 4px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
 }
 
-.app-title {
+.app-navbar__title {
   font-size: 30px;
   color: white;
   font-weight: 600;
@@ -22,7 +23,7 @@
   cursor: pointer;
 }
 
-.nav-icons {
+.app-navbar__icons {
   font-size: 30px;
   width: 30px;
   float: left;
@@ -32,20 +33,19 @@
   color: white;
 
   &__left {
-    @extend .nav-icons;
+    @extend .app-navbar__icons;
     float: left;
     margin-left: 15px;
-    
   }
-  
+
   &__right {
-    @extend .nav-icons;
+    @extend .app-navbar__icons;
     float: right;
     margin-right: 15px;
   }
 }
 
-.bell-num {
+.app-navbar__bell-num {
   position: absolute;
   right: -4px;
   top: -5px;
@@ -57,12 +57,12 @@
 }
 
 /* The dropdown container */
-.dropdown {
+.app-navbar__dropdown {
   float: right;
 }
 
 /* Dropdown button */
-.dropdown .dropbtn {
+.app-navbar__dropdown .dropbtn {
   font-size: 16px;
   border: none;
   outline: none;
@@ -75,12 +75,12 @@
 
 /* Add a red background color to navbar links on hover */
 .navbar div:hover,
-.dropdown:hover .dropbtn {
+.app-navbar__dropdown:hover .dropbtn {
   background-color: red;
 }
 
 /* Dropdown content (hidden by default) */
-.dropdown-content {
+.app-navbar__dropdown-content {
   display: none;
   border-radius: 10px;
   top: 58px;
@@ -93,7 +93,7 @@
 }
 
 /* Links inside the dropdown */
-.dropdown-content div {
+.app-navbar__dropdown-content div {
   float: none;
   color: black;
   padding: 12px 16px;
@@ -103,14 +103,14 @@
 }
 
 /* Add a grey background color to dropdown links on hover */
-.dropdown-content div:hover {
+.app-navbar__dropdown-content div:hover {
   border-radius: 10px;
   background-color: #ddd;
   cursor: pointer;
 }
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
+.app-navbar__dropdown:hover .app-navbar__dropdown-content {
   display: block;
 }
 
@@ -119,35 +119,22 @@
  */
 
 @media screen and (max-width: 850px) {
-  .bell-num {
+  .app-navbar__bell-num {
     width: 20px;
     height: 20px;
     font-size: 14px;
   }
-}
 
-@media screen and (max-width: 555px) {
-  .app-title {
-    font-size: 28px;
-    margin-top: 18px;
-    margin-left: 24px;
-  }
-
-  .app-navbar {
-    height: 80px !important;
+  .app-navbar__title {
+    margin-left: 30px;
   }
 }
 
-@media screen and (max-width: 440px) {
-  .app-title {
-    font-size: 22px;
-    margin-top: 21px;
-    margin-left: 16px;
-  }
-
-  .nav-icons {
-    font-size: 24px;
+@media screen and (max-width: 615px) {
+  .app-navbar__title {
+    font-size: 25px;
     margin-top: 20px;
+    margin-left: 24px;
   }
 
   .app-navbar {
@@ -155,23 +142,66 @@
   }
 }
 
-@media screen and (max-width: 365px) {
-  .app-title {
-    font-size: 16px;
-    margin-top: 24px;
-    margin-left: 16px;
-  }
-
-  .nav-icons {
+@media screen and (max-width: 530px) {
+  .app-navbar__title {
     font-size: 20px;
-    margin-top: 18px;
+    margin-top: 22px;
+    margin-left: 18px;
   }
 
-  .nav-icons__right {
-    margin-right: 8px;
+  .app-navbar__icons {
+    font-size: 24px;
+    margin-top: 20px;
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .app-navbar__title {
+    font-size: 16px;
+    margin-top: 25px;
+    margin-left: 0;
   }
 
-  .bell-num {
+  .app-navbar__icons {
+    font-size: 20px;
+    margin-top: 21px;
+  }
+
+  .app-navbar__icons__left {
+    margin-left: 5px;
+  }
+
+  .app-navbar__icons__right {
+    margin-right: 5px;
+  }
+
+  .app-navbar {
+    height: 65px !important;
+  }
+}
+
+@media screen and (max-width: 365px) {
+  .app-navbar__title {
+    font-size: 14px;
+    margin-top: 24px;
+    // margin-left: 16px;
+  }
+
+  .app-navbar__icons {
+    font-size: 18px;
+    margin-top: 22px;
+  }
+
+  .app-navbar__icons__left {
+    margin-right: 5px;
+  }
+
+  .app-navbar__icons__right {
+    margin-right: 0;
+  }
+
+  .app-navbar__bell-num {
     padding: 0px 5px;
   }
 

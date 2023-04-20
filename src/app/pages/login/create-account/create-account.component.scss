@@ -11,10 +11,10 @@
   width: 95%;
   font-size: 16px;
   border-style: hidden;
-  background: #504C5B;
+  background: #504c5b;
   opacity: 0.8;
   margin: 10px 0px;
-  border: 1px solid #504C5B;
+  border: 1px solid #504c5b;
   color: white;
   font-weight: 600;
   transition: all 0.5s ease;
@@ -33,12 +33,12 @@
 }
 
 .login-input:focus {
-  border-bottom: 2.5px solid #FC3168;
+  border-bottom: 2.5px solid #fc3168;
   width: 98%;
   border-radius: 15px;
 }
 
-.login-input::placeholder { 
+.login-input::placeholder {
   color: white;
   opacity: 1;
 }
@@ -75,7 +75,7 @@
 
 @media screen and (max-width: 1200px) {
   .login-container {
-    width: 50%;
+    width: 60%;
     margin: 20em auto;
   }
 }

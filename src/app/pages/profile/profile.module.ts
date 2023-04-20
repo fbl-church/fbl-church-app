@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BaseInitModule } from 'src/app/common/base-init.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { ProfileComponent } from './profile.component';
 
 @NgModule({
-  imports: [BaseInitModule],
+  imports: [BaseInitModule, SharedModule],
   declarations: [ProfileComponent],
 })
 export class ProfileModule {}

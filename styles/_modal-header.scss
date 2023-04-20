@@ -1,5 +1,7 @@
+@import "variables";
+
 .ik-modal-header {
-  background-color: #EAEAEA;
+  background-color: #f3f3f3;
   padding: 10px;
 
   &.info {
@@ -22,7 +24,7 @@
 }
 
 .ik-modal-header .ik-title {
-  color: #222B45;
+  color: $base-text-color;
   font-weight: bold;
   font-size: 20px;
 }

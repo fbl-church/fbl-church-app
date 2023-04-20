@@ -1,5 +1,7 @@
+@import "variables";
+
 .page-number {
-  color: #222B45;
+  color: $base-text-color;
   width: 38px;
   height: 38px;
   text-align: center;
@@ -10,7 +12,7 @@
 }
 
 .page-number:hover {
-  background-color: #E3E4E5;
+  background-color: #e3e4e5;
 }
 
 .active {
@@ -29,11 +31,11 @@
 }
 
 .arrow:disabled {
-  color: #E3E4E5;
+  color: #e3e4e5;
 }
 
 .grid-footer {
-  color: #222B45; 
+  color: $base-text-color;
   margin: 10px 2px;
 }
 

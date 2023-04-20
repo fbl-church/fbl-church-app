@@ -10,6 +10,12 @@
       </button>
     </div>
   </ik-header>
+  <div class="layout__left-column layout__column-wide">
+    <app-user-details-card
+      [user]="userData"
+      [editEnabled]="true"
+    ></app-user-details-card>
+  </div>
 </div>
 
 <ng-template #loader>
