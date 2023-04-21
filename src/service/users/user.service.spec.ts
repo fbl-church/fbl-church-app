@@ -62,7 +62,7 @@ describe('UserService', () => {
 
     service.createUser(newUser);
     expect(requestService.post).toHaveBeenCalledWith(
-      'api/users/add-user',
+      'api/users/create',
       newUser
     );
   });
@@ -76,7 +76,10 @@ describe('UserService', () => {
     };
 
     service.register(newUser);
-    expect(requestService.post).toHaveBeenCalledWith('api/users', newUser);
+    expect(requestService.post).toHaveBeenCalledWith(
+      'api/users/register',
+      newUser
+    );
   });
 
   it('should call endpoint to update user', () => {

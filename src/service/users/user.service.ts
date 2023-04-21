@@ -78,7 +78,7 @@ export class UserService {
    * @returns The user that was created.
    */
   createUser(user: User): Observable<User> {
-    return this.request.post<User>(`${this.BASE_USER_PATH}/add-user`, user);
+    return this.request.post<User>(`${this.BASE_USER_PATH}/create`, user);
   }
 
   /**
@@ -89,7 +89,7 @@ export class UserService {
    * @returns The user that was created.
    */
   register(user: User): Observable<User> {
-    return this.request.post<User>(this.BASE_USER_PATH, user);
+    return this.request.post<User>(`${this.BASE_USER_PATH}/register`, user);
   }
 
   /**
@@ -177,6 +177,18 @@ export class UserService {
    */
   getAllowedRolesToCreate(): string[] {
     const userRank: number = Number(WebRole[this.jwt.get('webRole')]);
+    return this.getRolesAsMap()
+      .filter((e) => e.rank <= userRank)
+      .map((e) => e.name);
+  }
+
+  /**
+   * Helper method to determine what roles the user is able to create.
+   *
+   * @returns Returns a list of roles the user is able to create
+   */
+  getRegisterRoles(): string[] {
+    const userRank: number = Number(WebRole.TNT_LEADER);
     return this.getRolesAsMap()
       .filter((e) => e.rank <= userRank)
       .map((e) => e.name);

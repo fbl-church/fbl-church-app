@@ -25,6 +25,15 @@
     </div>
     <div class="row">
       <div class="col-12">
+        <select class="login-input" formControlName="webRole">
+          <option *ngFor="let role of roles" [ngValue]="role">
+            {{ role | webRoleTranslate }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
         <input
           type="email"
           id="email"

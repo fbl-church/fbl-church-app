@@ -50,6 +50,7 @@ describe('CreateAccountComponent', () => {
     TestDOM.updateForm('#createAccountForm', {
       firstName: 'Test',
       lastName: 'Admin',
+      webRole: 'USER',
       email: 'Test@Admin.com',
       password: 'newPassword',
     });
@@ -60,6 +61,7 @@ describe('CreateAccountComponent', () => {
     expect(userService.register).toHaveBeenCalledWith({
       firstName: 'Test',
       lastName: 'Admin',
+      webRole: 'USER',
       email: 'Test@Admin.com',
       password: 'newPassword',
     });
@@ -82,7 +84,6 @@ describe('CreateAccountComponent', () => {
     fixture.detectChanges();
     TestDOM.click('#createAccountButton');
 
-    expect(router.navigate).toHaveBeenCalledWith(['/login']);
     expect(popupService.error).toHaveBeenCalledWith(
       'Could not create account at this time. Try again later.'
     );
