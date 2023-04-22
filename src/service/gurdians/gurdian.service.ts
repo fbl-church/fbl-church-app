@@ -27,6 +27,7 @@ export class GurdianService {
       tap((v) =>
         v.body.forEach((u) => {
           u.formattedPhone = this.commonService.formatPhoneNumber(u.phone);
+          u.formattedName = this.commonService.getFormattedName(u);
         })
       )
     );

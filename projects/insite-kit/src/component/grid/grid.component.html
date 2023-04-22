@@ -2,8 +2,10 @@
   <ng-content select="ik-card-header"></ng-content>
   <ng-content select="ik-grid-search"></ng-content>
   <table *ngIf="!loading; else loader" class="grid-table">
+    <col *ngIf="gridChecklistColumn" class="grid__checklist-column" />
     <thead *ngIf="data?.body.length > 0">
       <tr>
+        <th *ngIf="gridChecklistColumn"></th>
         <th
           *ngFor="let column of columns.toArray()"
           class="column-header header-padding"
@@ -14,6 +16,10 @@
       </tr>
     </thead>
     <tr *ngFor="let row of data.body" class="content-row">
+      <td *ngIf="gridChecklistColumn" class="grid-content">
+        <ik-checkbox></ik-checkbox>
+      </td>
+
       <td
         *ngFor="let col of columns.toArray()"
         class="grid-content"
@@ -24,7 +30,7 @@
           {{ row[col.field] | date : "longDate" }}
         </ng-container>
         <ng-template #notDate>
-          {{ row[col.field] }}
+          {{ row[col.field] ? row[col.field] : "-" }}
         </ng-template>
       </td>
     </tr>

@@ -17,6 +17,10 @@
   padding: 15px 15px;
 }
 
+.grid__checklist-column {
+  width: 5%;
+}
+
 .content-ellipsis {
   white-space: nowrap;
   overflow: hidden;
@@ -89,6 +93,12 @@ table {
   padding: 20px;
 }
 
+@media screen and (max-width: 800px) {
+  .grid__checklist-column {
+    width: 7%;
+  }
+}
+
 @media screen and (max-width: 570px) {
   .grid-content {
     font-size: 14px;
@@ -102,5 +112,15 @@ table {
 
   .grid-padding {
     padding: 5px;
+  }
+
+  thead {
+    line-height: 40px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .grid__checklist-column {
+    width: 9%;
   }
 }

@@ -3,3 +3,10 @@
   height: 25px;
   cursor: pointer;
 }
+
+@media screen and (max-width: 570px) {
+  .ik-checkbox-default {
+    width: 20px;
+    height: 20px;
+  }
+}

@@ -16,6 +16,7 @@ import { FooterComponent } from './component/footer/footer.component';
 import { ContactAdminModalComponent } from './component/footer/modals/contact-admin-modal/contact-admin-modal.component';
 import { PrivacyPolicyModalComponent } from './component/footer/modals/privacy-policy-modal/privacy-policy-modal.component';
 import { ProjectModalComponent } from './component/footer/modals/project-modal/project-modal.component';
+import { GridChecklistColumnComponent } from './component/grid/grid-checklist-column/grid-checklist-column.component';
 import { GridColumnComponent } from './component/grid/grid-column/grid-column.component';
 import { GridPagerComponent } from './component/grid/grid-pager/grid-pager.component';
 import { GridSearchComponent } from './component/grid/grid-search/grid-search.component';
@@ -73,6 +74,7 @@ export function tokenGetter() {
     GridSearchComponent,
     GridShowAllComponent,
     GridComponent,
+    GridChecklistColumnComponent,
     HeaderBackComponent,
     HeaderComponent,
     NotificationPopupComponent,
@@ -125,6 +127,7 @@ export function tokenGetter() {
     GridSearchComponent,
     GridShowAllComponent,
     GridComponent,
+    GridChecklistColumnComponent,
     HeaderBackComponent,
     HeaderComponent,
     NotificationPopupComponent,

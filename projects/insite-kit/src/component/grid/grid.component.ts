@@ -14,6 +14,7 @@ import {
 import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 import { GridDataloader } from '../../model/grid.model';
+import { GridChecklistColumnComponent } from './grid-checklist-column/grid-checklist-column.component';
 import { GridColumnComponent } from './grid-column/grid-column.component';
 import { GridPagerComponent } from './grid-pager/grid-pager.component';
 import { GridParamBuilder } from './grid-param-builder/grid-param-builder.component';
@@ -29,6 +30,8 @@ export class GridComponent implements OnChanges, OnDestroy, AfterViewInit {
   @ContentChild(GridPagerComponent) gridPager: GridPagerComponent;
   @ContentChild(GridShowAllComponent) gridShowAll: GridShowAllComponent;
   @ContentChild(GridSearchComponent) gridSearch: GridSearchComponent;
+  @ContentChild(GridChecklistColumnComponent)
+  gridChecklistColumn: GridChecklistColumnComponent;
 
   @Input() dataLoader: GridDataloader;
   @Input() padding = true;
