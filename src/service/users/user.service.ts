@@ -188,7 +188,7 @@ export class UserService {
    * @returns Returns a list of roles the user is able to create
    */
   getRegisterRoles(): string[] {
-    const userRank: number = Number(WebRole.TNT_LEADER);
+    const userRank: number = Number(WebRole.LEADER);
     return this.getRolesAsMap()
       .filter((e) => e.rank <= userRank)
       .map((e) => e.name);

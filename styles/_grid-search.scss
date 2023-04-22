@@ -8,6 +8,7 @@
   padding: 10px;
   font-size: 20px;
   width: 100%;
+  margin: 20px 20px 0 20px;
 }
 
 input {
@@ -22,7 +23,8 @@ input {
 
 .grid-search--icon-align {
   position: absolute;
-  right: 10px;
+  top: 22px;
+  right: 30px;
 }
 
 .grid-search--container {
@@ -34,5 +36,11 @@ input {
 @media screen and (max-width: 570px) {
   .search {
     font-size: 15px;
+    margin: 15px 5px 0 5px;
+  }
+
+  .grid-search--icon-align {
+    top: 15px;
+    right: 15px;
   }
 }

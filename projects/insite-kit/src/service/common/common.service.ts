@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { default as churchGroupsJson } from 'projects/insite-kit/src/assets/translations/church-groups/en.json';
 import { default as webRolesJson } from 'projects/insite-kit/src/assets/translations/web-roles/en.json';
 
 @Injectable({
@@ -45,8 +46,29 @@ export class CommonService {
     return `${month}/${day}/${year}`;
   }
 
+  formatPhoneNumber(value: string) {
+    return `(${value.slice(0, 3)}) ${value.slice(4, 7)}-${value.slice(7, 10)}`;
+  }
+
+  /**
+   * Returns the formatted web role based on the given enum.
+   *
+   * @param value The value to translate
+   * @returns Formatted string
+   */
   getFormattedRole(value: string) {
     const role = Object.values(webRolesJson)[0][value];
+    return role ? role : '-';
+  }
+
+  /**
+   * Returns the formatted church group based on the given enum.
+   *
+   * @param value The value to translate
+   * @returns Formatted string
+   */
+  getFormattedChurchGroup(value: string) {
+    const role = Object.values(churchGroupsJson)[0][value];
     return role ? role : '-';
   }
 

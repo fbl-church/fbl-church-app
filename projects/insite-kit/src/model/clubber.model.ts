@@ -1,4 +1,4 @@
-import { ChurchGroup } from './common.model';
+import { ChurchGroup, Relationship } from './common.model';
 
 export interface Clubber {
   id?: number;
@@ -8,14 +8,17 @@ export interface Clubber {
   birthday?: Date | any;
   allergies?: string;
   additionalInfo?: string;
-  parent?: Parent;
+  parent?: Gurdian;
   insertDate?: Date;
   [key: string]: any;
 }
 
-export interface Parent {
-  name?: string;
+export interface Gurdian {
+  firstName?: string;
+  lastName?: string;
+  relationship?: Relationship | any;
   email?: string;
   phone?: string;
   address?: string;
+  [key: string]: any;
 }

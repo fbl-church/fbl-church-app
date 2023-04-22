@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { ClubberService } from 'src/service/clubbers/clubber.service';
 
@@ -11,11 +12,18 @@ export class ClubberComponent {
   dataloader: any;
   addCirlce = faCirclePlus;
 
-  constructor(private clubberService: ClubberService) {
+  constructor(
+    private clubberService: ClubberService,
+    private readonly router: Router
+  ) {
     this.dataloader = (params: any) => this.getClubberDataLoader(params);
   }
 
   getClubberDataLoader(params?: Map<string, string[]>) {
     return this.clubberService.getClubbers(params);
+  }
+
+  onAddClubber() {
+    this.router.navigate(['/clubbers/create']);
   }
 }

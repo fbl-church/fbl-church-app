@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'projects/insite-kit/src/service/auth/auth.guard';
 import { ClubberComponent } from './pages/clubbers/clubber.component';
+import { CreateClubberComponent } from './pages/clubbers/create-clubber/create-clubber.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CreateAccountComponent } from './pages/login/create-account/create-accountcomponent';
 import { LoginOverviewComponent } from './pages/login/login-overview/login-overview.component';
@@ -63,6 +64,11 @@ const routes: Routes = [
       {
         path: 'clubbers',
         component: ClubberComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'clubbers/create',
+        component: CreateClubberComponent,
         pathMatch: 'full',
       },
       {

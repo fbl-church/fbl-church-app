@@ -1,0 +1,72 @@
+<form [formGroup]="form" class="clubber-form__space-between">
+  <ik-card [padding]="false" [marginBottom]="false">
+    <ik-card-info header="First Name*"
+      ><input
+        class="form-input__normal"
+        placeholder="First Name"
+        formControlName="firstName"
+      />
+    </ik-card-info>
+
+    <ik-card-info header="Last Name*"
+      ><input
+        class="form-input__normal"
+        placeholder="Last Name"
+        formControlName="lastName"
+      />
+    </ik-card-info>
+
+    <ng-container *ngIf="!disableRoleUpdate">
+      <ik-card-info header="Awana Group*">
+        <select class="form-input__normal" formControlName="churchGroup">
+          <option *ngFor="let group of churchGroups" [ngValue]="group">
+            {{ group | churchGroupTranslate }}
+          </option>
+        </select>
+      </ik-card-info>
+    </ng-container>
+
+    <ik-card-info header="Birthday"
+      ><input
+        type="date"
+        class="form-input__normal"
+        placeholder="Birthday"
+        formControlName="birthday"
+      />
+    </ik-card-info>
+
+    <ik-card-info header="Allergies"
+      ><input
+        class="form-input__normal"
+        placeholder="Allergies"
+        formControlName="allergies"
+      />
+    </ik-card-info>
+
+    <ik-card-info header="Additional Information">
+      <textarea
+        formControlName="additionalInfo"
+        rows="4"
+        cols="50"
+        class="form-input__normal textarea-margin"
+      ></textarea>
+    </ik-card-info>
+  </ik-card>
+</form>
+<app-clubber-gurdians-grid-card></app-clubber-gurdians-grid-card>
+<button
+  class="btn btn-default btn-flat btn-size btn-left"
+  (click)="onCancelClick()"
+>
+  {{ leftActionButton }}
+</button>
+<button
+  class="btn btn-primary btn-flat btn-size btn-right"
+  (click)="onSaveClick()"
+  [disabled]="form.invalid || !form.dirty || disableSave"
+>
+  {{ rightActionButton }}
+</button>
+<ng-template #loadingIcon>
+  <ik-loading size="40px" thickness="3px"></ik-loading>
+</ng-template>

@@ -1,5 +1,7 @@
 export enum WebRole {
   USER = 100,
+  LEADER = 300,
+  HELPER = 200,
   TNT_LEADER = 300,
   TNT_HELPER = 200,
   SPARKS_LEADER = 300,
@@ -18,6 +20,18 @@ export enum ChurchGroup {
   TNT_GIRLS = 'TNT_GIRLS',
   TNT_BOYS = 'TNT_BOYS',
   CROSS_CHECK = 'CROSS_CHECK',
+}
+
+export enum Relationship {
+  MOTHER = 'MOTHER',
+  FATHER = 'FATHER',
+  BROTHER = 'BROTHER',
+  SISTER = 'SISTER',
+  GRANDMA = 'GRANDMA',
+  GRANDPA = 'GRANDPA',
+  AUNT = 'AUNT',
+  UNCLE = 'UNCLE',
+  OTHER = 'OTHER',
 }
 
 export enum Access {

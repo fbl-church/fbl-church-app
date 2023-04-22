@@ -35,6 +35,7 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { NotificationPopupComponent } from './component/notification-popup/notification-popup.component';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
 import { BasicHttpInterceptorService } from './service/interceptor/http-interceptor.service';
+import { ChurchGroupTranslationPipe } from './service/pipe/church-group-translation.pipe';
 import { UsernamePipe } from './service/pipe/format-user-name.pipe';
 import { NotificationMessagePipe } from './service/pipe/notification-message.pipe';
 import { WebRoleTranslationPipe } from './service/pipe/web-role-translation.pipe';
@@ -79,6 +80,7 @@ export function tokenGetter() {
     IconComponent,
     InisteUserNotificationComponent,
     InisteGeneralNotificationComponent,
+    ChurchGroupTranslationPipe,
   ],
   imports: [
     CommonModule,
@@ -130,6 +132,7 @@ export function tokenGetter() {
     IconComponent,
     InisteUserNotificationComponent,
     InisteGeneralNotificationComponent,
+    ChurchGroupTranslationPipe,
   ],
   entryComponents: [ModalComponent, NotificationPopupComponent],
   providers: [
