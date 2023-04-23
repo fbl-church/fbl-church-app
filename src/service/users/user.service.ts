@@ -188,9 +188,8 @@ export class UserService {
    * @returns Returns a list of roles the user is able to create
    */
   getRegisterRoles(): string[] {
-    const userRank: number = Number(WebRole.LEADER);
     return this.getRolesAsMap()
-      .filter((e) => e.rank <= userRank)
+      .filter((e) => e.rank <= WebRole.LEADER)
       .map((e) => e.name);
   }
 
@@ -201,6 +200,7 @@ export class UserService {
    */
   getRolesAsMap(): { name: string; rank: any }[] {
     return Object.entries(WebRole)
+      .filter((e) => !e.includes('LEADER') && !e.includes('HELPER'))
       .map(([name, rank]) => ({ name, rank }))
       .filter((v) => Number.isInteger(v.rank));
   }

@@ -4,7 +4,6 @@ import { Clubber } from 'projects/insite-kit/src/model/clubber.model';
 import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { ClubberService } from 'src/service/clubbers/clubber.service';
-import { UserService } from 'src/service/users/user.service';
 
 @Component({
   selector: 'app-clubber-form',
@@ -26,13 +25,11 @@ export class ClubberFormComponent implements OnInit {
 
   constructor(
     private readonly clubberService: ClubberService,
-    private readonly userService: UserService,
     private readonly fb: FormBuilder
   ) {}
 
   ngOnInit() {
     this.buildForm();
-    this.roles = this.userService.getAllowedRolesToCreate();
     this.churchGroups = Object.keys(ChurchGroup);
   }
 
