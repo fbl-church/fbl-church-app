@@ -8,6 +8,13 @@ a {
   text-decoration: none !important;
 }
 
+button,
+input,
+textarea,
+select {
+  outline: none !important;
+}
+
 .inline {
   display: inline;
 }
@@ -42,13 +49,6 @@ a {
 
 .margin-top {
   margin-top: 10px;
-}
-
-.label-text {
-  margin-top: 5px;
-  font-size: 18px;
-  margin-right: 5px;
-  margin-bottom: 0;
 }
 
 .right {
@@ -97,9 +97,4 @@ a {
   font-size: 22px;
   font-weight: 600;
   font-family: emoji, sans-serif;
-}
-
-button,
-input {
-  outline: none !important;
 }

@@ -8,7 +8,8 @@ export interface Clubber {
   birthday?: Date | any;
   allergies?: string;
   additionalInfo?: string;
-  parent?: Gurdian;
+  gurdians?: Gurdian;
+  gurdianIds?: number[];
   insertDate?: Date;
   [key: string]: any;
 }

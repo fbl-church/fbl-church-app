@@ -1,0 +1,16 @@
+<ik-grid *ngIf="dataloader" basePath="gurdians" [dataLoader]="dataloader">
+  <ik-card-header title="Gurdians">
+    <ng-container>
+      <ik-icon
+        [icon]="editIcon"
+        color="black"
+        class="edit-icon"
+        (click)="onEditIconClick()"
+      ></ik-icon>
+    </ng-container>
+  </ik-card-header>
+  <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
+  <ik-grid-column label="Phone" field="formattedPhone"></ik-grid-column>
+  <ik-grid-column label="Email" field="email"></ik-grid-column>
+  <ik-grid-pager key="Gurdians"></ik-grid-pager>
+</ik-grid>

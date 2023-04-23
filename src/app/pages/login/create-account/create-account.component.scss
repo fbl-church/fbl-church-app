@@ -1,11 +1,11 @@
-.login-container {
+.create-account__container {
   width: 35%;
   margin: 15em auto;
   padding: 10px;
   background-color: transparent;
 }
 
-.login-input {
+.create-account__input {
   border-radius: 30px;
   padding: 12px 12px 12px 35px;
   width: 95%;
@@ -19,81 +19,65 @@
   font-weight: 600;
   transition: all 0.5s ease;
 
-  &__small {
-    @extend .login-input;
+  &--small {
+    @extend .create-account__input;
     width: 90%;
   }
 }
 
-.login-title {
+.create-account__title {
   color: #fff;
   font-size: 25px;
   font-weight: 600;
   margin-bottom: 15px;
 }
 
-.login-input:focus {
+.create-account__input:focus {
   border-bottom: 1.5px solid #0095ff;
-  // width: 98%;
   border-radius: 15px;
 }
 
-.login-input::placeholder {
+.create-account__input::placeholder {
   color: white;
   opacity: 1;
 }
 
-.login-button {
+.create-account__button {
   width: 50%;
   margin: 15px auto;
 }
 
-.icon {
-  position: absolute;
-  padding: 22px 12px;
-  min-width: 40px;
-  color: white;
-  z-index: 100;
-}
-
-.forgot-password-text {
-  color: #b1b1b1;
-  margin-left: 25px;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.create-account-text {
+.create-account__text-label {
   color: #b1b1b1;
   font-size: 14px;
   font-weight: 600;
 }
 
-.link-text {
+.create-account__link-text {
   color: rgb(116, 163, 250);
 }
 
 @media screen and (max-width: 1200px) {
-  .login-container {
+  .create-account__container {
     width: 60%;
     margin: 20em auto;
   }
 }
 
 @media screen and (max-width: 700px) {
-  .login-container {
+  .create-account__container {
     width: 90%;
     margin: 15em auto;
   }
 }
 
 @media screen and (max-width: 500px) {
-  .login-container {
+  .create-account__container {
     width: 95%;
     margin: 10em auto;
   }
 
-  .login-input__small {
+  .create-account__input--small {
     width: 95%;
   }
 }

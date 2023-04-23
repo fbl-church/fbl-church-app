@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from 'projects/insite-kit/src/model/user.model';
+import { Clubber } from 'projects/insite-kit/src/model/clubber.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
-import { UserService } from 'src/service/users/user.service';
+import { ClubberService } from 'src/service/clubbers/clubber.service';
 
 @Component({
-  selector: 'app-user-detail',
-  templateUrl: './user-detail.component.html',
+  selector: 'app-clubber-detail',
+  templateUrl: './clubber-detail.component.html',
 })
-export class UserDetailComponent implements OnInit {
-  userData: User;
+export class ClubberDetailComponent implements OnInit {
+  clubberData: Clubber;
   loading = true;
 
   destroy = new Subject<void>();
   constructor(
-    private userService: UserService,
+    private readonly clubberService: ClubberService,
     private readonly activeRoute: ActivatedRoute,
     private readonly popupService: PopupService,
     private readonly router: Router
@@ -24,16 +24,16 @@ export class UserDetailComponent implements OnInit {
   ngOnInit() {
     this.activeRoute.params
       .pipe(
-        switchMap((res) => this.userService.getUserById(res.id)),
-        tap((res) => (this.userData = res.body)),
+        switchMap((res) => this.clubberService.getById(res.id)),
+        tap((res) => (this.clubberData = res.body)),
         takeUntil(this.destroy)
       )
       .subscribe({
-        next: (res) => (this.loading = false),
+        next: () => (this.loading = false),
         error: () => {
           this.onBackClick();
           this.popupService.error(
-            'Could not load user details at this time. Try again later.'
+            'Could not load clubber details at this time. Try again later.'
           );
         },
       });
@@ -44,6 +44,6 @@ export class UserDetailComponent implements OnInit {
   }
 
   onBackClick() {
-    this.router.navigate(['/users']);
+    this.router.navigate(['/clubbers']);
   }
 }

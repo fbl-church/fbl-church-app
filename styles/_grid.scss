@@ -1,55 +1,5 @@
 @import "variables";
 
-.grid-table {
-  table-layout: fixed;
-}
-
-*:focus {
-  outline: none;
-}
-
-.grid-content {
-  color: $base-text-color;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: 500;
-  text-align: left;
-  padding: 15px 15px;
-}
-
-.grid__checklist-column {
-  width: 5%;
-}
-
-.content-ellipsis {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.column-header {
-  color: $base-text-color;
-  font-size: 25px;
-  font-weight: 500;
-  text-align: left;
-}
-
-.header-padding {
-  padding-left: 15px;
-}
-
-.content-row:nth-child(even) {
-  background-color: #f7f9fc;
-}
-
-.content-row:nth-child(odd) {
-  background-color: white;
-}
-
-.content-row:hover {
-  background-color: #edf1f7;
-}
-
 td {
   text-align: center;
 }
@@ -62,35 +12,60 @@ thead {
 table {
   width: 100%;
   border-collapse: collapse;
-  border-radius: 1em;
+  border-radius: 8px;
   overflow: hidden;
 }
 
-.item-label-margin {
-  margin-bottom: 10px;
-  margin-top: 5px;
+.grid__table {
+  table-layout: fixed;
 }
 
-.back-arrow {
-  content: url(../projects/insite-kit/src/assets/images/icons/back-arrow-icon.png);
-  width: 34px;
-  height: auto;
-  display: inline-block;
-  transition: transform 0.2s;
-  margin-right: 15px;
+.grid__content {
+  color: $base-text-color;
   cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: left;
+  padding: 15px 15px;
 }
 
-.back-arrow:hover {
-  transform: scale(1.1);
+.grid__checklist-column {
+  width: 5%;
 }
 
-.no-data-margin {
+.grid__text-label {
+  font-size: 18px;
   margin: 25px;
+  float: left;
 }
 
-.grid-padding {
-  padding: 20px;
+.grid__content-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.grid__column-header {
+  color: $base-text-color;
+  font-size: 25px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.grid__header-padding {
+  padding-left: 15px;
+}
+
+.grid__content-row:nth-child(even) {
+  background-color: #f7f9fc;
+}
+
+.grid__content-row:nth-child(odd) {
+  background-color: white;
+}
+
+.grid__content-row:hover {
+  background-color: #edf1f7;
 }
 
 @media screen and (max-width: 800px) {
@@ -100,22 +75,18 @@ table {
 }
 
 @media screen and (max-width: 570px) {
-  .grid-content {
+  thead {
+    line-height: 40px;
+  }
+
+  .grid__content {
     font-size: 14px;
     padding: 12px 5px 12px 12px;
   }
 
-  .column-header {
+  .grid__column-header {
     font-size: 15px;
     padding-left: 10px;
-  }
-
-  .grid-padding {
-    padding: 5px;
-  }
-
-  thead {
-    line-height: 40px;
   }
 }
 

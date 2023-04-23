@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'projects/insite-kit/src/service/auth/auth.guard';
+import { ClubberDetailComponent } from './pages/clubbers/clubber-detail/clubber-detail.component';
 import { ClubberComponent } from './pages/clubbers/clubber.component';
 import { CreateClubberComponent } from './pages/clubbers/create-clubber/create-clubber.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -11,7 +12,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { CreateUserComponent } from './pages/users/create-user/create-user.component';
 import { UserDetailComponent } from './pages/users/user-detail/user-detail.component';
 import { UserComponent } from './pages/users/user.component';
-import { AuthenticatedLayoutComponent } from './shared/components/authenticated-layout/authenticated-layout.component';
+import { AuthenticatedLayoutComponent } from './shared/components/layouts/authenticated-layout/authenticated-layout.component';
 
 /**
  * Make sure to add back CanActivate on Home
@@ -39,7 +40,7 @@ const routes: Routes = [
   {
     path: '',
     component: AuthenticatedLayoutComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'home',
@@ -69,6 +70,11 @@ const routes: Routes = [
       {
         path: 'clubbers/create',
         component: CreateClubberComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'clubbers/:id/details',
+        component: ClubberDetailComponent,
         pathMatch: 'full',
       },
       {

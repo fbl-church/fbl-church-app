@@ -1,8 +1,9 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Clubber } from 'projects/insite-kit/src/model/clubber.model';
+import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,10 @@ import { Observable } from 'rxjs';
 export class ClubberService {
   readonly BASE_CLUBBERS_PATH = 'api/clubbers';
 
-  constructor(private readonly request: RequestService) {}
+  constructor(
+    private readonly request: RequestService,
+    private readonly commonService: CommonService
+  ) {}
 
   /**
    * Get a list of clubbers based on the given request
@@ -18,10 +22,16 @@ export class ClubberService {
    * @param params to filter on
    * @returns Clubber object
    */
-  getClubbers(
-    params?: Map<string, string[]>
-  ): Observable<HttpResponse<Clubber[]>> {
-    return this.request.get<Clubber[]>(this.BASE_CLUBBERS_PATH, params);
+  get(params?: Map<string, string[]>): Observable<HttpResponse<Clubber[]>> {
+    return this.request.get<Clubber[]>(this.BASE_CLUBBERS_PATH, params).pipe(
+      tap((v) =>
+        v.body.forEach((u) => {
+          u.formattedGroup = this.commonService.getFormattedChurchGroup(
+            u.churchGroup
+          );
+        })
+      )
+    );
   }
 
   /**
@@ -30,7 +40,7 @@ export class ClubberService {
    * @param params clubber id for the clubber to get
    * @returns Clubber object
    */
-  getClubberById(id: number): Observable<Clubber> {
+  getById(id: number): Observable<Clubber> {
     return this.request.get<Clubber>(
       `${this.BASE_CLUBBERS_PATH}/${id.toString()}`
     );
@@ -42,7 +52,7 @@ export class ClubberService {
    * @param clubber The clubber to be created.
    * @returns The clubber that was created.
    */
-  createClubber(clubber: Clubber): Observable<Clubber> {
+  create(clubber: Clubber): Observable<Clubber> {
     return this.request.post<Clubber>(this.BASE_CLUBBERS_PATH, clubber);
   }
 }

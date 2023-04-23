@@ -44,6 +44,25 @@ export class GurdianService {
   }
 
   /**
+   * Get the gurdians for the given clubber id.
+   *
+   * @param params gurdian id for the gurdian to get
+   * @returns Gurdian object
+   */
+  getGurdiansByClubberId(clubberId: number): Observable<HttpResponse<Gurdian>> {
+    return this.request
+      .get<Gurdian>(`${this.BASE_PATH}/clubber/${clubberId}`)
+      .pipe(
+        tap((v) =>
+          v.body.forEach((u) => {
+            u.formattedPhone = this.commonService.formatPhoneNumber(u.phone);
+            u.formattedName = this.commonService.getFormattedName(u);
+          })
+        )
+      );
+  }
+
+  /**
    * This will create a gurdian for the given object, but will default to a gurdian web role object.
    *
    * @param gurdian The gurdian to be created.

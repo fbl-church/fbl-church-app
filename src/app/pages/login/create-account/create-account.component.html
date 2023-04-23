@@ -1,7 +1,7 @@
-<div class="login-container">
+<div class="create-account__container">
   <form id="createAccountForm" [formGroup]="form">
     <div class="row">
-      <div class="login-title">Create Account</div>
+      <div class="create-account__title">Create Account</div>
     </div>
     <div class="row">
       <div class="col-sm-6 col-xs-12">
@@ -9,7 +9,7 @@
           type="text"
           id="firstName"
           formControlName="firstName"
-          class="login-input__small"
+          class="create-account__input--small"
           placeholder="First Name"
         />
       </div>
@@ -18,14 +18,14 @@
           type="text"
           id="lastName"
           formControlName="lastName"
-          class="login-input__small"
+          class="create-account__input--small"
           placeholder="Last Name"
         />
       </div>
     </div>
     <div class="row">
       <div class="col-12">
-        <select class="login-input" formControlName="webRole">
+        <select class="create-account__input" formControlName="webRole">
           <option *ngFor="let role of roles" [ngValue]="role">
             {{ role | webRoleTranslate }}
           </option>
@@ -38,7 +38,7 @@
           type="email"
           id="email"
           formControlName="email"
-          class="login-input"
+          class="create-account__input"
           placeholder="Email"
         />
       </div>
@@ -49,7 +49,7 @@
           type="password"
           id="password"
           formControlName="password"
-          class="login-input"
+          class="create-account__input"
           placeholder="Password"
         />
       </div>
@@ -58,7 +58,7 @@
       <div class="col-12">
         <button
           id="createAccountButton"
-          class="btn btn-round btn-primary login-button"
+          class="btn btn-round btn-primary create-account__button"
           (click)="onCreateAccountClick()"
           [disabled]="form.invalid"
           *ngIf="!loading; else loader"
@@ -69,9 +69,9 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <p class="create-account-text">
+        <p class="create-account__text-label">
           Already Have an account?
-          <a routerLink="/login" class="link-text">Sign In!</a>
+          <a routerLink="/login" class="create-account__link-text">Sign In!</a>
         </p>
       </div>
     </div>

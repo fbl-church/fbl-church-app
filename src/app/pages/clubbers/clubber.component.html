@@ -7,11 +7,15 @@
     Add Clubber
   </button>
 </ik-header>
-<ik-grid basePath="clubbers" [dataLoader]="dataloader">
+<ik-grid
+  basePath="clubbers"
+  [dataLoader]="dataloader"
+  (rowClick)="onRowClick($event)"
+>
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="First Name" field="firstName"></ik-grid-column>
   <ik-grid-column label="Last Name" field="lastName"></ik-grid-column>
-  <ik-grid-column label="Group" field="churchGroup"></ik-grid-column>
+  <ik-grid-column label="Group" field="formattedGroup"></ik-grid-column>
   <ik-grid-column label="Created" field="insertDate"></ik-grid-column>
   <ik-grid-pager key="Clubbers"></ik-grid-pager>
 </ik-grid>

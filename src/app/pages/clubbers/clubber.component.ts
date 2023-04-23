@@ -20,10 +20,14 @@ export class ClubberComponent {
   }
 
   getClubberDataLoader(params?: Map<string, string[]>) {
-    return this.clubberService.getClubbers(params);
+    return this.clubberService.get(params);
   }
 
   onAddClubber() {
     this.router.navigate(['/clubbers/create']);
+  }
+
+  onRowClick(event: any) {
+    this.router.navigate([`/clubbers/${event.id}/details`]);
   }
 }

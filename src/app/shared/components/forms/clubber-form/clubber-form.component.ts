@@ -1,9 +1,16 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Clubber } from 'projects/insite-kit/src/model/clubber.model';
 import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
-import { User } from 'projects/insite-kit/src/model/user.model';
-import { ClubberService } from 'src/service/clubbers/clubber.service';
+import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
+import { ClubberGurdiansGridCardComponent } from './clubber-gurdians-grid-card/clubber-gurdians-grid-card.component';
 
 @Component({
   selector: 'app-clubber-form',
@@ -11,21 +18,24 @@ import { ClubberService } from 'src/service/clubbers/clubber.service';
   styleUrls: ['./clubber-form.component.scss'],
 })
 export class ClubberFormComponent implements OnInit {
+  @ViewChild(ClubberGurdiansGridCardComponent)
+  checklistGrid: ClubberGurdiansGridCardComponent;
+
   @Input() clubberData: Clubber;
   @Input() rightActionButton: string;
   @Input() leftActionButton: string;
   @Input() disableRoleUpdate = false;
   @Input() disableSave = false;
   @Output() cancel = new EventEmitter<any>();
-  @Output() save = new EventEmitter<User>();
+  @Output() save = new EventEmitter<Clubber>();
 
   roles: string[];
   churchGroups: string[];
   form: FormGroup;
 
   constructor(
-    private readonly clubberService: ClubberService,
-    private readonly fb: FormBuilder
+    private readonly fb: FormBuilder,
+    private readonly popupService: PopupService
   ) {}
 
   ngOnInit() {
@@ -59,5 +69,33 @@ export class ClubberFormComponent implements OnInit {
     this.cancel.emit();
   }
 
-  onSaveClick() {}
+  onSaveClick() {
+    if (this.checklistGrid.getSelectedGurdians().length < 1) {
+      this.popupService.error(
+        'Clubber is required to have at least one gurdian assigned to them.'
+      );
+      return;
+    }
+
+    let newClubber: Clubber = {
+      firstName: this.form.value.firstName,
+      lastName: this.form.value.lastName,
+      churchGroup: this.form.value.churchGroup,
+      gurdianIds: this.checklistGrid.getSelectedGurdians(),
+    };
+
+    if (this.form.value.birthday) {
+      newClubber.birthday = this.form.value.birthday;
+    }
+
+    if (this.form.value.allergies) {
+      newClubber.allergies = this.form.value.allergies;
+    }
+
+    if (this.form.value.additionalInfo) {
+      newClubber.additionalInfo = this.form.value.additionalInfo;
+    }
+
+    this.save.emit(newClubber);
+  }
 }

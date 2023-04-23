@@ -1,6 +1,8 @@
+import { HttpResponse } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { Clubber } from 'projects/insite-kit/src/model/clubber.model';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
+import { of } from 'rxjs';
 import { FBAwanaTestBed } from 'src/test/test-bed';
 import { setupTests } from 'src/test/test-setup';
 import { ClubberService } from './clubber.service';
@@ -15,19 +17,19 @@ describe('ClubberService', () => {
     service = TestBed.inject(ClubberService);
     requestService = TestBed.inject(RequestService);
 
-    spyOn(requestService, 'get');
+    spyOn(requestService, 'get').and.returnValue(of(new HttpResponse({})));
     spyOn(requestService, 'post');
   });
 
   it('should call get clubbers endpoint', () => {
     const userMap = new Map().set('id', 1);
-    service.getClubbers(userMap);
+    service.get(userMap);
 
     expect(requestService.get).toHaveBeenCalledWith('api/clubbers', userMap);
   });
 
   it('should call get user by id endpoint', () => {
-    service.getClubberById(1);
+    service.getById(1);
     expect(requestService.get).toHaveBeenCalledWith('api/clubbers/1');
   });
 
@@ -37,7 +39,7 @@ describe('ClubberService', () => {
       lastName: 'Test',
     };
 
-    service.createClubber(newClubber);
+    service.create(newClubber);
     expect(requestService.post).toHaveBeenCalledWith(
       'api/clubbers',
       newClubber

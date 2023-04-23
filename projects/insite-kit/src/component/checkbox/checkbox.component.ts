@@ -8,9 +8,12 @@ export class CheckboxComponent {
   @Input() checkId: string;
   @Input() checked = false;
 
-  @Output() checkboxChange = new EventEmitter<boolean>();
+  @Output() checkboxChange = new EventEmitter<any>();
 
   valueChange(event: any) {
-    this.checkboxChange.emit(event.target.checked);
+    this.checkboxChange.emit({
+      id: this.checkId,
+      selected: event.target.checked,
+    });
   }
 }

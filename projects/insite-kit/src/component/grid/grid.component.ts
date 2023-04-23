@@ -34,7 +34,6 @@ export class GridComponent implements OnChanges, OnDestroy, AfterViewInit {
   gridChecklistColumn: GridChecklistColumnComponent;
 
   @Input() dataLoader: GridDataloader;
-  @Input() padding = true;
   @Input() basePath = '';
   @Input() overflowEnabled = false;
 
@@ -101,6 +100,7 @@ export class GridComponent implements OnChanges, OnDestroy, AfterViewInit {
     this.dataSubject
       .pipe(
         tap((res) => (this.data = res)),
+        tap(() => this.updateSelection()),
         tap(() => this.updatePager()),
         tap(() => this.updateShowAll()),
         takeUntil(this.destroy)
@@ -119,6 +119,23 @@ export class GridComponent implements OnChanges, OnDestroy, AfterViewInit {
         takeUntil(this.destroy)
       )
       .subscribe(() => this.loadData());
+  }
+
+  updateSelection() {
+    if (!this.gridChecklistColumn) {
+      return;
+    }
+
+    const currentSelectedIds = this.gridChecklistColumn.getSelected();
+    if (currentSelectedIds.length > 0) {
+      this.data.body.forEach(
+        (r) => (r.selected = currentSelectedIds.includes(r.id))
+      );
+    }
+  }
+
+  onChecklistChange(event: any) {
+    this.gridChecklistColumn.updateSelectedId(event);
   }
 
   loadData(search?: string) {

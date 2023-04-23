@@ -1,6 +1,6 @@
 @import "variables";
 
-.search {
+.grid-search {
   color: $base-text-color;
   border-radius: 10px;
   background: #f7f9fc;
@@ -11,35 +11,31 @@
   margin: 20px 20px 0 20px;
 }
 
-input {
-  border-style: hidden;
-}
-
-.grid-search--icon {
+.grid-search__icon {
   color: $base-text-color;
   font-size: 30px;
   cursor: pointer;
 }
 
-.grid-search--icon-align {
+.grid-search__icon-align {
   position: absolute;
   top: 22px;
   right: 30px;
 }
 
-.grid-search--container {
+.grid-search__container {
   display: flex;
   align-items: center;
   position: relative;
 }
 
 @media screen and (max-width: 570px) {
-  .search {
+  .grid-search {
     font-size: 15px;
     margin: 15px 5px 0 5px;
   }
 
-  .grid-search--icon-align {
+  .grid-search__icon-align {
     top: 15px;
     right: 15px;
   }

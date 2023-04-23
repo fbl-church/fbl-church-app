@@ -1,0 +1,25 @@
+<div *ngIf="!loading; else loader">
+  <ik-header title="{{ clubberData | formatUserName }}">
+    <ik-header-back (back)="onBackClick()"></ik-header-back>
+    <div class="inline-display header-buttons">
+      <button class="btn btn-danger btn-flat btn-size btn-right h-button">
+        Delete Clubber
+      </button>
+    </div>
+  </ik-header>
+  <div class="layout__left-column layout__column-half">
+    <app-clubber-details-card
+      [clubber]="clubberData"
+      [editEnabled]="true"
+    ></app-clubber-details-card>
+  </div>
+  <div class="layout__right-column layout__column-half">
+    <app-clubber-gurdians-details-grid
+      [clubberId]="clubberData.id"
+    ></app-clubber-gurdians-details-grid>
+  </div>
+</div>
+
+<ng-template #loader>
+  <ik-loading></ik-loading>
+</ng-template>
