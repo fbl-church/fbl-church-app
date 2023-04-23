@@ -9,5 +9,5 @@ export const environment = {
   tag: 'PRODUCTION',
   production: true,
   isLocal: false,
-  apiUrl: 'fb-awana-microservice.herokuapp.com',
+  apiUrl: 'fbl-awana-microservice.herokuapp.com',
 };
