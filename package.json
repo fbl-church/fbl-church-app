@@ -20,7 +20,7 @@
     "serve:external": "ng serve --host 0.0.0.0",
     "serve:production": "ng serve --configuration production",
     "package:refresh": "rm package-lock.json && npm i",
-    "heroku-postbuild": "ng build --configuration ${ENV}"
+    "heroku-postbuild": "ng build --configuration production"
   },
   "dependencies": {
     "@angular/animations": "^14.2.12",
