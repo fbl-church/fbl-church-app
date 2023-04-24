@@ -2,7 +2,10 @@
   <ik-header title="{{ clubberData | formatUserName }}">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
     <div class="inline-display header-buttons">
-      <button class="btn btn-danger btn-flat btn-size btn-right h-button">
+      <button
+        class="btn btn-danger btn-flat btn-size btn-right h-button"
+        (click)="deleteClubberModal.modal.open()"
+      >
         Delete Clubber
       </button>
     </div>
@@ -19,6 +22,11 @@
     ></app-clubber-gurdians-details-grid>
   </div>
 </div>
+
+<app-delete-clubber-modal
+  #deleteClubberModal
+  [clubberId]="clubberData?.id"
+></app-delete-clubber-modal>
 
 <ng-template #loader>
   <ik-loading></ik-loading>

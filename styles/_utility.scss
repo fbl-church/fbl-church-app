@@ -98,3 +98,13 @@ select {
   font-weight: 600;
   font-family: emoji, sans-serif;
 }
+
+@media screen and (max-width: 500px) {
+  .h-button {
+    margin-top: 0;
+  }
+
+  .header-buttons {
+    display: block;
+  }
+}

@@ -2,7 +2,10 @@
   <ik-header title="{{ userData | formatUserName }}">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
     <div class="inline-display header-buttons">
-      <button class="btn btn-danger btn-flat btn-size btn-right h-button">
+      <button
+        class="btn btn-danger btn-flat btn-size btn-right h-button"
+        (click)="deleteUserModal.modal.open()"
+      >
         Delete User
       </button>
       <button class="btn btn-default btn-flat btn-size btn-right h-button">
@@ -17,6 +20,11 @@
     ></app-user-details-card>
   </div>
 </div>
+
+<app-delete-user-modal
+  #deleteUserModal
+  [userId]="userData?.id"
+></app-delete-user-modal>
 
 <ng-template #loader>
   <ik-loading></ik-loading>

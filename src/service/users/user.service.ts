@@ -166,7 +166,7 @@ export class UserService {
    *
    * @param id of the user to be deleted.
    */
-  deleteUser(id: number): Observable<any> {
+  delete(id: number): Observable<any> {
     return this.request.delete<any>(`${this.BASE_USER_PATH}/${id}`);
   }
 

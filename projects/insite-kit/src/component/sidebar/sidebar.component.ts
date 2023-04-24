@@ -3,13 +3,12 @@ import { Router } from '@angular/router';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import {
   faChartSimple,
+  faChildren,
   faCircleInfo,
   faClose,
-  faEnvelope,
   faGear,
-  faGears,
   faHome,
-  faScrewdriverWrench,
+  faPerson,
   faUsers,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -22,11 +21,10 @@ export class SidebarComponent {
 
   closeIcon = faClose;
   homeIcon = faHome;
-  serviceIcon = faScrewdriverWrench;
   aboutIcon = faCircleInfo;
-  contactIcon = faEnvelope;
-  systemIcon = faGears;
   usersIcon = faUsers;
+  clubbersIcon = faChildren;
+  gurdiansIcon = faPerson;
   gitIcon = faGithub;
   settingsIcon = faGear;
   reportIcon = faChartSimple;

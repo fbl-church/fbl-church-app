@@ -29,7 +29,7 @@ export class UserDetailComponent implements OnInit {
         takeUntil(this.destroy)
       )
       .subscribe({
-        next: (res) => (this.loading = false),
+        next: () => (this.loading = false),
         error: () => {
           this.onBackClick();
           this.popupService.error(
@@ -45,5 +45,22 @@ export class UserDetailComponent implements OnInit {
 
   onBackClick() {
     this.router.navigate(['/users']);
+  }
+
+  onDeleteUser() {
+    this.loading = true;
+    this.userService.delete(this.userData.id).subscribe({
+      next: () => {
+        this.popupService.success('User Successfully Deleted!');
+        this.router.navigate(['/users']);
+        this.loading = false;
+      },
+      error: () => {
+        this.popupService.success(
+          'Unable to delete user at this time. Try again later'
+        );
+        this.loading = false;
+      },
+    });
   }
 }

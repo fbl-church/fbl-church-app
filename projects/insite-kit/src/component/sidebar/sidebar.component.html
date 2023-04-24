@@ -20,8 +20,16 @@
     routerLinkActive="sidebar-category__active"
     (click)="close()"
   >
-    <ik-icon classOverride="sidebar-icon" [icon]="usersIcon"></ik-icon>
+    <ik-icon classOverride="sidebar-icon" [icon]="clubbersIcon"></ik-icon>
     <span class="sidebar-category">Clubbers</span>
+  </div>
+  <div
+    routerLink="/gurdians"
+    routerLinkActive="sidebar-category__active"
+    (click)="close()"
+  >
+    <ik-icon classOverride="sidebar-icon" [icon]="gurdiansIcon"></ik-icon>
+    <span class="sidebar-category">Gurdians</span>
   </div>
   <div
     routerLink="/reports"

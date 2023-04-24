@@ -4,6 +4,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ClubberDetailComponent } from './clubber-detail/clubber-detail.component';
 import { ClubberDetailsCardComponent } from './clubber-detail/clubber-details-card/clubber-details-card.component';
 import { ClubberGurdiansDetailsGridComponent } from './clubber-detail/clubber-gurdians-details-grid/clubber-gurdians-details-grid.component';
+import { DeleteClubberModalComponent } from './clubber-detail/modals/delete-clubber-modal/delete-clubber-modal.component';
 import { ClubberComponent } from './clubber.component';
 import { CreateClubberComponent } from './create-clubber/create-clubber.component';
 
@@ -15,6 +16,7 @@ import { CreateClubberComponent } from './create-clubber/create-clubber.componen
     ClubberDetailComponent,
     ClubberDetailsCardComponent,
     ClubberGurdiansDetailsGridComponent,
+    DeleteClubberModalComponent,
   ],
 })
 export class ClubberModule {}

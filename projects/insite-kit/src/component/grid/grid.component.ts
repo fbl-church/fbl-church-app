@@ -136,6 +136,7 @@ export class GridComponent implements OnChanges, OnDestroy, AfterViewInit {
 
   onChecklistChange(event: any) {
     this.gridChecklistColumn.updateSelectedId(event);
+    console.log('Selected', event, this.gridChecklistColumn.getSelected());
   }
 
   loadData(search?: string) {

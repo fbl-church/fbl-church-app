@@ -55,4 +55,13 @@ export class ClubberService {
   create(clubber: Clubber): Observable<Clubber> {
     return this.request.post<Clubber>(this.BASE_CLUBBERS_PATH, clubber);
   }
+
+  /**
+   * Delete the clubber associated to the given id.
+   *
+   * @param id of the clubber to be deleted.
+   */
+  delete(id: number): Observable<any> {
+    return this.request.delete<any>(`${this.BASE_CLUBBERS_PATH}/${id}`);
+  }
 }
