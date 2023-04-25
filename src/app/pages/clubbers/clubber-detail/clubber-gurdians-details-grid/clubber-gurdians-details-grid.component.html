@@ -1,4 +1,9 @@
-<ik-grid *ngIf="dataloader" basePath="gurdians" [dataLoader]="dataloader">
+<ik-grid
+  *ngIf="dataloader"
+  basePath="gurdians"
+  [dataLoader]="dataloader"
+  (rowClick)="onRowClick($event)"
+>
   <ik-card-header title="Gurdians">
     <ng-container>
       <ik-icon
@@ -10,7 +15,10 @@
     </ng-container>
   </ik-card-header>
   <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
-  <ik-grid-column label="Phone" field="formattedPhone"></ik-grid-column>
-  <ik-grid-column label="Email" field="email"></ik-grid-column>
-  <ik-grid-pager key="Gurdians"></ik-grid-pager>
+  <ik-grid-column label="Phone" field="phone"></ik-grid-column>
+  <ik-grid-column
+    label="Relationship"
+    field="formattedRelationship"
+  ></ik-grid-column>
+  <ik-grid-pager key="Gurdians" [visible]="false"></ik-grid-pager>
 </ik-grid>

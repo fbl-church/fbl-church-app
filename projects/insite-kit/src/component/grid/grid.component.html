@@ -13,6 +13,12 @@
           <ng-content select="ik-grid-column"></ng-content>
           <strong>{{ column.label }}</strong>
         </th>
+        <th
+          *ngIf="gridSelection"
+          class="grid__column-header grid__header-padding"
+        >
+          <strong>{{ gridSelection?.header }}*</strong>
+        </th>
       </tr>
     </thead>
     <tr *ngFor="let row of data.body" class="grid__content-row">
@@ -35,6 +41,23 @@
         <ng-template #notDate>
           {{ row[col.field] ? row[col.field] : "-" }}
         </ng-template>
+      </td>
+      <td *ngIf="gridSelection" class="grid__content">
+        <select
+          class="form-select__normal"
+          (change)="onSelectionChange($event.target.value, row.id)"
+        >
+          <option value="" disabled selected hidden>
+            {{ gridSelection?.header }}
+          </option>
+          <option
+            *ngFor="let value of gridSelection.values"
+            [ngValue]="row?.relationship"
+            [selected]="value === row?.relationship"
+          >
+            {{ value }}
+          </option>
+        </select>
       </td>
     </tr>
   </table>

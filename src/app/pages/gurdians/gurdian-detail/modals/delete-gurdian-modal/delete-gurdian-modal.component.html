@@ -1,0 +1,30 @@
+<ik-modal #deleteGurdianModal name="deleteGurdianModal">
+  <ik-modal-header title="Delete Gurdian?" type="danger"></ik-modal-header>
+  <ng-container *ngIf="!modalLoading; else loader">
+    <ik-modal-body>
+      <div>
+        Deleting this gurdian will result in their personal info to be deleted.
+        Before deletion, all clubbers associated to this gurdian must be
+        reassigned. Do you want to continue?
+      </div>
+    </ik-modal-body>
+    <ik-modal-action-bar>
+      <button
+        class="btn btn-danger btn-flat btn-right btn-modal"
+        (click)="onDeleteGurdian()"
+      >
+        Delete Gurdian
+      </button>
+      <button
+        class="btn btn-default btn-flat btn-right btn-modal"
+        (click)="deleteGurdianModal.close()"
+      >
+        Cancel
+      </button>
+    </ik-modal-action-bar>
+  </ng-container>
+</ik-modal>
+
+<ng-template #loader>
+  <ik-loading></ik-loading>
+</ng-template>

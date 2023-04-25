@@ -29,6 +29,7 @@ export class ClubberService {
           u.formattedGroup = this.commonService.getFormattedChurchGroup(
             u.churchGroup
           );
+          u.formattedName = this.commonService.getFormattedName(u);
         })
       )
     );
@@ -44,6 +45,29 @@ export class ClubberService {
     return this.request.get<Clubber>(
       `${this.BASE_CLUBBERS_PATH}/${id.toString()}`
     );
+  }
+
+  /**
+   * Get the gurdians for the given clubber id.
+   *
+   * @param params gurdian id for the gurdian to get
+   * @returns Gurdian object
+   */
+  getClubbersByGurdianId(
+    gurdianId: number
+  ): Observable<HttpResponse<Clubber[]>> {
+    return this.request
+      .get<Clubber[]>(`${this.BASE_CLUBBERS_PATH}/gurdian/${gurdianId}`)
+      .pipe(
+        tap((v) =>
+          v.body.forEach((u) => {
+            u.formattedName = this.commonService.getFormattedName(u);
+            u.formattedGroup = this.commonService.getFormattedChurchGroup(
+              u.churchGroup
+            );
+          })
+        )
+      );
   }
 
   /**

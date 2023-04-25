@@ -9,7 +9,6 @@ export interface Clubber {
   allergies?: string;
   additionalInfo?: string;
   gurdians?: Gurdian;
-  gurdianIds?: number[];
   insertDate?: Date;
   [key: string]: any;
 }

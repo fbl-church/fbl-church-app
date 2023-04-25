@@ -140,7 +140,7 @@ describe('UserService', () => {
   });
 
   it('should delete user', () => {
-    service.deleteUser(10);
+    service.delete(10);
     expect(requestService.delete).toHaveBeenCalledWith('api/users/10');
   });
 });

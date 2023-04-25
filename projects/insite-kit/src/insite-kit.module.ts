@@ -20,6 +20,7 @@ import { GridChecklistColumnComponent } from './component/grid/grid-checklist-co
 import { GridColumnComponent } from './component/grid/grid-column/grid-column.component';
 import { GridPagerComponent } from './component/grid/grid-pager/grid-pager.component';
 import { GridSearchComponent } from './component/grid/grid-search/grid-search.component';
+import { GridSelectionColumnComponent } from './component/grid/grid-selection-column/grid-selection-column.component';
 import { GridShowAllComponent } from './component/grid/grid-show-all/grid-show-all.component';
 import { GridComponent } from './component/grid/grid.component';
 import { HeaderBackComponent } from './component/header/header-back/header-back.component';
@@ -35,6 +36,7 @@ import { ModalComponent } from './component/modal/modal.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { NotificationPopupComponent } from './component/notification-popup/notification-popup.component';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
+import { PhoneMaskDirective } from './service/directive/phone-mask.directive';
 import { BasicHttpInterceptorService } from './service/interceptor/http-interceptor.service';
 import { ChurchGroupTranslationPipe } from './service/pipe/church-group-translation.pipe';
 import { UsernamePipe } from './service/pipe/format-user-name.pipe';
@@ -75,6 +77,7 @@ export function tokenGetter() {
     GridShowAllComponent,
     GridComponent,
     GridChecklistColumnComponent,
+    GridSelectionColumnComponent,
     HeaderBackComponent,
     HeaderComponent,
     NotificationPopupComponent,
@@ -83,6 +86,7 @@ export function tokenGetter() {
     InisteUserNotificationComponent,
     InisteGeneralNotificationComponent,
     ChurchGroupTranslationPipe,
+    PhoneMaskDirective,
   ],
   imports: [
     CommonModule,
@@ -128,6 +132,7 @@ export function tokenGetter() {
     GridShowAllComponent,
     GridComponent,
     GridChecklistColumnComponent,
+    GridSelectionColumnComponent,
     HeaderBackComponent,
     HeaderComponent,
     NotificationPopupComponent,
@@ -136,6 +141,7 @@ export function tokenGetter() {
     InisteUserNotificationComponent,
     InisteGeneralNotificationComponent,
     ChurchGroupTranslationPipe,
+    PhoneMaskDirective,
   ],
   entryComponents: [ModalComponent, NotificationPopupComponent],
   providers: [

@@ -4,6 +4,9 @@ import { AuthGuard } from 'projects/insite-kit/src/service/auth/auth.guard';
 import { ClubberDetailComponent } from './pages/clubbers/clubber-detail/clubber-detail.component';
 import { ClubberComponent } from './pages/clubbers/clubber.component';
 import { CreateClubberComponent } from './pages/clubbers/create-clubber/create-clubber.component';
+import { CreateGurdianComponent } from './pages/gurdians/create-gurdian/create-gurdian.component';
+import { GurdianDetailComponent } from './pages/gurdians/gurdian-detail/gurdian-detail.component';
+import { GurdianComponent } from './pages/gurdians/gurdian.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CreateAccountComponent } from './pages/login/create-account/create-accountcomponent';
 import { LoginOverviewComponent } from './pages/login/login-overview/login-overview.component';
@@ -80,6 +83,21 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'gurdians',
+        component: GurdianComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'gurdians/create',
+        component: CreateGurdianComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'gurdians/:id/details',
+        component: GurdianDetailComponent,
         pathMatch: 'full',
       },
     ],

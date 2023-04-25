@@ -70,10 +70,8 @@ export class ClubberFormComponent implements OnInit {
   }
 
   onSaveClick() {
-    if (this.checklistGrid.getSelectedGurdians().length < 1) {
-      this.popupService.error(
-        'Clubber is required to have at least one gurdian assigned to them.'
-      );
+    const gurdians = this.checklistGrid.getSelectedGurdians();
+    if (!this.validGurdians(gurdians)) {
       return;
     }
 
@@ -81,7 +79,7 @@ export class ClubberFormComponent implements OnInit {
       firstName: this.form.value.firstName,
       lastName: this.form.value.lastName,
       churchGroup: this.form.value.churchGroup,
-      gurdianIds: this.checklistGrid.getSelectedGurdians(),
+      gurdians: gurdians,
     };
 
     if (this.form.value.birthday) {
@@ -97,5 +95,23 @@ export class ClubberFormComponent implements OnInit {
     }
 
     this.save.emit(newClubber);
+  }
+
+  validGurdians(gurdians: any[]): boolean {
+    if (gurdians.length < 1) {
+      this.popupService.error(
+        'Clubber is required to have at least one gurdian assigned to them.'
+      );
+      return false;
+    }
+
+    if (gurdians.filter((res) => res?.relationship === null).length > 0) {
+      this.popupService.error(
+        'All selected gurdians must have a relationship selected.'
+      );
+      return false;
+    }
+
+    return true;
   }
 }

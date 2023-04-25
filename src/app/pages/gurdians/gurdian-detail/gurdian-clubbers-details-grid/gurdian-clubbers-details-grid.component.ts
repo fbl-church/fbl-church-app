@@ -1,20 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import { GurdianService } from 'src/service/gurdians/gurdian.service';
+import { ClubberService } from 'src/service/clubbers/clubber.service';
 
 @Component({
-  selector: 'app-clubber-gurdians-details-grid',
-  templateUrl: './clubber-gurdians-details-grid.component.html',
-  styleUrls: ['./clubber-gurdians-details-grid.component.scss'],
+  selector: 'app-gurdian-clubbers-details-grid',
+  templateUrl: './gurdian-clubbers-details-grid.component.html',
 })
 export class ClubberGurdiansDetailsGridComponent implements OnInit {
-  @Input() clubberId: number;
+  @Input() gurdianId: number;
   dataloader: any;
 
   editIcon = faPenToSquare;
   constructor(
-    private readonly gurdianService: GurdianService,
+    private readonly clubberService: ClubberService,
     private readonly router: Router
   ) {}
 
@@ -23,12 +22,10 @@ export class ClubberGurdiansDetailsGridComponent implements OnInit {
   }
 
   getGurdianDataLoader() {
-    return this.gurdianService.getGurdiansByClubberId(this.clubberId);
+    return this.clubberService.getClubbersByGurdianId(this.gurdianId);
   }
 
-  onEditIconClick() {}
-
   onRowClick(event: any) {
-    this.router.navigate([`/gurdians/${event.id}/details`]);
+    this.router.navigate([`/clubbers/${event.id}/details`]);
   }
 }

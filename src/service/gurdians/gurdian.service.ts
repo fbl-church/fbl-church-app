@@ -26,8 +26,10 @@ export class GurdianService {
     return this.request.get<Gurdian[]>(this.BASE_PATH, params).pipe(
       tap((v) =>
         v.body.forEach((u) => {
-          u.formattedPhone = this.commonService.formatPhoneNumber(u.phone);
           u.formattedName = this.commonService.getFormattedName(u);
+          u.formattedRelationship = this.commonService.getFormattedRelationship(
+            u.relationship
+          );
         })
       )
     );
@@ -55,8 +57,9 @@ export class GurdianService {
       .pipe(
         tap((v) =>
           v.body.forEach((u) => {
-            u.formattedPhone = this.commonService.formatPhoneNumber(u.phone);
             u.formattedName = this.commonService.getFormattedName(u);
+            u.formattedRelationship =
+              this.commonService.getFormattedRelationship(u.relationship);
           })
         )
       );
@@ -70,5 +73,14 @@ export class GurdianService {
    */
   create(gurdian: Gurdian): Observable<Gurdian> {
     return this.request.post<Gurdian>(this.BASE_PATH, gurdian);
+  }
+
+  /**
+   * Delete the gurdian associated to the given id.
+   *
+   * @param id of the gurdian to be deleted.
+   */
+  delete(id: number): Observable<any> {
+    return this.request.delete<any>(`${this.BASE_PATH}/${id}`);
   }
 }

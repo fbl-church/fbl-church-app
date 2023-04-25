@@ -33,6 +33,10 @@ export class GridChecklistColumnComponent {
     }
   }
 
+  isSelected(id: number) {
+    return this.selectedIds.has(id);
+  }
+
   getSelected() {
     return Array.from(this.selectedIds);
   }

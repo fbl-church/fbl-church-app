@@ -74,6 +74,16 @@ table {
   }
 }
 
+@media screen and (max-width: 770px) {
+  .grid__checklist-column {
+    width: 9%;
+  }
+
+  .grid__column-header {
+    font-size: 20px;
+  }
+}
+
 @media screen and (max-width: 570px) {
   thead {
     line-height: 40px;
@@ -81,17 +91,11 @@ table {
 
   .grid__content {
     font-size: 14px;
-    padding: 12px 5px 12px 12px;
+    padding: 12px 5px 12px 5px;
   }
 
   .grid__column-header {
     font-size: 15px;
-    padding-left: 10px;
-  }
-}
-
-@media screen and (max-width: 750px) {
-  .grid__checklist-column {
-    width: 9%;
+    padding-left: 5px;
   }
 }

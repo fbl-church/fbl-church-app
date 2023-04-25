@@ -1,20 +1,20 @@
-<ik-header title="Clubbers">
+<ik-header title="Gurdians">
   <button
     class="btn btn-primary btn-flat btn-size btn-right"
-    (click)="onAddClubber()"
+    (click)="onAddGurdian()"
   >
     <ik-icon [icon]="addCirlce" classOverride="add-icon"></ik-icon>
-    Add Clubber
+    Add Gurdian
   </button>
 </ik-header>
 <ik-grid
-  basePath="clubbers"
+  basePath="gurdians"
   [dataLoader]="dataloader"
   (rowClick)="onRowClick($event)"
 >
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
-  <ik-grid-column label="Awana Group" field="formattedGroup"></ik-grid-column>
-  <ik-grid-column label="Created" field="insertDate"></ik-grid-column>
-  <ik-grid-pager key="Clubbers"></ik-grid-pager>
+  <ik-grid-column label="Phone" field="phone"></ik-grid-column>
+  <ik-grid-column label="Email" field="email"></ik-grid-column>
+  <ik-grid-pager key="Gurdians"></ik-grid-pager>
 </ik-grid>

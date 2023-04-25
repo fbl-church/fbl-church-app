@@ -1,0 +1,33 @@
+<div *ngIf="!loading; else loader">
+  <ik-header title="{{ gurdianData | formatUserName }}">
+    <ik-header-back (back)="onBackClick()"></ik-header-back>
+    <div class="inline-display header-buttons">
+      <button
+        class="btn btn-danger btn-flat btn-size btn-right h-button"
+        (click)="deleteGurdianModal.modal.open()"
+      >
+        Delete Gurdian
+      </button>
+    </div>
+  </ik-header>
+  <div class="layout__left-column layout__column-half">
+    <app-gurdian-details-card
+      [gurdian]="gurdianData"
+      [editEnabled]="true"
+    ></app-gurdian-details-card>
+  </div>
+  <div class="layout__right-column layout__column-half">
+    <app-gurdian-clubbers-details-grid
+      [gurdianId]="gurdianData.id"
+    ></app-gurdian-clubbers-details-grid>
+  </div>
+</div>
+
+<app-delete-gurdian-modal
+  #deleteGurdianModal
+  [gurdianId]="gurdianData?.id"
+></app-delete-gurdian-modal>
+
+<ng-template #loader>
+  <ik-loading></ik-loading>
+</ng-template>

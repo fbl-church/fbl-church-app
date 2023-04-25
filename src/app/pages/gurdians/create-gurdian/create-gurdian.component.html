@@ -1,0 +1,17 @@
+<ik-header title="Create Gurdian"
+  ><ik-header-back (back)="onCancelClick()"></ik-header-back>
+</ik-header>
+
+<app-gurdian-form
+  *ngIf="!loading; else loader"
+  [disableSave]="disableSave"
+  rightActionButton="Save Gurdian"
+  leftActionButton="Cancel"
+  (cancel)="onCancelClick()"
+  (save)="onSaveClick($event)"
+>
+</app-gurdian-form>
+
+<ng-template #loader>
+  <ik-loading></ik-loading>
+</ng-template>

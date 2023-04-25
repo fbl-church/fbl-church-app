@@ -23,13 +23,12 @@ export class CreateClubberComponent implements OnInit {
   }
 
   onCancelClick() {
-    this.router.navigate(['/users']);
+    this.router.navigate(['/clubbers']);
   }
 
   onSaveClick(clubber: Clubber) {
     this.loading = true;
     this.disableSave = true;
-
     this.clubberService.create(clubber).subscribe({
       next: (res) => {
         this.router.navigate([`/clubbers`]);

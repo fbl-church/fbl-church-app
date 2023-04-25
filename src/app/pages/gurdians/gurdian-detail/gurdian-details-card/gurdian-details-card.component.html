@@ -1,0 +1,51 @@
+<ik-card [padding]="false">
+  <ik-card-header [title]="title">
+    <ng-container *ngIf="editEnabled">
+      <ik-icon
+        [icon]="editIcon"
+        color="black"
+        class="edit-icon"
+        (click)="onEditIconClick()"
+      ></ik-icon>
+    </ng-container>
+  </ik-card-header>
+  <div class="flex">
+    <div class="left-column">
+      <ik-card-info
+        header="Name"
+        text="{{ gurdian | formatUserName }}"
+      ></ik-card-info>
+    </div>
+    <div class="right-column">
+      <ik-card-info
+        header="Phone"
+        [text]="gurdian?.phone ? gurdian.phone : '-'"
+      ></ik-card-info>
+    </div>
+  </div>
+
+  <div class="flex">
+    <div class="left-column">
+      <ik-card-info
+        header="Email"
+        [text]="gurdian?.email ? gurdian.email : '-'"
+      ></ik-card-info>
+    </div>
+    <div class="right-column">
+      <ik-card-info
+        header="Address"
+        [text]="gurdian?.address ? gurdian?.address : '-'"
+      ></ik-card-info>
+    </div>
+  </div>
+
+  <div class="flex">
+    <div class="left-column">
+      <ik-card-info
+        header="Created Date"
+        [text]="gurdian?.insertDate | date : 'MMMM d, y'"
+      >
+      </ik-card-info>
+    </div>
+  </div>
+</ik-card>
