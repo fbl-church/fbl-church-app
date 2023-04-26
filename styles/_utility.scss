@@ -99,6 +99,10 @@ select {
   font-family: emoji, sans-serif;
 }
 
+.text-pre-wrap {
+  white-space: pre-wrap;
+}
+
 @media screen and (max-width: 500px) {
   .h-button {
     margin-top: 0;
