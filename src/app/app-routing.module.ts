@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'projects/insite-kit/src/service/auth/auth.guard';
+import { UserResolverService } from 'src/service/users/user-resolver.service';
 import { ClubberDetailComponent } from './pages/clubbers/clubber-detail/clubber-detail.component';
 import { ClubberComponent } from './pages/clubbers/clubber.component';
 import { CreateClubberComponent } from './pages/clubbers/create-clubber/create-clubber.component';
@@ -8,12 +9,14 @@ import { CreateGurdianComponent } from './pages/gurdians/create-gurdian/create-g
 import { GurdianDetailComponent } from './pages/gurdians/gurdian-detail/gurdian-detail.component';
 import { GurdianComponent } from './pages/gurdians/gurdian.component';
 import { HomeComponent } from './pages/home/home.component';
-import { CreateAccountComponent } from './pages/login/create-account/create-accountcomponent';
 import { LoginOverviewComponent } from './pages/login/login-overview/login-overview.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileEditComponent } from './pages/profile/profile-edit/profile-edit.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { UpdatePasswordComponent } from './pages/profile/update-password/update-password.component';
 import { CreateUserComponent } from './pages/users/create-user/create-user.component';
+import { EditUserComponent } from './pages/users/user-detail/pages/edit-user/edit-user.component';
+import { ResetPasswordComponent } from './pages/users/user-detail/pages/reset-password/reset-password.component';
 import { UserDetailComponent } from './pages/users/user-detail/user-detail.component';
 import { UserComponent } from './pages/users/user.component';
 import { AuthenticatedLayoutComponent } from './shared/components/layouts/authenticated-layout/authenticated-layout.component';
@@ -33,11 +36,11 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         component: LoginOverviewComponent,
       },
-      {
-        path: 'register',
-        canActivate: [AuthGuard],
-        component: CreateAccountComponent,
-      },
+      // {
+      //   path: 'register',
+      //   canActivate: [AuthGuard],
+      //   component: CreateAccountComponent,
+      // },
     ],
   },
   // Authenticated Routes
@@ -48,63 +51,97 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        component: HomeComponent,
-        pathMatch: 'full',
+        children: [
+          {
+            path: '',
+            component: HomeComponent,
+            pathMatch: 'full',
+          },
+        ],
       },
       {
         path: 'users',
-        component: UserComponent,
-        pathMatch: 'full',
+        children: [
+          {
+            path: '',
+            component: UserComponent,
+            pathMatch: 'full',
+          },
+          {
+            path: 'create',
+            component: CreateUserComponent,
+          },
+          {
+            path: ':id/details',
+            component: UserDetailComponent,
+          },
+          {
+            path: ':id/details/edit',
+            component: EditUserComponent,
+            resolve: { user: UserResolverService },
+          },
+          {
+            path: ':id/details/reset-password',
+            component: ResetPasswordComponent,
+          },
+        ],
       },
-      {
-        path: 'users/create',
-        component: CreateUserComponent,
-        pathMatch: 'full',
-      },
-      {
-        path: 'users/:id/details',
-        component: UserDetailComponent,
-        pathMatch: 'full',
-      },
+
       {
         path: 'clubbers',
-        component: ClubberComponent,
-        pathMatch: 'full',
+        children: [
+          {
+            path: '',
+            component: ClubberComponent,
+            pathMatch: 'full',
+          },
+          {
+            path: 'create',
+            component: CreateClubberComponent,
+          },
+          {
+            path: ':id/details',
+            component: ClubberDetailComponent,
+          },
+        ],
       },
-      {
-        path: 'clubbers/create',
-        component: CreateClubberComponent,
-        pathMatch: 'full',
-      },
-      {
-        path: 'clubbers/:id/details',
-        component: ClubberDetailComponent,
-        pathMatch: 'full',
-      },
+
       {
         path: 'profile',
-        component: ProfileComponent,
-        pathMatch: 'full',
+        children: [
+          {
+            path: '',
+            component: ProfileComponent,
+            pathMatch: 'full',
+          },
+          {
+            path: 'edit',
+            component: ProfileEditComponent,
+          },
+          {
+            path: 'reset-password',
+            component: UpdatePasswordComponent,
+          },
+        ],
       },
-      {
-        path: 'profile/edit',
-        component: ProfileEditComponent,
-        pathMatch: 'full',
-      },
+
       {
         path: 'gurdians',
-        component: GurdianComponent,
-        pathMatch: 'full',
-      },
-      {
-        path: 'gurdians/create',
-        component: CreateGurdianComponent,
-        pathMatch: 'full',
-      },
-      {
-        path: 'gurdians/:id/details',
-        component: GurdianDetailComponent,
-        pathMatch: 'full',
+        children: [
+          {
+            path: '',
+            component: GurdianComponent,
+            pathMatch: 'full',
+          },
+          {
+            path: 'create',
+            component: CreateGurdianComponent,
+          },
+          {
+            path: ':id/details',
+            component: GurdianDetailComponent,
+          },
+        ],
       },
     ],
   },

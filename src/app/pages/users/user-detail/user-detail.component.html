@@ -8,7 +8,10 @@
       >
         Delete User
       </button>
-      <button class="btn btn-default btn-flat btn-size btn-right h-button">
+      <button
+        class="btn btn-default btn-flat btn-size btn-right h-button"
+        (click)="onResetPassword()"
+      >
         Reset Password
       </button>
     </div>
@@ -17,6 +20,7 @@
     <app-user-details-card
       [user]="userData"
       [editEnabled]="true"
+      (editClick)="onEditClick()"
     ></app-user-details-card>
   </div>
 </div>

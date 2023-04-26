@@ -6,20 +6,15 @@
   ></ik-icon>
 
   <div class="app-navbar__title inline-block">{{ appName }}</div>
-  <div class="app-navbar__dropdown">
-    <ik-icon
-      class="app-navbar__dropdown"
-      classOverride="app-navbar__icons__right"
-      [icon]="profileIcon"
-    ></ik-icon>
-    <div class="app-navbar__dropdown-content">
-      <div (click)="onProfileClick()">Profile</div>
-      <div (click)="onLogOutClick()">Log Out</div>
-    </div>
-  </div>
   <ik-icon
     classOverride="app-navbar__icons__right"
-    [icon]="notificationBellIcon"
+    [icon]="logOutIcon"
+    (click)="onLogOutClick()"
+  ></ik-icon>
+  <ik-icon
+    classOverride="app-navbar__icons__right"
+    [icon]="profileIcon"
+    (click)="onProfileClick()"
   ></ik-icon>
 </nav>
 <!-- <ik-insite-user-notification></ik-insite-user-notification>

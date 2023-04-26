@@ -47,6 +47,14 @@ export class UserDetailComponent implements OnInit {
     this.router.navigate(['/users']);
   }
 
+  onEditClick() {
+    this.router.navigate([`/users/${this.userData.id}/details/edit`]);
+  }
+
+  onResetPassword() {
+    this.router.navigate([`/users/${this.userData.id}/details/reset-password`]);
+  }
+
   onDeleteUser() {
     this.loading = true;
     this.userService.delete(this.userData.id).subscribe({

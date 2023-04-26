@@ -8,8 +8,8 @@ import {
 import { Router } from '@angular/router';
 import {
   faBars,
-  faBell,
   faClose,
+  faRightFromBracket,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
@@ -28,7 +28,7 @@ export class NavbarComponent implements OnDestroy {
   destroy = new Subject<void>();
 
   menuIcon = faBars;
-  notificationBellIcon = faBell;
+  logOutIcon = faRightFromBracket;
   profileIcon = faUser;
   closeIcon = faClose;
 

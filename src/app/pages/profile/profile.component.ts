@@ -29,4 +29,8 @@ export class ProfileComponent implements OnInit {
   onEditClick() {
     this.router.navigate(['/profile/edit']);
   }
+
+  onResetPassword() {
+    this.router.navigate(['/profile/reset-password']);
+  }
 }

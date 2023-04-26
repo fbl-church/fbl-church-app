@@ -2,7 +2,10 @@
   <ik-header title="{{ currentUser | formatUserName }}">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
     <div class="inline-display header-buttons">
-      <button class="btn btn-default btn-flat btn-size btn-right h-button">
+      <button
+        class="btn btn-default btn-flat btn-size btn-right h-button"
+        (click)="onResetPassword()"
+      >
         Reset Password
       </button>
     </div>

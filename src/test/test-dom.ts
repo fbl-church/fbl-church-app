@@ -1,5 +1,4 @@
 import { DebugElement, ElementRef } from '@angular/core';
-import { tick } from '@angular/core/testing';
 
 export class TestDOM {
   static querySelector(
@@ -16,6 +15,7 @@ export class TestDOM {
     }
     return element;
   }
+
   static querySelectorAll(
     selector: string | Element | ElementRef | DebugElement
   ): Element[] {
@@ -30,6 +30,7 @@ export class TestDOM {
     }
     return element;
   }
+
   static exists(
     selector: string | HTMLElement | ElementRef | DebugElement
   ): boolean {
@@ -51,6 +52,7 @@ export class TestDOM {
       ? element.href.substr(origin.length + 1)
       : '';
   }
+
   static routerLink(
     selector: string | HTMLElement | ElementRef | DebugElement
   ): string {
@@ -64,6 +66,7 @@ export class TestDOM {
     }
     return url;
   }
+
   static updateForm(
     selector: string | HTMLElement | ElementRef | DebugElement,
     value: { [key: string]: any }
@@ -74,10 +77,7 @@ export class TestDOM {
       console.warn(`Could not find the form "${selector}"`);
       return;
     }
-    // If this is a Liftkit form, then get the underlying form element
-    if (form.nodeName === 'LK-FORM') {
-      form = form.querySelector('form');
-    }
+
     Object.keys(value)
       .filter((key) => {
         const hasField = !!form.elements[key];
@@ -89,6 +89,7 @@ export class TestDOM {
       })
       .forEach((key) => this.updateFormField(form.elements[key], value[key]));
   }
+
   static updateFormField(
     selector: string | HTMLElement | ElementRef | DebugElement,
     value: any
@@ -116,6 +117,7 @@ export class TestDOM {
     formElement.dispatchEvent(new Event('change', { bubbles: true }));
     formElement.dispatchEvent(new Event('blur', { bubbles: true }));
   }
+
   static formFieldValue(
     selector: string | HTMLElement | ElementRef | DebugElement
   ): any {
@@ -129,6 +131,7 @@ export class TestDOM {
     }
     return formElement.value;
   }
+
   static findRadioButton(
     radioList: RadioNodeList,
     value: any
@@ -152,6 +155,7 @@ export class TestDOM {
     }
     return formElement;
   }
+
   static click(selector: string | Element | ElementRef | DebugElement): void {
     const element = this.querySelector(selector);
     if (!element) {
@@ -161,6 +165,7 @@ export class TestDOM {
     }
     element.dispatchEvent(new MouseEvent('click', { bubbles: true }));
   }
+
   static dispatchEvent(
     selector: string | Element | ElementRef | DebugElement,
     eventType: string,
@@ -181,6 +186,7 @@ export class TestDOM {
     element.dispatchEvent(event);
     return event;
   }
+
   static isEnabled(
     selector: string | Element | NodeList | ElementRef | DebugElement
   ): boolean {
@@ -200,6 +206,7 @@ export class TestDOM {
     }
     return !element['disabled'];
   }
+
   static selectComplexValueByIndex(index: number): string {
     // Angular uses this string format to determine the index of the complex object array that's stored internally
     // So "10: Object" selects the complex object at index "10".
@@ -219,6 +226,7 @@ export class TestDOM {
     const complexValueIndex = element.value.split(':')[0];
     return parseInt(complexValueIndex, 10);
   }
+
   static toggleChecklist(
     checklistSelector: string | Element | ElementRef | DebugElement,
     indexesToToggle: number[]
@@ -240,95 +248,7 @@ export class TestDOM {
       }
     });
   }
-  static toggleGridFilterPopup(
-    filterSelector: string | Element | ElementRef | DebugElement
-  ): void {
-    const filter = this.querySelector(filterSelector);
-    if (!filter) {
-      // eslint-disable-next-line
-      console.warn(`Could not find grid filter ${filterSelector}`);
-      return;
-    }
-    const filterHeader = filter.querySelector('lk-grid-filter-dropdown-header');
-    filterHeader.dispatchEvent(new Event('click', { bubbles: true }));
-    // Show/Hide the popup
-    tick();
-  }
-  static toggleGridFilterChecklist(
-    filterSelector: string | Element | ElementRef | DebugElement,
-    indexesToToggle: number[]
-  ): void {
-    const filter = this.querySelector(filterSelector);
-    if (!filter) {
-      // eslint-disable-next-line
-      console.warn(`Could not find grid filter ${filterSelector}`);
-      return;
-    }
-    this.toggleChecklist('.filter-dropdown-popup', indexesToToggle);
-  }
-  static toggleGridFilterPopupIncludeExclude(
-    filterSelector: string | Element | ElementRef | DebugElement
-  ): void {
-    const filter = this.querySelector(filterSelector);
-    if (!filter) {
-      // eslint-disable-next-line
-      console.warn(`Could not find grid filter ${filterSelector}`);
-      return;
-    }
-    const includeExcludeButton = document.querySelector(
-      '.filter-dropdown-popup .liftkit-grid-filter-include-exclude-button__toggle'
-    );
-    if (includeExcludeButton) {
-      includeExcludeButton.dispatchEvent(
-        new MouseEvent('click', { bubbles: true })
-      );
-    }
-  }
-  static toggleGridFilterIncludeExclude(
-    filterSelector: string | Element | ElementRef | DebugElement
-  ): void {
-    const filter = this.querySelector(filterSelector);
-    if (!filter) {
-      // eslint-disable-next-line
-      console.warn(`Could not find grid filter ${filterSelector}`);
-      return;
-    }
-    const includeExcludeButton = filter.querySelector(
-      '.liftkit-grid-filter-include-exclude-button__toggle'
-    );
-    if (includeExcludeButton) {
-      includeExcludeButton.dispatchEvent(
-        new MouseEvent('click', { bubbles: true })
-      );
-    }
-  }
-  static toggleGridFilterVisibility(
-    filterManagerSelector: string | Element | ElementRef | DebugElement,
-    filterIndexes: number | number[]
-  ): void {
-    const filterManager = this.querySelector(filterManagerSelector);
-    if (!filterManager) {
-      // eslint-disable-next-line
-      console.warn(
-        `Could not find grid filter manager ${filterManagerSelector}`
-      );
-      return;
-    }
-    const filterManagerButton = filterManager.querySelector('.popup__trigger');
-    // Show the popup
-    filterManagerButton.dispatchEvent(
-      new MouseEvent('click', { bubbles: true })
-    );
-    tick();
-    filterIndexes =
-      typeof filterIndexes === 'number' ? [filterIndexes] : filterIndexes;
-    this.toggleChecklist('.filter-manager__dropdown-menu', filterIndexes);
-    // Close the popup
-    filterManagerButton.dispatchEvent(
-      new MouseEvent('click', { bubbles: true })
-    );
-    tick();
-  }
+
   static updateMultiSelect(
     selector: string | Element | ElementRef | DebugElement,
     value: any
@@ -347,6 +267,7 @@ export class TestDOM {
       new KeyboardEvent('keydown', { key: 'Enter' })
     );
   }
+
   static removeMultiSelect(selector: string, indexesToRemove: number[]): void {
     const multiSelect = this.querySelector(selector);
     if (!multiSelect) {
@@ -354,9 +275,8 @@ export class TestDOM {
       console.warn(`Could not find multi-select ${multiSelect}`);
       return;
     }
-    const inputTagRemoveElements = multiSelect.querySelectorAll(
-      '.input-tag__remove'
-    );
+    const inputTagRemoveElements =
+      multiSelect.querySelectorAll('.input-tag__remove');
     indexesToRemove.forEach((indexToRemove) => {
       const inputTagRemoveElement = inputTagRemoveElements[indexToRemove];
       if (inputTagRemoveElement) {
@@ -369,6 +289,7 @@ export class TestDOM {
       }
     });
   }
+
   static typeKey(
     selector: string | Element | ElementRef | DebugElement,
     keyOrOptions: string | KeyboardEventInit
@@ -399,6 +320,7 @@ export class TestDOM {
     const keyUpEvent = new KeyboardEvent('keyup', options);
     element.dispatchEvent(keyUpEvent);
   }
+
   static input(selector: string | Element | ElementRef | DebugElement) {
     const element = this.querySelector(selector) as HTMLInputElement;
     if (!element) {
