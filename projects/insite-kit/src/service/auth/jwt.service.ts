@@ -4,7 +4,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { WebRole } from '../../model/common.model';
 import { User } from '../../model/user.model';
 
-export const TOKEN_NAME = 'token';
+export const TOKEN_NAME = 'auth-token';
 
 @Injectable({
   providedIn: 'root',

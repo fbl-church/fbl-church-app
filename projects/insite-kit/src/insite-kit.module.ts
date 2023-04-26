@@ -46,7 +46,7 @@ import { InisteGeneralNotificationComponent } from './subscription/insite-genera
 import { InisteUserNotificationComponent } from './subscription/insite-user-notification/insite-user-notification.component';
 
 export function tokenGetter() {
-  return localStorage.getItem('token');
+  return localStorage.getItem('auth-token');
 }
 
 @NgModule({

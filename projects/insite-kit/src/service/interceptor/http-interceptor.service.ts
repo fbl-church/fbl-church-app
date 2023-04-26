@@ -10,10 +10,10 @@ import { Injectable } from '@angular/core';
 export class BasicHttpInterceptorService implements HttpInterceptor {
   constructor() {}
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem('auth-token')) {
       req = req.clone({
         setHeaders: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem('auth-token')}`,
         },
       });
     }

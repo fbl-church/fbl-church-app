@@ -21,7 +21,25 @@
 }
 
 .ik-modal-header .ik-title {
-  color: white;
+  color: $base-text-color;
   font-weight: bold;
   font-size: 20px;
+
+  &.info {
+    color: white;
+    background-color: #417cf2;
+    border-bottom: 0.5px solid #417cf2;
+  }
+
+  &.danger {
+    color: white;
+    background-color: #ff3648;
+    border-bottom: 0.5px solid #ff3648;
+  }
+
+  &.warning {
+    color: white;
+    background-color: #ffab30;
+    border-bottom: 0.5px solid #ffab30;
+  }
 }
