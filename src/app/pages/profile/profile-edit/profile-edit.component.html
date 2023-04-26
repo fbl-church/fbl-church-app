@@ -1,0 +1,18 @@
+<ik-header title="Edit Profile"
+  ><ik-header-back (back)="onCancelClick()"></ik-header-back
+></ik-header>
+<app-user-form
+  *ngIf="userUpdating && !loading; else loader"
+  [userData]="userUpdating"
+  rightActionButton="Update"
+  leftActionButton="Cancel"
+  [enableRoleUpdate]="false"
+  [enablePasswordUpdate]="false"
+  (cancel)="onCancelClick()"
+  (save)="onSaveClick($event)"
+>
+</app-user-form>
+
+<ng-template #loader>
+  <ik-loading></ik-loading>
+</ng-template>

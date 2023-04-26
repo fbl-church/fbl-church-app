@@ -11,6 +11,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { CreateAccountComponent } from './pages/login/create-account/create-accountcomponent';
 import { LoginOverviewComponent } from './pages/login/login-overview/login-overview.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ProfileEditComponent } from './pages/profile/profile-edit/profile-edit.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { CreateUserComponent } from './pages/users/create-user/create-user.component';
 import { UserDetailComponent } from './pages/users/user-detail/user-detail.component';
@@ -83,6 +84,11 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'profile/edit',
+        component: ProfileEditComponent,
         pathMatch: 'full',
       },
       {

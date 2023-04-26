@@ -16,7 +16,7 @@
       />
     </ik-card-info>
 
-    <ng-container *ngIf="!disableRoleUpdate">
+    <ng-container *ngIf="enableRoleUpdate">
       <ik-card-info header="Web Role*">
         <select class="form-input__normal" formControlName="webRole">
           <option *ngFor="let role of roles" [ngValue]="role">
@@ -34,7 +34,7 @@
       />
     </ik-card-info>
 
-    <ik-card-info header="Password*">
+    <ik-card-info header="Password*" *ngIf="enablePasswordUpdate">
       <input
         class="form-input__normal"
         placeholder="Password"

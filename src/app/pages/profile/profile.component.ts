@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { UserService } from 'src/service/users/user.service';
 @Component({
@@ -10,8 +11,9 @@ export class ProfileComponent implements OnInit {
   currentUser: User;
 
   constructor(
-    private userService: UserService,
-    private readonly location: Location
+    private readonly userService: UserService,
+    private readonly location: Location,
+    private readonly router: Router
   ) {}
 
   ngOnInit() {
@@ -22,5 +24,9 @@ export class ProfileComponent implements OnInit {
 
   onBackClick() {
     this.location.back();
+  }
+
+  onEditClick() {
+    this.router.navigate(['/profile/edit']);
   }
 }

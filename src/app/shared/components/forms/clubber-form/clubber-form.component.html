@@ -16,15 +16,13 @@
       />
     </ik-card-info>
 
-    <ng-container *ngIf="!disableRoleUpdate">
-      <ik-card-info header="Awana Group*">
-        <select class="form-input__normal" formControlName="churchGroup">
-          <option *ngFor="let group of churchGroups" [ngValue]="group">
-            {{ group | churchGroupTranslate }}
-          </option>
-        </select>
-      </ik-card-info>
-    </ng-container>
+    <ik-card-info header="Awana Group*">
+      <select class="form-input__normal" formControlName="churchGroup">
+        <option *ngFor="let group of churchGroups" [ngValue]="group">
+          {{ group | churchGroupTranslate }}
+        </option>
+      </select>
+    </ik-card-info>
 
     <ik-card-info header="Birthday"
       ><input

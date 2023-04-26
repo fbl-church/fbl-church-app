@@ -6,6 +6,7 @@ import { ClubberGurdiansGridCardComponent } from './components/forms/clubber-for
 import { GurdianFormComponent } from './components/forms/gurdian-form/gurdian-form.component';
 import { UserFormComponent } from './components/forms/user-form/user-form.component';
 import { AuthenticatedLayoutComponent } from './components/layouts/authenticated-layout/authenticated-layout.component';
+import { EditUserComponent } from './components/pages/edit-user/edit-user.component';
 
 @NgModule({
   imports: [BaseInitModule],
@@ -16,12 +17,14 @@ import { AuthenticatedLayoutComponent } from './components/layouts/authenticated
     ClubberFormComponent,
     ClubberGurdiansGridCardComponent,
     GurdianFormComponent,
+    EditUserComponent,
   ],
   exports: [
     UserFormComponent,
     UserDetailsCardComponent,
     ClubberFormComponent,
     GurdianFormComponent,
+    EditUserComponent,
   ],
 })
 export class SharedModule {}

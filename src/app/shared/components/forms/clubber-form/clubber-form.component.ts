@@ -24,7 +24,6 @@ export class ClubberFormComponent implements OnInit {
   @Input() clubberData: Clubber;
   @Input() rightActionButton: string;
   @Input() leftActionButton: string;
-  @Input() disableRoleUpdate = false;
   @Input() disableSave = false;
   @Output() cancel = new EventEmitter<any>();
   @Output() save = new EventEmitter<Clubber>();

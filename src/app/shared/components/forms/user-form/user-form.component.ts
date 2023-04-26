@@ -1,7 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
+import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { UserService } from 'src/service/users/user.service';
 
 @Component({
@@ -12,7 +18,8 @@ export class UserFormComponent implements OnInit {
   @Input() userData: User;
   @Input() rightActionButton: string;
   @Input() leftActionButton: string;
-  @Input() disableRoleUpdate = false;
+  @Input() enableRoleUpdate = true;
+  @Input() enablePasswordUpdate = true;
   @Input() disableSave = false;
   @Output() cancel = new EventEmitter<any>();
   @Output() save = new EventEmitter<User>();
@@ -24,6 +31,7 @@ export class UserFormComponent implements OnInit {
 
   constructor(
     private readonly userService: UserService,
+    private readonly popupService: PopupService,
     private readonly fb: FormBuilder
   ) {}
 
@@ -42,12 +50,21 @@ export class UserFormComponent implements OnInit {
         this.userData ? this.userData.lastName : '',
         Validators.required,
       ],
-      email: [this.userData ? this.userData.email : '', Validators.required],
-      password: ['', Validators.required],
+      email: [
+        this.userData ? this.userData.email : '',
+        [Validators.required, Validators.email],
+      ],
       webRole: this.userData
         ? this.userData.webRole.toUpperCase()
         : WebRole[WebRole.USER].toUpperCase(),
     });
+
+    if (this.enablePasswordUpdate) {
+      this.form.addControl(
+        'password',
+        new FormControl('', Validators.required)
+      );
+    }
   }
 
   onCancelClick() {
@@ -55,18 +72,39 @@ export class UserFormComponent implements OnInit {
   }
 
   onSaveClick() {
+    let emitSave = true;
+
     let user: User = {
       firstName: this.form.value.firstName.trim(),
       lastName: this.form.value.lastName.trim(),
       email: this.form.value.email.trim(),
-      password: this.form.value.password.trim(),
-      webRole: this.form.getRawValue().webRole,
     };
 
     if (this.form.value.email) {
       user.email = this.form.value.email.trim();
     }
 
-    this.save.emit(user);
+    if (this.form.value.password) {
+      emitSave = this.validPassword();
+      user.password = this.form.value.password.trim();
+    }
+
+    if (this.form.value.webRole) {
+      user.webRole = this.form.value.webRole.trim();
+    }
+
+    if (emitSave) {
+      this.save.emit(user);
+    }
+  }
+
+  validPassword() {
+    if (this.form.value.password.toString().length < 8) {
+      this.popupService.error(
+        'Password needs to have a length of at least 8 characters.'
+      );
+      return false;
+    }
+    return true;
   }
 }
