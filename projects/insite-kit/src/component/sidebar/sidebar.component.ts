@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import {
@@ -11,12 +11,13 @@ import {
   faPerson,
   faUsers,
 } from '@fortawesome/free-solid-svg-icons';
+import { JwtService } from '../../service/auth/jwt.service';
 
 @Component({
   selector: 'ik-sidebar',
   templateUrl: 'sidebar.component.html',
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
   isOpen = false;
 
   closeIcon = faClose;
@@ -29,7 +30,16 @@ export class SidebarComponent {
   settingsIcon = faGear;
   reportIcon = faChartSimple;
 
-  constructor(private readonly router: Router) {}
+  userApps: string[];
+
+  constructor(
+    private readonly router: Router,
+    private readonly jwt: JwtService
+  ) {}
+
+  ngOnInit(): void {
+    this.userApps = this.jwt.getApps();
+  }
 
   open() {
     document.getElementById('sideBarNav').style.width = '250px';

@@ -36,115 +36,111 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         component: LoginOverviewComponent,
       },
-      // {
-      //   path: 'register',
-      //   canActivate: [AuthGuard],
-      //   component: CreateAccountComponent,
-      // },
     ],
   },
   // Authenticated Routes
   {
-    path: '',
+    path: 'home',
     component: AuthenticatedLayoutComponent,
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'home',
-        children: [
-          {
-            path: '',
-            component: HomeComponent,
-            pathMatch: 'full',
-          },
-        ],
-      },
-      {
-        path: 'users',
-        children: [
-          {
-            path: '',
-            component: UserComponent,
-            pathMatch: 'full',
-          },
-          {
-            path: 'create',
-            component: CreateUserComponent,
-          },
-          {
-            path: ':id/details',
-            component: UserDetailComponent,
-          },
-          {
-            path: ':id/details/edit',
-            component: EditUserComponent,
-            resolve: { user: UserResolverService },
-          },
-          {
-            path: ':id/details/reset-password',
-            component: ResetPasswordComponent,
-          },
-        ],
-      },
-
-      {
-        path: 'clubbers',
-        children: [
-          {
-            path: '',
-            component: ClubberComponent,
-            pathMatch: 'full',
-          },
-          {
-            path: 'create',
-            component: CreateClubberComponent,
-          },
-          {
-            path: ':id/details',
-            component: ClubberDetailComponent,
-          },
-        ],
-      },
-
-      {
-        path: 'profile',
-        children: [
-          {
-            path: '',
-            component: ProfileComponent,
-            pathMatch: 'full',
-          },
-          {
-            path: 'edit',
-            component: ProfileEditComponent,
-          },
-          {
-            path: 'reset-password',
-            component: UpdatePasswordComponent,
-          },
-        ],
-      },
-
-      {
-        path: 'gurdians',
-        children: [
-          {
-            path: '',
-            component: GurdianComponent,
-            pathMatch: 'full',
-          },
-          {
-            path: 'create',
-            component: CreateGurdianComponent,
-          },
-          {
-            path: ':id/details',
-            component: GurdianDetailComponent,
-          },
-        ],
+        path: '',
+        component: HomeComponent,
+        pathMatch: 'full',
       },
     ],
   },
+  {
+    path: 'users',
+    component: AuthenticatedLayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: UserComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'create',
+        component: CreateUserComponent,
+      },
+      {
+        path: ':id/details',
+        component: UserDetailComponent,
+      },
+      {
+        path: ':id/details/edit',
+        component: EditUserComponent,
+        resolve: { user: UserResolverService },
+      },
+      {
+        path: ':id/details/reset-password',
+        component: ResetPasswordComponent,
+      },
+    ],
+  },
+  {
+    path: 'clubbers',
+    component: AuthenticatedLayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: ClubberComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'create',
+        component: CreateClubberComponent,
+      },
+      {
+        path: ':id/details',
+        component: ClubberDetailComponent,
+      },
+    ],
+  },
+  {
+    path: 'profile',
+    component: AuthenticatedLayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: ProfileComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'edit',
+        component: ProfileEditComponent,
+      },
+      {
+        path: 'reset-password',
+        component: UpdatePasswordComponent,
+      },
+    ],
+  },
+  {
+    path: 'gurdians',
+    component: AuthenticatedLayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: GurdianComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'create',
+        component: CreateGurdianComponent,
+      },
+      {
+        path: ':id/details',
+        component: GurdianDetailComponent,
+      },
+    ],
+  },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' },
 ];
 

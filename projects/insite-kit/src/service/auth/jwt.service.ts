@@ -82,6 +82,20 @@ export class JwtService {
     return this.get('webRole') as keyof typeof WebRole;
   }
 
+  /**
+   * Will return the user apps they have access too
+   *
+   * @returns List of string names apps
+   */
+  getApps(): string[] {
+    return this.get('apps');
+  }
+
+  /**
+   * Will get the user object from the signed in JWT
+   *
+   * @returns The User object information
+   */
   getUser(): User {
     return {
       id: this.getUserId(),
