@@ -1,6 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {
+  Access,
+  App,
+  Feature,
+} from 'projects/insite-kit/src/model/common.model';
 import { AuthGuard } from 'projects/insite-kit/src/service/auth/auth.guard';
+import { FeatureAccessGuard } from 'projects/insite-kit/src/service/auth/feature-access.guard';
 import { UserResolverService } from 'src/service/users/user-resolver.service';
 import { ClubberDetailComponent } from './pages/clubbers/clubber-detail/clubber-detail.component';
 import { ClubberComponent } from './pages/clubbers/clubber.component';
@@ -63,19 +69,59 @@ const routes: Routes = [
       },
       {
         path: 'create',
+        canActivate: [FeatureAccessGuard],
+        data: {
+          featureAccessGuards: [
+            {
+              app: App.USERS,
+              feature: Feature.USERS_DETAIL,
+              access: Access.CREATE,
+            },
+          ],
+        },
         component: CreateUserComponent,
       },
       {
         path: ':id/details',
+        canActivate: [FeatureAccessGuard],
+        data: {
+          featureAccessGuards: [
+            {
+              app: App.USERS,
+              feature: Feature.USERS_DETAIL,
+              access: Access.READ,
+            },
+          ],
+        },
         component: UserDetailComponent,
       },
       {
         path: ':id/details/edit',
+        canActivate: [FeatureAccessGuard],
+        data: {
+          featureAccessGuards: [
+            {
+              app: App.USERS,
+              feature: Feature.USERS_DETAIL,
+              access: Access.UPDATE,
+            },
+          ],
+        },
         component: EditUserComponent,
         resolve: { user: UserResolverService },
       },
       {
         path: ':id/details/reset-password',
+        canActivate: [FeatureAccessGuard],
+        data: {
+          featureAccessGuards: [
+            {
+              app: App.USERS,
+              feature: Feature.USERS_DETAIL,
+              access: Access.UPDATE,
+            },
+          ],
+        },
         component: ResetPasswordComponent,
       },
     ],

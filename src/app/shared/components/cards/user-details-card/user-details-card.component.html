@@ -48,7 +48,7 @@
       >
       </ik-card-info>
     </div>
-    <div class="right-column" *ngIf="lastLoginFieldAccess">
+    <div *webRoleRestrictionAccess="WebRole.ADMIN" class="right-column">
       <ik-card-info
         header="Last Login"
         [text]="user?.lastLoginDate | date : 'MMMM d, y, h:mm a'"

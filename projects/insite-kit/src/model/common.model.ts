@@ -42,7 +42,19 @@ export enum Access {
 }
 
 export enum Feature {
-  USER_DETAIL = 'detail',
+  USERS_OVERVIEW = 'overview',
+  USERS_DETAIL = 'detail',
   PROFILE = 'profile',
   NOTIFICATION = 'notification',
+}
+
+export enum App {
+  USERS = 'users',
+  CLUBBERS = 'clubbers',
+  GURDIANS = 'gurdians',
+  REPORTS = 'reports',
+  ABOUT = 'about',
+  REPOSITORIES = 'repositories',
+  SETTINGS = 'settings',
+  GLOBAL = 'global',
 }

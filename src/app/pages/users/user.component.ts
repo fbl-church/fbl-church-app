@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import {
+  Access,
+  App,
+  Feature,
+} from 'projects/insite-kit/src/model/common.model';
 import { UserService } from 'src/service/users/user.service';
 
 @Component({
@@ -11,6 +16,10 @@ import { UserService } from 'src/service/users/user.service';
 export class UserComponent {
   dataloader: any;
   addCirlce = faCirclePlus;
+
+  Feature = Feature;
+  Application = App;
+  Access = Access;
 
   constructor(
     private userService: UserService,

@@ -36,6 +36,8 @@ import { ModalComponent } from './component/modal/modal.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { NotificationPopupComponent } from './component/notification-popup/notification-popup.component';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
+import { FeatureAccessDirective } from './directives/featureAccess/feature-access.directive';
+import { WebRoleRestrictionAccessDirective } from './directives/webRoleRestrictionAccess/webRole-restriction-access.directive';
 import { PhoneMaskDirective } from './service/directive/phone-mask.directive';
 import { BasicHttpInterceptorService } from './service/interceptor/http-interceptor.service';
 import { ChurchGroupTranslationPipe } from './service/pipe/church-group-translation.pipe';
@@ -87,6 +89,8 @@ export function tokenGetter() {
     InisteGeneralNotificationComponent,
     ChurchGroupTranslationPipe,
     PhoneMaskDirective,
+    WebRoleRestrictionAccessDirective,
+    FeatureAccessDirective,
   ],
   imports: [
     CommonModule,
@@ -142,6 +146,8 @@ export function tokenGetter() {
     InisteGeneralNotificationComponent,
     ChurchGroupTranslationPipe,
     PhoneMaskDirective,
+    WebRoleRestrictionAccessDirective,
+    FeatureAccessDirective,
   ],
   entryComponents: [ModalComponent, NotificationPopupComponent],
   providers: [
