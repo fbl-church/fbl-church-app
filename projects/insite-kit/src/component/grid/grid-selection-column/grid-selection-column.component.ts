@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Relationship } from 'projects/insite-kit/src/model/common.model';
 
 @Component({
   selector: 'ik-grid-selection-column',
@@ -8,12 +7,9 @@ import { Relationship } from 'projects/insite-kit/src/model/common.model';
 export class GridSelectionColumnComponent {
   @Input() header = '';
   @Input() values: any[] = [];
-  @Input() selections: Map<any, any> = new Map<any, any>();
+  @Input() selections: Map<any, any> = new Map().set(3, 'Aunt');
 
-  updateSelection(
-    data: { id: any; relationship: Relationship },
-    selected: boolean
-  ) {
+  updateSelection(data: { id: any; selectionValue: any }, selected: boolean) {
     if (selected) {
       this.addSelection(data);
     } else {
@@ -21,8 +17,8 @@ export class GridSelectionColumnComponent {
     }
   }
 
-  addSelection(data: { id: any; relationship: Relationship }) {
-    this.selections.set(data.id, data.relationship);
+  addSelection(data: { id: any; selectionValue: any }) {
+    this.selections.set(data.id, data.selectionValue);
   }
 
   removeSelection(id: any) {

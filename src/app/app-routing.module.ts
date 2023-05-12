@@ -7,9 +7,11 @@ import {
 } from 'projects/insite-kit/src/model/common.model';
 import { AuthGuard } from 'projects/insite-kit/src/service/auth/auth.guard';
 import { FeatureAccessGuard } from 'projects/insite-kit/src/service/auth/feature-access.guard';
-import { ClubberResolverService } from 'src/service/clubbers/user-resolver.service';
+import { ClubberGurdiansResolverService } from 'src/service/clubbers/clubber-gurdians-resolver.service';
+import { ClubberResolverService } from 'src/service/clubbers/clubber-resolver.service';
 import { UserResolverService } from 'src/service/users/user-resolver.service';
 import { ClubberDetailComponent } from './pages/clubbers/clubber-detail/clubber-detail.component';
+import { EditClubberGurdiansComponent } from './pages/clubbers/clubber-detail/pages/edit-clubber-gurdians/edit-clubber-gurdians.component';
 import { EditClubberComponent } from './pages/clubbers/clubber-detail/pages/edit-clubber/edit-clubber.component';
 import { ClubberComponent } from './pages/clubbers/clubber.component';
 import { CreateClubberComponent } from './pages/clubbers/create-clubber/create-clubber.component';
@@ -171,6 +173,21 @@ const routes: Routes = [
         canActivate: [FeatureAccessGuard],
         component: EditClubberComponent,
         resolve: { user: ClubberResolverService },
+        data: {
+          featureAccessGuards: [
+            {
+              app: App.CLUBBERS,
+              feature: Feature.DETAIL,
+              access: Access.UPDATE,
+            },
+          ],
+        },
+      },
+      {
+        path: ':id/details/gurdians/edit',
+        canActivate: [FeatureAccessGuard],
+        component: EditClubberGurdiansComponent,
+        resolve: { gurdians: ClubberGurdiansResolverService },
         data: {
           featureAccessGuards: [
             {

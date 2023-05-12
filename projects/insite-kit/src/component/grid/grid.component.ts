@@ -194,7 +194,7 @@ export class GridComponent implements OnChanges, OnDestroy, AfterViewInit {
     const currentSelections = this.gridSelection.getSelections();
     if (currentSelections.size > 0) {
       this.data.body.forEach(
-        (r) => (r.relationship = currentSelections.get(r.id))
+        (r) => (r.selectionValue = currentSelections.get(r.id))
       );
     }
   }
@@ -219,7 +219,7 @@ export class GridComponent implements OnChanges, OnDestroy, AfterViewInit {
   onSelectionChange(event: any, rowId: number) {
     this.gridSelection.addSelection({
       id: rowId,
-      relationship: event,
+      selectionValue: event,
     });
   }
 

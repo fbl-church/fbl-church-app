@@ -14,6 +14,7 @@ export interface Clubber {
 }
 
 export interface Gurdian {
+  id?: number;
   firstName?: string;
   lastName?: string;
   relationship?: Relationship | any;

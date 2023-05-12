@@ -34,7 +34,9 @@ export class ClubberGurdiansDetailsGridComponent {
     return this.gurdianService.getGurdiansByClubberId(this.clubberId);
   }
 
-  onEditIconClick() {}
+  onEditIconClick() {
+    this.router.navigate([`/clubbers/${this.clubberId}/details/gurdians/edit`]);
+  }
 
   onRowClick(event: any) {
     this.router.navigate([`/gurdians/${event.id}/details`]);

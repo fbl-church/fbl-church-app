@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
   template: '',
 })
 export class GridChecklistColumnComponent {
-  @Input() selectedIds: Set<number> = new Set();
+  @Input() selectedIds: Set<number> = new Set<number>();
 
   updateSelectedId(data: any) {
     if (data.selected) {

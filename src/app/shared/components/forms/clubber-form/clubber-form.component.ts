@@ -1,16 +1,7 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Clubber } from 'projects/insite-kit/src/model/clubber.model';
 import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
-import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
-import { ClubberGurdiansGridCardComponent } from './clubber-gurdians-grid-card/clubber-gurdians-grid-card.component';
 
 @Component({
   selector: 'app-clubber-form',
@@ -18,9 +9,6 @@ import { ClubberGurdiansGridCardComponent } from './clubber-gurdians-grid-card/c
   styleUrls: ['./clubber-form.component.scss'],
 })
 export class ClubberFormComponent implements OnInit {
-  @ViewChild(ClubberGurdiansGridCardComponent)
-  checklistGrid: ClubberGurdiansGridCardComponent;
-
   @Input() clubberData: Clubber;
   @Input() rightActionButton: string;
   @Input() leftActionButton: string;
@@ -32,10 +20,7 @@ export class ClubberFormComponent implements OnInit {
   churchGroups: string[];
   form: FormGroup;
 
-  constructor(
-    private readonly fb: FormBuilder,
-    private readonly popupService: PopupService
-  ) {}
+  constructor(private readonly fb: FormBuilder) {}
 
   ngOnInit() {
     this.buildForm();
@@ -45,18 +30,20 @@ export class ClubberFormComponent implements OnInit {
   buildForm() {
     this.form = this.fb.group({
       firstName: [
-        this.clubberData ? this.clubberData.firstName : '',
+        this.clubberData?.firstName ? this.clubberData.firstName : '',
         Validators.required,
       ],
       lastName: [
-        this.clubberData ? this.clubberData.lastName : '',
+        this.clubberData?.lastName ? this.clubberData.lastName : '',
         Validators.required,
       ],
       churchGroup: [
-        this.clubberData ? this.clubberData.churchGroup : ChurchGroup.CUBBIES,
+        this.clubberData?.churchGroup
+          ? this.clubberData.churchGroup
+          : ChurchGroup.CUBBIES,
         Validators.required,
       ],
-      birthday: this.clubberData
+      birthday: this.clubberData?.birthday
         ? this.clubberData.birthday.toString().split('T')[0]
         : '',
       allergies: [this.clubberData ? this.clubberData.allergies : ''],
@@ -69,16 +56,10 @@ export class ClubberFormComponent implements OnInit {
   }
 
   onSaveClick() {
-    const gurdians = this.checklistGrid.getSelectedGurdians();
-    if (!this.validGurdians(gurdians)) {
-      return;
-    }
-
     let newClubber: Clubber = {
       firstName: this.form.value.firstName,
       lastName: this.form.value.lastName,
       churchGroup: this.form.value.churchGroup,
-      gurdians: gurdians,
     };
 
     if (this.form.value.birthday) {
@@ -94,23 +75,5 @@ export class ClubberFormComponent implements OnInit {
     }
 
     this.save.emit(newClubber);
-  }
-
-  validGurdians(gurdians: any[]): boolean {
-    if (gurdians.length < 1) {
-      this.popupService.error(
-        'Clubber is required to have at least one gurdian assigned to them.'
-      );
-      return false;
-    }
-
-    if (gurdians.filter((res) => res?.relationship === null).length > 0) {
-      this.popupService.error(
-        'All selected gurdians must have a relationship selected.'
-      );
-      return false;
-    }
-
-    return true;
   }
 }

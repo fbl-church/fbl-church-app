@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { GridChecklistColumnComponent } from 'projects/insite-kit/src/component/grid/grid-checklist-column/grid-checklist-column.component';
 import { GridSelectionColumnComponent } from 'projects/insite-kit/src/component/grid/grid-selection-column/grid-selection-column.component';
+import { Gurdian } from 'projects/insite-kit/src/model/clubber.model';
 import { Relationship } from 'projects/insite-kit/src/model/common.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { GurdianService } from 'src/service/gurdians/gurdian.service';
@@ -12,13 +13,17 @@ import { GurdianService } from 'src/service/gurdians/gurdian.service';
 })
 export class ClubberGurdiansGridCardComponent implements OnInit {
   @ViewChild(GridChecklistColumnComponent)
-  grid: GridChecklistColumnComponent;
-
+  gridCheclistColumn: GridChecklistColumnComponent;
   @ViewChild(GridSelectionColumnComponent)
-  selection: GridSelectionColumnComponent;
+  gridSelection: GridSelectionColumnComponent;
+
+  @Input() gurdians: Gurdian[] = [];
 
   dataloader: any;
   relationships: any[];
+
+  gurdianMapSelection: Map<any, any> = new Map();
+  gurdianIdsChecked: number[] = [];
 
   constructor(
     private readonly gurdianService: GurdianService,
@@ -26,7 +31,9 @@ export class ClubberGurdiansGridCardComponent implements OnInit {
   ) {
     this.dataloader = (params: any) => this.getGurdianDataLoader(params);
   }
+
   ngOnInit() {
+    this.setSelectedGurdians();
     this.relationships = Object.keys(Relationship).map((v) =>
       this.commonService.getFormattedRelationship(v)
     );
@@ -37,7 +44,7 @@ export class ClubberGurdiansGridCardComponent implements OnInit {
   }
 
   getSelectedGurdians() {
-    return this.grid.getSelected().map((v) => {
+    return this.gridCheclistColumn.getSelected().map((v) => {
       return {
         id: v,
         relationship: this.getRelationshipSelections().get(v)
@@ -48,6 +55,20 @@ export class ClubberGurdiansGridCardComponent implements OnInit {
   }
 
   getRelationshipSelections() {
-    return this.selection.getSelections();
+    return this.gridSelection.getSelections();
+  }
+
+  setSelectedGurdians() {
+    if (this.gurdians.length <= 0) {
+      return;
+    }
+
+    this.gurdianIdsChecked = this.gurdians.map((g) => g.id);
+    this.gurdians.forEach((g) =>
+      this.gurdianMapSelection.set(
+        g.id,
+        this.commonService.getFormattedRelationship(g.relationship)
+      )
+    );
   }
 }

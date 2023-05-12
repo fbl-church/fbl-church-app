@@ -52,8 +52,10 @@
           </option>
           <option
             *ngFor="let value of gridSelection.values"
-            [ngValue]="row?.relationship"
-            [selected]="value === row?.relationship"
+            [ngValue]="row?.selectionValue"
+            [selected]="
+              value.toUpperCase() === row?.selectionValue?.toUpperCase()
+            "
           >
             {{ value }}
           </option>

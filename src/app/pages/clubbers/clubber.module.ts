@@ -6,6 +6,7 @@ import { ClubberDetailsCardComponent } from './clubber-detail/cards/clubber-deta
 import { ClubberGurdiansDetailsGridComponent } from './clubber-detail/cards/clubber-gurdians-details-grid/clubber-gurdians-details-grid.component';
 import { ClubberDetailComponent } from './clubber-detail/clubber-detail.component';
 import { DeleteClubberModalComponent } from './clubber-detail/modals/delete-clubber-modal/delete-clubber-modal.component';
+import { EditClubberGurdiansComponent } from './clubber-detail/pages/edit-clubber-gurdians/edit-clubber-gurdians.component';
 import { EditClubberComponent } from './clubber-detail/pages/edit-clubber/edit-clubber.component';
 import { ClubberComponent } from './clubber.component';
 import { CreateClubberComponent } from './create-clubber/create-clubber.component';
@@ -21,6 +22,7 @@ import { CreateClubberComponent } from './create-clubber/create-clubber.componen
     DeleteClubberModalComponent,
     ClubberAdditionalInfoCardCardComponent,
     EditClubberComponent,
+    EditClubberGurdiansComponent,
   ],
 })
 export class ClubberModule {}
