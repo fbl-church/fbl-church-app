@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import {
+  Access,
+  App,
+  Feature,
+} from 'projects/insite-kit/src/model/common.model';
 import { GurdianService } from 'src/service/gurdians/gurdian.service';
 
 @Component({
@@ -11,6 +16,10 @@ import { GurdianService } from 'src/service/gurdians/gurdian.service';
 export class GurdianComponent {
   dataloader: any;
   addCirlce = faCirclePlus;
+
+  Feature = Feature;
+  Application = App;
+  Access = Access;
 
   constructor(
     private gurdianService: GurdianService,

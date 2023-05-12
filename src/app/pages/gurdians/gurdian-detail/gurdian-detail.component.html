@@ -5,6 +5,7 @@
       <button
         class="btn btn-danger btn-flat btn-size btn-right h-button"
         (click)="deleteGurdianModal.modal.open()"
+        *featureAccess="[Application.GURDIANS, Feature.DETAIL, Access.DELETE]"
       >
         Delete Gurdian
       </button>
@@ -13,7 +14,6 @@
   <div class="layout__left-column layout__column-half">
     <app-gurdian-details-card
       [gurdian]="gurdianData"
-      [editEnabled]="true"
     ></app-gurdian-details-card>
   </div>
   <div class="layout__right-column layout__column-half">

@@ -1,7 +1,6 @@
 import { Location } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
@@ -14,8 +13,6 @@ import { UserService } from 'src/service/users/user.service';
   templateUrl: './edit-user.component.html',
 })
 export class EditUserComponent implements OnInit, OnDestroy {
-  @ViewChild('managerChangeModal') managerChangeModal: ModalComponent;
-
   loading = true;
   destroy = new Subject<void>();
   userId: number;

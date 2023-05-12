@@ -2,6 +2,7 @@
   <button
     class="btn btn-primary btn-flat btn-size btn-right"
     (click)="onAddClubber()"
+    *featureAccess="[Application.CLUBBERS, Feature.DETAIL, Access.CREATE]"
   >
     <ik-icon [icon]="addCirlce" classOverride="add-icon"></ik-icon>
     Add Clubber

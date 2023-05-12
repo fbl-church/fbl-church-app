@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import {
+  Access,
+  App,
+  Feature,
+} from 'projects/insite-kit/src/model/common.model';
 import { ClubberService } from 'src/service/clubbers/clubber.service';
 
 @Component({
@@ -11,6 +16,10 @@ import { ClubberService } from 'src/service/clubbers/clubber.service';
 export class ClubberComponent {
   dataloader: any;
   addCirlce = faCirclePlus;
+
+  Feature = Feature;
+  Application = App;
+  Access = Access;
 
   constructor(
     private clubberService: ClubberService,

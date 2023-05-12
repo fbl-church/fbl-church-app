@@ -1,14 +1,13 @@
 <ik-card [padding]="false">
   <ik-card-header [title]="title">
-    <ng-container *ngIf="editEnabled">
-      <ik-icon
-        [icon]="editIcon"
-        color="black"
-        class="edit-icon"
-        classOverride="icon__card-header"
-        (click)="onEditIconClick()"
-      ></ik-icon>
-    </ng-container>
+    <ik-icon
+      [icon]="editIcon"
+      color="black"
+      class="edit-icon"
+      classOverride="icon__card-header"
+      (click)="onEditIconClick()"
+      *featureAccess="[Application.CLUBBERS, Feature.DETAIL, Access.UPDATE]"
+    ></ik-icon>
   </ik-card-header>
   <div class="flex">
     <div class="left-column">

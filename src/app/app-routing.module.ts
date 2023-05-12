@@ -7,8 +7,10 @@ import {
 } from 'projects/insite-kit/src/model/common.model';
 import { AuthGuard } from 'projects/insite-kit/src/service/auth/auth.guard';
 import { FeatureAccessGuard } from 'projects/insite-kit/src/service/auth/feature-access.guard';
+import { ClubberResolverService } from 'src/service/clubbers/user-resolver.service';
 import { UserResolverService } from 'src/service/users/user-resolver.service';
 import { ClubberDetailComponent } from './pages/clubbers/clubber-detail/clubber-detail.component';
+import { EditClubberComponent } from './pages/clubbers/clubber-detail/pages/edit-clubber/edit-clubber.component';
 import { ClubberComponent } from './pages/clubbers/clubber.component';
 import { CreateClubberComponent } from './pages/clubbers/create-clubber/create-clubber.component';
 import { CreateGurdianComponent } from './pages/gurdians/create-gurdian/create-gurdian.component';
@@ -70,59 +72,59 @@ const routes: Routes = [
       {
         path: 'create',
         canActivate: [FeatureAccessGuard],
+        component: CreateUserComponent,
         data: {
           featureAccessGuards: [
             {
               app: App.USERS,
-              feature: Feature.USERS_DETAIL,
+              feature: Feature.DETAIL,
               access: Access.CREATE,
             },
           ],
         },
-        component: CreateUserComponent,
       },
       {
         path: ':id/details',
         canActivate: [FeatureAccessGuard],
+        component: UserDetailComponent,
         data: {
           featureAccessGuards: [
             {
               app: App.USERS,
-              feature: Feature.USERS_DETAIL,
+              feature: Feature.DETAIL,
               access: Access.READ,
             },
           ],
         },
-        component: UserDetailComponent,
       },
       {
         path: ':id/details/edit',
         canActivate: [FeatureAccessGuard],
+        component: EditUserComponent,
+        resolve: { user: UserResolverService },
         data: {
           featureAccessGuards: [
             {
               app: App.USERS,
-              feature: Feature.USERS_DETAIL,
+              feature: Feature.DETAIL,
               access: Access.UPDATE,
             },
           ],
         },
-        component: EditUserComponent,
-        resolve: { user: UserResolverService },
       },
       {
         path: ':id/details/reset-password',
         canActivate: [FeatureAccessGuard],
+        component: ResetPasswordComponent,
         data: {
           featureAccessGuards: [
             {
               app: App.USERS,
-              feature: Feature.USERS_DETAIL,
+              feature: Feature.DETAIL,
               access: Access.UPDATE,
             },
           ],
         },
-        component: ResetPasswordComponent,
       },
     ],
   },
@@ -139,10 +141,45 @@ const routes: Routes = [
       {
         path: 'create',
         component: CreateClubberComponent,
+        canActivate: [FeatureAccessGuard],
+        data: {
+          featureAccessGuards: [
+            {
+              app: App.CLUBBERS,
+              feature: Feature.DETAIL,
+              access: Access.CREATE,
+            },
+          ],
+        },
       },
       {
         path: ':id/details',
         component: ClubberDetailComponent,
+        canActivate: [FeatureAccessGuard],
+        data: {
+          featureAccessGuards: [
+            {
+              app: App.CLUBBERS,
+              feature: Feature.DETAIL,
+              access: Access.READ,
+            },
+          ],
+        },
+      },
+      {
+        path: ':id/details/edit',
+        canActivate: [FeatureAccessGuard],
+        component: EditClubberComponent,
+        resolve: { user: ClubberResolverService },
+        data: {
+          featureAccessGuards: [
+            {
+              app: App.CLUBBERS,
+              feature: Feature.DETAIL,
+              access: Access.UPDATE,
+            },
+          ],
+        },
       },
     ],
   },
@@ -179,10 +216,30 @@ const routes: Routes = [
       {
         path: 'create',
         component: CreateGurdianComponent,
+        canActivate: [FeatureAccessGuard],
+        data: {
+          featureAccessGuards: [
+            {
+              app: App.GURDIANS,
+              feature: Feature.DETAIL,
+              access: Access.CREATE,
+            },
+          ],
+        },
       },
       {
         path: ':id/details',
         component: GurdianDetailComponent,
+        canActivate: [FeatureAccessGuard],
+        data: {
+          featureAccessGuards: [
+            {
+              app: App.GURDIANS,
+              feature: Feature.DETAIL,
+              access: Access.READ,
+            },
+          ],
+        },
       },
     ],
   },

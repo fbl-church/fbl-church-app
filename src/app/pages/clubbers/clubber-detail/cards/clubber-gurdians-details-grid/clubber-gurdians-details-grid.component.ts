@@ -1,6 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import {
+  Access,
+  App,
+  Feature,
+} from 'projects/insite-kit/src/model/common.model';
 import { GurdianService } from 'src/service/gurdians/gurdian.service';
 
 @Component({
@@ -8,17 +13,20 @@ import { GurdianService } from 'src/service/gurdians/gurdian.service';
   templateUrl: './clubber-gurdians-details-grid.component.html',
   styleUrls: ['./clubber-gurdians-details-grid.component.scss'],
 })
-export class ClubberGurdiansDetailsGridComponent implements OnInit {
+export class ClubberGurdiansDetailsGridComponent {
   @Input() clubberId: number;
   dataloader: any;
 
   editIcon = faPenToSquare;
+
+  Feature = Feature;
+  Application = App;
+  Access = Access;
+
   constructor(
     private readonly gurdianService: GurdianService,
     private readonly router: Router
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.dataloader = () => this.getGurdianDataLoader();
   }
 

@@ -5,12 +5,14 @@
       <button
         class="btn btn-danger btn-flat btn-size btn-right h-button"
         (click)="deleteUserModal.modal.open()"
+        *featureAccess="[Application.USERS, Feature.DETAIL, Access.DELETE]"
       >
         Delete User
       </button>
       <button
         class="btn btn-default btn-flat btn-size btn-right h-button"
         (click)="onResetPassword()"
+        *featureAccess="[Application.USERS, Feature.DETAIL, Access.UPDATE]"
       >
         Reset Password
       </button>
@@ -19,7 +21,6 @@
   <div class="layout__left-column layout__column-wide">
     <app-user-details-card
       [user]="userData"
-      [editEnabled]="true"
       (editClick)="onEditClick()"
     ></app-user-details-card>
   </div>

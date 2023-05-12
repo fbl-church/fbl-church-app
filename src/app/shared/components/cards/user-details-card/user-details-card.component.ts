@@ -1,6 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import { WebRole } from 'projects/insite-kit/src/model/common.model';
+import {
+  Access,
+  App,
+  Feature,
+  WebRole,
+} from 'projects/insite-kit/src/model/common.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
 
 @Component({
@@ -11,14 +16,15 @@ import { User } from 'projects/insite-kit/src/model/user.model';
 export class UserDetailsCardComponent {
   @Input() user: User;
   @Input() title = 'Details';
-  @Input() editEnabled = false;
   @Input() loading = false;
   @Output() editClick = new EventEmitter<any>();
 
   WebRole = WebRole;
   editIcon = faPenToSquare;
 
-  constructor() {}
+  Feature = Feature;
+  Application = App;
+  Access = Access;
 
   onEditIconClick() {
     this.editClick.emit();

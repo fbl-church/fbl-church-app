@@ -22,6 +22,7 @@ import { AuthenticatedLayoutComponent } from './components/layouts/authenticated
     UserDetailsCardComponent,
     ClubberFormComponent,
     GurdianFormComponent,
+    ClubberGurdiansGridCardComponent,
   ],
 })
 export class SharedModule {}

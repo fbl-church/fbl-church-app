@@ -5,7 +5,9 @@
   (rowClick)="onRowClick($event)"
 >
   <ik-card-header title="Gurdians">
-    <ng-container>
+    <ng-container
+      *featureAccess="[Application.CLUBBERS, Feature.DETAIL, Access.UPDATE]"
+    >
       <ik-icon
         [icon]="editIcon"
         color="black"

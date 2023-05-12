@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import {
+  Access,
+  App,
+  Feature,
+} from 'projects/insite-kit/src/model/common.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
@@ -13,7 +18,12 @@ export class UserDetailComponent implements OnInit {
   userData: User;
   loading = true;
 
+  Feature = Feature;
+  Application = App;
+  Access = Access;
+
   destroy = new Subject<void>();
+
   constructor(
     private userService: UserService,
     private readonly activeRoute: ActivatedRoute,
@@ -43,18 +53,6 @@ export class UserDetailComponent implements OnInit {
     this.destroy.next();
   }
 
-  onBackClick() {
-    this.router.navigate(['/users']);
-  }
-
-  onEditClick() {
-    this.router.navigate([`/users/${this.userData.id}/details/edit`]);
-  }
-
-  onResetPassword() {
-    this.router.navigate([`/users/${this.userData.id}/details/reset-password`]);
-  }
-
   onDeleteUser() {
     this.loading = true;
     this.userService.delete(this.userData.id).subscribe({
@@ -70,5 +68,17 @@ export class UserDetailComponent implements OnInit {
         this.loading = false;
       },
     });
+  }
+
+  onBackClick() {
+    this.router.navigate(['/users']);
+  }
+
+  onEditClick() {
+    this.router.navigate([`/users/${this.userData.id}/details/edit`]);
+  }
+
+  onResetPassword() {
+    this.router.navigate([`/users/${this.userData.id}/details/reset-password`]);
   }
 }

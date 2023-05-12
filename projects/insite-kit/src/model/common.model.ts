@@ -42,8 +42,8 @@ export enum Access {
 }
 
 export enum Feature {
-  USERS_OVERVIEW = 'overview',
-  USERS_DETAIL = 'detail',
+  OVERVIEW = 'overview',
+  DETAIL = 'detail',
   PROFILE = 'profile',
   NOTIFICATION = 'notification',
 }

@@ -1,0 +1,18 @@
+<ik-header title="Edit User">
+  <ik-header-back (back)="onCancelClick()"></ik-header-back
+></ik-header>
+
+<app-clubber-form
+  *ngIf="clubberUpdating && !loading; else loader"
+  [clubberData]="clubberUpdating"
+  [disableSave]="disableSave"
+  rightActionButton="Update Clubber"
+  leftActionButton="Cancel"
+  (cancel)="onCancelClick()"
+  (save)="onSaveClick($event)"
+>
+</app-clubber-form>
+
+<ng-template #loader>
+  <ik-loading></ik-loading>
+</ng-template>

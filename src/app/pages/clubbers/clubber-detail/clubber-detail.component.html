@@ -5,6 +5,7 @@
       <button
         class="btn btn-danger btn-flat btn-size btn-right h-button"
         (click)="deleteClubberModal.modal.open()"
+        *featureAccess="[Application.CLUBBERS, Feature.DETAIL, Access.DELETE]"
       >
         Delete Clubber
       </button>
@@ -13,7 +14,7 @@
   <div class="layout__left-column layout__column-half">
     <app-clubber-details-card
       [clubber]="clubberData"
-      [editEnabled]="true"
+      (editClick)="onClubberDetailEditClick()"
     ></app-clubber-details-card>
     <app-clubber-additional-info-card
       [clubber]="clubberData"

@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Clubber } from 'projects/insite-kit/src/model/clubber.model';
+import {
+  Access,
+  App,
+  Feature,
+} from 'projects/insite-kit/src/model/common.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { ClubberService } from 'src/service/clubbers/clubber.service';
@@ -12,6 +17,10 @@ import { ClubberService } from 'src/service/clubbers/clubber.service';
 export class ClubberDetailComponent implements OnInit {
   clubberData: Clubber;
   loading = true;
+
+  Feature = Feature;
+  Application = App;
+  Access = Access;
 
   destroy = new Subject<void>();
   constructor(
@@ -45,5 +54,9 @@ export class ClubberDetailComponent implements OnInit {
 
   onBackClick() {
     this.router.navigate(['/clubbers']);
+  }
+
+  onClubberDetailEditClick() {
+    this.router.navigate([`/clubbers/${this.clubberData.id}/details/edit`]);
   }
 }
