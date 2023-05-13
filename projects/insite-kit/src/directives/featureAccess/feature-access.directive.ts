@@ -41,7 +41,7 @@ export class FeatureAccessDirective implements OnInit, OnDestroy {
     this.destroy.next();
   }
 
-  @Input() set featureAccess(value: any) {
+  @Input() set featureAccess(value: any[]) {
     this.app = value[0] ? value[0] : '';
     this.feature = value[1] ? value[1] : '';
     this.type = value[2] ? value[2] : Access.CREATE;

@@ -81,6 +81,20 @@ export class ClubberService {
   }
 
   /**
+   * This will update the clubbers information for the given clubber object.
+   *
+   * @param id The id of the clubber
+   * @param clubber The clubber information that needs updated.
+   * @returns Clubber object with the updated clubber object.
+   */
+  updateClubber(id: any, clubber: Clubber): Observable<Clubber> {
+    return this.request.put<Clubber>(
+      `${this.BASE_CLUBBERS_PATH}/${id}`,
+      clubber
+    );
+  }
+
+  /**
    * Delete the clubber associated to the given id.
    *
    * @param id of the clubber to be deleted.

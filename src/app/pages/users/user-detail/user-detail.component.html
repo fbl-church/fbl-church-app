@@ -19,9 +19,14 @@
     </div>
   </ik-header>
   <div class="layout__left-column layout__column-wide">
-    <app-user-details-card
-      [user]="userData"
-      (editClick)="onEditClick()"
+    <app-user-details-card [user]="userData" (editClick)="onEditClick()">
+      <ik-icon
+        [icon]="editIcon"
+        color="black"
+        class="edit-icon"
+        (click)="onEditClick()"
+        *featureAccess="[Application.USERS, Feature.DETAIL, Access.UPDATE]"
+      ></ik-icon
     ></app-user-details-card>
   </div>
 </div>

@@ -5,6 +5,7 @@ import { Clubber } from 'projects/insite-kit/src/model/clubber.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject } from 'rxjs';
 import { map, takeUntil, tap } from 'rxjs/operators';
+import { ClubberService } from 'src/service/clubbers/clubber.service';
 
 @Component({
   selector: 'app-edit-clubber',
@@ -20,7 +21,8 @@ export class EditClubberComponent implements OnInit, OnDestroy {
   constructor(
     private readonly location: Location,
     private readonly popupService: PopupService,
-    private readonly route: ActivatedRoute
+    private readonly route: ActivatedRoute,
+    private readonly clubberService: ClubberService
   ) {}
 
   ngOnInit() {
@@ -46,17 +48,19 @@ export class EditClubberComponent implements OnInit, OnDestroy {
     this.location.back();
   }
 
-  onSaveClick(user: Clubber) {
-    // this.userService.updateUserProfileById(this.userId, user).subscribe({
-    //   next: () => {
-    //     this.onCancelClick();
-    //     this.popupService.success('User Successfully updated!');
-    //   },
-    //   error: () => {
-    //     this.popupService.error('User could not be updated at this time!');
-    //     this.loading = false;
-    //   },
-    // });
+  onSaveClick(clubber: Clubber) {
+    this.loading = true;
+    this.clubberService.updateClubber(this.clubberId, clubber).subscribe({
+      next: () => {
+        this.onCancelClick();
+        this.popupService.success('Clubber Successfully updated!');
+        this.loading = false;
+      },
+      error: () => {
+        this.popupService.error('Clubber could not be updated at this time!');
+        this.loading = false;
+      },
+    });
   }
 
   resetStatus() {

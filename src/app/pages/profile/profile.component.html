@@ -11,9 +11,13 @@
     </div>
   </ik-header>
   <div class="layout__left-column layout__column-wide">
-    <app-user-details-card
-      [user]="currentUser"
-      (editClick)="onEditClick()"
+    <app-user-details-card [user]="currentUser" (editClick)="onEditClick()">
+      <ik-icon
+        [icon]="editIcon"
+        color="black"
+        class="edit-icon"
+        (click)="onEditClick()"
+      ></ik-icon
     ></app-user-details-card>
   </div>
 </div>

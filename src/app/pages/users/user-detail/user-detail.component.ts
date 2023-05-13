@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import {
   Access,
   App,
@@ -13,6 +14,7 @@ import { UserService } from 'src/service/users/user.service';
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
+  styleUrls: ['./user-detail.component.scss'],
 })
 export class UserDetailComponent implements OnInit {
   userData: User;
@@ -21,6 +23,7 @@ export class UserDetailComponent implements OnInit {
   Feature = Feature;
   Application = App;
   Access = Access;
+  editIcon = faPenToSquare;
 
   destroy = new Subject<void>();
 
