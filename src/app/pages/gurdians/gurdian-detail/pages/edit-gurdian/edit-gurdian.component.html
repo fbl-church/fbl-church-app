@@ -1,0 +1,17 @@
+<ik-header title="Edit Clubber">
+  <ik-header-back (back)="onCancelClick()"></ik-header-back
+></ik-header>
+
+<app-gurdian-form
+  *ngIf="gurdianUpdating && !loading; else loader"
+  [gurdianData]="gurdianUpdating"
+  [disableSave]="disableSave"
+  rightActionButton="Update Gurdian"
+  leftActionButton="Cancel"
+  (cancel)="onCancelClick()"
+  (save)="onSaveClick($event)"
+>
+</app-gurdian-form>
+<ng-template #loader>
+  <ik-loading></ik-loading>
+</ng-template>

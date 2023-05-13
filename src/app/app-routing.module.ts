@@ -9,6 +9,7 @@ import { AuthGuard } from 'projects/insite-kit/src/service/auth/auth.guard';
 import { FeatureAccessGuard } from 'projects/insite-kit/src/service/auth/feature-access.guard';
 import { ClubberGurdiansResolverService } from 'src/service/clubbers/clubber-gurdians-resolver.service';
 import { ClubberResolverService } from 'src/service/clubbers/clubber-resolver.service';
+import { GurdianResolverService } from 'src/service/gurdians/gurdian-resolver.service';
 import { UserResolverService } from 'src/service/users/user-resolver.service';
 import { ClubberDetailComponent } from './pages/clubbers/clubber-detail/clubber-detail.component';
 import { EditClubberGurdiansComponent } from './pages/clubbers/clubber-detail/pages/edit-clubber-gurdians/edit-clubber-gurdians.component';
@@ -17,6 +18,7 @@ import { ClubberComponent } from './pages/clubbers/clubber.component';
 import { CreateClubberComponent } from './pages/clubbers/create-clubber/create-clubber.component';
 import { CreateGurdianComponent } from './pages/gurdians/create-gurdian/create-gurdian.component';
 import { GurdianDetailComponent } from './pages/gurdians/gurdian-detail/gurdian-detail.component';
+import { EditGurdianComponent } from './pages/gurdians/gurdian-detail/pages/edit-gurdian/edit-gurdian.component';
 import { GurdianComponent } from './pages/gurdians/gurdian.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginOverviewComponent } from './pages/login/login-overview/login-overview.component';
@@ -254,6 +256,21 @@ const routes: Routes = [
               app: App.GURDIANS,
               feature: Feature.DETAIL,
               access: Access.READ,
+            },
+          ],
+        },
+      },
+      {
+        path: ':id/details/edit',
+        canActivate: [FeatureAccessGuard],
+        component: EditGurdianComponent,
+        resolve: { gurdian: GurdianResolverService },
+        data: {
+          featureAccessGuards: [
+            {
+              app: App.GURDIANS,
+              feature: Feature.DETAIL,
+              access: Access.UPDATE,
             },
           ],
         },

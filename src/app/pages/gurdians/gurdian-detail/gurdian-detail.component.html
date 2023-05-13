@@ -14,6 +14,7 @@
   <div class="layout__left-column layout__column-half">
     <app-gurdian-details-card
       [gurdian]="gurdianData"
+      (editClick)="onEditClick()"
     ></app-gurdian-details-card>
   </div>
   <div class="layout__right-column layout__column-half">

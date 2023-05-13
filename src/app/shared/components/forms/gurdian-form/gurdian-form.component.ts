@@ -35,9 +35,9 @@ export class GurdianFormComponent implements OnInit {
       ],
       phone: [
         this.gurdianData ? this.gurdianData.phone : '',
-        [Validators.required, Validators.minLength(10)],
+        [Validators.required, Validators.minLength(14)],
       ],
-      email: [this.gurdianData ? this.gurdianData.email : ''],
+      email: [this.gurdianData ? this.gurdianData.email : '', Validators.email],
       address: [this.gurdianData ? this.gurdianData.address : ''],
     });
   }

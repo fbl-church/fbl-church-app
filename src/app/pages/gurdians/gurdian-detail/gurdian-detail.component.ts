@@ -56,4 +56,8 @@ export class GurdianDetailComponent implements OnInit {
   onBackClick() {
     this.router.navigate(['/gurdians']);
   }
+
+  onEditClick() {
+    this.router.navigate([`/gurdians/${this.gurdianData.id}/details/edit`]);
+  }
 }
