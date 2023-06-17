@@ -17,13 +17,13 @@
     <span class="sidebar-category">Users</span>
   </div>
   <div
-    *ngIf="userApps.includes('clubbers')"
-    routerLink="/clubbers"
+    *ngIf="userApps.includes('children')"
+    routerLink="/children"
     routerLinkActive="sidebar-category__active"
     (click)="close()"
   >
-    <ik-icon classOverride="sidebar-icon" [icon]="clubbersIcon"></ik-icon>
-    <span class="sidebar-category">Clubbers</span>
+    <ik-icon classOverride="sidebar-icon" [icon]="childrenIcon"></ik-icon>
+    <span class="sidebar-category">Children</span>
   </div>
   <div
     *ngIf="userApps.includes('gurdians')"

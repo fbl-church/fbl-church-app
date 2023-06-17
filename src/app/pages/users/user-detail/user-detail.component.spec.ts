@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FBAwanaTestBed } from 'src/test/test-bed';
+import { FBLChurchTestBed } from 'src/test/test-bed';
 import { setupTests } from 'src/test/test-setup';
 import { UserDetailComponent } from './user-detail.component';
 
@@ -7,7 +7,7 @@ describe('UserDetailComponent', () => {
   let component: UserDetailComponent;
   let fixture: ComponentFixture<UserDetailComponent>;
 
-  setupTests(async () => FBAwanaTestBed.setup());
+  setupTests(async () => FBLChurchTestBed.setup());
 
   beforeEach(() => {
     fixture = TestBed.createComponent(UserDetailComponent);

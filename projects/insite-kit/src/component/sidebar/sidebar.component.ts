@@ -24,7 +24,7 @@ export class SidebarComponent implements OnInit {
   homeIcon = faHome;
   aboutIcon = faCircleInfo;
   usersIcon = faUsers;
-  clubbersIcon = faChildren;
+  childrenIcon = faChildren;
   gurdiansIcon = faPerson;
   gitIcon = faGithub;
   settingsIcon = faGear;

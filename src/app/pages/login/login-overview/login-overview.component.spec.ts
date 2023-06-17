@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'projects/insite-kit/src/service/auth/auth.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { of, throwError } from 'rxjs';
-import { FBAwanaTestBed } from 'src/test/test-bed';
+import { FBLChurchTestBed } from 'src/test/test-bed';
 import { TestData } from 'src/test/test-data';
 import { TestDOM } from 'src/test/test-dom';
 import { setupTests } from 'src/test/test-setup';
@@ -16,7 +16,7 @@ describe('LoginOverviewComponent', () => {
   let router;
   let popupService;
 
-  setupTests(async () => FBAwanaTestBed.setup());
+  setupTests(async () => FBLChurchTestBed.setup());
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginOverviewComponent);

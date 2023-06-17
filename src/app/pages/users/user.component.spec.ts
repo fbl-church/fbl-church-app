@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AuthService } from 'projects/insite-kit/src/service/auth/auth.service';
 import { of } from 'rxjs';
-import { FBAwanaTestBed } from 'src/test/test-bed';
+import { FBLChurchTestBed } from 'src/test/test-bed';
 import { setupTests } from 'src/test/test-setup';
 import { UserComponent } from './user.component';
 
@@ -10,7 +10,7 @@ describe('UserComponent', () => {
   let fixture: ComponentFixture<UserComponent>;
   let authService: AuthService;
 
-  setupTests(async () => FBAwanaTestBed.setup());
+  setupTests(async () => FBLChurchTestBed.setup());
 
   beforeEach(() => {
     fixture = TestBed.createComponent(UserComponent);

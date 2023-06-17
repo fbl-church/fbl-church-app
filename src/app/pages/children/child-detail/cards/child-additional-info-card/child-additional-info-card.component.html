@@ -1,0 +1,12 @@
+<ik-card>
+  <ik-card-header title="Additional Information"> </ik-card-header>
+  <ik-card-info
+    header="Allergies"
+    [text]="child?.allergies ? '- ' + child.allergies : '-'"
+  ></ik-card-info>
+  <ik-card-info
+    header="About"
+    class="text-pre-wrap"
+    [text]="child?.additionalInfo ? child.additionalInfo : '-'"
+  ></ik-card-info>
+</ik-card>

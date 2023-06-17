@@ -7,7 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AbstractTestBed } from './abstract-test-bed';
 import { TEST_ENVIRONMENT } from './test-env';
 
-export class FBAwanaTestBed extends AbstractTestBed {
+export class FBLChurchTestBed extends AbstractTestBed {
   static getModuleMetaData(): TestModuleMetadata {
     return {
       imports: [

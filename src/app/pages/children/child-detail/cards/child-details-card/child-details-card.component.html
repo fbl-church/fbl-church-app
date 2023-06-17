@@ -1,0 +1,44 @@
+<ik-card [padding]="false">
+  <ik-card-header [title]="title">
+    <ik-icon
+      [icon]="editIcon"
+      color="black"
+      class="edit-icon"
+      classOverride="icon__card-header"
+      (click)="onEditIconClick()"
+      *featureAccess="[Application.CHILDREN, Feature.DETAIL, Access.UPDATE]"
+    ></ik-icon>
+  </ik-card-header>
+  <div class="flex">
+    <div class="left-column">
+      <ik-card-info
+        header="Name"
+        text="{{ child | formatUserName }}"
+      ></ik-card-info>
+    </div>
+    <div class="right-column">
+      <ik-card-info
+        header="Group"
+        text="{{ child.churchGroup | churchGroupTranslate }}"
+      ></ik-card-info>
+    </div>
+  </div>
+
+  <div class="flex">
+    <div class="left-column">
+      <ik-card-info
+        header="Birthday"
+        text="{{
+          child?.birthday ? (child.birthday | date : 'MMMM d, y') : '-'
+        }}"
+      ></ik-card-info>
+    </div>
+    <div class="right-column">
+      <ik-card-info
+        header="Created Date"
+        text="{{ child.insertDate | date : 'MMMM d, y' }}"
+      >
+      </ik-card-info>
+    </div>
+  </div>
+</ik-card>

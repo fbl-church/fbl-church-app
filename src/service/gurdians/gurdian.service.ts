@@ -1,6 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Gurdian } from 'projects/insite-kit/src/model/clubber.model';
+import { Gurdian } from 'projects/insite-kit/src/model/child.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { Observable, tap } from 'rxjs';
@@ -46,23 +46,22 @@ export class GurdianService {
   }
 
   /**
-   * Get the gurdians for the given clubber id.
+   * Get the gurdians for the given child id.
    *
    * @param params gurdian id for the gurdian to get
    * @returns Gurdian object
    */
-  getGurdiansByClubberId(clubberId: number): Observable<HttpResponse<Gurdian>> {
-    return this.request
-      .get<Gurdian>(`${this.BASE_PATH}/clubber/${clubberId}`)
-      .pipe(
-        tap((v) =>
-          v.body.forEach((u) => {
-            u.formattedName = this.commonService.getFormattedName(u);
-            u.formattedRelationship =
-              this.commonService.getFormattedRelationship(u.relationship);
-          })
-        )
-      );
+  getGurdiansByChildId(childId: number): Observable<HttpResponse<Gurdian>> {
+    return this.request.get<Gurdian>(`${this.BASE_PATH}/child/${childId}`).pipe(
+      tap((v) =>
+        v.body.forEach((u) => {
+          u.formattedName = this.commonService.getFormattedName(u);
+          u.formattedRelationship = this.commonService.getFormattedRelationship(
+            u.relationship
+          );
+        })
+      )
+    );
   }
 
   /**

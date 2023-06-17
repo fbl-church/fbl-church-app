@@ -1,0 +1,21 @@
+<ik-header title="Children">
+  <button
+    class="btn btn-primary btn-flat btn-size btn-right"
+    (click)="onAddChild()"
+    *featureAccess="[Application.CHILDREN, Feature.DETAIL, Access.CREATE]"
+  >
+    <ik-icon [icon]="addCirlce" classOverride="add-icon"></ik-icon>
+    Add Child
+  </button>
+</ik-header>
+<ik-grid
+  basePath="children"
+  [dataLoader]="dataloader"
+  (rowClick)="onRowClick($event)"
+>
+  <ik-grid-search></ik-grid-search>
+  <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
+  <ik-grid-column label="Group" field="formattedGroup"></ik-grid-column>
+  <ik-grid-column label="Created" field="insertDate"></ik-grid-column>
+  <ik-grid-pager key="Children"></ik-grid-pager>
+</ik-grid>

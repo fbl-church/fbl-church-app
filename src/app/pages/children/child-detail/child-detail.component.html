@@ -1,0 +1,37 @@
+<div *ngIf="!loading; else loader">
+  <ik-header title="{{ childData | formatUserName }}">
+    <ik-header-back (back)="onBackClick()"></ik-header-back>
+    <div class="inline-display header-buttons">
+      <button
+        class="btn btn-danger btn-flat btn-size btn-right h-button"
+        (click)="deleteChildModal.modal.open()"
+        *featureAccess="[Application.CHILDREN, Feature.DETAIL, Access.DELETE]"
+      >
+        Delete Child
+      </button>
+    </div>
+  </ik-header>
+  <div class="layout__left-column layout__column-half">
+    <app-child-details-card
+      [child]="childData"
+      (editClick)="onChildDetailEditClick()"
+    ></app-child-details-card>
+    <app-child-additional-info-card
+      [child]="childData"
+    ></app-child-additional-info-card>
+  </div>
+  <div class="layout__right-column layout__column-half">
+    <app-child-gurdians-details-grid
+      [childId]="childData.id"
+    ></app-child-gurdians-details-grid>
+  </div>
+</div>
+
+<app-delete-child-modal
+  #deleteChildModal
+  [childId]="childData?.id"
+></app-delete-child-modal>
+
+<ng-template #loader>
+  <ik-loading></ik-loading>
+</ng-template>

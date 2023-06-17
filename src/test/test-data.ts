@@ -2,7 +2,7 @@ import { AuthToken } from 'projects/insite-kit/src/model/auth-token.model';
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
 
-class FBAwanaDataObject {
+class FBLChurchDataObject {
   getUser(): User[] {
     return [
       {
@@ -34,4 +34,4 @@ class FBAwanaDataObject {
   }
 }
 
-export const TestData = new FBAwanaDataObject();
+export const TestData = new FBLChurchDataObject();

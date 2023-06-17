@@ -1,0 +1,11 @@
+<ik-grid
+  *ngIf="dataloader"
+  basePath="gurdians"
+  [dataLoader]="dataloader"
+  (rowClick)="onRowClick($event)"
+>
+  <ik-card-header title="Children"> </ik-card-header>
+  <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
+  <ik-grid-column label="Group" field="formattedGroup"></ik-grid-column>
+  <ik-grid-pager key="Children" [visible]="false"></ik-grid-pager>
+</ik-grid>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Gurdian } from 'projects/insite-kit/src/model/clubber.model';
+import { Gurdian } from 'projects/insite-kit/src/model/child.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { GurdianService } from 'src/service/gurdians/gurdian.service';
 

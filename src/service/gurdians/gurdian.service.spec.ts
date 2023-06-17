@@ -2,7 +2,7 @@ import { HttpResponse } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { of } from 'rxjs';
-import { FBAwanaTestBed } from 'src/test/test-bed';
+import { FBLChurchTestBed } from 'src/test/test-bed';
 import { setupTests } from 'src/test/test-setup';
 import { GurdianService } from './gurdian.service';
 
@@ -10,7 +10,7 @@ describe('GurdianService', () => {
   let service: GurdianService;
   let requestService: RequestService;
 
-  setupTests(async () => FBAwanaTestBed.setup());
+  setupTests(async () => FBLChurchTestBed.setup());
 
   beforeEach(() => {
     service = TestBed.inject(GurdianService);

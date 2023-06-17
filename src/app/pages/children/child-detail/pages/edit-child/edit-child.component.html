@@ -1,0 +1,18 @@
+<ik-header title="Edit Child">
+  <ik-header-back (back)="onCancelClick()"></ik-header-back
+></ik-header>
+
+<app-child-form
+  *ngIf="childUpdating && !loading; else loader"
+  [childData]="childUpdating"
+  [disableSave]="disableSave"
+  rightActionButton="Update Child"
+  leftActionButton="Cancel"
+  (cancel)="onCancelClick()"
+  (save)="onSaveClick($event)"
+>
+</app-child-form>
+
+<ng-template #loader>
+  <ik-loading></ik-loading>
+</ng-template>

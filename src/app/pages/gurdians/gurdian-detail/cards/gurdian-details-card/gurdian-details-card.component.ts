@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import { Gurdian } from 'projects/insite-kit/src/model/clubber.model';
+import { Gurdian } from 'projects/insite-kit/src/model/child.model';
 import {
   Access,
   App,

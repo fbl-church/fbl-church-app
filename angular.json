@@ -9,7 +9,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "fb-awana-app": {
+    "fbl-church-app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -25,7 +25,7 @@
               "angular2-uuid",
               "clone-deep"
             ],
-            "outputPath": "dist/fb-awana-app",
+            "outputPath": "dist/fbl-church-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -94,19 +94,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "fb-awana-app:build",
+            "browserTarget": "fbl-church-app:build",
             "port": 4200
           },
           "configurations": {
             "production": {
-              "browserTarget": "fb-awana-app:build:production"
+              "browserTarget": "fbl-church-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "fb-awana-app:build"
+            "browserTarget": "fbl-church-app:build"
           }
         },
         "lint": {

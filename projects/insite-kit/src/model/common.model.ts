@@ -50,7 +50,7 @@ export enum Feature {
 
 export enum App {
   USERS = 'users',
-  CLUBBERS = 'clubbers',
+  CHILDREN = 'children',
   GURDIANS = 'gurdians',
   REPORTS = 'reports',
   ABOUT = 'about',

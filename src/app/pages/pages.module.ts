@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ClubberModule } from './clubbers/clubber.module';
+import { ChildrenModule } from './children/children.module';
 import { GurdianModule } from './gurdians/gurdian.module';
 import { HomeModule } from './home/home.module';
 import { LoginModule } from './login/login.module';
@@ -11,7 +11,7 @@ import { UserModule } from './users/user.module';
     HomeModule,
     LoginModule,
     UserModule,
-    ClubberModule,
+    ChildrenModule,
     ProfileModule,
     GurdianModule,
   ],

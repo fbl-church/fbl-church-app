@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Gurdian } from 'projects/insite-kit/src/model/clubber.model';
+import { Gurdian } from 'projects/insite-kit/src/model/child.model';
 import {
   Access,
   App,

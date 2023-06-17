@@ -5,7 +5,7 @@ import { User } from 'projects/insite-kit/src/model/user.model';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { of } from 'rxjs';
-import { FBAwanaTestBed } from 'src/test/test-bed';
+import { FBLChurchTestBed } from 'src/test/test-bed';
 import { setupTests } from 'src/test/test-setup';
 import { UserService } from './user.service';
 
@@ -14,7 +14,7 @@ describe('UserService', () => {
   let requestService: RequestService;
   let jwt: JwtService;
 
-  setupTests(async () => FBAwanaTestBed.setup());
+  setupTests(async () => FBLChurchTestBed.setup());
 
   beforeEach(() => {
     service = TestBed.inject(UserService);

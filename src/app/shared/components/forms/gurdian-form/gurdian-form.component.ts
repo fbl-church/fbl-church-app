@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Gurdian } from 'projects/insite-kit/src/model/clubber.model';
+import { Gurdian } from 'projects/insite-kit/src/model/child.model';
 
 @Component({
   selector: 'app-gurdian-form',

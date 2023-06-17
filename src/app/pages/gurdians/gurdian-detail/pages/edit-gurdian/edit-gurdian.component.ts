@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Clubber, Gurdian } from 'projects/insite-kit/src/model/clubber.model';
+import { Gurdian } from 'projects/insite-kit/src/model/child.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject } from 'rxjs';
 import { map, takeUntil, tap } from 'rxjs/operators';
@@ -15,7 +15,7 @@ export class EditGurdianComponent implements OnInit, OnDestroy {
   loading = true;
   destroy = new Subject<void>();
   gurdianId: number;
-  gurdianUpdating: Clubber;
+  gurdianUpdating: Gurdian;
   disableSave = false;
 
   constructor(

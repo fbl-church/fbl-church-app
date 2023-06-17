@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FBAwanaTestBed } from 'src/test/test-bed';
+import { FBLChurchTestBed } from 'src/test/test-bed';
 import { setupTests } from 'src/test/test-setup';
 import { GurdianDetailComponent } from './gurdian-detail.component';
 
@@ -7,7 +7,7 @@ describe('GurdianDetailComponent', () => {
   let component: GurdianDetailComponent;
   let fixture: ComponentFixture<GurdianDetailComponent>;
 
-  setupTests(async () => FBAwanaTestBed.setup());
+  setupTests(async () => FBLChurchTestBed.setup());
 
   beforeEach(() => {
     fixture = TestBed.createComponent(GurdianDetailComponent);

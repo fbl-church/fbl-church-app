@@ -1,0 +1,18 @@
+<ik-header title="Create Child"
+  ><ik-header-back (back)="onCancelClick()"></ik-header-back>
+</ik-header>
+
+<app-child-form
+  *ngIf="!loading; else loader"
+  [disableSave]="disableSave"
+  rightActionButton="Save Child"
+  leftActionButton="Cancel"
+  (cancel)="onCancelClick()"
+  (save)="onSaveClick($event)"
+>
+  <app-child-gurdians-grid-card></app-child-gurdians-grid-card>
+</app-child-form>
+
+<ng-template #loader>
+  <ik-loading></ik-loading>
+</ng-template>

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
-import { FBAwanaTestBed } from 'src/test/test-bed';
+import { FBLChurchTestBed } from 'src/test/test-bed';
 import { setupTests } from 'src/test/test-setup';
 import { AuthenticatedLayoutComponent } from './authenticated-layout.component';
 
@@ -9,7 +9,7 @@ describe('AuthenticatedLayoutComponent', () => {
   let fixture: ComponentFixture<AuthenticatedLayoutComponent>;
   let jwt: JwtService;
 
-  setupTests(async () => FBAwanaTestBed.setup());
+  setupTests(async () => FBLChurchTestBed.setup());
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AuthenticatedLayoutComponent);

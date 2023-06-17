@@ -1,6 +1,6 @@
 # Build UI application.
 
-name: FB Awana UI Build
+name: FBL Church UI Build
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    name: FB Awana UI Build
+    name: FBL Church UI Build
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3

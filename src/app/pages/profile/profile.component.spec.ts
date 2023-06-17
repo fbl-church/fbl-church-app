@@ -2,7 +2,7 @@ import { HttpResponse } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { UserService } from 'src/service/users/user.service';
-import { FBAwanaTestBed } from 'src/test/test-bed';
+import { FBLChurchTestBed } from 'src/test/test-bed';
 import { setupTests } from 'src/test/test-setup';
 import { ProfileComponent } from './profile.component';
 
@@ -11,7 +11,7 @@ describe('ProfileComponent', () => {
   let fixture: ComponentFixture<ProfileComponent>;
   let userService: UserService;
 
-  setupTests(async () => FBAwanaTestBed.setup());
+  setupTests(async () => FBLChurchTestBed.setup());
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProfileComponent);
