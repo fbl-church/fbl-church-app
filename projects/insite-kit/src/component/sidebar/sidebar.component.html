@@ -1,5 +1,6 @@
 <div class="sidenav" id="sideBarNav" #sidebarNav>
   <div
+    class="menu-item"
     routerLink="/home"
     routerLinkActive="sidebar-category__active"
     (click)="close()"
@@ -9,24 +10,45 @@
   </div>
   <div
     *ngIf="userApps.includes('users')"
-    routerLink="/users"
+    class="menu-item"
     routerLinkActive="sidebar-category__active"
-    (click)="close()"
+    (click)="toggleDropdown('usersDropdown')"
   >
     <ik-icon classOverride="sidebar-icon" [icon]="usersIcon"></ik-icon>
     <span class="sidebar-category">Users</span>
+    <ik-icon
+      class="flex-one"
+      classOverride="dropdown-icon"
+      [icon]="getDropdownIcon('usersDropdown')"
+    ></ik-icon>
+  </div>
+  <div id="usersDropdown" class="dropdown">
+    <div class="menu-item">Link 1</div>
+    <div class="menu-item">Link 1</div>
+    <div class="menu-item">Link 1</div>
   </div>
   <div
     *ngIf="userApps.includes('children')"
-    routerLink="/children"
+    class="menu-item"
     routerLinkActive="sidebar-category__active"
-    (click)="close()"
+    (click)="toggleDropdown('childrenDropdown')"
   >
     <ik-icon classOverride="sidebar-icon" [icon]="childrenIcon"></ik-icon>
     <span class="sidebar-category">Children</span>
+    <ik-icon
+      class="flex-one"
+      classOverride="dropdown-icon"
+      [icon]="getDropdownIcon('childrenDropdown')"
+    ></ik-icon>
+  </div>
+  <div id="childrenDropdown" class="dropdown">
+    <div class="menu-item">Link 1</div>
+    <div class="menu-item">Link 1</div>
+    <div class="menu-item">Link 1</div>
   </div>
   <div
     *ngIf="userApps.includes('gurdians')"
+    class="menu-item"
     routerLink="/gurdians"
     routerLinkActive="sidebar-category__active"
     (click)="close()"
@@ -36,6 +58,7 @@
   </div>
   <div
     *ngIf="userApps.includes('reports')"
+    class="menu-item"
     routerLink="/reports"
     routerLinkActive="sidebar-category__active"
     (click)="close()"
@@ -45,6 +68,7 @@
   </div>
   <div
     *ngIf="userApps.includes('about')"
+    class="menu-item"
     routerLink="/about"
     routerLinkActive="sidebar-category__active"
     (click)="close()"
@@ -54,6 +78,7 @@
   </div>
   <div
     *ngIf="userApps.includes('repositories')"
+    class="menu-item"
     routerLink="/repositories"
     routerLinkActive="sidebar-category__active"
     (click)="close()"
@@ -63,6 +88,7 @@
   </div>
   <div
     *ngIf="userApps.includes('settings')"
+    class="menu-item"
     routerLink="/settings"
     routerLinkActive="sidebar-category__active"
     (click)="close()"

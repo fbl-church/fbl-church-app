@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import {
+  faCaretDown,
+  faCaretLeft,
   faChartSimple,
   faChildren,
   faCircleInfo,
@@ -18,6 +20,7 @@ import { JwtService } from '../../service/auth/jwt.service';
   templateUrl: 'sidebar.component.html',
 })
 export class SidebarComponent implements OnInit {
+  readonly MAX_DROPDOWN_HEIGHT = '1000px';
   isOpen = false;
 
   closeIcon = faClose;
@@ -29,6 +32,8 @@ export class SidebarComponent implements OnInit {
   gitIcon = faGithub;
   settingsIcon = faGear;
   reportIcon = faChartSimple;
+  dropdownCloseIcon = faCaretLeft;
+  dropdownOpenIcon = faCaretDown;
 
   userApps: string[];
 
@@ -62,5 +67,30 @@ export class SidebarComponent implements OnInit {
   route(path: string) {
     this.close();
     this.router.navigate([path]);
+  }
+
+  toggleDropdown(id: string) {
+    if (
+      document.getElementById(id).style.maxHeight === this.MAX_DROPDOWN_HEIGHT
+    ) {
+      this.closeDropDown(id);
+    } else {
+      this.openDropdown(id);
+    }
+  }
+
+  openDropdown(id: string) {
+    document.getElementById(id).style.maxHeight = this.MAX_DROPDOWN_HEIGHT;
+  }
+
+  closeDropDown(id: string) {
+    document.getElementById(id).style.maxHeight = '0';
+  }
+
+  getDropdownIcon(id: string) {
+    return document.getElementById(id).style.maxHeight ===
+      this.MAX_DROPDOWN_HEIGHT
+      ? this.dropdownOpenIcon
+      : this.dropdownCloseIcon;
   }
 }
