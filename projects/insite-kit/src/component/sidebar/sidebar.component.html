@@ -1,99 +1,51 @@
 <div class="sidenav" id="sideBarNav" #sidebarNav>
-  <div
-    class="menu-item"
-    routerLink="/home"
-    routerLinkActive="sidebar-category__active"
-    (click)="close()"
-  >
-    <ik-icon classOverride="sidebar-icon" [icon]="homeIcon"></ik-icon>
-    <span class="sidebar-category">Home</span>
-  </div>
-  <div
-    *ngIf="userApps.includes('users')"
-    class="menu-item"
-    routerLinkActive="sidebar-category__active"
-    (click)="toggleDropdown('usersDropdown')"
-  >
-    <ik-icon classOverride="sidebar-icon" [icon]="usersIcon"></ik-icon>
-    <span class="sidebar-category">Users</span>
-    <ik-icon
-      class="flex-one"
-      classOverride="dropdown-icon"
-      [icon]="getDropdownIcon('usersDropdown')"
-    ></ik-icon>
-  </div>
-  <div id="usersDropdown" class="dropdown">
-    <div class="menu-item">Link 1</div>
-    <div class="menu-item">Link 1</div>
-    <div class="menu-item">Link 1</div>
-  </div>
-  <div
-    *ngIf="userApps.includes('children')"
-    class="menu-item"
-    routerLinkActive="sidebar-category__active"
-    (click)="toggleDropdown('childrenDropdown')"
-  >
-    <ik-icon classOverride="sidebar-icon" [icon]="childrenIcon"></ik-icon>
-    <span class="sidebar-category">Children</span>
-    <ik-icon
-      class="flex-one"
-      classOverride="dropdown-icon"
-      [icon]="getDropdownIcon('childrenDropdown')"
-    ></ik-icon>
-  </div>
-  <div id="childrenDropdown" class="dropdown">
-    <div class="menu-item">Link 1</div>
-    <div class="menu-item">Link 1</div>
-    <div class="menu-item">Link 1</div>
-  </div>
-  <div
-    *ngIf="userApps.includes('gurdians')"
-    class="menu-item"
-    routerLink="/gurdians"
-    routerLinkActive="sidebar-category__active"
-    (click)="close()"
-  >
-    <ik-icon classOverride="sidebar-icon" [icon]="gurdiansIcon"></ik-icon>
-    <span class="sidebar-category">Gurdians</span>
-  </div>
-  <div
-    *ngIf="userApps.includes('reports')"
-    class="menu-item"
-    routerLink="/reports"
-    routerLinkActive="sidebar-category__active"
-    (click)="close()"
-  >
-    <ik-icon classOverride="sidebar-icon" [icon]="reportIcon"></ik-icon>
-    <span class="sidebar-category">Reports</span>
-  </div>
-  <div
-    *ngIf="userApps.includes('about')"
-    class="menu-item"
-    routerLink="/about"
-    routerLinkActive="sidebar-category__active"
-    (click)="close()"
-  >
-    <ik-icon classOverride="sidebar-icon" [icon]="aboutIcon"></ik-icon>
-    <span class="sidebar-category">About</span>
-  </div>
-  <div
-    *ngIf="userApps.includes('repositories')"
-    class="menu-item"
-    routerLink="/repositories"
-    routerLinkActive="sidebar-category__active"
-    (click)="close()"
-  >
-    <ik-icon classOverride="sidebar-icon" [icon]="gitIcon"></ik-icon>
-    <span class="sidebar-category">Repositories</span>
-  </div>
-  <div
-    *ngIf="userApps.includes('settings')"
-    class="menu-item"
-    routerLink="/settings"
-    routerLinkActive="sidebar-category__active"
-    (click)="close()"
-  >
-    <ik-icon classOverride="sidebar-icon" [icon]="settingsIcon"></ik-icon>
-    <span class="sidebar-category">Settings</span>
-  </div>
+  <ng-container *ngFor="let navItem of navigationConfig">
+    <ng-container *ngIf="navItem.submenu; else routeMenuItem">
+      <div
+        class="menu-item"
+        [ngClass]="{ 'sidebar-category__active': isRouteActive(navItem.route) }"
+        (click)="toggleDropdown(navItem.submenu.id)"
+      >
+        <ik-icon classOverride="sidebar-icon" [icon]="navItem.icon"></ik-icon>
+        <span class="sidebar-category">{{ navItem.name }}</span>
+
+        <ik-icon
+          class="flex-one"
+          classOverride="dropdown-icon"
+          [icon]="getDropdownIcon(navItem.submenu.id)"
+        ></ik-icon>
+      </div>
+      <div [id]="navItem.submenu.id" class="dropdown">
+        <ng-container *ngFor="let submenu of navItem.submenu.items">
+          <ng-container *ngIf="submenu.route">
+            <a
+              class="menu-item fake"
+              [routerLink]="navItem.route + submenu.route"
+              routerLinkActive="dropdown-item__active"
+              (click)="close()"
+            >
+              {{ submenu.name }}
+            </a>
+          </ng-container>
+          <ng-container *ngIf="submenu.href">
+            <a class="menu-item" [href]="submenu.href" (click)="close()">
+              {{ submenu.name }}
+            </a>
+          </ng-container>
+        </ng-container>
+      </div>
+    </ng-container>
+
+    <ng-template #routeMenuItem>
+      <div
+        class="menu-item"
+        [routerLink]="navItem.route"
+        routerLinkActive="sidebar-category__active"
+        (click)="close()"
+      >
+        <ik-icon classOverride="sidebar-icon" [icon]="navItem.icon"></ik-icon>
+        <span class="sidebar-category">{{ navItem.name }}</span>
+      </div>
+    </ng-template>
+  </ng-container>
 </div>

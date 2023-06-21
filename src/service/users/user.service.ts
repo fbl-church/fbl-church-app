@@ -200,7 +200,7 @@ export class UserService {
    */
   getRolesAsMap(): { name: string; rank: any }[] {
     return Object.entries(WebRole)
-      .filter((e) => !e.includes('LEADER') && !e.includes('HELPER'))
+      .filter((e) => !e.includes('AWANA_LEADER') && !e.includes('AWANA_WORKER'))
       .map(([name, rank]) => ({ name, rank }))
       .filter((v) => Number.isInteger(v.rank));
   }

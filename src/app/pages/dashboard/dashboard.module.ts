@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BaseInitModule } from 'src/app/common/base-init.module';
-import { HomeComponent } from './home.component';
+import { DashboardComponent } from './dashboard.component';
 
 @NgModule({
   imports: [BaseInitModule],
-  declarations: [HomeComponent],
+  declarations: [DashboardComponent],
 })
-export class HomeModule {}
+export class DashboardModule {}

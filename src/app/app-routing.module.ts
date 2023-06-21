@@ -11,16 +11,21 @@ import { ChildGurdiansResolverService } from 'src/service/children/child-gurdian
 import { ChildResolverService } from 'src/service/children/child-resolver.service';
 import { GurdianResolverService } from 'src/service/gurdians/gurdian-resolver.service';
 import { UserResolverService } from 'src/service/users/user-resolver.service';
+import { AwanaCheckInComponent } from './pages/check-in/awana/awana-check-in.component';
+import { CheckInComponent } from './pages/check-in/check-in.component';
+import { JuniorChurchCheckInComponent } from './pages/check-in/junior-church/junior-church-check-in.component';
+import { NurseryCheckInComponent } from './pages/check-in/nursery/nursery-check-in.component';
+import { VBSCheckInComponent } from './pages/check-in/vbs/vbs-check-in.component';
 import { ChildDetailComponent } from './pages/children/child-detail/child-detail.component';
 import { EditChildGurdiansComponent } from './pages/children/child-detail/pages/edit-child-gurdians/edit-child-gurdians.component';
 import { EditChildComponent } from './pages/children/child-detail/pages/edit-child/edit-child.component';
 import { ChildrenComponent } from './pages/children/children.component';
 import { CreateChildComponent } from './pages/children/create-child/create-child.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CreateGurdianComponent } from './pages/gurdians/create-gurdian/create-gurdian.component';
 import { GurdianDetailComponent } from './pages/gurdians/gurdian-detail/gurdian-detail.component';
 import { EditGurdianComponent } from './pages/gurdians/gurdian-detail/pages/edit-gurdian/edit-gurdian.component';
 import { GurdianComponent } from './pages/gurdians/gurdian.component';
-import { HomeComponent } from './pages/home/home.component';
 import { LoginOverviewComponent } from './pages/login/login-overview/login-overview.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileEditComponent } from './pages/profile/profile-edit/profile-edit.component';
@@ -33,9 +38,6 @@ import { UserDetailComponent } from './pages/users/user-detail/user-detail.compo
 import { UserComponent } from './pages/users/user.component';
 import { AuthenticatedLayoutComponent } from './shared/components/layouts/authenticated-layout/authenticated-layout.component';
 
-/**
- * Make sure to add back CanActivate on Home
- */
 const routes: Routes = [
   // Unauthenticated Routes
   {
@@ -52,13 +54,13 @@ const routes: Routes = [
   },
   // Authenticated Routes
   {
-    path: 'home',
+    path: 'dashboard',
     component: AuthenticatedLayoutComponent,
     canActivate: [AuthGuard],
     children: [
       {
         path: '',
-        component: HomeComponent,
+        component: DashboardComponent,
         pathMatch: 'full',
       },
     ],
@@ -70,6 +72,21 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        component: UserComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'link1',
+        component: UserComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'link2',
+        component: UserComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'link3',
         component: UserComponent,
         pathMatch: 'full',
       },
@@ -277,8 +294,36 @@ const routes: Routes = [
       },
     ],
   },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', redirectTo: 'home' },
+  {
+    path: 'check-in',
+    component: AuthenticatedLayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: CheckInComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'nursery',
+        component: NurseryCheckInComponent,
+      },
+      {
+        path: 'junior-church',
+        component: JuniorChurchCheckInComponent,
+      },
+      {
+        path: 'awana',
+        component: AwanaCheckInComponent,
+      },
+      {
+        path: 'vbs',
+        component: VBSCheckInComponent,
+      },
+    ],
+  },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '**', redirectTo: 'dashboard' },
 ];
 
 @NgModule({

@@ -53,6 +53,10 @@
   border-left: 5px solid #3366ff !important;
 }
 
+.dropdown-item__active {
+  color: #3366ff !important;
+}
+
 .sidenav .dropdown {
   max-height: 0;
   transition: 0.25s;
@@ -71,7 +75,7 @@
   display: flex;
 }
 
-.sidenav .dropdown div:hover {
+.sidenav .dropdown a:hover {
   color: #3366ff;
 }
 

@@ -1,14 +1,23 @@
 {
   "webRoles": {
     "USER": "User",
+    "NURSERY_DIRECTOR": "Nursery Director",
+    "NURSERY_WORKER": "Nursery Worker",
+    "JUNIOR_CHURCH_DIRECTOR": "Junior Church Director",
+    "JUNIOR_CHURCH_WORKER": "Junior Church Worker",
+    "VBS_DIRECTOR": "VBS Director",
+    "VBS_WORKER": "VBS Worker",
+    "AWANA_DIRECTOR": "Awana Director",
+    "AWANA_LEADER": "Awana Leader",
+    "AWANA_WORKER": "Awana Worker",
     "TNT_LEADER": "T&T Leader",
-    "TNT_HELPER": "T&T Helper",
+    "TNT_WORKER": "T&T Worker",
     "SPARKS_LEADER": "Sparks Leader",
-    "SPARKS_HELPER": "Sparks Helper",
+    "SPARKS_WORKER": "Sparks Worker",
     "CUBBIES_LEADER": "Cubbies Leader",
-    "CUBBIES_HELPER": "Cubbies Helper",
+    "CUBBIES_WORKER": "Cubbies Worker",
     "CROSS_CHECK_LEADER": "Cross Check Leader",
-    "CROSS_CHECK_HELPER": "Cross Check Helper",
+    "CROSS_CHECK_WORKER": "Cross Check Worker",
     "SITE_ADMIN": "Site Admin",
     "ADMIN": "Admin"
   }

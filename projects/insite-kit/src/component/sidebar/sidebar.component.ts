@@ -14,6 +14,7 @@ import {
   faUsers,
 } from '@fortawesome/free-solid-svg-icons';
 import { JwtService } from '../../service/auth/jwt.service';
+import { NAVIGATION_ROUTES } from './sidebar.config';
 
 @Component({
   selector: 'ik-sidebar',
@@ -35,6 +36,8 @@ export class SidebarComponent implements OnInit {
   dropdownCloseIcon = faCaretLeft;
   dropdownOpenIcon = faCaretDown;
 
+  navigationConfig = NAVIGATION_ROUTES;
+
   userApps: string[];
 
   constructor(
@@ -42,8 +45,11 @@ export class SidebarComponent implements OnInit {
     private readonly jwt: JwtService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.userApps = this.jwt.getApps();
+    this.navigationConfig = NAVIGATION_ROUTES.filter((n) =>
+      this.userApps.includes(n.id)
+    );
   }
 
   open() {
@@ -62,11 +68,6 @@ export class SidebarComponent implements OnInit {
     } else {
       this.open();
     }
-  }
-
-  route(path: string) {
-    this.close();
-    this.router.navigate([path]);
   }
 
   toggleDropdown(id: string) {
@@ -88,9 +89,17 @@ export class SidebarComponent implements OnInit {
   }
 
   getDropdownIcon(id: string) {
-    return document.getElementById(id).style.maxHeight ===
-      this.MAX_DROPDOWN_HEIGHT
-      ? this.dropdownOpenIcon
-      : this.dropdownCloseIcon;
+    const element = document.getElementById(id);
+    if (element) {
+      return element.style.maxHeight === this.MAX_DROPDOWN_HEIGHT
+        ? this.dropdownOpenIcon
+        : this.dropdownCloseIcon;
+    } else {
+      return null;
+    }
+  }
+
+  isRouteActive(route: any) {
+    return this.router.url.includes(route);
   }
 }
