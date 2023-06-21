@@ -20,28 +20,22 @@
   <div class="flex">
     <div class="left-column">
       <ik-card-info
-        header="Position"
-        [text]="user?.webRole | webRoleTranslate"
-      ></ik-card-info>
-    </div>
-    <div class="right-column">
-      <ik-card-info
         [contentColor]="user?.appAccess ? 'text-success' : 'text-danger'"
         header="Access"
         [text]="user?.appAccess ? 'GRANTED' : 'DENIED'"
       ></ik-card-info>
     </div>
-  </div>
-
-  <div class="flex">
-    <div class="left-column">
+    <div class="right-column">
       <ik-card-info
         header="Created Date"
         [text]="user?.insertDate | date : 'MMMM d, y'"
       >
       </ik-card-info>
     </div>
-    <div *webRoleRestrictionAccess="WebRole.ADMIN" class="right-column">
+  </div>
+
+  <div class="flex">
+    <div *webRoleRestrictionAccess="WebRole.ADMIN" class="left-column">
       <ik-card-info
         header="Last Login"
         [text]="user?.lastLoginDate | date : 'MMMM d, y, h:mm a'"

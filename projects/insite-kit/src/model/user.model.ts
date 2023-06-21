@@ -5,7 +5,7 @@ export interface User {
   firstName?: string;
   lastName?: string;
   email?: string;
-  webRole?: WebRole | any;
+  webRole?: WebRole[] | any;
   password?: string;
   lastLoginDate?: Date;
   insertDate?: Date;

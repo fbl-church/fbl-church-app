@@ -1,0 +1,28 @@
+<ik-card [padding]="false">
+  <ik-card-header title="Roles">
+    <ng-container *ngIf="enableEdit">
+      <ik-icon
+        [icon]="editIcon"
+        color="black"
+        class="edit-icon"
+        (click)="onEditIconClick()"
+        *featureAccess="[Application.USERS, Feature.DETAIL, Access.UPDATE]"
+      ></ik-icon>
+    </ng-container>
+  </ik-card-header>
+  <div class="app-text">
+    <ul class="flex">
+      <div class="column-flex-left">
+        <ng-container *ngFor="let role of user.webRole; let even = even">
+          <li *ngIf="even">{{ role | webRoleTranslate }}</li>
+        </ng-container>
+      </div>
+
+      <div class="column-flex-left">
+        <ng-container *ngFor="let role of user.webRole; let odd = odd">
+          <li *ngIf="odd">{{ role | webRoleTranslate }}</li>
+        </ng-container>
+      </div>
+    </ul>
+  </div>
+</ik-card>

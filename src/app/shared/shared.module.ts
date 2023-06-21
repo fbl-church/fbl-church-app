@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BaseInitModule } from 'src/app/common/base-init.module';
 import { ChildGurdiansGridCardComponent } from './components/cards/child-gurdians-grid-card/child-gurdians-grid-card.component';
 import { UserDetailsCardComponent } from './components/cards/user-details-card/user-details-card.component';
+import { UserRolesCardComponent } from './components/cards/user-roles-card/user-roles-card.component';
 import { ChildFormComponent } from './components/forms/child-form/child-form.component';
 import { GurdianFormComponent } from './components/forms/gurdian-form/gurdian-form.component';
 import { UserFormComponent } from './components/forms/user-form/user-form.component';
@@ -16,6 +17,7 @@ import { AuthenticatedLayoutComponent } from './components/layouts/authenticated
     ChildFormComponent,
     ChildGurdiansGridCardComponent,
     GurdianFormComponent,
+    UserRolesCardComponent,
   ],
   exports: [
     UserFormComponent,
@@ -23,6 +25,7 @@ import { AuthenticatedLayoutComponent } from './components/layouts/authenticated
     ChildFormComponent,
     GurdianFormComponent,
     ChildGurdiansGridCardComponent,
+    UserRolesCardComponent,
   ],
 })
 export class SharedModule {}

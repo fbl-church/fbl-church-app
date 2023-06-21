@@ -25,8 +25,10 @@ export class WebRoleRestrictionAccessDirective implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    const userRole: number = Number(WebRole[this.jwt.get('webRole')]);
-    this.hasPermission = userRole >= Number(this.role);
+    const userRoles: any[] = this.jwt.get('webRole');
+    this.hasPermission =
+      Math.max(...userRoles.map((r) => Number(WebRole[r]))) >=
+      Number(this.role);
     this.updateView();
   }
 

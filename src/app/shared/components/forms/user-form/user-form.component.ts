@@ -54,9 +54,6 @@ export class UserFormComponent implements OnInit {
         this.userData ? this.userData.email : '',
         [Validators.required, Validators.email],
       ],
-      webRole: this.userData
-        ? this.userData.webRole.toUpperCase()
-        : WebRole[WebRole.USER].toUpperCase(),
     });
 
     if (this.enablePasswordUpdate) {
