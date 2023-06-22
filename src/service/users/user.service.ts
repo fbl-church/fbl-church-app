@@ -196,7 +196,7 @@ export class UserService {
    */
   getRegisterRoles(): string[] {
     return this.getRolesAsMap()
-      .filter((e) => e.rank <= WebRole.AWANA_LEADER)
+      .filter((e) => e.rank <= WebRole.LEADER)
       .map((e) => e.name);
   }
 
@@ -209,9 +209,7 @@ export class UserService {
     return Object.entries(WebRole)
       .filter(
         (e) =>
-          !e.includes('AWANA_LEADER') &&
-          !e.includes('AWANA_WORKER') &&
-          !e.includes('USER')
+          !e.includes('LEADER') && !e.includes('WORKER') && !e.includes('USER')
       )
       .map(([id, rank]) => ({ id, rank }))
       .filter((v) => Number.isInteger(v.rank));
