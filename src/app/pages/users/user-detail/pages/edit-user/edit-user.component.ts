@@ -58,14 +58,18 @@ export class EditUserComponent implements OnInit, OnDestroy {
   }
 
   onSaveClick(user: User) {
+    this.loading = true;
+    this.disableSave = true;
+
     this.userService.updateUserProfileById(this.userId, user).subscribe({
       next: () => {
         this.onCancelClick();
         this.popupService.success('User Successfully updated!');
+        this.resetStatus();
       },
       error: () => {
         this.popupService.error('User could not be updated at this time!');
-        this.loading = false;
+        this.resetStatus();
       },
     });
   }

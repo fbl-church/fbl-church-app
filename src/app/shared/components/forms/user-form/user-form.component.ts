@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -8,11 +15,12 @@ import {
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
-import { UserService } from 'src/service/users/user.service';
+import { UserRoleSelectionGridComponent } from '../../cards/user-role-selection-grid/user-role-selection-grid.component';
 
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
+  styleUrls: ['./user-form.component.scss'],
 })
 export class UserFormComponent implements OnInit {
   @Input() userData: User;
@@ -23,20 +31,20 @@ export class UserFormComponent implements OnInit {
   @Input() disableSave = false;
   @Output() cancel = new EventEmitter<any>();
   @Output() save = new EventEmitter<User>();
+  @ViewChild(UserRoleSelectionGridComponent)
+  roleSelectionGrid: UserRoleSelectionGridComponent;
 
-  roles: string[];
   form: FormGroup;
 
   WebRole = WebRole;
 
   constructor(
-    private readonly userService: UserService,
     private readonly popupService: PopupService,
     private readonly fb: FormBuilder
   ) {}
 
   ngOnInit() {
-    this.roles = this.userService.getAllowedRolesToCreate();
+    console.log(this.userData);
     this.buildForm();
   }
 
@@ -86,8 +94,10 @@ export class UserFormComponent implements OnInit {
       user.password = this.form.value.password.trim();
     }
 
-    if (this.form.value.webRole) {
-      user.webRole = this.form.value.webRole.trim();
+    if (this.enableRoleUpdate) {
+      user.webRole = this.roleSelectionGrid.getSelectedRoles();
+    } else {
+      user.webRole = this.userData.webRole;
     }
 
     if (emitSave) {

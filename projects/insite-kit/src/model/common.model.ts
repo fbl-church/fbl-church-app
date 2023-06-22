@@ -1,7 +1,7 @@
 export enum WebRole {
   USER = 100,
-  LEADER = 300,
-  WORKER = 200,
+  AWANA_LEADER = 300,
+  AWANA_WORKER = 200,
   TNT_LEADER = 300,
   TNT_WORKER = 200,
   SPARKS_LEADER = 300,

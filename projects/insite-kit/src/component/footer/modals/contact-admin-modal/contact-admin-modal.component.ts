@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import { ModalComponent } from '../../../modal/modal.component';
 
 @Component({
@@ -13,10 +12,7 @@ export class ContactAdminModalComponent implements OnInit {
   form: FormGroup;
   loading = false;
 
-  constructor(
-    private readonly fb: FormBuilder,
-    private readonly toastService: ToastrService
-  ) {}
+  constructor(private readonly fb: FormBuilder) {}
 
   ngOnInit() {
     this.buildForm();

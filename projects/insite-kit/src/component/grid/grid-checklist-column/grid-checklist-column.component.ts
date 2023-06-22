@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
   template: '',
 })
 export class GridChecklistColumnComponent {
-  @Input() selectedIds: Set<number> = new Set<number>();
+  @Input() selectedIds: any[] = [];
 
   updateSelectedId(data: any) {
     if (data.selected) {
@@ -15,29 +15,26 @@ export class GridChecklistColumnComponent {
     }
   }
 
-  setSelectedIds(newIds: number[]) {
-    this.selectedIds = new Set(newIds);
-  }
-
-  addId(id: number) {
-    if (this.selectedIds.has(id)) {
+  addId(id: any) {
+    this.selectedIds.includes(id);
+    if (this.selectedIds.includes(id)) {
       return;
     } else {
-      this.selectedIds.add(id);
+      this.selectedIds.push(id);
     }
   }
 
-  removeId(id: number) {
-    if (this.selectedIds.has(id)) {
-      this.selectedIds.delete(id);
+  removeId(id: any) {
+    if (this.selectedIds.includes(id)) {
+      this.selectedIds = this.selectedIds.filter((i) => i !== id);
     }
   }
 
-  isSelected(id: number) {
-    return this.selectedIds.has(id);
+  isSelected(id: any) {
+    return this.selectedIds.includes(id);
   }
 
   getSelected() {
-    return Array.from(this.selectedIds);
+    return this.selectedIds;
   }
 }

@@ -2,23 +2,24 @@
   <ik-header-back (back)="onCancelClick()"></ik-header-back
 ></ik-header>
 
-<app-child-gurdians-grid-card
-  *ngIf="gurdiansUpdating && !loading; else loader"
-  [gurdians]="gurdiansUpdating"
-></app-child-gurdians-grid-card>
+<ng-container *ngIf="gurdiansUpdating && !loading; else loader">
+  <app-child-gurdians-grid-card
+    [gurdians]="gurdiansUpdating"
+  ></app-child-gurdians-grid-card>
 
-<button
-  class="btn btn-default btn-flat btn-size btn-left"
-  (click)="onCancelClick()"
->
-  Cancel
-</button>
-<button
-  class="btn btn-primary btn-flat btn-size btn-right"
-  (click)="onUpdateClick()"
->
-  Update Gurdians
-</button>
+  <button
+    class="btn btn-default btn-flat btn-size btn-left"
+    (click)="onCancelClick()"
+  >
+    Cancel
+  </button>
+  <button
+    class="btn btn-primary btn-flat btn-size btn-right"
+    (click)="onUpdateClick()"
+  >
+    Update Gurdians
+  </button>
+</ng-container>
 
 <ng-template #loader>
   <ik-loading></ik-loading>

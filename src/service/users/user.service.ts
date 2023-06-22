@@ -175,11 +175,18 @@ export class UserService {
    *
    * @returns Returns a list of roles the user is able to create
    */
-  getAllowedRolesToCreate(): string[] {
-    const userRank: number = Number(WebRole[this.jwt.get('webRole')]);
-    return this.getRolesAsMap()
-      .filter((e) => e.rank <= userRank)
-      .map((e) => e.name);
+  getAllowedRolesToCreate(): { id: string; name?: string; rank: any }[] {
+    const userRoles: any[] = this.jwt.get('webRole');
+    const maxUserRank = Math.max(...userRoles.map((r) => Number(WebRole[r])));
+    let allowableRoles = this.getRolesAsMap().filter(
+      (e) => e.rank <= maxUserRank
+    );
+
+    allowableRoles.forEach(
+      (r) => (r.name = this.commonService.getFormattedRole(r.id))
+    );
+
+    return allowableRoles;
   }
 
   /**
@@ -189,7 +196,7 @@ export class UserService {
    */
   getRegisterRoles(): string[] {
     return this.getRolesAsMap()
-      .filter((e) => e.rank <= WebRole.LEADER)
+      .filter((e) => e.rank <= WebRole.AWANA_LEADER)
       .map((e) => e.name);
   }
 
@@ -198,10 +205,15 @@ export class UserService {
    *
    * @returns The map of the roles enum.
    */
-  getRolesAsMap(): { name: string; rank: any }[] {
+  getRolesAsMap(): { id: string; name?: string; rank: any }[] {
     return Object.entries(WebRole)
-      .filter((e) => !e.includes('AWANA_LEADER') && !e.includes('AWANA_WORKER'))
-      .map(([name, rank]) => ({ name, rank }))
+      .filter(
+        (e) =>
+          !e.includes('AWANA_LEADER') &&
+          !e.includes('AWANA_WORKER') &&
+          !e.includes('USER')
+      )
+      .map(([id, rank]) => ({ id, rank }))
       .filter((v) => Number.isInteger(v.rank));
   }
 }

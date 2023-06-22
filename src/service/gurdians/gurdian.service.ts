@@ -86,6 +86,23 @@ export class GurdianService {
   }
 
   /**
+   * Update a childs gurdians by id
+   *
+   * @param childId The child id to update
+   * @param gurdians The list of gurdians to send
+   * @returns The list of updated gurdians
+   */
+  updateChildGurdiansById(
+    childId: any,
+    gurdians: Gurdian[]
+  ): Observable<Gurdian> {
+    return this.request.put<Gurdian[]>(
+      `${this.BASE_PATH}/${childId}/gurdians`,
+      gurdians
+    );
+  }
+
+  /**
    * Delete the gurdian associated to the given id.
    *
    * @param id of the gurdian to be deleted.

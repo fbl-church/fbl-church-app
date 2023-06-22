@@ -273,8 +273,12 @@ export class GridComponent implements OnChanges, OnDestroy, AfterViewInit {
       return;
     }
 
-    const total =
-      Number(this.data.headers.get('total-count')) || this.data.body?.length;
+    let total = 0;
+    if (this.data.headers) {
+      total = Number(this.data.headers.get('total-count'));
+    } else {
+      total = this.data.body?.length;
+    }
     this.gridPager.update(total, this.activePage);
   }
 

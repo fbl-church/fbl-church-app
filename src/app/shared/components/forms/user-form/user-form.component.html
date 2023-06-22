@@ -1,30 +1,22 @@
-<form [formGroup]="form">
+<form [formGroup]="form" class="user-form__space-between">
   <ik-card [padding]="false" [marginBottom]="false">
-    <ik-card-info header="First Name*"
-      ><input
-        class="form-input__normal"
-        placeholder="First Name"
-        formControlName="firstName"
-      />
-    </ik-card-info>
-
-    <ik-card-info header="Last Name*"
-      ><input
-        class="form-input__normal"
-        placeholder="Last Name"
-        formControlName="lastName"
-      />
-    </ik-card-info>
-
-    <!-- <ng-container *ngIf="enableRoleUpdate">
-      <ik-card-info header="Web Role*">
-        <select class="form-input__normal" formControlName="webRole">
-          <option *ngFor="let role of roles" [ngValue]="role">
-            {{ role | webRoleTranslate }}
-          </option>
-        </select>
+    <div class="row">
+      <ik-card-info header="First Name*" class="col-md-6"
+        ><input
+          class="form-input__normal"
+          placeholder="First Name"
+          formControlName="firstName"
+        />
       </ik-card-info>
-    </ng-container> -->
+
+      <ik-card-info header="Last Name*" class="col-md-6"
+        ><input
+          class="form-input__normal"
+          placeholder="Last Name"
+          formControlName="lastName"
+        />
+      </ik-card-info>
+    </div>
 
     <ik-card-info header="Email*">
       <input
@@ -43,6 +35,12 @@
     </ik-card-info>
   </ik-card>
 </form>
+
+<app-user-role-selection-grid
+  *ngIf="enableRoleUpdate"
+  [selectedRoles]="userData?.webRole"
+></app-user-role-selection-grid>
+
 <button
   class="btn btn-default btn-flat btn-size btn-left"
   (click)="onCancelClick()"
@@ -52,7 +50,7 @@
 <button
   class="btn btn-primary btn-flat btn-size btn-right"
   (click)="onSaveClick()"
-  [disabled]="form.invalid || !form.dirty || disableSave"
+  [disabled]="form.invalid || disableSave"
 >
   {{ rightActionButton }}
 </button>
