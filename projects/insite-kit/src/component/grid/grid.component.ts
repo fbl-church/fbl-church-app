@@ -173,7 +173,7 @@ export class GridComponent implements OnChanges, OnDestroy, AfterViewInit {
     }
 
     const currentSelectedIds = this.gridChecklistColumn.getSelected();
-    if (currentSelectedIds.length > 0) {
+    if (currentSelectedIds && currentSelectedIds.length > 0) {
       this.data.body.forEach(
         (r) => (r.selected = currentSelectedIds.includes(r.id))
       );
