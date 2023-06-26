@@ -1,6 +1,7 @@
 {
   "webRoles": {
     "USER": "User",
+    "GURDIAN": "Gurdian",
     "NURSERY_DIRECTOR": "Nursery Director",
     "NURSERY_WORKER": "Nursery Worker",
     "JUNIOR_CHURCH_DIRECTOR": "Junior Church Director",

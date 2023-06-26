@@ -34,12 +34,17 @@ export class CreateUserComponent implements OnInit {
       next: (res) => {
         this.router.navigate([`/users/${res.id}/details`]);
         this.popupService.success('User Successfully created!');
+        this.resetStatus();
       },
       error: () => {
         this.popupService.error('User could not be created!');
-        this.loading = false;
-        this.disableSave = true;
+        this.resetStatus();
       },
     });
+  }
+
+  resetStatus() {
+    this.loading = false;
+    this.disableSave = false;
   }
 }

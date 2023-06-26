@@ -38,7 +38,7 @@
 
 <app-user-role-selection-grid
   *ngIf="enableRoleUpdate"
-  [selectedRoles]="userData?.webRole"
+  [selectedRoles]="userData ? userData.webRole : []"
 ></app-user-role-selection-grid>
 
 <button

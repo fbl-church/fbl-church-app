@@ -37,7 +37,6 @@ export class ChildrenComponent {
   }
 
   onRowClick(event: any) {
-    console.log(event);
     this.router.navigate([`/children/${event.id}/details`]);
   }
 }

@@ -44,7 +44,6 @@ export class UserFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.userData);
     this.buildForm();
   }
 
