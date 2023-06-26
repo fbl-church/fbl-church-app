@@ -43,6 +43,7 @@ export class GridComponent implements OnChanges, OnDestroy, AfterViewInit {
   @Output() rowClick = new EventEmitter<any>();
 
   activePage = 1;
+  currentSearch = '';
   loading = true;
   initialLoadComplete = false;
 
@@ -120,9 +121,10 @@ export class GridComponent implements OnChanges, OnDestroy, AfterViewInit {
     this.gridSearch.search
       .pipe(
         tap(() => (this.activePage = 1)),
+        tap((s) => (this.currentSearch = s)),
         takeUntil(this.destroy)
       )
-      .subscribe((s) => this.loadData(s));
+      .subscribe((s) => this.loadData());
   }
 
   /**
@@ -228,12 +230,12 @@ export class GridComponent implements OnChanges, OnDestroy, AfterViewInit {
    *
    * @param search Optional search to be passed to the dataloader.
    */
-  loadData(search?: string) {
+  loadData() {
     this.loading = true;
     this.stopListeningForData.next();
 
     this.dataLoader
-      .call(this, this.getGridParams(search).build())
+      .call(this, this.getGridParams(this.currentSearch).build())
       .pipe(takeUntil(this.stopListeningForData))
       .subscribe((res: HttpResponse<any[]>) => this.updateData(res));
   }
