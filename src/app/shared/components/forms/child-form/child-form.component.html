@@ -1,37 +1,41 @@
 <form [formGroup]="form" class="child-form__space-between">
   <ik-card [padding]="false" [marginBottom]="false">
-    <ik-card-info header="First Name*"
-      ><input
-        class="form-input__normal"
-        placeholder="First Name"
-        formControlName="firstName"
-      />
-    </ik-card-info>
+    <div class="row">
+      <ik-card-info header="First Name*" class="col-md-6"
+        ><input
+          class="form-input__normal"
+          placeholder="First Name"
+          formControlName="firstName"
+        />
+      </ik-card-info>
 
-    <ik-card-info header="Last Name*"
-      ><input
-        class="form-input__normal"
-        placeholder="Last Name"
-        formControlName="lastName"
-      />
-    </ik-card-info>
+      <ik-card-info header="Last Name*" class="col-md-6"
+        ><input
+          class="form-input__normal"
+          placeholder="Last Name"
+          formControlName="lastName"
+        />
+      </ik-card-info>
+    </div>
 
-    <ik-card-info header="Group*">
-      <select class="form-input__normal" formControlName="churchGroup">
-        <option *ngFor="let group of churchGroups" [ngValue]="group">
-          {{ group | churchGroupTranslate }}
-        </option>
-      </select>
-    </ik-card-info>
+    <div class="row">
+      <ik-card-info header="Group*" class="col-md-6">
+        <select class="form-input__normal" formControlName="churchGroup">
+          <option *ngFor="let group of churchGroups" [ngValue]="group">
+            {{ group | churchGroupTranslate }}
+          </option>
+        </select>
+      </ik-card-info>
 
-    <ik-card-info header="Birthday"
-      ><input
-        type="date"
-        class="form-input__normal"
-        placeholder="Birthday"
-        formControlName="birthday"
-      />
-    </ik-card-info>
+      <ik-card-info header="Birthday" class="col-md-6"
+        ><input
+          type="date"
+          class="form-input__normal"
+          placeholder="Birthday"
+          formControlName="birthday"
+        />
+      </ik-card-info>
+    </div>
 
     <ik-card-info header="Allergies"
       ><input

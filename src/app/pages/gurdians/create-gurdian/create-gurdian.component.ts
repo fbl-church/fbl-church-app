@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { faUserPen } from '@fortawesome/free-solid-svg-icons';
 import { Gurdian } from 'projects/insite-kit/src/model/child.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { GurdianService } from 'src/service/gurdians/gurdian.service';
@@ -7,10 +8,13 @@ import { GurdianService } from 'src/service/gurdians/gurdian.service';
 @Component({
   selector: 'app-create-gurdian',
   templateUrl: './create-gurdian.component.html',
+  styleUrls: ['./create-gurdian.component.scss'],
 })
 export class CreateGurdianComponent implements OnInit {
   loading = true;
   disableSave = false;
+
+  existingUserIcon = faUserPen;
 
   constructor(
     private readonly gurdianService: GurdianService,
@@ -24,6 +28,10 @@ export class CreateGurdianComponent implements OnInit {
 
   onCancelClick() {
     this.router.navigate(['/gurdians']);
+  }
+
+  onExistingUserClick() {
+    this.router.navigate(['gurdians/create/existing-user']);
   }
 
   onSaveClick(gurdian: Gurdian) {

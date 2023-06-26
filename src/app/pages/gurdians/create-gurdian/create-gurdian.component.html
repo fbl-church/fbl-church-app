@@ -1,5 +1,12 @@
-<ik-header title="Create Gurdian"
+<ik-header [title]="'Create Gurdian'"
   ><ik-header-back (back)="onCancelClick()"></ik-header-back>
+  <button
+    class="btn btn-primary btn-flat btn-size btn-right"
+    (click)="onExistingUserClick()"
+  >
+    <ik-icon [icon]="existingUserIcon" classOverride="add-icon"></ik-icon>
+    Existing User?
+  </button>
 </ik-header>
 
 <app-gurdian-form
