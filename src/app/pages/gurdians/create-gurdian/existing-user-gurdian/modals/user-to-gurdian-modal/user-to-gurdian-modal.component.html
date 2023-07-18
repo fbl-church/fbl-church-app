@@ -1,0 +1,47 @@
+<ik-modal #userToGurdianModal name="userToGurdianModal">
+  <ik-modal-header
+    title="Assign Gurdian Role to User?"
+    type="info"
+  ></ik-modal-header>
+  <ng-container *ngIf="!modalLoading; else loader">
+    <ik-modal-body>
+      <form *ngIf="form" [formGroup]="form">
+        <ik-card-info header="Name*" [padding]="false">
+          <input
+            class="form-input__outline"
+            placeholder="Name"
+            formControlName="name"
+            readonly
+          />
+        </ik-card-info>
+        <ik-card-info header="Phone*" [padding]="false">
+          <input
+            phoneMask
+            placeholder="(___) ___-____"
+            class="form-input__outline"
+            formControlName="phone"
+          />
+        </ik-card-info>
+      </form>
+    </ik-modal-body>
+    <ik-modal-action-bar>
+      <button
+        class="btn btn-primary btn-flat btn-right btn-modal"
+        (click)="onUserToGurdianClick()"
+        [disabled]="form && form.invalid"
+      >
+        Assign Gurdian Role
+      </button>
+      <button
+        class="btn btn-default btn-flat btn-right btn-modal"
+        (click)="userToGurdianModal.close()"
+      >
+        Cancel
+      </button>
+    </ik-modal-action-bar>
+  </ng-container>
+</ik-modal>
+
+<ng-template #loader>
+  <ik-loading></ik-loading>
+</ng-template>

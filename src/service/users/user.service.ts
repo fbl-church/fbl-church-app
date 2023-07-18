@@ -31,7 +31,6 @@ export class UserService {
     return this.request.get<User[]>(this.BASE_USER_PATH, params).pipe(
       tap((v) =>
         v.body.forEach((u) => {
-          u.formattedRole = this.commonService.getFormattedRole(u.webRole);
           u.formattedName = this.commonService.getFormattedName(u);
         })
       )

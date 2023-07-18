@@ -2,6 +2,7 @@
   ><ik-header-back (back)="onCancelClick()"></ik-header-back>
   <button
     class="btn btn-primary btn-flat btn-size btn-right"
+    [disabled]="loading"
     (click)="onExistingUserClick()"
   >
     <ik-icon [icon]="existingUserIcon" classOverride="add-icon"></ik-icon>

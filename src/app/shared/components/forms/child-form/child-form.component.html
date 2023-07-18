@@ -19,14 +19,6 @@
     </div>
 
     <div class="row">
-      <ik-card-info header="Group*" class="col-md-6">
-        <select class="form-input__normal" formControlName="churchGroup">
-          <option *ngFor="let group of churchGroups" [ngValue]="group">
-            {{ group | churchGroupTranslate }}
-          </option>
-        </select>
-      </ik-card-info>
-
       <ik-card-info header="Birthday" class="col-md-6"
         ><input
           type="date"
@@ -35,15 +27,14 @@
           formControlName="birthday"
         />
       </ik-card-info>
+      <ik-card-info header="Allergies" class="col-md-6"
+        ><input
+          class="form-input__normal"
+          placeholder="Allergies"
+          formControlName="allergies"
+        />
+      </ik-card-info>
     </div>
-
-    <ik-card-info header="Allergies"
-      ><input
-        class="form-input__normal"
-        placeholder="Allergies"
-        formControlName="allergies"
-      />
-    </ik-card-info>
 
     <ik-card-info header="Additional Information">
       <textarea

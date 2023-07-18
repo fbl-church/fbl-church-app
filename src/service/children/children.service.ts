@@ -26,9 +26,6 @@ export class ChildrenService {
     return this.request.get<Child[]>(this.BASE_PATH, params).pipe(
       tap((v) =>
         v.body.forEach((u) => {
-          u.formattedGroup = this.commonService.getFormattedChurchGroup(
-            u.churchGroup
-          );
           u.formattedName = this.commonService.getFormattedName(u);
         })
       )
@@ -58,9 +55,6 @@ export class ChildrenService {
         tap((v) =>
           v.body.forEach((u) => {
             u.formattedName = this.commonService.getFormattedName(u);
-            u.formattedGroup = this.commonService.getFormattedChurchGroup(
-              u.churchGroup
-            );
           })
         )
       );

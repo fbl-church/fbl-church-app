@@ -37,12 +37,6 @@ export class ChildFormComponent implements OnInit {
         this.childData?.lastName ? this.childData.lastName : '',
         Validators.required,
       ],
-      churchGroup: [
-        this.childData?.churchGroup
-          ? this.childData.churchGroup
-          : ChurchGroup.CUBBIES,
-        Validators.required,
-      ],
       birthday: this.childData?.birthday
         ? this.childData.birthday.toString().split('T')[0]
         : '',
@@ -59,7 +53,6 @@ export class ChildFormComponent implements OnInit {
     let newChild: Child = {
       firstName: this.form.value.firstName,
       lastName: this.form.value.lastName,
-      churchGroup: this.form.value.churchGroup,
     };
 
     if (this.form.value.birthday) {

@@ -61,7 +61,7 @@ describe('CreateAccountComponent', () => {
     expect(userService.register).toHaveBeenCalledWith({
       firstName: 'Test',
       lastName: 'Admin',
-      webRole: 'USER',
+      webRole: 'GURDIAN',
       email: 'Test@Admin.com',
       password: 'newPassword',
     });

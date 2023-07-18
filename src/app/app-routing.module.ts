@@ -11,11 +11,6 @@ import { ChildGurdiansResolverService } from 'src/service/children/child-gurdian
 import { ChildResolverService } from 'src/service/children/child-resolver.service';
 import { GurdianResolverService } from 'src/service/gurdians/gurdian-resolver.service';
 import { UserResolverService } from 'src/service/users/user-resolver.service';
-import { AwanaCheckInComponent } from './pages/check-in/awana/awana-check-in.component';
-import { CheckInComponent } from './pages/check-in/check-in.component';
-import { JuniorChurchCheckInComponent } from './pages/check-in/junior-church/junior-church-check-in.component';
-import { NurseryCheckInComponent } from './pages/check-in/nursery/nursery-check-in.component';
-import { VBSCheckInComponent } from './pages/check-in/vbs/vbs-check-in.component';
 import { ChildDetailComponent } from './pages/children/child-detail/child-detail.component';
 import { EditChildGurdiansComponent } from './pages/children/child-detail/pages/edit-child-gurdians/edit-child-gurdians.component';
 import { EditChildComponent } from './pages/children/child-detail/pages/edit-child/edit-child.component';
@@ -37,6 +32,7 @@ import { EditUserComponent } from './pages/users/user-detail/pages/edit-user/edi
 import { ResetPasswordComponent } from './pages/users/user-detail/pages/reset-password/reset-password.component';
 import { UserDetailComponent } from './pages/users/user-detail/user-detail.component';
 import { UserComponent } from './pages/users/user.component';
+import { VBSRegistrationComponent } from './pages/vbs/vbs-registration.component';
 import { AuthenticatedLayoutComponent } from './shared/components/layouts/authenticated-layout/authenticated-layout.component';
 
 const routes: Routes = [
@@ -310,30 +306,27 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'check-in',
+    path: 'vbs',
     component: AuthenticatedLayoutComponent,
     canActivate: [AuthGuard],
     children: [
       {
         path: '',
-        component: CheckInComponent,
+        component: VBSRegistrationComponent,
         pathMatch: 'full',
       },
       {
-        path: 'nursery',
-        component: NurseryCheckInComponent,
+        path: 'home',
+        component: VBSRegistrationComponent,
+        pathMatch: 'full',
       },
       {
-        path: 'junior-church',
-        component: JuniorChurchCheckInComponent,
+        path: 'registration',
+        component: VBSRegistrationComponent,
       },
       {
-        path: 'awana',
-        component: AwanaCheckInComponent,
-      },
-      {
-        path: 'vbs',
-        component: VBSCheckInComponent,
+        path: 'groups',
+        component: VBSRegistrationComponent,
       },
     ],
   },

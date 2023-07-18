@@ -4,7 +4,7 @@ export interface Child {
   id?: number;
   firstName?: string;
   lastName?: string;
-  churchGroup?: ChurchGroup | any;
+  churchGroup?: ChurchGroup[] | any[];
   birthday?: Date | any;
   allergies?: string;
   additionalInfo?: string;

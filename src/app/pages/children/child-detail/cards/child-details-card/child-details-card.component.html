@@ -18,22 +18,16 @@
     </div>
     <div class="right-column">
       <ik-card-info
-        header="Group"
-        text="{{ child.churchGroup | churchGroupTranslate }}"
-      ></ik-card-info>
-    </div>
-  </div>
-
-  <div class="flex">
-    <div class="left-column">
-      <ik-card-info
         header="Birthday"
         text="{{
           child?.birthday ? (child.birthday | date : 'MMMM d, y') : '-'
         }}"
       ></ik-card-info>
     </div>
-    <div class="right-column">
+  </div>
+
+  <div class="flex">
+    <div class="left-column">
       <ik-card-info
         header="Created Date"
         text="{{ child.insertDate | date : 'MMMM d, y' }}"

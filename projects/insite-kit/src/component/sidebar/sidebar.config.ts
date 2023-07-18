@@ -3,9 +3,9 @@ import {
   faChartSimple,
   faChildren,
   faCircleInfo,
-  faFileCircleCheck,
   faHome,
   faPerson,
+  faSchool,
   faUsers,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -17,41 +17,46 @@ export const NAVIGATION_ROUTES = [
     route: '/dashboard',
   },
   {
-    id: 'check-in',
-    name: 'Check In',
-    route: '/check-in',
-    icon: faFileCircleCheck,
-    submenu: {
-      id: 'checkInDropdown',
-      items: [
-        {
-          id: 'nursery',
-          name: 'Nursery',
-          route: '/nursery',
-        },
-        {
-          id: 'junior-church',
-          name: 'Junior Church',
-          route: '/junior-church',
-        },
-        {
-          id: 'awana',
-          name: 'Awana',
-          route: '/awana',
-        },
-        {
-          id: 'vbs',
-          name: 'VBS',
-          route: '/vbs',
-        },
-      ],
-    },
-  },
-  {
     id: 'users',
     name: 'Users',
     route: '/users',
     icon: faUsers,
+  },
+  {
+    id: 'vbs',
+    name: 'VBS',
+    route: '/vbs',
+    icon: faSchool,
+    submenu: {
+      id: 'vbsDropdown',
+      items: [
+        {
+          id: 'home',
+          name: 'Home',
+          route: '/home',
+        },
+        {
+          id: 'registration',
+          name: 'Registration',
+          route: '/registration',
+        },
+        {
+          id: 'check-in',
+          name: 'Check In',
+          route: '/check-in',
+        },
+        {
+          id: 'groups',
+          name: 'Groups',
+          route: '/groups',
+        },
+        {
+          id: 'workers',
+          name: 'Workers',
+          route: '/workers',
+        },
+      ],
+    },
   },
   {
     id: 'children',

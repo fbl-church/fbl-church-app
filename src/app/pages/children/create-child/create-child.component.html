@@ -10,7 +10,12 @@
   (cancel)="onCancelClick()"
   (save)="onSaveClick($event)"
 >
-  <app-child-gurdians-grid-card></app-child-gurdians-grid-card>
+  <div class="row">
+    <app-child-group-grid-card class="col-xl-6"></app-child-group-grid-card>
+    <app-child-gurdians-grid-card
+      class="col-xl-6"
+    ></app-child-gurdians-grid-card>
+  </div>
 </app-child-form>
 
 <ng-template #loader>

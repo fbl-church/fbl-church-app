@@ -103,6 +103,23 @@ export class GurdianService {
   }
 
   /**
+   * Update an existing user to have the gurdian role
+   *
+   * @param childId The user id to update
+   * @param gurdian The gurdian user to be inserted
+   * @returns The created gurdian
+   */
+  assignGurdianRoleToExistingUser(
+    userId: any,
+    gurdian: Gurdian
+  ): Observable<Gurdian> {
+    return this.request.put<Gurdian>(
+      `${this.BASE_PATH}/${userId}/user`,
+      gurdian
+    );
+  }
+
+  /**
    * Delete the gurdian associated to the given id.
    *
    * @param id of the gurdian to be deleted.

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BaseInitModule } from 'src/app/common/base-init.module';
+import { ChildGroupGridCardComponent } from './components/cards/child-group-grid-card/child-group-grid-card.component';
 import { ChildGurdiansGridCardComponent } from './components/cards/child-gurdians-grid-card/child-gurdians-grid-card.component';
 import { UserDetailsCardComponent } from './components/cards/user-details-card/user-details-card.component';
 import { UserRoleSelectionGridComponent } from './components/cards/user-role-selection-grid/user-role-selection-grid.component';
@@ -20,6 +21,7 @@ import { AuthenticatedLayoutComponent } from './components/layouts/authenticated
     GurdianFormComponent,
     UserRolesCardComponent,
     UserRoleSelectionGridComponent,
+    ChildGroupGridCardComponent,
   ],
   exports: [
     UserFormComponent,
@@ -29,6 +31,7 @@ import { AuthenticatedLayoutComponent } from './components/layouts/authenticated
     ChildGurdiansGridCardComponent,
     UserRolesCardComponent,
     UserRoleSelectionGridComponent,
+    ChildGroupGridCardComponent,
   ],
 })
 export class SharedModule {}

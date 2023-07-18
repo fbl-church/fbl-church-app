@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Child } from 'projects/insite-kit/src/model/child.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
+import { ChildGroupGridCardComponent } from 'src/app/shared/components/cards/child-group-grid-card/child-group-grid-card.component';
 import { ChildGurdiansGridCardComponent } from 'src/app/shared/components/cards/child-gurdians-grid-card/child-gurdians-grid-card.component';
 import { ChildrenService } from 'src/service/children/children.service';
 
@@ -12,6 +13,8 @@ import { ChildrenService } from 'src/service/children/children.service';
 export class CreateChildComponent implements OnInit {
   @ViewChild(ChildGurdiansGridCardComponent)
   gurdianSelectionGrid: ChildGurdiansGridCardComponent;
+  @ViewChild(ChildGroupGridCardComponent)
+  childGroupSelectionGrid: ChildGroupGridCardComponent;
 
   loading = true;
   disableSave = false;
@@ -36,6 +39,7 @@ export class CreateChildComponent implements OnInit {
       return;
     }
     child.gurdians = gurdians;
+    child.churchGroup = this.childGroupSelectionGrid.getSelectedChurchGroups();
 
     this.loading = true;
     this.disableSave = true;

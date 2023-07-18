@@ -1,5 +1,6 @@
 export enum WebRole {
   USER = 100,
+  GURDIAN = 100,
   LEADER = 300,
   WORKER = 200,
   TNT_LEADER = 300,
@@ -20,6 +21,10 @@ export enum ChurchGroup {
   TNT_GIRLS = 'TNT_GIRLS',
   TNT_BOYS = 'TNT_BOYS',
   CROSS_CHECK = 'CROSS_CHECK',
+  VBS_PRE_PRIMARY = 'VBS_PRE_PRIMARY',
+  VBS_PRIMARY = 'VBS_PRIMARY',
+  VBS_MIDDLER = 'VBS_MIDDLER',
+  VBS_JUNIOR = 'VBS_JUNIOR',
 }
 
 export enum Relationship {
