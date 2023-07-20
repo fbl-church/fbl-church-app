@@ -37,9 +37,12 @@ export class ChildFormComponent implements OnInit {
         this.childData?.lastName ? this.childData.lastName : '',
         Validators.required,
       ],
-      birthday: this.childData?.birthday
-        ? this.childData.birthday.toString().split('T')[0]
-        : '',
+      birthday: [
+        this.childData?.birthday
+          ? this.childData.birthday.toString().split('T')[0]
+          : '',
+        Validators.required,
+      ],
       allergies: [this.childData ? this.childData.allergies : ''],
       additionalInfo: [this.childData ? this.childData.additionalInfo : ''],
     });

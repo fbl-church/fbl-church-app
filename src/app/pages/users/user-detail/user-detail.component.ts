@@ -7,6 +7,7 @@ import {
   Feature,
 } from 'projects/insite-kit/src/model/common.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
+import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { UserService } from 'src/service/users/user.service';
@@ -24,6 +25,7 @@ export class UserDetailComponent implements OnInit {
   Application = App;
   Access = Access;
   editIcon = faPenToSquare;
+  canEditRoles = false;
 
   destroy = new Subject<void>();
 
@@ -31,7 +33,8 @@ export class UserDetailComponent implements OnInit {
     private userService: UserService,
     private readonly activeRoute: ActivatedRoute,
     private readonly popupService: PopupService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly jwt: JwtService
   ) {}
 
   ngOnInit() {
@@ -39,6 +42,11 @@ export class UserDetailComponent implements OnInit {
       .pipe(
         switchMap((res) => this.userService.getUserById(res.id)),
         tap((res) => (this.userData = res.body)),
+        tap(
+          () =>
+            (this.canEditRoles =
+              Number(this.jwt.get('userId')) !== this.userData.id)
+        ),
         takeUntil(this.destroy)
       )
       .subscribe({
@@ -79,6 +87,10 @@ export class UserDetailComponent implements OnInit {
 
   onEditClick() {
     this.router.navigate([`/users/${this.userData.id}/details/edit`]);
+  }
+
+  onEditRolesClick() {
+    this.router.navigate([`/users/${this.userData.id}/details/roles/edit`]);
   }
 
   onResetPassword() {

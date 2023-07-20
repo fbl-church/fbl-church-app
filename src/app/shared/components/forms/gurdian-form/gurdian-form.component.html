@@ -27,21 +27,38 @@
         maxlength="14"
       />
     </ik-card-info>
-
-    <ik-card-info header="Email*">
-      <input
-        class="form-input__normal"
-        placeholder="Email"
-        formControlName="email"
-      />
-    </ik-card-info>
-    <ik-card-info header="Address">
+    <ik-card-info header="Address*">
       <input
         class="form-input__normal"
         placeholder="Address"
         formControlName="address"
       />
     </ik-card-info>
+    <div class="row">
+      <ik-card-info header="City*" class="col-md-4">
+        <input
+          class="form-input__normal"
+          placeholder="City"
+          formControlName="city"
+        />
+      </ik-card-info>
+      <ik-card-info header="State*" class="col-md-4">
+        <ik-single-select
+          formControlName="state"
+          [clearable]="true"
+          [items]="states"
+        ></ik-single-select>
+      </ik-card-info>
+      <ik-card-info header="Zip Code*" class="col-md-4">
+        <input
+          numberRestriction
+          maxlength="5"
+          class="form-input__normal"
+          placeholder="Zip Code"
+          formControlName="zipCode"
+        />
+      </ik-card-info>
+    </div>
   </ik-card>
 </form>
 <button

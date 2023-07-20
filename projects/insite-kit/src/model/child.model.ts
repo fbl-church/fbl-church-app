@@ -21,5 +21,8 @@ export interface Gurdian {
   email?: string;
   phone?: string;
   address?: string;
+  city?: string;
+  state?: string;
+  zipCode?: string;
   [key: string]: any;
 }

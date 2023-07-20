@@ -57,10 +57,7 @@ export class UserFormComponent implements OnInit {
         this.userData ? this.userData.lastName : '',
         Validators.required,
       ],
-      email: [
-        this.userData ? this.userData.email : '',
-        [Validators.required, Validators.email],
-      ],
+      email: [this.userData ? this.userData.email : '', [Validators.email]],
     });
 
     if (this.enablePasswordUpdate) {
@@ -81,7 +78,6 @@ export class UserFormComponent implements OnInit {
     let user: User = {
       firstName: this.form.value.firstName.trim(),
       lastName: this.form.value.lastName.trim(),
-      email: this.form.value.email.trim(),
     };
 
     if (this.form.value.email) {

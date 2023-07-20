@@ -15,7 +15,8 @@ input {
   &__normal {
     @extend .form-input;
     background: #ebeff5;
-    padding: 15px;
+    border: 1px solid #ccc;
+    padding: 12px;
     font-size: 20px;
   }
 
@@ -46,8 +47,8 @@ input {
   &__normal {
     @extend .form-select;
     background: #ebeff5;
-    border: 1px solid #bbbdbf;
-    padding: 10px;
+    border: 1px solid #ccc;
+    padding: 12px;
     font-size: 20px;
   }
 

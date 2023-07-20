@@ -45,6 +45,6 @@ export class ChildGroupDetailsGridComponent {
   }
 
   onEditIconClick() {
-    this.router.navigate([`/children/${this.child.id}/details/gurdians/edit`]);
+    this.router.navigate([`/children/${this.child.id}/details/groups/edit`]);
   }
 }

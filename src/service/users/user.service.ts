@@ -116,6 +116,20 @@ export class UserService {
   }
 
   /**
+   * Update the given user roles by id
+   *
+   * @param id of the user to update.
+   * @param roles The roles to update the user too.
+   * @returns User object
+   */
+  updateUserRolesById(id: number, roles: any[]): Observable<User> {
+    return this.request.put<User>(
+      `${this.BASE_USER_PATH}/roles/${id.toString()}`,
+      roles
+    );
+  }
+
+  /**
    * This will update the current users password for the given password update
    * object
    *

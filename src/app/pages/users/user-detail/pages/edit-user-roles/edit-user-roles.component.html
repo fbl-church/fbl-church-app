@@ -1,0 +1,26 @@
+<ik-header title="Edit User Roles">
+  <ik-header-back (back)="onCancelClick()"></ik-header-back
+></ik-header>
+
+<ng-container *ngIf="userUpdating && !loading; else loader">
+  <app-user-role-selection-grid
+    [selectedRoles]="userUpdating.webRole"
+  ></app-user-role-selection-grid>
+
+  <button
+    class="btn btn-default btn-flat btn-size btn-left"
+    (click)="onCancelClick()"
+  >
+    Cancel
+  </button>
+  <button
+    class="btn btn-primary btn-flat btn-size btn-right"
+    (click)="onUpdateClick()"
+  >
+    Update User Roles
+  </button>
+</ng-container>
+
+<ng-template #loader>
+  <ik-loading></ik-loading>
+</ng-template>

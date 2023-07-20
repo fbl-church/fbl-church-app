@@ -7,6 +7,7 @@ import { ChildGroupDetailsGridComponent } from './child-detail/cards/child-group
 import { ChildGurdiansDetailsGridComponent } from './child-detail/cards/child-gurdians-details-grid/child-gurdians-details-grid.component';
 import { ChildDetailComponent } from './child-detail/child-detail.component';
 import { DeleteChildModalComponent } from './child-detail/modals/delete-child-modal/delete-child-modal.component';
+import { EditChildGroupsComponent } from './child-detail/pages/edit-child-groups/edit-child-groups.component';
 import { EditChildGurdiansComponent } from './child-detail/pages/edit-child-gurdians/edit-child-gurdians.component';
 import { EditChildComponent } from './child-detail/pages/edit-child/edit-child.component';
 import { ChildrenComponent } from './children.component';
@@ -26,6 +27,7 @@ import { CreateChildComponent } from './create-child/create-child.component';
     EditChildComponent,
     EditChildGurdiansComponent,
     ChildGroupDetailsGridComponent,
+    EditChildGroupsComponent,
   ],
 })
 export class ChildrenModule {}

@@ -1,6 +1,7 @@
 {
   "webRoles": {
     "USER": "User",
+    "CHILD": "Child",
     "GURDIAN": "Gurdian",
     "NURSERY_DIRECTOR": "Nursery Director",
     "NURSERY_WORKER": "Nursery Worker",
@@ -8,6 +9,14 @@
     "JUNIOR_CHURCH_WORKER": "Junior Church Worker",
     "VBS_DIRECTOR": "VBS Director",
     "VBS_WORKER": "VBS Worker",
+    "VBS_REGISTRATION": "VBS Registration",
+    "VBS_PRE_PRIMARY": "VBS Pre-Primary",
+    "VBS_PRIMARY": "VBS Primary",
+    "VBS_MIDDLER": "VBS Middler",
+    "VBS_JUNIOR": "VBS Junior",
+    "VBS_GAMES": "VBS Games",
+    "VBS_SNACKS": "VBS Snacks",
+    "VBS_CRAFTS": "VBS Crafts",
     "AWANA_DIRECTOR": "Awana Director",
     "LEADER": "Awana Leader",
     "WORKER": "Awana Worker",
@@ -20,6 +29,6 @@
     "CROSS_CHECK_LEADER": "Cross Check Leader",
     "CROSS_CHECK_WORKER": "Cross Check Worker",
     "SITE_ADMIN": "Site Admin",
-    "ADMIN": "Admin"
+    "ADMIN": "Administrator"
   }
 }

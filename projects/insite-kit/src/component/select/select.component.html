@@ -1,0 +1,11 @@
+<ng-select
+  [disabled]="disable"
+  [ngModel]="value"
+  [items]="items"
+  [clearable]="clearable"
+  [virtualScroll]="true"
+  bindLabel="name"
+  (blur)="onBlur()"
+  (change)="onChange($event)"
+>
+</ng-select>

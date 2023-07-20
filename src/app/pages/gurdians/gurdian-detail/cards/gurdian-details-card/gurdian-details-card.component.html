@@ -9,42 +9,30 @@
     ></ik-icon>
   </ik-card-header>
   <div class="flex">
-    <div class="left-column">
-      <ik-card-info
-        header="Name"
-        text="{{ gurdian | formatUserName }}"
-      ></ik-card-info>
-    </div>
-    <div class="right-column">
-      <ik-card-info
-        header="Phone"
-        [text]="gurdian?.phone ? gurdian.phone : '-'"
-      ></ik-card-info>
-    </div>
+    <ik-card-info
+      class="left-column"
+      header="Name"
+      text="{{ gurdian | formatUserName }}"
+    ></ik-card-info>
+    <ik-card-info
+      class="right-column"
+      header="Phone"
+      [text]="gurdian?.phone ? gurdian.phone : '-'"
+    ></ik-card-info>
   </div>
 
   <div class="flex">
-    <div class="left-column">
-      <ik-card-info
-        header="Email"
-        [text]="gurdian?.email ? gurdian.email : '-'"
-      ></ik-card-info>
-    </div>
-    <div class="right-column">
-      <ik-card-info
-        header="Address"
-        [text]="gurdian?.address ? gurdian?.address : '-'"
-      ></ik-card-info>
-    </div>
-  </div>
+    <ik-card-info
+      class="left-column"
+      header="Address"
+      [text]="gurdian | address"
+    ></ik-card-info>
 
-  <div class="flex">
-    <div class="left-column">
-      <ik-card-info
-        header="Created Date"
-        [text]="gurdian?.insertDate | date : 'MMMM d, y'"
-      >
-      </ik-card-info>
-    </div>
+    <ik-card-info
+      class="right-column"
+      header="Created Date"
+      [text]="gurdian?.insertDate | date : 'MMMM d, y'"
+    >
+    </ik-card-info>
   </div>
 </ik-card>

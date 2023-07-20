@@ -2,7 +2,6 @@ import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'projects/insite-kit/src/model/user.model';
-import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject } from 'rxjs';
 import { map, takeUntil, tap } from 'rxjs/operators';
@@ -25,8 +24,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
     private readonly location: Location,
     private readonly popupService: PopupService,
     private readonly userService: UserService,
-    private readonly route: ActivatedRoute,
-    private readonly jwt: JwtService
+    private readonly route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -35,11 +33,6 @@ export class EditUserComponent implements OnInit, OnDestroy {
       .pipe(
         map((res) => res.user.body),
         tap((res) => (this.userId = res.id)),
-        tap(
-          () =>
-            (this.disableWebRoleUpdate =
-              Number(this.jwt.get('userId')) === this.userId)
-        ),
         takeUntil(this.destroy)
       )
       .subscribe((user) => {

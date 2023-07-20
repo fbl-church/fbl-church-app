@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { ToastrModule } from 'ngx-toastr';
 import { BannerComponent } from './component/banner/banner.component';
 import { CardHeaderComponent } from './component/card/card-header/card-header.component';
@@ -35,11 +36,15 @@ import { ModalHeaderComponent } from './component/modal/modal-header/modal-heade
 import { ModalComponent } from './component/modal/modal.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { NotificationPopupComponent } from './component/notification-popup/notification-popup.component';
+import { SingleSelectInputComponent } from './component/select/select.component';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
 import { FeatureAccessDirective } from './directives/featureAccess/feature-access.directive';
 import { WebRoleRestrictionAccessDirective } from './directives/webRoleRestrictionAccess/webRole-restriction-access.directive';
+import { NumberRestrictionDirective } from './service/directive/number-restriction.directive';
 import { PhoneMaskDirective } from './service/directive/phone-mask.directive';
 import { BasicHttpInterceptorService } from './service/interceptor/http-interceptor.service';
+import { AddressPipe } from './service/pipe/address.pipe';
+import { AgePipe } from './service/pipe/age.pipe';
 import { ChurchGroupTranslationPipe } from './service/pipe/church-group-translation.pipe';
 import { UsernamePipe } from './service/pipe/format-user-name.pipe';
 import { NotificationMessagePipe } from './service/pipe/notification-message.pipe';
@@ -91,6 +96,10 @@ export function tokenGetter() {
     PhoneMaskDirective,
     WebRoleRestrictionAccessDirective,
     FeatureAccessDirective,
+    AgePipe,
+    SingleSelectInputComponent,
+    NumberRestrictionDirective,
+    AddressPipe,
   ],
   imports: [
     CommonModule,
@@ -100,6 +109,7 @@ export function tokenGetter() {
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
+    NgSelectModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -148,6 +158,10 @@ export function tokenGetter() {
     PhoneMaskDirective,
     WebRoleRestrictionAccessDirective,
     FeatureAccessDirective,
+    AgePipe,
+    SingleSelectInputComponent,
+    NumberRestrictionDirective,
+    AddressPipe,
   ],
   entryComponents: [ModalComponent, NotificationPopupComponent],
   providers: [

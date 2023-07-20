@@ -1,6 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Child } from 'projects/insite-kit/src/model/child.model';
+import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { Observable, tap } from 'rxjs';
@@ -79,6 +80,17 @@ export class ChildrenService {
    */
   update(id: any, child: Child): Observable<Child> {
     return this.request.put<Child>(`${this.BASE_PATH}/${id}`, child);
+  }
+
+  /**
+   * This will update the child's groups they are apart of
+   *
+   * @param id The id of the child
+   * @param groups The groups to be added to the user
+   * @returns child object with the updated child object.
+   */
+  updateChildGroups(id: any, groups: ChurchGroup[]): Observable<Child> {
+    return this.request.put<Child>(`${this.BASE_PATH}/${id}/groups`, groups);
   }
 
   /**

@@ -7,11 +7,13 @@ import {
 } from 'projects/insite-kit/src/model/common.model';
 import { AuthGuard } from 'projects/insite-kit/src/service/auth/auth.guard';
 import { FeatureAccessGuard } from 'projects/insite-kit/src/service/auth/feature-access.guard';
+import { ChildGroupsResolverService } from 'src/service/children/child-groups-resolver.service';
 import { ChildGurdiansResolverService } from 'src/service/children/child-gurdians-resolver.service';
 import { ChildResolverService } from 'src/service/children/child-resolver.service';
 import { GurdianResolverService } from 'src/service/gurdians/gurdian-resolver.service';
 import { UserResolverService } from 'src/service/users/user-resolver.service';
 import { ChildDetailComponent } from './pages/children/child-detail/child-detail.component';
+import { EditChildGroupsComponent } from './pages/children/child-detail/pages/edit-child-groups/edit-child-groups.component';
 import { EditChildGurdiansComponent } from './pages/children/child-detail/pages/edit-child-gurdians/edit-child-gurdians.component';
 import { EditChildComponent } from './pages/children/child-detail/pages/edit-child/edit-child.component';
 import { ChildrenComponent } from './pages/children/children.component';
@@ -28,6 +30,7 @@ import { ProfileEditComponent } from './pages/profile/profile-edit/profile-edit.
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UpdatePasswordComponent } from './pages/profile/update-password/update-password.component';
 import { CreateUserComponent } from './pages/users/create-user/create-user.component';
+import { EditUserRolesComponent } from './pages/users/user-detail/pages/edit-user-roles/edit-user-roles.component';
 import { EditUserComponent } from './pages/users/user-detail/pages/edit-user/edit-user.component';
 import { ResetPasswordComponent } from './pages/users/user-detail/pages/reset-password/reset-password.component';
 import { UserDetailComponent } from './pages/users/user-detail/user-detail.component';
@@ -73,21 +76,6 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       {
-        path: 'link1',
-        component: UserComponent,
-        pathMatch: 'full',
-      },
-      {
-        path: 'link2',
-        component: UserComponent,
-        pathMatch: 'full',
-      },
-      {
-        path: 'link3',
-        component: UserComponent,
-        pathMatch: 'full',
-      },
-      {
         path: 'create',
         canActivate: [FeatureAccessGuard],
         component: CreateUserComponent,
@@ -119,6 +107,21 @@ const routes: Routes = [
         path: ':id/details/edit',
         canActivate: [FeatureAccessGuard],
         component: EditUserComponent,
+        resolve: { user: UserResolverService },
+        data: {
+          featureAccessGuards: [
+            {
+              app: App.USERS,
+              feature: Feature.DETAIL,
+              access: Access.UPDATE,
+            },
+          ],
+        },
+      },
+      {
+        path: ':id/details/roles/edit',
+        canActivate: [FeatureAccessGuard],
+        component: EditUserRolesComponent,
         resolve: { user: UserResolverService },
         data: {
           featureAccessGuards: [
@@ -204,6 +207,21 @@ const routes: Routes = [
         canActivate: [FeatureAccessGuard],
         component: EditChildGurdiansComponent,
         resolve: { gurdians: ChildGurdiansResolverService },
+        data: {
+          featureAccessGuards: [
+            {
+              app: App.CHILDREN,
+              feature: Feature.DETAIL,
+              access: Access.UPDATE,
+            },
+          ],
+        },
+      },
+      {
+        path: ':id/details/groups/edit',
+        canActivate: [FeatureAccessGuard],
+        component: EditChildGroupsComponent,
+        resolve: { child: ChildGroupsResolverService },
         data: {
           featureAccessGuards: [
             {

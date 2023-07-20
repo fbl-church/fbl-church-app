@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Gurdian } from 'projects/insite-kit/src/model/child.model';
+import { US_STATES } from 'src/app/shared/utils/states.service';
 
 @Component({
   selector: 'app-gurdian-form',
@@ -16,6 +17,7 @@ export class GurdianFormComponent implements OnInit {
   @Output() save = new EventEmitter<Gurdian>();
 
   form: FormGroup;
+  states = US_STATES;
 
   constructor(private readonly fb: FormBuilder) {}
 
@@ -37,7 +39,20 @@ export class GurdianFormComponent implements OnInit {
         this.gurdianData ? this.gurdianData.phone : '',
         [Validators.required, Validators.minLength(14)],
       ],
-      email: [this.gurdianData ? this.gurdianData.email : '', Validators.email],
+      city: [
+        this.gurdianData ? this.gurdianData.city : '',
+        Validators.required,
+      ],
+      state: [
+        this.gurdianData
+          ? this.states.find((s) => s.code === this.gurdianData.state)
+          : { name: 'OHIO', code: 'OH' },
+        Validators.required,
+      ],
+      zipCode: [
+        this.gurdianData ? this.gurdianData.zipCode : '',
+        Validators.required,
+      ],
       address: [this.gurdianData ? this.gurdianData.address : ''],
     });
   }
@@ -51,16 +66,20 @@ export class GurdianFormComponent implements OnInit {
       firstName: this.form.value.firstName.trim(),
       lastName: this.form.value.lastName.trim(),
       phone: this.form.value.phone.trim(),
+      address: this.form.value.address.trim(),
+      city: this.form.value.city.trim(),
+      state: this.form.value.state.code,
+      zipCode: this.form.value.zipCode.trim(),
     };
 
-    if (this.form.value.email) {
-      gurdian.email = this.form.value.email.trim();
-    }
-
-    if (this.form.value.address) {
-      gurdian.address = this.form.value.address.trim();
-    }
-
     this.save.emit(gurdian);
+  }
+
+  customSearchFn(term: string, item: any) {
+    term = term.toLocaleLowerCase();
+    return (
+      item.code.toLocaleLowerCase().indexOf(term) > -1 ||
+      item.name.toLocaleLowerCase().indexOf(term) > -1
+    );
   }
 }
