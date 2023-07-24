@@ -47,7 +47,7 @@ export class UserToGurdianModalComponent implements OnInit {
     this.modalLoading = true;
     this.gurdianService
       .assignGurdianRoleToExistingUser(this.currentUser.id, {
-        phone: this.form.value.phone,
+        phone: this.form.value.phone.slice(0, 14),
       })
       .subscribe({
         next: () => {

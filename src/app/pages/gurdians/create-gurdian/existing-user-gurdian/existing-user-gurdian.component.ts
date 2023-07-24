@@ -14,7 +14,7 @@ export class ExistingUserGurdianComponent {
   userToGurdianModal: UserToGurdianModalComponent;
   userDataloader: any;
 
-  readonly EXISTING_USER_ROLE_FILTER = ['GURDIAN', 'ADMIN'];
+  readonly EXISTING_USER_ROLE_FILTER = ['GURDIAN', 'ADMINISTRATOR', 'CHILD'];
 
   constructor(
     private readonly router: Router,

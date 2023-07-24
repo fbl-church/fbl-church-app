@@ -3,6 +3,8 @@
     "USER": "User",
     "CHILD": "Child",
     "GURDIAN": "Gurdian",
+    "LEADER": "Leader",
+    "WORKER": "Worker",
     "NURSERY_DIRECTOR": "Nursery Director",
     "NURSERY_WORKER": "Nursery Worker",
     "JUNIOR_CHURCH_DIRECTOR": "Junior Church Director",
@@ -18,8 +20,8 @@
     "VBS_SNACKS": "VBS Snacks",
     "VBS_CRAFTS": "VBS Crafts",
     "AWANA_DIRECTOR": "Awana Director",
-    "LEADER": "Awana Leader",
-    "WORKER": "Awana Worker",
+    "AWANA_LEADER": "Awana Leader",
+    "AWANA_WORKER": "Awana Worker",
     "TNT_LEADER": "T&T Leader",
     "TNT_WORKER": "T&T Worker",
     "SPARKS_LEADER": "Sparks Leader",
@@ -28,7 +30,7 @@
     "CUBBIES_WORKER": "Cubbies Worker",
     "CROSS_CHECK_LEADER": "Cross Check Leader",
     "CROSS_CHECK_WORKER": "Cross Check Worker",
-    "SITE_ADMIN": "Site Admin",
-    "ADMIN": "Administrator"
+    "SITE_ADMINISTRATOR": "Site Admin",
+    "ADMINISTRATOR": "Administrator"
   }
 }

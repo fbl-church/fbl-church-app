@@ -11,8 +11,8 @@ export enum WebRole {
   CUBBIES_WORKER = 200,
   CROSS_CHECK_LEADER = 300,
   CROSS_CHECK_WORKER = 200,
-  SITE_ADMIN = 500,
-  ADMIN = 1000,
+  SITE_ADMINISTRATOR = 500,
+  ADMINISTRATOR = 1000,
 }
 
 export enum ChurchGroup {

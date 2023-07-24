@@ -17,7 +17,7 @@ describe('CreateChildComponent', () => {
     component = fixture.componentInstance;
     jwt = TestBed.inject(JwtService);
 
-    spyOn(jwt, 'get').and.returnValue(WebRole.ADMIN);
+    spyOn(jwt, 'get').and.returnValue(WebRole.ADMINISTRATOR);
 
     fixture.detectChanges();
   });
