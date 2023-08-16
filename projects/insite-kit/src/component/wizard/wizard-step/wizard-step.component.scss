@@ -1,7 +1,6 @@
 :host.activeStep {
   display: inline-block;
   visibility: visible;
-  position: absolute;
   width: 100%;
   height: 100%;
   transform: translateY(0);
@@ -11,6 +10,5 @@
 :host:not(.activeStep) {
   visibility: hidden;
   transform: translateY(-8px);
-  opacity: 0;
   display: none;
 }

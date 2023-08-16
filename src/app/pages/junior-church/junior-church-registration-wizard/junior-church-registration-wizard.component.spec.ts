@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FBLChurchTestBed } from 'src/test/test-bed';
 import { setupTests } from 'src/test/test-setup';
-import { JuniorChurchRegistrationComponent } from './junior-church-registration.component';
+import { JuniorChurchRegistrationWizardComponent } from './junior-church-registration-wizard.component';
 
-describe('JuniorChurchRegistrationComponent', () => {
-  let component: JuniorChurchRegistrationComponent;
-  let fixture: ComponentFixture<JuniorChurchRegistrationComponent>;
+describe('JuniorChurchRegistrationWizardComponent', () => {
+  let component: JuniorChurchRegistrationWizardComponent;
+  let fixture: ComponentFixture<JuniorChurchRegistrationWizardComponent>;
 
   setupTests(async () => FBLChurchTestBed.setup());
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(JuniorChurchRegistrationComponent);
+    fixture = TestBed.createComponent(JuniorChurchRegistrationWizardComponent);
     component = fixture.componentInstance;
 
     fixture.detectChanges();

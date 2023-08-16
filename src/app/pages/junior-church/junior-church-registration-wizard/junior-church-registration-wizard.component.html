@@ -1,36 +1,13 @@
 <ik-header title="Junior Church Registration"></ik-header>
 <ik-wizard #wizard>
   <ik-wizard-step>
-    <h1>1. Children Information</h1>
-
-    <button
-      class="btn btn-default btn-flat btn-size btn-left"
-      (click)="onCancelClick()"
-    >
-      Cancel
-    </button>
-    <button wizardStepNext class="btn btn-primary btn-flat btn-size btn-right">
-      Next
-    </button>
+    <app-junior-church-registration-wizard-step-one
+      (next)="onStep1Next($event, wizard)"
+    ></app-junior-church-registration-wizard-step-one>
   </ik-wizard-step>
-  <ik-wizard-step>
-    <h1>2. Child Groups</h1>
 
-    <button
-      class="btn btn-default btn-flat btn-size btn-left"
-      (click)="onCancelClick()"
-    >
-      Cancel
-    </button>
-    <button wizardStepNext class="btn btn-primary btn-flat btn-size btn-right">
-      Next
-    </button>
-    <button wizardStepPrev class="btn btn-default btn-flat btn-size btn-right">
-      Previous
-    </button>
-  </ik-wizard-step>
   <ik-wizard-step>
-    <h1>3. Child Gurdians</h1>
+    <h1>2. Child Gurdians</h1>
 
     <button wizardStepPrev class="btn btn-default btn-flat btn-size btn-left">
       Cancel
