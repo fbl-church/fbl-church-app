@@ -38,6 +38,9 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { NotificationPopupComponent } from './component/notification-popup/notification-popup.component';
 import { SingleSelectInputComponent } from './component/select/select.component';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
+import { WizardStepComponent } from './component/wizard/wizard-step/wizard-step.component';
+import { WizardStepDirective } from './component/wizard/wizard-step/wizard-step.directive';
+import { WizardComponent } from './component/wizard/wizard.component';
 import { FeatureAccessDirective } from './directives/featureAccess/feature-access.directive';
 import { WebRoleRestrictionAccessDirective } from './directives/webRoleRestrictionAccess/webRole-restriction-access.directive';
 import { NumberRestrictionDirective } from './service/directive/number-restriction.directive';
@@ -100,6 +103,9 @@ export function tokenGetter() {
     SingleSelectInputComponent,
     NumberRestrictionDirective,
     AddressPipe,
+    WizardComponent,
+    WizardStepComponent,
+    WizardStepDirective,
   ],
   imports: [
     CommonModule,
@@ -162,6 +168,9 @@ export function tokenGetter() {
     SingleSelectInputComponent,
     NumberRestrictionDirective,
     AddressPipe,
+    WizardComponent,
+    WizardStepComponent,
+    WizardStepDirective,
   ],
   entryComponents: [ModalComponent, NotificationPopupComponent],
   providers: [

@@ -6,6 +6,7 @@ import {
   faHome,
   faPerson,
   faSchool,
+  faSeedling,
   faUsers,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -21,6 +22,32 @@ export const NAVIGATION_ROUTES = [
     name: 'Users',
     route: '/users',
     icon: faUsers,
+  },
+  {
+    id: 'junior-church',
+    name: 'Junior Church',
+    route: '/junior-church',
+    icon: faSeedling,
+    submenu: {
+      id: 'juniorChurchDropdown',
+      items: [
+        {
+          id: 'registration',
+          name: 'Registration',
+          route: '/registration',
+        },
+        {
+          id: 'check-in',
+          name: 'Check In',
+          route: '/check-in',
+        },
+        {
+          id: 'workers',
+          name: 'Workers',
+          route: '/workers',
+        },
+      ],
+    },
   },
   {
     id: 'vbs',
