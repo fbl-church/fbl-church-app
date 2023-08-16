@@ -2,6 +2,7 @@ import { ChurchGroup, Relationship } from './common.model';
 
 export interface Child {
   id?: number;
+  cuid?: string;
   firstName?: string;
   lastName?: string;
   churchGroup?: ChurchGroup[] | any[];
