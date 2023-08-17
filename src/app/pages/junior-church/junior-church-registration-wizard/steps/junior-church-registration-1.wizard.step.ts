@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Child } from 'projects/insite-kit/src/model/child.model';
+import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
 
 @Component({
   selector: 'app-junior-church-registration-wizard-step-one',
@@ -16,6 +17,7 @@ export class JuniorChurchRegistrationWizardStepOneComponent {
   }
 
   onNextClick(child: Child) {
+    child.churchGroup = [ChurchGroup.JUNIOR_CHURCH];
     this.next.emit(child);
   }
 }

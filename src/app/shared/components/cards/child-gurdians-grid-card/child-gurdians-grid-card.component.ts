@@ -43,7 +43,7 @@ export class ChildGurdiansGridCardComponent implements OnInit {
     return this.gurdianService.get(params);
   }
 
-  getSelectedGurdians() {
+  getSelectedGurdians(): Gurdian[] {
     return this.gridCheclistColumn.getSelected().map((v) => {
       return {
         id: v,

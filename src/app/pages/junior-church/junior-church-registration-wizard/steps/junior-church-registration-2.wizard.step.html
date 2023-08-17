@@ -1,0 +1,25 @@
+<ik-info-card
+  textAlign="left"
+  titleColor="#0095ff"
+  title="2. Guridans of the Child"
+  titleFont="26px"
+  marginTop="0"
+  description="Select the gurdians that are responsible for the child. The child is required to have at least one gurdian assigned to them incase of any emergencies that may occur."
+>
+</ik-info-card>
+<app-child-gurdians-grid-card></app-child-gurdians-grid-card>
+<button
+  class="btn btn-default btn-flat btn-size btn-left"
+  (click)="onCancelClick()"
+>
+  Cancel
+</button>
+<button
+  class="btn btn-primary btn-flat btn-size btn-right"
+  (click)="onNextClick()"
+>
+  Next
+</button>
+<button wizardStepPrev class="btn btn-default btn-flat btn-size btn-right">
+  Previous
+</button>

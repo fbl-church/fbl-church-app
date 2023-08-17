@@ -1,0 +1,41 @@
+<ik-info-card
+  textAlign="left"
+  titleColor="#0095ff"
+  title="Summary"
+  titleFont="26px"
+  marginTop="0"
+  description="Confirm that all the childs information is accurate and correct."
+>
+</ik-info-card>
+
+<ng-container *ngIf="child">
+  <div class="row">
+    <div class="col-md-6">
+      <app-child-details-card
+        [child]="child"
+        [showEdit]="false"
+      ></app-child-details-card>
+    </div>
+    <div class="col-md-6">
+      <app-child-additional-info-card
+        [child]="child"
+      ></app-child-additional-info-card>
+    </div>
+  </div>
+
+  <button
+    class="btn btn-default btn-flat btn-size btn-left"
+    (click)="onCancelClick()"
+  >
+    Cancel
+  </button>
+  <button
+    class="btn btn-primary btn-flat btn-size btn-right"
+    (click)="onSaveClick()"
+  >
+    Save
+  </button>
+  <button wizardStepPrev class="btn btn-default btn-flat btn-size btn-right">
+    Previous
+  </button>
+</ng-container>

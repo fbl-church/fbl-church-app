@@ -1,0 +1,22 @@
+@import "variables";
+
+.info-card__chip {
+  min-height: 115px;
+  border-radius: 15px;
+  background: white;
+  border: 0.5px solid #c7c7c7;
+  margin-top: 50px;
+  padding: 16px;
+}
+
+.info-card__title {
+  font-weight: 700;
+  text-align: center;
+}
+
+.info-card__message {
+  color: $base-text-color;
+  display: block;
+  word-wrap: break-word;
+  text-align: center;
+}

@@ -1,0 +1,12 @@
+<ik-header title="Junior Church Workers"> </ik-header>
+<ik-grid
+  basePath="workers"
+  [dataLoader]="dataloader"
+  (rowClick)="onRowClick($event)"
+>
+  <ik-grid-search></ik-grid-search>
+  <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
+  <ik-grid-column label="Email" field="email"></ik-grid-column>
+  <ik-grid-column label="Created" field="insertDate"></ik-grid-column>
+  <ik-grid-pager key="Workers" [pageSize]="10"></ik-grid-pager>
+</ik-grid>

@@ -1,13 +1,15 @@
 <ik-card [padding]="false">
   <ik-card-header [title]="title">
-    <ik-icon
-      [icon]="editIcon"
-      color="black"
-      class="edit-icon"
-      classOverride="icon__card-header"
-      (click)="onEditIconClick()"
-      *featureAccess="[Application.CHILDREN, Feature.DETAIL, Access.UPDATE]"
-    ></ik-icon>
+    <ng-container *ngIf="showEdit">
+      <ik-icon
+        [icon]="editIcon"
+        color="black"
+        class="edit-icon"
+        classOverride="icon__card-header"
+        (click)="onEditIconClick()"
+        *featureAccess="[Application.CHILDREN, Feature.DETAIL, Access.UPDATE]"
+      ></ik-icon>
+    </ng-container>
   </ik-card-header>
   <div class="flex">
     <div class="left-column">
@@ -17,7 +19,8 @@
       ></ik-card-info>
     </div>
     <div class="right-column">
-      <ik-card-info header="CUID" text="{{ child.cuid }}"> </ik-card-info>
+      <ik-card-info header="CUID" text="{{ child.cuid ? child.cuid : '-' }}">
+      </ik-card-info>
     </div>
   </div>
 
@@ -36,7 +39,7 @@
     </div>
   </div>
 
-  <div class="flex">
+  <div class="flex" *ngIf="child.insertDate">
     <div class="left-column">
       <ik-card-info
         header="Created Date"

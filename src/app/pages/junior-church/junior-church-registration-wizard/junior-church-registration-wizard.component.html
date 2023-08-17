@@ -7,32 +7,14 @@
   </ik-wizard-step>
 
   <ik-wizard-step>
-    <h1>2. Child Gurdians</h1>
-
-    <button wizardStepPrev class="btn btn-default btn-flat btn-size btn-left">
-      Cancel
-    </button>
-    <button wizardStepNext class="btn btn-primary btn-flat btn-size btn-right">
-      Next
-    </button>
-    <button wizardStepPrev class="btn btn-default btn-flat btn-size btn-right">
-      Previous
-    </button>
+    <app-junior-church-registration-wizard-step-two
+      (next)="onStep2Next($event, wizard)"
+    ></app-junior-church-registration-wizard-step-two>
   </ik-wizard-step>
   <ik-wizard-step>
-    <h1>Summary</h1>
-
-    <button
-      class="btn btn-default btn-flat btn-size btn-left"
-      (click)="onCancelClick()"
-    >
-      Cancel
-    </button>
-    <button wizardStepNext class="btn btn-primary btn-flat btn-size btn-right">
-      Next
-    </button>
-    <button wizardStepPrev class="btn btn-default btn-flat btn-size btn-right">
-      Previous
-    </button>
+    <app-junior-church-registration-wizard-step-three
+      [child]="currentChildInformation"
+      (save)="onSaveClick()"
+    ></app-junior-church-registration-wizard-step-three>
   </ik-wizard-step>
 </ik-wizard>

@@ -28,6 +28,7 @@ import { HeaderBackComponent } from './component/header/header-back/header-back.
 import { HeaderComponent } from './component/header/header.component';
 import { IconComponent } from './component/icon/icon.component';
 import { IndicatorLightComponent } from './component/indicator-light/indicator-light.component';
+import { InfoCardComponent } from './component/info-card/info-card.component';
 import { InsitePageComponent } from './component/insite-page/insite-page.component';
 import { LoadingComponent } from './component/loading/loading.component';
 import { ModalActionBarComponent } from './component/modal/modal-action-bar/modal-action-bar.component';
@@ -106,6 +107,7 @@ export function tokenGetter() {
     WizardComponent,
     WizardStepComponent,
     WizardStepDirective,
+    InfoCardComponent,
   ],
   imports: [
     CommonModule,
@@ -171,6 +173,7 @@ export function tokenGetter() {
     WizardComponent,
     WizardStepComponent,
     WizardStepDirective,
+    InfoCardComponent,
   ],
   entryComponents: [ModalComponent, NotificationPopupComponent],
   providers: [

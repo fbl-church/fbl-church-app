@@ -1,0 +1,9 @@
+<ik-header title="Junior Church Check In"> </ik-header>
+<ik-grid basePath="check-in" [dataLoader]="dataloader">
+  <ik-grid-search></ik-grid-search>
+  <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
+  <ik-grid-column label="CUID" field="cuid"></ik-grid-column>
+  <ik-grid-column label="Birthday" field="birthday"></ik-grid-column>
+  <ik-grid-column label="Created" field="insertDate"></ik-grid-column>
+  <ik-grid-pager key="Children" [pageSize]="10"></ik-grid-pager>
+</ik-grid>

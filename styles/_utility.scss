@@ -107,6 +107,10 @@ select {
   white-space: pre-wrap;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 500px) {
   .h-button {
     margin-top: 0;

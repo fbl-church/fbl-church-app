@@ -16,6 +16,7 @@ export class ChildDetailsCardComponent {
   @Input() child: Child;
   @Input() title = 'Details';
   @Input() loading = false;
+  @Input() showEdit = true;
   @Output() editClick = new EventEmitter<any>();
 
   editIcon = faPenToSquare;

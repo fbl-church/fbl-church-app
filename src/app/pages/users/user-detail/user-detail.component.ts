@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
@@ -34,7 +35,8 @@ export class UserDetailComponent implements OnInit {
     private readonly activeRoute: ActivatedRoute,
     private readonly popupService: PopupService,
     private readonly router: Router,
-    private readonly jwt: JwtService
+    private readonly jwt: JwtService,
+    private readonly location: Location
   ) {}
 
   ngOnInit() {
@@ -82,7 +84,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   onBackClick() {
-    this.router.navigate(['/users']);
+    this.location.back();
   }
 
   onEditClick() {
