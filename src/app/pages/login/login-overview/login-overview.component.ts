@@ -41,7 +41,7 @@ export class LoginOverviewComponent implements OnInit {
       .authenticate(this.form.value.username, this.form.value.password)
       .subscribe({
         next: (res) => {
-          this.router.navigate(['/users']);
+          this.router.navigate(['/dashboard']);
           this.loading = false;
         },
         error: (err) => {
