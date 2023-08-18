@@ -43,6 +43,7 @@ export const USERS_ROUTE: Route = {
       path: ':id/details',
       canActivate: [FeatureAccessGuard],
       component: UserDetailComponent,
+      resolve: { user: UserResolverService },
       data: {
         featureAccessGuards: [
           {

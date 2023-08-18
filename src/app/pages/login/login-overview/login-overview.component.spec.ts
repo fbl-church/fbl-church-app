@@ -59,7 +59,7 @@ describe('LoginOverviewComponent', () => {
       'test@mail.com',
       'testPassword'
     );
-    expect(router.navigate).toHaveBeenCalledWith(['/users']);
+    expect(router.navigate).toHaveBeenCalledWith(['/dashboard']);
     expect(popupService.error).not.toHaveBeenCalled();
     expect(component.loading).toBeFalsy();
   });

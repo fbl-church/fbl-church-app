@@ -10,7 +10,7 @@ import {
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
-import { Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { Subject, takeUntil, tap } from 'rxjs';
 import { UserService } from 'src/service/users/user.service';
 
 @Component({
@@ -37,17 +37,16 @@ export class UserDetailComponent implements OnInit {
     private readonly router: Router,
     private readonly jwt: JwtService,
     private readonly location: Location
-  ) {}
+  ) { }
 
   ngOnInit() {
-    this.activeRoute.params
+    this.activeRoute.data
       .pipe(
-        switchMap((res) => this.userService.getUserById(res.id)),
-        tap((res) => (this.userData = res.body)),
+        tap((res) => (this.userData = res.user)),
         tap(
           () =>
-            (this.canEditRoles =
-              Number(this.jwt.get('userId')) !== this.userData.id)
+          (this.canEditRoles =
+            Number(this.jwt.get('userId')) !== this.userData.id)
         ),
         takeUntil(this.destroy)
       )
