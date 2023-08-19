@@ -42,7 +42,7 @@ export class UserDetailComponent implements OnInit {
   ngOnInit() {
     this.activeRoute.data
       .pipe(
-        tap((res) => (this.userData = res.user)),
+        tap((res) => (this.userData = res.user.body)),
         tap(
           () =>
           (this.canEditRoles =
