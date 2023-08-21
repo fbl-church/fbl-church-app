@@ -58,7 +58,6 @@ export class EditUserComponent implements OnInit, OnDestroy {
       next: () => {
         this.onCancelClick();
         this.popupService.success('User Successfully updated!');
-        this.resetStatus();
       },
       error: () => {
         this.popupService.error('User could not be updated at this time!');
