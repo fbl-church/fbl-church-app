@@ -34,7 +34,11 @@ export class JuniorChurchWorkersComponent {
 
   getJuniorChurchWorkersDataloader(params?: Map<string, string[]>) {
     return this.userService.getUsers(
-      params.set('webRole', ['JUNIOR_CHURCH_DIRECTOR', 'JUNIOR_CHURCH_WORKER'])
+      params.set('webRole', [
+        'JUNIOR_CHURCH_DIRECTOR',
+        'JUNIOR_CHURCH_SUPERVISOR',
+        'JUNIOR_CHURCH_WORKER',
+      ])
     );
   }
 }
