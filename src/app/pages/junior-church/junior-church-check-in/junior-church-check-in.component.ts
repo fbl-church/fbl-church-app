@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { ChildrenService } from 'src/service/children/children.service';
 
 @Component({
@@ -8,7 +10,9 @@ import { ChildrenService } from 'src/service/children/children.service';
 export class JuniorChurchCheckInComponent {
   dataloader: any;
 
-  constructor(private childrenService: ChildrenService) {
+  addCirlce = faCirclePlus;
+
+  constructor(private childrenService: ChildrenService, private readonly router: Router) {
     this.dataloader = (params: any) =>
       this.getJuniorChurchWorkersDataloader(params);
   }
@@ -17,5 +21,9 @@ export class JuniorChurchCheckInComponent {
     return this.childrenService.get(
       params.set('churchGroup', ['JUNIOR_CHURCH'])
     );
+  }
+
+  onNewAttendanceRecord() {
+    this.router.navigate(['/junior-church/new-record']);
   }
 }

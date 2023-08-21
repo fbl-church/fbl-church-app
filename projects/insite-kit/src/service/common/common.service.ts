@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { default as churchGroupsJson } from 'projects/insite-kit/src/assets/translations/church-groups/en.json';
 import { default as relationshipJson } from 'projects/insite-kit/src/assets/translations/relationships/en.json';
@@ -23,7 +24,7 @@ export class CommonService {
    * @param value The value to be formatted.
    * @returns The formatted string.
    */
-  formatDate(value: Date | string): string {
+  formatDate(value: Date | string, format: string = 'MM/dd/yyyy'): string {
     if (value === null) {
       return '-';
     }
@@ -34,17 +35,7 @@ export class CommonService {
       dateValue = new Date(value);
     }
 
-    const month =
-      dateValue.getMonth() + 1 < 10
-        ? `0${dateValue.getMonth() + 1}`
-        : dateValue.getMonth() + 1;
-    const day =
-      dateValue.getDate() < 10
-        ? `0${dateValue.getDate()}`
-        : dateValue.getDate();
-    const year = dateValue.getFullYear();
-
-    return `${month}/${day}/${year}`;
+    return new DatePipe('en-US').transform(dateValue, format);
   }
 
   formatPhoneNumber(value: string) {

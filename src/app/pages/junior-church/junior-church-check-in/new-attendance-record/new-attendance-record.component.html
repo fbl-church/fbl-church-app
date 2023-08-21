@@ -1,0 +1,31 @@
+<ik-header title="New Attendance Record">
+  <ik-header-back (back)="onBackClick()"></ik-header-back>
+</ik-header>
+
+<form [formGroup]="form" class="user-form__space-between">
+  <ik-card [padding]="false" [marginBottom]="false">
+    <div class="row">
+      <ik-card-info header="Name" class="col-md-6"><input class="form-input__normal" placeholder="Name"
+          formControlName="name" />
+      </ik-card-info>
+
+      <ik-card-info header="Active Date*" class="col-md-6"><input type="date" class="form-input__normal"
+          placeholder="Active Date" formControlName="activeDate" />
+      </ik-card-info>
+    </div>
+
+    <ik-card-info header="Workers">
+      <input class="form-input__normal" placeholder="Workers" formControlName="workers" />
+    </ik-card-info>
+  </ik-card>
+</form>
+
+<button class="btn btn-default btn-flat btn-size btn-left" (click)="onCancelClick()">
+  Cancel
+</button>
+<button class="btn btn-primary btn-flat btn-size btn-right" (click)="onSaveClick()" [disabled]="form.invalid">
+  Create
+</button>
+<ng-template #loadingIcon>
+  <ik-loading size="40px" thickness="3px"></ik-loading>
+</ng-template>
