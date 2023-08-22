@@ -1,7 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Child } from 'projects/insite-kit/src/model/child.model';
 import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
+import { Child } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { Observable, tap } from 'rxjs';

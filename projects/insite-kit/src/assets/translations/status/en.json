@@ -1,0 +1,8 @@
+{
+    "status": {
+        "PENDING": "Pending",
+        "ACTIVE": "Active",
+        "CLOSED": "Closed",
+        "FINALIZED": "Finalized"
+    }
+}

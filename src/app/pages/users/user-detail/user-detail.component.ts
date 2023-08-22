@@ -37,7 +37,7 @@ export class UserDetailComponent implements OnInit {
     private readonly router: Router,
     private readonly jwt: JwtService,
     private readonly location: Location
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.activeRoute.data
@@ -45,8 +45,8 @@ export class UserDetailComponent implements OnInit {
         tap((res) => (this.userData = res.user.body)),
         tap(
           () =>
-          (this.canEditRoles =
-            Number(this.jwt.get('userId')) !== this.userData.id)
+            (this.canEditRoles =
+              Number(this.jwt.get('userId')) !== this.userData.id)
         ),
         takeUntil(this.destroy)
       )
@@ -83,7 +83,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   onBackClick() {
-    this.location.back();
+    this.router.navigate(['/users']);
   }
 
   onEditClick() {

@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import { Child } from 'projects/insite-kit/src/model/child.model';
 import {
   Access,
   App,
   Feature,
 } from 'projects/insite-kit/src/model/common.model';
+import { Child } from 'projects/insite-kit/src/model/user.model';
 
 @Component({
   selector: 'app-child-details-card',

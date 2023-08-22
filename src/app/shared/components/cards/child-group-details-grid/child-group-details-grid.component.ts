@@ -2,12 +2,12 @@ import { HttpResponse } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import { Child } from 'projects/insite-kit/src/model/child.model';
 import {
   Access,
   App,
   Feature,
 } from 'projects/insite-kit/src/model/common.model';
+import { Child } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { of } from 'rxjs';
 

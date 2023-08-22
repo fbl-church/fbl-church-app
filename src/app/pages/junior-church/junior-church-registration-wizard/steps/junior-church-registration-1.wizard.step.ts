@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Child } from 'projects/insite-kit/src/model/child.model';
 import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
+import { Child } from 'projects/insite-kit/src/model/user.model';
 
 @Component({
   selector: 'app-junior-church-registration-wizard-step-one',

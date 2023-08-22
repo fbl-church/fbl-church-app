@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Child } from 'projects/insite-kit/src/model/child.model';
 import {
   Access,
   App,
   Feature,
 } from 'projects/insite-kit/src/model/common.model';
+import { Child } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { ChildrenService } from 'src/service/children/children.service';

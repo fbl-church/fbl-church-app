@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Gurdian } from 'projects/insite-kit/src/model/child.model';
+import { Gurdian } from 'projects/insite-kit/src/model/user.model';
 import { US_STATES } from 'src/app/shared/utils/states.service';
 
 @Component({

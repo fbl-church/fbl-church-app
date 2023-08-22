@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Gurdian } from 'projects/insite-kit/src/model/child.model';
 import {
   Access,
   App,
   Feature,
 } from 'projects/insite-kit/src/model/common.model';
+import { Gurdian } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { GurdianService } from 'src/service/gurdians/gurdian.service';

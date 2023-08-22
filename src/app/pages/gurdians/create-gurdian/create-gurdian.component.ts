@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faUserPen } from '@fortawesome/free-solid-svg-icons';
-import { Gurdian } from 'projects/insite-kit/src/model/child.model';
+import { Gurdian } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { GurdianService } from 'src/service/gurdians/gurdian.service';
 

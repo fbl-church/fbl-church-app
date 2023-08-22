@@ -1,6 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { Child } from 'projects/insite-kit/src/model/child.model';
+import { Child } from 'projects/insite-kit/src/model/user.model';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { of } from 'rxjs';
 import { FBLChurchTestBed } from 'src/test/test-bed';

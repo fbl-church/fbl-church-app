@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
-import { ChildrenService } from 'src/service/children/children.service';
+import { AttendanceRecordsService } from 'src/service/attendance/attendance-records.service';
 
 @Component({
   selector: 'app-junior-church-check-in',
@@ -12,15 +12,16 @@ export class JuniorChurchCheckInComponent {
 
   addCirlce = faCirclePlus;
 
-  constructor(private childrenService: ChildrenService, private readonly router: Router) {
+  constructor(
+    private attendanceRecordService: AttendanceRecordsService,
+    private readonly router: Router
+  ) {
     this.dataloader = (params: any) =>
-      this.getJuniorChurchWorkersDataloader(params);
+      this.getAttendanceRecordsDataloader(params);
   }
 
-  getJuniorChurchWorkersDataloader(params?: Map<string, string[]>) {
-    return this.childrenService.get(
-      params.set('churchGroup', ['JUNIOR_CHURCH'])
-    );
+  getAttendanceRecordsDataloader(params?: Map<string, string[]>) {
+    return this.attendanceRecordService.get(params);
   }
 
   onNewAttendanceRecord() {

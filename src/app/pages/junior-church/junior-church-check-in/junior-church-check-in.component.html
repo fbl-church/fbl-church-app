@@ -1,14 +1,17 @@
 <ik-header title="Junior Church Check In">
-  <button (click)="onNewAttendanceRecord()" class="btn btn-primary btn-flat btn-size btn-right">
+  <button
+    (click)="onNewAttendanceRecord()"
+    class="btn btn-primary btn-flat btn-size btn-right"
+  >
     <ik-icon [icon]="addCirlce" classOverride="add-icon"></ik-icon>
     New Attendance
   </button>
 </ik-header>
 <ik-grid basePath="check-in" [dataLoader]="dataloader">
   <ik-grid-search></ik-grid-search>
-  <ik-grid-checklist-column></ik-grid-checklist-column>
-  <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
-  <ik-grid-column label="CUID" field="cuid"></ik-grid-column>
-  <ik-grid-column label="Notes" field="allergies"></ik-grid-column>
-  <ik-grid-pager key="Children" [pageSize]="10"></ik-grid-pager>
+  <ik-grid-column label="Name" field="name"></ik-grid-column>
+  <ik-grid-column label="Status" field="status"></ik-grid-column>
+  <ik-grid-column label="Type" field="formattedType"></ik-grid-column>
+  <ik-grid-column label="Active Date" field="activeDate"></ik-grid-column>
+  <ik-grid-pager key="Record" [pageSize]="10"></ik-grid-pager>
 </ik-grid>

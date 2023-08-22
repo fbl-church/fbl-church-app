@@ -315,14 +315,14 @@ export class GridComponent implements OnChanges, OnDestroy, AfterViewInit {
   }
 
   /**
-   * Helper methdo to check if a grid value is a date, If it is a date then it
+   * Helper method to check if a grid value is a date, If it is a date then it
    * will format the date, otherwise just return false.
    *
    * @param value The value to check
    * @returns The formatted date if it is a date.
    */
   isDate(value: any): boolean {
-    if (value && (typeof value === 'number' || !value.includes('-'))) {
+    if (value && (typeof value === 'number' || /[a-zA-Z]/g.test(value))) {
       return false;
     } else {
       let dateWrapper = new Date(value);

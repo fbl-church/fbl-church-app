@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Child } from 'projects/insite-kit/src/model/child.model';
+import { Child } from 'projects/insite-kit/src/model/user.model';
 
 @Component({
   selector: 'app-child-additional-info-card',

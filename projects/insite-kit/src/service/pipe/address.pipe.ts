@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Gurdian } from '../../model/child.model';
+import { Gurdian } from '../../model/user.model';
 
 @Pipe({
   name: 'address',
