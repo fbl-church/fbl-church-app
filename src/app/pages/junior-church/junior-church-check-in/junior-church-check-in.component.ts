@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import { AttendanceRecord } from 'projects/insite-kit/src/model/attendance-record.model';
 import { AttendanceRecordsService } from 'src/service/attendance/attendance-records.service';
 
 @Component({
@@ -22,6 +23,10 @@ export class JuniorChurchCheckInComponent {
 
   getAttendanceRecordsDataloader(params?: Map<string, string[]>) {
     return this.attendanceRecordService.get(params);
+  }
+
+  onRowClick(event: AttendanceRecord) {
+    this.router.navigate([`/junior-church/check-in/${event.id}/details`]);
   }
 
   onNewAttendanceRecord() {

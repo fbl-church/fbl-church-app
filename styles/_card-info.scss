@@ -24,19 +24,38 @@
   overflow-wrap: break-word;
 }
 
-.APPROVED {
+.ACTIVE {
+  font-weight: bold;
   color: $color-success;
 }
 
+.APPROVED {
+  font-weight: bold;
+  color: $color-success;
+}
+
+.CLOSED {
+  font-weight: bold;
+  color: $color-danger;
+}
+
 .DENIED {
+  font-weight: bold;
   color: $color-danger;
 }
 
 .PENDING {
+  font-weight: bold;
   color: $color-warning;
 }
 
+.FINALIZED {
+  font-weight: bold;
+  color: $color-danger;
+}
+
 .EXPIRED {
+  font-weight: bold;
   color: $color-danger;
 }
 

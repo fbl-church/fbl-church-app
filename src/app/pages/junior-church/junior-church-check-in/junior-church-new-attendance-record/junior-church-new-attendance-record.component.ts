@@ -4,13 +4,17 @@ import { Router } from '@angular/router';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 
 @Component({
-  selector: 'app-new-attendance-record',
-  templateUrl: './new-attendance-record.component.html',
+  selector: 'app-new-junior-church-new-attendance-record',
+  templateUrl: './junior-church-new-attendance-record.component.html',
 })
-export class NewAttendanceRecordComponent implements OnInit {
+export class JuniorChurchNewAttendanceRecordComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private readonly fb: FormBuilder, private readonly commonService: CommonService, private readonly router: Router) { }
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly commonService: CommonService,
+    private readonly router: Router
+  ) {}
 
   ngOnInit() {
     this.buildForm();
@@ -19,7 +23,10 @@ export class NewAttendanceRecordComponent implements OnInit {
   buildForm() {
     this.form = this.fb.group({
       name: [
-        `Junior Church Attendance - ${this.commonService.formatDate(new Date(), 'MM/dd/yyyy')}`,
+        `Junior Church Attendance - ${this.commonService.formatDate(
+          new Date(),
+          'MM/dd/yyyy'
+        )}`,
       ],
       activeDate: [
         this.commonService.formatDate(new Date(), 'yyyy-MM-dd'),
@@ -33,11 +40,7 @@ export class NewAttendanceRecordComponent implements OnInit {
     this.router.navigate(['/junior-church/check-in']);
   }
 
-  onCancelClick() {
+  onCancelClick() {}
 
-  }
-
-  onSaveClick() {
-
-  }
+  onSaveClick() {}
 }

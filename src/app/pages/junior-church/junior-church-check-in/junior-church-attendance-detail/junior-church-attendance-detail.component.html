@@ -1,0 +1,44 @@
+<ng-container *ngIf="!loading; else loader">
+  <ik-header [title]="record.name">
+    <ik-header-back (back)="onBackClick()"></ik-header-back>
+  </ik-header>
+  <div class="layout__left-column layout__column-wide">
+    <ik-card [padding]="false">
+      <ik-card-header title="Details">
+        <ng-content></ng-content>
+      </ik-card-header>
+      <div class="flex">
+        <div class="left-column">
+          <ik-card-info header="Name" [text]="record.name"></ik-card-info>
+        </div>
+        <div class="right-column">
+          <ik-card-info
+            header="Attendance Type"
+            [text]="record.formattedType"
+          ></ik-card-info>
+        </div>
+      </div>
+
+      <div class="flex">
+        <div class="left-column">
+          <ik-card-info
+            [contentColor]="record.status"
+            header="Status"
+            [text]="record.status"
+          ></ik-card-info>
+        </div>
+        <div class="right-column">
+          <ik-card-info
+            header="Active Date"
+            [text]="record.activeDate | date : 'MMMM d, y'"
+          >
+          </ik-card-info>
+        </div>
+      </div>
+    </ik-card>
+  </div>
+</ng-container>
+
+<ng-template #loader>
+  <ik-loading></ik-loading>
+</ng-template>

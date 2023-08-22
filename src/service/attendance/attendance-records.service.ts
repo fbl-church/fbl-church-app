@@ -17,10 +17,10 @@ export class AttendanceRecordsService {
   ) {}
 
   /**
-   * Get a list of users based on the given request
+   * Get a list of attendance records based on the given request
    *
    * @param params to filter on
-   * @returns User object
+   * @returns List of Attendance Record objects
    */
   get(
     params?: Map<string, string[]>
@@ -34,5 +34,24 @@ export class AttendanceRecordsService {
         })
       )
     );
+  }
+
+  /**
+   * Get an attendance record by id
+   *
+   * @param params to filter on
+   * @returns Attendance Record object
+   */
+  getById(id: any): Observable<HttpResponse<AttendanceRecord>> {
+    return this.request
+      .get<AttendanceRecord>(`${this.BASE_PATH}/${id}`)
+      .pipe(
+        tap(
+          (v) =>
+            (v.body.formattedType = this.commonService.getFormattedChurchGroup(
+              v.body.type
+            ))
+        )
+      );
   }
 }

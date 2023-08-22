@@ -3,17 +3,17 @@ import { AuthService } from 'projects/insite-kit/src/service/auth/auth.service';
 import { of } from 'rxjs';
 import { FBLChurchTestBed } from 'src/test/test-bed';
 import { setupTests } from 'src/test/test-setup';
-import { NewAttendanceRecordComponent } from './new-attendance-record.component';
+import { JuniorChurchNewAttendanceRecordComponent } from './junior-church-new-attendance-record.component';
 
-describe('NewAttendanceRecordComponent', () => {
-  let component: NewAttendanceRecordComponent;
-  let fixture: ComponentFixture<NewAttendanceRecordComponent>;
+describe('JuniorChurchNewAttendanceRecordComponent', () => {
+  let component: JuniorChurchNewAttendanceRecordComponent;
+  let fixture: ComponentFixture<JuniorChurchNewAttendanceRecordComponent>;
   let authService: AuthService;
 
   setupTests(async () => FBLChurchTestBed.setup());
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NewAttendanceRecordComponent);
+    fixture = TestBed.createComponent(JuniorChurchNewAttendanceRecordComponent);
     component = fixture.componentInstance;
     authService = TestBed.inject(AuthService);
 

@@ -9,4 +9,5 @@ export class LoadingComponent {
   @Input() thickness = '8px';
   @Input() type: 'default' | 'ellipsis' = 'default';
   @Input() backgroundColor = '#EBEFF5';
+  @Input() margin: string;
 }
