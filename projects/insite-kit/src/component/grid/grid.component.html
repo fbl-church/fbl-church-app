@@ -1,6 +1,10 @@
 <ik-card [padding]="false">
   <ng-content select="ik-card-header, ik-grid-search"></ng-content>
-  <table *ngIf="!loading; else loader" class="grid__table">
+  <table
+    *ngIf="!loading; else loader"
+    class="grid__table"
+    [ngClass]="{ grid__table: !scroll, grid_scroll__table: scroll }"
+  >
     <col *ngIf="gridChecklistColumn" class="grid__checklist-column" />
     <thead *ngIf="data?.body.length > 0">
       <tr>
@@ -9,7 +13,6 @@
           *ngFor="let column of columns.toArray()"
           class="grid__column-header grid__header-padding"
         >
-          <ng-content select="ik-grid-column"></ng-content>
           <strong>{{ column.label }}</strong>
         </th>
         <th
@@ -20,47 +23,9 @@
         </th>
       </tr>
     </thead>
-    <tr *ngFor="let row of data.body" class="grid__content-row">
-      <td *ngIf="gridChecklistColumn" class="grid__content">
-        <ik-checkbox
-          [checkId]="row.id"
-          [checked]="row?.selected"
-          (checkboxChange)="onChecklistChange($event)"
-        ></ik-checkbox>
-      </td>
-      <td
-        *ngFor="let col of columns.toArray()"
-        class="grid__content"
-        [ngClass]="{ 'grid__content-ellipsis': !overflowEnabled }"
-        (click)="onRowClick(row)"
-      >
-        <ng-container *ngIf="isDate(row[col.field]); else notDate">
-          {{ row[col.field] | date : "longDate" }}
-        </ng-container>
-        <ng-template #notDate>
-          {{ row[col.field] ? row[col.field] : "-" }}
-        </ng-template>
-      </td>
-      <td *ngIf="gridSelection" class="grid__content">
-        <select
-          class="form-select__normal"
-          (change)="onSelectionChange($event.target.value, row.id)"
-        >
-          <option value="" disabled selected hidden>
-            {{ gridSelection?.header }}
-          </option>
-          <option
-            *ngFor="let value of gridSelection.values"
-            [ngValue]="row?.selectionValue"
-            [selected]="
-              value.toUpperCase() === row?.selectionValue?.toUpperCase()
-            "
-          >
-            {{ value }}
-          </option>
-        </select>
-      </td>
-    </tr>
+    <tbody *ngIf="scroll; else gridContent">
+      <ng-container [ngTemplateOutlet]="gridContent"></ng-container>
+    </tbody>
   </table>
   <ng-content *ngIf="!loading" select="ik-grid-pager"></ng-content>
   <ng-container *ngIf="data?.body.length <= 0 && !loading">
@@ -76,4 +41,48 @@
     backgroundColor="white"
     margin="15px auto 12px"
   ></ik-loading>
+</ng-template>
+
+<ng-template #gridContent>
+  <tr *ngFor="let row of data.body" class="grid__content-row">
+    <td *ngIf="gridChecklistColumn" class="grid__content">
+      <ik-checkbox
+        [checkId]="row.id"
+        [checked]="row?.selected"
+        (checkboxChange)="onChecklistChange($event)"
+      ></ik-checkbox>
+    </td>
+    <td
+      *ngFor="let col of columns.toArray()"
+      class="grid__content"
+      [ngClass]="{ 'grid__content-ellipsis': !overflowEnabled }"
+      (click)="onRowClick(row)"
+    >
+      <ng-container *ngIf="isDate(row[col.field]); else notDate">
+        {{ row[col.field] | date : "longDate" }}
+      </ng-container>
+      <ng-template #notDate>
+        {{ row[col.field] ? row[col.field] : "-" }}
+      </ng-template>
+    </td>
+    <td *ngIf="gridSelection" class="grid__content">
+      <select
+        class="form-select__normal"
+        (change)="onSelectionChange($event.target.value, row.id)"
+      >
+        <option value="" disabled selected hidden>
+          {{ gridSelection?.header }}
+        </option>
+        <option
+          *ngFor="let value of gridSelection.values"
+          [ngValue]="row?.selectionValue"
+          [selected]="
+            value.toUpperCase() === row?.selectionValue?.toUpperCase()
+          "
+        >
+          {{ value }}
+        </option>
+      </select>
+    </td>
+  </tr>
 </ng-template>

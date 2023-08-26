@@ -12,7 +12,8 @@ import { Subject } from 'rxjs';
 export class GridPagerComponent {
   @Input() pageSize = 15;
   @Input() key = '';
-  @Input() visible = true;
+  @Input() pagerVisible = true;
+  @Input() countVisible = true;
 
   backwardStepIcon = faBackwardStep;
   forwardStepIcon = faForwardStep;

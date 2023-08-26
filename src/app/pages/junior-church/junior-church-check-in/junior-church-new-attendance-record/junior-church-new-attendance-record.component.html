@@ -2,28 +2,46 @@
   <ik-header-back (back)="onBackClick()"></ik-header-back>
 </ik-header>
 
-<form [formGroup]="form" class="user-form__space-between">
-  <ik-card [padding]="false" [marginBottom]="false">
-    <div class="row">
-      <ik-card-info header="Name" class="col-md-6"><input class="form-input__normal" placeholder="Name"
-          formControlName="name" />
-      </ik-card-info>
+<ik-form [formGroup]="form">
+  <div class="row">
+    <ik-form-field header="Name" class="col-md-6"
+      ><input
+        class="form-input__normal"
+        placeholder="Name"
+        formControlName="name"
+      />
+    </ik-form-field>
 
-      <ik-card-info header="Active Date*" class="col-md-6"><input type="date" class="form-input__normal"
-          placeholder="Active Date" formControlName="activeDate" />
-      </ik-card-info>
-    </div>
+    <ik-form-field header="Active Date*" class="col-md-6"
+      ><input
+        type="date"
+        class="form-input__normal"
+        placeholder="Active Date"
+        formControlName="activeDate"
+      />
+    </ik-form-field>
+  </div>
 
-    <ik-card-info header="Workers">
-      <input class="form-input__normal" placeholder="Workers" formControlName="workers" />
-    </ik-card-info>
-  </ik-card>
-</form>
+  <ik-form-field header="Workers">
+    <input
+      class="form-input__normal"
+      placeholder="Workers"
+      formControlName="workers"
+    />
+  </ik-form-field>
+</ik-form>
 
-<button class="btn btn-default btn-flat btn-size btn-left" (click)="onCancelClick()">
+<button
+  class="btn btn-default btn-flat btn-size btn-left"
+  (click)="onCancelClick()"
+>
   Cancel
 </button>
-<button class="btn btn-primary btn-flat btn-size btn-right" (click)="onSaveClick()" [disabled]="form.invalid">
+<button
+  class="btn btn-primary btn-flat btn-size btn-right"
+  (click)="onSaveClick()"
+  [disabled]="form.invalid"
+>
   Create
 </button>
 <ng-template #loadingIcon>

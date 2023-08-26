@@ -39,6 +39,7 @@ export class GridComponent implements OnChanges, OnDestroy, AfterViewInit {
   @Input() dataLoader: GridDataloader;
   @Input() basePath = '';
   @Input() overflowEnabled = false;
+  @Input() scroll = false;
 
   @Output() rowClick = new EventEmitter<any>();
 

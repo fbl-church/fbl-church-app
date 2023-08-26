@@ -1,66 +1,64 @@
-<form [formGroup]="form">
-  <ik-card [padding]="false" [marginBottom]="false">
-    <div class="row">
-      <ik-card-info header="First Name*" class="col-md-6"
-        ><input
-          class="form-input__normal"
-          placeholder="First Name"
-          formControlName="firstName"
-        />
-      </ik-card-info>
-
-      <ik-card-info header="Last Name*" class="col-md-6"
-        ><input
-          class="form-input__normal"
-          placeholder="Last Name"
-          formControlName="lastName"
-        />
-      </ik-card-info>
-    </div>
-
-    <ik-card-info header="Phone*">
-      <input
-        phoneMask
-        placeholder="(___) ___-____"
+<ik-form [formGroup]="form">
+  <div class="row">
+    <ik-form-field header="First Name*" class="col-md-6"
+      ><input
         class="form-input__normal"
-        formControlName="phone"
-        maxlength="14"
+        placeholder="First Name"
+        formControlName="firstName"
       />
-    </ik-card-info>
-    <ik-card-info header="Address*">
+    </ik-form-field>
+
+    <ik-form-field header="Last Name*" class="col-md-6"
+      ><input
+        class="form-input__normal"
+        placeholder="Last Name"
+        formControlName="lastName"
+      />
+    </ik-form-field>
+  </div>
+
+  <ik-form-field header="Phone*">
+    <input
+      phoneMask
+      placeholder="(___) ___-____"
+      class="form-input__normal"
+      formControlName="phone"
+      maxlength="14"
+    />
+  </ik-form-field>
+  <ik-form-field header="Address*">
+    <input
+      class="form-input__normal"
+      placeholder="Address"
+      formControlName="address"
+    />
+  </ik-form-field>
+  <div class="row">
+    <ik-form-field header="City*" class="col-md-4">
       <input
         class="form-input__normal"
-        placeholder="Address"
-        formControlName="address"
+        placeholder="City"
+        formControlName="city"
       />
-    </ik-card-info>
-    <div class="row">
-      <ik-card-info header="City*" class="col-md-4">
-        <input
-          class="form-input__normal"
-          placeholder="City"
-          formControlName="city"
-        />
-      </ik-card-info>
-      <ik-card-info header="State*" class="col-md-4">
-        <ik-single-select
-          formControlName="state"
-          [clearable]="true"
-          [items]="states"
-        ></ik-single-select>
-      </ik-card-info>
-      <ik-card-info header="Zip Code*" class="col-md-4">
-        <input
-          numberRestriction
-          maxlength="5"
-          class="form-input__normal"
-          placeholder="Zip Code"
-          formControlName="zipCode"
-        />
-      </ik-card-info>
-    </div>
-  </ik-card>
-</form>
+    </ik-form-field>
+    <ik-form-field header="State*" class="col-md-4">
+      <ik-single-select
+        formControlName="state"
+        [clearable]="true"
+        [items]="states"
+      ></ik-single-select>
+    </ik-form-field>
+    <ik-form-field header="Zip Code*" class="col-md-4">
+      <input
+        numberRestriction
+        maxlength="5"
+        class="form-input__normal"
+        placeholder="Zip Code"
+        formControlName="zipCode"
+      />
+    </ik-form-field>
+  </div>
+</ik-form>
 <button
   class="btn btn-default btn-flat btn-size btn-left"
   (click)="onCancelClick()"

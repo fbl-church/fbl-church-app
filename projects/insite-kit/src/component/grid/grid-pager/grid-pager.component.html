@@ -1,23 +1,30 @@
-<div *ngIf="dataLength > 0 && visible" class="grid-pager__footer">
-  <div class="grid-pager__page-arrow left" (click)="onPreviousPageClick()">
-    <ik-icon size="20px" [icon]="backwardStepIcon" color="black"></ik-icon>
-  </div>
-  <div
-    *ngFor="let page of pages"
-    class="left"
-    [ngClass]="{
-      'grid-pager__page-active': page.active,
-      'grid-pager__page-number':
-        page.pageNum <= this.totalPages && page.pageNum > 0
-    }"
-    (click)="pageClick(page.pageNum)"
-  >
-    <div *ngIf="page.pageNum <= this.totalPages && page.pageNum > 0">
-      {{ page.pageNum }}
+<div
+  *ngIf="dataLength > 0 && (pagerVisible || countVisible)"
+  class="grid-pager__footer"
+>
+  <ng-container *ngIf="pagerVisible">
+    <div class="grid-pager__page-arrow left" (click)="onPreviousPageClick()">
+      <ik-icon size="20px" [icon]="backwardStepIcon" color="black"></ik-icon>
     </div>
-  </div>
-  <div class="grid-pager__page-arrow left" (click)="onNextPageClick()">
-    <ik-icon size="20px" [icon]="forwardStepIcon" color="black"></ik-icon>
-  </div>
-  <label class="grid-pager__text-label">{{ dataLength + " " + key }}</label>
+    <div
+      *ngFor="let page of pages"
+      class="left"
+      [ngClass]="{
+        'grid-pager__page-active': page.active,
+        'grid-pager__page-number':
+          page.pageNum <= this.totalPages && page.pageNum > 0
+      }"
+      (click)="pageClick(page.pageNum)"
+    >
+      <div *ngIf="page.pageNum <= this.totalPages && page.pageNum > 0">
+        {{ page.pageNum }}
+      </div>
+    </div>
+    <div class="grid-pager__page-arrow left" (click)="onNextPageClick()">
+      <ik-icon size="20px" [icon]="forwardStepIcon" color="black"></ik-icon>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="countVisible">
+    <label class="grid-pager__text-label">{{ dataLength + " " + key }}</label>
+  </ng-container>
 </div>

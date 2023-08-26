@@ -1,40 +1,38 @@
-<form [formGroup]="form" class="user-form__space-between">
-  <ik-card [padding]="false" [marginBottom]="false">
-    <div class="row">
-      <ik-card-info header="First Name*" class="col-md-6"
-        ><input
-          class="form-input__normal"
-          placeholder="First Name"
-          formControlName="firstName"
-        />
-      </ik-card-info>
-
-      <ik-card-info header="Last Name*" class="col-md-6"
-        ><input
-          class="form-input__normal"
-          placeholder="Last Name"
-          formControlName="lastName"
-        />
-      </ik-card-info>
-    </div>
-
-    <ik-card-info header="Email">
-      <input
+<ik-form [formGroup]="form">
+  <div class="row">
+    <ik-form-field header="First Name*" class="col-md-6"
+      ><input
         class="form-input__normal"
-        placeholder="Email"
-        formControlName="email"
+        placeholder="First Name"
+        formControlName="firstName"
       />
-    </ik-card-info>
+    </ik-form-field>
 
-    <ik-card-info header="Password*" *ngIf="enablePasswordUpdate">
-      <input
+    <ik-form-field header="Last Name*" class="col-md-6"
+      ><input
         class="form-input__normal"
-        placeholder="Password"
-        formControlName="password"
+        placeholder="Last Name"
+        formControlName="lastName"
       />
-    </ik-card-info>
-  </ik-card>
-</form>
+    </ik-form-field>
+  </div>
+
+  <ik-form-field header="Email">
+    <input
+      class="form-input__normal"
+      placeholder="Email"
+      formControlName="email"
+    />
+  </ik-form-field>
+
+  <ik-form-field header="Password*" *ngIf="enablePasswordUpdate">
+    <input
+      class="form-input__normal"
+      placeholder="Password"
+      formControlName="password"
+    />
+  </ik-form-field>
+</ik-form>
 
 <app-user-role-selection-grid
   *ngIf="enableRoleUpdate"
