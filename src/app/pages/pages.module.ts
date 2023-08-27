@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { AccessManagerModule } from './access-management/access-manager.module';
 import { ChildrenModule } from './children/children.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { GurdianModule } from './gurdians/gurdian.module';
@@ -18,6 +19,7 @@ import { VBSModule } from './vbs/vbs.module';
     GurdianModule,
     VBSModule,
     JuniorChurchModule,
+    AccessManagerModule,
   ],
 })
 export class PagesModule {}

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ACCESS_MANAGEMENT_ROUTE } from './shared/routes/access-management.route';
 import { CHILDREN_ROUTE } from './shared/routes/children.route';
 import { DASHBOARD_ROUTE } from './shared/routes/dashboard.route';
 import { GURDIANS_ROUTE } from './shared/routes/gurdians.route';
@@ -18,8 +19,9 @@ const routes: Routes = [
   GURDIANS_ROUTE,
   VBS_ROUTE,
   JUNIOR_CHURCH_ROUTE,
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: '**', redirectTo: 'dashboard' },
+  ACCESS_MANAGEMENT_ROUTE,
+  { path: '', redirectTo: 'profile', pathMatch: 'full' },
+  { path: '**', redirectTo: 'profile' },
 ];
 
 @NgModule({

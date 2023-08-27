@@ -4,6 +4,7 @@ import {
   faChildren,
   faCircleInfo,
   faHome,
+  faLock,
   faPerson,
   faSchool,
   faSeedling,
@@ -11,6 +12,27 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 export const NAVIGATION_ROUTES = [
+  {
+    id: 'access-manager',
+    name: 'Access Manager',
+    icon: faLock,
+    route: '/access-manager',
+    submenu: {
+      id: 'accessManagerDropdown',
+      items: [
+        {
+          id: 'applications',
+          name: 'Applications',
+          route: '/applications',
+        },
+        {
+          id: 'features',
+          name: 'Features',
+          route: '/features',
+        },
+      ],
+    },
+  },
   {
     id: 'dashboard',
     name: 'Dashboard',

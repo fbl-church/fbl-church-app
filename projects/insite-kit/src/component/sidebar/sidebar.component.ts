@@ -53,7 +53,7 @@ export class SidebarComponent implements OnInit {
   }
 
   open() {
-    document.getElementById('sideBarNav').style.width = '250px';
+    document.getElementById('sideBarNav').style.width = '280px';
     this.isOpen = true;
   }
 
