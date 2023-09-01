@@ -3,7 +3,10 @@
     <ng-content></ng-content>
   </ik-card-header>
   <div class="app-text">
-    <ul class="flex">
+    <ul
+      *ngIf="user.webRole && user.webRole.length > 0; else noRoles"
+      class="flex"
+    >
       <div class="column-flex-left">
         <ng-container *ngFor="let role of user.webRole; let even = even">
           <li *ngIf="even">{{ role | webRoleTranslate }}</li>
@@ -18,3 +21,7 @@
     </ul>
   </div>
 </ik-card>
+
+<ng-template #noRoles>
+  <div class="margin-base">None</div>
+</ng-template>
