@@ -4,7 +4,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CreateGurdianComponent } from './create-gurdian/create-gurdian.component';
 import { ExistingUserGurdianComponent } from './create-gurdian/existing-user-gurdian/existing-user-gurdian.component';
 import { UserToGurdianModalComponent } from './create-gurdian/existing-user-gurdian/modals/user-to-gurdian-modal/user-to-gurdian-modal.component';
-import { GurdianChildrenDetailsGridComponent } from './gurdian-detail/cards/gurdian-children-details-grid/gurdian-children-details-grid.component';
 import { GurdianDetailsCardComponent } from './gurdian-detail/cards/gurdian-details-card/gurdian-details-card.component';
 import { GurdianDetailComponent } from './gurdian-detail/gurdian-detail.component';
 import { DeleteGurdianModalComponent } from './gurdian-detail/modals/delete-gurdian-modal/delete-gurdian-modal.component';
@@ -18,7 +17,6 @@ import { GurdianComponent } from './gurdian.component';
     GurdianDetailComponent,
     DeleteGurdianModalComponent,
     GurdianDetailsCardComponent,
-    GurdianChildrenDetailsGridComponent,
     CreateGurdianComponent,
     EditGurdianComponent,
     ExistingUserGurdianComponent,

@@ -6,6 +6,7 @@ import { ChildGroupDetailsGridComponent } from './components/cards/child-group-d
 import { ChildGroupGridCardComponent } from './components/cards/child-group-grid-card/child-group-grid-card.component';
 import { ChildGurdiansDetailsGridComponent } from './components/cards/child-gurdians-details-grid/child-gurdians-details-grid.component';
 import { ChildGurdiansGridCardComponent } from './components/cards/child-gurdians-grid-card/child-gurdians-grid-card.component';
+import { GurdianChildrenDetailsGridComponent } from './components/cards/gurdian-children-details-grid/gurdian-children-details-grid.component';
 import { UserDetailsCardComponent } from './components/cards/user-details-card/user-details-card.component';
 import { UserRoleSelectionGridComponent } from './components/cards/user-role-selection-grid/user-role-selection-grid.component';
 import { UserRolesCardComponent } from './components/cards/user-roles-card/user-roles-card.component';
@@ -30,6 +31,7 @@ import { AuthenticatedLayoutComponent } from './components/layouts/authenticated
     ChildDetailsCardComponent,
     ChildGroupDetailsGridComponent,
     ChildGurdiansDetailsGridComponent,
+    GurdianChildrenDetailsGridComponent,
   ],
   exports: [
     UserFormComponent,
@@ -44,6 +46,7 @@ import { AuthenticatedLayoutComponent } from './components/layouts/authenticated
     ChildDetailsCardComponent,
     ChildGroupDetailsGridComponent,
     ChildGurdiansDetailsGridComponent,
+    GurdianChildrenDetailsGridComponent,
   ],
 })
 export class SharedModule {}
