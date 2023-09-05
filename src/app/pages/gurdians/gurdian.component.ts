@@ -11,7 +11,6 @@ import { GurdianService } from 'src/service/gurdians/gurdian.service';
 @Component({
   selector: 'app-gurdian',
   templateUrl: './gurdian.component.html',
-  styleUrls: ['./gurdian.component.scss'],
 })
 export class GurdianComponent {
   dataloader: any;

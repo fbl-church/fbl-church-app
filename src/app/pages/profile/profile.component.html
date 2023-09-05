@@ -3,7 +3,7 @@
     <ik-header-back (back)="onBackClick()"></ik-header-back>
     <div class="inline-display header-buttons">
       <button
-        class="btn btn-default btn-flat btn-size btn-right h-button"
+        class="btn btn-default btn-flat btn-size btn-header-right"
         (click)="onResetPassword()"
       >
         Reset Password
@@ -14,8 +14,7 @@
     <app-user-details-card [user]="currentUser" (editClick)="onEditClick()">
       <ik-icon
         [icon]="editIcon"
-        color="black"
-        class="edit-icon"
+        class="right pointer"
         (click)="onEditClick()"
       ></ik-icon
     ></app-user-details-card>

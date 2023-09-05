@@ -22,7 +22,7 @@
 
 .ik-modal-header .ik-title {
   color: $text-color;
-  font-weight: bold;
+  font-weight: $font-weight-bold;
   font-size: $font-size-lg;
 
   &.info {

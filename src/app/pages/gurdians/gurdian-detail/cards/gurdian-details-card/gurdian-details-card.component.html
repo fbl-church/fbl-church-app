@@ -1,9 +1,8 @@
-<ik-card [padding]="false">
+<ik-card>
   <ik-card-header [title]="title">
     <ik-icon
       [icon]="editIcon"
-      color="black"
-      class="edit-icon"
+      class="right pointer"
       (click)="onEditIconClick()"
       *featureAccess="[Application.GURDIANS, Feature.DETAIL, Access.UPDATE]"
     ></ik-icon>

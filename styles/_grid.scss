@@ -24,7 +24,7 @@ table {
   color: $text-color;
   cursor: pointer;
   font-size: $font-size-base;
-  font-weight: 500;
+  font-weight: $font-weight-normal;
   text-align: left;
   padding: 15px 15px;
 }
@@ -48,7 +48,7 @@ table {
 .grid__column-header {
   color: $text-color;
   font-size: $font-size-xl;
-  font-weight: 500;
+  font-weight: $font-weight-normal;
   text-align: left;
 }
 
@@ -66,6 +66,10 @@ table {
 
 .grid__content-row:hover {
   background-color: #edf1f7;
+}
+
+.grid-icon {
+  font-size: $font-size-lg;
 }
 
 @media screen and (max-width: 800px) {

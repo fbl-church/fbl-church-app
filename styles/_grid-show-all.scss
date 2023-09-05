@@ -1,15 +1,15 @@
 @import "variables";
 
 .grid-showAll__link {
-  font-weight: bold;
+  font-weight: $font-weight-bold;
   font-size: $font-size-caption;
-  color: #178bff;
+  color: $link;
   float: right;
   padding: 10px;
 }
 
 .grid-showAll__link:hover {
-  color: #57a9fc;
+  color: $link-hover;
   cursor: pointer;
   text-decoration: none;
 }

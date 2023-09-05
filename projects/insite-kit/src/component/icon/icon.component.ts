@@ -7,7 +7,5 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 })
 export class IconComponent {
   @Input() icon: IconDefinition;
-  @Input() size: string = '24px';
-  @Input() color: string = 'white';
   @Input() classOverride: string;
 }

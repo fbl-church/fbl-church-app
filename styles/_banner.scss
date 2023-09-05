@@ -25,14 +25,14 @@
 
 .banner-content {
   font-size: $font-size-caption;
-  color: black;
-  font-weight: bold;
+  color: $black;
+  font-weight: $font-weight-bold;
   text-align: center;
 }
 
 .banner-icon {
   float: left;
   margin-right: 10px;
-  color: black;
+  color: $black;
   font-size: $font-size-xl;
 }

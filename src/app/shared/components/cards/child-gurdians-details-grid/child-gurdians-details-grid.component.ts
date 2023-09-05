@@ -11,7 +11,6 @@ import { GurdianService } from 'src/service/gurdians/gurdian.service';
 @Component({
   selector: 'app-child-gurdians-details-grid',
   templateUrl: './child-gurdians-details-grid.component.html',
-  styleUrls: ['./child-gurdians-details-grid.component.scss'],
 })
 export class ChildGurdiansDetailsGridComponent {
   @Input() childId: number;

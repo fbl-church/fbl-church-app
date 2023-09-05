@@ -18,7 +18,7 @@
   margin: 10px 0px;
   border: 1px solid #504c5b;
   color: white;
-  font-weight: 600;
+  font-weight: $font-weight-semi-bold;
   transition: all 0.5s ease;
 
   &--small {
@@ -30,7 +30,7 @@
 .create-account__title {
   color: #fff;
   font-size: $font-size-xl;
-  font-weight: 600;
+  font-weight: $font-weight-semi-bold;
   margin-bottom: 15px;
 }
 
@@ -52,7 +52,7 @@
 .create-account__text-label {
   color: #b1b1b1;
   font-size: $font-size-caption;
-  font-weight: 600;
+  font-weight: $font-weight-semi-bold;
 }
 
 .create-account__link-text {

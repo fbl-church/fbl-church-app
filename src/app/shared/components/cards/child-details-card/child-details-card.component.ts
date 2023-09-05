@@ -10,7 +10,6 @@ import { Child } from 'projects/insite-kit/src/model/user.model';
 @Component({
   selector: 'app-child-details-card',
   templateUrl: './child-details-card.component.html',
-  styleUrls: ['./child-details-card.component.scss'],
 })
 export class ChildDetailsCardComponent {
   @Input() child: Child;

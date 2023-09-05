@@ -1,11 +1,10 @@
-<ik-card [padding]="false">
+<ik-card>
   <ik-card-header [title]="title">
     <ng-container *ngIf="showEdit">
       <ik-icon
         [icon]="editIcon"
-        color="black"
-        class="edit-icon"
-        classOverride="icon__card-header"
+        class="right pointer"
+        classOverride="icon__default"
         (click)="onEditIconClick()"
         *featureAccess="[Application.CHILDREN, Feature.DETAIL, Access.UPDATE]"
       ></ik-icon>

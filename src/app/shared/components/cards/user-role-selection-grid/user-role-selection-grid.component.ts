@@ -12,7 +12,6 @@ import { RoleService } from 'src/service/roles/roles.service';
 @Component({
   selector: 'app-user-role-selection-grid',
   templateUrl: './user-role-selection-grid.component.html',
-  styleUrls: ['./user-role-selection-grid.component.scss'],
 })
 export class UserRoleSelectionGridComponent {
   @ViewChild(GridChecklistColumnComponent)

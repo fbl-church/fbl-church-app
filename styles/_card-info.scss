@@ -12,50 +12,50 @@
 .card-info__label-header {
   color: $text-color;
   font-size: $font-size-lg;
-  font-weight: 600;
+  font-weight: $font-weight-semi-bold;
   font-family: emoji, sans-serif;
 }
 
 .card-info__label-text {
   color: $text-color;
   font-size: $font-size-base;
-  font-weight: 400;
+  font-weight: $font-weight-normal;
   padding-left: 10px;
   overflow-wrap: break-word;
 }
 
 .ACTIVE {
-  font-weight: bold;
+  font-weight: $font-weight-bold;
   color: $green-400;
 }
 
 .APPROVED {
-  font-weight: bold;
+  font-weight: $font-weight-bold;
   color: $green-400;
 }
 
 .CLOSED {
-  font-weight: bold;
+  font-weight: $font-weight-bold;
   color: $red-400;
 }
 
 .DENIED {
-  font-weight: bold;
+  font-weight: $font-weight-bold;
   color: $red-400;
 }
 
 .PENDING {
-  font-weight: bold;
+  font-weight: $font-weight-bold;
   color: $orange-200;
 }
 
 .FINALIZED {
-  font-weight: bold;
+  font-weight: $font-weight-bold;
   color: $red-400;
 }
 
 .EXPIRED {
-  font-weight: bold;
+  font-weight: $font-weight-bold;
   color: $red-400;
 }
 

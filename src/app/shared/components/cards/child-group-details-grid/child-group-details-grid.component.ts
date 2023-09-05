@@ -14,7 +14,6 @@ import { of } from 'rxjs';
 @Component({
   selector: 'app-child-group-details-grid',
   templateUrl: './child-group-details-grid.component.html',
-  styleUrls: ['./child-group-details-grid.component.scss'],
 })
 export class ChildGroupDetailsGridComponent {
   @Input() child: Child;

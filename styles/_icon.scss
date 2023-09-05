@@ -1,11 +1,11 @@
 @import "variables";
 
-.icon__card-header {
+.icon__default {
   font-size: $font-size-xl;
 }
 
 @media screen and (max-width: 500px) {
-  .icon__card-header {
+  .icon__default {
     font-size: $font-size-lg;
   }
 }

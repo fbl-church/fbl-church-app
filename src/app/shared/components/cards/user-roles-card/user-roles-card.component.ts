@@ -10,7 +10,6 @@ import { User } from 'projects/insite-kit/src/model/user.model';
 @Component({
   selector: 'app-user-roles-card',
   templateUrl: './user-roles-card.component.html',
-  styleUrls: ['./user-roles-card.component.scss'],
 })
 export class UserRolesCardComponent {
   @Input() user: User;

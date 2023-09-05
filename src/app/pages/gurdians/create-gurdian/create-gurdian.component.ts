@@ -8,7 +8,6 @@ import { GurdianService } from 'src/service/gurdians/gurdian.service';
 @Component({
   selector: 'app-create-gurdian',
   templateUrl: './create-gurdian.component.html',
-  styleUrls: ['./create-gurdian.component.scss'],
 })
 export class CreateGurdianComponent implements OnInit {
   loading = true;

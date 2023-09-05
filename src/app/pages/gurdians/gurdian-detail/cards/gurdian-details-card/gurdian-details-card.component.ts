@@ -10,7 +10,6 @@ import { Gurdian } from 'projects/insite-kit/src/model/user.model';
 @Component({
   selector: 'app-gurdian-details-card',
   templateUrl: './gurdian-details-card.component.html',
-  styleUrls: ['./gurdian-details-card.component.scss'],
 })
 export class GurdianDetailsCardComponent {
   @Input() gurdian: Gurdian;

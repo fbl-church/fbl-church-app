@@ -79,6 +79,10 @@ select {
   color: $text-color;
 }
 
+.text-lg {
+  font-size: $font-size-lg;
+}
+
 .left-column {
   float: left;
   width: 50%;
@@ -99,7 +103,7 @@ select {
 
 .label-header {
   font-size: $font-size-xl;
-  font-weight: 600;
+  font-weight: $font-weight-semi-bold;
   font-family: emoji, sans-serif;
 }
 
@@ -116,10 +120,6 @@ select {
 }
 
 @media screen and (max-width: 500px) {
-  .h-button {
-    margin-top: 0;
-  }
-
   .header-buttons {
     display: block;
   }

@@ -1,14 +1,15 @@
 // White
-$white: #fff; // White
+$white: #fff;
 
 // Black
-$black: #000; // Black
+$black: #000;
 
 // Ecologic
-$ecologic: #52a145; // Ecologic
+$ecologic: #52a145;
 
 // Link Color
-$link: #0068d6; // Link Color
+$link: #0068d6;
+$link-hover: #3e88d8;
 
 // Beige scale
 $beige-000: #fafaf8;
@@ -108,11 +109,8 @@ $primary: #0095ff;
 $text-color: $gray-900;
 
 //**************************************************//
-
 // Fonts
-
 //**************************************************//
-
 $font-weight-semi-light: 300;
 $font-weight-normal: 400;
 $font-weight-semi-bold: 600;
@@ -130,14 +128,35 @@ $font-size-header-md: 40px !default;
 $font-size-header-lg: 48px !default;
 
 //**************************************************//
-// Icon
+// Content & Layout
 //**************************************************//
-$icon-size: 24px !default;
-$icon-size-select: 16px !default;
-$icon-size-xs: 16px !default;
-$icon-grid-sort-color: $gray-800 !default;
-$loading-indicator-secondary: $gray-050 !default;
-$hamburger-select-width: $icon-size !default;
+
+$screen-xs-max: 375px !default;
+$screen-sm-max: 768px !default;
+$screen-md-max: 1024px !default;
+$screen-lg-max: 1279px !default;
+
+$spacing-xs: 18px !default;
+$spacing-sm: 18px !default;
+$spacing-md: 24px !default;
+$spacing-lg: 24px !default;
+$spacing-xl: 30px !default;
+
+$padding: $spacing-xs !default;
+$padding-xs: $spacing-xs !default;
+$padding-sm: $spacing-sm !default;
+$padding-md: $spacing-md !default;
+$padding-lg: $spacing-lg !default;
+$padding-base-vertical: 6px !default;
+
+$margin: $spacing-xs !default;
+$margin-xs: $spacing-xs !default;
+$margin-sm: $spacing-sm !default;
+$margin-md: $spacing-md !default;
+$margin-lg: $spacing-lg !default;
+$margin-xl: $margin * 2 !default;
+
+$line-height-base: 27px !default;
 
 //**************************************************//
 // Tags

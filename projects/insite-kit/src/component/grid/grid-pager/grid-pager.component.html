@@ -4,7 +4,7 @@
 >
   <ng-container *ngIf="pagerVisible">
     <div class="grid-pager__page-arrow left" (click)="onPreviousPageClick()">
-      <ik-icon size="20px" [icon]="backwardStepIcon" color="black"></ik-icon>
+      <ik-icon [icon]="backwardStepIcon" classOverride="grid-icon"></ik-icon>
     </div>
     <div
       *ngFor="let page of pages"
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="grid-pager__page-arrow left" (click)="onNextPageClick()">
-      <ik-icon size="20px" [icon]="forwardStepIcon" color="black"></ik-icon>
+      <ik-icon [icon]="forwardStepIcon" classOverride="grid-icon"></ik-icon>
     </div>
   </ng-container>
   <ng-container *ngIf="countVisible">

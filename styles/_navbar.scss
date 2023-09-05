@@ -15,8 +15,8 @@
 
 .app-navbar__title {
   font-size: $font-size-header-xs;
-  color: white;
-  font-weight: 600;
+  color: $white;
+  font-weight: $font-weight-semi-bold;
   text-align: left;
   height: auto;
   float: left;
@@ -32,7 +32,7 @@
   margin-top: 16px;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
-  color: white;
+  color: $white;
 
   &__left {
     @extend .app-navbar__icons;

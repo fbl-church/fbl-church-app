@@ -11,7 +11,6 @@ import { ChildrenService } from 'src/service/children/children.service';
 @Component({
   selector: 'app-children',
   templateUrl: './children.component.html',
-  styleUrls: ['./children.component.scss'],
 })
 export class ChildrenComponent {
   dataloader: any;

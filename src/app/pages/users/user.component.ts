@@ -11,7 +11,6 @@ import { UserService } from 'src/service/users/user.service';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss'],
 })
 export class UserComponent {
   dataloader: any;
