@@ -51,11 +51,6 @@
   width: 100%;
 }
 
-.btn-size {
-  padding: 6px 10px;
-  font-size: $font-size-xl;
-}
-
 .btn-modal {
   font-size: $font-size-md;
 }
@@ -125,6 +120,8 @@
   border-color: transparent;
   background: $normal;
   box-shadow: none;
+  padding: 6px 10px;
+  font-size: $font-size-xl;
 
   &:hover {
     border-color: transparent;
@@ -354,9 +351,9 @@
 }
 
 @media screen and (max-width: 600px) {
-  .btn-size {
-    padding: 4px 8px;
-    font-size: $font-size-base;
+  .btn-flat {
+    padding: 4px 8px !important;
+    font-size: $font-size-base !important;
   }
 
   .btn-right {
