@@ -8,13 +8,7 @@ import { Router } from '@angular/router';
 export class InfoCardComponent {
   @Input() description: string;
   @Input() title: string;
-  @Input() titleColor: string;
-  @Input() titleFont = '22px';
-  @Input() descriptionFont = '18px';
   @Input() pageRoute: string;
-  @Input() textAlign = 'center';
-  @Input() marginTop = '50px';
-  @Input() marginBottom = '50px';
 
   constructor(private router: Router) {}
 

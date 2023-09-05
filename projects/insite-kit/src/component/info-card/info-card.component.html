@@ -1,23 +1,9 @@
-<div
-  class="info-card__chip"
-  [ngStyle]="{ 'margin-top': marginTop, 'margin-bottom': marginBottom }"
-  (click)="routeToApp()"
->
+<div class="info-card__chip" (click)="routeToApp()">
   <div class="row">
-    <div
-      class="info-card__title col-12"
-      [ngStyle]="{
-        color: titleColor,
-        'font-size': titleFont,
-        'text-align': textAlign
-      }"
-    >
+    <div class="info-card__title col-12">
       {{ title }}
     </div>
-    <div
-      class="info-card__message col-12"
-      [ngStyle]="{ 'font-size': descriptionFont, 'text-align': textAlign }"
-    >
+    <div class="info-card__message col-12">
       {{ description }}
     </div>
   </div>

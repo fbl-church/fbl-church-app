@@ -5,17 +5,22 @@
   border-radius: 15px;
   background: white;
   border: 0.5px solid #c7c7c7;
-  margin-top: 50px;
+  margin-top: 0px;
+  margin-bottom: 50px;
   padding: 16px;
 }
 
 .info-card__title {
-  font-weight: 700;
-  text-align: center;
+  font-size: $font-size-xl;
+  text-align: left;
+  color: $primary;
+  font-weight: $font-weight-bold;
 }
 
 .info-card__message {
+  text-align: left !important;
   color: $text-color;
+  font-size: $font-size-base;
   display: block;
   word-wrap: break-word;
   text-align: center;
