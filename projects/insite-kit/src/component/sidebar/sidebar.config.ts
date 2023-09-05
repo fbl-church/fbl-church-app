@@ -13,6 +13,12 @@ import {
 
 export const NAVIGATION_ROUTES = [
   {
+    id: 'dashboard',
+    name: 'Dashboard',
+    icon: faHome,
+    route: '/dashboard',
+  },
+  {
     id: 'access-manager',
     name: 'Access Manager',
     icon: faLock,
@@ -32,18 +38,6 @@ export const NAVIGATION_ROUTES = [
         },
       ],
     },
-  },
-  {
-    id: 'dashboard',
-    name: 'Dashboard',
-    icon: faHome,
-    route: '/dashboard',
-  },
-  {
-    id: 'users',
-    name: 'Users',
-    route: '/users',
-    icon: faUsers,
   },
   {
     id: 'junior-church',
@@ -70,6 +64,12 @@ export const NAVIGATION_ROUTES = [
         },
       ],
     },
+  },
+  {
+    id: 'users',
+    name: 'Users',
+    route: '/users',
+    icon: faUsers,
   },
   {
     id: 'vbs',
