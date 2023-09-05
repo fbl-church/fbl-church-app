@@ -6,10 +6,10 @@
   display: inline-block;
   height: 50px;
   text-align: center;
-  font-size: 45px;
+  font-size: $font-size-header-lg;
   font-family: emoji, sans-serif;
   font-weight: 600;
-  color: $base-text-color;
+  color: $text-color;
 }
 
 .header-margin {
@@ -18,7 +18,7 @@
 
 @media screen and (max-width: 1030px) {
   .header-title {
-    font-size: 35px;
+    font-size: $font-size-header-xs;
   }
 
   .header-margin {
@@ -28,7 +28,7 @@
 
 @media screen and (max-width: 510px) {
   .header-title {
-    font-size: 25px;
+    font-size: $font-size-xl;
     padding-top: 10px;
   }
 

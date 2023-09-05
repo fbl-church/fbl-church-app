@@ -23,11 +23,17 @@
   </div>
 
   <ik-form-field header="Workers">
-    <input
-      class="form-input__normal"
-      placeholder="Workers"
+    <ik-multi-select
       formControlName="workers"
-    />
+      [items]="[
+        'Sam Butler',
+        'Ashley Suvak',
+        'Ella Butler',
+        'Sam Butler1',
+        'Ashley Suvak2',
+        'Ella Butler3'
+      ]"
+    ></ik-multi-select>
   </ik-form-field>
 </ik-form>
 

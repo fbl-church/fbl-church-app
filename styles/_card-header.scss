@@ -11,8 +11,8 @@
 }
 
 .card_header .title {
-  color: $base-text-color;
-  font-size: 22px;
+  color: $text-color;
+  font-size: $font-size-xl;
   font-weight: 700;
   font-family: Verdana;
   display: inline-block;
@@ -20,6 +20,6 @@
 
 @media screen and (max-width: 500px) {
   .card_header .title {
-    font-size: 20px;
+    font-size: $font-size-lg;
   }
 }

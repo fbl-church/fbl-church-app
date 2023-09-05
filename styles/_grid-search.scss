@@ -1,19 +1,19 @@
 @import "variables";
 
 .grid-search {
-  color: $base-text-color;
+  color: $text-color;
   border-radius: 10px;
   background: #f7f9fc;
   border: 1px solid #e4e9f2;
   padding: 10px;
-  font-size: 20px;
+  font-size: $font-size-lg;
   width: 100%;
   margin: 20px 20px 0 20px;
 }
 
 .grid-search__icon {
-  color: $base-text-color;
-  font-size: 30px;
+  color: $text-color;
+  font-size: $font-size-header-xs;
   cursor: pointer;
 }
 
@@ -31,7 +31,7 @@
 
 @media screen and (max-width: 570px) {
   .grid-search {
-    font-size: 15px;
+    font-size: $font-size-caption;
     margin: 15px 5px 0 5px;
   }
 

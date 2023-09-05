@@ -37,6 +37,7 @@ import { ModalActionBarComponent } from './component/modal/modal-action-bar/moda
 import { ModalBodyComponent } from './component/modal/modal-body/modal-body.component';
 import { ModalHeaderComponent } from './component/modal/modal-header/modal-header.component';
 import { ModalComponent } from './component/modal/modal.component';
+import { MultiSelectInputComponent } from './component/multiselect/multi-select-input.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { NotificationPopupComponent } from './component/notification-popup/notification-popup.component';
 import { SingleSelectInputComponent } from './component/select/select.component';
@@ -112,6 +113,7 @@ export function tokenGetter() {
     InfoCardComponent,
     FormFieldComponent,
     FormComponent,
+    MultiSelectInputComponent,
   ],
   imports: [
     CommonModule,
@@ -180,6 +182,7 @@ export function tokenGetter() {
     InfoCardComponent,
     FormFieldComponent,
     FormComponent,
+    MultiSelectInputComponent,
   ],
   entryComponents: [ModalComponent, NotificationPopupComponent],
   providers: [

@@ -1,11 +1,11 @@
 @import "variables";
 
 .ik-modal-body {
-  font-size: 15px;
+  font-size: $font-size-caption;
 }
 
 .modal-background {
-  color: $base-text-color;
+  color: $text-color;
   background: white;
 }
 

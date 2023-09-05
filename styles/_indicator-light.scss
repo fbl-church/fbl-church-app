@@ -1,23 +1,25 @@
+@import "variables";
+
 .indicator-light {
-    align-items: center;
-    border: 3px solid white;
-    border-radius: 50%;
-    box-shadow: 1px 1px 6px white;
-    display: inline-flex;
-    justify-content: center;
-    min-height: 20px;
-    min-width: 20px;
-    padding: 5px;
+  align-items: center;
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 1px 1px 6px white;
+  display: inline-flex;
+  justify-content: center;
+  min-height: 20px;
+  min-width: 20px;
+  padding: 5px;
 }
 
 .light--success {
-    background: #51A351;
+  background: #51a351;
 }
 
 .light--warning {
-    background: #ffd200;
+  background: #ffd200;
 }
 
 .light--danger {
-    background: #e32323;
+  background: #e32323;
 }

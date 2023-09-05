@@ -28,7 +28,8 @@
           class="progress-info"
           [ngClass]="{
             completed: item.status === 'completed',
-            'in-progress': item.status === 'in progress'
+            'in-progress': item.status === 'in progress',
+            pending: item.status === 'pending'
           }"
           >{{ item.status }}</span
         >

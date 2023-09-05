@@ -13,7 +13,7 @@ footer {
 .copyright {
   text-align: center;
   color: #919191;
-  font-size: 16px;
+  font-size: $font-size-md;
   padding: 10px 0;
 }
 
@@ -21,8 +21,8 @@ footer {
   text-align: center;
   cursor: pointer;
   padding: 10px 0;
-  color: $base-text-color;
-  font-size: 18px;
+  color: $text-color;
+  font-size: $font-size-base;
 }
 
 @media screen and (max-width: 900px) {
@@ -53,10 +53,10 @@ footer {
   }
 
   .copyright {
-    font-size: 14px;
+    font-size: $font-size-caption;
   }
 
   .content-link {
-    font-size: 16px;
+    font-size: $font-size-md;
   }
 }

@@ -1,3 +1,5 @@
+@import "variables";
+
 .btn {
   display: inline-block;
   margin-bottom: 0;
@@ -6,7 +8,7 @@
   cursor: pointer;
   background-image: none;
   padding: 6px 12px;
-  font-size: 1.4rem;
+  font-size: $font-size-xl;
   border-radius: 3px;
   border: 1px solid transparent;
   text-decoration: none;
@@ -51,11 +53,11 @@
 
 .btn-size {
   padding: 6px 10px;
-  font-size: 1.4rem;
+  font-size: $font-size-xl;
 }
 
 .btn-modal {
-  font-size: 1rem;
+  font-size: $font-size-md;
 }
 
 .btn-right {
@@ -66,6 +68,16 @@
 .btn-left {
   float: left;
   margin: 0 8px 8px 0;
+}
+
+.btn-header-right {
+  float: right;
+  margin: 14px 0 8px 8px;
+}
+
+.btn-header-left {
+  float: left;
+  margin: 14px 8px 8px 0;
 }
 
 @mixin btn-variant(
@@ -326,10 +338,20 @@
   }
 }
 
+@media screen and (max-width: 1030px) {
+  .btn-header-right {
+    margin: 0 2px 8px 8px;
+  }
+
+  .btn-header-left {
+    margin: 0 8px 8px 2px;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .btn-size {
     padding: 4px 8px;
-    font-size: 1.1rem;
+    font-size: $font-size-base;
   }
 
   .btn-right {
@@ -338,5 +360,23 @@
 
   .btn-left {
     margin: 0 8px 8px 2px;
+  }
+
+  .btn-header-right {
+    margin: 6px 2px 8px 8px;
+  }
+
+  .btn-header-left {
+    margin: 6px 8px 8px 2px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .btn-header-right {
+    margin: 4px 2px 8px 8px;
+  }
+
+  .btn-header-left {
+    margin: 4px 8px 8px 2px;
   }
 }

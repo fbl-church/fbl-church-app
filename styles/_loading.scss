@@ -1,13 +1,15 @@
+@import "variables";
+
 /******************************************************
 * Default loader 
 ******************************************************/
 .default-loader {
   margin: 15px auto 0;
-  border: solid #3366FF;
+  border: solid #3366ff;
   border-radius: 50%;
   border-top-style: solid;
   border-bottom-style: solid;
-  animation: spin 1.0s linear infinite;
+  animation: spin 1s linear infinite;
 }
 
 /* Safari */

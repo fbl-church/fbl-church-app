@@ -1,3 +1,5 @@
+@import "/styles/variables";
+
 .login-container {
   width: 35%;
   margin: 15em auto;
@@ -9,7 +11,7 @@
   border-radius: 30px;
   padding: 12px 12px 12px 35px;
   width: 95%;
-  font-size: 16px;
+  font-size: $font-size-md;
   border-style: hidden;
   background: #504c5b;
   opacity: 0.8;
@@ -22,7 +24,7 @@
 
 .login-title {
   color: #fff;
-  font-size: 25px;
+  font-size: $font-size-xl;
   font-weight: 600;
   margin-bottom: 15px;
 }
@@ -53,7 +55,7 @@
 
 .create-account-text {
   color: #b1b1b1;
-  font-size: 14px;
+  font-size: $font-size-caption;
   font-weight: 600;
 }
 
@@ -63,8 +65,8 @@
 
 .login__forgot-password {
   color: #b1b1b1;
-  margin-left: 25px;
-  font-size: 14px;
+  margin-left: 24px;
+  font-size: $font-size-caption;
   font-weight: 600;
 }
 

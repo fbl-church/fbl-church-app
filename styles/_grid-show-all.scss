@@ -1,6 +1,8 @@
+@import "variables";
+
 .grid-showAll__link {
   font-weight: bold;
-  font-size: 15px;
+  font-size: $font-size-caption;
   color: #178bff;
   float: right;
   padding: 10px;

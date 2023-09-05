@@ -68,15 +68,15 @@ select {
 }
 
 .text-danger {
-  color: $color-danger;
+  color: $red-400;
 }
 
 .text-success {
-  color: $color-success;
+  color: $green-400;
 }
 
 .text-default {
-  color: $base-text-color;
+  color: $text-color;
 }
 
 .left-column {
@@ -98,7 +98,7 @@ select {
 }
 
 .label-header {
-  font-size: 22px;
+  font-size: $font-size-xl;
   font-weight: 600;
   font-family: emoji, sans-serif;
 }

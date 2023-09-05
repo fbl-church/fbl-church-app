@@ -1,3 +1,5 @@
+@import "/styles/variables";
+
 .edit-icon {
   float: right;
   cursor: pointer;
@@ -5,7 +7,7 @@
 
 .app-text {
   padding: 12px 5px;
-  font-size: 20px;
+  font-size: $font-size-lg;
 }
 
 .column-flex-left {

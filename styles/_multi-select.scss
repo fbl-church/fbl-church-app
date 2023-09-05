@@ -1,0 +1,72 @@
+@import "variables";
+
+.tag {
+  background-color: #333;
+  border-radius: 8px;
+  color: #fff;
+  display: inline-block;
+  line-height: 25px;
+  padding: 4px 9px;
+  text-align: center;
+}
+
+.input-tag {
+  align-items: center;
+  background: #666;
+  display: inline-flex;
+  height: 32px;
+  margin: 4px 8px 4px 0 !important;
+  max-width: 100%;
+  padding: 0 8px;
+  transition: all 0.12s ease-out; // sass-lint:disable-line no-transition-all
+
+  &__remove {
+    color: #888;
+    cursor: pointer;
+    display: flex !important; // sass-lint:disable-line no-important
+    font-size: $font-size-base;
+    margin-left: 8px;
+    width: 16px;
+  }
+
+  &__text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.multiselect-tags div.ng-value {
+  background-color: #666 !important;
+  border-radius: 8px !important;
+  color: #fff !important;
+  font-size: $font-size-lg !important;
+  @extend .tag;
+  @extend .input-tag;
+}
+
+.multiselect-tags div.ng-select-container {
+  height: auto !important;
+  line-height: 51.02px !important;
+}
+
+.multiselect-tags span.ng-value-icon {
+  border-right: none !important;
+  padding: 0px !important;
+
+  &:hover {
+    background-color: #666 !important;
+  }
+}
+
+.multiselect-tags div.ng-placeholder {
+  color: #c2c2c2 !important;
+}
+
+.multiselect-tags span.ng-clear-wrapper {
+  display: none !important;
+}
+
+.multiselect-tags div.ng-dropdown-panel-items {
+  font-size: $font-size-base !important;
+}

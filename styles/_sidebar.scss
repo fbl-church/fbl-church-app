@@ -1,3 +1,5 @@
+@import "variables";
+
 .sidenav::-webkit-scrollbar {
   width: 5px;
   background: #f7f9fc;
@@ -41,11 +43,11 @@
 
 .sidebar-icon {
   margin: 0 1rem 0 0;
-  font-size: 16px;
+  font-size: $font-size-md;
 }
 
 .sidebar-category {
-  font-size: 20px;
+  font-size: $font-size-lg;
 }
 
 .sidebar-category__active {
@@ -81,7 +83,7 @@
 
 .dropdown-icon {
   float: right;
-  font-size: 16px;
+  font-size: $font-size-md;
 }
 
 @media screen and (max-height: 680px) {
@@ -91,11 +93,11 @@
 
   .nav-icon {
     margin: 0 1rem 0 0;
-    font-size: 14px;
+    font-size: $font-size-caption;
   }
 
   .nav-category {
-    font-size: 18px;
+    font-size: $font-size-base;
   }
 }
 
@@ -117,7 +119,7 @@
   }
 
   .sidenav div {
-    font-size: 18px;
+    font-size: $font-size-base;
   }
 }
 

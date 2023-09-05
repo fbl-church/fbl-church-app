@@ -1,3 +1,5 @@
+@import "variables";
+
 .app-navbar {
   min-height: 50px;
   height: 80px;
@@ -12,7 +14,7 @@
 }
 
 .app-navbar__title {
-  font-size: 30px;
+  font-size: $font-size-header-xs;
   color: white;
   font-weight: 600;
   text-align: left;
@@ -24,7 +26,7 @@
 }
 
 .app-navbar__icons {
-  font-size: 30px;
+  font-size: $font-size-header-xs;
   width: 30px;
   float: left;
   margin-top: 16px;
@@ -63,7 +65,7 @@
   .app-navbar__bell-num {
     width: 20px;
     height: 20px;
-    font-size: 14px;
+    font-size: $font-size-caption;
   }
 
   .app-navbar__title {
@@ -73,7 +75,7 @@
 
 @media screen and (max-width: 615px) {
   .app-navbar__title {
-    font-size: 25px;
+    font-size: $font-size-xl;
     margin-top: 20px;
     margin-left: 24px;
   }
@@ -85,13 +87,13 @@
 
 @media screen and (max-width: 530px) {
   .app-navbar__title {
-    font-size: 20px;
+    font-size: $font-size-lg;
     margin-top: 22px;
     margin-left: 18px;
   }
 
   .app-navbar__icons {
-    font-size: 24px;
+    font-size: $font-size-xl;
     margin-top: 20px;
     margin-right: 10px;
   }
@@ -99,13 +101,13 @@
 
 @media screen and (max-width: 440px) {
   .app-navbar__title {
-    font-size: 16px;
+    font-size: $font-size-md;
     margin-top: 25px;
     margin-left: 0;
   }
 
   .app-navbar__icons {
-    font-size: 20px;
+    font-size: $font-size-lg;
     margin-top: 21px;
   }
 
@@ -124,12 +126,12 @@
 
 @media screen and (max-width: 365px) {
   .app-navbar__title {
-    font-size: 14px;
+    font-size: $font-size-caption;
     margin-top: 24px;
   }
 
   .app-navbar__icons {
-    font-size: 18px;
+    font-size: $font-size-base;
     margin-top: 22px;
   }
 

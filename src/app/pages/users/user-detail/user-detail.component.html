@@ -3,14 +3,14 @@
     <ik-header-back (back)="onBackClick()"></ik-header-back>
     <div class="inline-display header-buttons">
       <button
-        class="btn btn-danger btn-flat btn-size btn-right h-button"
+        class="btn btn-danger btn-flat btn-size btn-right btn-header-right"
         (click)="deleteUserModal.modal.open()"
         *featureAccess="[Application.USERS, Feature.DETAIL, Access.DELETE]"
       >
         Delete User
       </button>
       <button
-        class="btn btn-default btn-flat btn-size btn-right h-button"
+        class="btn btn-default btn-flat btn-size btn-right btn-header-right"
         (click)="onResetPassword()"
         *featureAccess="[Application.USERS, Feature.DETAIL, Access.UPDATE]"
       >

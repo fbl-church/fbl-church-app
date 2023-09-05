@@ -21,9 +21,9 @@
 }
 
 .ik-modal-header .ik-title {
-  color: $base-text-color;
+  color: $text-color;
   font-weight: bold;
-  font-size: 20px;
+  font-size: $font-size-lg;
 
   &.info {
     color: white;

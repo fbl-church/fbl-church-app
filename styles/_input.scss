@@ -1,3 +1,5 @@
+@import "variables";
+
 select {
   border-style: hidden;
   cursor: pointer;
@@ -17,12 +19,12 @@ input {
     background: #ebeff5;
     border: 1px solid #ccc;
     padding: 12px;
-    font-size: 20px;
+    font-size: $font-size-lg;
   }
 
   &__outline {
     @extend .form-input;
-    font-size: 14px;
+    font-size: $font-size-caption;
     box-shadow: inset 0 1px 2px rgba(203, 203, 210, 0.2),
       0 0 4px rgba(121, 88, 159, 0.3), inset 0 0 10px 1000px #ffffff;
     border: 1px solid #b5b5bb;
@@ -49,12 +51,12 @@ input {
     background: #ebeff5;
     border: 1px solid #ccc;
     padding: 12px;
-    font-size: 20px;
+    font-size: $font-size-lg;
   }
 
   &__outline {
     @extend .form-select;
-    font-size: 14px;
+    font-size: $font-size-caption;
     box-shadow: inset 0 1px 2px rgba(203, 203, 210, 0.2),
       0 0 4px rgba(121, 88, 159, 0.3), inset 0 0 10px 1000px #ffffff;
     border: 1px solid #b5b5bb;
@@ -74,7 +76,7 @@ input {
 @media screen and (max-width: 500px) {
   .form-input__normal {
     padding: 10px;
-    font-size: 15px;
+    font-size: $font-size-caption;
   }
 
   .form-select {
@@ -83,7 +85,7 @@ input {
 
   .form-select__normal {
     padding: 2px;
-    font-size: 15px;
+    font-size: $font-size-caption;
   }
 
   .search {

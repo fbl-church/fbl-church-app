@@ -1,3 +1,4 @@
+@import "variables";
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
 .ng-select.ng-select-single .ng-select-container {
@@ -12,8 +13,8 @@
   background-color: #ebeff5;
   border: 1px solid #ccc;
   border-radius: 8px;
-  height: 56px;
-  line-height: 56px;
+  height: 56.22px;
+  line-height: 56.22px;
 }
 
 .ng-select.ng-select-focused:not(.ng-select-opened) > .ng-select-container {
@@ -42,7 +43,6 @@
 
 .ng-dropdown-panel .ng-dropdown-header {
   border: 0;
-
   padding: 0;
 }
 

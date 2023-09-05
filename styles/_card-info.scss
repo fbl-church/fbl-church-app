@@ -10,15 +10,15 @@
 }
 
 .card-info__label-header {
-  color: $base-text-color;
-  font-size: 20px;
+  color: $text-color;
+  font-size: $font-size-lg;
   font-weight: 600;
   font-family: emoji, sans-serif;
 }
 
 .card-info__label-text {
-  color: $base-text-color;
-  font-size: 18px;
+  color: $text-color;
+  font-size: $font-size-base;
   font-weight: 400;
   padding-left: 10px;
   overflow-wrap: break-word;
@@ -26,50 +26,50 @@
 
 .ACTIVE {
   font-weight: bold;
-  color: $color-success;
+  color: $green-400;
 }
 
 .APPROVED {
   font-weight: bold;
-  color: $color-success;
+  color: $green-400;
 }
 
 .CLOSED {
   font-weight: bold;
-  color: $color-danger;
+  color: $red-400;
 }
 
 .DENIED {
   font-weight: bold;
-  color: $color-danger;
+  color: $red-400;
 }
 
 .PENDING {
   font-weight: bold;
-  color: $color-warning;
+  color: $orange-200;
 }
 
 .FINALIZED {
   font-weight: bold;
-  color: $color-danger;
+  color: $red-400;
 }
 
 .EXPIRED {
   font-weight: bold;
-  color: $color-danger;
+  color: $red-400;
 }
 
 .DEFAULT {
-  color: $base-text-color;
+  color: $text-color;
 }
 
 @media screen and (max-width: 500px) {
   .card-info__label-header {
-    font-size: 18px !important;
+    font-size: $font-size-base !important;
   }
 
   .card-info__label-text {
-    font-size: 16px;
+    font-size: $font-size-md;
   }
 
   .card-info__padding {

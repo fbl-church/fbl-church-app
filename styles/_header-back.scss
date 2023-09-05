@@ -6,8 +6,8 @@
   margin-right: 20px;
   margin-left: 5px;
   cursor: pointer;
-  color: $base-text-color;
-  font-size: 2.5rem;
+  color: $text-color;
+  font-size: $font-size-header-md;
 }
 
 .header-back__arrow-icon:hover {
@@ -16,14 +16,14 @@
 
 @media screen and (max-width: 1030px) {
   .header-back__arrow-icon {
-    font-size: 2rem;
+    font-size: $font-size-header-xs;
     margin-right: 15px;
   }
 }
 
 @media screen and (max-width: 510px) {
   .header-back__arrow-icon {
-    font-size: 1.5rem;
+    font-size: $font-size-xl;
     margin-right: 10px;
   }
 }

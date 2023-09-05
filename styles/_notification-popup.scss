@@ -35,16 +35,16 @@
   margin-right: 20px;
   padding: 6px 10px;
   color: black;
-  font-size: 24px;
+  font-size: $font-size-xl;
 }
 
 .notification-toaster {
   display: flex;
   color: white;
-  background-color: $base-text-color;
+  background-color: $text-color;
   min-height: 80px;
   border-radius: 10px;
-  border: 1px solid $base-text-color;
+  border: 1px solid $text-color;
   box-shadow: 2px 2px 4px rgb(0 0 0);
   margin-bottom: 10px;
 }
@@ -56,12 +56,12 @@
 }
 
 .notification-title {
-  font-size: 16px;
+  font-size: $font-size-md;
   margin-bottom: 5px;
 }
 
 .notification-message {
-  font-size: 12px;
+  font-size: $font-size-sm;
   font-weight: 500;
   line-height: 15px;
 }

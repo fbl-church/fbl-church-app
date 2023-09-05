@@ -1,5 +1,153 @@
-$base-text-color: #222b45;
-$color-success: #43a047;
-$color-danger: #d43f3a;
-$color-warning: #f0ae4c;
-$app-blue: #0095ff;
+// White
+$white: #fff; // White
+
+// Black
+$black: #000; // Black
+
+// Ecologic
+$ecologic: #52a145; // Ecologic
+
+// Crown Logo
+$crown-logo: #77787b; // Crown Logo
+
+// Link Color
+$link: #0068d6; // Link Color
+
+// Beige scale
+$beige-000: #fafaf8;
+$beige-050: #f7f5f2;
+$beige-100: #eeeae3;
+$beige-200: #e2dbd0;
+$beige-300: #d7cdbe;
+$beige-400: #c3b49d;
+$beige-500: #b4a185;
+$beige-600: #a18966;
+$beige-700: #886a3e;
+$beige-800: #795725;
+
+// Gray Scale
+$gray-000: #f8f8f8;
+$gray-050: #eee;
+$gray-100: #d5d7d8;
+$gray-200: #c2c2c2;
+$gray-300: #acacac;
+$gray-400: #888;
+$gray-500: #666;
+$gray-600: #515151;
+$gray-700: #444;
+$gray-800: #333;
+$gray-900: #2a2a2a;
+
+// Blue Scale
+$blue-000: #f4fafd;
+$blue-050: #e8f5fa;
+$blue-100: #c3e6f2;
+$blue-200: #98d5e9;
+$blue-300: #57badb;
+$blue-400: #0096c8;
+$blue-500: #1d77bd;
+$blue-600: #2b67b2;
+$blue-700: #3155a6;
+$blue-800: #263c97;
+
+// Green Scale
+$green-000: #f3faf4;
+$green-050: #e0f3e2;
+$green-100: #caebcd;
+$green-200: #92db8e;
+$green-300: #6cce66;
+$green-400: #3cbe36;
+$green-500: #2b9936;
+$green-600: #058430;
+$green-700: #056c30;
+$green-800: #005223;
+
+// Yellow Scale
+$yellow-000: #fffdf0;
+$yellow-050: #fffadb;
+$yellow-100: #fff3af;
+$yellow-200: #ffed8c;
+$yellow-300: #ffe154;
+$yellow-400: #ffd200;
+$yellow-500: #ffc400;
+$yellow-600: #fab400;
+$yellow-700: #eb9b00;
+$yellow-800: #de7b00;
+
+// Orange Scale
+$orange-000: #fff3e2;
+$orange-050: #ffe0b6;
+$orange-100: #fecc87;
+$orange-200: #feb759;
+$orange-300: #fea83a;
+$orange-400: #fd9827;
+$orange-500: #f88e25;
+$orange-600: #f27e22;
+$orange-700: #eb6f20;
+$orange-800: #e0571d;
+
+// Red Scale
+$red-000: #fff5f5;
+$red-050: #ffe7e7;
+$red-100: #ffc9c9;
+$red-200: #ffa5a5;
+$red-300: #f05a5a;
+$red-400: #e32323;
+$red-500: #cd1816;
+$red-600: #b50e19;
+$red-700: #950e0c;
+$red-800: #6d0e0c;
+
+// Map Color Scale
+$map-beige-050: #f4f3f2;
+$map-beige-100: #efebe8;
+$map-beige-200: #e8e3da;
+$map-beige-600: #a08467;
+$map-gray-200: #d6d6d6;
+$map-gray-300: #bababa;
+$map-gray-400: #aaa;
+
+$primary: #0095ff;
+$text-color: $gray-900;
+
+//**************************************************//
+
+// Fonts
+
+//**************************************************//
+
+$font-weight-semi-light: 300;
+$font-weight-normal: 400;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+
+$font-size-sm: 12px !default;
+$font-size-caption: 14px !default;
+$font-size-md: 16px !default;
+$font-size-base: 18px !default;
+$font-size-lg: 20px !default;
+$font-size-xl: 24px !default;
+$font-size-header-xs: 32px !default;
+$font-size-header-sm: 36px !default;
+$font-size-header-md: 40px !default;
+$font-size-header-lg: 48px !default;
+
+//**************************************************//
+// Icon
+//**************************************************//
+$icon-size: 24px !default;
+$icon-size-select: 16px !default;
+$icon-size-xs: 16px !default;
+$icon-grid-sort-color: $gray-800 !default;
+$loading-indicator-secondary: $gray-050 !default;
+$hamburger-select-width: $icon-size !default;
+
+//**************************************************//
+// Tags
+//**************************************************//
+$input-tag-spacing: 8px;
+$tag-padding: 4px 9px;
+$tag-bg: $gray-800;
+$tag-color: $white;
+$tag-remove-color: $gray-400 !default;
+$tag-input-bg: $gray-500 !default;
