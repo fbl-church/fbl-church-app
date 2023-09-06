@@ -73,7 +73,7 @@ input {
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and ($screen-sm-max) {
   .form-input__normal {
     padding: 10px;
     font-size: $font-size-caption;

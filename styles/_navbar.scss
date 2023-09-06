@@ -61,7 +61,13 @@
 /**
  * Media Value changes
  */
-@media screen and (max-width: 850px) {
+@media screen and (max-width: $screen-sm-max) {
+  .app-navbar__title {
+    font-size: $font-size-xl;
+    margin-top: 22px;
+    margin-left: 24px;
+  }
+
   .app-navbar__bell-num {
     width: 20px;
     height: 20px;
@@ -69,23 +75,12 @@
   }
 
   .app-navbar__title {
+    height: 70px !important;
     margin-left: 30px;
   }
 }
 
-@media screen and (max-width: 615px) {
-  .app-navbar__title {
-    font-size: $font-size-xl;
-    margin-top: 20px;
-    margin-left: 24px;
-  }
-
-  .app-navbar {
-    height: 70px !important;
-  }
-}
-
-@media screen and (max-width: 530px) {
+@media screen and (max-width: $screen-sm-max) {
   .app-navbar__title {
     font-size: $font-size-lg;
     margin-top: 22px;
@@ -99,7 +94,7 @@
   }
 }
 
-@media screen and (max-width: 440px) {
+@media screen and (max-width: $screen-xs-max) {
   .app-navbar__title {
     font-size: $font-size-md;
     margin-top: 25px;
@@ -121,33 +116,5 @@
 
   .app-navbar {
     height: 65px !important;
-  }
-}
-
-@media screen and (max-width: 365px) {
-  .app-navbar__title {
-    font-size: $font-size-caption;
-    margin-top: 24px;
-  }
-
-  .app-navbar__icons {
-    font-size: $font-size-base;
-    margin-top: 22px;
-  }
-
-  .app-navbar__icons__left {
-    margin-right: 5px;
-  }
-
-  .app-navbar__icons__right {
-    margin-right: 0;
-  }
-
-  .app-navbar__bell-num {
-    padding: 0px 5px;
-  }
-
-  .app-navbar {
-    height: 60px !important;
   }
 }

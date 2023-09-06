@@ -27,7 +27,7 @@
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: $screen-sm-max) {
   .app-container {
     margin: 90px 0 0 0;
   }

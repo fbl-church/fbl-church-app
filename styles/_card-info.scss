@@ -63,7 +63,7 @@
   color: $text-color;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: $screen-sm-max) {
   .card-info__label-header {
     font-size: $font-size-base !important;
   }

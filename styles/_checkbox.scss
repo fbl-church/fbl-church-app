@@ -8,7 +8,7 @@
   margin: 12px;
 }
 
-@media screen and (max-width: 570px) {
+@media screen and (max-width: $screen-sm-max) {
   .ik-checkbox-default {
     width: 20px;
     height: 20px;

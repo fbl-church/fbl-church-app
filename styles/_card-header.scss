@@ -18,7 +18,7 @@
   display: inline-block;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: $screen-sm-max) {
   .card_header .title {
     font-size: $font-size-lg;
   }

@@ -46,7 +46,7 @@
   padding: 0;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and ($screen-sm-max) {
   .ng-select.ng-select-single .ng-select-container {
     height: 44.5px;
   }

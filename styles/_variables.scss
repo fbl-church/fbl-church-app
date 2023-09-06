@@ -125,16 +125,17 @@ $font-size-xl: 24px !default;
 $font-size-header-xs: 32px !default;
 $font-size-header-sm: 36px !default;
 $font-size-header-md: 40px !default;
-$font-size-header-lg: 48px !default;
+$font-size-header-lg: 44px !default;
 
 //**************************************************//
 // Content & Layout
 //**************************************************//
 
-$screen-xs-max: 375px !default;
-$screen-sm-max: 768px !default;
-$screen-md-max: 1024px !default;
-$screen-lg-max: 1279px !default;
+$screen-xs-max: 375px !default; // Small Mobile Devices (300 - 375)
+$screen-sm-max: 500px !default; // Large Mobile Devices (376 - 500)
+$screen-md-max: 768px !default; // iPad, Tablet (501 - 768)
+$screen-lg-max: 1024px !default; // Small Screens, Laptops (769 - 1024)
+$screen-xl-max: 1274px !default; // Large Screens, TV's (1025 - 1274)
 
 $spacing-xs: 18px !default;
 $spacing-sm: 18px !default;
