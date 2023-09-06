@@ -20,7 +20,7 @@
   text-align: left;
   height: auto;
   float: left;
-  margin-left: 40px;
+  margin-left: 20px;
   margin-top: 16px;
   cursor: pointer;
 }
@@ -50,11 +50,6 @@
 /**
  * Media Value changes
  */
-@media screen and (max-width: $navbar-screen-lg-max) {
-  .app-navbar__title {
-    margin-left: 20px;
-  }
-}
 
 @media screen and (max-width: $navbar-screen-md-max) {
   .app-navbar__title {
