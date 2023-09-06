@@ -7,13 +7,13 @@
       *ngIf="user.webRole && user.webRole.length > 0; else noRoles"
       class="flex"
     >
-      <div class="layout__column-half">
+      <div class="layout__half">
         <ng-container *ngFor="let role of user.webRole; let even = even">
           <li *ngIf="even">{{ role | webRoleTranslate }}</li>
         </ng-container>
       </div>
 
-      <div class="layout__column-half">
+      <div class="layout__half">
         <ng-container *ngFor="let role of user.webRole; let odd = odd">
           <li *ngIf="odd">{{ role | webRoleTranslate }}</li>
         </ng-container>

@@ -1,46 +1,44 @@
 @import "variables";
 
-.layout__left-column {
-  float: left;
-  padding-right: 50px;
-}
-
-.layout__right-column {
-  float: right;
-}
-
-.layout__column-wide {
-  width: 60%;
-}
-
-.layout__column-narrow {
-  width: 40%;
-}
-
-.layout__column-half {
-  width: 50%;
-}
-
-@media screen and (max-width: 960px) {
-  .layout__left-column {
-    float: none;
-    padding: 0;
+.layout__column {
+  &-left {
+    float: left;
+    padding-right: 50px;
   }
 
-  .layout__right-column {
-    float: none;
-    padding: 0;
+  &-right {
+    float: right;
+  }
+}
+
+.layout {
+  &__wide {
+    width: 60%;
   }
 
-  .layout__column-wide {
-    width: 100%;
+  &__narrow {
+    width: 40%;
   }
 
-  .layout__column-narrow {
-    width: 100%;
+  &__half {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: $layout-screen-lg-max) {
+  .layout__column {
+    &-left,
+    &-right {
+      float: left;
+      padding-right: 0;
+    }
   }
 
-  .layout__column-half {
-    width: 100%;
+  .layout {
+    &__wide,
+    &__half,
+    &__narrow {
+      width: 100%;
+    }
   }
 }

@@ -70,20 +70,20 @@
   font-weight: $font-weight-semi-bold;
 }
 
-@media screen and (max-width: $screen-xl-max) {
+@media screen and (max-width: $login-screen-lg-max) {
   .login-container {
     width: 50%;
   }
 }
 
-@media screen and (max-width: $screen-md-max) {
+@media screen and (max-width: $login-screen-md-max) {
   .login-container {
     width: 90%;
     margin: 15em auto;
   }
 }
 
-@media screen and (max-width: $screen-sm-max) {
+@media screen and (max-width: $login-screen-sm-max) {
   .login-container {
     width: 95%;
     margin: 10em auto;

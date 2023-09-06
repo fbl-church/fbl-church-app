@@ -19,7 +19,7 @@
         <ng-container *ngFor="let submenu of navItem.submenu.items">
           <ng-container *ngIf="submenu.route">
             <a
-              class="menu-item fake"
+              class="menu-item"
               [routerLink]="navItem.route + submenu.route"
               routerLinkActive="dropdown-item__active"
               (click)="close()"

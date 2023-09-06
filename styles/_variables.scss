@@ -131,12 +131,6 @@ $font-size-header-lg: 44px !default;
 // Content & Layout
 //**************************************************//
 
-$screen-xs-max: 375px !default; // Small Mobile Devices (300 - 375)
-$screen-sm-max: 500px !default; // Large Mobile Devices (376 - 500)
-$screen-md-max: 768px !default; // iPad, Tablet (501 - 768)
-$screen-lg-max: 1024px !default; // Small Screens, Laptops (769 - 1024)
-$screen-xl-max: 1274px !default; // Large Screens, TV's (1025 - 1274)
-
 $spacing-xs: 18px !default;
 $spacing-sm: 18px !default;
 $spacing-md: 24px !default;
@@ -160,11 +154,56 @@ $margin-xl: $margin * 2 !default;
 $line-height-base: 27px !default;
 
 //**************************************************//
-// Tags
+// Screen Widths
 //**************************************************//
-$input-tag-spacing: 8px;
-$tag-padding: 4px 9px;
-$tag-bg: $gray-800;
-$tag-color: $white;
-$tag-remove-color: $gray-400 !default;
-$tag-input-bg: $gray-500 !default;
+
+// Base Sizes
+$screen-xs-max: 375px !default; // Small Mobile Devices (300 - 375)
+$screen-sm-max: 500px !default; // Large Mobile Devices (376 - 500)
+$screen-md-max: 768px !default; // iPad, Tablet (501 - 768)
+$screen-lg-max: 1024px !default; // Small Screens, Laptops (769 - 1024)
+$screen-xl-max: 1274px !default; // Large Screens, TV's (1025 - 1274)
+
+// Button
+$button-screen-sm-max: $screen-sm-max;
+$button-screen-md-max: 830px;
+$button-screen-lg-max: $screen-lg-max;
+
+// Card
+$card-screen-sm-max: $screen-sm-max;
+
+// Footer
+$footer-screen-xs-max: 425px;
+$footer-screen-sm-max: 520px;
+$footer-screen-md-max: $screen-md-max;
+$footer-screen-lg-max: $screen-lg-max;
+
+// Grid
+$grid-screen-sm-max: 570px;
+$grid-screen-md-max: $screen-md-max;
+
+// Header
+$header-screen-sm-max: $screen-sm-max;
+$header-screen-lg-max: $screen-lg-max;
+
+// Layout
+$layout-screen-lg-max: 960px;
+
+// Login
+$login-screen-sm-max: $screen-sm-max;
+$login-screen-md-max: $screen-md-max;
+$login-screen-lg-max: $screen-xl-max;
+
+// Navbar
+$navbar-screen-sm-max: $screen-sm-max;
+$navbar-screen-md-max: 675px;
+$navbar-screen-lg-max: $screen-md-max;
+
+// Page
+$page-screen-sm-max: $screen-sm-max;
+$page-screen-md-max: 600px;
+$page-screen-lg-max: $screen-lg-max;
+$page-screen-xl-max: 1800px;
+
+// Side Bar
+$sidebar-screen-sm-max: $screen-sm-max;

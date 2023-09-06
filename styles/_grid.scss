@@ -72,13 +72,7 @@ table {
   font-size: $font-size-lg;
 }
 
-@media screen and (max-width: 800px) {
-  .grid__checklist-column {
-    width: 7%;
-  }
-}
-
-@media screen and (max-width: 770px) {
+@media screen and (max-width: $grid-screen-md-max) {
   .grid__checklist-column {
     width: 9%;
   }
@@ -88,7 +82,7 @@ table {
   }
 }
 
-@media screen and (max-width: 570px) {
+@media screen and (max-width: $grid-screen-sm-max) {
   thead {
     line-height: 40px;
   }

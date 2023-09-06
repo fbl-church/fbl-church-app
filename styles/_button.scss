@@ -336,7 +336,7 @@
   }
 }
 
-@media screen and (max-width: $screen-lg-max) {
+@media screen and (max-width: $button-screen-lg-max) {
   .btn-header-right {
     margin: 0 2px 8px 8px;
   }
@@ -346,7 +346,7 @@
   }
 }
 
-@media screen and (max-width: $screen-md-max) {
+@media screen and (max-width: $button-screen-md-max) {
   .btn-flat {
     padding: 4px 8px !important;
     font-size: $font-size-base !important;
@@ -373,7 +373,7 @@
   }
 }
 
-@media screen and (max-width: $screen-sm-max) {
+@media screen and (max-width: $button-screen-sm-max) {
   .btn-header-right {
     margin: 4px 2px 8px 8px;
   }

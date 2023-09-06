@@ -12,27 +12,15 @@
   color: $text-color;
 }
 
-.header-margin {
-  margin-bottom: 25px;
-}
-
-@media screen and (max-width: 1030px) {
+@media screen and (max-width: $header-screen-lg-max) {
   .header-title {
     font-size: $font-size-header-xs;
   }
-
-  .header-margin {
-    margin-bottom: 15px;
-  }
 }
 
-@media screen and (max-width: 510px) {
+@media screen and (max-width: $header-screen-sm-max) {
   .header-title {
     font-size: $font-size-xl;
     padding-top: 10px;
-  }
-
-  .header-margin {
-    margin-bottom: 0;
   }
 }

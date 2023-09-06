@@ -18,7 +18,7 @@
       </button>
     </div>
   </ik-header>
-  <div class="layout__left-column layout__column-wide">
+  <div class="layout__column-left layout__wide">
     <app-user-details-card [user]="userData" (editClick)="onEditClick()">
       <ik-icon
         [icon]="editIcon"
@@ -28,7 +28,7 @@
       ></ik-icon
     ></app-user-details-card>
   </div>
-  <div class="layout__right-column layout__column-narrow">
+  <div class="layout__column-right layout__narrow">
     <app-user-roles-card [user]="userData">
       <ng-container *ngIf="canEditRoles">
         <ik-icon

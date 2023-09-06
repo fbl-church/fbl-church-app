@@ -9,25 +9,25 @@
   padding-bottom: 50px;
 }
 
-@media screen and (max-width: 1800px) {
+@media screen and (max-width: $page-screen-xl-max) {
   .app-container {
     width: 95%;
   }
 }
 
-@media screen and (max-width: 1030px) {
+@media screen and (max-width: $page-screen-lg-max) {
   .app-container {
     width: 97%;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: $page-screen-md-max) {
   .app-container {
     width: 100%;
   }
 }
 
-@media screen and (max-width: $screen-sm-max) {
+@media screen and (max-width: $page-screen-sm-max) {
   .app-container {
     margin: 90px 0 0 0;
   }

@@ -48,7 +48,7 @@
   margin: 10px 2px;
 }
 
-@media screen and (max-width: 570px) {
+@media screen and (max-width: $grid-screen-sm-max) {
   .grid-pager__page-number {
     width: 30px;
     height: 30px;

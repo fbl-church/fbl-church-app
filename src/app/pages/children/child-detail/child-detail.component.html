@@ -3,7 +3,7 @@
     <ik-header-back (back)="onBackClick()"></ik-header-back>
     <div class="inline-display header-buttons">
       <button
-        class="btn btn-danger btn-flat btn-header-right"
+        class="btn btn-danger btn-flat btn-size btn-header-right"
         (click)="deleteChildModal.modal.open()"
         *featureAccess="[Application.CHILDREN, Feature.DETAIL, Access.DELETE]"
       >
@@ -11,7 +11,7 @@
       </button>
     </div>
   </ik-header>
-  <div class="layout__left-column layout__column-half">
+  <div class="layout__column-left layout__half">
     <app-child-details-card
       [child]="childData"
       (editClick)="onChildDetailEditClick()"
@@ -20,7 +20,7 @@
       [child]="childData"
     ></app-child-additional-info-card>
   </div>
-  <div class="layout__right-column layout__column-half">
+  <div class="layout__column-right layout__half">
     <app-child-gurdians-details-grid
       [childId]="childData.id"
     ></app-child-gurdians-details-grid>
