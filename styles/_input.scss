@@ -93,3 +93,17 @@ input {
     padding-right: 5px;
   }
 }
+
+// IOS Devices ONLY
+@supports (-webkit-touch-callout: none) {
+  .form-input::-webkit-date-and-time-value {
+    text-align: left;
+    height: 30px;
+  }
+
+  .form-input[type="date"] {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+  }
+}
