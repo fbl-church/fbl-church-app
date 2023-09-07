@@ -1,5 +1,7 @@
 /**
- * Default configuration for running the application locally.
+ * Default configuration for running the application locally. This requires the
+ * fbl-church-microservice to be running locally as well and requires a locally
+ * signed jwt.
  *
  * @author Sam Butler
  * @since February 25, 2022

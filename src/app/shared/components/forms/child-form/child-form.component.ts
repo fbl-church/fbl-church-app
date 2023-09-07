@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
+import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 
 @Component({
   selector: 'app-child-form',
   templateUrl: './child-form.component.html',
-  styleUrls: ['./child-form.component.scss'],
 })
 export class ChildFormComponent implements OnInit {
   @Input() childData: Child;
@@ -20,7 +20,10 @@ export class ChildFormComponent implements OnInit {
   churchGroups: string[];
   form: FormGroup;
 
-  constructor(private readonly fb: FormBuilder) {}
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly commonService: CommonService
+  ) {}
 
   ngOnInit() {
     this.buildForm();
@@ -40,7 +43,7 @@ export class ChildFormComponent implements OnInit {
       birthday: [
         this.childData?.birthday
           ? this.childData.birthday.toString().split('T')[0]
-          : '',
+          : this.commonService.formatDate(new Date(), 'yyyy-MM-dd'),
         Validators.required,
       ],
       allergies: [this.childData ? this.childData.allergies : ''],

@@ -1,28 +1,34 @@
-<ik-modal #contactAdminModal name="contactAdminModal">
+<ik-modal
+  #contactAdminModal
+  name="contactAdminModal"
+  class="modal-body__padding-none"
+>
   <ik-modal-header title="Contact Us"></ik-modal-header>
   <ng-container *ngIf="!loading; else loader">
     <ik-modal-body>
       <form [formGroup]="form">
         <div class="row">
           <div class="col-8">
-            <div class="label-header">Recipient</div>
-            <input
-              type="input"
-              readonly
-              class="form-input__outline type-input-margin-top noClick"
-              placeholder="Samuel Butler (Admin)"
-            />
+            <ik-form-field header="Recipient">
+              <input
+                type="input"
+                readonly
+                class="form-input__outline pointer-none"
+                placeholder="Samuel Butler (Admin)"
+              />
+            </ik-form-field>
           </div>
         </div>
         <div class="row">
           <div class="col-xs-12 col-sm-12">
-            <div class="label-header spacer-margin">Message</div>
-            <textarea
-              formControlName="message"
-              rows="4"
-              cols="50"
-              class="form-input__outline textarea-margin"
-            ></textarea>
+            <ik-form-field header="Message">
+              <textarea
+                formControlName="message"
+                rows="4"
+                cols="50"
+                class="form-input__outline"
+              ></textarea>
+            </ik-form-field>
           </div>
         </div>
       </form>

@@ -6,7 +6,6 @@ import { ChurchGroupService } from 'src/service/church-groups/church-group.servi
 @Component({
   selector: 'app-child-group-grid-card',
   templateUrl: './child-group-grid-card.component.html',
-  styleUrls: ['./child-group-grid-card.component.scss'],
 })
 export class ChildGroupGridCardComponent {
   @ViewChild(GridChecklistColumnComponent)

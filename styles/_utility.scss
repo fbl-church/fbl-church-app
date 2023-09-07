@@ -15,6 +15,10 @@ select {
   outline: none !important;
 }
 
+textarea {
+  resize: none;
+}
+
 .inline {
   display: inline;
 }
@@ -117,6 +121,10 @@ select {
 
 .pointer {
   cursor: pointer;
+}
+
+.pointer-none {
+  pointer-events: none;
 }
 
 @media screen and (max-width: $screen-sm-max) {

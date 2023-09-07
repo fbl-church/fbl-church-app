@@ -9,7 +9,6 @@ import { GurdianService } from 'src/service/gurdians/gurdian.service';
 @Component({
   selector: 'app-child-gurdians-grid-card',
   templateUrl: './child-gurdians-grid-card.component.html',
-  styleUrls: ['./child-gurdians-grid-card.component.scss'],
 })
 export class ChildGurdiansGridCardComponent implements OnInit {
   @ViewChild(GridChecklistColumnComponent)
