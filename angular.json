@@ -42,10 +42,6 @@
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js"
             ],
-            "vendorChunk": true,
-            "extractLicenses": false,
-            "buildOptimizer": false,
-            "sourceMap": true,
             "optimization": {
               "scripts": true,
               "styles": {
@@ -53,7 +49,24 @@
                 "inlineCritical": false
               }
             },
-            "namedChunks": true
+            "outputHashing": "none",
+            "sourceMap": true,
+            "namedChunks": true,
+            "extractLicenses": false,
+            "vendorChunk": true,
+            "buildOptimizer": false,
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "3mb",
+                "maximumError": "5mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "6kb",
+                "maximumError": "10kb"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -75,17 +88,13 @@
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.production.ts"
                 }
-              ],
-              "budgets": [
+              ]
+            },
+            "external": {
+              "fileReplacements": [
                 {
-                  "type": "initial",
-                  "maximumWarning": "3mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.external.ts"
                 }
               ]
             }
@@ -100,6 +109,9 @@
           "configurations": {
             "production": {
               "browserTarget": "fbl-church-app:build:production"
+            },
+            "external": {
+              "browserTarget": "fbl-church-app:build:external"
             }
           }
         },
