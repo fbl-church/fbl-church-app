@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import {
   Access,
   App,
@@ -16,8 +15,6 @@ export class GurdianDetailsCardComponent {
   @Input() title = 'Details';
   @Input() loading = false;
   @Output() editClick = new EventEmitter<any>();
-
-  editIcon = faPenToSquare;
 
   Feature = Feature;
   Application = App;

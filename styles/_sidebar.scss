@@ -22,6 +22,14 @@
   overflow-x: hidden;
   padding-top: 85px;
   transition: 0.5s;
+
+  &--open {
+    width: 280px;
+  }
+
+  &--closed {
+    width: 0;
+  }
 }
 
 .sidenav .menu-item {

@@ -21,7 +21,7 @@
   <div class="layout__column-left layout__wide">
     <app-user-details-card [user]="userData" (editClick)="onEditClick()">
       <ik-icon
-        [icon]="editIcon"
+        icon="pen-to-square"
         class="right pointer"
         (click)="onEditClick()"
         *featureAccess="[Application.USERS, Feature.DETAIL, Access.UPDATE]"
@@ -32,7 +32,7 @@
     <app-user-roles-card [user]="userData">
       <ng-container *ngIf="canEditRoles">
         <ik-icon
-          [icon]="editIcon"
+          icon="pen-to-square"
           class="right pointer"
           (click)="onEditRolesClick()"
           *featureAccess="[Application.USERS, Feature.DETAIL, Access.UPDATE]"

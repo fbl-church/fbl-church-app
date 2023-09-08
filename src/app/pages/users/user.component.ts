@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import {
   Access,
   App,
@@ -14,7 +13,6 @@ import { UserService } from 'src/service/users/user.service';
 })
 export class UserComponent {
   dataloader: any;
-  addCirlce = faCirclePlus;
 
   Feature = Feature;
   Application = App;

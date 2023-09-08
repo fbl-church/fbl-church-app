@@ -1,27 +1,30 @@
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import {
-  faChartSimple,
-  faChildren,
-  faCircleInfo,
-  faHome,
-  faLock,
-  faPerson,
-  faSchool,
-  faSeedling,
-  faUsers,
-} from '@fortawesome/free-solid-svg-icons';
+import { IconName } from '@fortawesome/fontawesome-svg-core';
 
-export const NAVIGATION_ROUTES = [
+export interface NavItem extends NavItemDetails {
+  submenu?: {
+    id: string;
+    items: NavItemDetails[];
+  };
+}
+
+export interface NavItemDetails {
+  id: string;
+  name: string;
+  icon?: IconName;
+  route: string;
+}
+
+export const NAVIGATION_ROUTES: NavItem[] = [
   {
     id: 'dashboard',
     name: 'Dashboard',
-    icon: faHome,
+    icon: 'home',
     route: '/dashboard',
   },
   {
     id: 'access-manager',
     name: 'Access Manager',
-    icon: faLock,
+    icon: 'lock',
     route: '/access-manager',
     submenu: {
       id: 'accessManagerDropdown',
@@ -43,7 +46,7 @@ export const NAVIGATION_ROUTES = [
     id: 'junior-church',
     name: 'Junior Church',
     route: '/junior-church',
-    icon: faSeedling,
+    icon: 'seedling',
     submenu: {
       id: 'juniorChurchDropdown',
       items: [
@@ -69,13 +72,13 @@ export const NAVIGATION_ROUTES = [
     id: 'users',
     name: 'Users',
     route: '/users',
-    icon: faUsers,
+    icon: 'users',
   },
   {
     id: 'vbs',
     name: 'VBS',
     route: '/vbs',
-    icon: faSchool,
+    icon: 'school',
     submenu: {
       id: 'vbsDropdown',
       items: [
@@ -110,31 +113,25 @@ export const NAVIGATION_ROUTES = [
   {
     id: 'children',
     name: 'Children',
-    icon: faChildren,
+    icon: 'children',
     route: '/children',
   },
   {
     id: 'gurdians',
     name: 'Gurdians',
-    icon: faPerson,
+    icon: 'person',
     route: '/gurdians',
   },
   {
     id: 'reports',
     name: 'Reports',
-    icon: faChartSimple,
+    icon: 'chart-simple',
     route: '/reports',
   },
   {
     id: 'about',
     name: 'About',
-    icon: faCircleInfo,
+    icon: 'circle-info',
     route: '/about',
-  },
-  {
-    id: 'repositories',
-    name: 'Repositories',
-    icon: faGithub,
-    route: '/repositories',
   },
 ];

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { AttendanceRecord } from 'projects/insite-kit/src/model/attendance-record.model';
 import { AttendanceRecordsService } from 'src/service/attendance/attendance-records.service';
 import { ChildrenService } from 'src/service/children/children.service';
@@ -11,8 +10,6 @@ import { ChildrenService } from 'src/service/children/children.service';
 })
 export class JuniorChurchCheckInComponent {
   dataloader: any;
-
-  addCirlce = faCirclePlus;
   fakeData = [
     'testData',
     'testData',

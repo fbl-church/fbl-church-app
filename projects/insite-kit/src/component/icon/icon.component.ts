@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { IconName, IconPrefix } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'ik-icon',
   templateUrl: 'icon.component.html',
 })
 export class IconComponent {
-  @Input() icon: IconDefinition;
+  @Input() icon: IconName;
   @Input() classOverride: string;
+  iconPrefix: IconPrefix = 'fas';
 }

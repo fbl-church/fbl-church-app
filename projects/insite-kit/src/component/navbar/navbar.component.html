@@ -1,19 +1,19 @@
 <nav class="app-navbar">
   <ik-icon
     classOverride="app-navbar__icons__left"
-    [icon]="sideBarOpen ? closeIcon : menuIcon"
+    [icon]="sideBarOpen ? 'close' : 'bars'"
     (click)="onMenuClick()"
   ></ik-icon>
 
   <div class="app-navbar__title inline-block">{{ appName }}</div>
   <ik-icon
     classOverride="app-navbar__icons__right"
-    [icon]="logOutIcon"
+    icon="right-from-bracket"
     (click)="onLogOutClick()"
   ></ik-icon>
   <ik-icon
     classOverride="app-navbar__icons__right"
-    [icon]="profileIcon"
+    icon="user"
     (click)="onProfileClick()"
   ></ik-icon>
 </nav>

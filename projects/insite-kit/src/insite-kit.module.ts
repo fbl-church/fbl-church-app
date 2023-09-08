@@ -1,13 +1,10 @@
-import { APP_BASE_HREF, CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { APP_BASE_HREF } from '@angular/common';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { ToastrModule } from 'ngx-toastr';
+import { BaseInsiteModule } from './base-insite.module';
 import { BannerComponent } from './component/banner/banner.component';
 import { CardHeaderComponent } from './component/card/card-header/card-header.component';
 import { CardInfoComponent } from './component/card/card-info/card-info.component';
@@ -28,7 +25,7 @@ import { GridShowAllComponent } from './component/grid/grid-show-all/grid-show-a
 import { GridComponent } from './component/grid/grid.component';
 import { HeaderBackComponent } from './component/header/header-back/header-back.component';
 import { HeaderComponent } from './component/header/header.component';
-import { IconComponent } from './component/icon/icon.component';
+import { IconModule } from './component/icon/icon.module';
 import { IndicatorLightComponent } from './component/indicator-light/indicator-light.component';
 import { InfoCardComponent } from './component/info-card/info-card.component';
 import { InsitePageComponent } from './component/insite-page/insite-page.component';
@@ -41,6 +38,7 @@ import { MultiSelectInputComponent } from './component/multiselect/multi-select-
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { NotificationPopupComponent } from './component/notification-popup/notification-popup.component';
 import { SingleSelectInputComponent } from './component/select/select.component';
+import { DropdownComponent } from './component/sidebar/dropdown/dropdown.component';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
 import { WizardStepComponent } from './component/wizard/wizard-step/wizard-step.component';
 import { WizardStepDirective } from './component/wizard/wizard-step/wizard-step.directive';
@@ -96,7 +94,6 @@ export function tokenGetter() {
     HeaderComponent,
     NotificationPopupComponent,
     IndicatorLightComponent,
-    IconComponent,
     InisteUserNotificationComponent,
     InisteGeneralNotificationComponent,
     ChurchGroupTranslationPipe,
@@ -114,16 +111,12 @@ export function tokenGetter() {
     FormFieldComponent,
     FormComponent,
     MultiSelectInputComponent,
+    DropdownComponent,
   ],
   imports: [
-    CommonModule,
-    BrowserAnimationsModule,
+    BaseInsiteModule,
+    IconModule,
     RouterModule.forRoot([]),
-    HttpClientModule,
-    FontAwesomeModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgSelectModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -134,6 +127,7 @@ export function tokenGetter() {
     }),
   ],
   exports: [
+    IconModule,
     UsernamePipe,
     NotificationMessagePipe,
     WebRoleTranslationPipe,
@@ -165,7 +159,6 @@ export function tokenGetter() {
     HeaderComponent,
     NotificationPopupComponent,
     IndicatorLightComponent,
-    IconComponent,
     InisteUserNotificationComponent,
     InisteGeneralNotificationComponent,
     ChurchGroupTranslationPipe,
@@ -183,6 +176,7 @@ export function tokenGetter() {
     FormFieldComponent,
     FormComponent,
     MultiSelectInputComponent,
+    DropdownComponent,
   ],
   entryComponents: [ModalComponent, NotificationPopupComponent],
   providers: [

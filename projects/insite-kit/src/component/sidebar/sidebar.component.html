@@ -1,39 +1,12 @@
-<div class="sidenav" id="sideBarNav" #sidebarNav>
+<div
+  [ngClass]="{ 'sidenav--open': isOpen, 'sidenav--closed': !isOpen }"
+  class="sidenav"
+  id="sideBarNav"
+  #sidebarNav
+>
   <ng-container *ngFor="let navItem of navigationConfig">
     <ng-container *ngIf="navItem.submenu; else routeMenuItem">
-      <div
-        class="menu-item"
-        [ngClass]="{ 'sidebar-category__active': isRouteActive(navItem.route) }"
-        (click)="toggleDropdown(navItem.submenu.id)"
-      >
-        <ik-icon classOverride="sidebar-icon" [icon]="navItem.icon"></ik-icon>
-        <span class="sidebar-category">{{ navItem.name }}</span>
-
-        <ik-icon
-          class="flex-one"
-          classOverride="dropdown-icon"
-          [icon]="getDropdownIcon(navItem.submenu.id)"
-        ></ik-icon>
-      </div>
-      <div [id]="navItem.submenu.id" class="dropdown">
-        <ng-container *ngFor="let submenu of navItem.submenu.items">
-          <ng-container *ngIf="submenu.route">
-            <a
-              class="menu-item"
-              [routerLink]="navItem.route + submenu.route"
-              routerLinkActive="dropdown-item__active"
-              (click)="close()"
-            >
-              {{ submenu.name }}
-            </a>
-          </ng-container>
-          <ng-container *ngIf="submenu.href">
-            <a class="menu-item" [href]="submenu.href" (click)="close()">
-              {{ submenu.name }}
-            </a>
-          </ng-container>
-        </ng-container>
-      </div>
+      <ik-dropdown [navItem]="navItem" (closeSidebar)="close()"></ik-dropdown>
     </ng-container>
 
     <ng-template #routeMenuItem>

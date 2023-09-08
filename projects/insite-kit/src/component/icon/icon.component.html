@@ -1,5 +1,5 @@
 <fa-icon
   *ngIf="icon"
   [ngClass]="classOverride ? classOverride : 'icon__default'"
-  [icon]="icon"
+  [icon]="[iconPrefix, icon]"
 ></fa-icon>
