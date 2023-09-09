@@ -70,3 +70,10 @@
 .multiselect-tags div.ng-dropdown-panel-items {
   font-size: $font-size-base !important;
 }
+
+// IOS Devices ONLY
+@supports (-webkit-touch-callout: none) {
+  .multiselect-tags span.ng-value-icon {
+    margin-top: -4px;
+  }
+}

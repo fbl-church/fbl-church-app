@@ -8,11 +8,7 @@
     Add Gurdian
   </button>
 </ik-header>
-<ik-grid
-  basePath="gurdians"
-  [dataLoader]="dataloader"
-  (rowClick)="onRowClick($event)"
->
+<ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
   <ik-grid-column label="Phone" field="phone"></ik-grid-column>

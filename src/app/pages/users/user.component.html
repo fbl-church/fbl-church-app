@@ -8,11 +8,7 @@
     Add User
   </button>
 </ik-header>
-<ik-grid
-  basePath="users"
-  [dataLoader]="dataloader"
-  (rowClick)="onRowClick($event)"
->
+<ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
   <ik-grid-column label="Email" field="email"></ik-grid-column>

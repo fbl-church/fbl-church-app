@@ -1,7 +1,13 @@
+import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AttendanceRecord } from 'projects/insite-kit/src/model/attendance-record.model';
-import { Subject, map, takeUntil } from 'rxjs';
+import {
+  Access,
+  App,
+  Feature,
+} from 'projects/insite-kit/src/model/common.model';
+import { Subject, map, of, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-junior-church-attendance-detail',
@@ -13,6 +19,11 @@ export class JuniorChurchAttendanceDetailComponent
   loading = true;
   destroy = new Subject<void>();
   record: AttendanceRecord;
+  workerDataloader: any;
+
+  Feature = Feature;
+  Application = App;
+  Access = Access;
 
   constructor(
     private readonly router: Router,
@@ -26,6 +37,15 @@ export class JuniorChurchAttendanceDetailComponent
         takeUntil(this.destroy)
       )
       .subscribe((res) => {
+        this.workerDataloader = () =>
+          of(
+            new HttpResponse({
+              body: res.workers,
+              headers: new HttpHeaders({
+                'total-count': `${res.workers.length}`,
+              }),
+            })
+          );
         this.record = res;
         this.loading = false;
       });

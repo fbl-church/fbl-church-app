@@ -1,4 +1,4 @@
-<ik-grid *ngIf="dataloader" basePath="children" [dataLoader]="dataloader">
+<ik-grid *ngIf="dataloader" [dataLoader]="dataloader">
   <ik-card-header title="Church Groups">
     <ng-container
       *featureAccess="[Application.CHILDREN, Feature.DETAIL, Access.UPDATE]"

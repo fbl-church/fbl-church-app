@@ -37,6 +37,28 @@
       </div>
     </ik-card>
   </div>
+  <div class="layout__column-right layout__narrow">
+    <ik-grid [dataLoader]="workerDataloader">
+      <ik-card-header title="Workers">
+        <ng-container
+          *featureAccess="[Application.CHILDREN, Feature.DETAIL, Access.UPDATE]"
+        >
+          <ik-icon
+            icon="pen-to-square"
+            class="right pointer"
+            classOverride="icon__default"
+          ></ik-icon>
+        </ng-container>
+      </ik-card-header>
+      <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
+      <ik-grid-column label="Email" field="email"></ik-grid-column>
+      <ik-grid-pager
+        key="Workers"
+        [pagerVisible]="false"
+        [pageSize]="8"
+      ></ik-grid-pager>
+    </ik-grid>
+  </div>
 </ng-container>
 
 <ng-template #loader>

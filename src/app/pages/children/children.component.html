@@ -8,11 +8,7 @@
     Add Child
   </button>
 </ik-header>
-<ik-grid
-  basePath="children"
-  [dataLoader]="dataloader"
-  (rowClick)="onRowClick($event)"
->
+<ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
   <ik-grid-column label="CUID" field="cuid"></ik-grid-column>

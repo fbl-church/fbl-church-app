@@ -54,4 +54,14 @@ export class AttendanceRecordsService {
         )
       );
   }
+
+  /**
+   * Create a new attendance record
+   *
+   * @param record to filter on
+   * @returns Attendance Record object
+   */
+  create(record: AttendanceRecord): Observable<AttendanceRecord> {
+    return this.request.post<AttendanceRecord>(this.BASE_PATH, record);
+  }
 }

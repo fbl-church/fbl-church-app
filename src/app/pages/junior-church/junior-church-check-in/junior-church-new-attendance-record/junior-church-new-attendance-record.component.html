@@ -2,51 +2,48 @@
   <ik-header-back (back)="onBackClick()"></ik-header-back>
 </ik-header>
 
-<ik-form [formGroup]="form">
-  <div class="row">
-    <ik-form-field header="Name" class="col-md-6"
-      ><input
-        class="form-input__normal"
-        placeholder="Name"
-        formControlName="name"
-      />
+<ng-container *ngIf="form && !loading; else loader">
+  <ik-form [formGroup]="form">
+    <div class="row">
+      <ik-form-field header="Name" class="col-md-6"
+        ><input
+          maxlength="26"
+          class="form-input__normal"
+          placeholder="Name"
+          formControlName="name"
+        />
+      </ik-form-field>
+
+      <ik-form-field header="Active Date*" class="col-md-6"
+        ><input
+          type="date"
+          class="form-input__normal"
+          placeholder="Active Date"
+          formControlName="activeDate"
+        />
+      </ik-form-field>
+    </div>
+
+    <ik-form-field header="Workers">
+      <ik-multi-select
+        formControlName="workers"
+        [items]="workers"
+      ></ik-multi-select>
     </ik-form-field>
+  </ik-form>
 
-    <ik-form-field header="Active Date*" class="col-md-6"
-      ><input
-        type="date"
-        class="form-input__normal"
-        placeholder="Active Date"
-        formControlName="activeDate"
-      />
-    </ik-form-field>
-  </div>
+  <button class="btn btn-default btn-flat btn-left" (click)="onCancelClick()">
+    Cancel
+  </button>
+  <button
+    class="btn btn-primary btn-flat btn-right"
+    (click)="onSaveClick()"
+    [disabled]="form?.invalid"
+  >
+    Create
+  </button>
+</ng-container>
 
-  <ik-form-field header="Workers">
-    <ik-multi-select
-      formControlName="workers"
-      [items]="[
-        'Sam Butler',
-        'Ashley Suvak',
-        'Ella Butler',
-        'Sam Butler1',
-        'Ashley Suvak2',
-        'Ella Butler3'
-      ]"
-    ></ik-multi-select>
-  </ik-form-field>
-</ik-form>
-
-<button class="btn btn-default btn-flat btn-left" (click)="onCancelClick()">
-  Cancel
-</button>
-<button
-  class="btn btn-primary btn-flat btn-right"
-  (click)="onSaveClick()"
-  [disabled]="form.invalid"
->
-  Create
-</button>
-<ng-template #loadingIcon>
-  <ik-loading size="40px" thickness="3px"></ik-loading>
+<ng-template #loader>
+  <ik-loading></ik-loading>
 </ng-template>

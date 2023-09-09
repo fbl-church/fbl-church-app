@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AttendanceRecord } from 'projects/insite-kit/src/model/attendance-record.model';
 import { AttendanceRecordsService } from 'src/service/attendance/attendance-records.service';
-import { ChildrenService } from 'src/service/children/children.service';
 
 @Component({
   selector: 'app-junior-church-check-in',
@@ -10,108 +9,9 @@ import { ChildrenService } from 'src/service/children/children.service';
 })
 export class JuniorChurchCheckInComponent {
   dataloader: any;
-  fakeData = [
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-    'testData',
-  ];
 
   constructor(
-    private attendanceRecordService: AttendanceRecordsService,
-    private childrenService: ChildrenService,
+    private readonly attendanceRecordService: AttendanceRecordsService,
     private readonly router: Router
   ) {
     this.dataloader = (params: any) =>
@@ -119,7 +19,7 @@ export class JuniorChurchCheckInComponent {
   }
 
   getAttendanceRecordsDataloader(params?: Map<string, string[]>) {
-    return this.childrenService.get(params.set('size', ['100']));
+    return this.attendanceRecordService.get(params);
   }
 
   onRowClick(event: AttendanceRecord) {

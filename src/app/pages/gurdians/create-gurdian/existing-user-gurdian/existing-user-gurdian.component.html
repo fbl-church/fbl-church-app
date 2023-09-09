@@ -1,11 +1,7 @@
 <ik-header [title]="'Create Gurdian from Existing User'"
   ><ik-header-back (back)="onCancelClick()"></ik-header-back>
 </ik-header>
-<ik-grid
-  basePath="users"
-  [dataLoader]="userDataloader"
-  (rowClick)="onUserClick($event)"
->
+<ik-grid [dataLoader]="userDataloader" (rowClick)="onUserClick($event)">
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
   <ik-grid-column label="Email" field="email"></ik-grid-column>

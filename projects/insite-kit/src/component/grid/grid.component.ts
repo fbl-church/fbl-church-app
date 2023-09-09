@@ -37,7 +37,6 @@ export class GridComponent implements OnChanges, OnDestroy, AfterViewInit {
   gridChecklistColumn: GridChecklistColumnComponent;
 
   @Input() dataLoader: GridDataloader;
-  @Input() basePath = '';
   @Input() overflowEnabled = false;
   @Input() scroll = false;
 
@@ -282,6 +281,7 @@ export class GridComponent implements OnChanges, OnDestroy, AfterViewInit {
     } else {
       total = this.data.body?.length;
     }
+    console.log(total);
     this.gridPager.update(total, this.activePage);
   }
 
