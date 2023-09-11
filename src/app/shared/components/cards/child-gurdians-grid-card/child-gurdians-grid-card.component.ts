@@ -70,4 +70,6 @@ export class ChildGurdiansGridCardComponent implements OnInit {
       )
     );
   }
+
+  onAddGurdianClick() {}
 }

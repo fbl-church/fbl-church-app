@@ -17,22 +17,25 @@
     </ik-form-field>
   </div>
 
-  <ik-form-field header="Phone*">
-    <input
-      phoneMask
-      placeholder="(___) ___-____"
-      class="form-input__normal"
-      formControlName="phone"
-      maxlength="14"
-    />
-  </ik-form-field>
-  <ik-form-field header="Address*">
-    <input
-      class="form-input__normal"
-      placeholder="Address"
-      formControlName="address"
-    />
-  </ik-form-field>
+  <div class="row">
+    <ik-form-field header="Phone*" class="col-md-4">
+      <input
+        phoneMask
+        placeholder="(___) ___-____"
+        class="form-input__normal"
+        formControlName="phone"
+        maxlength="14"
+      />
+    </ik-form-field>
+    <ik-form-field header="Address*" class="col-md-8">
+      <input
+        class="form-input__normal"
+        placeholder="Address"
+        formControlName="address"
+      />
+    </ik-form-field>
+  </div>
+
   <div class="row">
     <ik-form-field header="City*" class="col-md-4">
       <input

@@ -10,7 +10,7 @@ export class DropdownComponent {
   @Input() navItem: NavItem;
   @Output() closeSidebar = new EventEmitter<void>();
 
-  readonly MAX_DROPDOWN_HEIGHT = '1000px';
+  isOpen = false;
   dropdownCloseIcon = 'caret-left';
   dropdownOpenIcon = 'caret-down';
 
@@ -20,30 +20,18 @@ export class DropdownComponent {
     this.closeSidebar.emit();
   }
 
-  toggleDropdown(id: string) {
-    if (
-      document.getElementById(id).style.maxHeight === this.MAX_DROPDOWN_HEIGHT
-    ) {
-      this.closeDropDown(id);
+  toggleDropdown() {
+    if (this.isOpen) {
+      this.isOpen = false;
     } else {
-      this.openDropdown(id);
+      this.isOpen = true;
     }
-  }
-
-  openDropdown(id: string) {
-    document.getElementById(id).style.maxHeight = this.MAX_DROPDOWN_HEIGHT;
-  }
-
-  closeDropDown(id: string) {
-    document.getElementById(id).style.maxHeight = '0';
   }
 
   getDropdownIcon(id: string) {
     const element = document.getElementById(id);
     if (element) {
-      return element.style.maxHeight === this.MAX_DROPDOWN_HEIGHT
-        ? this.dropdownOpenIcon
-        : this.dropdownCloseIcon;
+      return this.isOpen ? this.dropdownOpenIcon : this.dropdownCloseIcon;
     } else {
       return null;
     }

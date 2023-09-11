@@ -25,6 +25,7 @@ import {
   faTriangleExclamation,
   faUser,
   faUserPen,
+  faUserPlus,
   faUsers,
 } from '@fortawesome/free-solid-svg-icons';
 import { BaseInsiteModule } from '../../base-insite.module';
@@ -62,7 +63,8 @@ export class IconModule {
       faSchool,
       faChildren,
       faPerson,
-      faChartSimple
+      faChartSimple,
+      faUserPlus
     );
   }
 }

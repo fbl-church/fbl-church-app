@@ -1,5 +1,11 @@
 <ik-grid [dataLoader]="dataloader">
-  <ik-card-header title="Gurdians"> </ik-card-header>
+  <ik-card-header title="Gurdians">
+    <ik-icon
+      icon="user-plus"
+      class="right pointer"
+      (click)="onAddGurdianClick()"
+    ></ik-icon>
+  </ik-card-header>
   <ik-grid-search></ik-grid-search>
   <ik-grid-checklist-column
     [selectedIds]="gurdianIdsChecked"
