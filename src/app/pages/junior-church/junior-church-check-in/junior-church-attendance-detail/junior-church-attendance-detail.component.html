@@ -1,6 +1,16 @@
 <ng-container *ngIf="!loading; else loader">
   <ik-header [title]="record.name">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
+    <div class="inline-display header-buttons">
+      <button class="btn btn-danger btn-flat btn-header-right">
+        <ik-icon icon="lock" classOverride="btn-icon"></ik-icon>
+        Close
+      </button>
+      <button class="btn btn-primary btn-flat btn-header-right">
+        <ik-icon icon="user-check" classOverride="btn-icon"></ik-icon>
+        Start Check In
+      </button>
+    </div>
   </ik-header>
   <div class="layout__column-left layout__wide">
     <ik-card>

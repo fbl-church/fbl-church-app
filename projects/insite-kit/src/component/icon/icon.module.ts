@@ -24,6 +24,7 @@ import {
   faSeedling,
   faTriangleExclamation,
   faUser,
+  faUserCheck,
   faUserPen,
   faUserPlus,
   faUsers,
@@ -64,7 +65,8 @@ export class IconModule {
       faChildren,
       faPerson,
       faChartSimple,
-      faUserPlus
+      faUserPlus,
+      faUserCheck
     );
   }
 }
