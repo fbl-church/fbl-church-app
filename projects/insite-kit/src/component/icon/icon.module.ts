@@ -19,6 +19,7 @@ import {
   faPenToSquare,
   faPerson,
   faRightFromBracket,
+  faRotate,
   faSchool,
   faSearch,
   faSeedling,
@@ -68,7 +69,8 @@ export class IconModule {
       faChartSimple,
       faUserPlus,
       faUserCheck,
-      faTrashCan
+      faTrashCan,
+      faRotate
     );
   }
 }
