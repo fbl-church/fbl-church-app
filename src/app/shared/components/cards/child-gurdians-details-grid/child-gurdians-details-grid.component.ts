@@ -32,7 +32,6 @@ export class ChildGurdiansDetailsGridComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.gurdians && changes.gurdians.currentValue) {
-      console.log(this.gurdians);
       this.dataloader = () => of(new HttpResponse({ body: this.gurdians }));
     }
   }
