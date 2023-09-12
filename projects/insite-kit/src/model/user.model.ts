@@ -18,7 +18,7 @@ export interface Child extends User {
   birthday?: Date | any;
   allergies?: string;
   additionalInfo?: string;
-  gurdians?: Gurdian;
+  gurdians?: Gurdian[];
 }
 
 export interface Gurdian extends User {

@@ -1,4 +1,6 @@
-<ik-header title="Junior Church Registration"></ik-header>
+<ik-header title="Junior Church Registration">
+  <ik-header-back (back)="onBackClick()"></ik-header-back>
+</ik-header>
 <ik-wizard #wizard>
   <ik-wizard-step>
     <app-junior-church-registration-wizard-step-one
@@ -8,13 +10,21 @@
 
   <ik-wizard-step>
     <app-junior-church-registration-wizard-step-two
+      [childExists]="childExists"
       (next)="onStep2Next($event, wizard)"
     ></app-junior-church-registration-wizard-step-two>
   </ik-wizard-step>
+
   <ik-wizard-step>
     <app-junior-church-registration-wizard-step-three
-      [child]="currentChildInformation"
-      (save)="onSaveClick()"
+      (next)="onStep3Next($event, wizard)"
     ></app-junior-church-registration-wizard-step-three>
+  </ik-wizard-step>
+  <ik-wizard-step>
+    <app-junior-church-registration-wizard-step-four
+      [child]="currentChildInformation"
+      (previous)="onStep4Previous(wizard)"
+      (save)="onSaveClick($event)"
+    ></app-junior-church-registration-wizard-step-four>
   </ik-wizard-step>
 </ik-wizard>

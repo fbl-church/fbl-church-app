@@ -1,11 +1,26 @@
 <ik-info-card
-  title="1. Child Information"
-  description="Create a new child record by entering in the childs information. This includes the required fields of childs first name, last name, and birthday. Optional fields such as allergies and any other additional information needed may be included."
+  title="1. Child"
+  description="Pick the section that best applies. If the child already exists in the system, then click 'Existing Child'. Otherwise if this a new child, then click 'New Child'."
 >
 </ik-info-card>
-<app-child-form
-  leftActionButton="Cancel"
-  rightActionButton="Next"
-  (cancel)="onCancelClick()"
-  (save)="onNextClick($event)"
-></app-child-form>
+
+<div class="row" *ngIf="!loading; else loader">
+  <ik-info-card
+    class="col-md-6 pointer info-card__center"
+    title="Existing Child"
+    description="The child already exists and needs assigned to Junior Church."
+    (click)="onNextClick(true)"
+  >
+  </ik-info-card>
+  <ik-info-card
+    class="col-md-6 pointer info-card__center"
+    title="New Child"
+    description="The child does not exist in the system and needs to be created."
+    (click)="onNextClick(false)"
+  >
+  </ik-info-card>
+</div>
+
+<ng-template #loader>
+  <ik-loading></ik-loading>
+</ng-template>

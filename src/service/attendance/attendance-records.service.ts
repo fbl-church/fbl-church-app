@@ -58,10 +58,34 @@ export class AttendanceRecordsService {
   /**
    * Create a new attendance record
    *
-   * @param record to filter on
+   * @param record The record to create
    * @returns Attendance Record object
    */
   create(record: AttendanceRecord): Observable<AttendanceRecord> {
     return this.request.post<AttendanceRecord>(this.BASE_PATH, record);
+  }
+
+  /**
+   * Update an attendance record
+   *
+   * @param id The id of the record to update
+   * @param record The record to be updated
+   * @returns Attendance Record object
+   */
+  update(id: any, record: AttendanceRecord): Observable<AttendanceRecord> {
+    return this.request.put<AttendanceRecord>(
+      `${this.BASE_PATH}/${id}`,
+      record
+    );
+  }
+
+  /**
+   * Delete an attendance record
+   *
+   * @param id The record id to be deleted
+   * @returns Completed Observable
+   */
+  delete(id: any): Observable<any> {
+    return this.request.delete<any>(`${this.BASE_PATH}/${id}`);
   }
 }

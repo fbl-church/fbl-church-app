@@ -78,7 +78,7 @@ export class JwtService {
    *
    * @returns The user's webrole.
    */
-  getWebRole() {
+  getWebRole(): any {
     return this.get('webRole') as keyof typeof WebRole;
   }
 

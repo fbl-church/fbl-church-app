@@ -1,31 +1,15 @@
 <ik-info-card
-  title="Summary"
-  description="Confirm that all the childs information is accurate and correct."
+  title="3. Guridans of the Child"
+  description="Select the gurdians that are responsible for the child. The child is required to have at least one gurdian assigned to them incase of any emergencies that may occur."
 >
 </ik-info-card>
-
-<ng-container *ngIf="child">
-  <div class="row">
-    <div class="col-md-6">
-      <app-child-details-card
-        [child]="child"
-        [showEdit]="false"
-      ></app-child-details-card>
-    </div>
-    <div class="col-md-6">
-      <app-child-additional-info-card
-        [child]="child"
-      ></app-child-additional-info-card>
-    </div>
-  </div>
-
-  <button class="btn btn-default btn-flat btn-left" (click)="onCancelClick()">
-    Cancel
-  </button>
-  <button class="btn btn-primary btn-flat btn-right" (click)="onSaveClick()">
-    Save
-  </button>
-  <button wizardStepPrev class="btn btn-default btn-flat btn-right">
-    Previous
-  </button>
-</ng-container>
+<app-child-gurdians-grid-card></app-child-gurdians-grid-card>
+<button class="btn btn-default btn-flat btn-left" (click)="onCancelClick()">
+  Cancel
+</button>
+<button class="btn btn-primary btn-flat btn-right" (click)="onNextClick()">
+  Next
+</button>
+<button wizardStepPrev class="btn btn-default btn-flat btn-right">
+  Previous
+</button>

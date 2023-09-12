@@ -10,6 +10,7 @@ import { GurdianChildrenDetailsGridComponent } from './components/cards/gurdian-
 import { UserDetailsCardComponent } from './components/cards/user-details-card/user-details-card.component';
 import { UserRoleSelectionGridComponent } from './components/cards/user-role-selection-grid/user-role-selection-grid.component';
 import { UserRolesCardComponent } from './components/cards/user-roles-card/user-roles-card.component';
+import { AttendanceRecordFormComponent } from './components/forms/attendance-record-form/attendance-record-form.component';
 import { ChildFormComponent } from './components/forms/child-form/child-form.component';
 import { GurdianFormComponent } from './components/forms/gurdian-form/gurdian-form.component';
 import { UserFormComponent } from './components/forms/user-form/user-form.component';
@@ -32,6 +33,7 @@ import { AuthenticatedLayoutComponent } from './components/layouts/authenticated
     ChildGroupDetailsGridComponent,
     ChildGurdiansDetailsGridComponent,
     GurdianChildrenDetailsGridComponent,
+    AttendanceRecordFormComponent,
   ],
   exports: [
     UserFormComponent,
@@ -47,6 +49,7 @@ import { AuthenticatedLayoutComponent } from './components/layouts/authenticated
     ChildGroupDetailsGridComponent,
     ChildGurdiansDetailsGridComponent,
     GurdianChildrenDetailsGridComponent,
+    AttendanceRecordFormComponent,
   ],
 })
 export class SharedModule {}

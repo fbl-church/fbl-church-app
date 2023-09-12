@@ -22,6 +22,7 @@ import {
   faSchool,
   faSearch,
   faSeedling,
+  faTrashCan,
   faTriangleExclamation,
   faUser,
   faUserCheck,
@@ -66,7 +67,8 @@ export class IconModule {
       faPerson,
       faChartSimple,
       faUserPlus,
-      faUserCheck
+      faUserCheck,
+      faTrashCan
     );
   }
 }

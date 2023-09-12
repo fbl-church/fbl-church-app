@@ -281,7 +281,6 @@ export class GridComponent implements OnChanges, OnDestroy, AfterViewInit {
     } else {
       total = this.data.body?.length;
     }
-    console.log(total);
     this.gridPager.update(total, this.activePage);
   }
 

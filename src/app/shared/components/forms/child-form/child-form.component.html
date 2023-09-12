@@ -46,16 +46,19 @@
 </ik-form>
 <ng-content></ng-content>
 
-<button class="btn btn-default btn-flat btn-left" (click)="onCancelClick()">
+<button
+  *ngIf="leftActionButton"
+  class="btn btn-default btn-flat btn-left"
+  (click)="onCancelClick()"
+>
   {{ leftActionButton }}
 </button>
 <button
+  *ngIf="rightActionButton"
   class="btn btn-primary btn-flat btn-right"
   (click)="onSaveClick()"
   [disabled]="form.invalid || !form.dirty || disableSave"
 >
   {{ rightActionButton }}
 </button>
-<ng-template #loadingIcon>
-  <ik-loading size="40px" thickness="3px"></ik-loading>
-</ng-template>
+<ng-content select="button"></ng-content>

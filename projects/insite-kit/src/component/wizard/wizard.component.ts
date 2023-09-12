@@ -58,7 +58,7 @@ export class WizardComponent
 
   ngAfterContentInit() {
     this.initProgress(this.progressSteps.length);
-    this.setActiveActiveStep(this.activeIndex);
+    this.setActiveStep(this.activeIndex);
     this.initStepIndex();
   }
 
@@ -81,7 +81,7 @@ export class WizardComponent
     if (this.activeIndex < this.itemLength - 1) {
       this.activeIndex++;
       this.switchStatusNext(this.activeIndex);
-      this.setActiveActiveStep(this.activeIndex);
+      this.setActiveStep(this.activeIndex);
       this.emitStateChange();
     }
   }
@@ -96,7 +96,7 @@ export class WizardComponent
       if (this.activeIndex > 0) {
         this.activeIndex--;
         this.switchStatusPrev(this.activeIndex);
-        this.setActiveActiveStep(this.activeIndex);
+        this.setActiveStep(this.activeIndex);
         this.emitStateChange();
       }
     }
@@ -109,7 +109,7 @@ export class WizardComponent
     });
   }
 
-  private setActiveActiveStep(index: number): void {
+  private setActiveStep(index: number): void {
     if (this.stepsExists) {
       this.removeActiveStep();
       this.updateActiveStep(index);

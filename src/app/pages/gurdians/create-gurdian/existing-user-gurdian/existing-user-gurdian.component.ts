@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'projects/insite-kit/src/model/user.model';
-import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { UserService } from 'src/service/users/user.service';
 import { UserToGurdianModalComponent } from './modals/user-to-gurdian-modal/user-to-gurdian-modal.component';
 
@@ -18,8 +17,7 @@ export class ExistingUserGurdianComponent {
 
   constructor(
     private readonly router: Router,
-    private readonly userService: UserService,
-    private readonly popupService: PopupService
+    private readonly userService: UserService
   ) {
     this.userDataloader = (params: any) => this.getUserDataLoader(params);
   }

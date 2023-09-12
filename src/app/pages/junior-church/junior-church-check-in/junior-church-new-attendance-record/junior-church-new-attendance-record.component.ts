@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MultiSelectInputComponent } from 'projects/insite-kit/src/component/multiselect/multi-select-input.component';
 import { AttendanceRecord } from 'projects/insite-kit/src/model/attendance-record.model';
-import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, map, takeUntil } from 'rxjs';
@@ -75,16 +74,8 @@ export class JuniorChurchNewAttendanceRecordComponent
     this.onBackClick();
   }
 
-  onSaveClick() {
+  onSaveClick(newRecord: AttendanceRecord) {
     this.loading = true;
-    const newRecord: AttendanceRecord = {
-      name: this.form.value.name,
-      type: ChurchGroup.JUNIOR_CHURCH,
-      workers: this.form.value.workers.map((w) => {
-        return { id: w };
-      }),
-      activeDate: this.form.value.activeDate,
-    };
 
     this.attendanceService.create(newRecord).subscribe({
       next: (res) => {

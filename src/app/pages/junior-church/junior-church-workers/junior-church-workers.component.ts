@@ -41,4 +41,6 @@ export class JuniorChurchWorkersComponent {
       ])
     );
   }
+
+  onNewWorker() {}
 }

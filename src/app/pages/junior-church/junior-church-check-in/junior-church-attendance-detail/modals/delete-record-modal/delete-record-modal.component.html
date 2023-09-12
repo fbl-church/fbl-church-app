@@ -1,0 +1,29 @@
+<ik-modal #deleteRecordModal name="deleteRecordModal">
+  <ik-modal-header title="Delete Attendance?" type="danger"></ik-modal-header>
+  <ng-container *ngIf="!modalLoading; else loader">
+    <ik-modal-body>
+      <div>
+        Deleting this attendance will result in the current information to be
+        lost. Do you want to continue?
+      </div>
+    </ik-modal-body>
+    <ik-modal-action-bar>
+      <button
+        class="btn btn-danger btn-flat btn-right btn-modal"
+        (click)="onDeleteUser()"
+      >
+        Delete Attendance
+      </button>
+      <button
+        class="btn btn-default btn-flat btn-right btn-modal"
+        (click)="deleteRecordModal.close()"
+      >
+        Cancel
+      </button>
+    </ik-modal-action-bar>
+  </ng-container>
+</ik-modal>
+
+<ng-template #loader>
+  <ik-loading></ik-loading>
+</ng-template>

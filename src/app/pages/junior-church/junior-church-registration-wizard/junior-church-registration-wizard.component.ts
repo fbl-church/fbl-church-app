@@ -11,6 +11,7 @@ import { ChildrenService } from 'src/service/children/children.service';
 })
 export class JuniorChurchRegistrationWizardComponent {
   currentChildInformation: Child;
+  childExists = false;
 
   constructor(
     private readonly router: Router,
@@ -22,23 +23,48 @@ export class JuniorChurchRegistrationWizardComponent {
     this.router.navigate(['/junior-church/check-in']);
   }
 
-  onStep1Next(child: Child, wizard: WizardComponent) {
-    this.currentChildInformation = child;
-    console.log('Child Information', this.currentChildInformation);
+  onStep1Next(exists: boolean, wizard: WizardComponent) {
+    this.childExists = exists;
     wizard.next();
   }
 
-  onStep2Next(gurdians: Gurdian[], wizard: WizardComponent) {
+  onStep2Next(child: Child, wizard: WizardComponent) {
+    this.currentChildInformation = child;
+    if (this.childExists) {
+      wizard.next();
+    }
+    wizard.next();
+  }
+
+  onStep3Next(gurdians: Gurdian[], wizard: WizardComponent) {
+    this.currentChildInformation = { ...this.currentChildInformation };
     this.currentChildInformation.gurdians = gurdians;
     wizard.next();
   }
 
-  onSaveClick() {
-    this.childrenService.create(this.currentChildInformation).subscribe({
+  onStep4Previous(wizard: WizardComponent) {
+    if (this.childExists) {
+      wizard.prev();
+    }
+    wizard.prev();
+  }
+
+  onBackClick() {
+    this.router.navigate(['/junior-church']);
+  }
+
+  onSaveClick(child: Child) {
+    let saveObservable;
+    if (this.childExists && child.id) {
+      saveObservable = this.childrenService.update(child.id, child);
+    } else {
+      saveObservable = this.childrenService.create(child);
+    }
+    saveObservable.subscribe({
       next: () => {
         this.onCancelClick();
         this.popupService.success(
-          `${this.currentChildInformation.firstName} ${this.currentChildInformation.lastName} has successfully been registered for Junior Church!`
+          `${child.firstName} ${child.lastName} has successfully been registered for Junior Church!`
         );
       },
       error: () => {

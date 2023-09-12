@@ -45,7 +45,6 @@ export class CreateChildComponent implements OnInit {
     this.disableSave = true;
     this.childrenService.create(child).subscribe({
       next: (res) => {
-        console.log(res);
         this.router.navigate([`/children/${res.id}/details`]);
         this.popupService.success('Child Successfully created!');
       },

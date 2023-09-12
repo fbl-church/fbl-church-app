@@ -1,4 +1,4 @@
-<div *ngIf="!loading; else loader">
+<div *ngIf="childData && !loading; else loader">
   <ik-header title="{{ childData | formatUserName }}">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
     <div class="inline-display header-buttons">
@@ -7,7 +7,8 @@
         (click)="deleteChildModal.modal.open()"
         *featureAccess="[Application.CHILDREN, Feature.DETAIL, Access.DELETE]"
       >
-        Delete Child
+        <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
+        Delete
       </button>
     </div>
   </ik-header>
@@ -23,6 +24,7 @@
   <div class="layout__column-right layout__half">
     <app-child-gurdians-details-grid
       [childId]="childData.id"
+      [gurdians]="childData.gurdians"
     ></app-child-gurdians-details-grid>
     <app-child-group-details-grid
       [child]="childData"

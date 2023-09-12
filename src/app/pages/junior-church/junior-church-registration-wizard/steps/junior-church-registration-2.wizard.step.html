@@ -1,15 +1,46 @@
 <ik-info-card
-  title="2. Guridans of the Child"
-  description="Select the gurdians that are responsible for the child. The child is required to have at least one gurdian assigned to them incase of any emergencies that may occur."
+  *ngIf="!childExists"
+  title="2. Child Information"
+  description="Create a new child record by entering in the childs information. This includes the required fields of childs first name, last name, and birthday. Optional fields such as allergies and any other additional information needed may be included."
 >
 </ik-info-card>
-<app-child-gurdians-grid-card></app-child-gurdians-grid-card>
-<button class="btn btn-default btn-flat btn-left" (click)="onCancelClick()">
-  Cancel
-</button>
-<button class="btn btn-primary btn-flat btn-right" (click)="onNextClick()">
-  Next
-</button>
-<button wizardStepPrev class="btn btn-default btn-flat btn-right">
-  Previous
-</button>
+<ik-info-card
+  *ngIf="childExists"
+  title="2. Select Child"
+  description="Select the child the needs to be assigned to Junior Church."
+>
+</ik-info-card>
+
+<ik-grid
+  *ngIf="childExists"
+  [dataLoader]="childrenDataloader"
+  (rowClick)="onNextClick($event)"
+>
+  <ik-grid-search></ik-grid-search>
+  <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
+  <ik-grid-column label="CUID" field="cuid"></ik-grid-column>
+  <ik-grid-column label="Birthday" field="birthday"></ik-grid-column>
+  <ik-grid-column label="Created" field="insertDate"></ik-grid-column>
+  <ik-grid-pager key="Children" [pageSize]="15"></ik-grid-pager>
+</ik-grid>
+
+<app-child-form
+  *ngIf="!childExists"
+  leftActionButton="Cancel"
+  rightActionButton="Next"
+  (cancel)="onCancelClick()"
+  (save)="onNextClick($event)"
+>
+  <button wizardStepPrev class="btn btn-default btn-flat btn-right">
+    Previous
+  </button>
+</app-child-form>
+
+<ng-container *ngIf="childExists">
+  <button class="btn btn-default btn-flat btn-left" (click)="onCancelClick()">
+    Cancel
+  </button>
+  <button wizardStepPrev class="btn btn-default btn-flat btn-right">
+    Previous
+  </button>
+</ng-container>

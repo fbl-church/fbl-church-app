@@ -4,6 +4,7 @@
       *featureAccess="[Application.CHILDREN, Feature.DETAIL, Access.UPDATE]"
     >
       <ik-icon
+        *ngIf="editIconVisible"
         icon="pen-to-square"
         class="right pointer"
         classOverride="icon__default"

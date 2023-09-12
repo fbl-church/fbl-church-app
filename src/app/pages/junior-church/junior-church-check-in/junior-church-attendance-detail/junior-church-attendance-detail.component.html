@@ -2,11 +2,25 @@
   <ik-header [title]="record.name">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
     <div class="inline-display header-buttons">
-      <button class="btn btn-danger btn-flat btn-header-right">
+      <button
+        class="btn btn-danger btn-flat btn-header-right"
+        *webRoleRestrictionAccess="WebRole.SITE_ADMINISTRATOR"
+        (click)="deleteModal.modal.open()"
+      >
+        <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
+        Delete
+      </button>
+      <button
+        class="btn btn-danger btn-flat btn-header-right"
+        *ngIf="record.status === 'ACTIVE'"
+      >
         <ik-icon icon="lock" classOverride="btn-icon"></ik-icon>
         Close
       </button>
-      <button class="btn btn-primary btn-flat btn-header-right">
+      <button
+        class="btn btn-primary btn-flat btn-header-right"
+        *ngIf="canStartCheckIn"
+      >
         <ik-icon icon="user-check" classOverride="btn-icon"></ik-icon>
         Start Check In
       </button>
@@ -15,7 +29,12 @@
   <div class="layout__column-left layout__wide">
     <ik-card>
       <ik-card-header title="Details">
-        <ng-content></ng-content>
+        <ik-icon
+          icon="pen-to-square"
+          class="right pointer"
+          classOverride="icon__default"
+          (click)="onEditClick()"
+        ></ik-icon>
       </ik-card-header>
       <div class="flex">
         <div class="left-column">
@@ -49,17 +68,7 @@
   </div>
   <div class="layout__column-right layout__narrow">
     <ik-grid [dataLoader]="workerDataloader">
-      <ik-card-header title="Workers">
-        <ng-container
-          *featureAccess="[Application.CHILDREN, Feature.DETAIL, Access.UPDATE]"
-        >
-          <ik-icon
-            icon="pen-to-square"
-            class="right pointer"
-            classOverride="icon__default"
-          ></ik-icon>
-        </ng-container>
-      </ik-card-header>
+      <ik-card-header title="Workers"> </ik-card-header>
       <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
       <ik-grid-column label="Email" field="email"></ik-grid-column>
       <ik-grid-pager
@@ -71,6 +80,10 @@
   </div>
 </ng-container>
 
+<app-delete-record-modal
+  #deleteModal
+  [recordId]="record.id"
+></app-delete-record-modal>
 <ng-template #loader>
   <ik-loading></ik-loading>
 </ng-template>

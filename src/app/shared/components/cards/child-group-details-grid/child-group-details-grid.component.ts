@@ -1,5 +1,5 @@
 import { HttpResponse } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -15,8 +15,9 @@ import { of } from 'rxjs';
   selector: 'app-child-group-details-grid',
   templateUrl: './child-group-details-grid.component.html',
 })
-export class ChildGroupDetailsGridComponent {
+export class ChildGroupDetailsGridComponent implements OnChanges {
   @Input() child: Child;
+  @Input() editIconVisible = true;
   dataloader: any;
 
   editIcon = faPenToSquare;
@@ -29,10 +30,16 @@ export class ChildGroupDetailsGridComponent {
     private readonly commonService: CommonService,
     private readonly router: Router
   ) {
-    this.dataloader = () => this.getGurdianDataLoader();
+    this.dataloader = () => this.getChildChurchGroups();
   }
 
-  getGurdianDataLoader() {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.child && changes.child.currentValue) {
+      this.dataloader = () => this.getChildChurchGroups();
+    }
+  }
+
+  getChildChurchGroups() {
     const mappedGroups = [];
     this.child.churchGroup.forEach((cg) =>
       mappedGroups.push({

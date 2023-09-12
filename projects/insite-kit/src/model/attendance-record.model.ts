@@ -7,9 +7,9 @@ export interface AttendanceRecord {
   status?: AttendanceStatus;
   type?: ChurchGroup;
   workers?: User[] | any[];
-  activeDate?: Date;
-  closedDate?: Date;
-  insertDate?: Date;
+  activeDate?: Date | any;
+  closedDate?: Date | any;
+  insertDate?: Date | any;
   [key: string]: any;
 }
 

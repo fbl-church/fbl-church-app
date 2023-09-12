@@ -40,7 +40,16 @@ export class ChildrenService {
    * @returns Child object
    */
   getById(id: number): Observable<Child> {
-    return this.request.get<Child>(`${this.BASE_PATH}/${id.toString()}`);
+    return this.request.get<Child>(`${this.BASE_PATH}/${id.toString()}`).pipe(
+      tap((v) =>
+        v.body.gurdians.forEach((g) => {
+          g.formattedName = this.commonService.getFormattedName(g);
+          g.formattedRelationship = this.commonService.getFormattedRelationship(
+            g.relationship
+          );
+        })
+      )
+    );
   }
 
   /**

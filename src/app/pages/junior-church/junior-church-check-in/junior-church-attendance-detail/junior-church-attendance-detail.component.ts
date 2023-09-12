@@ -6,7 +6,9 @@ import {
   Access,
   App,
   Feature,
+  WebRole,
 } from 'projects/insite-kit/src/model/common.model';
+import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { Subject, map, of, takeUntil } from 'rxjs';
 
 @Component({
@@ -24,19 +26,23 @@ export class JuniorChurchAttendanceDetailComponent
   Feature = Feature;
   Application = App;
   Access = Access;
+  WebRole = WebRole;
+
+  canStartCheckIn = false;
 
   constructor(
     private readonly router: Router,
-    private readonly route: ActivatedRoute
+    private readonly route: ActivatedRoute,
+    private readonly commonService: CommonService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.route.data
       .pipe(
         map((res) => res.attendanceRecord.body),
         takeUntil(this.destroy)
       )
-      .subscribe((res) => {
+      .subscribe((res: AttendanceRecord) => {
         this.workerDataloader = () =>
           of(
             new HttpResponse({
@@ -47,6 +53,9 @@ export class JuniorChurchAttendanceDetailComponent
             })
           );
         this.record = res;
+        this.canStartCheckIn =
+          res.activeDate ===
+          this.commonService.formatDate(new Date(), 'yyyy-MM-dd');
         this.loading = false;
       });
   }
@@ -57,5 +66,11 @@ export class JuniorChurchAttendanceDetailComponent
 
   onBackClick() {
     this.router.navigate(['/junior-church/check-in']);
+  }
+
+  onEditClick() {
+    this.router.navigate([
+      `/junior-church/check-in/${this.record.id}/details/edit`,
+    ]);
   }
 }
