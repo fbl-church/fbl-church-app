@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { ChildrenService } from 'src/service/children/children.service';
 
 @Component({
@@ -11,7 +10,6 @@ export class GurdianChildrenDetailsGridComponent implements OnInit {
   @Input() gurdianId: number;
   dataloader: any;
 
-  editIcon = faPenToSquare;
   constructor(
     private readonly childrenService: ChildrenService,
     private readonly router: Router

@@ -6,6 +6,7 @@ import { DeleteRecordModalComponent } from './junior-church-check-in/junior-chur
 import { EditJuniorChurchRecordComponent } from './junior-church-check-in/junior-church-attendance-detail/pages/edit-junior-church-attendance-record/edit-junior-church-attendance-record.component';
 import { JuniorChurchCheckInComponent } from './junior-church-check-in/junior-church-check-in.component';
 import { JuniorChurchNewAttendanceRecordComponent } from './junior-church-check-in/junior-church-new-attendance-record/junior-church-new-attendance-record.component';
+import { JuniorChurchChildrenComponent } from './junior-church-children/junior-church-children.component';
 import { JuniorChurchRegistrationWizardComponent } from './junior-church-registration-wizard/junior-church-registration-wizard.component';
 import { JuniorChurchRegistrationWizardStepOneComponent } from './junior-church-registration-wizard/steps/junior-church-registration-1.wizard.step';
 import { JuniorChurchRegistrationWizardStepTwoComponent } from './junior-church-registration-wizard/steps/junior-church-registration-2.wizard.step';
@@ -27,6 +28,7 @@ import { JuniorChurchWorkersComponent } from './junior-church-workers/junior-chu
     JuniorChurchAttendanceDetailComponent,
     EditJuniorChurchRecordComponent,
     DeleteRecordModalComponent,
+    JuniorChurchChildrenComponent,
   ],
 })
 export class JuniorChurchModule {}

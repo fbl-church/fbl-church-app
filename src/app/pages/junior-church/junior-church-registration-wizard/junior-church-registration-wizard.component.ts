@@ -12,6 +12,7 @@ import { ChildrenService } from 'src/service/children/children.service';
 export class JuniorChurchRegistrationWizardComponent {
   currentChildInformation: Child;
   childExists = false;
+  loading = false;
 
   constructor(
     private readonly router: Router,
@@ -54,6 +55,7 @@ export class JuniorChurchRegistrationWizardComponent {
   }
 
   onSaveClick(child: Child) {
+    this.loading = true;
     let saveObservable;
     if (this.childExists && child.id) {
       saveObservable = this.childrenService.update(child.id, child);
@@ -62,7 +64,7 @@ export class JuniorChurchRegistrationWizardComponent {
     }
     saveObservable.subscribe({
       next: () => {
-        this.onCancelClick();
+        this.router.navigate(['/junior-church/children']);
         this.popupService.success(
           `${child.firstName} ${child.lastName} has successfully been registered for Junior Church!`
         );

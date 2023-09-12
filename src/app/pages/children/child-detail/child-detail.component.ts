@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -9,7 +10,6 @@ import { Child } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { ChildrenService } from 'src/service/children/children.service';
-
 @Component({
   selector: 'app-child-detail',
   templateUrl: './child-detail.component.html',
@@ -27,6 +27,7 @@ export class ChildDetailComponent implements OnInit {
     private readonly childrenService: ChildrenService,
     private readonly activeRoute: ActivatedRoute,
     private readonly popupService: PopupService,
+    private readonly location: Location,
     private readonly router: Router
   ) {}
 
@@ -53,7 +54,7 @@ export class ChildDetailComponent implements OnInit {
   }
 
   onBackClick() {
-    this.router.navigate(['/children']);
+    this.location.back();
   }
 
   onChildDetailEditClick() {

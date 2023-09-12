@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AttendanceRecord } from 'projects/insite-kit/src/model/attendance-record.model';
+import { WebRole } from 'projects/insite-kit/src/model/common.model';
 import { AttendanceRecordsService } from 'src/service/attendance/attendance-records.service';
 
 @Component({
@@ -9,6 +10,8 @@ import { AttendanceRecordsService } from 'src/service/attendance/attendance-reco
 })
 export class JuniorChurchCheckInComponent {
   dataloader: any;
+
+  WebRole = WebRole;
 
   constructor(
     private readonly attendanceRecordService: AttendanceRecordsService,

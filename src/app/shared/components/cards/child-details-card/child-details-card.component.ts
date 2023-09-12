@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import {
   Access,
   App,
@@ -17,8 +16,6 @@ export class ChildDetailsCardComponent {
   @Input() loading = false;
   @Input() showEdit = true;
   @Output() editClick = new EventEmitter<any>();
-
-  editIcon = faPenToSquare;
 
   Feature = Feature;
   Application = App;

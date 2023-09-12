@@ -1,5 +1,6 @@
 <ik-header title="Junior Church Check In">
   <button
+    *webRoleRestrictionAccess="WebRole.JUNIOR_CHURCH_DIRECTOR"
     (click)="onNewAttendanceRecord()"
     class="btn btn-primary btn-flat btn-header-right"
   >

@@ -4,6 +4,7 @@ import { JuniorChurchAttendanceDetailComponent } from 'src/app/pages/junior-chur
 import { EditJuniorChurchRecordComponent } from 'src/app/pages/junior-church/junior-church-check-in/junior-church-attendance-detail/pages/edit-junior-church-attendance-record/edit-junior-church-attendance-record.component';
 import { JuniorChurchCheckInComponent } from 'src/app/pages/junior-church/junior-church-check-in/junior-church-check-in.component';
 import { JuniorChurchNewAttendanceRecordComponent } from 'src/app/pages/junior-church/junior-church-check-in/junior-church-new-attendance-record/junior-church-new-attendance-record.component';
+import { JuniorChurchChildrenComponent } from 'src/app/pages/junior-church/junior-church-children/junior-church-children.component';
 import { JuniorChurchRegistrationWizardComponent } from 'src/app/pages/junior-church/junior-church-registration-wizard/junior-church-registration-wizard.component';
 import { JuniorChurchWorkersComponent } from 'src/app/pages/junior-church/junior-church-workers/junior-church-workers.component';
 import { AttendanceRecordResolverService } from 'src/service/attendance/attendance-record-resolver.service';
@@ -50,6 +51,10 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
     {
       path: 'workers',
       component: JuniorChurchWorkersComponent,
+    },
+    {
+      path: 'children',
+      component: JuniorChurchChildrenComponent,
     },
   ],
 };

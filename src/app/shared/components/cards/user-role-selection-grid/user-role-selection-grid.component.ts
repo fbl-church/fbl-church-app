@@ -1,5 +1,4 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { GridChecklistColumnComponent } from 'projects/insite-kit/src/component/grid/grid-checklist-column/grid-checklist-column.component';
 import {
   Access,
@@ -20,13 +19,11 @@ export class UserRoleSelectionGridComponent {
   @Input() enableEdit = true;
 
   WebRole = WebRole;
-  editIcon = faPenToSquare;
-
   Feature = Feature;
   Application = App;
   Access = Access;
 
-  roleDataloader;
+  roleDataloader: any;
 
   constructor(private readonly roleService: RoleService) {
     this.roleDataloader = (params) => this.roleService.get(params);

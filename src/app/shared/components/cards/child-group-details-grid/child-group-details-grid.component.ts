@@ -1,7 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import {
   Access,
   App,
@@ -19,8 +18,6 @@ export class ChildGroupDetailsGridComponent implements OnChanges {
   @Input() child: Child;
   @Input() editIconVisible = true;
   dataloader: any;
-
-  editIcon = faPenToSquare;
 
   Feature = Feature;
   Application = App;

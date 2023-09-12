@@ -21,11 +21,11 @@ export class JuniorChurchRegistrationWizardStepFourComponent
   implements OnChanges
 {
   @Input() child: Child;
+  @Input() loading = true;
   @Output() save = new EventEmitter<Child>();
   @Output() previous = new EventEmitter<void>();
 
   activeChild: Child;
-  loading = true;
 
   constructor(
     private readonly router: Router,

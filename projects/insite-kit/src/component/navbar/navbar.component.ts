@@ -6,12 +6,6 @@ import {
   Output,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  faBars,
-  faClose,
-  faRightFromBracket,
-  faUser,
-} from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
 import { JwtService } from '../../service/auth/jwt.service';
 import { SubscriptionService } from '../../subscription/subscription.service';
@@ -26,11 +20,6 @@ export class NavbarComponent implements OnDestroy {
   @Output() menuClick = new EventEmitter<any>();
 
   destroy = new Subject<void>();
-
-  menuIcon = faBars;
-  logOutIcon = faRightFromBracket;
-  profileIcon = faUser;
-  closeIcon = faClose;
 
   constructor(
     private readonly router: Router,

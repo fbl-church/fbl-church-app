@@ -22,6 +22,7 @@
   </ik-wizard-step>
   <ik-wizard-step>
     <app-junior-church-registration-wizard-step-four
+      [loading]="loading"
       [child]="currentChildInformation"
       (previous)="onStep4Previous(wizard)"
       (save)="onSaveClick($event)"

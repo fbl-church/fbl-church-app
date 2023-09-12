@@ -65,6 +65,11 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           name: 'Workers',
           route: '/workers',
         },
+        {
+          id: 'children',
+          name: 'Children',
+          route: '/children',
+        },
       ],
     },
   },
