@@ -1,6 +1,5 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { WebRole } from 'projects/insite-kit/src/model/common.model';
 import { PasswordUpdate } from 'projects/insite-kit/src/model/password-update.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
@@ -181,50 +180,5 @@ export class UserService {
    */
   delete(id: number): Observable<any> {
     return this.request.delete<any>(`${this.BASE_USER_PATH}/${id}`);
-  }
-
-  /**
-   * Helper method to determine what roles the user is able to create.
-   *
-   * @returns Returns a list of roles the user is able to create
-   */
-  getAllowedRolesToCreate(): { id: string; name?: string; rank: any }[] {
-    const userRoles: any[] = this.jwt.get('webRole');
-    const maxUserRank = Math.max(...userRoles.map((r) => Number(WebRole[r])));
-    let allowableRoles = this.getRolesAsMap().filter(
-      (e) => e.rank <= maxUserRank
-    );
-
-    allowableRoles.forEach(
-      (r) => (r.name = this.commonService.getFormattedRole(r.id))
-    );
-
-    return allowableRoles;
-  }
-
-  /**
-   * Helper method to determine what roles the user is able to create.
-   *
-   * @returns Returns a list of roles the user is able to create
-   */
-  getRegisterRoles(): string[] {
-    return this.getRolesAsMap()
-      .filter((e) => e.rank <= WebRole.LEADER)
-      .map((e) => e.name);
-  }
-
-  /**
-   * Parses the roles enum into a map
-   *
-   * @returns The map of the roles enum.
-   */
-  getRolesAsMap(): { id: string; name?: string; rank: any }[] {
-    return Object.entries(WebRole)
-      .filter(
-        (e) =>
-          !e.includes('LEADER') && !e.includes('WORKER') && !e.includes('USER')
-      )
-      .map(([id, rank]) => ({ id, rank }))
-      .filter((v) => Number.isInteger(v.rank));
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { WebRole } from '../../model/common.model';
+import { RankedWebRole, WebRole } from '../../model/common.model';
 import { User } from '../../model/user.model';
 
 export const TOKEN_NAME = 'auth-token';
@@ -39,7 +39,7 @@ export class JwtService {
    *
    * @returns Boolean if the user is authenticated or not.
    */
-  isAuthenticated() {
+  isAuthenticated(): boolean {
     if (localStorage.getItem(TOKEN_NAME) != null) {
       if (this.jwtHelperService.isTokenExpired()) {
         localStorage.removeItem(TOKEN_NAME);
@@ -59,7 +59,7 @@ export class JwtService {
    * @param tokenOverride If the token override needs to be used over the stored value.
    * @returns The property on the jwt token.
    */
-  get(value: any, tokenOverride?: string) {
+  get(value: any, tokenOverride?: string): any {
     const reviewedToken = tokenOverride ? tokenOverride : this.getToken();
     return this.jwtHelperService.decodeToken(reviewedToken)[value];
   }
@@ -69,17 +69,38 @@ export class JwtService {
    *
    * @returns The user's id.
    */
-  getUserId() {
+  getUserId(): number {
     return Number(this.get('userId'));
   }
 
   /**
-   * Gets the user webrole from the jwt token.
+   * Gets the user web roles from the jwt token.
    *
    * @returns The user's webrole.
    */
-  getWebRole(): any {
-    return this.get('webRole') as keyof typeof WebRole;
+  getWebRoles(): WebRole[] {
+    const stringArray: any[] = this.get('webRole');
+    return stringArray.map((r) => r as WebRole);
+  }
+
+  /**
+   * Gets the users ranked web roles
+   *
+   * @returns The user's webrole.
+   */
+  getRankedWebRoles(): RankedWebRole[] {
+    const stringArray: any[] = this.get('webRole');
+    return stringArray.map((r) => r as RankedWebRole);
+  }
+
+  /**
+   * Determines if the user has thae passed in role.
+   *
+   * @param r The role to check for.
+   * @returns The boolean if the user has the role or not.
+   */
+  hasWebRole(r: WebRole): boolean {
+    return this.getWebRoles().includes(r);
   }
 
   /**
@@ -102,7 +123,7 @@ export class JwtService {
       firstName: this.get('firstName'),
       lastName: this.get('lastName'),
       email: this.get('email'),
-      webRole: this.getWebRole(),
+      webRole: this.getWebRoles(),
     };
   }
 
