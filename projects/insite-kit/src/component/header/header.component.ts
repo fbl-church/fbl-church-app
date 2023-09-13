@@ -10,6 +10,8 @@ export class HeaderComponent {
   @Input() title: string;
 
   onBackClick() {
-    this.backArrow.onBackClick();
+    if (this.backArrow) {
+      this.backArrow.onBackClick();
+    }
   }
 }

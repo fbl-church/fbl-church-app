@@ -1,5 +1,6 @@
 export enum WebRole {
   USER = 100,
+  PASTOR = 100,
   CHILD = 100,
   GURDIAN = 100,
   LEADER = 300,
@@ -21,6 +22,7 @@ export enum WebRole {
   VBS_SNACKS = 200,
   VBS_CRAFTS = 200,
   AWANA_DIRECTOR = 400,
+  AWANA_REGISTRATION = 300,
   AWANA_LEADER = 300,
   AWANA_WORKER = 200,
   TNT_LEADER = 300,
@@ -72,16 +74,23 @@ export enum Feature {
   OVERVIEW = 'overview',
   DETAIL = 'detail',
   PROFILE = 'profile',
+  REGISTRATION = 'registration',
+  CHECK_IN = 'check-in',
+  WORKERS = 'workers',
   NOTIFICATION = 'notification',
 }
 
 export enum App {
+  ACCESS_MANAGER = 'access-manager',
+  DASHBOARD = 'dashboard',
   USERS = 'users',
   CHILDREN = 'children',
   GURDIANS = 'gurdians',
   REPORTS = 'reports',
   ABOUT = 'about',
-  REPOSITORIES = 'repositories',
   SETTINGS = 'settings',
+  JUNIOR_CHURCH = 'junior-church',
+  NURSERY = 'nursery',
+  VBS = 'vbs',
   GLOBAL = 'global',
 }

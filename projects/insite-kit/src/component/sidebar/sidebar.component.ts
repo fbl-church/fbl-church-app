@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Access, App, Feature } from '../../model/common.model';
 import { JwtService } from '../../service/auth/jwt.service';
 import { NAVIGATION_ROUTES } from './sidebar.config';
 
@@ -10,6 +11,10 @@ export class SidebarComponent implements OnInit {
   isOpen = false;
   navigationConfig = NAVIGATION_ROUTES;
   userApps: string[];
+
+  Feature = Feature;
+  Application = App;
+  Access = Access;
 
   constructor(private readonly jwt: JwtService) {}
 

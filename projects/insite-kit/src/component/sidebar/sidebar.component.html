@@ -1,24 +1,36 @@
 <div
   [ngClass]="{ 'sidebar--open': isOpen, 'sidebar--closed': !isOpen }"
   class="sidebar"
-  id="sideBarNav"
-  #sidebarNav
 >
   <ng-container *ngFor="let navItem of navigationConfig">
-    <ng-container *ngIf="navItem.submenu; else routeMenuItem">
-      <ik-dropdown [navItem]="navItem" (closeSidebar)="close()"></ik-dropdown>
+    <ng-container *ngIf="navItem?.restriction; else navContent">
+      <ng-container
+        *featureAccess="[
+          navItem.restriction.app,
+          navItem.restriction.feature,
+          navItem.restriction.access
+        ]"
+      >
+        <ng-container *ngTemplateOutlet="navContent"></ng-container>
+      </ng-container>
     </ng-container>
 
-    <ng-template #routeMenuItem>
-      <div
-        class="menu-item"
-        [routerLink]="navItem.route"
-        routerLinkActive="sidebar-category__active"
-        (click)="close()"
-      >
-        <ik-icon classOverride="sidebar-icon" [icon]="navItem.icon"></ik-icon>
-        <span class="sidebar-category">{{ navItem.name }}</span>
-      </div>
+    <ng-template #navContent>
+      <ng-container *ngIf="navItem.submenu; else routeMenuItem">
+        <ik-dropdown [navItem]="navItem" (closeSidebar)="close()"></ik-dropdown>
+      </ng-container>
+
+      <ng-template #routeMenuItem>
+        <div
+          class="menu-item"
+          [routerLink]="navItem.route"
+          routerLinkActive="sidebar-category__active"
+          (click)="close()"
+        >
+          <ik-icon classOverride="sidebar-icon" [icon]="navItem.icon"></ik-icon>
+          <span class="sidebar-category">{{ navItem.name }}</span>
+        </div>
+      </ng-template>
     </ng-template>
   </ng-container>
 </div>

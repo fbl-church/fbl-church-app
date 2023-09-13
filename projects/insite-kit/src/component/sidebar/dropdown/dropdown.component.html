@@ -18,20 +18,33 @@
   [ngClass]="{ 'dropdown--open': isOpen, 'dropdown--closed': !isOpen }"
 >
   <ng-container *ngFor="let submenu of navItem.submenu.items">
-    <ng-container *ngIf="submenu.route">
-      <a
-        class="menu-item"
-        [routerLink]="navItem.route + submenu.route"
-        routerLinkActive="dropdown-item__active"
-        (click)="close()"
+    <ng-container *ngIf="submenu?.restriction; else dropdownContent">
+      <ng-container
+        *featureAccess="[
+          submenu.restriction.app,
+          submenu.restriction.feature,
+          submenu.restriction.access
+        ]"
       >
-        {{ submenu.name }}
-      </a>
+        <ng-container *ngTemplateOutlet="dropdownContent"></ng-container>
+      </ng-container>
     </ng-container>
-    <ng-container *ngIf="submenu.href">
-      <a class="menu-item" [href]="submenu.href" (click)="close()">
-        {{ submenu.name }}
-      </a>
-    </ng-container>
+    <ng-template #dropdownContent>
+      <ng-container *ngIf="submenu.route">
+        <a
+          class="menu-item"
+          [routerLink]="navItem.route + submenu.route"
+          routerLinkActive="dropdown-item__active"
+          (click)="close()"
+        >
+          {{ submenu.name }}
+        </a>
+      </ng-container>
+      <ng-container *ngIf="submenu.href">
+        <a class="menu-item" [href]="submenu.href" (click)="close()">
+          {{ submenu.name }}
+        </a>
+      </ng-container>
+    </ng-template>
   </ng-container>
 </div>

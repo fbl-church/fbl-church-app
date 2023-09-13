@@ -1,6 +1,7 @@
 {
   "webRoles": {
     "USER": "User",
+    "PASTOR": "Pastor",
     "CHILD": "Child",
     "GURDIAN": "Gurdian",
     "LEADER": "Leader",
@@ -22,6 +23,7 @@
     "VBS_SNACKS": "VBS Snacks",
     "VBS_CRAFTS": "VBS Crafts",
     "AWANA_DIRECTOR": "Awana Director",
+    "AWANA_REGISTRATION": "Awana Registration",
     "AWANA_LEADER": "Awana Leader",
     "AWANA_WORKER": "Awana Worker",
     "TNT_LEADER": "T&T Leader",

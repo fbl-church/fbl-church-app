@@ -1,4 +1,5 @@
 import { IconName } from '@fortawesome/fontawesome-svg-core';
+import { Access, App, Feature } from '../../model/common.model';
 
 export interface NavItem extends NavItemDetails {
   submenu?: {
@@ -12,6 +13,13 @@ export interface NavItemDetails {
   name: string;
   icon?: IconName;
   route: string;
+  restriction?: FeatureRestriction;
+}
+
+export interface FeatureRestriction {
+  app: App;
+  feature: Feature;
+  access: Access;
 }
 
 export const NAVIGATION_ROUTES: NavItem[] = [
@@ -47,6 +55,11 @@ export const NAVIGATION_ROUTES: NavItem[] = [
     name: 'Junior Church',
     route: '/junior-church',
     icon: 'seedling',
+    restriction: {
+      app: App.JUNIOR_CHURCH,
+      feature: Feature.OVERVIEW,
+      access: Access.READ,
+    },
     submenu: {
       id: 'juniorChurchDropdown',
       items: [
@@ -54,11 +67,21 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           id: 'registration',
           name: 'Registration',
           route: '/registration',
+          restriction: {
+            app: App.JUNIOR_CHURCH,
+            feature: Feature.REGISTRATION,
+            access: Access.CREATE,
+          },
         },
         {
           id: 'check-in',
           name: 'Check In',
           route: '/check-in',
+          restriction: {
+            app: App.JUNIOR_CHURCH,
+            feature: Feature.CHECK_IN,
+            access: Access.READ,
+          },
         },
         {
           id: 'workers',
@@ -78,6 +101,11 @@ export const NAVIGATION_ROUTES: NavItem[] = [
     name: 'Users',
     route: '/users',
     icon: 'users',
+    restriction: {
+      app: App.USERS,
+      feature: Feature.OVERVIEW,
+      access: Access.READ,
+    },
   },
   {
     id: 'vbs',
@@ -120,12 +148,22 @@ export const NAVIGATION_ROUTES: NavItem[] = [
     name: 'Children',
     icon: 'children',
     route: '/children',
+    restriction: {
+      app: App.CHILDREN,
+      feature: Feature.OVERVIEW,
+      access: Access.READ,
+    },
   },
   {
     id: 'gurdians',
     name: 'Gurdians',
     icon: 'person',
     route: '/gurdians',
+    restriction: {
+      app: App.GURDIANS,
+      feature: Feature.OVERVIEW,
+      access: Access.READ,
+    },
   },
   {
     id: 'reports',

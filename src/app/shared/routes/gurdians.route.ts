@@ -17,7 +17,16 @@ import { AuthenticatedLayoutComponent } from '../components/layouts/authenticate
 export const GURDIANS_ROUTE: Route = {
   path: 'gurdians',
   component: AuthenticatedLayoutComponent,
-  canActivate: [AuthGuard],
+  canActivate: [AuthGuard, FeatureAccessGuard],
+  data: {
+    featureAccessGuards: [
+      {
+        app: App.GURDIANS,
+        feature: Feature.OVERVIEW,
+        access: Access.READ,
+      },
+    ],
+  },
   children: [
     {
       path: '',

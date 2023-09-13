@@ -20,7 +20,16 @@ import { AuthenticatedLayoutComponent } from '../components/layouts/authenticate
 export const CHILDREN_ROUTE: Route = {
   path: 'children',
   component: AuthenticatedLayoutComponent,
-  canActivate: [AuthGuard],
+  canActivate: [AuthGuard, FeatureAccessGuard],
+  data: {
+    featureAccessGuards: [
+      {
+        app: App.CHILDREN,
+        feature: Feature.OVERVIEW,
+        access: Access.READ,
+      },
+    ],
+  },
   children: [
     {
       path: '',

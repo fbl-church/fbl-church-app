@@ -1,5 +1,6 @@
 <ik-header title="Junior Church Workers">
   <button
+    *featureAccess="[Application.JUNIOR_CHURCH, Feature.WORKERS, Access.CREATE]"
     (click)="onNewWorker()"
     class="btn btn-primary btn-flat btn-header-right"
   >

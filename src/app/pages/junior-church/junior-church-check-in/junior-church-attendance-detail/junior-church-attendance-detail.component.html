@@ -4,32 +4,58 @@
     <div class="inline-display header-buttons">
       <button
         class="btn btn-danger btn-flat btn-header-right"
-        *webRoleRestrictionAccess="WebRole.SITE_ADMINISTRATOR"
+        *featureAccess="[
+          Application.JUNIOR_CHURCH,
+          Feature.DETAIL,
+          Access.DELETE
+        ]"
         (click)="deleteModal.modal.open()"
       >
         <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
         Delete
       </button>
-      <button
-        class="btn btn-danger btn-flat btn-header-right"
-        *ngIf="record.status === 'ACTIVE'"
+      <ng-container
+        *featureAccess="[
+          Application.JUNIOR_CHURCH,
+          Feature.CHECK_IN,
+          Access.DELETE
+        ]"
       >
-        <ik-icon icon="lock" classOverride="btn-icon"></ik-icon>
-        Close
-      </button>
-      <button
-        class="btn btn-primary btn-flat btn-header-right"
-        *ngIf="canStartCheckIn"
+        <button
+          class="btn btn-danger btn-flat btn-header-right"
+          *ngIf="record.status === 'ACTIVE'"
+        >
+          <ik-icon icon="lock" classOverride="btn-icon"></ik-icon>
+          Close
+        </button></ng-container
       >
-        <ik-icon icon="user-check" classOverride="btn-icon"></ik-icon>
-        Start Check In
-      </button>
+
+      <ng-container
+        *featureAccess="[
+          Application.JUNIOR_CHURCH,
+          Feature.CHECK_IN,
+          Access.CREATE
+        ]"
+      >
+        <button
+          class="btn btn-primary btn-flat btn-header-right"
+          *ngIf="canStartCheckIn"
+        >
+          <ik-icon icon="user-check" classOverride="btn-icon"></ik-icon>
+          Start Check In
+        </button>
+      </ng-container>
     </div>
   </ik-header>
   <div class="layout__column-left layout__wide">
     <ik-card>
       <ik-card-header title="Details">
         <ik-icon
+          *featureAccess="[
+            Application.JUNIOR_CHURCH,
+            Feature.DETAIL,
+            Access.UPDATE
+          ]"
           icon="pen-to-square"
           class="right pointer"
           classOverride="icon__default"
@@ -64,6 +90,15 @@
           </ik-card-info>
         </div>
       </div>
+      <div class="flex">
+        <div class="left-column">
+          <ik-card-info
+            header="Created Date"
+            [text]="record.insertDate | date : 'MMMM d, y'"
+          >
+          </ik-card-info>
+        </div>
+      </div>
     </ik-card>
   </div>
   <div class="layout__column-right layout__narrow">
@@ -74,7 +109,7 @@
       <ik-grid-pager
         key="Workers"
         [pagerVisible]="false"
-        [pageSize]="8"
+        [pageSize]="10"
       ></ik-grid-pager>
     </ik-grid>
   </div>
