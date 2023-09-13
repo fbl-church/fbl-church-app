@@ -1,9 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { default as churchGroupsJson } from 'projects/insite-kit/src/assets/translations/church-groups/en.json';
-import { default as relationshipJson } from 'projects/insite-kit/src/assets/translations/relationships/en.json';
-import { default as statusJson } from 'projects/insite-kit/src/assets/translations/status/en.json';
-import { default as webRolesJson } from 'projects/insite-kit/src/assets/translations/web-roles/en.json';
+import { TranslateMapping, TranslationKey } from '../../model/common.model';
 
 @Injectable({
   providedIn: 'root',
@@ -44,47 +41,14 @@ export class CommonService {
   }
 
   /**
-   * Returns the formatted web role based on the given enum.
+   * Translates the key value to its mapped translation
    *
    * @param value The value to translate
-   * @returns Formatted string
+   * @returns Translated string
    */
-  getFormattedRole(value: string) {
-    const role = Object.values(webRolesJson)[0][value];
-    return role ? role : '-';
-  }
-
-  /**
-   * Returns the formatted church group based on the given enum.
-   *
-   * @param value The value to translate
-   * @returns Formatted string
-   */
-  getFormattedChurchGroup(value: string) {
-    const role = Object.values(churchGroupsJson)[0][value];
-    return role ? role : '-';
-  }
-
-  /**
-   * Returns the formatted relationship based on the given enum.
-   *
-   * @param value The value to translate
-   * @returns Formatted string
-   */
-  getFormattedRelationship(value: string) {
-    const role = Object.values(relationshipJson)[0][value];
-    return role ? role : '-';
-  }
-
-  /**
-   * Returns the formatted status based on the given enum.
-   *
-   * @param value The value to translate
-   * @returns Formatted string
-   */
-  getFormattedStatus(value: string) {
-    const st = Object.values(statusJson)[0][value];
-    return st ? st : '-';
+  translate(value: string, key: TranslationKey) {
+    const v = Object.values(TranslateMapping[key])[0][value];
+    return v ? v : '-';
   }
 
   /**

@@ -5,6 +5,7 @@ import {
   Access,
   App,
   Feature,
+  TranslationKey,
 } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
@@ -41,7 +42,7 @@ export class ChildGroupDetailsGridComponent implements OnChanges {
     this.child.churchGroup.forEach((cg) =>
       mappedGroups.push({
         id: cg,
-        name: this.commonService.getFormattedChurchGroup(cg),
+        name: this.commonService.translate(cg, TranslationKey.CHURCH_GROUP),
       })
     );
     return of(new HttpResponse({ body: mappedGroups }));

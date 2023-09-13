@@ -1,0 +1,14 @@
+{
+    "apps": {
+        "about": "About",
+        "access-manager": "Access Manager",
+        "children": "Children",
+        "dashboard": "Dashboard",
+        "gurdians": "Gurdians",
+        "junior-church": "Junior Church",
+        "nursery": "Nursery",
+        "reports": "Reports",
+        "users": "Users",
+        "vbs": "VBS"
+    }
+}

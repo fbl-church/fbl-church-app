@@ -1,3 +1,9 @@
+import { default as appsJson } from 'projects/insite-kit/src/assets/translations/applications/en.json';
+import { default as churchGroupsJson } from 'projects/insite-kit/src/assets/translations/church-groups/en.json';
+import { default as relationshipJson } from 'projects/insite-kit/src/assets/translations/relationships/en.json';
+import { default as statusJson } from 'projects/insite-kit/src/assets/translations/status/en.json';
+import { default as webRolesJson } from 'projects/insite-kit/src/assets/translations/web-roles/en.json';
+
 export enum WebRole {
   USER = 'USER',
   PASTOR = 'PASTOR',
@@ -133,3 +139,19 @@ export enum App {
   VBS = 'vbs',
   GLOBAL = 'global',
 }
+
+export enum TranslationKey {
+  CHURCH_GROUP = 'CHURCH_GROUP',
+  RELATIONSHIP = 'RELATIONSHIP',
+  STATUS = 'STATUS',
+  WEB_ROLE = 'WEB_ROLE',
+  APPS = 'APPS',
+}
+
+export const TranslateMapping = {
+  CHURCH_GROUP: churchGroupsJson,
+  RELATIONSHIP: relationshipJson,
+  STATUS: statusJson,
+  WEB_ROLE: webRolesJson,
+  APPS: appsJson,
+};

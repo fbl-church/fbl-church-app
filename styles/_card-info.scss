@@ -30,6 +30,16 @@
   color: $green-400;
 }
 
+.ENABLED {
+  font-weight: $font-weight-bold;
+  color: $green-400;
+}
+
+.DISABLED {
+  font-weight: $font-weight-bold;
+  color: $red-400;
+}
+
 .APPROVED {
   font-weight: $font-weight-bold;
   color: $green-400;

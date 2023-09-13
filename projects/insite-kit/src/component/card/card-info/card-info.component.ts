@@ -7,7 +7,12 @@ import { Component, Input } from '@angular/core';
 export class CardInfoComponent {
   @Input() header: string;
   @Input() text: string;
-  @Input() contentColor: 'DEFAULT' | 'DENIED' | 'APPROVED' | 'PENDING' =
-    'DEFAULT';
+  @Input() contentColor:
+    | 'DEFAULT'
+    | 'DENIED'
+    | 'APPROVED'
+    | 'PENDING'
+    | 'ENABLED'
+    | 'DISABLED' = 'DEFAULT';
   @Input() padding = true;
 }

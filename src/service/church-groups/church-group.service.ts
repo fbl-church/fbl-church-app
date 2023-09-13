@@ -1,5 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { TranslationKey } from 'projects/insite-kit/src/model/common.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { Observable, map } from 'rxjs';
@@ -28,7 +29,7 @@ export class ChurchGroupService {
         v.body.forEach((cg) =>
           mappedGroups.push({
             id: cg,
-            name: this.commonService.getFormattedChurchGroup(cg),
+            name: this.commonService.translate(cg, TranslationKey.CHURCH_GROUP),
           })
         );
         return new HttpResponse({ body: mappedGroups, headers: v.headers });

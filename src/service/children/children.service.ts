@@ -1,6 +1,9 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
+import {
+  ChurchGroup,
+  TranslationKey,
+} from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
@@ -44,8 +47,9 @@ export class ChildrenService {
       tap((v) =>
         v.body.gurdians.forEach((g) => {
           g.formattedName = this.commonService.getFormattedName(g);
-          g.formattedRelationship = this.commonService.getFormattedRelationship(
-            g.relationship
+          g.formattedRelationship = this.commonService.translate(
+            g.relationship,
+            TranslationKey.RELATIONSHIP
           );
         })
       )

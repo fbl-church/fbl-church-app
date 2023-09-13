@@ -1,5 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { TranslationKey } from 'projects/insite-kit/src/model/common.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { Observable, map } from 'rxjs';
@@ -28,7 +29,7 @@ export class RoleService {
         v.body.forEach((r) =>
           mappedRoles.push({
             id: r,
-            name: this.commonService.getFormattedRole(r),
+            name: this.commonService.translate(r, TranslationKey.WEB_ROLE),
           })
         );
         return new HttpResponse({ body: mappedRoles, headers: v.headers });

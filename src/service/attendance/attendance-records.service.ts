@@ -1,6 +1,10 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AttendanceRecord } from 'projects/insite-kit/src/model/attendance-record.model';
+import {
+  AttendanceRecord,
+  ChildAttendance,
+} from 'projects/insite-kit/src/model/attendance-record.model';
+import { TranslationKey } from 'projects/insite-kit/src/model/common.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { Observable, tap } from 'rxjs';
@@ -28,8 +32,9 @@ export class AttendanceRecordsService {
     return this.request.get<AttendanceRecord[]>(this.BASE_PATH, params).pipe(
       tap((v) =>
         v.body.forEach((ar) => {
-          ar.formattedType = this.commonService.getFormattedChurchGroup(
-            ar.type
+          ar.formattedType = this.commonService.translate(
+            ar.type,
+            TranslationKey.CHURCH_GROUP
           );
         })
       )
@@ -48,9 +53,32 @@ export class AttendanceRecordsService {
       .pipe(
         tap(
           (v) =>
-            (v.body.formattedType = this.commonService.getFormattedChurchGroup(
-              v.body.type
+            (v.body.formattedType = this.commonService.translate(
+              v.body.type,
+              TranslationKey.CHURCH_GROUP
             ))
+        )
+      );
+  }
+
+  /**
+   * Get an attendance record by id
+   *
+   * @param params to filter on
+   * @returns Attendance Record object
+   */
+  getAttendanceChildrenById(
+    id: any,
+    params?: Map<string, string[]>
+  ): Observable<HttpResponse<ChildAttendance[]>> {
+    return this.request
+      .get<ChildAttendance[]>(`${this.BASE_PATH}/${id}/children`, params)
+      .pipe(
+        tap((v) =>
+          v.body.forEach((c) => {
+            c.formattedName = this.commonService.getFormattedName(c);
+            c.formattedPresent = c.present ? 'Yes' : 'No';
+          })
         )
       );
   }

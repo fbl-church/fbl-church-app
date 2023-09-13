@@ -1,0 +1,55 @@
+<ng-container *ngIf="!loading; else loader">
+  <ik-header [title]="application.formattedName">
+    <ik-header-back (back)="onBackClick()"></ik-header-back>
+    <div class="inline-display header-buttons">
+      <button
+        class="btn btn-primary btn-flat btn-header-right"
+        *ngIf="!application.enabled"
+        (click)="onEnabledUpdateClick(true)"
+      >
+        <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
+        Enable
+      </button>
+
+      <button
+        class="btn btn-danger btn-flat btn-header-right"
+        *ngIf="application.enabled"
+        (click)="onEnabledUpdateClick(false)"
+      >
+        <ik-icon icon="lock" classOverride="btn-icon"></ik-icon>
+        Disable
+      </button>
+    </div>
+  </ik-header>
+
+  <div class="layout__column-left layout__wide">
+    <ik-card>
+      <ik-card-header title="Details"> </ik-card-header>
+      <div class="flex">
+        <div class="left-column">
+          <ik-card-info
+            header="Name"
+            [text]="application.formattedName"
+          ></ik-card-info>
+        </div>
+        <div class="right-column">
+          <ik-card-info header="Key" [text]="application.name"></ik-card-info>
+        </div>
+      </div>
+
+      <div class="flex">
+        <div class="left-column">
+          <ik-card-info
+            [contentColor]="application.enabled ? 'ENABLED' : 'DISABLED'"
+            header="Status"
+            [text]="application.enabled ? 'ENABLED' : 'DISABLED'"
+          ></ik-card-info>
+        </div>
+      </div>
+    </ik-card>
+  </div>
+</ng-container>
+
+<ng-template #loader>
+  <ik-loading></ik-loading>
+</ng-template>

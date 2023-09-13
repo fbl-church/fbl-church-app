@@ -1,0 +1,8 @@
+<ik-header title="Applications"></ik-header>
+<ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
+  <ik-grid-search></ik-grid-search>
+  <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
+  <ik-grid-column label="Key" field="name"></ik-grid-column>
+  <ik-grid-column label="Status" field="formattedStatus"></ik-grid-column>
+  <ik-grid-pager key="Applications" [pageSize]="10"></ik-grid-pager>
+</ik-grid>

@@ -10,6 +10,7 @@ import {
 } from 'projects/insite-kit/src/model/common.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { Subject, map, of, takeUntil } from 'rxjs';
+import { AttendanceRecordsService } from 'src/service/attendance/attendance-records.service';
 
 @Component({
   selector: 'app-junior-church-attendance-detail',
@@ -22,6 +23,7 @@ export class JuniorChurchAttendanceDetailComponent
   destroy = new Subject<void>();
   record: AttendanceRecord;
   workerDataloader: any;
+  childrenDataloader: any;
 
   Feature = Feature;
   Application = App;
@@ -33,7 +35,8 @@ export class JuniorChurchAttendanceDetailComponent
   constructor(
     private readonly router: Router,
     private readonly route: ActivatedRoute,
-    private readonly commonService: CommonService
+    private readonly commonService: CommonService,
+    private readonly attendanceRecordServie: AttendanceRecordsService
   ) {}
 
   ngOnInit() {
@@ -52,6 +55,8 @@ export class JuniorChurchAttendanceDetailComponent
               }),
             })
           );
+        this.childrenDataloader = (params) =>
+          this.attendanceRecordServie.getAttendanceChildrenById(res.id, params);
         this.record = res;
         this.canStartCheckIn =
           res.activeDate ===

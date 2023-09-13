@@ -13,6 +13,19 @@ export interface AttendanceRecord {
   [key: string]: any;
 }
 
+export interface ChildAttendance {
+  id?: number;
+  attendanceRecordId?: number;
+  firstName?: string;
+  lastName?: string;
+  cuid?: string;
+  present?: boolean;
+  notes?: string;
+  updatedUserId?: number;
+  checkInDate?: Date;
+  [key: string]: any;
+}
+
 export enum AttendanceStatus {
   PENDING = 'PENDING',
   ACTIVE = 'ACTIVE',

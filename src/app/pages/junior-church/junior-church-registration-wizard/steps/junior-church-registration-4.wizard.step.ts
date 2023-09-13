@@ -7,7 +7,10 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
+import {
+  ChurchGroup,
+  TranslationKey,
+} from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { ChildrenService } from 'src/service/children/children.service';
@@ -67,7 +70,10 @@ export class JuniorChurchRegistrationWizardStepFourComponent
 
   getGurdianRelationship(gurdianId: number) {
     const found = this.child.gurdians.find((g) => g.id === gurdianId);
-    return this.commonService.getFormattedRelationship(found.relationship);
+    return this.commonService.translate(
+      found.relationship,
+      TranslationKey.RELATIONSHIP
+    );
   }
 
   onCancelClick() {

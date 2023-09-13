@@ -100,6 +100,14 @@
         </div>
       </div>
     </ik-card>
+    <ik-grid [dataLoader]="childrenDataloader">
+      <ik-grid-search></ik-grid-search>
+      <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
+      <ik-grid-column label="CUID" field="cuid"></ik-grid-column>
+      <ik-grid-column label="Present" field="formattedPresent"></ik-grid-column>
+      <ik-grid-column label="Checked In" field="checkInDate"></ik-grid-column>
+      <ik-grid-pager key="Children" [pageSize]="5"></ik-grid-pager>
+    </ik-grid>
   </div>
   <div class="layout__column-right layout__narrow">
     <ik-grid [dataLoader]="workerDataloader">
@@ -119,6 +127,7 @@
   #deleteModal
   [recordId]="record.id"
 ></app-delete-record-modal>
+
 <ng-template #loader>
   <ik-loading></ik-loading>
 </ng-template>

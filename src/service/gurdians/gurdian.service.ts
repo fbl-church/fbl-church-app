@@ -1,5 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { TranslationKey } from 'projects/insite-kit/src/model/common.model';
 import { Gurdian } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
@@ -27,8 +28,9 @@ export class GurdianService {
       tap((v) =>
         v.body.forEach((u) => {
           u.formattedName = this.commonService.getFormattedName(u);
-          u.formattedRelationship = this.commonService.getFormattedRelationship(
-            u.relationship
+          u.formattedRelationship = this.commonService.translate(
+            u.relationship,
+            TranslationKey.RELATIONSHIP
           );
         })
       )
@@ -56,8 +58,9 @@ export class GurdianService {
       tap((v) =>
         v.body.forEach((u) => {
           u.formattedName = this.commonService.getFormattedName(u);
-          u.formattedRelationship = this.commonService.getFormattedRelationship(
-            u.relationship
+          u.formattedRelationship = this.commonService.translate(
+            u.relationship,
+            TranslationKey.RELATIONSHIP
           );
         })
       )
