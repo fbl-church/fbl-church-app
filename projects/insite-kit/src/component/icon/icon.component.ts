@@ -8,5 +8,5 @@ import { IconName, IconPrefix } from '@fortawesome/free-solid-svg-icons';
 export class IconComponent {
   @Input() icon: IconName;
   @Input() classOverride: string;
-  iconPrefix: IconPrefix = 'fas';
+  @Input() iconPrefix: IconPrefix = 'fas';
 }

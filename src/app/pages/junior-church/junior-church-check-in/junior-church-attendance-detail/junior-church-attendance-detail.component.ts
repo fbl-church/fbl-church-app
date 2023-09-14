@@ -1,7 +1,10 @@
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AttendanceRecord } from 'projects/insite-kit/src/model/attendance-record.model';
+import {
+  AttendanceRecord,
+  AttendanceStatus,
+} from 'projects/insite-kit/src/model/attendance-record.model';
 import {
   Access,
   App,
@@ -9,6 +12,7 @@ import {
   WebRole,
 } from 'projects/insite-kit/src/model/common.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
+import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, map, of, takeUntil } from 'rxjs';
 import { AttendanceRecordsService } from 'src/service/attendance/attendance-records.service';
 
@@ -36,7 +40,8 @@ export class JuniorChurchAttendanceDetailComponent
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly commonService: CommonService,
-    private readonly attendanceRecordServie: AttendanceRecordsService
+    private readonly attendanceRecordService: AttendanceRecordsService,
+    private readonly popupService: PopupService
   ) {}
 
   ngOnInit() {
@@ -56,7 +61,10 @@ export class JuniorChurchAttendanceDetailComponent
             })
           );
         this.childrenDataloader = (params) =>
-          this.attendanceRecordServie.getAttendanceChildrenById(res.id, params);
+          this.attendanceRecordService.getAttendanceChildrenById(
+            res.id,
+            params
+          );
         this.record = res;
         this.canStartCheckIn =
           res.activeDate ===
@@ -77,5 +85,35 @@ export class JuniorChurchAttendanceDetailComponent
     this.router.navigate([
       `/junior-church/check-in/${this.record.id}/details/edit`,
     ]);
+  }
+
+  onChildrenCheckInEditClick() {
+    this.router.navigate([
+      `/junior-church/check-in/${this.record.id}/details/children/edit`,
+    ]);
+  }
+
+  onRecordClosed(event: AttendanceRecord) {
+    this.record = event;
+  }
+
+  onStartCheckIn() {
+    this.loading = true;
+    this.attendanceRecordService
+      .updateStatus(this.record.id, AttendanceStatus.ACTIVE)
+      .subscribe({
+        next: (res) => {
+          this.popupService.success(
+            'Attendance Record Successfully Activated! Start Check in!'
+          );
+          this.router.navigate([
+            `/junior-church/check-in/${this.record.id}/details/children/edit`,
+          ]);
+        },
+        error: () => {
+          this.popupService.error('Unable to Start Check in. Try again later.');
+          this.loading = false;
+        },
+      });
   }
 }

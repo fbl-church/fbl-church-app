@@ -2,6 +2,7 @@ import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   AttendanceRecord,
+  AttendanceStatus,
   ChildAttendance,
 } from 'projects/insite-kit/src/model/attendance-record.model';
 import { TranslationKey } from 'projects/insite-kit/src/model/common.model';
@@ -104,6 +105,22 @@ export class AttendanceRecordsService {
     return this.request.put<AttendanceRecord>(
       `${this.BASE_PATH}/${id}`,
       record
+    );
+  }
+
+  /**
+   * Update an attendance record status
+   *
+   * @param id The id of the record to update
+   * @param status The status to update too
+   * @returns Updated Attendance Record object
+   */
+  updateStatus(
+    id: any,
+    status: AttendanceStatus
+  ): Observable<AttendanceRecord> {
+    return this.request.put<AttendanceRecord>(
+      `${this.BASE_PATH}/${id}/status/${status}`
     );
   }
 

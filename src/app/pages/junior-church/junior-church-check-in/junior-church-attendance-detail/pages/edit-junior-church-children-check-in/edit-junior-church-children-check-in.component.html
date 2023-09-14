@@ -1,0 +1,27 @@
+<ng-container *ngIf="!loading; else loader">
+  <ik-header title="Children Check In">
+    <ik-header-back (back)="onBackClick()"></ik-header-back>
+  </ik-header>
+
+  <ik-grid [dataLoader]="childrenDataloader">
+    <ik-grid-search></ik-grid-search>
+    <ik-grid-checklist-column
+      [selectedIds]="presentChildren"
+    ></ik-grid-checklist-column>
+    <ik-grid-column label="Name" field="formattedName"> </ik-grid-column>
+    <ik-grid-column label="CUID" field="cuid"></ik-grid-column>
+    <ik-grid-column label="Birthday" field="birthday"></ik-grid-column>
+    <ik-grid-pager key="Children" [pageSize]="5"></ik-grid-pager>
+  </ik-grid>
+
+  <button class="btn btn-default btn-flat btn-left" (click)="onCancelClick()">
+    Cancel
+  </button>
+  <button class="btn btn-primary btn-flat btn-right" (click)="onUpdateClick()">
+    Save
+  </button>
+</ng-container>
+
+<ng-template #loader>
+  <ik-loading></ik-loading>
+</ng-template>

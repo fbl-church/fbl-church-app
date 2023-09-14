@@ -50,10 +50,6 @@ export class JuniorChurchRegistrationWizardComponent {
     wizard.prev();
   }
 
-  onBackClick() {
-    this.router.navigate(['/junior-church']);
-  }
-
   onSaveClick(child: Child) {
     this.loading = true;
     let saveObservable;

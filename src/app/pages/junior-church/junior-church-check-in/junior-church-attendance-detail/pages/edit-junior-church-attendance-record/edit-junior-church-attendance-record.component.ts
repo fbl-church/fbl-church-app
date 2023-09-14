@@ -1,6 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AttendanceRecord } from 'projects/insite-kit/src/model/attendance-record.model';
+import {
+  AttendanceRecord,
+  AttendanceStatus,
+} from 'projects/insite-kit/src/model/attendance-record.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, map, takeUntil } from 'rxjs';
 import { AttendanceRecordsService } from 'src/service/attendance/attendance-records.service';
@@ -28,6 +31,12 @@ export class EditJuniorChurchRecordComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy)
       )
       .subscribe((rec) => {
+        if (rec.status === AttendanceStatus.CLOSED) {
+          this.popupService.error(
+            'Attendance Record is Closed. Cannot update Information!'
+          );
+          this.router.navigate([`/junior-church/check-in/${rec.id}/details`]);
+        }
         this.record = rec;
         this.loading = false;
       });
@@ -38,7 +47,7 @@ export class EditJuniorChurchRecordComponent implements OnInit, OnDestroy {
   }
 
   onBackClick() {
-    this.router.navigate(['/junior-church/check-in']);
+    this.router.navigate([`/junior-church/check-in/${this.record.id}/details`]);
   }
 
   onCancelClick() {
