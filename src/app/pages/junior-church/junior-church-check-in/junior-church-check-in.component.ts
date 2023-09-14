@@ -7,7 +7,7 @@ import {
   Feature,
   WebRole,
 } from 'projects/insite-kit/src/model/common.model';
-import { AttendanceRecordsService } from 'src/service/attendance/attendance-records.service';
+import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
 
 @Component({
   selector: 'app-junior-church-check-in',
@@ -22,7 +22,7 @@ export class JuniorChurchCheckInComponent {
   Access = Access;
 
   constructor(
-    private readonly attendanceRecordService: AttendanceRecordsService,
+    private readonly attendanceRecordService: AttendanceRecordService,
     private readonly router: Router
   ) {
     this.dataloader = (params: any) =>

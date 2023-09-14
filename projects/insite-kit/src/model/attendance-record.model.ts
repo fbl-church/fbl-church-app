@@ -19,8 +19,6 @@ export interface ChildAttendance {
   firstName?: string;
   lastName?: string;
   cuid?: string;
-  present?: boolean;
-  notes?: string;
   updatedUserId?: number;
   checkInDate?: Date;
   [key: string]: any;

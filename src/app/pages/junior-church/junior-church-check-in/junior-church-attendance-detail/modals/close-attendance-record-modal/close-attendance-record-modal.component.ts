@@ -6,12 +6,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
-import {
-  AttendanceRecord,
-  AttendanceStatus,
-} from 'projects/insite-kit/src/model/attendance-record.model';
+import { AttendanceStatus } from 'projects/insite-kit/src/model/attendance-record.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
-import { AttendanceRecordsService } from 'src/service/attendance/attendance-records.service';
+import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
 
 @Component({
   selector: 'app-close-attendance-record-modal',
@@ -20,12 +17,12 @@ import { AttendanceRecordsService } from 'src/service/attendance/attendance-reco
 export class CloseAttendanceRecordModalComponent {
   @ViewChild('closeRecordModal') modal: ModalComponent;
   @Input() recordId: number;
-  @Output() closed = new EventEmitter<AttendanceRecord>();
+  @Output() closed = new EventEmitter<void>();
 
   modalLoading = false;
 
   constructor(
-    private readonly attendanceRecordService: AttendanceRecordsService,
+    private readonly attendanceRecordService: AttendanceRecordService,
     private readonly popupService: PopupService
   ) {}
 
@@ -34,10 +31,10 @@ export class CloseAttendanceRecordModalComponent {
     this.attendanceRecordService
       .updateStatus(this.recordId, AttendanceStatus.CLOSED)
       .subscribe({
-        next: (res) => {
+        next: () => {
           this.modal.close();
           this.popupService.success('Attendance Record successfully Closed!');
-          this.closed.emit(res);
+          this.closed.emit();
         },
         error: () => {
           this.modal.close();

@@ -14,7 +14,7 @@ import {
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, map, of, takeUntil } from 'rxjs';
-import { AttendanceRecordsService } from 'src/service/attendance/attendance-records.service';
+import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
 
 @Component({
   selector: 'app-junior-church-attendance-detail',
@@ -40,7 +40,7 @@ export class JuniorChurchAttendanceDetailComponent
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly commonService: CommonService,
-    private readonly attendanceRecordService: AttendanceRecordsService,
+    private readonly attendanceRecordService: AttendanceRecordService,
     private readonly popupService: PopupService
   ) {}
 
@@ -93,8 +93,8 @@ export class JuniorChurchAttendanceDetailComponent
     ]);
   }
 
-  onRecordClosed(event: AttendanceRecord) {
-    this.record = event;
+  onRecordClosed() {
+    this.record.status = AttendanceStatus.CLOSED;
   }
 
   onStartCheckIn() {

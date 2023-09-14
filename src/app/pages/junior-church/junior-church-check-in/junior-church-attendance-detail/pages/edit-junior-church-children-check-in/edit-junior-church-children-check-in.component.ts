@@ -1,9 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GridChecklistColumnComponent } from 'projects/insite-kit/src/component/grid/grid-checklist-column/grid-checklist-column.component';
 import { ChildAttendance } from 'projects/insite-kit/src/model/attendance-record.model';
 import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, map, switchMap, takeUntil, tap } from 'rxjs';
+import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
 import { ChildrenService } from 'src/service/children/children.service';
 
 @Component({
@@ -13,6 +15,9 @@ import { ChildrenService } from 'src/service/children/children.service';
 export class EditJuniorChurchChildrenCheckInComponent
   implements OnInit, OnDestroy
 {
+  @ViewChild(GridChecklistColumnComponent)
+  gridChecklistColumn: GridChecklistColumnComponent;
+
   attendanceChildren: ChildAttendance[];
   presentChildren: number[] = [];
   recordId: number;
@@ -23,6 +28,7 @@ export class EditJuniorChurchChildrenCheckInComponent
 
   constructor(
     private readonly childrenService: ChildrenService,
+    private readonly attendanceRecordService: AttendanceRecordService,
     private readonly popupService: PopupService,
     private readonly route: ActivatedRoute,
     private readonly router: Router
@@ -43,9 +49,7 @@ export class EditJuniorChurchChildrenCheckInComponent
       )
       .subscribe((rec) => {
         this.attendanceChildren = rec;
-        this.presentChildren = this.attendanceChildren
-          .filter((c) => c.present)
-          .map((c) => c.id);
+        this.presentChildren = this.attendanceChildren.map((c) => c.id);
         console.log(this.attendanceChildren, this.presentChildren);
         this.loading = false;
       });
@@ -65,5 +69,30 @@ export class EditJuniorChurchChildrenCheckInComponent
 
   onUpdateClick() {
     this.loading = true;
+
+    const selectedChildrenIds = this.gridChecklistColumn.getSelected();
+    let mappedChildren = [];
+    if (selectedChildrenIds && selectedChildrenIds.length > 0) {
+      mappedChildren = selectedChildrenIds.map((id) => {
+        return { id: id };
+      });
+    }
+
+    this.attendanceRecordService
+      .updateChildren(this.recordId, mappedChildren)
+      .subscribe({
+        next: (res) => {
+          this.popupService.success(
+            'Attendance Record Children Successfully Updated!'
+          );
+          this.onBackClick();
+        },
+        error: () => {
+          this.popupService.error(
+            'Unable to update attendance record children at this time. Try again later.'
+          );
+          this.loading = false;
+        },
+      });
   }
 }

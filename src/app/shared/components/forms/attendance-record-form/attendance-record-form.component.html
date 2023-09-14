@@ -1,6 +1,6 @@
 <ik-form [formGroup]="form">
   <div class="row">
-    <ik-form-field header="Name" class="col-md-6"
+    <ik-form-field header="Name*" class="col-md-6"
       ><input
         maxlength="26"
         class="form-input__normal"
@@ -19,7 +19,7 @@
     </ik-form-field>
   </div>
 
-  <ik-form-field header="Workers">
+  <ik-form-field header="Workers*">
     <ik-multi-select
       formControlName="workers"
       [items]="workers"

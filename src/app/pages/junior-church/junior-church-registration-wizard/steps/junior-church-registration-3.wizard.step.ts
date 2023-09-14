@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Gurdian } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
-import { ChildGurdiansGridCardComponent } from 'src/app/shared/components/cards/child-gurdians-grid-card/child-gurdians-grid-card.component';
+import { ChildGurdiansGridCardComponent } from 'src/app/shared/components/cards/children/child-gurdians-grid-card/child-gurdians-grid-card.component';
 
 @Component({
   selector: 'app-junior-church-registration-wizard-step-three',

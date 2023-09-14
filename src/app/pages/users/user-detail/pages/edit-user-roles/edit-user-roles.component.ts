@@ -3,9 +3,8 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
-import { Subject } from 'rxjs';
-import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
-import { UserRoleSelectionGridComponent } from 'src/app/shared/components/cards/user-role-selection-grid/user-role-selection-grid.component';
+import { Subject, map, switchMap, takeUntil, tap } from 'rxjs';
+import { UserRoleSelectionGridComponent } from 'src/app/shared/components/cards/users/user-role-selection-grid/user-role-selection-grid.component';
 import { UserService } from 'src/service/users/user.service';
 
 @Component({

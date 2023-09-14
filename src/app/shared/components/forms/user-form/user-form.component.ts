@@ -15,7 +15,7 @@ import {
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
-import { UserRoleSelectionGridComponent } from '../../cards/user-role-selection-grid/user-role-selection-grid.component';
+import { UserRoleSelectionGridComponent } from '../../cards/users/user-role-selection-grid/user-role-selection-grid.component';
 
 @Component({
   selector: 'app-user-form',

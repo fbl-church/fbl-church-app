@@ -1,13 +1,14 @@
 <ik-header title="Junior Church Workers">
   <button
     *featureAccess="[Application.JUNIOR_CHURCH, Feature.WORKERS, Access.CREATE]"
-    (click)="onNewWorker()"
+    (click)="addWorkersModal.open()"
     class="btn btn-primary btn-flat btn-header-right"
   >
     <ik-icon icon="circle-plus" classOverride="btn-icon"></ik-icon>
-    Add Worker
+    Add Workers
   </button>
   <button
+    *featureAccess="[Application.JUNIOR_CHURCH, Feature.WORKERS, Access.CREATE]"
     (click)="onSendMassEmail()"
     class="btn btn-warning btn-flat btn-header-right"
     [disabled]="emailButtonLoading"
@@ -23,3 +24,44 @@
   <ik-grid-column label="Created" field="insertDate"></ik-grid-column>
   <ik-grid-pager key="Workers" [pageSize]="10"></ik-grid-pager>
 </ik-grid>
+
+<ik-modal #addWorkersModal name="userToGurdianModal">
+  <ik-modal-header title="Add New Workers?" type="info"></ik-modal-header>
+  <ng-container *ngIf="!modalLoading; else loader">
+    <ik-modal-body>
+      <form *ngIf="form" [formGroup]="form">
+        <ik-form-field header="Role*" [padding]="false">
+          <ik-single-select
+            formControlName="type"
+            [items]="workerTypes"
+          ></ik-single-select>
+        </ik-form-field>
+        <ik-form-field header="Workers*" [padding]="false">
+          <ik-multi-select
+            formControlName="workers"
+            [items]="nonJuniorChurchWorkers"
+          ></ik-multi-select>
+        </ik-form-field>
+      </form>
+    </ik-modal-body>
+    <ik-modal-action-bar>
+      <button
+        class="btn btn-primary btn-flat btn-right btn-modal"
+        (click)="onAddWorkers()"
+        [disabled]="form && form.invalid"
+      >
+        Add Workers
+      </button>
+      <button
+        class="btn btn-default btn-flat btn-right btn-modal"
+        (click)="addWorkersModal.close()"
+      >
+        Cancel
+      </button>
+    </ik-modal-action-bar>
+  </ng-container>
+</ik-modal>
+
+<ng-template #loader>
+  <ik-loading backgroundColor="white"></ik-loading>
+</ng-template>

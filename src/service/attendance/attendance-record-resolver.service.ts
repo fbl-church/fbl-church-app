@@ -4,14 +4,14 @@ import { User } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { AttendanceRecordsService } from './attendance-records.service';
+import { AttendanceRecordService } from './attendance-records.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AttendanceRecordResolverService implements Resolve<any> {
   constructor(
-    private readonly attendanceRecordService: AttendanceRecordsService,
+    private readonly attendanceRecordService: AttendanceRecordService,
     private readonly commonService: CommonService
   ) {}
   resolve(route: ActivatedRouteSnapshot): Observable<User> {

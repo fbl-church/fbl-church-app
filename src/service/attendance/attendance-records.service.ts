@@ -6,6 +6,7 @@ import {
   ChildAttendance,
 } from 'projects/insite-kit/src/model/attendance-record.model';
 import { TranslationKey } from 'projects/insite-kit/src/model/common.model';
+import { Child } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { Observable, tap } from 'rxjs';
@@ -13,7 +14,7 @@ import { Observable, tap } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class AttendanceRecordsService {
+export class AttendanceRecordService {
   readonly BASE_PATH = 'api/attendance-records';
 
   constructor(
@@ -76,10 +77,9 @@ export class AttendanceRecordsService {
       .get<ChildAttendance[]>(`${this.BASE_PATH}/${id}/children`, params)
       .pipe(
         tap((v) =>
-          v.body.forEach((c) => {
-            c.formattedName = this.commonService.getFormattedName(c);
-            c.formattedPresent = c.present ? 'Yes' : 'No';
-          })
+          v.body.forEach(
+            (c) => (c.formattedName = this.commonService.getFormattedName(c))
+          )
         )
       );
   }
@@ -121,6 +121,20 @@ export class AttendanceRecordsService {
   ): Observable<AttendanceRecord> {
     return this.request.put<AttendanceRecord>(
       `${this.BASE_PATH}/${id}/status/${status}`
+    );
+  }
+
+  /**
+   * Update the children of an attendance record
+   *
+   * @param id The id of the record to update
+   * @param children The children to put on the attendance record
+   * @returns Teh updated Attendance Record object
+   */
+  updateChildren(id: any, children: Child[]): Observable<AttendanceRecord> {
+    return this.request.put<AttendanceRecord>(
+      `${this.BASE_PATH}/${id}/children`,
+      children
     );
   }
 

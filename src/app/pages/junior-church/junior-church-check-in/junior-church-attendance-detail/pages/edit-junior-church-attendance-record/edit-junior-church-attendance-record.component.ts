@@ -6,7 +6,7 @@ import {
 } from 'projects/insite-kit/src/model/attendance-record.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, map, takeUntil } from 'rxjs';
-import { AttendanceRecordsService } from 'src/service/attendance/attendance-records.service';
+import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
 
 @Component({
   selector: 'app-edit-junior-church-attendance-record',
@@ -18,7 +18,7 @@ export class EditJuniorChurchRecordComponent implements OnInit, OnDestroy {
   loading = true;
 
   constructor(
-    private readonly attendanceService: AttendanceRecordsService,
+    private readonly attendanceService: AttendanceRecordService,
     private readonly popupService: PopupService,
     private readonly route: ActivatedRoute,
     private readonly router: Router

@@ -126,7 +126,6 @@
       <ik-grid-search></ik-grid-search>
       <ik-grid-column label="Name" field="formattedName"> </ik-grid-column>
       <ik-grid-column label="CUID" field="cuid"></ik-grid-column>
-      <ik-grid-column label="Present" field="formattedPresent"></ik-grid-column>
       <ik-grid-column label="Checked In" field="checkInDate">
         <ng-template let-data>
           {{ data.checkInDate | date : "h:mm a" }}
@@ -171,7 +170,7 @@
 <app-close-attendance-record-modal
   #closeModal
   [recordId]="record.id"
-  (closed)="onRecordClosed($event)"
+  (closed)="onRecordClosed()"
 >
 </app-close-attendance-record-modal>
 

@@ -62,6 +62,7 @@ export class AttendanceRecordFormComponent implements OnInit, OnDestroy {
               new Date(),
               'MM/dd/yyyy'
             )}`,
+        Validators.required,
       ],
       activeDate: [
         this.record
