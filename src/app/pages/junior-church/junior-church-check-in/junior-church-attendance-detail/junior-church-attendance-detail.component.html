@@ -101,11 +101,28 @@
       </div>
     </ik-card>
     <ik-grid [dataLoader]="childrenDataloader">
+      <ik-card-header title="Children">
+        <ik-icon
+          *featureAccess="[
+            Application.JUNIOR_CHURCH,
+            Feature.DETAIL,
+            Access.UPDATE
+          ]"
+          icon="pen-to-square"
+          class="right pointer"
+          classOverride="icon__default"
+          (click)="onEditClick()"
+        ></ik-icon>
+      </ik-card-header>
       <ik-grid-search></ik-grid-search>
-      <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
+      <ik-grid-column label="Name" field="formattedName"> </ik-grid-column>
       <ik-grid-column label="CUID" field="cuid"></ik-grid-column>
       <ik-grid-column label="Present" field="formattedPresent"></ik-grid-column>
-      <ik-grid-column label="Checked In" field="checkInDate"></ik-grid-column>
+      <ik-grid-column label="Checked In" field="checkInDate">
+        <ng-template let-data>
+          {{ data.checkInDate | date : "h:mm a" }}
+        </ng-template>
+      </ik-grid-column>
       <ik-grid-pager key="Children" [pageSize]="5"></ik-grid-pager>
     </ik-grid>
   </div>

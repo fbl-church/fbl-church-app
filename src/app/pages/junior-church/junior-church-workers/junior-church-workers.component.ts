@@ -4,7 +4,9 @@ import {
   Access,
   App,
   Feature,
+  WebRole,
 } from 'projects/insite-kit/src/model/common.model';
+import { User } from 'projects/insite-kit/src/model/user.model';
 import { UserService } from 'src/service/users/user.service';
 
 @Component({
@@ -17,9 +19,12 @@ export class JuniorChurchWorkersComponent {
   Feature = Feature;
   Application = App;
   Access = Access;
+  WebRole = WebRole;
+
+  emailButtonLoading = false;
 
   constructor(
-    private userService: UserService,
+    private readonly userService: UserService,
     private readonly router: Router
   ) {
     this.dataloader = (params: any) =>
@@ -38,6 +43,24 @@ export class JuniorChurchWorkersComponent {
         'JUNIOR_CHURCH_WORKER',
       ])
     );
+  }
+
+  onSendMassEmail() {
+    this.emailButtonLoading = true;
+    this.getJuniorChurchWorkersDataloader(new Map()).subscribe((res) => {
+      this.openMailProvider(res.body);
+      this.emailButtonLoading = false;
+    });
+  }
+
+  openMailProvider(users: User[]) {
+    const mailingContent = [];
+    mailingContent.push('mailto:');
+    mailingContent.push(
+      users.map((u) => u.email).filter((m) => m && m.trim().length > 0)
+    );
+    mailingContent.push('?subject=Junior Church Workers');
+    window.open(mailingContent.join(''), '_blank');
   }
 
   onNewWorker() {}

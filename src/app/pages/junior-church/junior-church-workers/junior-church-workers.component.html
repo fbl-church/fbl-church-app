@@ -7,6 +7,14 @@
     <ik-icon icon="circle-plus" classOverride="btn-icon"></ik-icon>
     Add Worker
   </button>
+  <button
+    (click)="onSendMassEmail()"
+    class="btn btn-warning btn-flat btn-header-right"
+    [disabled]="emailButtonLoading"
+  >
+    <ik-icon icon="paper-plane" classOverride="btn-icon"></ik-icon>
+    Send Email
+  </button>
 </ik-header>
 <ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
   <ik-grid-search></ik-grid-search>

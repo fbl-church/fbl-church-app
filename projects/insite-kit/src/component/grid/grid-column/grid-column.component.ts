@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'ik-grid-column',
@@ -7,6 +7,5 @@ import { Component, Input } from '@angular/core';
 export class GridColumnComponent {
   @Input() label: string;
   @Input() field: string;
-
-  constructor() {}
+  @ContentChild(TemplateRef) templateRef: TemplateRef<any>;
 }

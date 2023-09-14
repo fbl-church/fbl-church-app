@@ -16,6 +16,7 @@ import {
   faHome,
   faLeftLong,
   faLock,
+  faPaperPlane,
   faPenToSquare,
   faPerson,
   faRightFromBracket,
@@ -70,7 +71,8 @@ export class IconModule {
       faUserPlus,
       faUserCheck,
       faTrashCan,
-      faRotate
+      faRotate,
+      faPaperPlane
     );
   }
 }

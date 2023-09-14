@@ -34,7 +34,12 @@
       />
     </ik-form-field>
   </div>
-
+  <ik-form-field header="Church Groups">
+    <ik-multi-select
+      formControlName="groups"
+      [items]="churchGroups"
+    ></ik-multi-select>
+  </ik-form-field>
   <ik-form-field header="Additional Information">
     <textarea
       formControlName="additionalInfo"

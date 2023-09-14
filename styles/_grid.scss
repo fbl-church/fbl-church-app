@@ -5,7 +5,7 @@ td {
 }
 
 thead {
-  line-height: 60px;
+  line-height: 32px;
   border-bottom: 1px solid #d2d4d6;
 }
 
@@ -47,13 +47,13 @@ table {
 
 .grid__column-header {
   color: $text-color;
-  font-size: $font-size-xl;
+  font-size: $font-size-lg;
   font-weight: $font-weight-normal;
   text-align: left;
 }
 
 .grid__header-padding {
-  padding-left: 16px;
+  padding: 16px 0px 4px 16px;
 }
 
 .grid__content-row:nth-child(even) {
@@ -75,10 +75,6 @@ table {
 @media screen and (max-width: $grid-screen-md-max) {
   .grid__checklist-column {
     width: 9%;
-  }
-
-  .grid__column-header {
-    font-size: $font-size-lg;
   }
 }
 

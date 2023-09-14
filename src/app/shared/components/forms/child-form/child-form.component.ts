@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
+import {
+  ChurchGroup,
+  TranslationKey,
+} from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 
@@ -17,7 +20,7 @@ export class ChildFormComponent implements OnInit {
   @Output() save = new EventEmitter<Child>();
 
   roles: string[];
-  churchGroups: string[];
+  churchGroups: any[];
   form: FormGroup;
 
   constructor(
@@ -27,7 +30,12 @@ export class ChildFormComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
-    this.churchGroups = Object.keys(ChurchGroup);
+    this.churchGroups = Object.keys(ChurchGroup).map((cg) => {
+      return {
+        value: cg,
+        name: this.commonService.translate(cg, TranslationKey.CHURCH_GROUP),
+      };
+    });
   }
 
   buildForm() {
@@ -47,6 +55,7 @@ export class ChildFormComponent implements OnInit {
         Validators.required,
       ],
       allergies: [this.childData ? this.childData.allergies : ''],
+      groups: [this.childData?.churchGroup ? this.childData.churchGroup : ''],
       additionalInfo: [this.childData ? this.childData.additionalInfo : ''],
     });
   }
@@ -71,6 +80,10 @@ export class ChildFormComponent implements OnInit {
 
     if (this.form.value.additionalInfo) {
       newChild.additionalInfo = this.form.value.additionalInfo;
+    }
+
+    if (this.form.value.groups) {
+      newChild.churchGroup = this.form.value.groups;
     }
 
     this.save.emit(newChild);

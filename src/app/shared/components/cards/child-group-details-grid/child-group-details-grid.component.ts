@@ -49,6 +49,6 @@ export class ChildGroupDetailsGridComponent implements OnChanges {
   }
 
   onEditIconClick() {
-    this.router.navigate([`/children/${this.child.id}/details/groups/edit`]);
+    this.router.navigate([`/children/${this.child.id}/details/edit`]);
   }
 }

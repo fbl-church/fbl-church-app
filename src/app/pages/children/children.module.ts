@@ -3,7 +3,6 @@ import { BaseInitModule } from 'src/app/common/base-init.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ChildDetailComponent } from './child-detail/child-detail.component';
 import { DeleteChildModalComponent } from './child-detail/modals/delete-child-modal/delete-child-modal.component';
-import { EditChildGroupsComponent } from './child-detail/pages/edit-child-groups/edit-child-groups.component';
 import { EditChildGurdiansComponent } from './child-detail/pages/edit-child-gurdians/edit-child-gurdians.component';
 import { EditChildComponent } from './child-detail/pages/edit-child/edit-child.component';
 import { ChildrenComponent } from './children.component';
@@ -19,7 +18,6 @@ import { CreateChildComponent } from './create-child/create-child.component';
     DeleteChildModalComponent,
     EditChildComponent,
     EditChildGurdiansComponent,
-    EditChildGroupsComponent,
   ],
 })
 export class ChildrenModule {}

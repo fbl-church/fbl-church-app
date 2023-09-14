@@ -34,15 +34,6 @@
   <ng-content select="ik-grid-show-all"></ng-content>
 </ik-card>
 
-<ng-template #loader>
-  <ik-loading
-    size="80px"
-    thickness="6px"
-    backgroundColor="white"
-    margin="15px auto 12px"
-  ></ik-loading>
-</ng-template>
-
 <ng-template #gridContent>
   <tr *ngFor="let row of data.body" class="grid__content-row">
     <td *ngIf="gridChecklistColumn" class="grid__content">
@@ -58,11 +49,20 @@
       [ngClass]="{ 'grid__content-ellipsis': !overflowEnabled }"
       (click)="onRowClick(row)"
     >
-      <ng-container *ngIf="isDate(row[col.field]); else notDate">
-        {{ row[col.field] | date : "longDate" }}
+      <ng-container *ngIf="col.templateRef; else defaultCell">
+        <ng-template
+          [ngTemplateOutlet]="col.templateRef"
+          [ngTemplateOutletContext]="{ $implicit: row }"
+        ></ng-template>
       </ng-container>
-      <ng-template #notDate>
-        {{ row[col.field] ? row[col.field] : "-" }}
+
+      <ng-template #defaultCell>
+        <ng-container *ngIf="isDate(row[col.field]); else notDate">
+          {{ row[col.field] | date : "longDate" }}
+        </ng-container>
+        <ng-template #notDate>
+          {{ row[col.field] ? row[col.field] : "-" }}
+        </ng-template>
       </ng-template>
     </td>
     <td *ngIf="gridSelection" class="grid__content">
@@ -76,13 +76,20 @@
         <option
           *ngFor="let value of gridSelection.values"
           [ngValue]="row?.selectionValue"
-          [selected]="
-            value.toUpperCase() === row?.selectionValue?.toUpperCase()
-          "
+          [selected]="value === row?.selectionValue"
         >
           {{ value }}
         </option>
       </select>
     </td>
   </tr>
+</ng-template>
+
+<ng-template #loader>
+  <ik-loading
+    size="80px"
+    thickness="6px"
+    backgroundColor="white"
+    margin="15px auto 12px"
+  ></ik-loading>
 </ng-template>
