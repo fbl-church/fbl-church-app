@@ -1,10 +1,6 @@
 <ik-card>
   <ng-content select="ik-card-header, ik-grid-search"></ng-content>
-  <table
-    *ngIf="!loading; else loader"
-    class="grid__table"
-    [ngClass]="{ grid__table: !scroll, grid_scroll__table: scroll }"
-  >
+  <table *ngIf="!loading; else loader" class="grid__table">
     <col *ngIf="gridChecklistColumn" class="grid__checklist-column" />
     <thead *ngIf="data?.body.length > 0">
       <tr>
@@ -23,9 +19,7 @@
         </th>
       </tr>
     </thead>
-    <tbody *ngIf="scroll; else gridContent">
-      <ng-container [ngTemplateOutlet]="gridContent"></ng-container>
-    </tbody>
+    <ng-container [ngTemplateOutlet]="gridContent"></ng-container>
   </table>
   <ng-content *ngIf="!loading" select="ik-grid-pager"></ng-content>
   <ng-container *ngIf="data?.body.length <= 0 && !loading">
