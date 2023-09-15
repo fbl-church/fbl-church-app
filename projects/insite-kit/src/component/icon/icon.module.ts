@@ -7,6 +7,7 @@ import {
   faCaretDown,
   faCaretLeft,
   faChartSimple,
+  faCheck,
   faChildren,
   faCircleExclamation,
   faCircleInfo,
@@ -72,7 +73,8 @@ export class IconModule {
       faUserCheck,
       faTrashCan,
       faRotate,
-      faPaperPlane
+      faPaperPlane,
+      faCheck
     );
   }
 }

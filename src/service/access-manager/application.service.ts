@@ -31,7 +31,6 @@ export class ApplicationService {
             u.name,
             TranslationKey.APPS
           );
-          u.formattedStatus = u.enabled ? 'Enabled' : 'Disabled';
         })
       )
     );
@@ -50,7 +49,6 @@ export class ApplicationService {
           v.body.name,
           TranslationKey.APPS
         );
-        v.body.formattedStatus = v.body.enabled ? 'Enabled' : 'Disabled';
       })
     );
   }
@@ -62,12 +60,28 @@ export class ApplicationService {
    * @param enabled Wheather to enable or disable the application
    * @returns The updated Application
    */
-  updateApplicationEnabledFlag(
-    id: any,
-    enabled: boolean
-  ): Observable<Application> {
+  updateEnabledFlag(id: any, enabled: boolean): Observable<Application> {
     return this.request.put<Application>(
       `${this.BASE_PATH}/${id}/enabled/${enabled}`
     );
+  }
+
+  /**
+   * Create a new application
+   *
+   * @param app The app to be created
+   * @returns The created application
+   */
+  create(app: Application): Observable<Application> {
+    return this.request.post<Application>(this.BASE_PATH, app);
+  }
+
+  /**
+   * Delete the application by Id
+   *
+   * @param id The app to delete
+   */
+  delete(id: any): Observable<any> {
+    return this.request.delete<any>(`${this.BASE_PATH}/${id}`);
   }
 }

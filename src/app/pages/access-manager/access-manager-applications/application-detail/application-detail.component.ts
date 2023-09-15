@@ -44,7 +44,7 @@ export class ApplicationDetailComponent implements OnInit, OnDestroy {
   onEnabledUpdateClick(enabled: boolean) {
     this.loading = true;
     this.applicationService
-      .updateApplicationEnabledFlag(this.application.id, enabled)
+      .updateEnabledFlag(this.application.id, enabled)
       .subscribe({
         next: (res) => {
           this.application.enabled = res.enabled;

@@ -3,6 +3,12 @@
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
   <ik-grid-column label="Key" field="name"></ik-grid-column>
-  <ik-grid-column label="Status" field="formattedStatus"></ik-grid-column>
+  <ik-grid-column label="Status" field="formattedStatus">
+    <ng-template let-data>
+      <div [ngClass]="data.enabled ? 'ENABLED' : 'DISABLED'">
+        {{ data.enabled ? "Enabled" : "Disabled" }}
+      </div>
+    </ng-template>
+  </ik-grid-column>
   <ik-grid-pager key="Applications" [pageSize]="10"></ik-grid-pager>
 </ik-grid>

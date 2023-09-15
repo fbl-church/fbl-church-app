@@ -3,11 +3,18 @@
     <ik-header-back (back)="onBackClick()"></ik-header-back>
     <div class="inline-display header-buttons">
       <button
-        class="btn btn-primary btn-flat btn-header-right"
+        class="btn btn-danger btn-flat btn-header-right"
+        (click)="applicationDeleteModal.modal.open()"
+      >
+        <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
+        Delete
+      </button>
+      <button
+        class="btn btn-success btn-flat btn-header-right"
         *ngIf="!application.enabled"
         (click)="onEnabledUpdateClick(true)"
       >
-        <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
+        <ik-icon icon="check" classOverride="btn-icon"></ik-icon>
         Enable
       </button>
 
@@ -42,7 +49,7 @@
           <ik-card-info
             [contentColor]="application.enabled ? 'ENABLED' : 'DISABLED'"
             header="Status"
-            [text]="application.enabled ? 'ENABLED' : 'DISABLED'"
+            [text]="application.enabled ? 'Enabled' : 'Disabled'"
           ></ik-card-info>
         </div>
       </div>
@@ -53,3 +60,8 @@
 <ng-template #loader>
   <ik-loading></ik-loading>
 </ng-template>
+
+<app-delete-application-modal
+  [appId]="application.id"
+  #applicationDeleteModal
+></app-delete-application-modal>
