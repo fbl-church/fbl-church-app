@@ -111,7 +111,7 @@ export class JuniorChurchWorkersComponent implements OnInit {
       users.map((u) => u.email).filter((m) => m && m.trim().length > 0)
     );
     mailingContent.push('?subject=Junior Church Workers');
-    window.open(mailingContent.join(''), '_blank');
+    window.location.href = mailingContent.join('');
   }
 
   onAddWorkers() {
