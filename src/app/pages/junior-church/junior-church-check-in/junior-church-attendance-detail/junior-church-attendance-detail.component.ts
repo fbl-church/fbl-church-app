@@ -63,7 +63,7 @@ export class JuniorChurchAttendanceDetailComponent
         this.childrenDataloader = (params) =>
           this.attendanceRecordService.getAttendanceChildrenById(
             res.id,
-            params
+            params.set('present', [true])
           );
         this.record = res;
         this.canStartCheckIn =
