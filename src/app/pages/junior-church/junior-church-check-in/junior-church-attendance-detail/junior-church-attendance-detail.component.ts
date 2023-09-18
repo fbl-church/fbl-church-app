@@ -1,6 +1,7 @@
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
 import {
   AttendanceRecord,
   AttendanceStatus,
@@ -23,6 +24,8 @@ import { AttendanceRecordService } from 'src/service/attendance/attendance-recor
 export class JuniorChurchAttendanceDetailComponent
   implements OnInit, OnDestroy
 {
+  @ViewChild('childrenGrid') childrenGrid: GridComponent;
+
   loading = true;
   destroy = new Subject<void>();
   record: AttendanceRecord;
@@ -89,12 +92,17 @@ export class JuniorChurchAttendanceDetailComponent
 
   onChildrenCheckInEditClick() {
     this.router.navigate([
-      `/junior-church/check-in/${this.record.id}/details/children/edit`,
+      `/junior-church/check-in/${this.record.id}/details/children`,
     ]);
   }
 
-  onRecordClosed() {
+  onRecordClosed(event: AttendanceRecord) {
     this.record.status = AttendanceStatus.CLOSED;
+    this.record.closedDate = event.closedDate;
+  }
+
+  refreshChildrenGrid() {
+    this.childrenGrid.refresh();
   }
 
   onStartCheckIn() {
@@ -107,7 +115,7 @@ export class JuniorChurchAttendanceDetailComponent
             'Attendance Record Successfully Activated! Start Check in!'
           );
           this.router.navigate([
-            `/junior-church/check-in/${this.record.id}/details/children/edit`,
+            `/junior-church/check-in/${this.record.id}/details/children`,
           ]);
         },
         error: () => {

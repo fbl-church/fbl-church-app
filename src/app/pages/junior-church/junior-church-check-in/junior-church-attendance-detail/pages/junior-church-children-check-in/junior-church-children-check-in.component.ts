@@ -1,21 +1,19 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
 import { Child } from 'projects/insite-kit/src/model/user.model';
-import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
-import { ChildrenService } from 'src/service/children/children.service';
 import { ChildCheckInModalComponent } from '../../modals/child-check-in-modal/child-check-in-modal.component';
 
 @Component({
-  selector: 'app-edit-junior-church-children-check-in',
-  templateUrl: './edit-junior-church-children-check-in.component.html',
+  selector: 'app-junior-church-children-check-in',
+  templateUrl: './junior-church-children-check-in.component.html',
 })
-export class EditJuniorChurchChildrenCheckInComponent
-  implements OnInit, OnDestroy
-{
+export class JuniorChurchChildrenCheckInComponent implements OnInit, OnDestroy {
   @ViewChild(ChildCheckInModalComponent)
   checkInModal: ChildCheckInModalComponent;
+  @ViewChild('childrenCheckInGrid') checkInGrid: GridComponent;
 
   recordId: number;
   destroy = new Subject<void>();
@@ -25,9 +23,7 @@ export class EditJuniorChurchChildrenCheckInComponent
   modalChildSelection: Child;
 
   constructor(
-    private readonly childrenService: ChildrenService,
     private readonly attendanceRecordService: AttendanceRecordService,
-    private readonly popupService: PopupService,
     private readonly route: ActivatedRoute,
     private readonly router: Router
   ) {}
@@ -58,6 +54,10 @@ export class EditJuniorChurchChildrenCheckInComponent
 
   onCancelClick() {
     this.onBackClick();
+  }
+
+  refreshGrid() {
+    this.checkInGrid.refresh();
   }
 
   onRowClick(event: Child) {

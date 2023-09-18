@@ -1,10 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { Child } from 'projects/insite-kit/src/model/user.model';
+import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
-import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
+import { ChildAttendanceService } from 'src/service/attendance/child-attendance.service';
 
 @Component({
   selector: 'app-child-check-in-modal',
@@ -12,15 +19,17 @@ import { AttendanceRecordService } from 'src/service/attendance/attendance-recor
 })
 export class ChildCheckInModalComponent implements OnInit {
   @ViewChild('childCheckInModal') modal: ModalComponent;
+  @Input() recordId: number;
+  @Output() checkInComplete = new EventEmitter<void>();
 
   child: Child;
   modalLoading = false;
   form: FormGroup;
 
   constructor(
-    private readonly attendanceRecordService: AttendanceRecordService,
+    private readonly childAttendanceService: ChildAttendanceService,
     private readonly popupService: PopupService,
-    private readonly router: Router,
+    private readonly commonService: CommonService,
     private readonly fb: FormBuilder
   ) {}
 
@@ -34,5 +43,30 @@ export class ChildCheckInModalComponent implements OnInit {
     this.modal.open();
   }
 
-  onCheckInChild() {}
+  onCheckInChild() {
+    this.modalLoading = true;
+    this.childAttendanceService
+      .assignChildToRecord(this.recordId, this.child.id, this.form.value.notes)
+      .subscribe({
+        next: () => {
+          this.checkInComplete.emit();
+          this.popupService.success(
+            `${this.commonService.getFormattedName(
+              this.child
+            )} successfully checked in!`
+          );
+          this.modal.close();
+          this.modalLoading = false;
+        },
+        error: () => {
+          this.popupService.error(
+            `Unable to check in '${this.commonService.getFormattedName(
+              this.child
+            )}' at this time!`
+          );
+          this.modal.close();
+          this.modalLoading = false;
+        },
+      });
+  }
 }

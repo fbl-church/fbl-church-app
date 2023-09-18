@@ -102,11 +102,20 @@
           >
           </ik-card-info>
         </div>
+        <div class="right-column" *ngIf="record.closedDate">
+          <ik-card-info
+            header="Closed Date"
+            [text]="record.closedDate | date : 'MMMM d, y, h:mm a'"
+          >
+          </ik-card-info>
+        </div>
       </div>
     </ik-card>
     <ik-grid
+      #childrenGrid
       [dataLoader]="childrenDataloader"
       *ngIf="record.status !== 'PENDING'"
+      (rowClick)="updateChildCheckInModal.open($event)"
     >
       <ik-card-header title="Children">
         <ng-container *ngIf="record.status !== 'CLOSED'">
@@ -116,7 +125,7 @@
               Feature.CHECK_IN,
               Access.UPDATE
             ]"
-            icon="pen-to-square"
+            icon="user-check"
             class="right pointer"
             classOverride="icon__default"
             (click)="onChildrenCheckInEditClick()"
@@ -170,10 +179,15 @@
 <app-close-attendance-record-modal
   #closeModal
   [recordId]="record.id"
-  (closed)="onRecordClosed()"
+  (closed)="onRecordClosed($event)"
 >
 </app-close-attendance-record-modal>
 
+<app-child-update-check-in-modal
+  #updateChildCheckInModal
+  [record]="record"
+  (checkInUpdateComplete)="refreshChildrenGrid()"
+></app-child-update-check-in-modal>
 <ng-template #loader>
   <ik-loading></ik-loading>
 </ng-template>

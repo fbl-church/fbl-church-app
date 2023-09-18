@@ -18,6 +18,7 @@ export interface ChildAttendance {
   attendanceRecordId?: number;
   firstName?: string;
   lastName?: string;
+  notes?: string;
   cuid?: string;
   updatedUserId?: number;
   checkInDate?: Date;

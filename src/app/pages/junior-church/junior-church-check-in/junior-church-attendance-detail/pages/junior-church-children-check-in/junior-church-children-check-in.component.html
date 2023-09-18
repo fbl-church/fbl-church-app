@@ -3,7 +3,11 @@
     <ik-header-back (back)="onBackClick()"></ik-header-back>
   </ik-header>
 
-  <ik-grid [dataLoader]="childrenDataloader" (rowClick)="onRowClick($event)">
+  <ik-grid
+    #childrenCheckInGrid
+    [dataLoader]="childrenDataloader"
+    (rowClick)="onRowClick($event)"
+  >
     <ik-grid-search></ik-grid-search>
     <ik-grid-column label="Name" field="name">
       <ng-template let-data>
@@ -19,4 +23,7 @@
   <ik-loading></ik-loading>
 </ng-template>
 
-<app-child-check-in-modal></app-child-check-in-modal>
+<app-child-check-in-modal
+  [recordId]="recordId"
+  (checkInComplete)="refreshGrid()"
+></app-child-check-in-modal>

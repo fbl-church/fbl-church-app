@@ -1,5 +1,5 @@
 <ik-modal #childCheckInModal name="childCheckInModal">
-  <ik-modal-header title="Check Child In?" type="info"></ik-modal-header>
+  <ik-modal-header title="Update Child Check In?" type="info"></ik-modal-header>
   <ng-container *ngIf="!modalLoading; else loader">
     <ik-modal-body>
       <form [formGroup]="form">
@@ -19,9 +19,10 @@
             <ik-form-field header="Notes">
               <textarea
                 formControlName="notes"
-                rows="4"
+                rows="5"
                 cols="50"
                 class="form-input__outline"
+                [readOnly]="record.status === 'CLOSED'"
               ></textarea>
             </ik-form-field>
           </div>
@@ -30,16 +31,26 @@
     </ik-modal-body>
     <ik-modal-action-bar>
       <button
-        class="btn btn-default btn-flat btn-left btn-modal"
-        (click)="childCheckInModal.close()"
+        *ngIf="record.status !== 'CLOSED'"
+        class="btn btn-danger btn-flat btn-left btn-modal"
+        (click)="onMarkChildAbsent()"
       >
-        Cancel
+        Absent
+      </button>
+
+      <button
+        *ngIf="record.status !== 'CLOSED'"
+        class="btn btn-primary btn-flat btn-right btn-modal"
+        (click)="onUpdateChildCheckIn()"
+        [disabled]="!form.dirty"
+      >
+        Update
       </button>
       <button
-        class="btn btn-primary btn-flat btn-right btn-modal"
-        (click)="onCheckInChild()"
+        class="btn btn-default btn-flat btn-right btn-modal"
+        (click)="childCheckInModal.close()"
       >
-        Check In
+        {{ record.status !== "CLOSED" ? "Cancel" : "Close" }}
       </button>
     </ik-modal-action-bar>
   </ng-container>

@@ -6,7 +6,10 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
-import { AttendanceStatus } from 'projects/insite-kit/src/model/attendance-record.model';
+import {
+  AttendanceRecord,
+  AttendanceStatus,
+} from 'projects/insite-kit/src/model/attendance-record.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
 
@@ -17,7 +20,7 @@ import { AttendanceRecordService } from 'src/service/attendance/attendance-recor
 export class CloseAttendanceRecordModalComponent {
   @ViewChild('closeRecordModal') modal: ModalComponent;
   @Input() recordId: number;
-  @Output() closed = new EventEmitter<void>();
+  @Output() closed = new EventEmitter<AttendanceRecord>();
 
   modalLoading = false;
 
@@ -31,10 +34,10 @@ export class CloseAttendanceRecordModalComponent {
     this.attendanceRecordService
       .updateStatus(this.recordId, AttendanceStatus.CLOSED)
       .subscribe({
-        next: () => {
+        next: (res) => {
           this.modal.close();
           this.popupService.success('Attendance Record successfully Closed!');
-          this.closed.emit();
+          this.closed.emit(res);
         },
         error: () => {
           this.modal.close();
