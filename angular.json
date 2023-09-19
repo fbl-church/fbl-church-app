@@ -39,17 +39,9 @@
               "styles/styles.scss"
             ],
             "scripts": [
-              "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "./node_modules/jquery/dist/jquery.min.js"
             ],
-            "optimization": {
-              "scripts": true,
-              "styles": {
-                "minify": true,
-                "inlineCritical": false
-              }
-            },
-            "outputHashing": "none",
+            "optimization": false,
             "sourceMap": true,
             "namedChunks": true,
             "extractLicenses": false,

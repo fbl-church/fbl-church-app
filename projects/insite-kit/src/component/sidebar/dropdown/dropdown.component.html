@@ -9,7 +9,7 @@
   <ik-icon
     class="flex-one"
     classOverride="dropdown-icon"
-    [icon]="getDropdownIcon(navItem.submenu.id)"
+    [icon]="this.isOpen ? this.dropdownOpenIcon : this.dropdownCloseIcon"
   ></ik-icon>
 </div>
 <div

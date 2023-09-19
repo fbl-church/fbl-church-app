@@ -28,15 +28,6 @@ export class DropdownComponent {
     }
   }
 
-  getDropdownIcon(id: string) {
-    const element = document.getElementById(id);
-    if (element) {
-      return this.isOpen ? this.dropdownOpenIcon : this.dropdownCloseIcon;
-    } else {
-      return null;
-    }
-  }
-
   isRouteActive(route: any) {
     return this.router.url.includes(route);
   }
