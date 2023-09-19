@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import {
   Access,
   App,
-  Feature,
+  FeatureType,
   TranslationKey,
   WebRole,
 } from 'projects/insite-kit/src/model/common.model';
@@ -20,7 +20,7 @@ export class JuniorChurchWorkersComponent implements OnInit {
   dataloader: any;
   form: FormGroup;
 
-  Feature = Feature;
+  FeatureType = FeatureType;
   Application = App;
   Access = Access;
   WebRole = WebRole;

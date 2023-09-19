@@ -9,7 +9,7 @@ import {
 import {
   Access,
   App,
-  Feature,
+  FeatureType,
   WebRole,
 } from 'projects/insite-kit/src/model/common.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
@@ -32,7 +32,7 @@ export class JuniorChurchAttendanceDetailComponent
   workerDataloader: any;
   childrenDataloader: any;
 
-  Feature = Feature;
+  FeatureType = FeatureType;
   Application = App;
   Access = Access;
   WebRole = WebRole;

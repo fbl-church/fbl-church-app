@@ -4,7 +4,7 @@ import { AttendanceRecord } from 'projects/insite-kit/src/model/attendance-recor
 import {
   Access,
   App,
-  Feature,
+  FeatureType,
   WebRole,
 } from 'projects/insite-kit/src/model/common.model';
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
@@ -17,7 +17,7 @@ export class JuniorChurchCheckInComponent {
   dataloader: any;
 
   WebRole = WebRole;
-  Feature = Feature;
+  FeatureType = FeatureType;
   Application = App;
   Access = Access;
 

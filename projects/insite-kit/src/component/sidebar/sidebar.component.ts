@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Access, App, Feature } from '../../model/common.model';
+import { Access, App, FeatureType } from '../../model/common.model';
 import { JwtService } from '../../service/auth/jwt.service';
 import { NAVIGATION_ROUTES } from './sidebar.config';
 
@@ -12,7 +12,7 @@ export class SidebarComponent implements OnInit {
   navigationConfig = NAVIGATION_ROUTES;
   userApps: string[];
 
-  Feature = Feature;
+  FeatureType = FeatureType;
   Application = App;
   Access = Access;
 

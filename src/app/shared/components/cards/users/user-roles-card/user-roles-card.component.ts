@@ -3,7 +3,7 @@ import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import {
   Access,
   App,
-  Feature,
+  FeatureType,
 } from 'projects/insite-kit/src/model/common.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
 
@@ -15,7 +15,7 @@ export class UserRolesCardComponent {
   @Input() user: User;
 
   editIcon = faPenToSquare;
-  Feature = Feature;
+  FeatureType = FeatureType;
   Application = App;
   Access = Access;
 }

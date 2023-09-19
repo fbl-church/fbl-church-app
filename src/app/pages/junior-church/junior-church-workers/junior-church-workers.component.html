@@ -1,6 +1,10 @@
 <ik-header title="Junior Church Workers">
   <button
-    *featureAccess="[Application.JUNIOR_CHURCH, Feature.WORKERS, Access.CREATE]"
+    *featureAccess="[
+      Application.JUNIOR_CHURCH,
+      FeatureType.WORKERS,
+      Access.CREATE
+    ]"
     (click)="addWorkersModal.open()"
     class="btn btn-primary btn-flat btn-header-right"
   >
@@ -8,7 +12,11 @@
     Add Workers
   </button>
   <button
-    *featureAccess="[Application.JUNIOR_CHURCH, Feature.WORKERS, Access.CREATE]"
+    *featureAccess="[
+      Application.JUNIOR_CHURCH,
+      FeatureType.WORKERS,
+      Access.CREATE
+    ]"
     (click)="onSendMassEmail()"
     class="btn btn-warning btn-flat btn-header-right"
     [disabled]="emailButtonLoading"

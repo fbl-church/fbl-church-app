@@ -115,7 +115,7 @@ export enum Access {
   DELETE = 'd',
 }
 
-export enum Feature {
+export enum FeatureType {
   OVERVIEW = 'overview',
   DETAIL = 'detail',
   PROFILE = 'profile',

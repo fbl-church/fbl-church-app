@@ -5,7 +5,7 @@
       <button
         class="btn btn-danger btn-flat btn-header-right"
         (click)="deleteUserModal.modal.open()"
-        *featureAccess="[Application.USERS, Feature.DETAIL, Access.DELETE]"
+        *featureAccess="[Application.USERS, FeatureType.DETAIL, Access.DELETE]"
       >
         <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
         Delete
@@ -13,7 +13,7 @@
       <button
         class="btn btn-default btn-flat btn-header-right"
         (click)="onResetPassword()"
-        *featureAccess="[Application.USERS, Feature.DETAIL, Access.UPDATE]"
+        *featureAccess="[Application.USERS, FeatureType.DETAIL, Access.UPDATE]"
       >
         <ik-icon icon="rotate" classOverride="btn-icon"></ik-icon>
         Reset Password
@@ -26,7 +26,7 @@
         icon="pen-to-square"
         class="right pointer"
         (click)="onEditClick()"
-        *featureAccess="[Application.USERS, Feature.DETAIL, Access.UPDATE]"
+        *featureAccess="[Application.USERS, FeatureType.DETAIL, Access.UPDATE]"
       ></ik-icon
     ></app-user-details-card>
   </div>
@@ -37,7 +37,11 @@
           icon="pen-to-square"
           class="right pointer"
           (click)="onEditRolesClick()"
-          *featureAccess="[Application.USERS, Feature.DETAIL, Access.UPDATE]"
+          *featureAccess="[
+            Application.USERS,
+            FeatureType.DETAIL,
+            Access.UPDATE
+          ]"
         ></ik-icon>
       </ng-container>
     </app-user-roles-card>

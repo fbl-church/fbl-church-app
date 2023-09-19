@@ -2,7 +2,7 @@ import { Route } from '@angular/router';
 import {
   Access,
   App,
-  Feature,
+  FeatureType,
 } from 'projects/insite-kit/src/model/common.model';
 import { AuthGuard } from 'projects/insite-kit/src/service/auth/auth.guard';
 import { FeatureAccessGuard } from 'projects/insite-kit/src/service/auth/feature-access.guard';
@@ -17,7 +17,7 @@ export const VBS_ROUTE: Route = {
     featureAccessGuards: [
       {
         app: App.VBS,
-        feature: Feature.OVERVIEW,
+        feature: FeatureType.OVERVIEW,
         access: Access.READ,
       },
     ],

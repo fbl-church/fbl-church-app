@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { AuthToken } from '../../model/auth-token.model';
-import { Access, App, Feature } from '../../model/common.model';
+import { Access, App, FeatureType } from '../../model/common.model';
 import { RequestService } from '../request/request.service';
 import { JwtService } from './jwt.service';
 
@@ -51,7 +51,7 @@ export class AuthService {
    */
   hasAccess(
     app: App | string,
-    key: Feature | string,
+    key: FeatureType | string,
     level: Access | 'c' | 'r' | 'u' | 'd' = Access.READ
   ): Observable<boolean> {
     const feature: [{}] = this.jwt.get('access')[app];

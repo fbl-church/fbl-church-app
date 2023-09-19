@@ -1,7 +1,7 @@
 <ik-grid *ngIf="dataloader" [dataLoader]="dataloader">
   <ik-card-header title="Church Groups">
     <ng-container
-      *featureAccess="[Application.CHILDREN, Feature.DETAIL, Access.UPDATE]"
+      *featureAccess="[Application.CHILDREN, FeatureType.DETAIL, Access.UPDATE]"
     >
       <ik-icon
         *ngIf="editIconVisible"

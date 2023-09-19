@@ -5,7 +5,11 @@
       <button
         class="btn btn-danger btn-flat btn-size btn-header-right"
         (click)="deleteChildModal.modal.open()"
-        *featureAccess="[Application.CHILDREN, Feature.DETAIL, Access.DELETE]"
+        *featureAccess="[
+          Application.CHILDREN,
+          FeatureType.DETAIL,
+          Access.DELETE
+        ]"
       >
         <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
         Delete

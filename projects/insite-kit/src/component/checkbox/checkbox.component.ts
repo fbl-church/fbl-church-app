@@ -11,6 +11,7 @@ export class CheckboxComponent {
   @Output() checkboxChange = new EventEmitter<any>();
 
   valueChange(event: any) {
+    this.checked = event.target.checked;
     this.checkboxChange.emit({
       id: this.checkId,
       selected: event.target.checked,

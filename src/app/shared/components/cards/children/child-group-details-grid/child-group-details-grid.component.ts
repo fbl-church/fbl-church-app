@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import {
   Access,
   App,
-  Feature,
+  FeatureType,
   TranslationKey,
 } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
@@ -20,7 +20,7 @@ export class ChildGroupDetailsGridComponent implements OnChanges {
   @Input() editIconVisible = true;
   dataloader: any;
 
-  Feature = Feature;
+  FeatureType = FeatureType;
   Application = App;
   Access = Access;
 

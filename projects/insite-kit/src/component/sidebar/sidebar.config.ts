@@ -1,5 +1,5 @@
 import { IconName } from '@fortawesome/fontawesome-svg-core';
-import { Access, App, Feature } from '../../model/common.model';
+import { Access, App, FeatureType } from '../../model/common.model';
 
 export interface NavItem extends NavItemDetails {
   submenu?: {
@@ -18,7 +18,7 @@ export interface NavItemDetails {
 
 export interface FeatureRestriction {
   app: App;
-  feature: Feature;
+  feature: FeatureType;
   access: Access;
 }
 
@@ -57,7 +57,7 @@ export const NAVIGATION_ROUTES: NavItem[] = [
     icon: 'seedling',
     restriction: {
       app: App.JUNIOR_CHURCH,
-      feature: Feature.OVERVIEW,
+      feature: FeatureType.OVERVIEW,
       access: Access.READ,
     },
     submenu: {
@@ -69,7 +69,7 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           route: '/registration',
           restriction: {
             app: App.JUNIOR_CHURCH,
-            feature: Feature.REGISTRATION,
+            feature: FeatureType.REGISTRATION,
             access: Access.CREATE,
           },
         },
@@ -79,7 +79,7 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           route: '/check-in',
           restriction: {
             app: App.JUNIOR_CHURCH,
-            feature: Feature.CHECK_IN,
+            feature: FeatureType.CHECK_IN,
             access: Access.READ,
           },
         },
@@ -103,7 +103,7 @@ export const NAVIGATION_ROUTES: NavItem[] = [
     icon: 'users',
     restriction: {
       app: App.USERS,
-      feature: Feature.OVERVIEW,
+      feature: FeatureType.OVERVIEW,
       access: Access.READ,
     },
   },
@@ -150,7 +150,7 @@ export const NAVIGATION_ROUTES: NavItem[] = [
     route: '/children',
     restriction: {
       app: App.CHILDREN,
-      feature: Feature.OVERVIEW,
+      feature: FeatureType.OVERVIEW,
       access: Access.READ,
     },
   },
@@ -161,7 +161,7 @@ export const NAVIGATION_ROUTES: NavItem[] = [
     route: '/gurdians',
     restriction: {
       app: App.GURDIANS,
-      feature: Feature.OVERVIEW,
+      feature: FeatureType.OVERVIEW,
       access: Access.READ,
     },
   },

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   Access,
   App,
-  Feature,
+  FeatureType,
   WebRole,
 } from 'projects/insite-kit/src/model/common.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
@@ -19,8 +19,7 @@ export class UserDetailsCardComponent {
   @Output() editClick = new EventEmitter<any>();
 
   WebRole = WebRole;
-
-  Feature = Feature;
+  FeatureType = FeatureType;
   Application = App;
   Access = Access;
 

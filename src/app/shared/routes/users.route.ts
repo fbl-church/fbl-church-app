@@ -2,7 +2,7 @@ import { Route } from '@angular/router';
 import {
   Access,
   App,
-  Feature,
+  FeatureType,
 } from 'projects/insite-kit/src/model/common.model';
 import { AuthGuard } from 'projects/insite-kit/src/service/auth/auth.guard';
 import { FeatureAccessGuard } from 'projects/insite-kit/src/service/auth/feature-access.guard';
@@ -23,7 +23,7 @@ export const USERS_ROUTE: Route = {
     featureAccessGuards: [
       {
         app: App.USERS,
-        feature: Feature.DETAIL,
+        feature: FeatureType.DETAIL,
         access: Access.READ,
       },
     ],
@@ -42,7 +42,7 @@ export const USERS_ROUTE: Route = {
         featureAccessGuards: [
           {
             app: App.USERS,
-            feature: Feature.OVERVIEW,
+            feature: FeatureType.OVERVIEW,
             access: Access.CREATE,
           },
         ],
@@ -62,7 +62,7 @@ export const USERS_ROUTE: Route = {
         featureAccessGuards: [
           {
             app: App.USERS,
-            feature: Feature.DETAIL,
+            feature: FeatureType.DETAIL,
             access: Access.UPDATE,
           },
         ],
@@ -77,7 +77,7 @@ export const USERS_ROUTE: Route = {
         featureAccessGuards: [
           {
             app: App.USERS,
-            feature: Feature.DETAIL,
+            feature: FeatureType.DETAIL,
             access: Access.UPDATE,
           },
         ],
@@ -91,7 +91,7 @@ export const USERS_ROUTE: Route = {
         featureAccessGuards: [
           {
             app: App.USERS,
-            feature: Feature.DETAIL,
+            feature: FeatureType.DETAIL,
             access: Access.UPDATE,
           },
         ],

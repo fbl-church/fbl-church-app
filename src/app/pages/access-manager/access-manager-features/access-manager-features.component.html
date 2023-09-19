@@ -1,0 +1,16 @@
+<ik-header title="Features"></ik-header>
+<ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
+  <ik-grid-search></ik-grid-search>
+  <ik-grid-column label="App" field="app">
+    <ng-template let-data>
+      {{ data.app | titlecase }}
+    </ng-template>
+  </ik-grid-column>
+  <ik-grid-column label="Name" field="feature">
+    <ng-template let-data>
+      {{ data.feature | titlecase }}
+    </ng-template>
+  </ik-grid-column>
+  <ik-grid-column label="Insert Date" field="insertDate"> </ik-grid-column>
+  <ik-grid-pager key="Features" [pageSize]="10"></ik-grid-pager>
+</ik-grid>

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import {
   Access,
   App,
-  Feature,
+  FeatureType,
 } from 'projects/insite-kit/src/model/common.model';
 import { ChildrenService } from 'src/service/children/children.service';
 
@@ -14,7 +14,7 @@ import { ChildrenService } from 'src/service/children/children.service';
 export class JuniorChurchChildrenComponent {
   dataloader: any;
 
-  Feature = Feature;
+  FeatureType = FeatureType;
   Application = App;
   Access = Access;
 

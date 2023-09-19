@@ -1,0 +1,8 @@
+@import "/styles/variables";
+
+.feature__icon {
+  &--check {
+    font-size: $font-size-lg;
+    text-align: center;
+  }
+}

@@ -13,6 +13,7 @@ import {
   faCircleInfo,
   faCirclePlus,
   faClose,
+  faEnvelope,
   faForwardStep,
   faHome,
   faLeftLong,
@@ -32,6 +33,7 @@ import {
   faUserPen,
   faUserPlus,
   faUsers,
+  faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { BaseInsiteModule } from '../../base-insite.module';
 import { IconComponent } from './icon.component';
@@ -74,7 +76,10 @@ export class IconModule {
       faTrashCan,
       faRotate,
       faPaperPlane,
-      faCheck
+      faCheck,
+      faEnvelope,
+      faCheck,
+      faXmark
     );
   }
 }

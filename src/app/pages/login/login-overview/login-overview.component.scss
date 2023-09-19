@@ -1,13 +1,13 @@
 @import "/styles/variables";
 
-.login-container {
+.login__container {
   width: 35%;
   margin: 15em auto;
   padding: 10px;
   background-color: transparent;
 }
 
-.login-input {
+.login__input {
   border-radius: 30px;
   padding: 12px 12px 12px 35px;
   width: 95%;
@@ -22,45 +22,44 @@
   transition: all 0.5s ease;
 }
 
-.login-title {
+.login__title {
   color: #fff;
   font-size: $font-size-xl;
   font-weight: $font-weight-semi-bold;
   margin-bottom: 15px;
 }
 
-.login-input:focus {
+.login__input:focus {
   border-bottom: 2.5px solid #fc3168;
   width: 98%;
   border-radius: 15px;
 }
 
-.login-input::placeholder {
+.login__input::placeholder {
   color: white;
   opacity: 1;
 }
 
-.login-button {
+.login__button {
   width: 50%;
   margin: 15px auto;
 }
 
-.icon {
+.login__icon {
   position: absolute;
-  padding: 22px 12px;
   min-width: 40px;
   color: white;
   z-index: 100;
-}
 
-.create-account-text {
-  color: #b1b1b1;
-  font-size: $font-size-caption;
-  font-weight: $font-weight-semi-bold;
-}
+  &--email {
+    @extend .login__icon;
+    margin: 24px 0;
+  }
 
-.link-text {
-  color: rgb(116, 163, 250);
+  &--password {
+    @extend .login__icon;
+    margin: 22px 0;
+  }
 }
 
 .login__forgot-password {
@@ -71,20 +70,20 @@
 }
 
 @media screen and (max-width: $login-screen-lg-max) {
-  .login-container {
+  .login__container {
     width: 50%;
   }
 }
 
 @media screen and (max-width: $login-screen-md-max) {
-  .login-container {
+  .login__container {
     width: 90%;
     margin: 15em auto;
   }
 }
 
 @media screen and (max-width: $login-screen-sm-max) {
-  .login-container {
+  .login__container {
     width: 95%;
     margin: 10em auto;
   }

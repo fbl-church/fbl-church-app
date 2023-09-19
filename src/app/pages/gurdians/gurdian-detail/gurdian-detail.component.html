@@ -5,7 +5,11 @@
       <button
         class="btn btn-danger btn-flat btn-header-right"
         (click)="deleteGurdianModal.modal.open()"
-        *featureAccess="[Application.GURDIANS, Feature.DETAIL, Access.DELETE]"
+        *featureAccess="[
+          Application.GURDIANS,
+          FeatureType.DETAIL,
+          Access.DELETE
+        ]"
       >
         <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
         Delete

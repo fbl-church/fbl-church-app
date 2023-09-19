@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   Access,
   App,
-  Feature,
+  FeatureType,
 } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 
@@ -17,7 +17,7 @@ export class ChildDetailsCardComponent {
   @Input() showEdit = true;
   @Output() editClick = new EventEmitter<any>();
 
-  Feature = Feature;
+  FeatureType = FeatureType;
   Application = App;
   Access = Access;
 

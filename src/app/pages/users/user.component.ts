@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import {
   Access,
   App,
-  Feature,
+  FeatureType,
 } from 'projects/insite-kit/src/model/common.model';
 import { UserService } from 'src/service/users/user.service';
 
@@ -14,7 +14,7 @@ import { UserService } from 'src/service/users/user.service';
 export class UserComponent {
   dataloader: any;
 
-  Feature = Feature;
+  FeatureType = FeatureType;
   Application = App;
   Access = Access;
 

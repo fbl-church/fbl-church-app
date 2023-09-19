@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import {
   Access,
   App,
-  Feature,
+  FeatureType,
 } from 'projects/insite-kit/src/model/common.model';
 import { GurdianService } from 'src/service/gurdians/gurdian.service';
 
@@ -14,7 +14,7 @@ import { GurdianService } from 'src/service/gurdians/gurdian.service';
 export class GurdianComponent {
   dataloader: any;
 
-  Feature = Feature;
+  FeatureType = FeatureType;
   Application = App;
   Access = Access;
 

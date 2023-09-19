@@ -5,7 +5,7 @@ import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import {
   Access,
   App,
-  Feature,
+  FeatureType,
 } from 'projects/insite-kit/src/model/common.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
@@ -21,7 +21,7 @@ export class UserDetailComponent implements OnInit {
   userData: User;
   loading = true;
 
-  Feature = Feature;
+  FeatureType = FeatureType;
   Application = App;
   Access = Access;
   editIcon = faPenToSquare;

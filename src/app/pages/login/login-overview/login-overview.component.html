@@ -1,18 +1,18 @@
-<div class="login-container">
+<div class="login__container">
   <form id="loginForm" [formGroup]="form">
     <div class="row">
-      <div class="login-title">First Baptist Church of LaGrange</div>
+      <div class="login__title">First Baptist Church of LaGrange</div>
     </div>
     <div class="row">
       <div class="col-12">
         <div class="inputcontainer">
-          <fa-icon icon="user" class="icon"></fa-icon>
+          <fa-icon icon="envelope" class="login__icon--email"></fa-icon>
           <input
             type="email"
             inputmode="email"
             id="username"
             formControlName="username"
-            class="login-input"
+            class="login__input"
             placeholder="Email"
           />
         </div>
@@ -21,12 +21,12 @@
     <div class="row">
       <div class="col-12">
         <div class="inputcontainer">
-          <fa-icon icon="lock" class="icon"></fa-icon>
+          <fa-icon icon="lock" class="login__icon--password"></fa-icon>
           <input
             type="password"
             id="password"
             formControlName="password"
-            class="login-input"
+            class="login__input"
             placeholder="Password"
           />
         </div>
@@ -43,7 +43,7 @@
       <div class="col-12">
         <button
           id="loginButton"
-          class="btn btn-round btn-primary login-button"
+          class="btn btn-round btn-primary login__button"
           (click)="onLoginClick()"
           *ngIf="!loading; else loader"
         >

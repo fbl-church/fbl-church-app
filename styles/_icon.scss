@@ -4,8 +4,23 @@
   font-size: $font-size-xl;
 }
 
+.icon__danger {
+  margin-left: 20px;
+  color: $red-400;
+}
+
+.icon__success {
+  margin-left: 20px;
+  color: $green-400;
+}
+
 @media screen and (max-width: $screen-sm-max) {
   .icon__default {
     font-size: $font-size-lg;
+  }
+
+  .icon__danger,
+  .icon__success {
+    margin-left: 12px;
   }
 }

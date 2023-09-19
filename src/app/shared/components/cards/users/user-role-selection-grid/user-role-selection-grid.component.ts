@@ -3,7 +3,7 @@ import { GridChecklistColumnComponent } from 'projects/insite-kit/src/component/
 import {
   Access,
   App,
-  Feature,
+  FeatureType,
   WebRole,
 } from 'projects/insite-kit/src/model/common.model';
 import { RoleService } from 'src/service/roles/roles.service';
@@ -19,7 +19,7 @@ export class UserRoleSelectionGridComponent {
   @Input() enableEdit = true;
 
   WebRole = WebRole;
-  Feature = Feature;
+  FeatureType = FeatureType;
   Application = App;
   Access = Access;
 

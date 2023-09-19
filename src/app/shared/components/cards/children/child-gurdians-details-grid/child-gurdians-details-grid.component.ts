@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import {
   Access,
   App,
-  Feature,
+  FeatureType,
 } from 'projects/insite-kit/src/model/common.model';
 import { Gurdian } from 'projects/insite-kit/src/model/user.model';
 import { of } from 'rxjs';
@@ -21,7 +21,7 @@ export class ChildGurdiansDetailsGridComponent implements OnChanges {
 
   dataloader: any;
 
-  Feature = Feature;
+  FeatureType = FeatureType;
   Application = App;
   Access = Access;
 

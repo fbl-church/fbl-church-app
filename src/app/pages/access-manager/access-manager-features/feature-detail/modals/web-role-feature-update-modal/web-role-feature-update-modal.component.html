@@ -1,0 +1,70 @@
+<ik-modal #webRoleFeatureUpdateModal name="webRoleFeatureUpdateModal">
+  <ik-modal-header
+    title="Update Web Role Feature?"
+    type="info"
+  ></ik-modal-header>
+  <ng-container *ngIf="webRoleFeature && !modalLoading; else loader">
+    <ik-modal-body>
+      <div class="row">
+        <ik-card-info
+          class="col-6"
+          header="App Feature"
+          [text]="
+            (webRoleFeature.app | titlecase) +
+            ' (' +
+            (webRoleFeature.feature | titlecase) +
+            ')'
+          "
+        ></ik-card-info>
+        <ik-card-info
+          class="col-6"
+          header="Web Role"
+          [text]="webRoleFeature.webRole | webRoleTranslate"
+        ></ik-card-info>
+      </div>
+      <div class="row">
+        <ik-form-field header="Create" class="col-6">
+          <ik-checkbox
+            #fieldCreate
+            [checked]="webRoleFeature.create"
+          ></ik-checkbox>
+        </ik-form-field>
+        <ik-form-field header="Read" class="col-6">
+          <ik-checkbox #fieldRead [checked]="webRoleFeature.read"></ik-checkbox>
+        </ik-form-field>
+      </div>
+      <div class="row">
+        <ik-form-field header="Update" class="col-6">
+          <ik-checkbox
+            #fieldUpdate
+            [checked]="webRoleFeature.update"
+          ></ik-checkbox>
+        </ik-form-field>
+        <ik-form-field header="Delete" class="col-6">
+          <ik-checkbox
+            #fieldDelete
+            [checked]="webRoleFeature.delete"
+          ></ik-checkbox>
+        </ik-form-field>
+      </div>
+    </ik-modal-body>
+    <ik-modal-action-bar>
+      <button
+        class="btn btn-default btn-flat btn-left btn-modal"
+        (click)="webRoleFeatureUpdateModal.close()"
+      >
+        Cancel
+      </button>
+      <button
+        class="btn btn-primary btn-flat btn-right btn-modal"
+        (click)="onUpdateWebRoleFeature()"
+      >
+        Update
+      </button>
+    </ik-modal-action-bar>
+  </ng-container>
+</ik-modal>
+
+<ng-template #loader>
+  <ik-loading backgroundColor="white"></ik-loading>
+</ng-template>
