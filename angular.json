@@ -41,7 +41,14 @@
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js"
             ],
-            "optimization": false,
+            "optimization": {
+              "scripts": true,
+              "styles": {
+                "minify": true,
+                "inlineCritical": false
+              }
+            },
+            "outputHashing": "none",
             "sourceMap": true,
             "namedChunks": true,
             "extractLicenses": false,
