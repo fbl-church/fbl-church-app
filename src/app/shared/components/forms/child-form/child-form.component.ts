@@ -19,7 +19,6 @@ export class ChildFormComponent implements OnInit {
   @Output() cancel = new EventEmitter<any>();
   @Output() save = new EventEmitter<Child>();
 
-  roles: string[];
   churchGroups: any[];
   form: FormGroup;
 

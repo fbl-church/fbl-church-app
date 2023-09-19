@@ -1,6 +1,9 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TranslationKey } from 'projects/insite-kit/src/model/common.model';
+import {
+  TranslationKey,
+  WebRole,
+} from 'projects/insite-kit/src/model/common.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { Observable, map } from 'rxjs';
@@ -22,13 +25,13 @@ export class RoleService {
    * @param params to filter on
    * @returns User object
    */
-  get(params?: Map<string, string[]>): Observable<HttpResponse<any[]>> {
+  get(params?: Map<string, string[]>): Observable<HttpResponse<WebRole[]>> {
     return this.request.get<any[]>(this.BASE_PATH, params).pipe(
       map((v) => {
         const mappedRoles = [];
         v.body.forEach((r) =>
           mappedRoles.push({
-            id: r,
+            value: r,
             name: this.commonService.translate(r, TranslationKey.WEB_ROLE),
           })
         );

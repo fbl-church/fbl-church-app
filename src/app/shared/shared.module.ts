@@ -8,7 +8,6 @@ import { ChildGurdiansDetailsGridComponent } from './components/cards/children/c
 import { ChildGurdiansGridCardComponent } from './components/cards/children/child-gurdians-grid-card/child-gurdians-grid-card.component';
 import { GurdianChildrenDetailsGridComponent } from './components/cards/gurdians/gurdian-children-details-grid/gurdian-children-details-grid.component';
 import { UserDetailsCardComponent } from './components/cards/users/user-details-card/user-details-card.component';
-import { UserRoleSelectionGridComponent } from './components/cards/users/user-role-selection-grid/user-role-selection-grid.component';
 import { UserRolesCardComponent } from './components/cards/users/user-roles-card/user-roles-card.component';
 import { AttendanceRecordFormComponent } from './components/forms/attendance-record-form/attendance-record-form.component';
 import { ChildFormComponent } from './components/forms/child-form/child-form.component';
@@ -26,7 +25,6 @@ import { AuthenticatedLayoutComponent } from './components/layouts/authenticated
     ChildGurdiansGridCardComponent,
     GurdianFormComponent,
     UserRolesCardComponent,
-    UserRoleSelectionGridComponent,
     ChildGroupGridCardComponent,
     ChildAdditionalInfoCardCardComponent,
     ChildDetailsCardComponent,
@@ -42,7 +40,6 @@ import { AuthenticatedLayoutComponent } from './components/layouts/authenticated
     GurdianFormComponent,
     ChildGurdiansGridCardComponent,
     UserRolesCardComponent,
-    UserRoleSelectionGridComponent,
     ChildGroupGridCardComponent,
     ChildAdditionalInfoCardCardComponent,
     ChildDetailsCardComponent,

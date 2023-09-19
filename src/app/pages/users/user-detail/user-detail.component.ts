@@ -1,5 +1,4 @@
-import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -17,7 +16,7 @@ import { UserService } from 'src/service/users/user.service';
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
 })
-export class UserDetailComponent implements OnInit {
+export class UserDetailComponent implements OnInit, OnDestroy {
   userData: User;
   loading = true;
 
@@ -34,8 +33,7 @@ export class UserDetailComponent implements OnInit {
     private readonly activeRoute: ActivatedRoute,
     private readonly popupService: PopupService,
     private readonly router: Router,
-    private readonly jwt: JwtService,
-    private readonly location: Location
+    private readonly jwt: JwtService
   ) {}
 
   ngOnInit() {
@@ -88,11 +86,6 @@ export class UserDetailComponent implements OnInit {
   onEditClick() {
     this.router.navigate([`/users/${this.userData.id}/details/edit`]);
   }
-
-  onEditRolesClick() {
-    this.router.navigate([`/users/${this.userData.id}/details/roles/edit`]);
-  }
-
   onResetPassword() {
     this.router.navigate([`/users/${this.userData.id}/details/reset-password`]);
   }

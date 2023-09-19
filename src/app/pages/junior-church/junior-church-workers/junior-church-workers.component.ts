@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import {
   Access,
   App,
@@ -34,7 +33,6 @@ export class JuniorChurchWorkersComponent implements OnInit {
 
   constructor(
     private readonly userService: UserService,
-    private readonly router: Router,
     private readonly fb: FormBuilder,
     private readonly commonService: CommonService
   ) {
@@ -73,10 +71,6 @@ export class JuniorChurchWorkersComponent implements OnInit {
           return { name: this.commonService.getFormattedName(u), value: u.id };
         });
       });
-  }
-
-  onRowClick(user: any) {
-    this.router.navigate([`/users/${user.id}/details`]);
   }
 
   buildForm() {

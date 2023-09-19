@@ -1,6 +1,11 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
+import {
+  Access,
+  App,
+  FeatureType,
+} from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
@@ -18,6 +23,9 @@ export class JuniorChurchChildrenCheckInComponent implements OnInit, OnDestroy {
   recordId: number;
   destroy = new Subject<void>();
   loading = true;
+  FeatureType = FeatureType;
+  Application = App;
+  Access = Access;
 
   childrenDataloader: any;
   modalChildSelection: Child;
@@ -62,5 +70,9 @@ export class JuniorChurchChildrenCheckInComponent implements OnInit, OnDestroy {
 
   onRowClick(event: Child) {
     this.checkInModal.open(event);
+  }
+
+  onNewChild() {
+    this.router.navigate(['/junior-church/registration']);
   }
 }

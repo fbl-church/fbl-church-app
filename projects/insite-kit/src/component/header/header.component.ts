@@ -1,17 +1,9 @@
-import { Component, ContentChild, Input } from '@angular/core';
-import { HeaderBackComponent } from './header-back/header-back.component';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ik-header',
   templateUrl: 'header.component.html',
 })
 export class HeaderComponent {
-  @ContentChild(HeaderBackComponent) backArrow: HeaderBackComponent;
   @Input() title: string;
-
-  onBackClick() {
-    if (this.backArrow) {
-      this.backArrow.onBackClick();
-    }
-  }
 }

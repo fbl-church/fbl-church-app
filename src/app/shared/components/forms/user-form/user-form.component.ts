@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -15,7 +8,7 @@ import {
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
-import { UserRoleSelectionGridComponent } from '../../cards/users/user-role-selection-grid/user-role-selection-grid.component';
+import { RoleService } from 'src/service/roles/roles.service';
 
 @Component({
   selector: 'app-user-form',
@@ -31,20 +24,21 @@ export class UserFormComponent implements OnInit {
   @Input() disableSave = false;
   @Output() cancel = new EventEmitter<any>();
   @Output() save = new EventEmitter<User>();
-  @ViewChild(UserRoleSelectionGridComponent)
-  roleSelectionGrid: UserRoleSelectionGridComponent;
 
   form: FormGroup;
 
   WebRole = WebRole;
+  roleSection: any[];
 
   constructor(
     private readonly popupService: PopupService,
+    private readonly roleService: RoleService,
     private readonly fb: FormBuilder
   ) {}
 
   ngOnInit() {
     this.buildForm();
+    this.roleService.get().subscribe((res) => (this.roleSection = res.body));
   }
 
   buildForm() {
@@ -58,6 +52,7 @@ export class UserFormComponent implements OnInit {
         Validators.required,
       ],
       email: [this.userData ? this.userData.email : '', [Validators.email]],
+      roles: [this.userData ? this.userData.webRole : ''],
     });
 
     if (this.enablePasswordUpdate) {
@@ -90,7 +85,7 @@ export class UserFormComponent implements OnInit {
     }
 
     if (this.enableRoleUpdate) {
-      user.webRole = this.roleSelectionGrid.getSelectedRoles();
+      user.webRole = this.form.value.roles;
     } else {
       user.webRole = this.userData.webRole;
     }

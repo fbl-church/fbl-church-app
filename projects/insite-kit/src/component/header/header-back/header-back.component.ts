@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'ik-header-back',
@@ -7,8 +6,6 @@ import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 })
 export class HeaderBackComponent {
   @Output() back = new EventEmitter<any>();
-
-  backArrow = faLeftLong;
 
   onBackClick() {
     this.back.emit();

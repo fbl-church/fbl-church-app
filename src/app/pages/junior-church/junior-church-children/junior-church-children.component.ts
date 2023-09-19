@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import {
   Access,
   App,
@@ -18,16 +17,9 @@ export class JuniorChurchChildrenComponent {
   Application = App;
   Access = Access;
 
-  constructor(
-    private childrenService: ChildrenService,
-    private readonly router: Router
-  ) {
-    this.dataloader = (params: any) =>
+  constructor(private childrenService: ChildrenService) {
+    this.dataloader = (params) =>
       this.getJuniorChurchChildrenDataloader(params);
-  }
-
-  onRowClick(user: any) {
-    this.router.navigate([`/children/${user.id}/details`]);
   }
 
   getJuniorChurchChildrenDataloader(params?: Map<string, string[]>) {

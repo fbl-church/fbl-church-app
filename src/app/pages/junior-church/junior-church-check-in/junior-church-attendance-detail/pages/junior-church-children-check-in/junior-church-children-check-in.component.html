@@ -1,6 +1,18 @@
 <ng-container *ngIf="!loading; else loader">
   <ik-header title="Children Check In">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
+    <button
+      *featureAccess="[
+        Application.JUNIOR_CHURCH,
+        FeatureType.OVERVIEW,
+        Access.CREATE
+      ]"
+      (click)="onNewChild()"
+      class="btn btn-primary btn-flat btn-header-right"
+    >
+      <ik-icon icon="circle-plus" classOverride="btn-icon"></ik-icon>
+      New Child
+    </button>
   </ik-header>
 
   <ik-grid

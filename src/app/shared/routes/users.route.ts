@@ -7,7 +7,6 @@ import {
 import { AuthGuard } from 'projects/insite-kit/src/service/auth/auth.guard';
 import { FeatureAccessGuard } from 'projects/insite-kit/src/service/auth/feature-access.guard';
 import { CreateUserComponent } from 'src/app/pages/users/create-user/create-user.component';
-import { EditUserRolesComponent } from 'src/app/pages/users/user-detail/pages/edit-user-roles/edit-user-roles.component';
 import { EditUserComponent } from 'src/app/pages/users/user-detail/pages/edit-user/edit-user.component';
 import { ResetPasswordComponent } from 'src/app/pages/users/user-detail/pages/reset-password/reset-password.component';
 import { UserDetailComponent } from 'src/app/pages/users/user-detail/user-detail.component';
@@ -57,21 +56,6 @@ export const USERS_ROUTE: Route = {
       path: ':id/details/edit',
       canActivate: [FeatureAccessGuard],
       component: EditUserComponent,
-      resolve: { user: UserResolverService },
-      data: {
-        featureAccessGuards: [
-          {
-            app: App.USERS,
-            feature: FeatureType.DETAIL,
-            access: Access.UPDATE,
-          },
-        ],
-      },
-    },
-    {
-      path: ':id/details/roles/edit',
-      canActivate: [FeatureAccessGuard],
-      component: EditUserRolesComponent,
       resolve: { user: UserResolverService },
       data: {
         featureAccessGuards: [

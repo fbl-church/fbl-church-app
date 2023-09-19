@@ -5,6 +5,7 @@
     "CHILD": "Child",
     "GURDIAN": "Gurdian",
     "LEADER": "Leader",
+    "MODERATOR": "Moderator",
     "WORKER": "Worker",
     "NURSERY_DIRECTOR": "Nursery Director",
     "NURSERY_SUPERVISOR": "Nursery Supervisor",
@@ -34,7 +35,7 @@
     "CUBBIES_WORKER": "Cubbies Worker",
     "CROSS_CHECK_LEADER": "Cross Check Leader",
     "CROSS_CHECK_WORKER": "Cross Check Worker",
-    "SITE_ADMINISTRATOR": "Site Admin",
+    "SITE_ADMINISTRATOR": "Site Administrator",
     "ADMINISTRATOR": "Administrator"
   }
 }

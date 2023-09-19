@@ -23,7 +23,7 @@
 
   <div class="layout__column-right layout__narrow">
     <app-gurdian-children-details-grid
-      *ngIf="currentUser.webRole.includes('GURDIAN')"
+      *ngIf="currentUser.webRole.includes(WebRole.GURDIAN)"
       [gurdianId]="currentUser.id"
     ></app-gurdian-children-details-grid>
     <app-user-roles-card [user]="currentUser"></app-user-roles-card>
