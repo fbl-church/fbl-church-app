@@ -41,31 +41,12 @@
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js"
             ],
-            "optimization": {
-              "scripts": true,
-              "styles": {
-                "minify": true,
-                "inlineCritical": false
-              }
-            },
-            "outputHashing": "none",
+            "optimization": false,
             "sourceMap": true,
             "namedChunks": true,
             "extractLicenses": false,
             "vendorChunk": true,
-            "buildOptimizer": false,
-            "budgets": [
-              {
-                "type": "initial",
-                "maximumWarning": "3mb",
-                "maximumError": "4mb"
-              },
-              {
-                "type": "anyComponentStyle",
-                "maximumWarning": "4kb",
-                "maximumError": "6kb"
-              }
-            ]
+            "buildOptimizer": false
           },
           "configurations": {
             "production": {
@@ -82,6 +63,18 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "3mb",
+                  "maximumError": "4mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kb",
+                  "maximumError": "6kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
