@@ -1,6 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import {
-  AfterContentInit,
+  AfterViewInit,
   Component,
   ContentChild,
   ContentChildren,
@@ -26,7 +26,7 @@ import { GridShowAllComponent } from './grid-show-all/grid-show-all.component';
   selector: 'ik-grid',
   templateUrl: './grid.component.html',
 })
-export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
+export class GridComponent implements OnChanges, OnDestroy, AfterViewInit {
   @ContentChildren(GridColumnComponent) columns: QueryList<GridColumnComponent>;
   @ContentChild(GridPagerComponent) gridPager: GridPagerComponent;
   @ContentChild(GridShowAllComponent) gridShowAll: GridShowAllComponent;
@@ -53,10 +53,10 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
   data: HttpResponse<any[]>;
 
   /**
-   * After the content has rendered then check the dataloader to see if a value
+   * After the view has rendered then check the dataloader to see if a value
    * exists and set initial load to be true.
    */
-  ngAfterContentInit() {
+  ngAfterViewInit() {
     this.checkDataLoader();
     this.initialLoadComplete = true;
   }
@@ -123,7 +123,7 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
         tap((s) => (this.currentSearch = s)),
         takeUntil(this.destroy)
       )
-      .subscribe(() => this.loadData());
+      .subscribe((s) => this.loadData());
   }
 
   /**
