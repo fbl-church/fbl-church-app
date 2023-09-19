@@ -18,7 +18,6 @@ export class AccessManagerApplicationsComponent {
   }
 
   onRowClick(app: Application) {
-    console.log(app);
     this.router.navigate([`/access-manager/applications/${app.id}/details`]);
   }
 }

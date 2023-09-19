@@ -116,6 +116,5 @@ export class JuniorChurchWorkersComponent implements OnInit {
 
   onAddWorkers() {
     this.modalLoading = true;
-    console.log(this.form.value.type, this.form.value.workers);
   }
 }
