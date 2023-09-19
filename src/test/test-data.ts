@@ -9,13 +9,13 @@ class FBLChurchDataObject {
         firstName: 'Test',
         lastName: 'Admin',
         email: 'Test@Admin.com',
-        webRole: WebRole.ADMINISTRATOR,
+        webRole: [WebRole.ADMINISTRATOR],
       },
       {
         firstName: 'Test',
         lastName: 'User',
         email: 'Test@User.com',
-        webRole: WebRole.USER,
+        webRole: [WebRole.USER],
       },
     ];
   }
