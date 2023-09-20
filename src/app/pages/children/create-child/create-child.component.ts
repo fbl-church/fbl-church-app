@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
@@ -9,11 +9,11 @@ import { ChildrenService } from 'src/service/children/children.service';
   selector: 'app-create-child',
   templateUrl: './create-child.component.html',
 })
-export class CreateChildComponent implements OnInit {
+export class CreateChildComponent {
   @ViewChild(ChildGurdiansGridCardComponent)
   gurdianSelectionGrid: ChildGurdiansGridCardComponent;
 
-  loading = true;
+  loading = false;
   disableSave = false;
 
   constructor(
@@ -21,10 +21,6 @@ export class CreateChildComponent implements OnInit {
     private readonly router: Router,
     private readonly popupService: PopupService
   ) {}
-
-  ngOnInit() {
-    this.loading = false;
-  }
 
   onCancelClick() {
     this.router.navigate(['/children']);

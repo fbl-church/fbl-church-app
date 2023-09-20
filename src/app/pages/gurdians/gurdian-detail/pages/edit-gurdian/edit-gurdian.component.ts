@@ -52,9 +52,8 @@ export class EditGurdianComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.gurdianService.update(this.gurdianId, gurdian).subscribe({
       next: () => {
-        this.onCancelClick();
+        this.location.back();
         this.popupService.success('Gurdian Successfully updated!');
-        this.loading = false;
       },
       error: () => {
         this.popupService.error('Gurdian could not be updated at this time!');

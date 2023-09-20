@@ -2,7 +2,7 @@
   <ik-header-back (back)="onCancelClick()"></ik-header-back
 ></ik-header>
 
-<ng-container *ngIf="gurdiansUpdating && !loading; else loader">
+<ng-container *ngIf="gurdiansUpdating && !loading; else pageLoader">
   <app-child-gurdians-grid-card
     [gurdians]="gurdiansUpdating"
   ></app-child-gurdians-grid-card>
@@ -15,6 +15,6 @@
   </button>
 </ng-container>
 
-<ng-template #loader>
-  <ik-loading></ik-loading>
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
 </ng-template>

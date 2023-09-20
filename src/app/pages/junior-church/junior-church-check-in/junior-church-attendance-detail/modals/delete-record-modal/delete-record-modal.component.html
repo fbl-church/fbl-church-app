@@ -1,6 +1,6 @@
 <ik-modal #deleteRecordModal name="deleteRecordModal">
   <ik-modal-header title="Delete Attendance?" type="danger"></ik-modal-header>
-  <ng-container *ngIf="!modalLoading; else loader">
+  <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
       <div>
         Deleting this attendance will result in the current information to be
@@ -24,6 +24,6 @@
   </ng-container>
 </ik-modal>
 
-<ng-template #loader>
+<ng-template #modalLoader>
   <ik-loading></ik-loading>
 </ng-template>

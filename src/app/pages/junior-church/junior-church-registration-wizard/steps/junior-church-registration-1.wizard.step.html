@@ -4,7 +4,7 @@
 >
 </ik-info-card>
 
-<div class="row" *ngIf="!loading; else loader">
+<div class="row">
   <ik-info-card
     class="col-md-6 pointer info-card__center"
     title="Existing Child"
@@ -20,7 +20,3 @@
   >
   </ik-info-card>
 </div>
-
-<ng-template #loader>
-  <ik-loading></ik-loading>
-</ng-template>

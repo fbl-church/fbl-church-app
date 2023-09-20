@@ -45,7 +45,7 @@
           id="loginButton"
           class="btn btn-round btn-primary login__button"
           (click)="onLoginClick()"
-          *ngIf="!loading; else loader"
+          *ngIf="!loading; else loginLoader"
         >
           Login
         </button>
@@ -54,6 +54,6 @@
   </form>
 </div>
 
-<ng-template #loader>
+<ng-template #loginLoader>
   <ik-loading type="ellipsis"></ik-loading>
 </ng-template>

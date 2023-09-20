@@ -1,6 +1,6 @@
 <ik-modal #deleteApplicationModal name="deleteRecordModal">
   <ik-modal-header title="Delete Application?" type="danger"></ik-modal-header>
-  <ng-container *ngIf="!modalLoading; else loader">
+  <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
       <div>
         Deleting this application will result in all information associated to
@@ -25,6 +25,6 @@
   </ng-container>
 </ik-modal>
 
-<ng-template #loader>
+<ng-template #modalLoader>
   <ik-loading></ik-loading>
 </ng-template>

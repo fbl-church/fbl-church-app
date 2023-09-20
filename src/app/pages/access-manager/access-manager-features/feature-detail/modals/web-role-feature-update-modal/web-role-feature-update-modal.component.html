@@ -3,7 +3,7 @@
     title="Update Web Role Feature?"
     type="info"
   ></ik-modal-header>
-  <ng-container *ngIf="webRoleFeature && !modalLoading; else loader">
+  <ng-container *ngIf="webRoleFeature && !modalLoading; else modalLoader">
     <ik-modal-body>
       <div class="row">
         <ik-card-info
@@ -65,6 +65,6 @@
   </ng-container>
 </ik-modal>
 
-<ng-template #loader>
-  <ik-loading backgroundColor="white"></ik-loading>
+<ng-template #modalLoader>
+  <ik-loading></ik-loading>
 </ng-template>

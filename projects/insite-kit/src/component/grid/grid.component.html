@@ -1,6 +1,6 @@
 <ik-card>
   <ng-content select="ik-card-header, ik-grid-search"></ng-content>
-  <table *ngIf="!loading; else loader" class="grid__table">
+  <table *ngIf="!loading; else gridLoader" class="grid__table">
     <col *ngIf="gridChecklistColumn" class="grid__checklist-column" />
     <thead *ngIf="data?.body.length > 0">
       <tr>
@@ -79,11 +79,6 @@
   </tr>
 </ng-template>
 
-<ng-template #loader>
-  <ik-loading
-    size="80px"
-    thickness="6px"
-    backgroundColor="white"
-    margin="15px auto 12px"
-  ></ik-loading>
+<ng-template #gridLoader>
+  <ik-loading></ik-loading>
 </ng-template>

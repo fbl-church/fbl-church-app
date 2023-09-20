@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 })
 export class JuniorChurchRegistrationWizardStepOneComponent {
   @Output() next = new EventEmitter<boolean>();
-  loading = false;
 
   constructor(private readonly router: Router) {}
 

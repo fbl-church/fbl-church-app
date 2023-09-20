@@ -1,4 +1,4 @@
-<div *ngIf="childData && !loading; else loader">
+<div *ngIf="childData && !loading; else pageLoader">
   <ik-header title="{{ childData | formatUserName }}">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
     <div class="inline-display header-buttons">
@@ -41,6 +41,6 @@
   [childId]="childData?.id"
 ></app-delete-child-modal>
 
-<ng-template #loader>
-  <ik-loading></ik-loading>
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
 </ng-template>

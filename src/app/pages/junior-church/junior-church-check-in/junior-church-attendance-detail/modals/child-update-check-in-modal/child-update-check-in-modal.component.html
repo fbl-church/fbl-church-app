@@ -1,6 +1,6 @@
 <ik-modal #childCheckInModal name="childCheckInModal">
   <ik-modal-header title="Update Child Check In?" type="info"></ik-modal-header>
-  <ng-container *ngIf="!modalLoading; else loader">
+  <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
       <form [formGroup]="form">
         <div class="row">
@@ -56,6 +56,6 @@
   </ng-container>
 </ik-modal>
 
-<ng-template #loader>
-  <ik-loading backgroundColor="white"></ik-loading>
+<ng-template #modalLoader>
+  <ik-loading></ik-loading>
 </ng-template>

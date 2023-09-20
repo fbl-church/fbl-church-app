@@ -1,4 +1,4 @@
-<div *ngIf="!loading; else loader">
+<div *ngIf="!loading; else pageLoader">
   <ik-header title="{{ userData | formatUserName }}">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
     <div class="inline-display header-buttons">
@@ -53,6 +53,6 @@
   [userId]="userData?.id"
 ></app-delete-user-modal>
 
-<ng-template #loader>
-  <ik-loading></ik-loading>
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
 </ng-template>

@@ -1,8 +1,9 @@
 <ik-header title="Edit Profile"
   ><ik-header-back (back)="onCancelClick()"></ik-header-back
 ></ik-header>
+
 <app-user-form
-  *ngIf="userUpdating && !loading; else loader"
+  *ngIf="userUpdating && !loading; else pageLoader"
   [userData]="userUpdating"
   rightActionButton="Update"
   leftActionButton="Cancel"
@@ -13,6 +14,6 @@
 >
 </app-user-form>
 
-<ng-template #loader>
-  <ik-loading></ik-loading>
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
 </ng-template>

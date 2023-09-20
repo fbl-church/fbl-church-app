@@ -11,7 +11,7 @@
 </ik-header>
 
 <app-gurdian-form
-  *ngIf="!loading; else loader"
+  *ngIf="!loading; else pageLoader"
   [disableSave]="disableSave"
   rightActionButton="Save Gurdian"
   leftActionButton="Cancel"
@@ -20,6 +20,6 @@
 >
 </app-gurdian-form>
 
-<ng-template #loader>
-  <ik-loading></ik-loading>
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
 </ng-template>

@@ -3,7 +3,7 @@
 </ik-header>
 
 <app-user-form
-  *ngIf="!loading; else loader"
+  *ngIf="!loading; else pageLoader"
   [disableSave]="disableSave"
   rightActionButton="Save User"
   leftActionButton="Cancel"
@@ -12,6 +12,6 @@
 >
 </app-user-form>
 
-<ng-template #loader>
-  <ik-loading></ik-loading>
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
 </ng-template>

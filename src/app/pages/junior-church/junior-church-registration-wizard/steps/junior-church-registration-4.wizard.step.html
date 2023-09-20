@@ -4,7 +4,7 @@
 >
 </ik-info-card>
 
-<ng-container *ngIf="activeChild && !loading; else loader">
+<ng-container *ngIf="activeChild && !loading; else pageLoader">
   <div class="flex flex-wrap">
     <div class="layout__column-left layout__half">
       <app-child-details-card
@@ -42,6 +42,6 @@
   </button>
 </ng-container>
 
-<ng-template #loader>
-  <ik-loading></ik-loading>
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
 </ng-template>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
@@ -8,8 +8,8 @@ import { UserService } from 'src/service/users/user.service';
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
 })
-export class CreateUserComponent implements OnInit {
-  loading = true;
+export class CreateUserComponent {
+  loading = false;
   disableSave = false;
 
   constructor(
@@ -17,10 +17,6 @@ export class CreateUserComponent implements OnInit {
     private readonly router: Router,
     private readonly popupService: PopupService
   ) {}
-
-  ngOnInit() {
-    this.loading = false;
-  }
 
   onCancelClick() {
     this.router.navigate(['/users']);

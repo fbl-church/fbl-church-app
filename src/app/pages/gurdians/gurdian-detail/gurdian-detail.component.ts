@@ -6,9 +6,7 @@ import {
   FeatureType,
 } from 'projects/insite-kit/src/model/common.model';
 import { Gurdian } from 'projects/insite-kit/src/model/user.model';
-import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
-import { Subject, switchMap, takeUntil, tap } from 'rxjs';
-import { GurdianService } from 'src/service/gurdians/gurdian.service';
+import { Subject, takeUntil, tap } from 'rxjs';
 
 @Component({
   selector: 'app-gurdian-detail',
@@ -25,28 +23,17 @@ export class GurdianDetailComponent implements OnInit {
   destroy = new Subject<void>();
 
   constructor(
-    private gurdianService: GurdianService,
-    private readonly activeRoute: ActivatedRoute,
-    private readonly popupService: PopupService,
+    private readonly route: ActivatedRoute,
     private readonly router: Router
   ) {}
 
   ngOnInit() {
-    this.activeRoute.params
+    this.route.data
       .pipe(
-        switchMap((res) => this.gurdianService.getById(res.id)),
-        tap((res) => (this.gurdianData = res.body)),
+        tap((res) => (this.gurdianData = res.gurdian.body)),
         takeUntil(this.destroy)
       )
-      .subscribe({
-        next: () => (this.loading = false),
-        error: () => {
-          this.onBackClick();
-          this.popupService.error(
-            'Could not load gurdian details at this time. Try again later.'
-          );
-        },
-      });
+      .subscribe(() => (this.loading = false));
   }
 
   ngOnDestroy() {

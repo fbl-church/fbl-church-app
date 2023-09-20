@@ -1,4 +1,4 @@
-<ng-container *ngIf="!loading; else loader">
+<ng-container *ngIf="!loading; else pageLoader">
   <ik-header
     [title]="
       (feature.app | titlecase) + ' (' + (feature.feature | titlecase) + ')'
@@ -85,6 +85,6 @@
   (webRoleFeatureUpdate)="onWebRoleFeatureUpdated()"
 ></app-web-role-feature-update-modal>
 
-<ng-template #loader>
-  <ik-loading></ik-loading>
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
 </ng-template>

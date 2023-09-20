@@ -1,4 +1,4 @@
-<div *ngIf="currentUser; else loader">
+<ng-container *ngIf="currentUser; else pageLoader">
   <ik-header title="{{ currentUser | formatUserName }}">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
     <div class="inline-display header-buttons">
@@ -28,8 +28,8 @@
     ></app-gurdian-children-details-grid>
     <app-user-roles-card [user]="currentUser"></app-user-roles-card>
   </div>
-</div>
+</ng-container>
 
-<ng-template #loader>
-  <ik-loading></ik-loading>
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
 </ng-template>

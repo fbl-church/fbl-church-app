@@ -1,4 +1,4 @@
-<ng-container *ngIf="!loading; else loader">
+<ng-container *ngIf="!loading; else pageLoader">
   <ik-header [title]="application.displayName">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
     <div class="inline-display header-buttons">
@@ -57,8 +57,8 @@
   </div>
 </ng-container>
 
-<ng-template #loader>
-  <ik-loading></ik-loading>
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
 </ng-template>
 
 <app-delete-application-modal

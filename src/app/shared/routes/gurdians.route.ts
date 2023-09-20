@@ -65,6 +65,7 @@ export const GURDIANS_ROUTE: Route = {
       path: ':id/details',
       component: GurdianDetailComponent,
       canActivate: [FeatureAccessGuard],
+      resolve: { gurdian: GurdianResolverService },
       data: {
         featureAccessGuards: [
           {

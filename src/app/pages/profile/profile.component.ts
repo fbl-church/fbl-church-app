@@ -1,28 +1,36 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
-import { UserService } from 'src/service/users/user.service';
+import { Subject, takeUntil, tap } from 'rxjs';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   currentUser: User;
 
   WebRole = WebRole;
+  destroy = new Subject<void>();
 
   constructor(
-    private readonly userService: UserService,
+    private readonly route: ActivatedRoute,
     private readonly location: Location,
     private readonly router: Router
   ) {}
 
   ngOnInit() {
-    this.userService
-      .getCurrentUser()
-      .subscribe((res) => (this.currentUser = res.body));
+    this.route.data
+      .pipe(
+        tap((res) => (this.currentUser = res.currentUser.body)),
+        takeUntil(this.destroy)
+      )
+      .subscribe();
+  }
+
+  ngOnDestroy() {
+    this.destroy.next();
   }
 
   onBackClick() {

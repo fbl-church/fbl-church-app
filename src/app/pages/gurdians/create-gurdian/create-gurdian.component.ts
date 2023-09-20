@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { faUserPen } from '@fortawesome/free-solid-svg-icons';
 import { Gurdian } from 'projects/insite-kit/src/model/user.model';
@@ -9,8 +9,8 @@ import { GurdianService } from 'src/service/gurdians/gurdian.service';
   selector: 'app-create-gurdian',
   templateUrl: './create-gurdian.component.html',
 })
-export class CreateGurdianComponent implements OnInit {
-  loading = true;
+export class CreateGurdianComponent {
+  loading = false;
   disableSave = false;
 
   existingUserIcon = faUserPen;
@@ -20,10 +20,6 @@ export class CreateGurdianComponent implements OnInit {
     private readonly router: Router,
     private readonly popupService: PopupService
   ) {}
-
-  ngOnInit() {
-    this.loading = false;
-  }
 
   onCancelClick() {
     this.router.navigate(['/gurdians']);

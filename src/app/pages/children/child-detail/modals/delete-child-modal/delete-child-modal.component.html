@@ -1,6 +1,6 @@
 <ik-modal #deleteChildModal name="deleteChildModal">
   <ik-modal-header title="Delete Child?" type="danger"></ik-modal-header>
-  <ng-container *ngIf="!modalLoading; else loader">
+  <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
       <div>
         Deleting this child will result in their personal info and achievements
@@ -24,6 +24,6 @@
   </ng-container>
 </ik-modal>
 
-<ng-template #loader>
+<ng-template #modalLoader>
   <ik-loading></ik-loading>
 </ng-template>

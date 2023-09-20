@@ -3,7 +3,7 @@
     title="Assign Gurdian Role to User?"
     type="info"
   ></ik-modal-header>
-  <ng-container *ngIf="!modalLoading; else loader">
+  <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
       <form *ngIf="form" [formGroup]="form">
         <ik-form-field header="Name*" [padding]="false">
@@ -43,6 +43,6 @@
   </ng-container>
 </ik-modal>
 
-<ng-template #loader>
+<ng-template #modalLoader>
   <ik-loading></ik-loading>
 </ng-template>

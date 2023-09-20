@@ -35,7 +35,7 @@
 
 <ik-modal #addWorkersModal name="userToGurdianModal">
   <ik-modal-header title="Add New Workers?" type="info"></ik-modal-header>
-  <ng-container *ngIf="!modalLoading; else loader">
+  <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
       <form *ngIf="form" [formGroup]="form">
         <ik-form-field header="Role*" [padding]="false">
@@ -70,6 +70,6 @@
   </ng-container>
 </ik-modal>
 
-<ng-template #loader>
-  <ik-loading backgroundColor="white"></ik-loading>
+<ng-template #modalLoader>
+  <ik-loading></ik-loading>
 </ng-template>

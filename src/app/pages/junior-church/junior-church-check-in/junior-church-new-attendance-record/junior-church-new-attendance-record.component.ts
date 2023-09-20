@@ -83,7 +83,6 @@ export class JuniorChurchNewAttendanceRecordComponent
           'Junior Church Attendance Record Successfully Created!'
         );
         this.router.navigate([`/junior-church/check-in/${res.id}/details`]);
-        this.loading = false;
       },
       error: () => {
         this.popupService.error(

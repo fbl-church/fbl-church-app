@@ -1,10 +1,11 @@
 import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { AuthService } from 'projects/insite-kit/src/service/auth/auth.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, takeUntil, tap } from 'rxjs/operators';
 import { UserService } from 'src/service/users/user.service';
 
 @Component({
@@ -21,15 +22,17 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
     private readonly location: Location,
     private readonly popupService: PopupService,
     private readonly userService: UserService,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.loading = true;
-    this.userService.getCurrentUser().subscribe((user) => {
-      this.userUpdating = user.body;
-      this.loading = false;
-    });
+    this.route.data
+      .pipe(
+        tap((res) => (this.userUpdating = res.currentUser.body)),
+        takeUntil(this.destroy)
+      )
+      .subscribe(() => (this.loading = false));
   }
 
   ngOnDestroy() {

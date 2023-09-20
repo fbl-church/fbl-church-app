@@ -5,9 +5,9 @@ import { Component, Input } from '@angular/core';
   templateUrl: 'loading.component.html',
 })
 export class LoadingComponent {
-  @Input() size = '110px';
-  @Input() thickness = '8px';
-  @Input() type: 'default' | 'ellipsis' = 'default';
+  @Input() size = '100px';
+  @Input() thickness = '4px';
+  @Input() type: 'default' | 'ellipsis' | 'double' = 'default';
   @Input() backgroundColor = '#EBEFF5';
   @Input() margin: string;
 }

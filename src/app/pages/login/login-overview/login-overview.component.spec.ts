@@ -61,11 +61,10 @@ describe('LoginOverviewComponent', () => {
     );
     expect(router.navigate).toHaveBeenCalledWith(['/profile']);
     expect(popupService.error).not.toHaveBeenCalled();
-    expect(component.loading).toBeFalsy();
   });
 
   it('should not be able to login and show error message', () => {
-    authService.authenticate.and.returnValue(throwError(of('Invalid')));
+    authService.authenticate.and.returnValue(throwError(() => of('Invalid')));
     TestDOM.updateForm('#loginForm', {
       username: 'test@mail.com',
       password: 'testPassword',

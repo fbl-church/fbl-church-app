@@ -1,6 +1,6 @@
 <ik-modal #deleteGurdianModal name="deleteGurdianModal">
   <ik-modal-header title="Delete Gurdian?" type="danger"></ik-modal-header>
-  <ng-container *ngIf="!modalLoading; else loader">
+  <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
       <div>
         Deleting this gurdian will result in their personal info to be deleted.
@@ -25,6 +25,6 @@
   </ng-container>
 </ik-modal>
 
-<ng-template #loader>
+<ng-template #modalLoader>
   <ik-loading></ik-loading>
 </ng-template>

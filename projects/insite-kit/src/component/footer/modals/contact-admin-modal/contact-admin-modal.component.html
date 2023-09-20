@@ -4,7 +4,7 @@
   class="modal-body__padding-none"
 >
   <ik-modal-header title="Contact Us"></ik-modal-header>
-  <ng-container *ngIf="!loading; else loader">
+  <ng-container *ngIf="!loading; else modalLoader">
     <ik-modal-body>
       <form [formGroup]="form">
         <div class="row">
@@ -50,6 +50,6 @@
   </ng-container>
 </ik-modal>
 
-<ng-template #loader>
+<ng-template #modalLoader>
   <ik-loading></ik-loading>
 </ng-template>

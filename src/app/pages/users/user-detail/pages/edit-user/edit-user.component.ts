@@ -28,7 +28,6 @@ export class EditUserComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.loading = true;
     this.route.data
       .pipe(
         map((res) => res.user.body),

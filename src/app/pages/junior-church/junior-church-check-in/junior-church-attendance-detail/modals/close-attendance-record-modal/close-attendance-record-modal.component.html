@@ -3,7 +3,7 @@
     title="Close Attendance Record?"
     type="danger"
   ></ik-modal-header>
-  <ng-container *ngIf="!modalLoading; else loader">
+  <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
       <div>
         Closing this attendance record will result in the current information to
@@ -27,6 +27,6 @@
   </ng-container>
 </ik-modal>
 
-<ng-template #loader>
+<ng-template #modalLoader>
   <ik-loading></ik-loading>
 </ng-template>

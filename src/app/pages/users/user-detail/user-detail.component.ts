@@ -30,14 +30,14 @@ export class UserDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private userService: UserService,
-    private readonly activeRoute: ActivatedRoute,
+    private readonly route: ActivatedRoute,
     private readonly popupService: PopupService,
     private readonly router: Router,
     private readonly jwt: JwtService
   ) {}
 
   ngOnInit() {
-    this.activeRoute.data
+    this.route.data
       .pipe(
         tap((res) => (this.userData = res.user.body)),
         tap(
@@ -47,15 +47,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
         ),
         takeUntil(this.destroy)
       )
-      .subscribe({
-        next: () => (this.loading = false),
-        error: () => {
-          this.onBackClick();
-          this.popupService.error(
-            'Could not load user details at this time. Try again later.'
-          );
-        },
-      });
+      .subscribe(() => (this.loading = false));
   }
 
   ngOnDestroy() {
@@ -68,7 +60,6 @@ export class UserDetailComponent implements OnInit, OnDestroy {
       next: () => {
         this.popupService.success('User Successfully Deleted!');
         this.router.navigate(['/users']);
-        this.loading = false;
       },
       error: () => {
         this.popupService.success(

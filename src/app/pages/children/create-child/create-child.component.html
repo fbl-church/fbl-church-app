@@ -3,7 +3,7 @@
 </ik-header>
 
 <app-child-form
-  *ngIf="!loading; else loader"
+  *ngIf="!loading; else pageLoader"
   [disableSave]="disableSave"
   rightActionButton="Save Child"
   leftActionButton="Cancel"
@@ -13,6 +13,6 @@
   <app-child-gurdians-grid-card></app-child-gurdians-grid-card>
 </app-child-form>
 
-<ng-template #loader>
-  <ik-loading></ik-loading>
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
 </ng-template>

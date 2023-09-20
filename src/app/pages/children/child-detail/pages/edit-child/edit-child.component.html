@@ -3,7 +3,7 @@
 ></ik-header>
 
 <app-child-form
-  *ngIf="childUpdating && !loading; else loader"
+  *ngIf="childUpdating && !loading; else pageLoader"
   [childData]="childUpdating"
   [disableSave]="disableSave"
   rightActionButton="Update Child"
@@ -13,6 +13,6 @@
 >
 </app-child-form>
 
-<ng-template #loader>
-  <ik-loading></ik-loading>
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
 </ng-template>

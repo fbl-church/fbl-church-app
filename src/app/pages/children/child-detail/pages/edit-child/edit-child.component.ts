@@ -29,12 +29,12 @@ export class EditChildComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.route.data
       .pipe(
-        map((res) => res.user.body),
+        map((res) => res.child.body),
         tap((res) => (this.childId = res.id)),
         takeUntil(this.destroy)
       )
-      .subscribe((user) => {
-        this.childUpdating = user;
+      .subscribe((child) => {
+        this.childUpdating = child;
         this.loading = false;
       });
   }
@@ -52,9 +52,8 @@ export class EditChildComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.childrenService.update(this.childId, child).subscribe({
       next: () => {
-        this.onCancelClick();
+        this.location.back();
         this.popupService.success('Child Successfully updated!');
-        this.loading = false;
       },
       error: () => {
         this.popupService.error('Child could not be updated at this time!');

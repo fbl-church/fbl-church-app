@@ -73,7 +73,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
       },
       error: () => {
         this.popupService.error('Could not reset user password at this time!');
-        this.location.back();
+        this.loading = false;
       },
     });
   }

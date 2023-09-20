@@ -52,6 +52,7 @@ export const CHILDREN_ROUTE: Route = {
       path: ':id/details',
       component: ChildDetailComponent,
       canActivate: [FeatureAccessGuard],
+      resolve: { child: ChildResolverService },
       data: {
         featureAccessGuards: [
           {
@@ -66,7 +67,7 @@ export const CHILDREN_ROUTE: Route = {
       path: ':id/details/edit',
       canActivate: [FeatureAccessGuard],
       component: EditChildComponent,
-      resolve: { user: ChildResolverService },
+      resolve: { child: ChildResolverService },
       data: {
         featureAccessGuards: [
           {
