@@ -1,9 +1,16 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Application } from 'projects/insite-kit/src/model/access.model';
+import {
+  Application,
+  WebRoleApp,
+} from 'projects/insite-kit/src/model/access.model';
+import {
+  TranslationKey,
+  WebRole,
+} from 'projects/insite-kit/src/model/common.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -37,6 +44,30 @@ export class ApplicationService {
   }
 
   /**
+   * Gets a web role feature access by feature id
+   *
+   * @param id The id of the feature
+   * @returns The page of web role access for the features
+   */
+  getWebRoleAppAccessById(
+    id: any,
+    params?: Map<string, string[]>
+  ): Observable<HttpResponse<WebRoleApp[]>> {
+    return this.request
+      .get<WebRoleApp[]>(`${this.BASE_PATH}/${id}/roles`, params)
+      .pipe(
+        tap((v) =>
+          v.body.forEach((u) => {
+            u.formattedWebRole = this.commonService.translate(
+              u.webRole,
+              TranslationKey.WEB_ROLE
+            );
+          })
+        )
+      );
+  }
+
+  /**
    * Update the enabled flag of an application
    *
    * @param id The app to update
@@ -46,6 +77,24 @@ export class ApplicationService {
   updateEnabledFlag(id: any, enabled: boolean): Observable<Application> {
     return this.request.put<Application>(
       `${this.BASE_PATH}/${id}/enabled/${enabled}`
+    );
+  }
+
+  /**
+   * Updates the web role app access
+   *
+   * @param appId The id of the app to update
+   * @param webRole The web role to update on the feature
+   * @param access The access to give the web role
+   * @returns The updated web role feature
+   */
+  updateWebRoleAppAccess(
+    appId: number,
+    webRole: WebRole,
+    access: boolean
+  ): Observable<WebRoleApp> {
+    return this.request.put<WebRoleApp>(
+      `${this.BASE_PATH}/${appId}/roles/${webRole}/access/${access}`
     );
   }
 

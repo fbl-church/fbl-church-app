@@ -1,17 +1,27 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Application } from 'projects/insite-kit/src/model/access.model';
+import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
+import {
+  Application,
+  WebRoleApp,
+} from 'projects/insite-kit/src/model/access.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, map, takeUntil } from 'rxjs';
 import { ApplicationService } from 'src/service/access-manager/application.service';
+import { WebRoleAppUpdateModalComponent } from './modals/web-role-app-update-modal/web-role-app-update-modal.component';
 
 @Component({
   selector: 'app-application-detail',
   templateUrl: './application-detail.component.html',
 })
 export class ApplicationDetailComponent implements OnInit, OnDestroy {
+  @ViewChild(WebRoleAppUpdateModalComponent)
+  webRoleAppModal: WebRoleAppUpdateModalComponent;
+  @ViewChild(GridComponent) grid: GridComponent;
+
   application: Application;
   destroy = new Subject<void>();
+  webRoleAppDataloader: any;
 
   loading = false;
 
@@ -30,6 +40,11 @@ export class ApplicationDetailComponent implements OnInit, OnDestroy {
       )
       .subscribe((res) => {
         this.application = res;
+        this.webRoleAppDataloader = (params) =>
+          this.applicationService.getWebRoleAppAccessById(
+            this.application.id,
+            params
+          );
       });
   }
 
@@ -39,6 +54,14 @@ export class ApplicationDetailComponent implements OnInit, OnDestroy {
 
   onBackClick() {
     this.router.navigate(['/access-manager/applications']);
+  }
+
+  onWebRoleAppUpdated() {
+    this.grid.refresh();
+  }
+
+  onRowClick(event: WebRoleApp) {
+    this.webRoleAppModal.open(event);
   }
 
   onEnabledUpdateClick(enabled: boolean) {

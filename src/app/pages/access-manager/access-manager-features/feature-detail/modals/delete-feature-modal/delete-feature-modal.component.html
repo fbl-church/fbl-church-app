@@ -1,23 +1,23 @@
-<ik-modal #deleteApplicationModal name="deleteApplicationModal">
-  <ik-modal-header title="Delete Application?" type="danger"></ik-modal-header>
+<ik-modal #deleteFeatureModal name="deleteFeatureModal">
+  <ik-modal-header title="Delete Feature?" type="danger"></ik-modal-header>
   <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
       <div>
-        Deleting this application will result in all information associated to
-        it to be lost and the application will no longer be able to be accessed.
-        Do you want to continue?
+        Deleting this feature will result in all information associated to it to
+        be lost and the feature will no longer be able to be accessed. Do you
+        want to continue?
       </div>
     </ik-modal-body>
     <ik-modal-action-bar>
       <button
         class="btn btn-danger btn-flat btn-right btn-modal"
-        (click)="onDeleteApplication()"
+        (click)="onDeleteFeature()"
       >
-        Delete Application
+        Delete Feature
       </button>
       <button
         class="btn btn-default btn-flat btn-right btn-modal"
-        (click)="deleteApplicationModal.close()"
+        (click)="deleteFeatureModal.close()"
       >
         Cancel
       </button>

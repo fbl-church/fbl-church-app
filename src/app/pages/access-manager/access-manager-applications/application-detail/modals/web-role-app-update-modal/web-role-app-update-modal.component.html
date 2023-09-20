@@ -1,0 +1,35 @@
+<ik-modal #webRoleAppUpdateModal name="webRoleAppUpdateModal">
+  <ik-modal-header title="Update Web Role App?" type="info"></ik-modal-header>
+  <ng-container *ngIf="webRoleApp && !modalLoading; else modalLoader">
+    <ik-modal-body>
+      <div class="row">
+        <ik-card-info
+          class="col-6"
+          header="Web Role"
+          [text]="webRoleApp.webRole | webRoleTranslate"
+        ></ik-card-info>
+        <ik-form-field header="Access" class="col-6">
+          <ik-checkbox #accessField [checked]="webRoleApp.access"></ik-checkbox>
+        </ik-form-field>
+      </div>
+    </ik-modal-body>
+    <ik-modal-action-bar>
+      <button
+        class="btn btn-default btn-flat btn-left btn-modal"
+        (click)="webRoleAppUpdateModal.close()"
+      >
+        Cancel
+      </button>
+      <button
+        class="btn btn-primary btn-flat btn-right btn-modal"
+        (click)="onUpdateWebRoleApp()"
+      >
+        Update
+      </button>
+    </ik-modal-action-bar>
+  </ng-container>
+</ik-modal>
+
+<ng-template #modalLoader>
+  <ik-loading></ik-loading>
+</ng-template>

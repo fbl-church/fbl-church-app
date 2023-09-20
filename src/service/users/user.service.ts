@@ -1,5 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { WebRole } from 'projects/insite-kit/src/model/common.model';
 import { PasswordUpdate } from 'projects/insite-kit/src/model/password-update.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
@@ -123,8 +124,22 @@ export class UserService {
    */
   updateUserRolesById(id: number, roles: any[]): Observable<User> {
     return this.request.put<User>(
-      `${this.BASE_USER_PATH}/roles/${id.toString()}`,
+      `${this.BASE_USER_PATH}/${id.toString()}/roles`,
       roles
+    );
+  }
+
+  /**
+   * Update the given user roles by id
+   *
+   * @param id of the user to update.
+   * @param roles The roles to update the user too.
+   * @returns User object
+   */
+  addRoleToUsers(role: WebRole, userIds: number[]): Observable<User[]> {
+    return this.request.put<User[]>(
+      `${this.BASE_USER_PATH}/roles/${role}`,
+      userIds
     );
   }
 

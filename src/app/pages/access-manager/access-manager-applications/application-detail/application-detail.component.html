@@ -29,7 +29,7 @@
     </div>
   </ik-header>
 
-  <div class="layout__column-left layout__wide">
+  <div class="layout__column-left layout__narrow">
     <ik-card>
       <ik-card-header title="Details"> </ik-card-header>
       <div class="flex">
@@ -55,6 +55,27 @@
       </div>
     </ik-card>
   </div>
+  <div class="layout__column-right layout__wide">
+    <ik-grid
+      #webRoleFeaturesGrid
+      [dataLoader]="webRoleAppDataloader"
+      [overflowEnabled]="true"
+      (rowClick)="onRowClick($event)"
+    >
+      <ik-card-header title="Web Role Apps"></ik-card-header>
+      <ik-grid-search></ik-grid-search>
+      <ik-grid-column label="Role" field="formattedWebRole"> </ik-grid-column>
+      <ik-grid-column label="Access" field="create">
+        <ng-template let-data>
+          <ik-icon
+            [icon]="data.access ? 'check' : 'xmark'"
+            [classOverride]="data.access ? 'icon__success' : 'icon__danger'"
+          ></ik-icon>
+        </ng-template>
+      </ik-grid-column>
+      <ik-grid-pager key="Roles" [pageSize]="5"></ik-grid-pager>
+    </ik-grid>
+  </div>
 </ng-container>
 
 <ng-template #pageLoader>
@@ -65,3 +86,7 @@
   [appId]="application.id"
   #applicationDeleteModal
 ></app-delete-application-modal>
+
+<app-web-role-app-update-modal
+  (webRoleAppUpdate)="onWebRoleAppUpdated()"
+></app-web-role-app-update-modal>

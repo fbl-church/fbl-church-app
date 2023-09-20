@@ -1,4 +1,12 @@
-<ik-header title="Applications"></ik-header>
+<ik-header title="Applications">
+  <button
+    (click)="applicationCreateModal.modal.open()"
+    class="btn btn-primary btn-flat btn-header-right"
+  >
+    <ik-icon icon="circle-plus" classOverride="btn-icon"></ik-icon>
+    Create Application
+  </button>
+</ik-header>
 <ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="Name" field="displayName"></ik-grid-column>
@@ -12,3 +20,7 @@
   </ik-grid-column>
   <ik-grid-pager key="Applications" [pageSize]="10"></ik-grid-pager>
 </ik-grid>
+
+<app-create-application-modal
+  #applicationCreateModal
+></app-create-application-modal>

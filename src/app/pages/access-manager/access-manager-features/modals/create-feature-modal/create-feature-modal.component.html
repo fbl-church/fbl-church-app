@@ -1,0 +1,41 @@
+<ik-modal #createFeatureModal name="createFeatureModal">
+  <ik-modal-header title="Create Feature?" type="info"></ik-modal-header>
+  <ng-container *ngIf="!modalLoading; else modalLoader">
+    <ik-modal-body>
+      <form *ngIf="form" [formGroup]="form">
+        <ik-form-field header="Feature Name*" [padding]="false">
+          <input
+            class="form-input__normal"
+            placeholder="Feature Name"
+            formControlName="feature"
+          />
+        </ik-form-field>
+        <ik-form-field header="App*" [padding]="false">
+          <ik-single-select
+            formControlName="app"
+            [items]="mappedApplications"
+          ></ik-single-select>
+        </ik-form-field>
+      </form>
+    </ik-modal-body>
+    <ik-modal-action-bar>
+      <button
+        class="btn btn-default btn-flat btn-left btn-modal"
+        (click)="createFeatureModal.close()"
+      >
+        Cancel
+      </button>
+      <button
+        class="btn btn-primary btn-flat btn-right btn-modal"
+        (click)="onCreateFeature()"
+        [disabled]="form && form.invalid"
+      >
+        Save
+      </button>
+    </ik-modal-action-bar>
+  </ng-container>
+</ik-modal>
+
+<ng-template #modalLoader>
+  <ik-loading></ik-loading>
+</ng-template>

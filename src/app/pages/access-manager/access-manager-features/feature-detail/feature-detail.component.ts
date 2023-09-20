@@ -13,7 +13,6 @@ import { WebRoleFeatureUpdateModalComponent } from './modals/web-role-feature-up
 @Component({
   selector: 'app-feature-detail',
   templateUrl: './feature-detail.component.html',
-  styleUrls: ['./feature-detail.component.scss'],
 })
 export class FeatureDetailComponent implements OnInit, OnDestroy {
   @ViewChild(WebRoleFeatureUpdateModalComponent)
@@ -66,5 +65,28 @@ export class FeatureDetailComponent implements OnInit, OnDestroy {
 
   onWebRoleFeatureUpdated() {
     this.webRoleFeaturesGrid.refresh();
+  }
+
+  onEnabledUpdateClick(enabled: boolean) {
+    this.loading = true;
+    this.featureService.updateEnabledFlag(this.feature.id, enabled).subscribe({
+      next: (res) => {
+        this.feature.enabled = res.enabled;
+        this.popupService.success(
+          `Feature '${`${this.feature.app}.${this.feature.feature}`}' has been successfully ${
+            enabled ? 'ENABLED' : 'DISABLED'
+          }`
+        );
+        this.loading = false;
+      },
+      error: () => {
+        this.popupService.success(
+          `Could not ${
+            enabled ? 'ENABLE' : 'DISABLE'
+          } feature '${`${this.feature.app}.${this.feature.feature}`}' at this time.`
+        );
+        this.loading = false;
+      },
+    });
   }
 }

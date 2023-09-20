@@ -97,17 +97,6 @@ export const NAVIGATION_ROUTES: NavItem[] = [
     },
   },
   {
-    id: 'users',
-    name: 'Users',
-    route: '/users',
-    icon: 'users',
-    restriction: {
-      app: App.USERS,
-      feature: FeatureType.OVERVIEW,
-      access: Access.READ,
-    },
-  },
-  {
     id: 'vbs',
     name: 'VBS',
     route: '/vbs',
@@ -141,6 +130,48 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           route: '/workers',
         },
       ],
+    },
+  },
+  {
+    id: 'nursery',
+    name: 'Nursery',
+    route: '/nursery',
+    icon: 'baby-carriage',
+    submenu: {
+      id: 'nurseryDropdown',
+      items: [
+        {
+          id: 'registration',
+          name: 'Registration',
+          route: '/registration',
+        },
+        {
+          id: 'check-in',
+          name: 'Check In',
+          route: '/check-in',
+        },
+        {
+          id: 'children',
+          name: 'Children',
+          route: '/children',
+        },
+        {
+          id: 'workers',
+          name: 'Workers',
+          route: '/workers',
+        },
+      ],
+    },
+  },
+  {
+    id: 'users',
+    name: 'Users',
+    route: '/users',
+    icon: 'users',
+    restriction: {
+      app: App.USERS,
+      feature: FeatureType.OVERVIEW,
+      access: Access.READ,
     },
   },
   {

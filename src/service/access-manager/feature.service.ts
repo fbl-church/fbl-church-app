@@ -69,6 +69,19 @@ export class FeatureService {
   }
 
   /**
+   * Update the enabled flag of a feature
+   *
+   * @param id The app to update
+   * @param enabled Wheather to enable or disable the feature
+   * @returns The updated feature
+   */
+  updateEnabledFlag(id: any, enabled: boolean): Observable<Feature> {
+    return this.request.put<Feature>(
+      `${this.BASE_PATH}/${id}/enabled/${enabled}`
+    );
+  }
+
+  /**
    * Updates the web role feature access
    *
    * @param featureId The id of the feature to get
@@ -85,5 +98,26 @@ export class FeatureService {
       `${this.BASE_PATH}/${featureId}/roles/${webRole}`,
       crud
     );
+  }
+
+  /**
+   * Create a feature
+   *
+   * @param key The new key name
+   * @param appId The application id
+   */
+  create(key: string, appId: any): Observable<Feature> {
+    return this.request.post<Feature>(`${this.BASE_PATH}/app/${appId}`, {
+      feature: key,
+    });
+  }
+
+  /**
+   * Delete the feature by Id
+   *
+   * @param id The app to delete
+   */
+  delete(id: any): Observable<any> {
+    return this.request.delete<any>(`${this.BASE_PATH}/${id}`);
   }
 }

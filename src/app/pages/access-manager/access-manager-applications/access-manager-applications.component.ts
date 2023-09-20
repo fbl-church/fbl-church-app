@@ -20,4 +20,6 @@ export class AccessManagerApplicationsComponent {
   onRowClick(app: Application) {
     this.router.navigate([`/access-manager/applications/${app.id}/details`]);
   }
+
+  onCreateApplication() {}
 }
