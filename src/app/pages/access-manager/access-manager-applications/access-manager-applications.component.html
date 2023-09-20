@@ -1,8 +1,8 @@
 <ik-header title="Applications"></ik-header>
 <ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
   <ik-grid-search></ik-grid-search>
-  <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
-  <ik-grid-column label="Key" field="name"></ik-grid-column>
+  <ik-grid-column label="Name" field="displayName"></ik-grid-column>
+  <ik-grid-column label="Key" field="key"></ik-grid-column>
   <ik-grid-column label="Status" field="formattedStatus">
     <ng-template let-data>
       <div [ngClass]="data.enabled ? 'ENABLED' : 'DISABLED'">

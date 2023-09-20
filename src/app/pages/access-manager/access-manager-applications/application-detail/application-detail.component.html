@@ -1,5 +1,5 @@
 <ng-container *ngIf="!loading; else loader">
-  <ik-header [title]="application.formattedName">
+  <ik-header [title]="application.displayName">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
     <div class="inline-display header-buttons">
       <button
@@ -36,11 +36,11 @@
         <div class="left-column">
           <ik-card-info
             header="Name"
-            [text]="application.formattedName"
+            [text]="application.displayName"
           ></ik-card-info>
         </div>
         <div class="right-column">
-          <ik-card-info header="Key" [text]="application.name"></ik-card-info>
+          <ik-card-info header="Key" [text]="application.key"></ik-card-info>
         </div>
       </div>
 

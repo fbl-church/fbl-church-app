@@ -30,6 +30,8 @@ export class UserFormComponent implements OnInit {
   WebRole = WebRole;
   roleSection: any[];
 
+  readonly NOT_ASSIGNABLE_ROLES = [WebRole.GURDIAN];
+
   constructor(
     private readonly popupService: PopupService,
     private readonly roleService: RoleService,
@@ -52,7 +54,13 @@ export class UserFormComponent implements OnInit {
         Validators.required,
       ],
       email: [this.userData ? this.userData.email : '', [Validators.email]],
-      roles: [this.userData ? this.userData.webRole : ''],
+      roles: [
+        this.userData
+          ? this.userData.webRole.filter(
+              (r) => !this.NOT_ASSIGNABLE_ROLES.includes(r)
+            )
+          : '',
+      ],
     });
 
     if (this.enablePasswordUpdate) {
@@ -85,7 +93,13 @@ export class UserFormComponent implements OnInit {
     }
 
     if (this.enableRoleUpdate) {
-      user.webRole = this.form.value.roles;
+      const rolesToAdd = this.userData?.webRole
+        ? this.userData.webRole.filter((r) =>
+            this.NOT_ASSIGNABLE_ROLES.includes(r)
+          )
+        : [];
+
+      user.webRole = [...rolesToAdd, ...this.form.value.roles];
     } else {
       user.webRole = this.userData.webRole;
     }

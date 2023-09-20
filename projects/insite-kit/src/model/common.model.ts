@@ -1,4 +1,3 @@
-import { default as appsJson } from 'projects/insite-kit/src/assets/translations/applications/en.json';
 import { default as churchGroupsJson } from 'projects/insite-kit/src/assets/translations/church-groups/en.json';
 import { default as relationshipJson } from 'projects/insite-kit/src/assets/translations/relationships/en.json';
 import { default as statusJson } from 'projects/insite-kit/src/assets/translations/status/en.json';
@@ -155,5 +154,4 @@ export const TranslateMapping = {
   RELATIONSHIP: relationshipJson,
   STATUS: statusJson,
   WEB_ROLE: webRolesJson,
-  APPS: appsJson,
 };

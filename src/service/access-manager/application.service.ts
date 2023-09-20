@@ -1,10 +1,9 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Application } from 'projects/insite-kit/src/model/access.model';
-import { TranslationKey } from 'projects/insite-kit/src/model/common.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -24,16 +23,7 @@ export class ApplicationService {
    * @returns List of Application objects
    */
   get(params?: Map<string, string[]>): Observable<HttpResponse<Application[]>> {
-    return this.request.get<Application[]>(this.BASE_PATH, params).pipe(
-      tap((v) =>
-        v.body.forEach((u) => {
-          u.formattedName = this.commonService.translate(
-            u.name,
-            TranslationKey.APPS
-          );
-        })
-      )
-    );
+    return this.request.get<Application[]>(this.BASE_PATH, params);
   }
 
   /**
@@ -43,14 +33,7 @@ export class ApplicationService {
    * @returns The found application
    */
   getById(id: number): Observable<HttpResponse<Application>> {
-    return this.request.get<Application>(`${this.BASE_PATH}/${id}`).pipe(
-      tap((v) => {
-        v.body.formattedName = this.commonService.translate(
-          v.body.name,
-          TranslationKey.APPS
-        );
-      })
-    );
+    return this.request.get<Application>(`${this.BASE_PATH}/${id}`);
   }
 
   /**

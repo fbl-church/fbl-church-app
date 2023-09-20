@@ -2,7 +2,8 @@ import { App, FeatureType, WebRole } from './common.model';
 
 export interface Application {
   id: number;
-  name: App;
+  key: App;
+  displayName: string;
   enabled: boolean;
   [key: string]: any;
 }
