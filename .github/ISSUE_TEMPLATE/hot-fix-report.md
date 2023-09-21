@@ -3,7 +3,7 @@ name: Hot Fix Report
 about: Immediate fix needed to production
 title: ''
 labels: Hot Fix
-assignees: ''
+assignees: sambutler1017,suvakpc
 
 ---
 

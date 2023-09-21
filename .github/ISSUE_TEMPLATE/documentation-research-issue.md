@@ -3,7 +3,7 @@ name: Documentation/Research Issue
 about: Create a research issue for looking into a new feature or bug
 title: ''
 labels: Documentation
-assignees: ''
+assignees: sambutler1017,suvakpc
 
 ---
 

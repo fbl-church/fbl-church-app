@@ -1,9 +1,9 @@
 ---
 name: Feature Request
-about: Suggest an idea for this project
+about: Suggest an idea or feature to be added to this project
 title: ''
 labels: Feature
-assignees: ''
+assignees: sambutler1017,suvakpc
 
 ---
 
