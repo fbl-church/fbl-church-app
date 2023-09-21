@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { WizardComponent } from 'projects/insite-kit/src/component/wizard/wizard.component';
-import { Child, Gurdian } from 'projects/insite-kit/src/model/user.model';
+import { Child, Guardian } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { ChildrenService } from 'src/service/children/children.service';
 
@@ -37,9 +37,9 @@ export class JuniorChurchRegistrationWizardComponent {
     wizard.next();
   }
 
-  onStep3Next(gurdians: Gurdian[], wizard: WizardComponent) {
+  onStep3Next(guardians: Guardian[], wizard: WizardComponent) {
     this.currentChildInformation = { ...this.currentChildInformation };
-    this.currentChildInformation.gurdians = gurdians;
+    this.currentChildInformation.guardians = guardians;
     wizard.next();
   }
 

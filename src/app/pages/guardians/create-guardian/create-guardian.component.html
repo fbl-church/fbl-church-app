@@ -1,0 +1,25 @@
+<ik-header [title]="'Create Guardian'"
+  ><ik-header-back (back)="onCancelClick()"></ik-header-back>
+  <button
+    class="btn btn-primary btn-flat btn-header-right"
+    [disabled]="loading"
+    (click)="onExistingUserClick()"
+  >
+    <ik-icon icon="pen-to-square" classOverride="btn-icon"></ik-icon>
+    Existing User?
+  </button>
+</ik-header>
+
+<app-guardian-form
+  *ngIf="!loading; else pageLoader"
+  [disableSave]="disableSave"
+  rightActionButton="Save Guardian"
+  leftActionButton="Cancel"
+  (cancel)="onCancelClick()"
+  (save)="onSaveClick($event)"
+>
+</app-guardian-form>
+
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
+</ng-template>

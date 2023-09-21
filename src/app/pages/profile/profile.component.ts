@@ -2,17 +2,17 @@ import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
-import { Gurdian, User } from 'projects/insite-kit/src/model/user.model';
+import { Guardian, User } from 'projects/insite-kit/src/model/user.model';
 import { Subject, takeUntil, tap } from 'rxjs';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-  currentUser: User | Gurdian;
+  currentUser: User | Guardian;
 
   WebRole = WebRole;
-  isGurdianOnly = false;
+  isGuardianOnly = false;
   destroy = new Subject<void>();
 
   constructor(
@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.route.data
       .pipe(
         tap((res) => (this.currentUser = res.currentUser.body)),
-        tap(() => this.gurdianOnlyUser()),
+        tap(() => this.guardianOnlyUser()),
         takeUntil(this.destroy)
       )
       .subscribe((res) => console.log(res));
@@ -43,9 +43,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.router.navigate(['/profile/reset-password']);
   }
 
-  gurdianOnlyUser() {
-    this.isGurdianOnly =
-      this.currentUser.webRole.includes(WebRole.GURDIAN) &&
+  guardianOnlyUser() {
+    this.isGuardianOnly =
+      this.currentUser.webRole.includes(WebRole.GUARDIAN) &&
       this.currentUser.webRole.length == 1;
   }
 }

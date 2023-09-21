@@ -186,12 +186,12 @@ export const NAVIGATION_ROUTES: NavItem[] = [
     },
   },
   {
-    id: 'gurdians',
-    name: 'Gurdians',
+    id: 'guardians',
+    name: 'Guardians',
     icon: 'person',
-    route: '/gurdians',
+    route: '/guardians',
     restriction: {
-      app: App.GURDIANS,
+      app: App.GUARDIANS,
       feature: FeatureType.OVERVIEW,
       access: Access.READ,
     },

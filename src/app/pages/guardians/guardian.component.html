@@ -1,0 +1,17 @@
+<ik-header title="Guardians">
+  <button
+    class="btn btn-primary btn-flat btn-header-right"
+    (click)="onAddGuardian()"
+    *featureAccess="[Application.GUARDIANS, FeatureType.DETAIL, Access.CREATE]"
+  >
+    <ik-icon icon="circle-plus" classOverride="btn-icon"></ik-icon>
+    Add Guardian
+  </button>
+</ik-header>
+<ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
+  <ik-grid-search></ik-grid-search>
+  <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
+  <ik-grid-column label="Phone" field="phone"></ik-grid-column>
+  <ik-grid-column label="Email" field="email"></ik-grid-column>
+  <ik-grid-pager key="Guardians"></ik-grid-pager>
+</ik-grid>

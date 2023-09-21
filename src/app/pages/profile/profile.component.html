@@ -12,7 +12,7 @@
   </ik-header>
   <div class="layout__column-left layout__wide">
     <app-user-details-card
-      *ngIf="!currentUser.phone; else gurdianDetails"
+      *ngIf="!currentUser.phone; else guardianDetails"
       [user]="currentUser"
       (editClick)="onEditClick()"
     >
@@ -22,24 +22,24 @@
         (click)="onEditClick()"
       ></ik-icon
     ></app-user-details-card>
-    <ng-template #gurdianDetails>
-      <app-gurdian-details-card [gurdian]="currentUser">
+    <ng-template #guardianDetails>
+      <app-guardian-details-card [guardian]="currentUser">
         <ik-icon
           icon="pen-to-square"
           class="right pointer"
           (click)="onEditClick()"
         ></ik-icon
-      ></app-gurdian-details-card>
+      ></app-guardian-details-card>
     </ng-template>
   </div>
 
   <div class="layout__column-right layout__narrow">
-    <app-gurdian-children-details-grid
+    <app-guardian-children-details-grid
       *ngIf="currentUser.phone"
-      [gurdianId]="currentUser.id"
-    ></app-gurdian-children-details-grid>
+      [guardianId]="currentUser.id"
+    ></app-guardian-children-details-grid>
     <app-user-roles-card
-      *ngIf="!isGurdianOnly"
+      *ngIf="!isGuardianOnly"
       [user]="currentUser"
     ></app-user-roles-card>
   </div>

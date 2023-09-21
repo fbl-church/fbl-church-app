@@ -45,7 +45,7 @@ export class ChildrenService {
   getById(id: number): Observable<Child> {
     return this.request.get<Child>(`${this.BASE_PATH}/${id.toString()}`).pipe(
       tap((v) =>
-        v.body.gurdians.forEach((g) => {
+        v.body.guardians.forEach((g) => {
           g.formattedName = this.commonService.getFormattedName(g);
           g.formattedRelationship = this.commonService.translate(
             g.relationship,
@@ -57,14 +57,16 @@ export class ChildrenService {
   }
 
   /**
-   * Get the gurdians for the given child id.
+   * Get the guardians for the given child id.
    *
-   * @param params gurdian id for the gurdian to get
-   * @returns Gurdian object
+   * @param params guardian id for the guardian to get
+   * @returns Guardian object
    */
-  getChildrenByGurdianId(gurdianId: number): Observable<HttpResponse<Child[]>> {
+  getChildrenByGuardianId(
+    guardianId: number
+  ): Observable<HttpResponse<Child[]>> {
     return this.request
-      .get<Child[]>(`${this.BASE_PATH}/gurdian/${gurdianId}`)
+      .get<Child[]>(`${this.BASE_PATH}/guardian/${guardianId}`)
       .pipe(
         tap((v) =>
           v.body.forEach((u) => {

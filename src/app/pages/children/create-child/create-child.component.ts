@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
-import { ChildGurdiansGridCardComponent } from 'src/app/shared/components/cards/children/child-gurdians-grid-card/child-gurdians-grid-card.component';
+import { ChildGuardiansGridCardComponent } from 'src/app/shared/components/cards/children/child-guardians-grid-card/child-guardians-grid-card.component';
 import { ChildrenService } from 'src/service/children/children.service';
 
 @Component({
@@ -10,8 +10,8 @@ import { ChildrenService } from 'src/service/children/children.service';
   templateUrl: './create-child.component.html',
 })
 export class CreateChildComponent {
-  @ViewChild(ChildGurdiansGridCardComponent)
-  gurdianSelectionGrid: ChildGurdiansGridCardComponent;
+  @ViewChild(ChildGuardiansGridCardComponent)
+  guardianSelectionGrid: ChildGuardiansGridCardComponent;
 
   loading = false;
   disableSave = false;
@@ -27,11 +27,11 @@ export class CreateChildComponent {
   }
 
   onSaveClick(child: Child) {
-    const gurdians = this.gurdianSelectionGrid.getSelectedGurdians();
-    if (!this.validGurdians(gurdians)) {
+    const guardians = this.guardianSelectionGrid.getSelectedGuardians();
+    if (!this.validGuardians(guardians)) {
       return;
     }
-    child.gurdians = gurdians;
+    child.guardians = guardians;
 
     this.loading = true;
     this.disableSave = true;
@@ -48,24 +48,24 @@ export class CreateChildComponent {
     });
   }
 
-  validGurdians(gurdians: any[]): boolean {
-    if (this.gurdianSelectionGrid.isGurdianFormInvalid()) {
+  validGuardians(guardians: any[]): boolean {
+    if (this.guardianSelectionGrid.isGuardianFormInvalid()) {
       this.popupService.error(
-        'New Gurdian form is not valid. Please confirm all required fields are filled out.'
+        'New Guardian form is not valid. Please confirm all required fields are filled out.'
       );
       return false;
     }
 
-    if (gurdians.length < 1) {
+    if (guardians.length < 1) {
       this.popupService.error(
-        'Child is required to have at least one gurdian assigned to them.'
+        'Child is required to have at least one guardian assigned to them.'
       );
       return false;
     }
 
-    if (gurdians.filter((res) => res?.relationship === null).length > 0) {
+    if (guardians.filter((res) => res?.relationship === null).length > 0) {
       this.popupService.error(
-        'All selected gurdians must have a relationship selected.'
+        'All selected guardians must have a relationship selected.'
       );
       return false;
     }

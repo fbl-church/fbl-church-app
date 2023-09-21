@@ -1,0 +1,38 @@
+<ik-card>
+  <ik-card-header [title]="title">
+    <ng-content></ng-content>
+  </ik-card-header>
+  <div class="flex">
+    <ik-card-info
+      class="left-column"
+      header="Name"
+      text="{{ guardian | formatUserName }}"
+    ></ik-card-info>
+    <ik-card-info
+      class="right-column"
+      header="Email"
+      [text]="guardian?.email ? guardian.email : '-'"
+    ></ik-card-info>
+  </div>
+
+  <div class="flex">
+    <ik-card-info
+      class="left-column"
+      header="Phone"
+      [text]="guardian?.phone ? guardian.phone : '-'"
+    ></ik-card-info>
+    <ik-card-info
+      class="right-column"
+      header="Address"
+      [text]="guardian | address"
+    ></ik-card-info>
+  </div>
+  <div class="flex">
+    <ik-card-info
+      class="left-column"
+      header="Created Date"
+      [text]="guardian?.insertDate | date : 'MMMM d, y'"
+    >
+    </ik-card-info>
+  </div>
+</ik-card>

@@ -2,7 +2,7 @@
   ><ik-header-back (back)="onCancelClick()"></ik-header-back
 ></ik-header>
 
-<ng-container *ngIf="!isGurdianUser; else gurdianForm">
+<ng-container *ngIf="!isGuardianUser; else guardianForm">
   <app-user-form
     *ngIf="userUpdating && !loading; else pageLoader"
     [userData]="userUpdating"
@@ -16,16 +16,16 @@
   </app-user-form>
 </ng-container>
 
-<ng-template #gurdianForm>
-  <app-gurdian-form
+<ng-template #guardianForm>
+  <app-guardian-form
     *ngIf="userUpdating && !loading; else pageLoader"
-    [gurdianData]="userUpdating"
+    [guardianData]="userUpdating"
     rightActionButton="Update"
     leftActionButton="Cancel"
     (cancel)="onCancelClick()"
     (save)="onSaveClick($event)"
   >
-  </app-gurdian-form>
+  </app-guardian-form>
 </ng-template>
 
 <ng-template #pageLoader>

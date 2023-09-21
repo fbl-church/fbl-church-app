@@ -7,11 +7,11 @@ import {
 import { AuthGuard } from 'projects/insite-kit/src/service/auth/auth.guard';
 import { FeatureAccessGuard } from 'projects/insite-kit/src/service/auth/feature-access.guard';
 import { ChildDetailComponent } from 'src/app/pages/children/child-detail/child-detail.component';
-import { EditChildGurdiansComponent } from 'src/app/pages/children/child-detail/pages/edit-child-gurdians/edit-child-gurdians.component';
+import { EditChildGuardiansComponent } from 'src/app/pages/children/child-detail/pages/edit-child-guardians/edit-child-guardians.component';
 import { EditChildComponent } from 'src/app/pages/children/child-detail/pages/edit-child/edit-child.component';
 import { ChildrenComponent } from 'src/app/pages/children/children.component';
 import { CreateChildComponent } from 'src/app/pages/children/create-child/create-child.component';
-import { ChildGurdiansResolverService } from 'src/service/children/child-gurdians-resolver.service';
+import { ChildGuardiansResolverService } from 'src/service/children/child-guardians-resolver.service';
 import { ChildResolverService } from 'src/service/children/child-resolver.service';
 import { AuthenticatedLayoutComponent } from '../components/layouts/authenticated-layout/authenticated-layout.component';
 
@@ -79,10 +79,10 @@ export const CHILDREN_ROUTE: Route = {
       },
     },
     {
-      path: ':id/details/gurdians/edit',
+      path: ':id/details/guardians/edit',
       canActivate: [FeatureAccessGuard],
-      component: EditChildGurdiansComponent,
-      resolve: { gurdians: ChildGurdiansResolverService },
+      component: EditChildGuardiansComponent,
+      resolve: { guardians: ChildGuardiansResolverService },
       data: {
         featureAccessGuards: [
           {

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ACCESS_MANAGEMENT_ROUTE } from './shared/routes/access-management.route';
 import { CHILDREN_ROUTE } from './shared/routes/children.route';
 import { DASHBOARD_ROUTE } from './shared/routes/dashboard.route';
-import { GURDIANS_ROUTE } from './shared/routes/gurdians.route';
+import { GUARDIANS_ROUTE } from './shared/routes/guardians.route';
 import { JUNIOR_CHURCH_ROUTE } from './shared/routes/junior-church.route';
 import { PROFILE_ROUTE } from './shared/routes/profile.route';
 import { UNAUTHENTICATED_ROUTE } from './shared/routes/unauthenticated.route';
@@ -16,7 +16,7 @@ const routes: Routes = [
   USERS_ROUTE,
   CHILDREN_ROUTE,
   PROFILE_ROUTE,
-  GURDIANS_ROUTE,
+  GUARDIANS_ROUTE,
   VBS_ROUTE,
   JUNIOR_CHURCH_ROUTE,
   ACCESS_MANAGEMENT_ROUTE,

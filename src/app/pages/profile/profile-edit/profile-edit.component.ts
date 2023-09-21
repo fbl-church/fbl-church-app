@@ -2,13 +2,13 @@ import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
-import { Gurdian, User } from 'projects/insite-kit/src/model/user.model';
+import { Guardian, User } from 'projects/insite-kit/src/model/user.model';
 import { AuthService } from 'projects/insite-kit/src/service/auth/auth.service';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject } from 'rxjs';
 import { switchMap, takeUntil, tap } from 'rxjs/operators';
-import { GurdianService } from 'src/service/gurdians/gurdian.service';
+import { GuardianService } from 'src/service/guardians/guardian.service';
 import { UserService } from 'src/service/users/user.service';
 
 @Component({
@@ -18,9 +18,9 @@ import { UserService } from 'src/service/users/user.service';
 export class ProfileEditComponent implements OnInit, OnDestroy {
   loading = true;
   userId: number;
-  userUpdating: User | Gurdian;
+  userUpdating: User | Guardian;
   destroy = new Subject<void>();
-  isGurdianUser = false;
+  isGuardianUser = false;
 
   constructor(
     private readonly location: Location,
@@ -28,7 +28,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
     private readonly userService: UserService,
     private readonly authService: AuthService,
     private readonly route: ActivatedRoute,
-    private readonly gurdianService: GurdianService,
+    private readonly guardianService: GuardianService,
     private readonly jwt: JwtService
   ) {}
 
@@ -38,8 +38,8 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
         tap((res) => (this.userUpdating = res.currentUser.body)),
         tap(
           () =>
-            (this.isGurdianUser = this.userUpdating.webRole.includes(
-              WebRole.GURDIAN
+            (this.isGuardianUser = this.userUpdating.webRole.includes(
+              WebRole.GUARDIAN
             ))
         ),
         takeUntil(this.destroy)
@@ -55,12 +55,12 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
     this.location.back();
   }
 
-  onSaveClick(user: User | Gurdian) {
+  onSaveClick(user: User | Guardian) {
     this.loading = true;
 
     let updateObservable = this.userService.updateUserProfile(user);
-    if (this.isGurdianUser) {
-      updateObservable = this.gurdianService.updateProfile(
+    if (this.isGuardianUser) {
+      updateObservable = this.guardianService.updateProfile(
         this.jwt.getUserId(),
         user
       );

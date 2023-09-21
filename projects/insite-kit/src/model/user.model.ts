@@ -18,10 +18,10 @@ export interface Child extends User {
   birthday?: Date | any;
   allergies?: string;
   additionalInfo?: string;
-  gurdians?: Gurdian[];
+  guardians?: Guardian[];
 }
 
-export interface Gurdian extends User {
+export interface Guardian extends User {
   relationship?: Relationship | any;
   phone?: string;
   address?: string;

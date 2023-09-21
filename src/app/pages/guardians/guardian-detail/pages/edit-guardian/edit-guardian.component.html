@@ -1,0 +1,18 @@
+<ik-header title="Edit Guardian">
+  <ik-header-back (back)="onCancelClick()"></ik-header-back
+></ik-header>
+
+<app-guardian-form
+  *ngIf="guardianUpdating && !loading; else pageLoader"
+  [guardianData]="guardianUpdating"
+  [disableSave]="disableSave"
+  rightActionButton="Update Guardian"
+  leftActionButton="Cancel"
+  (cancel)="onCancelClick()"
+  (save)="onSaveClick($event)"
+>
+</app-guardian-form>
+
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
+</ng-template>

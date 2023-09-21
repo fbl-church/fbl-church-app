@@ -1,0 +1,37 @@
+<ik-grid
+  [dataLoader]="dataloader"
+  *ngIf="showGuardianSelectionGrid; else childNewGuardianForm"
+>
+  <ik-card-header title="Guardians">
+    <ik-icon
+      icon="user-plus"
+      class="right pointer"
+      (click)="onToggleGuardianGrid(false)"
+    ></ik-icon>
+  </ik-card-header>
+  <ik-grid-search></ik-grid-search>
+  <ik-grid-checklist-column
+    [selectedIds]="guardianIdsChecked"
+  ></ik-grid-checklist-column>
+  <ik-grid-selection-column
+    header="Relationship"
+    field="relationship"
+    [values]="relationships"
+    [selections]="guardianMapSelection"
+  ></ik-grid-selection-column>
+  <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
+  <ik-grid-column label="Phone" field="phone"></ik-grid-column>
+  <ik-grid-pager key="Guardians" [pageSize]="5"></ik-grid-pager>
+</ik-grid>
+
+<ng-template #childNewGuardianForm>
+  <app-child-guardian-form>
+    <ik-card-header title="New Guardian">
+      <ik-icon
+        icon="address-book"
+        class="right pointer"
+        (click)="onToggleGuardianGrid(true)"
+      ></ik-icon>
+    </ik-card-header>
+  </app-child-guardian-form>
+</ng-template>

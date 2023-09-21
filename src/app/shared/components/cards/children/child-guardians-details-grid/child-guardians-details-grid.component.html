@@ -1,0 +1,34 @@
+<ik-grid
+  *ngIf="dataloader"
+  [dataLoader]="dataloader"
+  (rowClick)="onRowClick($event)"
+>
+  <ik-card-header title="Guardians">
+    <ng-container
+      *featureAccess="[Application.CHILDREN, FeatureType.DETAIL, Access.UPDATE]"
+    >
+      <ik-icon
+        *ngIf="editVisible"
+        icon="pen-to-square"
+        class="right pointer"
+        classOverride="icon__default"
+        (click)="onEditIconClick()"
+      ></ik-icon>
+    </ng-container>
+  </ik-card-header>
+  <ik-grid-column label="Name" field="name">
+    <ng-template let-data>
+      {{ data | formatUserName }}
+    </ng-template>
+  </ik-grid-column>
+  <ik-grid-column label="Phone" field="phone"></ik-grid-column>
+  <ik-grid-column
+    label="Relationship"
+    field="formattedRelationship"
+  ></ik-grid-column>
+  <ik-grid-pager
+    key="Guardians"
+    [pagerVisible]="false"
+    [countVisible]="false"
+  ></ik-grid-pager>
+</ik-grid>

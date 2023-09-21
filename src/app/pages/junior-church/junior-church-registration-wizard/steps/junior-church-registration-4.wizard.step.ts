@@ -14,7 +14,7 @@ import {
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { ChildrenService } from 'src/service/children/children.service';
-import { GurdianService } from 'src/service/gurdians/gurdian.service';
+import { GuardianService } from 'src/service/guardians/guardian.service';
 
 @Component({
   selector: 'app-junior-church-registration-wizard-step-four',
@@ -33,7 +33,7 @@ export class JuniorChurchRegistrationWizardStepFourComponent
   constructor(
     private readonly router: Router,
     private readonly childrenService: ChildrenService,
-    private readonly gurdianService: GurdianService,
+    private readonly guardianService: GuardianService,
     private readonly commonService: CommonService
   ) {}
 
@@ -46,10 +46,13 @@ export class JuniorChurchRegistrationWizardStepFourComponent
           this.loading = false;
         });
       } else {
-        if (this.child?.gurdians) {
-          if (this.child.gurdians.length === 1 && !this.child.gurdians[0].id) {
+        if (this.child?.guardians) {
+          if (
+            this.child.guardians.length === 1 &&
+            !this.child.guardians[0].id
+          ) {
             this.activeChild = { ...this.child };
-            this.activeChild.gurdians.map(
+            this.activeChild.guardians.map(
               (g) =>
                 (g.formattedRelationship = this.commonService.translate(
                   g.relationship,
@@ -57,34 +60,34 @@ export class JuniorChurchRegistrationWizardStepFourComponent
                 ))
             );
           } else {
-            this.getGurdiansInformation();
+            this.getGuardiansInformation();
           }
         }
       }
     }
   }
 
-  getGurdianRelationship(gurdianId: number) {
-    const found = this.child.gurdians.find((g) => g.id === gurdianId);
+  getGuardianRelationship(guardianId: number) {
+    const found = this.child.guardians.find((g) => g.id === guardianId);
     return this.commonService.translate(
       found.relationship,
       TranslationKey.RELATIONSHIP
     );
   }
 
-  getGurdiansInformation() {
-    this.gurdianService
+  getGuardiansInformation() {
+    this.guardianService
       .get(
         new Map().set(
           'id',
-          this.child.gurdians.map((g) => g.id)
+          this.child.guardians.map((g) => g.id)
         )
       )
       .subscribe((res) => {
         this.activeChild = { ...this.child };
-        this.activeChild.gurdians = res.body;
-        this.activeChild.gurdians.forEach(
-          (g) => (g.formattedRelationship = this.getGurdianRelationship(g.id))
+        this.activeChild.guardians = res.body;
+        this.activeChild.guardians.forEach(
+          (g) => (g.formattedRelationship = this.getGuardianRelationship(g.id))
         );
         this.loading = false;
       });

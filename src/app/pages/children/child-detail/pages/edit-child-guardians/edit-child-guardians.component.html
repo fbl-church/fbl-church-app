@@ -1,0 +1,20 @@
+<ik-header title="Edit Child Guardians">
+  <ik-header-back (back)="onCancelClick()"></ik-header-back
+></ik-header>
+
+<ng-container *ngIf="guardiansUpdating && !loading; else pageLoader">
+  <app-child-guardians-grid-card
+    [guardians]="guardiansUpdating"
+  ></app-child-guardians-grid-card>
+
+  <button class="btn btn-default btn-flat btn-left" (click)="onCancelClick()">
+    Cancel
+  </button>
+  <button class="btn btn-primary btn-flat btn-right" (click)="onUpdateClick()">
+    Update Guardians
+  </button>
+</ng-container>
+
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
+</ng-template>
