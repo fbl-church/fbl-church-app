@@ -18,6 +18,3 @@ assignees: sambutler1017,suvakpc
 
 ### **Screenshots**
 If applicable, add screenshots to confirm working test.
-
-## **Dependencies**
-- Any dependent issues or pull request. Use the `#` to link an issue or pull request

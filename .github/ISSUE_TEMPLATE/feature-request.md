@@ -15,6 +15,3 @@ assignees: sambutler1017,suvakpc
 
 ## **How to Test**
 - Once the feature is implemented. How should it be tested to confirm functionality.
-
-## **Dependencies**
-- Any dependent issues or pull request. Use the `#` to link an issue or pull request

@@ -23,10 +23,3 @@ Steps to reproduce the behavior:
 ### **Screenshots**
 - If applicable, add screenshots to help explain your problem.
 
-## **Dependencies**
-- Any dependent issues or pull request. Use the `#` to link an issue or pull request
-
-## **Appropriate Steps**
-- [ ] Has an admin been notified about the issue?
-- [ ] Is this fix needed before next release?
-- [ ] Is someone working on the fix?
