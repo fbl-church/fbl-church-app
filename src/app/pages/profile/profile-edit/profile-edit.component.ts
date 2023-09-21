@@ -1,11 +1,14 @@
 import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { User } from 'projects/insite-kit/src/model/user.model';
+import { WebRole } from 'projects/insite-kit/src/model/common.model';
+import { Gurdian, User } from 'projects/insite-kit/src/model/user.model';
 import { AuthService } from 'projects/insite-kit/src/service/auth/auth.service';
+import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject } from 'rxjs';
 import { switchMap, takeUntil, tap } from 'rxjs/operators';
+import { GurdianService } from 'src/service/gurdians/gurdian.service';
 import { UserService } from 'src/service/users/user.service';
 
 @Component({
@@ -15,21 +18,30 @@ import { UserService } from 'src/service/users/user.service';
 export class ProfileEditComponent implements OnInit, OnDestroy {
   loading = true;
   userId: number;
-  userUpdating: User;
+  userUpdating: User | Gurdian;
   destroy = new Subject<void>();
+  isGurdianUser = false;
 
   constructor(
     private readonly location: Location,
     private readonly popupService: PopupService,
     private readonly userService: UserService,
     private readonly authService: AuthService,
-    private readonly route: ActivatedRoute
+    private readonly route: ActivatedRoute,
+    private readonly gurdianService: GurdianService,
+    private readonly jwt: JwtService
   ) {}
 
   ngOnInit() {
     this.route.data
       .pipe(
         tap((res) => (this.userUpdating = res.currentUser.body)),
+        tap(
+          () =>
+            (this.isGurdianUser = this.userUpdating.webRole.includes(
+              WebRole.GURDIAN
+            ))
+        ),
         takeUntil(this.destroy)
       )
       .subscribe(() => (this.loading = false));
@@ -43,11 +55,18 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
     this.location.back();
   }
 
-  onSaveClick(user: User) {
+  onSaveClick(user: User | Gurdian) {
     this.loading = true;
 
-    this.userService
-      .updateUserProfile(user)
+    let updateObservable = this.userService.updateUserProfile(user);
+    if (this.isGurdianUser) {
+      updateObservable = this.gurdianService.updateProfile(
+        this.jwt.getUserId(),
+        user
+      );
+    }
+
+    updateObservable
       .pipe(switchMap(() => this.authService.reauthenticate()))
       .subscribe({
         next: () => {

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import {
+  faAddressBook,
   faBabyCarriage,
   faBackwardStep,
   faBars,
@@ -81,7 +82,8 @@ export class IconModule {
       faEnvelope,
       faCheck,
       faXmark,
-      faBabyCarriage
+      faBabyCarriage,
+      faAddressBook
     );
   }
 }

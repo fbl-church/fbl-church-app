@@ -1,7 +1,9 @@
 <ik-form [formGroup]="form">
+  <ng-content select="ik-card-header"></ng-content>
   <div class="row">
     <ik-form-field header="First Name*" class="col-md-6"
       ><input
+        type="text"
         class="form-input__normal"
         placeholder="First Name"
         formControlName="firstName"
@@ -10,6 +12,7 @@
 
     <ik-form-field header="Last Name*" class="col-md-6"
       ><input
+        type="text"
         class="form-input__normal"
         placeholder="Last Name"
         formControlName="lastName"
@@ -30,7 +33,7 @@
   </div>
 
   <div class="row">
-    <ik-form-field header="Phone*" class="col-md-4">
+    <ik-form-field header="Phone*" class="col-md-6">
       <input
         phoneMask
         placeholder="(___) ___-____"
@@ -40,8 +43,18 @@
         maxlength="14"
       />
     </ik-form-field>
-    <ik-form-field header="Address*" class="col-md-8">
+    <ik-form-field header="Relationship*" class="col-md-6">
+      <ik-single-select
+        formControlName="relationship"
+        [items]="mappedRelationships"
+      ></ik-single-select>
+    </ik-form-field>
+  </div>
+
+  <div class="row">
+    <ik-form-field header="Address*" class="col-12">
       <input
+        type="text"
         class="form-input__normal"
         placeholder="Address"
         formControlName="address"
@@ -52,6 +65,7 @@
   <div class="row">
     <ik-form-field header="City*" class="col-md-4">
       <input
+        type="text"
         class="form-input__normal"
         placeholder="City"
         formControlName="city"
@@ -76,13 +90,3 @@
     </ik-form-field>
   </div>
 </ik-form>
-<button class="btn btn-default btn-flat btn-left" (click)="onCancelClick()">
-  {{ leftActionButton }}
-</button>
-<button
-  class="btn btn-primary btn-flat btn-right"
-  (click)="onSaveClick()"
-  [disabled]="form.invalid || !form.dirty || disableSave"
->
-  {{ rightActionButton }}
-</button>

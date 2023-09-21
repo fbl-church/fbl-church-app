@@ -7,6 +7,6 @@
   <ik-card-info
     header="About"
     class="text-pre-wrap"
-    [text]="child?.additionalInfo ? child.additionalInfo : '-'"
+    [text]="child?.additionalInfo ? child.additionalInfo.trim() : '-'"
   ></ik-card-info>
 </ik-card>

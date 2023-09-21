@@ -28,6 +28,7 @@
   *ngIf="!childExists"
   leftActionButton="Cancel"
   rightActionButton="Next"
+  [groupEdit]="false"
   (cancel)="onCancelClick()"
   (save)="onNextClick($event)"
 >

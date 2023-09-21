@@ -53,6 +53,7 @@ import { AgePipe } from './service/pipe/age.pipe';
 import { ChurchGroupTranslationPipe } from './service/pipe/church-group-translation.pipe';
 import { UsernamePipe } from './service/pipe/format-user-name.pipe';
 import { NotificationMessagePipe } from './service/pipe/notification-message.pipe';
+import { RelationshipTranslationPipe } from './service/pipe/relationship-translation.pipe';
 import { WebRoleTranslationPipe } from './service/pipe/web-role-translation.pipe';
 import { InisteGeneralNotificationComponent } from './subscription/insite-general-notification/insite-general-notification.component';
 import { InisteUserNotificationComponent } from './subscription/insite-user-notification/insite-user-notification.component';
@@ -112,6 +113,7 @@ export function tokenGetter() {
     FormComponent,
     MultiSelectInputComponent,
     DropdownComponent,
+    RelationshipTranslationPipe,
   ],
   imports: [
     BaseInsiteModule,
@@ -177,6 +179,7 @@ export function tokenGetter() {
     FormComponent,
     MultiSelectInputComponent,
     DropdownComponent,
+    RelationshipTranslationPipe,
   ],
   entryComponents: [ModalComponent, NotificationPopupComponent],
   providers: [

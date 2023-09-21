@@ -1,6 +1,5 @@
 <ng-container *ngIf="currentUser; else pageLoader">
   <ik-header title="{{ currentUser | formatUserName }}">
-    <ik-header-back (back)="onBackClick()"></ik-header-back>
     <div class="inline-display header-buttons">
       <button
         class="btn btn-default btn-flat btn-header-right"
@@ -12,21 +11,37 @@
     </div>
   </ik-header>
   <div class="layout__column-left layout__wide">
-    <app-user-details-card [user]="currentUser" (editClick)="onEditClick()">
+    <app-user-details-card
+      *ngIf="!currentUser.phone; else gurdianDetails"
+      [user]="currentUser"
+      (editClick)="onEditClick()"
+    >
       <ik-icon
         icon="pen-to-square"
         class="right pointer"
         (click)="onEditClick()"
       ></ik-icon
     ></app-user-details-card>
+    <ng-template #gurdianDetails>
+      <app-gurdian-details-card [gurdian]="currentUser">
+        <ik-icon
+          icon="pen-to-square"
+          class="right pointer"
+          (click)="onEditClick()"
+        ></ik-icon
+      ></app-gurdian-details-card>
+    </ng-template>
   </div>
 
   <div class="layout__column-right layout__narrow">
     <app-gurdian-children-details-grid
-      *ngIf="currentUser.webRole.includes(WebRole.GURDIAN)"
+      *ngIf="currentUser.phone"
       [gurdianId]="currentUser.id"
     ></app-gurdian-children-details-grid>
-    <app-user-roles-card [user]="currentUser"></app-user-roles-card>
+    <app-user-roles-card
+      *ngIf="!isGurdianOnly"
+      [user]="currentUser"
+    ></app-user-roles-card>
   </div>
 </ng-container>
 

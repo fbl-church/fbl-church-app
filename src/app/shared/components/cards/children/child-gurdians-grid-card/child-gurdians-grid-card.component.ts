@@ -8,6 +8,7 @@ import {
 import { Gurdian } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { GurdianService } from 'src/service/gurdians/gurdian.service';
+import { ChildGurdianFormComponent } from '../../../forms/child-gurdian-form/child-gurdian-form.component';
 
 @Component({
   selector: 'app-child-gurdians-grid-card',
@@ -15,9 +16,11 @@ import { GurdianService } from 'src/service/gurdians/gurdian.service';
 })
 export class ChildGurdiansGridCardComponent implements OnInit {
   @ViewChild(GridChecklistColumnComponent)
-  gridCheclistColumn: GridChecklistColumnComponent;
+  gridChecklistColumn: GridChecklistColumnComponent;
   @ViewChild(GridSelectionColumnComponent)
   gridSelection: GridSelectionColumnComponent;
+  @ViewChild(ChildGurdianFormComponent)
+  childGurdianForm: ChildGurdianFormComponent;
 
   @Input() gurdians: Gurdian[] = [];
 
@@ -26,12 +29,13 @@ export class ChildGurdiansGridCardComponent implements OnInit {
 
   gurdianMapSelection: Map<any, any> = new Map();
   gurdianIdsChecked: number[] = [];
+  showGurdianSelectionGrid = true;
 
   constructor(
     private readonly gurdianService: GurdianService,
     private readonly commonService: CommonService
   ) {
-    this.dataloader = (params: any) => this.getGurdianDataLoader(params);
+    this.dataloader = (params: any) => this.gurdianService.get(params);
   }
 
   ngOnInit() {
@@ -41,26 +45,39 @@ export class ChildGurdiansGridCardComponent implements OnInit {
     );
   }
 
-  getGurdianDataLoader(params?: Map<string, string[]>) {
-    return this.gurdianService.get(params);
-  }
-
   getSelectedGurdians(): Gurdian[] {
-    return this.gridCheclistColumn.getSelected().map((v) => {
-      return {
-        id: v,
-        relationship: this.getRelationshipSelections().get(v)
-          ? Relationship[this.getRelationshipSelections().get(v).toUpperCase()]
-          : null,
-      };
-    });
+    if (this.childGurdianForm) {
+      return [this.childGurdianForm.getGurdianFormData()];
+    } else {
+      return this.gridChecklistColumn.getSelected().map((v) => {
+        const selection = this.getRelationshipSelections().get(v);
+        return {
+          id: v,
+          relationship: selection
+            ? Relationship[selection.toUpperCase()]
+            : null,
+        };
+      });
+    }
   }
 
-  getRelationshipSelections() {
+  onToggleGurdianGrid(show: boolean) {
+    this.showGurdianSelectionGrid = show;
+  }
+
+  isGurdianFormInvalid() {
+    if (this.childGurdianForm) {
+      return this.childGurdianForm.invalid;
+    } else {
+      return false;
+    }
+  }
+
+  private getRelationshipSelections() {
     return this.gridSelection.getSelections();
   }
 
-  setSelectedGurdians() {
+  private setSelectedGurdians() {
     if (this.gurdians.length <= 0) {
       return;
     }
@@ -76,6 +93,4 @@ export class ChildGurdiansGridCardComponent implements OnInit {
       )
     );
   }
-
-  onAddGurdianClick() {}
 }

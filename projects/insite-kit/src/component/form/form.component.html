@@ -1,5 +1,6 @@
 <form [formGroup]="formGroup">
   <ik-card>
+    <ng-content select="ik-card-header"></ng-content>
     <ng-content></ng-content>
   </ik-card>
 </form>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   Access,
   App,
@@ -14,13 +14,8 @@ export class GurdianDetailsCardComponent {
   @Input() gurdian: Gurdian;
   @Input() title = 'Details';
   @Input() loading = false;
-  @Output() editClick = new EventEmitter<any>();
 
   FeatureType = FeatureType;
   Application = App;
   Access = Access;
-
-  onEditIconClick() {
-    this.editClick.emit();
-  }
 }

@@ -2,16 +2,17 @@ import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
-import { User } from 'projects/insite-kit/src/model/user.model';
+import { Gurdian, User } from 'projects/insite-kit/src/model/user.model';
 import { Subject, takeUntil, tap } from 'rxjs';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-  currentUser: User;
+  currentUser: User | Gurdian;
 
   WebRole = WebRole;
+  isGurdianOnly = false;
   destroy = new Subject<void>();
 
   constructor(
@@ -24,17 +25,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.route.data
       .pipe(
         tap((res) => (this.currentUser = res.currentUser.body)),
+        tap(() => this.gurdianOnlyUser()),
         takeUntil(this.destroy)
       )
-      .subscribe();
+      .subscribe((res) => console.log(res));
   }
 
   ngOnDestroy() {
     this.destroy.next();
-  }
-
-  onBackClick() {
-    this.location.back();
   }
 
   onEditClick() {
@@ -43,5 +41,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   onResetPassword() {
     this.router.navigate(['/profile/reset-password']);
+  }
+
+  gurdianOnlyUser() {
+    this.isGurdianOnly =
+      this.currentUser.webRole.includes(WebRole.GURDIAN) &&
+      this.currentUser.webRole.length == 1;
   }
 }

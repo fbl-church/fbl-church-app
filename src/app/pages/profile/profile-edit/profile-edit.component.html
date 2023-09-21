@@ -2,17 +2,31 @@
   ><ik-header-back (back)="onCancelClick()"></ik-header-back
 ></ik-header>
 
-<app-user-form
-  *ngIf="userUpdating && !loading; else pageLoader"
-  [userData]="userUpdating"
-  rightActionButton="Update"
-  leftActionButton="Cancel"
-  [enableRoleUpdate]="false"
-  [enablePasswordUpdate]="false"
-  (cancel)="onCancelClick()"
-  (save)="onSaveClick($event)"
->
-</app-user-form>
+<ng-container *ngIf="!isGurdianUser; else gurdianForm">
+  <app-user-form
+    *ngIf="userUpdating && !loading; else pageLoader"
+    [userData]="userUpdating"
+    rightActionButton="Update"
+    leftActionButton="Cancel"
+    [enableRoleUpdate]="false"
+    [enablePasswordUpdate]="false"
+    (cancel)="onCancelClick()"
+    (save)="onSaveClick($event)"
+  >
+  </app-user-form>
+</ng-container>
+
+<ng-template #gurdianForm>
+  <app-gurdian-form
+    *ngIf="userUpdating && !loading; else pageLoader"
+    [gurdianData]="userUpdating"
+    rightActionButton="Update"
+    leftActionButton="Cancel"
+    (cancel)="onCancelClick()"
+    (save)="onSaveClick($event)"
+  >
+  </app-gurdian-form>
+</ng-template>
 
 <ng-template #pageLoader>
   <ik-loading type="double"></ik-loading>

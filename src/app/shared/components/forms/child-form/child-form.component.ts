@@ -16,6 +16,7 @@ export class ChildFormComponent implements OnInit {
   @Input() rightActionButton: string;
   @Input() leftActionButton: string;
   @Input() disableSave = false;
+  @Input() groupEdit = true;
   @Output() cancel = new EventEmitter<any>();
   @Output() save = new EventEmitter<Child>();
 

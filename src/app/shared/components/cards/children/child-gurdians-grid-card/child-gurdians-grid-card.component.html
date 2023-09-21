@@ -1,9 +1,12 @@
-<ik-grid [dataLoader]="dataloader">
+<ik-grid
+  [dataLoader]="dataloader"
+  *ngIf="showGurdianSelectionGrid; else childNewGurdianForm"
+>
   <ik-card-header title="Gurdians">
     <ik-icon
       icon="user-plus"
       class="right pointer"
-      (click)="onAddGurdianClick()"
+      (click)="onToggleGurdianGrid(false)"
     ></ik-icon>
   </ik-card-header>
   <ik-grid-search></ik-grid-search>
@@ -20,3 +23,15 @@
   <ik-grid-column label="Phone" field="phone"></ik-grid-column>
   <ik-grid-pager key="Gurdians" [pageSize]="5"></ik-grid-pager>
 </ik-grid>
+
+<ng-template #childNewGurdianForm>
+  <app-child-gurdian-form>
+    <ik-card-header title="New Gurdian">
+      <ik-icon
+        icon="address-book"
+        class="right pointer"
+        (click)="onToggleGurdianGrid(true)"
+      ></ik-icon>
+    </ik-card-header>
+  </app-child-gurdian-form>
+</ng-template>

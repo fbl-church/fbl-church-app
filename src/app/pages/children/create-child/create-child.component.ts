@@ -49,6 +49,13 @@ export class CreateChildComponent {
   }
 
   validGurdians(gurdians: any[]): boolean {
+    if (this.gurdianSelectionGrid.isGurdianFormInvalid()) {
+      this.popupService.error(
+        'New Gurdian form is not valid. Please confirm all required fields are filled out.'
+      );
+      return false;
+    }
+
     if (gurdians.length < 1) {
       this.popupService.error(
         'Child is required to have at least one gurdian assigned to them.'

@@ -16,7 +16,11 @@
       ></ik-icon>
     </ng-container>
   </ik-card-header>
-  <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
+  <ik-grid-column label="Name" field="name">
+    <ng-template let-data>
+      {{ data | formatUserName }}
+    </ng-template>
+  </ik-grid-column>
   <ik-grid-column label="Phone" field="phone"></ik-grid-column>
   <ik-grid-column
     label="Relationship"

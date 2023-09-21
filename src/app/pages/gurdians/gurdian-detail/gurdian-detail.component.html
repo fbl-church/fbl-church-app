@@ -17,9 +17,17 @@
     </div>
   </ik-header>
   <div class="layout__column-left layout__half">
-    <app-gurdian-details-card
-      [gurdian]="gurdianData"
-      (editClick)="onEditClick()"
+    <app-gurdian-details-card [gurdian]="gurdianData">
+      <ik-icon
+        icon="pen-to-square"
+        class="right pointer"
+        (click)="onEditClick()"
+        *featureAccess="[
+          Application.GURDIANS,
+          FeatureType.DETAIL,
+          Access.UPDATE
+        ]"
+      ></ik-icon
     ></app-gurdian-details-card>
   </div>
   <div class="layout__column-right layout__half">

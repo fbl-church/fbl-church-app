@@ -54,6 +54,7 @@ export class GurdianFormComponent implements OnInit {
         Validators.required,
       ],
       address: [this.gurdianData ? this.gurdianData.address : ''],
+      email: [this.gurdianData ? this.gurdianData.email : '', Validators.email],
     });
   }
 
@@ -65,6 +66,7 @@ export class GurdianFormComponent implements OnInit {
     let gurdian: Gurdian = {
       firstName: this.form.value.firstName.trim(),
       lastName: this.form.value.lastName.trim(),
+      email: this.form.value.email.trim(),
       phone: this.form.value.phone.trim(),
       address: this.form.value.address.trim(),
       city: this.form.value.city.trim(),
@@ -73,13 +75,5 @@ export class GurdianFormComponent implements OnInit {
     };
 
     this.save.emit(gurdian);
-  }
-
-  customSearchFn(term: string, item: any) {
-    term = term.toLocaleLowerCase();
-    return (
-      item.code.toLocaleLowerCase().indexOf(term) > -1 ||
-      item.name.toLocaleLowerCase().indexOf(term) > -1
-    );
   }
 }

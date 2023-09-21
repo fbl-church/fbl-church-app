@@ -34,7 +34,7 @@
       />
     </ik-form-field>
   </div>
-  <ik-form-field header="Church Groups">
+  <ik-form-field header="Church Groups" *ngIf="groupEdit">
     <ik-multi-select
       formControlName="groups"
       [items]="churchGroups"

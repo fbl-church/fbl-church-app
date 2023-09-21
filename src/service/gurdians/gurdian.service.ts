@@ -89,6 +89,20 @@ export class GurdianService {
   }
 
   /**
+   * This will update the gurdians profile information for the given gurdian object.
+   *
+   * @param id The id of the gurdian
+   * @param gurdian The gurdian information that needs updated.
+   * @returns Gurdian object with the updated gurdian object.
+   */
+  updateProfile(id: any, gurdian: Gurdian): Observable<Gurdian> {
+    return this.request.put<Gurdian>(
+      `${this.BASE_PATH}/profile/${id}`,
+      gurdian
+    );
+  }
+
+  /**
    * Update a childs gurdians by id
    *
    * @param childId The child id to update

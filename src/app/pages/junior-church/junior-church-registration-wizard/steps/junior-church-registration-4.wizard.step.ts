@@ -47,22 +47,18 @@ export class JuniorChurchRegistrationWizardStepFourComponent
         });
       } else {
         if (this.child?.gurdians) {
-          this.gurdianService
-            .get(
-              new Map().set(
-                'id',
-                this.child.gurdians.map((g) => g.id)
-              )
-            )
-            .subscribe((res) => {
-              this.activeChild = { ...this.child };
-              this.activeChild.gurdians = res.body;
-              this.activeChild.gurdians.forEach(
-                (g) =>
-                  (g.formattedRelationship = this.getGurdianRelationship(g.id))
-              );
-              this.loading = false;
-            });
+          if (this.child.gurdians.length === 1 && !this.child.gurdians[0].id) {
+            this.activeChild = { ...this.child };
+            this.activeChild.gurdians.map(
+              (g) =>
+                (g.formattedRelationship = this.commonService.translate(
+                  g.relationship,
+                  TranslationKey.RELATIONSHIP
+                ))
+            );
+          } else {
+            this.getGurdiansInformation();
+          }
         }
       }
     }
@@ -74,6 +70,24 @@ export class JuniorChurchRegistrationWizardStepFourComponent
       found.relationship,
       TranslationKey.RELATIONSHIP
     );
+  }
+
+  getGurdiansInformation() {
+    this.gurdianService
+      .get(
+        new Map().set(
+          'id',
+          this.child.gurdians.map((g) => g.id)
+        )
+      )
+      .subscribe((res) => {
+        this.activeChild = { ...this.child };
+        this.activeChild.gurdians = res.body;
+        this.activeChild.gurdians.forEach(
+          (g) => (g.formattedRelationship = this.getGurdianRelationship(g.id))
+        );
+        this.loading = false;
+      });
   }
 
   onCancelClick() {
