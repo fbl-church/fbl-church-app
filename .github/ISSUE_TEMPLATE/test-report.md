@@ -3,7 +3,7 @@ name: Test Report
 about: Adding test functionality to service
 title: ''
 labels: Test
-assignees: ''
+assignees: sambutler1017,suvakpc
 
 ---
 
