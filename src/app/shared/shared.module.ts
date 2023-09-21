@@ -12,7 +12,6 @@ import { UserDetailsCardComponent } from './components/cards/users/user-details-
 import { UserRolesCardComponent } from './components/cards/users/user-roles-card/user-roles-card.component';
 import { AttendanceRecordFormComponent } from './components/forms/attendance-record-form/attendance-record-form.component';
 import { ChildFormComponent } from './components/forms/child-form/child-form.component';
-import { ChildGuardianFormComponent } from './components/forms/child-guardian-form/child-guardian-form.component';
 import { GuardianFormComponent } from './components/forms/guardian-form/guardian-form.component';
 import { UserFormComponent } from './components/forms/user-form/user-form.component';
 import { AuthenticatedLayoutComponent } from './components/layouts/authenticated-layout/authenticated-layout.component';
@@ -34,7 +33,6 @@ import { AuthenticatedLayoutComponent } from './components/layouts/authenticated
     ChildGuardiansDetailsGridComponent,
     GuardianChildrenDetailsGridComponent,
     AttendanceRecordFormComponent,
-    ChildGuardianFormComponent,
     GuardianDetailsCardComponent,
   ],
   exports: [
@@ -51,7 +49,6 @@ import { AuthenticatedLayoutComponent } from './components/layouts/authenticated
     ChildGuardiansDetailsGridComponent,
     GuardianChildrenDetailsGridComponent,
     AttendanceRecordFormComponent,
-    ChildGuardianFormComponent,
     GuardianDetailsCardComponent,
   ],
 })

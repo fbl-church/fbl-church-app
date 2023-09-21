@@ -6,10 +6,10 @@ import { Component, Input } from '@angular/core';
 })
 export class GridSelectionColumnComponent {
   @Input() header = '';
-  @Input() values: any[] = [];
-  @Input() selections: Map<any, any> = new Map().set(3, 'Aunt');
+  @Input() values: { name: string; value: any }[] = [];
+  @Input() selections: { id: any; value: any }[] = [];
 
-  updateSelection(data: { id: any; selectionValue: any }, selected: boolean) {
+  updateSelection(data: { id: any; value: any }, selected: boolean) {
     if (selected) {
       this.addSelection(data);
     } else {
@@ -17,17 +17,15 @@ export class GridSelectionColumnComponent {
     }
   }
 
-  addSelection(data: { id: any; selectionValue: any }) {
-    this.selections.set(data.id, data.selectionValue);
+  addSelection(data: { id: any; value: any }) {
+    this.selections.push(data);
   }
 
   removeSelection(id: any) {
-    if (this.selections.has(id)) {
-      this.selections.delete(id);
-    }
+    this.selections = this.selections.filter((s) => s.id !== id);
   }
 
   getSelections() {
-    return this.selections;
+    return this.selections ? this.selections : [];
   }
 }

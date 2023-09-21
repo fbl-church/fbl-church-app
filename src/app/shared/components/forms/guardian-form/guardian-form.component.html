@@ -2,6 +2,8 @@
   <div class="row">
     <ik-form-field header="First Name*" class="col-md-6"
       ><input
+        type="text"
+        name="name"
         class="form-input__normal"
         placeholder="First Name"
         formControlName="firstName"
@@ -10,6 +12,7 @@
 
     <ik-form-field header="Last Name*" class="col-md-6"
       ><input
+        type="text"
         class="form-input__normal"
         placeholder="Last Name"
         formControlName="lastName"
@@ -22,6 +25,7 @@
       <input
         type="email"
         inputmode="email"
+        name="email"
         class="form-input__normal"
         placeholder="Email"
         formControlName="email"
@@ -35,12 +39,13 @@
         phoneMask
         placeholder="(___) ___-____"
         inputmode="tel"
+        name="phone"
         class="form-input__normal"
         formControlName="phone"
         maxlength="14"
       />
     </ik-form-field>
-    <ik-form-field header="Address*" class="col-md-8">
+    <ik-form-field header="Address" class="col-md-8">
       <input
         class="form-input__normal"
         placeholder="Address"
@@ -50,25 +55,26 @@
   </div>
 
   <div class="row">
-    <ik-form-field header="City*" class="col-md-4">
+    <ik-form-field header="City" class="col-md-4">
       <input
         class="form-input__normal"
+        name="city"
         placeholder="City"
         formControlName="city"
       />
     </ik-form-field>
-    <ik-form-field header="State*" class="col-md-4">
+    <ik-form-field header="State" class="col-md-4">
       <ik-single-select
         formControlName="state"
-        [clearable]="true"
         [items]="states"
       ></ik-single-select>
     </ik-form-field>
-    <ik-form-field header="Zip Code*" class="col-md-4">
+    <ik-form-field header="Zip Code" class="col-md-4">
       <input
         numberRestriction
         maxlength="5"
         inputmode="numeric"
+        name="zipCode"
         class="form-input__normal"
         placeholder="Zip Code"
         formControlName="zipCode"

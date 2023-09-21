@@ -62,17 +62,17 @@
     <td *ngIf="gridSelection" class="grid__content">
       <select
         class="form-select__normal"
-        (change)="onSelectionChange($event.target.value, row.id)"
+        (change)="onSelectionChange($event, row.id)"
       >
         <option value="" disabled selected hidden>
           {{ gridSelection?.header }}
         </option>
         <option
-          *ngFor="let value of gridSelection.values"
-          [ngValue]="row?.selectionValue"
-          [selected]="value === row?.selectionValue"
+          *ngFor="let v of gridSelection.values"
+          [(value)]="v.value"
+          [selected]="v.value === row?.value"
         >
-          {{ value }}
+          {{ v.name }}
         </option>
       </select>
     </td>

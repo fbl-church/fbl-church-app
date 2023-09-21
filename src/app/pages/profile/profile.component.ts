@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         tap(() => this.guardianOnlyUser()),
         takeUntil(this.destroy)
       )
-      .subscribe((res) => console.log(res));
+      .subscribe();
   }
 
   ngOnDestroy() {

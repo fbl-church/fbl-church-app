@@ -193,9 +193,9 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
     }
 
     const currentSelections = this.gridSelection.getSelections();
-    if (currentSelections.size > 0) {
+    if (currentSelections.length > 0) {
       this.data.body.forEach(
-        (r) => (r.selectionValue = currentSelections.get(r.id))
+        (r) => (r.value = currentSelections.find((s) => s.id === r.id)?.value)
       );
     }
   }
@@ -220,7 +220,7 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
   onSelectionChange(event: any, rowId: number) {
     this.gridSelection.addSelection({
       id: rowId,
-      selectionValue: event,
+      value: event.target.value,
     });
   }
 

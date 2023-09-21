@@ -51,9 +51,7 @@ export class UserToGuardianModalComponent implements OnInit {
       })
       .subscribe({
         next: () => {
-          this.popupService.success(
-            'User succesfully assigned a guardian role!'
-          );
+          this.popupService.success('User succesfully assigned Guardian role!');
           this.modal.close();
           this.modalLoading = false;
           this.router.navigate([`/guardians/${this.currentUser.id}/details`]);

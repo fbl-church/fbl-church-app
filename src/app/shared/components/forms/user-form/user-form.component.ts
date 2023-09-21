@@ -53,7 +53,10 @@ export class UserFormComponent implements OnInit {
         this.userData ? this.userData.lastName : '',
         Validators.required,
       ],
-      email: [this.userData ? this.userData.email : '', [Validators.email]],
+      email: [
+        this.userData ? this.userData.email : '',
+        [Validators.required, Validators.email],
+      ],
       roles: [
         this.userData
           ? this.userData.webRole.filter(

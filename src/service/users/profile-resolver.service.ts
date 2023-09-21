@@ -18,11 +18,6 @@ export class ProfileResolverService implements Resolve<any> {
     private readonly jwt: JwtService
   ) {}
   resolve(): Observable<User | Guardian> {
-    console.log(
-      'USER GUARDIAN',
-      this.jwt.getWebRoles(),
-      this.jwt.getWebRoles().includes(WebRole.GUARDIAN)
-    );
     if (this.jwt.getWebRoles().includes(WebRole.GUARDIAN)) {
       return this.guardianService.getById(this.jwt.getUserId()).pipe(
         catchError(() => {

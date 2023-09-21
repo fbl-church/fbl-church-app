@@ -16,7 +16,6 @@ export class GridChecklistColumnComponent {
   }
 
   addId(id: any) {
-    this.selectedIds.includes(id);
     if (this.selectedIds.includes(id)) {
       return;
     } else {

@@ -1,12 +1,9 @@
-<ik-grid
-  [dataLoader]="dataloader"
-  *ngIf="showGuardianSelectionGrid; else childNewGuardianForm"
->
+<ik-grid #guardianGrid [dataLoader]="dataloader">
   <ik-card-header title="Guardians">
     <ik-icon
       icon="user-plus"
       class="right pointer"
-      (click)="onToggleGuardianGrid(false)"
+      (click)="addGuardianModal.open()"
     ></ik-icon>
   </ik-card-header>
   <ik-grid-search></ik-grid-search>
@@ -17,21 +14,79 @@
     header="Relationship"
     field="relationship"
     [values]="relationships"
-    [selections]="guardianMapSelection"
+    [selections]="guardianSelection"
   ></ik-grid-selection-column>
   <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
   <ik-grid-column label="Phone" field="phone"></ik-grid-column>
   <ik-grid-pager key="Guardians" [pageSize]="5"></ik-grid-pager>
 </ik-grid>
 
-<ng-template #childNewGuardianForm>
-  <app-child-guardian-form>
-    <ik-card-header title="New Guardian">
-      <ik-icon
-        icon="address-book"
-        class="right pointer"
-        (click)="onToggleGuardianGrid(true)"
-      ></ik-icon>
-    </ik-card-header>
-  </app-child-guardian-form>
+<ik-modal #addGuardianModal name="addGuardianModal">
+  <ik-modal-header title="Add New Guardian?" type="info"></ik-modal-header>
+  <ng-container *ngIf="!modalLoading; else modalLoader">
+    <ik-modal-body>
+      <form *ngIf="guardianModalForm" [formGroup]="guardianModalForm">
+        <div class="row">
+          <ik-form-field header="First Name*" class="col-12" [padding]="false"
+            ><input
+              type="text"
+              class="form-input__normal"
+              placeholder="First Name"
+              formControlName="firstName"
+            />
+          </ik-form-field>
+
+          <ik-form-field header="Last Name*" class="col-12" [padding]="false"
+            ><input
+              type="text"
+              class="form-input__normal"
+              placeholder="Last Name"
+              formControlName="lastName"
+            />
+          </ik-form-field>
+        </div>
+        <div class="row">
+          <ik-form-field header="Phone*" class="col-12" [padding]="false">
+            <input
+              phoneMask
+              placeholder="(___) ___-____"
+              inputmode="tel"
+              class="form-input__normal"
+              formControlName="phone"
+              maxlength="14"
+            />
+          </ik-form-field>
+          <ik-form-field
+            header="Relationship*"
+            class="col-12"
+            [padding]="false"
+          >
+            <ik-single-select
+              formControlName="relationship"
+              [items]="relationships"
+            ></ik-single-select>
+          </ik-form-field>
+        </div>
+      </form>
+    </ik-modal-body>
+    <ik-modal-action-bar>
+      <button
+        class="btn btn-primary btn-flat btn-right btn-modal"
+        (click)="onAddGuardian()"
+        [disabled]="guardianModalForm && guardianModalForm.invalid"
+      >
+        Add Guardian
+      </button>
+      <button
+        class="btn btn-default btn-flat btn-right btn-modal"
+        (click)="addGuardianModal.close()"
+      >
+        Cancel
+      </button>
+    </ik-modal-action-bar>
+  </ng-container>
+</ik-modal>
+
+<ng-template #modalLoader>
+  <ik-loading></ik-loading>
 </ng-template>

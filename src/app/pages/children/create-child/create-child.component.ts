@@ -49,13 +49,6 @@ export class CreateChildComponent {
   }
 
   validGuardians(guardians: any[]): boolean {
-    if (this.guardianSelectionGrid.isGuardianFormInvalid()) {
-      this.popupService.error(
-        'New Guardian form is not valid. Please confirm all required fields are filled out.'
-      );
-      return false;
-    }
-
     if (guardians.length < 1) {
       this.popupService.error(
         'Child is required to have at least one guardian assigned to them.'

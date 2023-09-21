@@ -7,10 +7,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  ChurchGroup,
-  TranslationKey,
-} from 'projects/insite-kit/src/model/common.model';
+import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { ChildrenService } from 'src/service/children/children.service';
@@ -47,32 +44,14 @@ export class JuniorChurchRegistrationWizardStepFourComponent
         });
       } else {
         if (this.child?.guardians) {
-          if (
-            this.child.guardians.length === 1 &&
-            !this.child.guardians[0].id
-          ) {
-            this.activeChild = { ...this.child };
-            this.activeChild.guardians.map(
-              (g) =>
-                (g.formattedRelationship = this.commonService.translate(
-                  g.relationship,
-                  TranslationKey.RELATIONSHIP
-                ))
-            );
-          } else {
-            this.getGuardiansInformation();
-          }
+          this.getGuardiansInformation();
         }
       }
     }
   }
 
   getGuardianRelationship(guardianId: number) {
-    const found = this.child.guardians.find((g) => g.id === guardianId);
-    return this.commonService.translate(
-      found.relationship,
-      TranslationKey.RELATIONSHIP
-    );
+    return this.child.guardians.find((g) => g.id === guardianId).relationship;
   }
 
   getGuardiansInformation() {
@@ -87,7 +66,7 @@ export class JuniorChurchRegistrationWizardStepFourComponent
         this.activeChild = { ...this.child };
         this.activeChild.guardians = res.body;
         this.activeChild.guardians.forEach(
-          (g) => (g.formattedRelationship = this.getGuardianRelationship(g.id))
+          (g) => (g.relationship = this.getGuardianRelationship(g.id))
         );
         this.loading = false;
       });

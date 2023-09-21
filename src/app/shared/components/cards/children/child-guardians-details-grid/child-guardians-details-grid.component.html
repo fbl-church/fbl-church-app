@@ -22,10 +22,11 @@
     </ng-template>
   </ik-grid-column>
   <ik-grid-column label="Phone" field="phone"></ik-grid-column>
-  <ik-grid-column
-    label="Relationship"
-    field="formattedRelationship"
-  ></ik-grid-column>
+  <ik-grid-column label="Relationship" field="relationship">
+    <ng-template let-data>
+      {{ data.relationship | relationshipTranslate }}
+    </ng-template></ik-grid-column
+  >
   <ik-grid-pager
     key="Guardians"
     [pagerVisible]="false"

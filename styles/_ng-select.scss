@@ -19,6 +19,7 @@
 
 .ng-select.ng-select-focused:not(.ng-select-opened) > .ng-select-container {
   box-shadow: none;
+  border-color: #ccc;
 }
 
 .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
