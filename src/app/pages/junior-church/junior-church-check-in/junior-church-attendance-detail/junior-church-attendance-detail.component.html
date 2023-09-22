@@ -96,7 +96,7 @@
       </div>
 
       <ng-container *webRoleRestrictionAccess="WebRole.ADMINISTRATOR">
-        <div class="flex" *ngIf="startedByUser">
+        <div class="flex" *ngIf="startedByUser && record.status !== 'PENDING'">
           <div class="left-column">
             <ik-card-info
               header="Started By"
