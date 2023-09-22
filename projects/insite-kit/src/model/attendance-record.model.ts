@@ -22,6 +22,7 @@ export interface ChildAttendance {
   cuid?: string;
   updatedUserId?: number;
   checkInDate?: Date;
+  checkOutDate?: Date;
   [key: string]: any;
 }
 

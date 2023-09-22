@@ -1,9 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  AttendanceRecord,
-  ChildAttendance,
-} from 'projects/insite-kit/src/model/attendance-record.model';
+import { ChildAttendance } from 'projects/insite-kit/src/model/attendance-record.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { Observable, tap } from 'rxjs';
@@ -51,8 +48,8 @@ export class ChildAttendanceService {
     recordId: any,
     childId: any,
     notes: string
-  ): Observable<AttendanceRecord> {
-    return this.request.post<AttendanceRecord>(
+  ): Observable<ChildAttendance> {
+    return this.request.post<ChildAttendance>(
       `${this.BASE_PATH}/${recordId}/children`,
       { id: childId, notes: notes }
     );
@@ -70,10 +67,23 @@ export class ChildAttendanceService {
     recordId: any,
     childId: any,
     notes: string
-  ): Observable<AttendanceRecord> {
-    return this.request.put<AttendanceRecord>(
+  ): Observable<ChildAttendance> {
+    return this.request.put<ChildAttendance>(
       `${this.BASE_PATH}/${recordId}/children`,
       { id: childId, notes: notes }
+    );
+  }
+
+  /**
+   * Check out the child from the attendance record
+   *
+   * @param recordId The record id
+   * @param childId The id of the child
+   * @returns The updated child attendance
+   */
+  checkOutChild(recordId: any, childId: any): Observable<ChildAttendance> {
+    return this.request.put<ChildAttendance>(
+      `${this.BASE_PATH}/${recordId}/children/${childId}`
     );
   }
 

@@ -32,7 +32,7 @@ export class ChildUpdateCheckInModalComponent implements OnInit {
     private readonly childAttendanceService: ChildAttendanceService,
     private readonly popupService: PopupService,
     private readonly fb: FormBuilder
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.form = this.fb.group({ notes: '' });
@@ -53,14 +53,14 @@ export class ChildUpdateCheckInModalComponent implements OnInit {
         next: () => {
           this.checkInUpdateComplete.emit();
           this.popupService.success(
-            `${this.child.formattedName} successfully updated!`
+            `Notes for ${this.child.formattedName} successfully updated!`
           );
           this.modal.close();
           this.modalLoading = false;
         },
         error: () => {
           this.popupService.error(
-            `Unable to update '${this.child.formattedName}' at this time!`
+            `Unable to update notes for ${this.child.formattedName} at this time!`
           );
           this.modalLoading = false;
         },
@@ -89,5 +89,25 @@ export class ChildUpdateCheckInModalComponent implements OnInit {
       });
   }
 
-  onChildCheckout() { }
+  onChildCheckout() {
+    this.modalLoading = true;
+    this.childAttendanceService
+      .checkOutChild(this.record.id, this.child.id)
+      .subscribe({
+        next: () => {
+          this.checkInUpdateComplete.emit();
+          this.popupService.success(
+            `${this.child.formattedName} successfully checked out!`
+          );
+          this.modal.close();
+          this.modalLoading = false;
+        },
+        error: () => {
+          this.popupService.error(
+            `Unable to check out '${this.child.formattedName}' from attendance at this time!`
+          );
+          this.modalLoading = false;
+        },
+      });
+  }
 }
