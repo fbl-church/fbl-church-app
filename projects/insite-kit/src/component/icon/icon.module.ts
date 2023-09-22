@@ -34,6 +34,7 @@ import {
   faUserCheck,
   faUserPen,
   faUserPlus,
+  faUserXmark,
   faUsers,
   faXmark,
 } from '@fortawesome/free-solid-svg-icons';
@@ -83,7 +84,7 @@ export class IconModule {
       faCheck,
       faXmark,
       faBabyCarriage,
-      faAddressBook
+      faAddressBook, faUserXmark
     );
   }
 }

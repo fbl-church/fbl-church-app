@@ -32,7 +32,7 @@ export class ChildUpdateCheckInModalComponent implements OnInit {
     private readonly childAttendanceService: ChildAttendanceService,
     private readonly popupService: PopupService,
     private readonly fb: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.form = this.fb.group({ notes: '' });
@@ -88,4 +88,6 @@ export class ChildUpdateCheckInModalComponent implements OnInit {
         },
       });
   }
+
+  onChildCheckout() { }
 }

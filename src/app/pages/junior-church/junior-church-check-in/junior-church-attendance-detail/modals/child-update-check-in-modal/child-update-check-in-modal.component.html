@@ -4,52 +4,33 @@
     <ik-modal-body>
       <form [formGroup]="form">
         <div class="row">
-          <div class="col-6">
-            <ik-card-info
-              header="Name"
-              [text]="child | formatUserName"
-            ></ik-card-info>
-          </div>
-          <div class="col-6">
-            <ik-card-info header="CUID" [text]="child?.cuid"></ik-card-info>
-          </div>
+          <ik-card-info class="col-6" header="Name" [text]="child | formatUserName"></ik-card-info>
+          <ik-card-info class="col-6" header="CUID" [text]="child?.cuid"></ik-card-info>
         </div>
         <div class="row">
-          <div class="col-xs-12 col-sm-12">
-            <ik-form-field header="Notes">
-              <textarea
-                formControlName="notes"
-                rows="5"
-                cols="50"
-                class="form-input__outline"
-                [readOnly]="record.status === 'CLOSED'"
-              ></textarea>
-            </ik-form-field>
-          </div>
+          <ik-card-info header="Attendance" class="col-12">
+            <a class="link card-info__label-text" (click)="onMarkChildAbsent()">Mark Absent</a>
+          </ik-card-info>
+        </div>
+        <div class="row">
+          <ik-form-field header="Notes" class="col-12">
+            <textarea formControlName="notes" rows="5" cols="50" class="form-input__outline"
+              [readOnly]="record.status === 'CLOSED'"></textarea>
+          </ik-form-field>
         </div>
       </form>
     </ik-modal-body>
     <ik-modal-action-bar>
-      <button
-        *ngIf="record.status !== 'CLOSED'"
-        class="btn btn-danger btn-flat btn-left btn-modal"
-        (click)="onMarkChildAbsent()"
-      >
-        Absent
+      <button *ngIf="record.status !== 'CLOSED'" class="btn btn-danger btn-flat btn-left btn-modal"
+        (click)="onChildCheckout()">
+        Check Out
       </button>
 
-      <button
-        *ngIf="record.status !== 'CLOSED'"
-        class="btn btn-primary btn-flat btn-right btn-modal"
-        (click)="onUpdateChildCheckIn()"
-        [disabled]="!form.dirty"
-      >
+      <button *ngIf="record.status !== 'CLOSED'" class="btn btn-primary btn-flat btn-right btn-modal"
+        (click)="onUpdateChildCheckIn()" [disabled]="!form.dirty">
         Update
       </button>
-      <button
-        class="btn btn-default btn-flat btn-right btn-modal"
-        (click)="childCheckInModal.close()"
-      >
+      <button class="btn btn-default btn-flat btn-right btn-modal" (click)="childCheckInModal.close()">
         {{ record.status !== "CLOSED" ? "Cancel" : "Close" }}
       </button>
     </ik-modal-action-bar>
