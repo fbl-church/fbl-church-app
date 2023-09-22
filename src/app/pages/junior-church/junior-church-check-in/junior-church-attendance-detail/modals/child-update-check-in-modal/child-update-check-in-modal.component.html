@@ -15,7 +15,10 @@
             [text]="child?.cuid"
           ></ik-card-info>
         </div>
-        <div class="row" *ngIf="!child?.checkOutDate">
+        <div
+          class="row"
+          *ngIf="!child?.checkOutDate && record.status !== 'CLOSED'"
+        >
           <ik-card-info header="Attendance" class="col-12">
             <a class="link card-info__label-text" (click)="onMarkChildAbsent()"
               >Mark Absent</a

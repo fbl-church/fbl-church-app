@@ -12,10 +12,21 @@ import {
   FeatureType,
   WebRole,
 } from 'projects/insite-kit/src/model/common.model';
+import { User } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
-import { Subject, map, of, takeUntil } from 'rxjs';
+import {
+  Observable,
+  Subject,
+  iif,
+  map,
+  of,
+  switchMap,
+  takeUntil,
+  tap,
+} from 'rxjs';
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
+import { UserService } from 'src/service/users/user.service';
 
 @Component({
   selector: 'app-junior-church-attendance-detail',
@@ -37,6 +48,9 @@ export class JuniorChurchAttendanceDetailComponent
   Access = Access;
   WebRole = WebRole;
 
+  startedByUser: User;
+  closedByUser: User;
+
   canStartCheckIn = false;
 
   constructor(
@@ -44,33 +58,51 @@ export class JuniorChurchAttendanceDetailComponent
     private readonly route: ActivatedRoute,
     private readonly commonService: CommonService,
     private readonly attendanceRecordService: AttendanceRecordService,
-    private readonly popupService: PopupService
+    private readonly popupService: PopupService,
+    private readonly userService: UserService
   ) {}
 
   ngOnInit() {
     this.route.data
       .pipe(
         map((res) => res.attendanceRecord.body),
+        tap((res) => (this.record = res)),
+        switchMap(() =>
+          iif(
+            () => !!this.record.startedByUserId,
+            this.getUser(this.record.startedByUserId),
+            of({})
+          )
+        ),
+        tap((res) => (this.startedByUser = res)),
+        switchMap(() =>
+          iif(
+            () => !!this.record.closedByUserId,
+            this.getUser(this.record.closedByUserId),
+            of(null)
+          )
+        ),
+        tap((res) => (this.closedByUser = res)),
         takeUntil(this.destroy)
       )
-      .subscribe((res: AttendanceRecord) => {
+      .subscribe(() => {
         this.workerDataloader = () =>
           of(
             new HttpResponse({
-              body: res.workers,
+              body: this.record.workers,
               headers: new HttpHeaders({
-                'total-count': `${res.workers.length}`,
+                'total-count': `${this.record.workers.length}`,
               }),
             })
           );
         this.childrenDataloader = (params) =>
           this.attendanceRecordService.getAttendanceChildrenById(
-            res.id,
+            this.record.id,
             params.set('present', [true])
           );
-        this.record = res;
+
         this.canStartCheckIn =
-          res.activeDate ===
+          this.record.activeDate ===
           this.commonService.formatDate(new Date(), 'yyyy-MM-dd');
         this.loading = false;
       });
@@ -96,9 +128,16 @@ export class JuniorChurchAttendanceDetailComponent
     ]);
   }
 
+  getUser(id: number): Observable<User> {
+    return this.userService.getUserById(id).pipe(map((res) => res.body));
+  }
+
   onRecordClosed(event: AttendanceRecord) {
     this.record.status = AttendanceStatus.CLOSED;
     this.record.closedDate = event.closedDate;
+    this.getUser(event.closedByUserId).subscribe(
+      (res) => (this.closedByUser = res)
+    );
   }
 
   refreshChildrenGrid() {

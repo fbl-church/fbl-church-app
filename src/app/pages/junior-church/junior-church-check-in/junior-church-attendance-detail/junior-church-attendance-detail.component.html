@@ -94,15 +94,26 @@
           </ik-card-info>
         </div>
       </div>
-      <div class="flex">
-        <div class="left-column">
-          <ik-card-info
-            header="Created Date"
-            [text]="record.insertDate | date : 'MMMM d, y'"
-          >
-          </ik-card-info>
+
+      <ng-container *webRoleRestrictionAccess="WebRole.ADMINISTRATOR">
+        <div class="flex" *ngIf="startedByUser">
+          <div class="left-column">
+            <ik-card-info
+              header="Started By"
+              [text]="startedByUser | formatUserName"
+            ></ik-card-info>
+          </div>
+          <div class="right-column" *ngIf="closedByUser">
+            <ik-card-info
+              header="Closed By"
+              [text]="closedByUser | formatUserName"
+            ></ik-card-info>
+          </div>
         </div>
-        <div class="right-column" *ngIf="record.closedDate">
+      </ng-container>
+
+      <div class="flex" *ngIf="record.closedDate">
+        <div class="left-column">
           <ik-card-info
             header="Closed Date"
             [text]="record.closedDate | date : 'MMMM d, y, h:mm a'"

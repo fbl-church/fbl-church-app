@@ -9,6 +9,8 @@ export interface AttendanceRecord {
   workers?: User[] | any[];
   activeDate?: Date | any;
   closedDate?: Date | any;
+  startedByUserId?: any;
+  closedByUserId?: any;
   insertDate?: Date | any;
   [key: string]: any;
 }

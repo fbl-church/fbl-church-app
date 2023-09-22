@@ -52,8 +52,8 @@ export class UserService {
    * @param params user id for the user to get
    * @returns User object
    */
-  getUserById(id: number): Observable<HttpResponse<User>> {
-    return this.request.get<User>(`${this.BASE_USER_PATH}/${id.toString()}`);
+  getUserById(id: any): Observable<HttpResponse<User>> {
+    return this.request.get<User>(`${this.BASE_USER_PATH}/${id}`);
   }
 
   /**
