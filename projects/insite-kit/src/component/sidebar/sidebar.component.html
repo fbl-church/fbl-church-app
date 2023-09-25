@@ -34,3 +34,11 @@
     </ng-template>
   </ng-container>
 </div>
+<div
+  class="sidebar-overlay"
+  [ngClass]="{
+    'sidebar-overlay--open': isOpen,
+    'sidebar-overlay--closed': !isOpen
+  }"
+  (click)="close()"
+></div>

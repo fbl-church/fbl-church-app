@@ -4,6 +4,15 @@
   font-family: emoji, sans-serif;
 }
 
+html {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
 a {
   text-decoration: none !important;
 }
@@ -21,7 +30,7 @@ textarea {
 
 .link {
   cursor: pointer;
-  color: #0D6EFD
+  color: #0d6efd;
 }
 
 .inline {
