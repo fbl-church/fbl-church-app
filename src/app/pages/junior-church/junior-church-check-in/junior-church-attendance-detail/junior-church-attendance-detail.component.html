@@ -160,7 +160,7 @@
     </ik-grid>
   </div>
   <div class="layout__column-right layout__narrow">
-    <ik-grid [dataLoader]="workerDataloader">
+    <app-attendance-record-workers-grid [dataloader]="workerDataloader">
       <ik-card-header title="Workers">
         <ng-container *ngIf="record.status !== 'CLOSED'">
           <ik-icon
@@ -176,14 +176,7 @@
           ></ik-icon>
         </ng-container>
       </ik-card-header>
-      <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
-      <ik-grid-column label="Email" field="email"></ik-grid-column>
-      <ik-grid-pager
-        key="Workers"
-        [pagerVisible]="false"
-        [pageSize]="10"
-      ></ik-grid-pager>
-    </ik-grid>
+    </app-attendance-record-workers-grid>
   </div>
 </ng-container>
 

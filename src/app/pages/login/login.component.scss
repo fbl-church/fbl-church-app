@@ -2,8 +2,12 @@
   object-fit: cover;
   width: 100%;
   height: 100vh;
-  background: url(../../../assets/images/login-screen-background.jpg) no-repeat;
+  background: linear-gradient(#e9e9e9, #6d6d6d),
+    url(../../../assets/images/login-screen-background.jpg.webp);
+  background-blend-mode: multiply;
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   text-align: center;
   position: absolute;
   overflow-x: hidden;
