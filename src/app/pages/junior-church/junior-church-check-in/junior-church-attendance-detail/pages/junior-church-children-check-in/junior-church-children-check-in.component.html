@@ -31,10 +31,10 @@
   </ik-grid>
 </ng-container>
 
-<app-child-check-in-modal
+<app-check-in-child-modal
   [recordId]="recordId"
   (checkInComplete)="refreshGrid()"
-></app-child-check-in-modal>
+></app-check-in-child-modal>
 
 <ng-template #pageLoader>
   <ik-loading type="double"></ik-loading>

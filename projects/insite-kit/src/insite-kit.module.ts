@@ -43,6 +43,7 @@ import { SidebarComponent } from './component/sidebar/sidebar.component';
 import { WizardStepComponent } from './component/wizard/wizard-step/wizard-step.component';
 import { WizardStepDirective } from './component/wizard/wizard-step/wizard-step.directive';
 import { WizardComponent } from './component/wizard/wizard.component';
+import { AttendanceRecordActivationDirective } from './directives/attendanceRecordActivation/attendance-record-activation.directive';
 import { FeatureAccessDirective } from './directives/featureAccess/feature-access.directive';
 import { WebRoleRestrictionAccessDirective } from './directives/webRoleRestrictionAccess/webRole-restriction-access.directive';
 import { NumberRestrictionDirective } from './service/directive/number-restriction.directive';
@@ -114,6 +115,7 @@ export function tokenGetter() {
     MultiSelectInputComponent,
     DropdownComponent,
     RelationshipTranslationPipe,
+    AttendanceRecordActivationDirective,
   ],
   imports: [
     BaseInsiteModule,
@@ -180,6 +182,7 @@ export function tokenGetter() {
     MultiSelectInputComponent,
     DropdownComponent,
     RelationshipTranslationPipe,
+    AttendanceRecordActivationDirective,
   ],
   entryComponents: [ModalComponent, NotificationPopupComponent],
   providers: [

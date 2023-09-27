@@ -1,5 +1,12 @@
 <ik-modal #childCheckInModal name="childCheckInModal">
-  <ik-modal-header title="Update Child Check In?" type="info"></ik-modal-header>
+  <ik-modal-header
+    [title]="
+      record.status !== 'CLOSED'
+        ? 'Update Child Attendance?'
+        : 'Child Attendance'
+    "
+    type="info"
+  ></ik-modal-header>
   <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
       <form [formGroup]="form">

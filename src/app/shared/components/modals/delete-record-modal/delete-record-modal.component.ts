@@ -11,6 +11,7 @@ import { AttendanceRecordService } from 'src/service/attendance/attendance-recor
 export class DeleteRecordModalComponent {
   @ViewChild('deleteRecordModal') modal: ModalComponent;
   @Input() recordId: number;
+  @Input() route: string;
 
   modalLoading = false;
 
@@ -25,8 +26,8 @@ export class DeleteRecordModalComponent {
     this.attendanceRecordService.delete(this.recordId).subscribe({
       next: () => {
         this.modal.close();
-        this.router.navigate(['/junior-church/check-in']);
-        this.popupService.success('Attendance successfully deleted!');
+        this.router.navigate([this.route]);
+        this.popupService.success('Attendance Record Successfully Deleted!');
       },
       error: () => {
         this.popupService.error(

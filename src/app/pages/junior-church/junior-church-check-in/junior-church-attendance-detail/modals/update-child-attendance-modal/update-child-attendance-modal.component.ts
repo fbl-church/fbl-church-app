@@ -16,13 +16,13 @@ import { PopupService } from 'projects/insite-kit/src/service/notification/popup
 import { ChildAttendanceService } from 'src/service/attendance/child-attendance.service';
 
 @Component({
-  selector: 'app-child-update-check-in-modal',
-  templateUrl: './child-update-check-in-modal.component.html',
+  selector: 'app-update-child-attendance-modal',
+  templateUrl: './update-child-attendance-modal.component.html',
 })
-export class ChildUpdateCheckInModalComponent implements OnInit {
+export class UpdateChildAttendanceModalComponent implements OnInit {
   @ViewChild('childCheckInModal') modal: ModalComponent;
   @Input() record: AttendanceRecord;
-  @Output() checkInUpdateComplete = new EventEmitter<void>();
+  @Output() childAttendanceUpdated = new EventEmitter<void>();
 
   child: ChildAttendance;
   modalLoading = false;
@@ -51,7 +51,7 @@ export class ChildUpdateCheckInModalComponent implements OnInit {
       .updateChildNotes(this.record.id, this.child.id, this.form.value.notes)
       .subscribe({
         next: () => {
-          this.checkInUpdateComplete.emit();
+          this.childAttendanceUpdated.emit();
           this.popupService.success(
             `Notes for ${this.child.formattedName} successfully updated!`
           );
@@ -73,7 +73,7 @@ export class ChildUpdateCheckInModalComponent implements OnInit {
       .removeChildFromRecord(this.record.id, this.child.id)
       .subscribe({
         next: () => {
-          this.checkInUpdateComplete.emit();
+          this.childAttendanceUpdated.emit();
           this.popupService.success(
             `${this.child.formattedName} successfully removed from Attendance!`
           );
@@ -95,7 +95,7 @@ export class ChildUpdateCheckInModalComponent implements OnInit {
       .checkOutChild(this.record.id, this.child.id)
       .subscribe({
         next: () => {
-          this.checkInUpdateComplete.emit();
+          this.childAttendanceUpdated.emit();
           this.popupService.success(
             `${this.child.formattedName} successfully checked out!`
           );

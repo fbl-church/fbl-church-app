@@ -1,56 +1,19 @@
 <ng-container *ngIf="!loading; else pageLoader">
-  <ik-header [title]="record.name">
-    <ik-header-back (back)="onBackClick()"></ik-header-back>
-    <div class="inline-display header-buttons">
-      <button
-        class="btn btn-danger btn-flat btn-header-right"
-        *featureAccess="[
-          Application.JUNIOR_CHURCH,
-          FeatureType.DETAIL,
-          Access.DELETE
-        ]"
-        (click)="deleteModal.modal.open()"
-      >
-        <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
-        Delete
-      </button>
-      <ng-container
-        *featureAccess="[
-          Application.JUNIOR_CHURCH,
-          FeatureType.CHECK_IN,
-          Access.DELETE
-        ]"
-      >
-        <button
-          class="btn btn-danger btn-flat btn-header-right"
-          *ngIf="record.status === 'ACTIVE'"
-          (click)="closeModal.modal.open()"
-        >
-          <ik-icon icon="lock" classOverride="btn-icon"></ik-icon>
-          Close
-        </button></ng-container
-      >
+  <app-attendance-record-detail-header
+    [record]="record"
+    route="/junior-church/check-in"
+    [app]="Application.JUNIOR_CHURCH"
+    (backClick)="onBackClick()"
+    (checkInStarted)="onCheckInStarted()"
+    (recordClosed)="onRecordClosed($event)"
+  ></app-attendance-record-detail-header>
 
-      <ng-container
-        *featureAccess="[
-          Application.JUNIOR_CHURCH,
-          FeatureType.CHECK_IN,
-          Access.CREATE
-        ]"
-      >
-        <button
-          class="btn btn-primary btn-flat btn-header-right"
-          *ngIf="canStartCheckIn && record.status === 'PENDING'"
-          (click)="onStartCheckIn()"
-        >
-          <ik-icon icon="user-check" classOverride="btn-icon"></ik-icon>
-          Start Check In
-        </button>
-      </ng-container>
-    </div>
-  </ik-header>
   <div class="layout__column-left layout__wide">
-    <ik-card>
+    <app-attendance-record-details-card
+      [record]="record"
+      [startedByUser]="startedByUser"
+      [closedByUser]="closedByUser"
+    >
       <ik-card-header title="Details">
         <ng-container *ngIf="record.status !== 'CLOSED'">
           <ik-icon
@@ -66,67 +29,12 @@
           ></ik-icon>
         </ng-container>
       </ik-card-header>
-      <div class="flex">
-        <div class="left-column">
-          <ik-card-info header="Name" [text]="record.name"></ik-card-info>
-        </div>
-        <div class="right-column">
-          <ik-card-info
-            header="Attendance Type"
-            [text]="record.formattedType"
-          ></ik-card-info>
-        </div>
-      </div>
+    </app-attendance-record-details-card>
 
-      <div class="flex">
-        <div class="left-column">
-          <ik-card-info
-            [contentColor]="record.status"
-            header="Status"
-            [text]="record.status"
-          ></ik-card-info>
-        </div>
-        <div class="right-column">
-          <ik-card-info
-            header="Active Date"
-            [text]="record.activeDate | date : 'MMMM d, y'"
-          >
-          </ik-card-info>
-        </div>
-      </div>
-
-      <ng-container *webRoleRestrictionAccess="WebRole.ADMINISTRATOR">
-        <div class="flex" *ngIf="startedByUser && record.status !== 'PENDING'">
-          <div class="left-column">
-            <ik-card-info
-              header="Started By"
-              [text]="startedByUser | formatUserName"
-            ></ik-card-info>
-          </div>
-          <div class="right-column" *ngIf="closedByUser">
-            <ik-card-info
-              header="Closed By"
-              [text]="closedByUser | formatUserName"
-            ></ik-card-info>
-          </div>
-        </div>
-      </ng-container>
-
-      <div class="flex" *ngIf="record.closedDate">
-        <div class="left-column">
-          <ik-card-info
-            header="Closed Date"
-            [text]="record.closedDate | date : 'MMMM d, y, h:mm a'"
-          >
-          </ik-card-info>
-        </div>
-      </div>
-    </ik-card>
-    <ik-grid
-      #childrenGrid
-      [dataLoader]="childrenDataloader"
+    <app-attendance-record-children-grid
       *ngIf="record.status !== 'PENDING'"
-      (rowClick)="updateChildCheckInModal.open($event)"
+      [dataLoader]="childrenDataloader"
+      (rowClick)="updateChildAttendanceModal.open($event)"
     >
       <ik-card-header title="Children">
         <ng-container *ngIf="record.status !== 'CLOSED'">
@@ -141,24 +49,10 @@
             classOverride="icon__default"
             (click)="onChildrenCheckInEditClick()"
           ></ik-icon>
-        </ng-container>
-      </ik-card-header>
-      <ik-grid-search></ik-grid-search>
-      <ik-grid-column label="Name" field="formattedName"> </ik-grid-column>
-      <ik-grid-column label="CUID" field="cuid"></ik-grid-column>
-      <ik-grid-column label="Checked In" field="checkInDate">
-        <ng-template let-data>
-          {{ data.checkInDate | date : "h:mm a" }}
-        </ng-template>
-      </ik-grid-column>
-      <ik-grid-column label="Checked Out" field="checkOutDate">
-        <ng-template let-data>
-          {{ data.checkOutDate ? (data.checkOutDate | date : "h:mm a") : "-" }}
-        </ng-template>
-      </ik-grid-column>
-      <ik-grid-pager key="Children" [pageSize]="5"></ik-grid-pager>
-    </ik-grid>
+        </ng-container> </ik-card-header
+    ></app-attendance-record-children-grid>
   </div>
+
   <div class="layout__column-right layout__narrow">
     <app-attendance-record-workers-grid [dataloader]="workerDataloader">
       <ik-card-header title="Workers">
@@ -180,23 +74,11 @@
   </div>
 </ng-container>
 
-<app-delete-record-modal
-  #deleteModal
-  [recordId]="record.id"
-></app-delete-record-modal>
-
-<app-close-attendance-record-modal
-  #closeModal
-  [recordId]="record.id"
-  (closed)="onRecordClosed($event)"
->
-</app-close-attendance-record-modal>
-
-<app-child-update-check-in-modal
-  #updateChildCheckInModal
+<app-update-child-attendance-modal
+  #updateChildAttendanceModal
   [record]="record"
-  (checkInUpdateComplete)="refreshChildrenGrid()"
-></app-child-update-check-in-modal>
+  (childAttendanceUpdated)="refreshChildrenGrid()"
+></app-update-child-attendance-modal>
 
 <ng-template #pageLoader>
   <ik-loading type="double"></ik-loading>

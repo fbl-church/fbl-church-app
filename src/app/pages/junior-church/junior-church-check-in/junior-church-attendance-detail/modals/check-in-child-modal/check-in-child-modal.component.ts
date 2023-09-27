@@ -14,13 +14,13 @@ import { PopupService } from 'projects/insite-kit/src/service/notification/popup
 import { ChildAttendanceService } from 'src/service/attendance/child-attendance.service';
 
 @Component({
-  selector: 'app-child-check-in-modal',
-  templateUrl: './child-check-in-modal.component.html',
+  selector: 'app-check-in-child-modal',
+  templateUrl: './check-in-child-modal.component.html',
 })
-export class ChildCheckInModalComponent implements OnInit {
+export class CheckInChildModalComponent implements OnInit {
   @ViewChild('childCheckInModal') modal: ModalComponent;
   @Input() recordId: number;
-  @Output() checkInComplete = new EventEmitter<void>();
+  @Output() childCheckedIn = new EventEmitter<void>();
 
   child: Child;
   modalLoading = false;
@@ -49,7 +49,7 @@ export class ChildCheckInModalComponent implements OnInit {
       .assignChildToRecord(this.recordId, this.child.id, this.form.value.notes)
       .subscribe({
         next: () => {
-          this.checkInComplete.emit();
+          this.childCheckedIn.emit();
           this.popupService.success(
             `${this.commonService.getFormattedName(
               this.child
