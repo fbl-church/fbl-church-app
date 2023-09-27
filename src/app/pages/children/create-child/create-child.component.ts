@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { ChildGuardiansGridCardComponent } from 'src/app/shared/components/cards/children/child-guardians-grid-card/child-guardians-grid-card.component';
+import { GuardianWarningModalComponent } from 'src/app/shared/components/modals/guardian-warning-modal/guardian-warning-modal.component';
 import { ChildrenService } from 'src/service/children/children.service';
 
 @Component({
@@ -13,8 +14,12 @@ export class CreateChildComponent {
   @ViewChild(ChildGuardiansGridCardComponent)
   guardianSelectionGrid: ChildGuardiansGridCardComponent;
 
+  @ViewChild(GuardianWarningModalComponent)
+  gurardianWarningModal: GuardianWarningModalComponent;
+
   loading = false;
   disableSave = false;
+  savedChildData: Child;
 
   constructor(
     private readonly childrenService: ChildrenService,
@@ -28,14 +33,19 @@ export class CreateChildComponent {
 
   onSaveClick(child: Child) {
     const guardians = this.guardianSelectionGrid.getSelectedGuardians();
+    child.guardians = guardians;
+    this.savedChildData = child;
+
     if (!this.validGuardians(guardians)) {
       return;
     }
-    child.guardians = guardians;
+    this.createChild();
+  }
 
+  createChild() {
     this.loading = true;
     this.disableSave = true;
-    this.childrenService.create(child).subscribe({
+    this.childrenService.create(this.savedChildData).subscribe({
       next: (res) => {
         this.router.navigate([`/children/${res.id}/details`]);
         this.popupService.success('Child Successfully created!');
@@ -48,18 +58,14 @@ export class CreateChildComponent {
     });
   }
 
+  onNoGuardianAcknowledgement() {
+    this.gurardianWarningModal.close();
+    this.createChild();
+  }
+
   validGuardians(guardians: any[]): boolean {
     if (guardians.length < 1) {
-      this.popupService.error(
-        'Child is required to have at least one guardian assigned to them.'
-      );
-      return false;
-    }
-
-    if (guardians.filter((res) => res?.relationship === null).length > 0) {
-      this.popupService.error(
-        'All selected guardians must have a relationship selected.'
-      );
+      this.gurardianWarningModal.open();
       return false;
     }
 

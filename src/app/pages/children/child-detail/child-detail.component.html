@@ -16,6 +16,9 @@
       </button>
     </div>
   </ik-header>
+  <ik-banner *ngIf="childData.guardians?.length <= 0" type="warning">
+    Child does not have any guardians.
+  </ik-banner>
   <div class="layout__column-left layout__half">
     <app-child-details-card
       [child]="childData"

@@ -6,6 +6,7 @@ import { PopupService } from 'projects/insite-kit/src/service/notification/popup
 import { Subject } from 'rxjs';
 import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { ChildGuardiansGridCardComponent } from 'src/app/shared/components/cards/children/child-guardians-grid-card/child-guardians-grid-card.component';
+import { GuardianWarningModalComponent } from 'src/app/shared/components/modals/guardian-warning-modal/guardian-warning-modal.component';
 import { GuardianService } from 'src/service/guardians/guardian.service';
 
 @Component({
@@ -16,11 +17,16 @@ export class EditChildGuardiansComponent implements OnInit, OnDestroy {
   @ViewChild(ChildGuardiansGridCardComponent)
   guardianSelectionGrid: ChildGuardiansGridCardComponent;
 
+  @ViewChild(GuardianWarningModalComponent)
+  gurardianWarningModal: GuardianWarningModalComponent;
+
   loading = true;
   destroy = new Subject<void>();
   guardiansUpdating: Guardian[];
   childId: number;
   disableSave = false;
+
+  savedGuardians: Guardian[];
 
   constructor(
     private readonly location: Location,
@@ -56,18 +62,22 @@ export class EditChildGuardiansComponent implements OnInit, OnDestroy {
   }
 
   onUpdateClick() {
-    const guardians = this.guardianSelectionGrid.getSelectedGuardians();
-    if (!this.validGuardians(guardians)) {
+    this.savedGuardians = this.guardianSelectionGrid.getSelectedGuardians();
+    if (!this.validGuardians(this.savedGuardians)) {
       return;
     }
 
+    this.updateChild();
+  }
+
+  updateChild() {
     this.loading = true;
     this.disableSave = true;
 
     this.guardianService
-      .updateChildGuardiansById(this.childId, guardians)
+      .updateChildGuardiansById(this.childId, this.savedGuardians)
       .subscribe({
-        next: (res) => {
+        next: () => {
           this.popupService.success('Child guardians successfully updated!');
           this.resetStatus();
           this.router.navigate([`/children/${this.childId}/details`]);
@@ -81,6 +91,11 @@ export class EditChildGuardiansComponent implements OnInit, OnDestroy {
       });
   }
 
+  onNoGuardianAcknowledgement() {
+    this.gurardianWarningModal.close();
+    this.updateChild();
+  }
+
   resetStatus() {
     this.loading = false;
     this.disableSave = false;
@@ -88,16 +103,7 @@ export class EditChildGuardiansComponent implements OnInit, OnDestroy {
 
   validGuardians(guardians: any[]): boolean {
     if (guardians.length < 1) {
-      this.popupService.error(
-        'Child is required to have at least one guardian assigned to them.'
-      );
-      return false;
-    }
-
-    if (guardians.filter((res) => res?.relationship === null).length > 0) {
-      this.popupService.error(
-        'All selected guardians must have a relationship selected.'
-      );
+      this.gurardianWarningModal.open();
       return false;
     }
 

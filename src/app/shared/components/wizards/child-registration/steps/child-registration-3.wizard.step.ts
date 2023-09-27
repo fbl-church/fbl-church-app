@@ -10,6 +10,7 @@ import { Guardian } from 'projects/insite-kit/src/model/user.model';
 import { WizardData } from 'projects/insite-kit/src/model/wizard.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { ChildGuardiansGridCardComponent } from 'src/app/shared/components/cards/children/child-guardians-grid-card/child-guardians-grid-card.component';
+import { GuardianWarningModalComponent } from '../../../modals/guardian-warning-modal/guardian-warning-modal.component';
 
 @Component({
   selector: 'app-child-registration-wizard-step-three',
@@ -18,6 +19,9 @@ import { ChildGuardiansGridCardComponent } from 'src/app/shared/components/cards
 export class ChildRegistrationWizardStepThreeComponent {
   @ViewChild(ChildGuardiansGridCardComponent)
   guardianSelectionGrid: ChildGuardiansGridCardComponent;
+  @ViewChild(GuardianWarningModalComponent)
+  guardianWarningModal: GuardianWarningModalComponent;
+
   @Input() wizardData: WizardData;
   @Output() next = new EventEmitter<Guardian[]>();
 
@@ -37,18 +41,14 @@ export class ChildRegistrationWizardStepThreeComponent {
     }
   }
 
+  onNoGuardianAcknowledgement() {
+    this.guardianWarningModal.close();
+    this.next.emit([]);
+  }
+
   validGuardians(guardians: any[]): boolean {
     if (guardians.length < 1) {
-      this.popupService.error(
-        'Child is required to have at least one guardian assigned to them.'
-      );
-      return false;
-    }
-
-    if (guardians.filter((res) => res?.relationship === null).length > 0) {
-      this.popupService.error(
-        'All selected guardians must have a relationship selected.'
-      );
+      this.guardianWarningModal.open();
       return false;
     }
 

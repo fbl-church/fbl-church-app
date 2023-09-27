@@ -53,21 +53,26 @@ export class ChildRegistrationWizardStepFourComponent implements OnChanges {
   }
 
   getGuardiansInformation() {
-    this.guardianService
-      .get(
-        new Map().set(
-          'id',
-          this.child.guardians.map((g) => g.id)
+    if (this.child.guardians && this.child.guardians.length > 0) {
+      this.guardianService
+        .get(
+          new Map().set(
+            'id',
+            this.child.guardians.map((g) => g.id)
+          )
         )
-      )
-      .subscribe((res) => {
-        this.activeChild = { ...this.child };
-        this.activeChild.guardians = res.body;
-        this.activeChild.guardians.forEach(
-          (g) => (g.relationship = this.getGuardianRelationship(g.id))
-        );
-        this.loading = false;
-      });
+        .subscribe((res) => {
+          this.activeChild = { ...this.child };
+          this.activeChild.guardians = res.body;
+          this.activeChild.guardians.forEach(
+            (g) => (g.relationship = this.getGuardianRelationship(g.id))
+          );
+          this.loading = false;
+        });
+    } else {
+      this.activeChild = { ...this.child };
+      this.loading = false;
+    }
   }
 
   onCancelClick() {

@@ -16,3 +16,7 @@
 <ng-template #pageLoader>
   <ik-loading type="double"></ik-loading>
 </ng-template>
+
+<app-guardian-warning-modal
+  (acknowledged)="onNoGuardianAcknowledgement()"
+></app-guardian-warning-modal>
