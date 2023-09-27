@@ -5,12 +5,12 @@
 <ng-container *ngIf="!loading; else pageLoader">
   <app-attendance-record-form
     [group]="ChurchGroup.NURSERY"
-    translation="Junior Church"
-    leftActionButton="Cancel"
-    rightActionButton="Create"
+    translation="Nursery"
+    [disableSave]="loading"
     (save)="onSaveClick($event)"
     (cancel)="onCancelClick()"
-    [disableSave]="loading"
+    leftActionButton="Cancel"
+    rightActionButton="Create"
   ></app-attendance-record-form>
 </ng-container>
 

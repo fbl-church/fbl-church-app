@@ -7,26 +7,27 @@ import {
 } from 'projects/insite-kit/src/model/common.model';
 import { AuthGuard } from 'projects/insite-kit/src/service/auth/auth.guard';
 import { FeatureAccessGuard } from 'projects/insite-kit/src/service/auth/feature-access.guard';
-import { JuniorChurchAttendanceDetailComponent } from 'src/app/pages/junior-church/junior-church-check-in/junior-church-attendance-detail/junior-church-attendance-detail.component';
-import { EditJuniorChurchRecordComponent } from 'src/app/pages/junior-church/junior-church-check-in/junior-church-attendance-detail/pages/edit-junior-church-attendance-record/edit-junior-church-attendance-record.component';
-import { JuniorChurchChildrenCheckInComponent } from 'src/app/pages/junior-church/junior-church-check-in/junior-church-attendance-detail/pages/junior-church-children-check-in/junior-church-children-check-in.component';
 import { JuniorChurchCheckInComponent } from 'src/app/pages/junior-church/junior-church-check-in/junior-church-check-in.component';
-import { JuniorChurchNewAttendanceRecordComponent } from 'src/app/pages/junior-church/junior-church-check-in/junior-church-new-attendance-record/junior-church-new-attendance-record.component';
-import { JuniorChurchChildrenComponent } from 'src/app/pages/junior-church/junior-church-children/junior-church-children.component';
-import { JuniorChurchWorkersComponent } from 'src/app/pages/junior-church/junior-church-workers/junior-church-workers.component';
+import { NurseryAttendanceDetailComponent } from 'src/app/pages/nursery/nursery-check-in/nursery-attendance-detail/nursery-attendance-detail.component';
+import { EditNurseryRecordComponent } from 'src/app/pages/nursery/nursery-check-in/nursery-attendance-detail/pages/edit-nursery-attendance-record/edit-nursery-attendance-record.component';
+import { NurseryChildrenCheckInComponent } from 'src/app/pages/nursery/nursery-check-in/nursery-attendance-detail/pages/nursery-children-check-in/nursery-children-check-in.component';
+import { NurseryCheckInComponent } from 'src/app/pages/nursery/nursery-check-in/nursery-check-in.component';
+import { NurseryNewAttendanceRecordComponent } from 'src/app/pages/nursery/nursery-check-in/nursery-new-attendance-record/nursery-new-attendance-record.component';
+import { NurseryChildrenComponent } from 'src/app/pages/nursery/nursery-children/nursery-children.component';
+import { NurseryWorkersComponent } from 'src/app/pages/nursery/nursery-workers/nursery-workers.component';
 import { AttendanceRecordResolverService } from 'src/service/attendance/attendance-record-resolver.service';
-import { JuniorChurchWorkersResolverService } from 'src/service/attendance/junior-church-workers-resolver.service';
+import { NurseryWorkersResolverService } from 'src/service/attendance/nursery-workers-resolver.service';
 import { AuthenticatedLayoutComponent } from '../components/layouts/authenticated-layout/authenticated-layout.component';
 import { ChildRegistrationWizardComponent } from '../components/wizards/child-registration/child-registration-wizard.component';
 
-export const JUNIOR_CHURCH_ROUTE: Route = {
-  path: 'junior-church',
+export const NURSERY_ROUTE: Route = {
+  path: 'nursery',
   component: AuthenticatedLayoutComponent,
   canActivate: [AuthGuard, FeatureAccessGuard],
   data: {
     featureAccessGuards: [
       {
-        app: App.JUNIOR_CHURCH,
+        app: App.NURSERY,
         feature: FeatureType.OVERVIEW,
         access: Access.READ,
       },
@@ -45,27 +46,27 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
       data: {
         featureAccessGuards: [
           {
-            app: App.JUNIOR_CHURCH,
+            app: App.NURSERY,
             feature: FeatureType.REGISTRATION,
             access: Access.CREATE,
           },
         ],
         wizardData: {
-          baseRoute: '/junior-church',
-          translation: 'Junior Church',
-          filteredOutGroups: [ChurchGroup.JUNIOR_CHURCH],
-          registrationGroup: ChurchGroup.JUNIOR_CHURCH,
+          baseRoute: '/nursery',
+          translation: 'Nursery',
+          filteredOutGroups: [ChurchGroup.NURSERY],
+          registrationGroup: ChurchGroup.NURSERY,
         },
       },
     },
     {
       path: 'check-in',
-      component: JuniorChurchCheckInComponent,
+      component: NurseryCheckInComponent,
       canActivate: [FeatureAccessGuard],
       data: {
         featureAccessGuards: [
           {
-            app: App.JUNIOR_CHURCH,
+            app: App.NURSERY,
             feature: FeatureType.CHECK_IN,
             access: Access.READ,
           },
@@ -75,13 +76,13 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
 
     {
       path: 'check-in/:id/details',
-      component: JuniorChurchAttendanceDetailComponent,
+      component: NurseryAttendanceDetailComponent,
       resolve: { attendanceRecord: AttendanceRecordResolverService },
       canActivate: [FeatureAccessGuard],
       data: {
         featureAccessGuards: [
           {
-            app: App.JUNIOR_CHURCH,
+            app: App.NURSERY,
             feature: FeatureType.DETAIL,
             access: Access.READ,
           },
@@ -90,16 +91,16 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
     },
     {
       path: 'check-in/:id/details/edit',
-      component: EditJuniorChurchRecordComponent,
+      component: EditNurseryRecordComponent,
       resolve: {
         attendanceRecord: AttendanceRecordResolverService,
-        workers: JuniorChurchWorkersResolverService,
+        workers: NurseryWorkersResolverService,
       },
       canActivate: [FeatureAccessGuard],
       data: {
         featureAccessGuards: [
           {
-            app: App.JUNIOR_CHURCH,
+            app: App.NURSERY,
             feature: FeatureType.DETAIL,
             access: Access.UPDATE,
           },
@@ -108,12 +109,12 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
     },
     {
       path: 'check-in/:id/details/children',
-      component: JuniorChurchChildrenCheckInComponent,
+      component: NurseryChildrenCheckInComponent,
       canActivate: [FeatureAccessGuard],
       data: {
         featureAccessGuards: [
           {
-            app: App.JUNIOR_CHURCH,
+            app: App.NURSERY,
             feature: FeatureType.CHECK_IN,
             access: Access.UPDATE,
           },
@@ -122,13 +123,13 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
     },
     {
       path: 'new-record',
-      component: JuniorChurchNewAttendanceRecordComponent,
-      resolve: { workers: JuniorChurchWorkersResolverService },
+      component: NurseryNewAttendanceRecordComponent,
+      resolve: { workers: NurseryWorkersResolverService },
       canActivate: [FeatureAccessGuard],
       data: {
         featureAccessGuards: [
           {
-            app: App.JUNIOR_CHURCH,
+            app: App.NURSERY,
             feature: FeatureType.OVERVIEW,
             access: Access.CREATE,
           },
@@ -137,11 +138,11 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
     },
     {
       path: 'workers',
-      component: JuniorChurchWorkersComponent,
+      component: NurseryWorkersComponent,
     },
     {
       path: 'children',
-      component: JuniorChurchChildrenComponent,
+      component: NurseryChildrenComponent,
     },
   ],
 };

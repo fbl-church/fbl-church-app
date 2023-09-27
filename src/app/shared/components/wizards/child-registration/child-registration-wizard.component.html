@@ -1,0 +1,39 @@
+<ng-container *ngIf="wizardData; else pageLoader">
+  <ik-header [title]="wizardData.translation + ' Registration'"> </ik-header>
+  <ik-wizard #wizard>
+    <ik-wizard-step>
+      <app-child-registration-wizard-step-one
+        [wizardData]="wizardData"
+        (next)="onStep1Next($event, wizard)"
+      ></app-child-registration-wizard-step-one>
+    </ik-wizard-step>
+
+    <ik-wizard-step>
+      <app-child-registration-wizard-step-two
+        [childExists]="childExists"
+        [wizardData]="wizardData"
+        (next)="onStep2Next($event, wizard)"
+      ></app-child-registration-wizard-step-two>
+    </ik-wizard-step>
+
+    <ik-wizard-step>
+      <app-child-registration-wizard-step-three
+        [wizardData]="wizardData"
+        (next)="onStep3Next($event, wizard)"
+      ></app-child-registration-wizard-step-three>
+    </ik-wizard-step>
+    <ik-wizard-step>
+      <app-child-registration-wizard-step-four
+        [loading]="loading"
+        [child]="currentChildInformation"
+        [wizardData]="wizardData"
+        (previous)="onStep4Previous(wizard)"
+        (save)="onSaveClick($event)"
+      ></app-child-registration-wizard-step-four>
+    </ik-wizard-step>
+  </ik-wizard>
+</ng-container>
+
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
+</ng-template>

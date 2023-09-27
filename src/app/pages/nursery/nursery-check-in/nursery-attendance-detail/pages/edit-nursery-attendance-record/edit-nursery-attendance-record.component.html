@@ -1,0 +1,17 @@
+<ik-header [title]="record.name">
+  <ik-header-back (back)="onBackClick()"></ik-header-back>
+</ik-header>
+
+<app-attendance-record-form
+  *ngIf="record && !loading; else pageLoader"
+  [record]="record"
+  leftActionButton="Cancel"
+  rightActionButton="Update"
+  (save)="onUpdateClick($event)"
+  (cancel)="onCancelClick()"
+  [disableSave]="loading"
+></app-attendance-record-form>
+
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
+</ng-template>

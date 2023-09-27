@@ -5,6 +5,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { GuardianModule } from './guardians/guardian.module';
 import { JuniorChurchModule } from './junior-church/junior-church.module';
 import { LoginModule } from './login/login.module';
+import { NurseryModule } from './nursery/nursery.module';
 import { ProfileModule } from './profile/profile.module';
 import { UserModule } from './users/user.module';
 import { VBSModule } from './vbs/vbs.module';
@@ -20,6 +21,7 @@ import { VBSModule } from './vbs/vbs.module';
     VBSModule,
     JuniorChurchModule,
     AccessManagerModule,
+    NurseryModule,
   ],
 })
 export class PagesModule {}

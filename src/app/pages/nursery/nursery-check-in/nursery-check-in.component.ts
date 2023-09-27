@@ -11,10 +11,10 @@ import {
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
 
 @Component({
-  selector: 'app-junior-church-check-in',
-  templateUrl: './junior-church-check-in.component.html',
+  selector: 'app-nursery-check-in',
+  templateUrl: './nursery-check-in.component.html',
 })
-export class JuniorChurchCheckInComponent {
+export class NurseryCheckInComponent {
   dataloader: any;
 
   WebRole = WebRole;
@@ -28,15 +28,15 @@ export class JuniorChurchCheckInComponent {
   ) {
     this.dataloader = (params: any) =>
       this.attendanceRecordService.get(
-        params.set('type', [ChurchGroup.JUNIOR_CHURCH])
+        params.set('type', [ChurchGroup.NURSERY])
       );
   }
 
   onRowClick(event: AttendanceRecord) {
-    this.router.navigate([`/junior-church/check-in/${event.id}/details`]);
+    this.router.navigate([`/nursery/check-in/${event.id}/details`]);
   }
 
   onNewAttendanceRecord() {
-    this.router.navigate(['/junior-church/new-record']);
+    this.router.navigate(['/nursery/new-record']);
   }
 }

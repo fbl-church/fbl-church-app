@@ -4,15 +4,18 @@ import { MultiSelectInputComponent } from 'projects/insite-kit/src/component/mul
 import { AttendanceRecord } from 'projects/insite-kit/src/model/attendance-record.model';
 import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
+import { Subject } from 'rxjs';
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
 
 @Component({
-  selector: 'app-new-junior-church-new-attendance-record',
-  templateUrl: './junior-church-new-attendance-record.component.html',
+  selector: 'app-new-nursery-new-attendance-record',
+  templateUrl: './nursery-new-attendance-record.component.html',
 })
-export class JuniorChurchNewAttendanceRecordComponent {
+export class NurseryNewAttendanceRecordComponent {
   @ViewChild(MultiSelectInputComponent)
   workerSelection: MultiSelectInputComponent;
+  destroy = new Subject<void>();
+  workers: any[];
 
   ChurchGroup = ChurchGroup;
   loading = false;
@@ -24,7 +27,7 @@ export class JuniorChurchNewAttendanceRecordComponent {
   ) {}
 
   onBackClick() {
-    this.router.navigate(['/junior-church/check-in']);
+    this.router.navigate(['/nursery/check-in']);
   }
 
   onCancelClick() {
@@ -37,13 +40,13 @@ export class JuniorChurchNewAttendanceRecordComponent {
     this.attendanceService.create(newRecord).subscribe({
       next: (res) => {
         this.popupService.success(
-          'Junior Church Attendance Record Successfully Created!'
+          'Nursery Attendance Record Successfully Created!'
         );
-        this.router.navigate([`/junior-church/check-in/${res.id}/details`]);
+        this.router.navigate([`/nursery/check-in/${res.id}/details`]);
       },
       error: () => {
         this.popupService.error(
-          'Unable to create Junior Church Attendance Record. Try again later.'
+          'Unable to create Nursery Attendance Record. Try again later.'
         );
         this.loading = false;
       },

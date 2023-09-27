@@ -1,27 +1,46 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WizardComponent } from 'projects/insite-kit/src/component/wizard/wizard.component';
 import { Child, Guardian } from 'projects/insite-kit/src/model/user.model';
+import { WizardData } from 'projects/insite-kit/src/model/wizard.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
+import { Observable, Subject, map, takeUntil, tap } from 'rxjs';
 import { ChildrenService } from 'src/service/children/children.service';
 
 @Component({
-  selector: 'app-junior-church-registration-wizard',
-  templateUrl: './junior-church-registration-wizard.component.html',
+  selector: 'app-child-registration-wizard',
+  templateUrl: './child-registration-wizard.component.html',
 })
-export class JuniorChurchRegistrationWizardComponent {
+export class ChildRegistrationWizardComponent implements OnInit, OnDestroy {
   currentChildInformation: Child;
+  wizardData: WizardData;
   childExists = false;
   loading = false;
+  destroy = new Subject<void>();
 
   constructor(
     private readonly router: Router,
     private readonly popupService: PopupService,
-    private readonly childrenService: ChildrenService
+    private readonly childrenService: ChildrenService,
+    private readonly route: ActivatedRoute
   ) {}
 
+  ngOnInit() {
+    this.route.data
+      .pipe(
+        map((res) => res.wizardData),
+        tap((res) => (this.wizardData = res)),
+        takeUntil(this.destroy)
+      )
+      .subscribe();
+  }
+
+  ngOnDestroy() {
+    this.destroy.next();
+  }
+
   onCancelClick() {
-    this.router.navigate(['/junior-church/check-in']);
+    this.router.navigate([`${this.wizardData.baseRoute}/check-in`]);
   }
 
   onStep1Next(exists: boolean, wizard: WizardComponent) {
@@ -52,7 +71,7 @@ export class JuniorChurchRegistrationWizardComponent {
 
   onSaveClick(child: Child) {
     this.loading = true;
-    let saveObservable;
+    let saveObservable: Observable<Child>;
     if (this.childExists && child.id) {
       saveObservable = this.childrenService.update(child.id, child);
     } else {
@@ -60,14 +79,14 @@ export class JuniorChurchRegistrationWizardComponent {
     }
     saveObservable.subscribe({
       next: () => {
-        this.router.navigate(['/junior-church/children']);
+        this.router.navigate([`${this.wizardData.baseRoute}/children`]);
         this.popupService.success(
-          `${child.firstName} ${child.lastName} has successfully been registered for Junior Church!`
+          `${child.firstName} ${child.lastName} has successfully been registered for ${this.wizardData.translation}!`
         );
       },
       error: () => {
         this.popupService.error(
-          'Unable to create and register user at this time. Try again later'
+          'Unable to register child at this time. Try again later'
         );
       },
     });

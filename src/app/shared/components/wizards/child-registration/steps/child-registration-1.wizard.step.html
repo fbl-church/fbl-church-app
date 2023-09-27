@@ -8,14 +8,14 @@
   <ik-info-card
     class="col-md-6 pointer info-card__center"
     title="Active Child"
-    description="The child is currently in the church system and needs assigned to Junior Church."
+    [description]="'The child is currently in the church system and needs assigned to ' + wizardData.translation "
     (click)="onNextClick(true)"
   >
   </ik-info-card>
   <ik-info-card
     class="col-md-6 pointer info-card__center"
     title="New Child"
-    description="The child is not in the church system and needs added and assigned to Junior Church"
+    [description]="'The child is not in the church system and needs added and assigned to ' + wizardData.translation "
     (click)="onNextClick(false)"
   >
   </ik-info-card>

@@ -22,6 +22,11 @@ import { AttendanceRecordDetailHeaderComponent } from './components/headers/atte
 import { AuthenticatedLayoutComponent } from './components/layouts/authenticated-layout/authenticated-layout.component';
 import { CloseAttendanceRecordModalComponent } from './components/modals/close-attendance-record-modal/close-attendance-record-modal.component';
 import { DeleteRecordModalComponent } from './components/modals/delete-record-modal/delete-record-modal.component';
+import { ChildRegistrationWizardComponent } from './components/wizards/child-registration/child-registration-wizard.component';
+import { ChildRegistrationWizardStepOneComponent } from './components/wizards/child-registration/steps/child-registration-1.wizard.step';
+import { ChildRegistrationWizardStepTwoComponent } from './components/wizards/child-registration/steps/child-registration-2.wizard.step';
+import { ChildRegistrationWizardStepThreeComponent } from './components/wizards/child-registration/steps/child-registration-3.wizard.step';
+import { ChildRegistrationWizardStepFourComponent } from './components/wizards/child-registration/steps/child-registration-4.wizard.step';
 
 @NgModule({
   imports: [BaseInitModule],
@@ -48,6 +53,11 @@ import { DeleteRecordModalComponent } from './components/modals/delete-record-mo
     CloseAttendanceRecordModalComponent,
     DeleteRecordModalComponent,
     AttendanceRecordChildrenGridComponent,
+    ChildRegistrationWizardComponent,
+    ChildRegistrationWizardStepOneComponent,
+    ChildRegistrationWizardStepTwoComponent,
+    ChildRegistrationWizardStepThreeComponent,
+    ChildRegistrationWizardStepFourComponent,
   ],
   exports: [
     UserFormComponent,
@@ -71,6 +81,11 @@ import { DeleteRecordModalComponent } from './components/modals/delete-record-mo
     CloseAttendanceRecordModalComponent,
     DeleteRecordModalComponent,
     AttendanceRecordChildrenGridComponent,
+    ChildRegistrationWizardComponent,
+    ChildRegistrationWizardStepOneComponent,
+    ChildRegistrationWizardStepTwoComponent,
+    ChildRegistrationWizardStepThreeComponent,
+    ChildRegistrationWizardStepFourComponent,
   ],
 })
 export class SharedModule {}

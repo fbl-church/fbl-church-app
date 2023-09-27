@@ -7,7 +7,7 @@
 <ik-info-card
   *ngIf="childExists"
   title="2. Select Child"
-  description="Select the child the needs to be assigned to Junior Church."
+  [description]="'Select the child the needs to be assigned to ' + wizardData.translation"
 >
 </ik-info-card>
 

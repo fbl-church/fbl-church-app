@@ -87,11 +87,67 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           id: 'workers',
           name: 'Workers',
           route: '/workers',
+          restriction: {
+            app: App.JUNIOR_CHURCH,
+            feature: FeatureType.WORKERS,
+            access: Access.READ,
+          },
         },
         {
           id: 'children',
           name: 'Children',
           route: '/children',
+        },
+      ],
+    },
+  },
+  {
+    id: 'nursery',
+    name: 'Nursery',
+    route: '/nursery',
+    icon: 'baby-carriage',
+    restriction: {
+      app: App.NURSERY,
+      feature: FeatureType.OVERVIEW,
+      access: Access.READ,
+    },
+    submenu: {
+      id: 'nurseryDropdown',
+      items: [
+        {
+          id: 'registration',
+          name: 'Registration',
+          route: '/registration',
+          restriction: {
+            app: App.JUNIOR_CHURCH,
+            feature: FeatureType.REGISTRATION,
+            access: Access.CREATE,
+          },
+        },
+        {
+          id: 'check-in',
+          name: 'Check In',
+          route: '/check-in',
+          restriction: {
+            app: App.NURSERY,
+            feature: FeatureType.CHECK_IN,
+            access: Access.READ,
+          },
+        },
+        {
+          id: 'children',
+          name: 'Children',
+          route: '/children',
+        },
+        {
+          id: 'workers',
+          name: 'Workers',
+          route: '/workers',
+          restriction: {
+            app: App.NURSERY,
+            feature: FeatureType.WORKERS,
+            access: Access.READ,
+          },
         },
       ],
     },
@@ -123,37 +179,6 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           id: 'groups',
           name: 'Groups',
           route: '/groups',
-        },
-        {
-          id: 'workers',
-          name: 'Workers',
-          route: '/workers',
-        },
-      ],
-    },
-  },
-  {
-    id: 'nursery',
-    name: 'Nursery',
-    route: '/nursery',
-    icon: 'baby-carriage',
-    submenu: {
-      id: 'nurseryDropdown',
-      items: [
-        {
-          id: 'registration',
-          name: 'Registration',
-          route: '/registration',
-        },
-        {
-          id: 'check-in',
-          name: 'Check In',
-          route: '/check-in',
-        },
-        {
-          id: 'children',
-          name: 'Children',
-          route: '/children',
         },
         {
           id: 'workers',

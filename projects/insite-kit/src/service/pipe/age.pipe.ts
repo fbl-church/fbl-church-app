@@ -11,8 +11,11 @@ export class AgePipe implements PipeTransform {
 
     if (value) {
       var timeDiff = Math.abs(Date.now() - new Date(dateObject).getTime());
-      age = Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
+      age = timeDiff / (1000 * 3600 * 24) / 365;
     }
-    return `${age} years old`;
+
+    return age > 1
+      ? `${Math.floor(age)} years old`
+      : `${Math.floor(age * 12)} months old`;
   }
 }

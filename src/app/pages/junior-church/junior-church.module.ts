@@ -9,21 +9,11 @@ import { JuniorChurchChildrenCheckInComponent } from './junior-church-check-in/j
 import { JuniorChurchCheckInComponent } from './junior-church-check-in/junior-church-check-in.component';
 import { JuniorChurchNewAttendanceRecordComponent } from './junior-church-check-in/junior-church-new-attendance-record/junior-church-new-attendance-record.component';
 import { JuniorChurchChildrenComponent } from './junior-church-children/junior-church-children.component';
-import { JuniorChurchRegistrationWizardComponent } from './junior-church-registration-wizard/junior-church-registration-wizard.component';
-import { JuniorChurchRegistrationWizardStepOneComponent } from './junior-church-registration-wizard/steps/junior-church-registration-1.wizard.step';
-import { JuniorChurchRegistrationWizardStepTwoComponent } from './junior-church-registration-wizard/steps/junior-church-registration-2.wizard.step';
-import { JuniorChurchRegistrationWizardStepThreeComponent } from './junior-church-registration-wizard/steps/junior-church-registration-3.wizard.step';
-import { JuniorChurchRegistrationWizardStepFourComponent } from './junior-church-registration-wizard/steps/junior-church-registration-4.wizard.step';
 import { JuniorChurchWorkersComponent } from './junior-church-workers/junior-church-workers.component';
 
 @NgModule({
   imports: [BaseInitModule, SharedModule],
   declarations: [
-    JuniorChurchRegistrationWizardComponent,
-    JuniorChurchRegistrationWizardStepOneComponent,
-    JuniorChurchRegistrationWizardStepTwoComponent,
-    JuniorChurchRegistrationWizardStepThreeComponent,
-    JuniorChurchRegistrationWizardStepFourComponent,
     JuniorChurchWorkersComponent,
     JuniorChurchCheckInComponent,
     JuniorChurchNewAttendanceRecordComponent,

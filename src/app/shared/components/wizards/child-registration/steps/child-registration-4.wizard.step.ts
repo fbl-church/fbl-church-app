@@ -7,21 +7,19 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
-import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
+import { WizardData } from 'projects/insite-kit/src/model/wizard.model';
 import { ChildrenService } from 'src/service/children/children.service';
 import { GuardianService } from 'src/service/guardians/guardian.service';
 
 @Component({
-  selector: 'app-junior-church-registration-wizard-step-four',
-  templateUrl: './junior-church-registration-4.wizard.step.html',
+  selector: 'app-child-registration-wizard-step-four',
+  templateUrl: './child-registration-4.wizard.step.html',
 })
-export class JuniorChurchRegistrationWizardStepFourComponent
-  implements OnChanges
-{
+export class ChildRegistrationWizardStepFourComponent implements OnChanges {
   @Input() child: Child;
   @Input() loading = true;
+  @Input() wizardData: WizardData;
   @Output() save = new EventEmitter<Child>();
   @Output() previous = new EventEmitter<void>();
 
@@ -30,16 +28,16 @@ export class JuniorChurchRegistrationWizardStepFourComponent
   constructor(
     private readonly router: Router,
     private readonly childrenService: ChildrenService,
-    private readonly guardianService: GuardianService,
-    private readonly commonService: CommonService
+    private readonly guardianService: GuardianService
   ) {}
 
   ngOnChanges(changes: SimpleChanges) {
+    this.loading = true;
     if (changes.child && changes.child.currentValue) {
       if (this.child?.id) {
         this.childrenService.getById(this.child.id).subscribe((res) => {
           this.activeChild = res.body;
-          this.activeChild.churchGroup.push(ChurchGroup.JUNIOR_CHURCH);
+          this.activeChild.churchGroup.push(this.wizardData.registrationGroup);
           this.loading = false;
         });
       } else {
@@ -73,7 +71,7 @@ export class JuniorChurchRegistrationWizardStepFourComponent
   }
 
   onCancelClick() {
-    this.router.navigate(['/junior-church/check-in']);
+    this.router.navigate([`${this.wizardData.baseRoute}/check-in`]);
   }
 
   onPreviousClick() {

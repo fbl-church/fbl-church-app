@@ -1,16 +1,24 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { Guardian } from 'projects/insite-kit/src/model/user.model';
+import { WizardData } from 'projects/insite-kit/src/model/wizard.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { ChildGuardiansGridCardComponent } from 'src/app/shared/components/cards/children/child-guardians-grid-card/child-guardians-grid-card.component';
 
 @Component({
-  selector: 'app-junior-church-registration-wizard-step-three',
-  templateUrl: './junior-church-registration-3.wizard.step.html',
+  selector: 'app-child-registration-wizard-step-three',
+  templateUrl: './child-registration-3.wizard.step.html',
 })
-export class JuniorChurchRegistrationWizardStepThreeComponent {
+export class ChildRegistrationWizardStepThreeComponent {
   @ViewChild(ChildGuardiansGridCardComponent)
   guardianSelectionGrid: ChildGuardiansGridCardComponent;
+  @Input() wizardData: WizardData;
   @Output() next = new EventEmitter<Guardian[]>();
 
   constructor(
@@ -19,7 +27,7 @@ export class JuniorChurchRegistrationWizardStepThreeComponent {
   ) {}
 
   onCancelClick() {
-    this.router.navigate(['/junior-church/check-in']);
+    this.router.navigate([`${this.wizardData.baseRoute}/check-in`]);
   }
 
   onNextClick() {

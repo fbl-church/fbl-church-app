@@ -19,6 +19,8 @@ import { Subject, map, takeUntil } from 'rxjs';
 })
 export class AttendanceRecordFormComponent implements OnInit, OnDestroy {
   @Input() record: AttendanceRecord;
+  @Input() group: ChurchGroup;
+  @Input() translation: string;
   @Input() rightActionButton: string;
   @Input() leftActionButton: string;
   @Input() disableSave = false;
@@ -58,7 +60,7 @@ export class AttendanceRecordFormComponent implements OnInit, OnDestroy {
       name: [
         this.record
           ? this.record.name
-          : `Junior Church - ${this.commonService.formatDate(
+          : `${this.translation} - ${this.commonService.formatDate(
               new Date(),
               'MM/dd/yyyy'
             )}`,
@@ -84,7 +86,7 @@ export class AttendanceRecordFormComponent implements OnInit, OnDestroy {
   onSaveClick() {
     const newRecord: AttendanceRecord = {
       name: this.form.value.name,
-      type: ChurchGroup.JUNIOR_CHURCH,
+      type: this.group,
       workers: this.form.value.workers.map((w) => {
         return { id: w };
       }),

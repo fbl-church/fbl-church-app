@@ -10,10 +10,10 @@ import { Subject, map, takeUntil } from 'rxjs';
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
 
 @Component({
-  selector: 'app-edit-junior-church-attendance-record',
-  templateUrl: './edit-junior-church-attendance-record.component.html',
+  selector: 'app-edit-nursery-attendance-record',
+  templateUrl: './edit-nursery-attendance-record.component.html',
 })
-export class EditJuniorChurchRecordComponent implements OnInit, OnDestroy {
+export class EditNurseryRecordComponent implements OnInit, OnDestroy {
   record: AttendanceRecord;
   destroy = new Subject<void>();
   loading = true;
@@ -36,7 +36,7 @@ export class EditJuniorChurchRecordComponent implements OnInit, OnDestroy {
           this.popupService.error(
             'Attendance Record is Closed. Cannot update Information!'
           );
-          this.router.navigate([`/junior-church/check-in/${rec.id}/details`]);
+          this.router.navigate([`/nursery/check-in/${rec.id}/details`]);
         }
         this.record = rec;
         this.loading = false;
@@ -48,7 +48,7 @@ export class EditJuniorChurchRecordComponent implements OnInit, OnDestroy {
   }
 
   onBackClick() {
-    this.router.navigate([`/junior-church/check-in/${this.record.id}/details`]);
+    this.router.navigate([`/nursery/check-in/${this.record.id}/details`]);
   }
 
   onCancelClick() {
@@ -57,22 +57,20 @@ export class EditJuniorChurchRecordComponent implements OnInit, OnDestroy {
 
   onUpdateClick(newRecord: AttendanceRecord) {
     this.loading = true;
-    newRecord.type = ChurchGroup.JUNIOR_CHURCH;
+    newRecord.type = ChurchGroup.NURSERY;
 
     this.attendanceService.update(this.record.id, newRecord).subscribe({
       next: (res) => {
         this.popupService.success(
-          'Junior Church Attendance Record Successfully Updated!'
+          'Nursery Attendance Record Successfully Updated!'
         );
-        this.router.navigate([`/junior-church/check-in/${res.id}/details`]);
+        this.router.navigate([`/nursery/check-in/${res.id}/details`]);
       },
       error: () => {
         this.popupService.error(
-          'Unable to update Junior Church Attendance Record. Try again later.'
+          'Unable to update Nursery Attendance Record. Try again later.'
         );
-        this.router.navigate([
-          `/junior-church/check-in/${this.record.id}/details`,
-        ]);
+        this.router.navigate([`/nursery/check-in/${this.record.id}/details`]);
       },
     });
   }
