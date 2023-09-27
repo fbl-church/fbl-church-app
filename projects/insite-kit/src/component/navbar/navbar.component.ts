@@ -1,12 +1,5 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
 import { JwtService } from '../../service/auth/jwt.service';
 import { SubscriptionService } from '../../subscription/subscription.service';
 
@@ -14,12 +7,12 @@ import { SubscriptionService } from '../../subscription/subscription.service';
   selector: 'ik-navbar',
   templateUrl: 'navbar.component.html',
 })
-export class NavbarComponent implements OnDestroy {
+export class NavbarComponent implements OnInit {
   @Input() appName: string;
   @Input() sideBarOpen: boolean = false;
   @Output() menuClick = new EventEmitter<any>();
 
-  destroy = new Subject<void>();
+  isGuardianOnly = false;
 
   constructor(
     private readonly router: Router,
@@ -27,8 +20,8 @@ export class NavbarComponent implements OnDestroy {
     private readonly subscriptionService: SubscriptionService
   ) {}
 
-  ngOnDestroy() {
-    this.destroy.next();
+  ngOnInit() {
+    this.isGuardianOnly = this.jwt.isGuardianOnlyUser();
   }
 
   onMenuClick() {

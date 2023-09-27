@@ -99,8 +99,21 @@ export class JwtService {
    * @param r The role to check for.
    * @returns The boolean if the user has the role or not.
    */
-  hasWebRole(r: WebRole): boolean {
-    return this.getWebRoles().includes(r);
+  hasWebRole(...r: WebRole[]): boolean {
+    return this.getWebRoles().some((w) => r.includes(w));
+  }
+
+  /**
+   * Determines if the user that is logged in is a guardian only user
+   *
+   * @returns The boolean if the user is a guardian only user.
+   */
+  isGuardianOnlyUser(u?: User): boolean {
+    let roles = this.getWebRoles();
+    if (u) {
+      roles = u.webRole;
+    }
+    return roles.includes(WebRole.GUARDIAN) && roles.length == 1;
   }
 
   /**

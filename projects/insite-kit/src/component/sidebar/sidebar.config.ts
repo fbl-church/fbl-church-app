@@ -119,7 +119,7 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           name: 'Registration',
           route: '/registration',
           restriction: {
-            app: App.JUNIOR_CHURCH,
+            app: App.NURSERY,
             feature: FeatureType.REGISTRATION,
             access: Access.CREATE,
           },

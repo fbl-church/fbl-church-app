@@ -4,8 +4,10 @@ import {
   Access,
   App,
   FeatureType,
+  WebRole,
 } from 'projects/insite-kit/src/model/common.model';
 import { Guardian } from 'projects/insite-kit/src/model/user.model';
+import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { Subject, takeUntil, tap } from 'rxjs';
 
 @Component({
@@ -20,17 +22,20 @@ export class GuardianDetailComponent implements OnInit {
   Application = App;
   Access = Access;
 
+  canEditGuardian = false;
   destroy = new Subject<void>();
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly jwt: JwtService
   ) {}
 
   ngOnInit() {
     this.route.data
       .pipe(
         tap((res) => (this.guardianData = res.guardian.body)),
+        tap(() => this.canUserEditGuardian()),
         takeUntil(this.destroy)
       )
       .subscribe(() => (this.loading = false));
@@ -46,5 +51,11 @@ export class GuardianDetailComponent implements OnInit {
 
   onEditClick() {
     this.router.navigate([`/guardians/${this.guardianData.id}/details/edit`]);
+  }
+
+  canUserEditGuardian() {
+    this.canEditGuardian =
+      this.jwt.hasWebRole(WebRole.ADMINISTRATOR, WebRole.SITE_ADMINISTRATOR) ||
+      this.jwt.isGuardianOnlyUser(this.guardianData);
   }
 }

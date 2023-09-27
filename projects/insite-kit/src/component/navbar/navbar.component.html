@@ -1,5 +1,6 @@
 <nav class="app-navbar">
   <ik-icon
+    *ngIf="!isGuardianOnly"
     classOverride="app-navbar__icons__left"
     [icon]="sideBarOpen ? 'close' : 'bars'"
     (click)="onMenuClick()"
