@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EmailService } from 'projects/insite-kit/src/service/email/email.service';
+import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { ModalComponent } from '../../../modal/modal.component';
 
 @Component({
@@ -12,7 +14,11 @@ export class ContactAdminModalComponent implements OnInit {
   form: FormGroup;
   loading = false;
 
-  constructor(private readonly fb: FormBuilder) {}
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly emailService: EmailService,
+    private readonly popupService: PopupService
+  ) {}
 
   ngOnInit() {
     this.buildForm();
@@ -28,5 +34,23 @@ export class ContactAdminModalComponent implements OnInit {
     this.modal.close();
     this.loading = false;
     this.form.patchValue({ message: '' });
+  }
+
+  sendMessage() {
+    this.loading = true;
+    this.emailService.sendContactAdminEmail(this.form.value.message).subscribe({
+      next: () => {
+        this.reset();
+        this.popupService.success(
+          'Email successfully sent! We will get back to you as soon as possible!'
+        );
+      },
+      error: () => {
+        this.reset();
+        this.popupService.error(
+          'Email could not be sent at this time! Please try again later.'
+        );
+      },
+    });
   }
 }
