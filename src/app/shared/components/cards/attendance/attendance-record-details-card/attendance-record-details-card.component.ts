@@ -49,7 +49,14 @@ export class AttendanceRecordDetailsCardComponent
           .pipe(
             switchMap((id) => this.getUser(id)),
             tap((startedUser) => (this.startedByUser = startedUser)),
-            switchMap(() => this.getUser(this.record.closedByUserId)),
+            switchMap(() =>
+              iif(
+                () =>
+                  this.record.closedByUserId === this.record.startedByUserId,
+                of(this.startedByUser),
+                this.getUser(this.record.closedByUserId)
+              )
+            ),
             tap((closedUser) => (this.closedByUser = closedUser)),
             takeUntil(this.destroy)
           )
