@@ -11,6 +11,7 @@ import {
   faChartSimple,
   faCheck,
   faChildren,
+  faChurch,
   faCircleExclamation,
   faCircleInfo,
   faCirclePlus,
@@ -84,7 +85,9 @@ export class IconModule {
       faCheck,
       faXmark,
       faBabyCarriage,
-      faAddressBook, faUserXmark
+      faAddressBook,
+      faUserXmark,
+      faChurch
     );
   }
 }

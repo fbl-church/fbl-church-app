@@ -153,6 +153,37 @@ export const NAVIGATION_ROUTES: NavItem[] = [
     },
   },
   {
+    id: 'awana',
+    name: 'AWANA',
+    route: '/awana',
+    icon: 'church',
+    submenu: {
+      id: 'awanaDropdown',
+      items: [
+        {
+          id: 'registration',
+          name: 'Registration',
+          route: '/registration',
+        },
+        {
+          id: 'check-in',
+          name: 'Check In',
+          route: '/check-in',
+        },
+        {
+          id: 'children',
+          name: 'Children',
+          route: '/children',
+        },
+        {
+          id: 'workers',
+          name: 'Workers',
+          route: '/workers',
+        },
+      ],
+    },
+  },
+  {
     id: 'vbs',
     name: 'VBS',
     route: '/vbs',
