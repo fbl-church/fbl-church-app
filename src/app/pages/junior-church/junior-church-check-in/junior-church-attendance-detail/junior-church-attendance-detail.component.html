@@ -1,19 +1,14 @@
 <ng-container *ngIf="!loading; else pageLoader">
   <app-attendance-record-detail-header
-    [record]="record"
+    [(record)]="record"
     route="/junior-church/check-in"
     [app]="Application.JUNIOR_CHURCH"
     (backClick)="onBackClick()"
     (checkInStarted)="onCheckInStarted()"
-    (recordClosed)="onRecordClosed($event)"
   ></app-attendance-record-detail-header>
 
   <div class="layout__column-left layout__wide">
-    <app-attendance-record-details-card
-      [record]="record"
-      [startedByUser]="startedByUser"
-      [closedByUser]="closedByUser"
-    >
+    <app-attendance-record-details-card [record]="record">
       <ik-card-header title="Details">
         <ng-container *ngIf="record.status !== 'CLOSED'">
           <ik-icon

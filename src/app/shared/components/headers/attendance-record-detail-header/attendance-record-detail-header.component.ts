@@ -21,9 +21,9 @@ export class AttendanceRecordDetailHeaderComponent {
   @Input() record: AttendanceRecord;
   @Input() route: string;
   @Input() app: Application;
+  @Output() recordChange = new EventEmitter<AttendanceRecord>();
   @Output() checkInStarted = new EventEmitter<void>();
   @Output() backClick = new EventEmitter<void>();
-  @Output() recordClosed = new EventEmitter<AttendanceRecord>();
 
   FeatureType = FeatureType;
   Application = App;
@@ -42,7 +42,7 @@ export class AttendanceRecordDetailHeaderComponent {
   }
 
   onRecordClosed(event: AttendanceRecord) {
-    this.recordClosed.emit(event);
+    this.recordChange.emit(event);
   }
 
   onStartCheckIn() {
