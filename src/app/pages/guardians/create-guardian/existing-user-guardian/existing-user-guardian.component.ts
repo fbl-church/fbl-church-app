@@ -13,7 +13,7 @@ export class ExistingUserGuardianComponent {
   userToGuardianModal: UserToGuardianModalComponent;
   userDataloader: any;
 
-  readonly EXISTING_USER_ROLE_FILTER = ['GUARDIAN', 'ADMINISTRATOR', 'CHILD'];
+  readonly EXISTING_USER_ROLE_FILTER = ['GUARDIAN', 'CHILD'];
 
   constructor(
     private readonly router: Router,

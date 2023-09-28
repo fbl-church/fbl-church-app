@@ -2,7 +2,11 @@ import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
-import { Guardian, User } from 'projects/insite-kit/src/model/user.model';
+import {
+  Child,
+  Guardian,
+  User,
+} from 'projects/insite-kit/src/model/user.model';
 import { Subject, takeUntil, tap } from 'rxjs';
 @Component({
   selector: 'app-profile',
@@ -41,6 +45,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   onResetPassword() {
     this.router.navigate(['/profile/reset-password']);
+  }
+
+  onChildRowClick(child: Child) {
+    this.router.navigate([`/profile/child/${child.id}`]);
   }
 
   guardianOnlyUser() {

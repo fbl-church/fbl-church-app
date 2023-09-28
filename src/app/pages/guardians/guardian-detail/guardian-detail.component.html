@@ -35,6 +35,7 @@
   <div class="layout__column-right layout__half">
     <app-guardian-children-details-grid
       [guardianId]="guardianData.id"
+      (rowClick)="onChildRowClick($event)"
     ></app-guardian-children-details-grid>
   </div>
 </div>

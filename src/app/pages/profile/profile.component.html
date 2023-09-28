@@ -37,6 +37,7 @@
     <app-guardian-children-details-grid
       *ngIf="currentUser.phone"
       [guardianId]="currentUser.id"
+      (rowClick)="onChildRowClick($event)"
     ></app-guardian-children-details-grid>
     <app-user-roles-card
       *ngIf="!isGuardianOnly"

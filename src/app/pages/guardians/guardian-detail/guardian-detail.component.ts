@@ -6,7 +6,7 @@ import {
   FeatureType,
   WebRole,
 } from 'projects/insite-kit/src/model/common.model';
-import { Guardian } from 'projects/insite-kit/src/model/user.model';
+import { Child, Guardian } from 'projects/insite-kit/src/model/user.model';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { Subject, takeUntil, tap } from 'rxjs';
 
@@ -51,6 +51,10 @@ export class GuardianDetailComponent implements OnInit {
 
   onEditClick() {
     this.router.navigate([`/guardians/${this.guardianData.id}/details/edit`]);
+  }
+
+  onChildRowClick(event: Child) {
+    this.router.navigate([`/children/${event.id}/details`]);
   }
 
   canUserEditGuardian() {
