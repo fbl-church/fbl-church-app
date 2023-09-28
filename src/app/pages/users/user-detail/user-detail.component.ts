@@ -43,7 +43,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
         tap(
           () =>
             (this.canEditRoles =
-              Number(this.jwt.get('userId')) !== this.userData.id)
+              Number(this.jwt.getUserId()) !== this.userData.id)
         ),
         takeUntil(this.destroy)
       )

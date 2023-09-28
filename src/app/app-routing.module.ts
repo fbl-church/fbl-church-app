@@ -23,7 +23,7 @@ const routes: Routes = [
   ACCESS_MANAGEMENT_ROUTE,
   NURSERY_ROUTE,
   { path: '', redirectTo: 'profile', pathMatch: 'full' },
-  { path: '**', redirectTo: 'profile' },
+  { path: '**', redirectTo: 'profile', pathMatch: 'full' },
 ];
 
 @NgModule({

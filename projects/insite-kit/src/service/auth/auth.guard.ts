@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
+import { Observable, combineLatest, map, of, tap } from 'rxjs';
 import { JwtService } from './jwt.service';
+import { UserAccessService } from './user-access.service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +11,11 @@ export class AuthGuard implements CanActivate {
   private readonly UNAUTHENTICATED_ROUTES = ['login', 'register'];
   private readonly DEFAULT_APP_ROUTES = ['login', 'home', 'profile'];
 
-  constructor(private router: Router, private jwt: JwtService) {}
+  constructor(
+    private readonly router: Router,
+    private readonly jwt: JwtService,
+    private readonly userAccessService: UserAccessService
+  ) {}
 
   /**
    * Determine if the current user JWT token is valid. If the token is invalid or expired
@@ -18,8 +24,10 @@ export class AuthGuard implements CanActivate {
    * @param next snapshot of the active route
    * @returns boolean based on the status of the token
    */
-  canActivate(next: ActivatedRouteSnapshot): boolean {
-    return this.validToken(next) && this.hasAppAccess(next);
+  canActivate(next: ActivatedRouteSnapshot): Observable<boolean> {
+    return combineLatest([this.validToken(next), this.hasAppAccess(next)]).pipe(
+      map(([v, a]) => v && a)
+    );
   }
 
   /**
@@ -29,17 +37,17 @@ export class AuthGuard implements CanActivate {
    * @param next snapshot of the active route
    * @returns boolean based on the status of the token
    */
-  validToken(next: ActivatedRouteSnapshot): boolean {
+  validToken(next: ActivatedRouteSnapshot): Observable<boolean> {
     if (!this.jwt.isAuthenticated()) {
       if (!this.UNAUTHENTICATED_ROUTES.includes(next.routeConfig.path)) {
         this.router.navigate(['/login']);
-        return false;
+        return of(false);
       }
     } else if (next.routeConfig.path === 'login') {
-      this.router.navigate(['/home']);
-      return false;
+      this.router.navigate(['/profile']);
+      return of(false);
     }
-    return true;
+    return of(true);
   }
 
   /**
@@ -48,19 +56,30 @@ export class AuthGuard implements CanActivate {
    * @param next snapshot of the active route
    * @returns boolean based on the status of the token
    */
-  hasAppAccess(next: ActivatedRouteSnapshot): boolean {
+  hasAppAccess(next: ActivatedRouteSnapshot): Observable<boolean> {
     if (this.DEFAULT_APP_ROUTES.includes(next.routeConfig.path)) {
-      return true;
+      return of(true);
     }
 
-    const canAccessApp = this.jwt
-      .getApps()
-      .find((path) => path.includes(next.routeConfig.path));
+    return this.userAccessService.user$.pipe(
+      map((ua) => ua.hasApp(next.routeConfig.path)),
+      tap((access) => this.emptyRoute(access))
+    );
+  }
 
-    if (!canAccessApp && this.router.routerState.snapshot.url === '') {
-      this.router.navigate(['/home']);
-      return false;
+  /**
+   * Checks to see if the user is accessing a route they can not see
+   * and causes an empty route. THis will get them back on the route
+   * tree to take them where they can access.
+   *
+   * @param access If the user has access to the application.
+   * @param next The route snapshot
+   * @returns If the user is able to see the route.
+   */
+  private emptyRoute(access: boolean): boolean {
+    if (!access && this.router.routerState.snapshot.url === '') {
+      this.router.navigate(['/profile']);
     }
-    return !!canAccessApp;
+    return access;
   }
 }

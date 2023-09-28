@@ -7,9 +7,9 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { Subject } from 'rxjs';
-import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { distinctUntilChanged, filter, map, takeUntil } from 'rxjs/operators';
 import { Access } from '../../model/common.model';
-import { AuthService } from '../../service/auth/auth.service';
+import { UserAccessService } from '../../service/auth/user-access.service';
 
 @Directive({
   selector: '[featureAccess]',
@@ -24,13 +24,17 @@ export class FeatureAccessDirective implements OnInit, OnDestroy {
   constructor(
     private templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef,
-    private authService: AuthService
+    private readonly userAccessService: UserAccessService
   ) {}
 
   ngOnInit() {
-    this.authService
-      .hasAccess(this.app, this.feature, this.type)
-      .pipe(distinctUntilChanged(), takeUntil(this.destroy))
+    this.userAccessService.user$
+      .pipe(
+        filter((u) => !!u),
+        map((ua) => ua.hasFeature(this.app, this.feature, this.type)),
+        distinctUntilChanged(),
+        takeUntil(this.destroy)
+      )
       .subscribe((v) => {
         this.hasPermission = v;
         this.updateView();

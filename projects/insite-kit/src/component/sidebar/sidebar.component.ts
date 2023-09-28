@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Access, App, FeatureType } from '../../model/common.model';
-import { JwtService } from '../../service/auth/jwt.service';
+import { UserAccessService } from '../../service/auth/user-access.service';
 import { NAVIGATION_ROUTES } from './sidebar.config';
 
 @Component({
@@ -10,19 +10,19 @@ import { NAVIGATION_ROUTES } from './sidebar.config';
 export class SidebarComponent implements OnInit {
   isOpen = false;
   navigationConfig = NAVIGATION_ROUTES;
-  userApps: string[];
 
   FeatureType = FeatureType;
   Application = App;
   Access = Access;
 
-  constructor(private readonly jwt: JwtService) {}
+  constructor(private readonly userAccessService: UserAccessService) {}
 
   ngOnInit() {
-    this.userApps = this.jwt.getApps();
-    this.navigationConfig = NAVIGATION_ROUTES.filter((n) =>
-      this.userApps.includes(n.id)
-    );
+    this.userAccessService.user$.subscribe((ua) => {
+      this.navigationConfig = NAVIGATION_ROUTES.filter((n) =>
+        ua.apps.includes(n.id)
+      );
+    });
   }
 
   open() {

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { AuthToken } from '../../model/auth-token.model';
-import { Access, App, FeatureType } from '../../model/common.model';
+import { UserAccess } from '../../model/user-access.model';
 import { RequestService } from '../request/request.service';
 import { JwtService } from './jwt.service';
 
@@ -42,44 +42,13 @@ export class AuthService {
   }
 
   /**
-   * Determines if a user has access to a given feature for the given level
+   * Gets the current user access data.
    *
-   * @param app to check feature on
-   * @param key to check level access on
-   * @param level type of the feature
-   * @returns boolean
+   * @returns The users current access data
    */
-  hasAccess(
-    app: App | string,
-    key: FeatureType | string,
-    level: Access | 'c' | 'r' | 'u' | 'd' = Access.READ
-  ): Observable<boolean> {
-    const feature: [{}] = this.jwt.get('access')[app];
-    let access = [];
-
-    if (feature) {
-      access = feature
-        .filter((f) => Object.keys(f)[0] === key)
-        .map((v) => Object.values(v)[0]);
-    } else {
-      return of(false);
-    }
-
-    return of(this.determineAccess(access, level));
-  }
-
-  /**
-   * Determine the access of the array and level
-   *
-   * @param access array of the user feature access
-   * @param level to see they have access
-   * @returns boolean
-   */
-  private determineAccess(
-    access: string[],
-    level: Access | 'c' | 'r' | 'u' | 'd'
-  ): boolean {
-    if (access.length === 0) return false;
-    return access[0].includes(level);
+  userAccess(): Observable<UserAccess> {
+    return this.request
+      .get<UserAccess>(`${this.BASE_AUTH_PATH}/users/access`)
+      .pipe(map((res) => res.body));
   }
 }

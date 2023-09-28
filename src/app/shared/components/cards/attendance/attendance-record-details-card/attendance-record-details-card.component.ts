@@ -7,8 +7,9 @@ import {
 } from '@angular/core';
 import { AttendanceRecord } from 'projects/insite-kit/src/model/attendance-record.model';
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
+import { UserAccess } from 'projects/insite-kit/src/model/user-access.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
-import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
+import { UserAccessService } from 'projects/insite-kit/src/service/auth/user-access.service';
 import {
   Observable,
   Subject,
@@ -39,31 +40,21 @@ export class AttendanceRecordDetailsCardComponent
 
   constructor(
     private readonly userService: UserService,
-    private readonly jwt: JwtService
+    private readonly userAccessService: UserAccessService
   ) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.record && changes.record.currentValue) {
-      if (this.jwt.hasWebRole(WebRole.ADMINISTRATOR)) {
-        of(this.record.startedByUserId)
-          .pipe(
-            switchMap((id) => this.getUser(id)),
-            tap((startedUser) => (this.startedByUser = startedUser)),
-            switchMap(() =>
-              iif(
-                () =>
-                  this.record.closedByUserId === this.record.startedByUserId,
-                of(this.startedByUser),
-                this.getUser(this.record.closedByUserId)
-              )
-            ),
-            tap((closedUser) => (this.closedByUser = closedUser)),
-            takeUntil(this.destroy)
-          )
-          .subscribe(() => (this.loading = false));
-      } else {
-        this.loading = false;
-      }
+      this.userAccessService.user$
+        .pipe(
+          switchMap((ua) => this.elevatedDataAccess(ua)),
+          switchMap((id) => this.getUser(id)),
+          tap((startedUser) => (this.startedByUser = startedUser)),
+          switchMap(() => this.hasClosedByUser()),
+          tap((closedUser) => (this.closedByUser = closedUser)),
+          takeUntil(this.destroy)
+        )
+        .subscribe(() => (this.loading = false));
     }
   }
 
@@ -76,6 +67,22 @@ export class AttendanceRecordDetailsCardComponent
       () => !!id,
       this.userService.getUserById(id).pipe(map((res) => res.body)),
       of(null)
+    );
+  }
+
+  elevatedDataAccess(ua: UserAccess) {
+    return iif(
+      () => ua.hasRole(WebRole.ADMINISTRATOR),
+      of(this.record.startedByUserId),
+      of(null)
+    );
+  }
+
+  hasClosedByUser() {
+    return iif(
+      () => this.record.closedByUserId === this.record.startedByUserId,
+      of(this.startedByUser),
+      this.getUser(this.record.closedByUserId)
     );
   }
 }

@@ -6,9 +6,11 @@ import {
   FeatureType,
   WebRole,
 } from 'projects/insite-kit/src/model/common.model';
+import { UserAccess } from 'projects/insite-kit/src/model/user-access.model';
 import { Child, Guardian } from 'projects/insite-kit/src/model/user.model';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
-import { Subject, takeUntil, tap } from 'rxjs';
+import { UserAccessService } from 'projects/insite-kit/src/service/auth/user-access.service';
+import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 
 @Component({
   selector: 'app-guardian-detail',
@@ -28,14 +30,16 @@ export class GuardianDetailComponent implements OnInit {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly router: Router,
-    private readonly jwt: JwtService
+    private readonly jwt: JwtService,
+    private readonly userAccessService: UserAccessService
   ) {}
 
   ngOnInit() {
     this.route.data
       .pipe(
         tap((res) => (this.guardianData = res.guardian.body)),
-        tap(() => this.canUserEditGuardian()),
+        switchMap(() => this.userAccessService.user$),
+        tap((res) => this.canUserEditGuardian(res)),
         takeUntil(this.destroy)
       )
       .subscribe(() => (this.loading = false));
@@ -57,9 +61,9 @@ export class GuardianDetailComponent implements OnInit {
     this.router.navigate([`/children/${event.id}/details`]);
   }
 
-  canUserEditGuardian() {
+  canUserEditGuardian(ua: UserAccess) {
     this.canEditGuardian =
-      this.jwt.hasWebRole(WebRole.ADMINISTRATOR, WebRole.SITE_ADMINISTRATOR) ||
+      ua.hasRole(WebRole.ADMINISTRATOR, WebRole.SITE_ADMINISTRATOR) ||
       this.jwt.isGuardianOnlyUser(this.guardianData);
   }
 }

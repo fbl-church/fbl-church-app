@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
-import { Observable, forkJoin, map, of } from 'rxjs';
+import { Observable, filter, forkJoin, map, take } from 'rxjs';
 import { WebRole } from '../../model/common.model';
-import { JwtService } from './jwt.service';
+import { UserAccessService } from './user-access.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WebRoleAccessGuard implements CanActivate {
-  constructor(private router: Router, private readonly jwt: JwtService) {}
+  constructor(
+    private readonly router: Router,
+    private readonly userAccessService: UserAccessService
+  ) {}
 
   /**
    * Determine if the user has the correct roles to trigger this guard.
@@ -18,7 +21,13 @@ export class WebRoleAccessGuard implements CanActivate {
    */
   canActivate(next: ActivatedRouteSnapshot): Observable<boolean> {
     return forkJoin(
-      next.data.roles.map((d: WebRole) => of(this.jwt.hasWebRole(d)))
+      next.data.roles.map((r: WebRole) =>
+        this.userAccessService.user$.pipe(
+          filter((u) => !!u),
+          map((ua) => ua.hasRole(r)),
+          take(1)
+        )
+      )
     ).pipe(
       map((v: any) => {
         if (!v.includes(false)) {

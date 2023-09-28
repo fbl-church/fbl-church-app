@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { RankedWebRole, WebRole } from '../../model/common.model';
-import { JwtService } from '../../service/auth/jwt.service';
+import { UserAccessService } from '../../service/auth/user-access.service';
 
 @Directive({
   selector: '[webRoleRestrictionAccess]',
@@ -21,15 +21,16 @@ export class WebRoleRestrictionAccessDirective implements OnInit, OnDestroy {
   constructor(
     private templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef,
-    private jwt: JwtService
+    private readonly userAccessService: UserAccessService
   ) {}
 
   ngOnInit() {
-    const userRoles: RankedWebRole[] = this.jwt.getRankedWebRoles();
-    this.hasPermission =
-      Math.max(...userRoles.map((r) => Number(RankedWebRole[r]))) >=
-      RankedWebRole[this.role];
-    this.updateView();
+    this.userAccessService.user$.subscribe((ua) => {
+      this.hasPermission =
+        Math.max(...ua.rankedRoles.map((r) => Number(RankedWebRole[r]))) >=
+        RankedWebRole[this.role];
+      this.updateView();
+    });
   }
 
   ngOnDestroy() {

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtService } from '../../service/auth/jwt.service';
+import { UserAccessService } from '../../service/auth/user-access.service';
 import { SubscriptionService } from '../../subscription/subscription.service';
 
 @Component({
@@ -17,11 +18,14 @@ export class NavbarComponent implements OnInit {
   constructor(
     private readonly router: Router,
     private readonly jwt: JwtService,
+    private readonly userAccessService: UserAccessService,
     private readonly subscriptionService: SubscriptionService
   ) {}
 
   ngOnInit() {
-    this.isGuardianOnly = this.jwt.isGuardianOnlyUser();
+    this.userAccessService.user$.subscribe(
+      (ua) => (this.isGuardianOnly = ua.isGuardianOnlyUser())
+    );
   }
 
   onMenuClick() {
