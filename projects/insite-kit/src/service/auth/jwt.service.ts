@@ -42,13 +42,12 @@ export class JwtService {
   isAuthenticated(): boolean {
     if (localStorage.getItem(TOKEN_NAME) != null) {
       if (this.jwtHelperService.isTokenExpired()) {
-        localStorage.removeItem(TOKEN_NAME);
-        return false;
+        this.logOut();
+      } else {
+        return true;
       }
-      return true;
-    } else {
-      return false;
     }
+    return false;
   }
 
   /**
@@ -102,6 +101,6 @@ export class JwtService {
    */
   logOut() {
     localStorage.removeItem(TOKEN_NAME);
-    window.location.reload();
+    this.router.navigate(['login']).then(() => window.location.reload());
   }
 }
