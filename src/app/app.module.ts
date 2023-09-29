@@ -4,15 +4,9 @@ import { BaseInitModule } from 'src/app/common/base-init.module';
 import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
 import { PagesModule } from './pages/pages.module';
-import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  imports: [
-    InsiteKitModule.forRoot(environment),
-    BaseInitModule,
-    SharedModule,
-    PagesModule,
-  ],
+  imports: [InsiteKitModule.forRoot(environment), BaseInitModule, PagesModule],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
 })

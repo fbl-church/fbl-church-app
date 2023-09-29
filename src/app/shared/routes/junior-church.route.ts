@@ -5,8 +5,9 @@ import {
   ChurchGroup,
   FeatureType,
 } from 'projects/insite-kit/src/model/common.model';
-import { AuthGuard } from 'projects/insite-kit/src/service/auth/auth.guard';
-import { FeatureAccessGuard } from 'projects/insite-kit/src/service/auth/feature-access.guard';
+import { AppAccessGuard } from 'projects/insite-kit/src/service/guards/app-access.guard';
+import { AuthGuard } from 'projects/insite-kit/src/service/guards/auth.guard';
+import { FeatureAccessGuard } from 'projects/insite-kit/src/service/guards/feature-access.guard';
 import { JuniorChurchAttendanceDetailComponent } from 'src/app/pages/junior-church/junior-church-check-in/junior-church-attendance-detail/junior-church-attendance-detail.component';
 import { EditJuniorChurchRecordComponent } from 'src/app/pages/junior-church/junior-church-check-in/junior-church-attendance-detail/pages/edit-junior-church-attendance-record/edit-junior-church-attendance-record.component';
 import { JuniorChurchChildrenCheckInComponent } from 'src/app/pages/junior-church/junior-church-check-in/junior-church-attendance-detail/pages/junior-church-children-check-in/junior-church-children-check-in.component';
@@ -22,7 +23,7 @@ import { ChildRegistrationWizardComponent } from '../components/wizards/child-re
 export const JUNIOR_CHURCH_ROUTE: Route = {
   path: 'junior-church',
   component: AuthenticatedLayoutComponent,
-  canActivate: [AuthGuard, FeatureAccessGuard],
+  canActivate: [AuthGuard, AppAccessGuard, FeatureAccessGuard],
   data: {
     featureAccessGuards: [
       {

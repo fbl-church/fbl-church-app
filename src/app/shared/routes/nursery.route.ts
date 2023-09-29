@@ -5,8 +5,9 @@ import {
   ChurchGroup,
   FeatureType,
 } from 'projects/insite-kit/src/model/common.model';
-import { AuthGuard } from 'projects/insite-kit/src/service/auth/auth.guard';
-import { FeatureAccessGuard } from 'projects/insite-kit/src/service/auth/feature-access.guard';
+import { AppAccessGuard } from 'projects/insite-kit/src/service/guards/app-access.guard';
+import { AuthGuard } from 'projects/insite-kit/src/service/guards/auth.guard';
+import { FeatureAccessGuard } from 'projects/insite-kit/src/service/guards/feature-access.guard';
 import { JuniorChurchCheckInComponent } from 'src/app/pages/junior-church/junior-church-check-in/junior-church-check-in.component';
 import { NurseryAttendanceDetailComponent } from 'src/app/pages/nursery/nursery-check-in/nursery-attendance-detail/nursery-attendance-detail.component';
 import { EditNurseryRecordComponent } from 'src/app/pages/nursery/nursery-check-in/nursery-attendance-detail/pages/edit-nursery-attendance-record/edit-nursery-attendance-record.component';
@@ -23,7 +24,7 @@ import { ChildRegistrationWizardComponent } from '../components/wizards/child-re
 export const NURSERY_ROUTE: Route = {
   path: 'nursery',
   component: AuthenticatedLayoutComponent,
-  canActivate: [AuthGuard, FeatureAccessGuard],
+  canActivate: [AuthGuard, AppAccessGuard, FeatureAccessGuard],
   data: {
     featureAccessGuards: [
       {

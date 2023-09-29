@@ -4,8 +4,9 @@ import {
   App,
   FeatureType,
 } from 'projects/insite-kit/src/model/common.model';
-import { AuthGuard } from 'projects/insite-kit/src/service/auth/auth.guard';
-import { FeatureAccessGuard } from 'projects/insite-kit/src/service/auth/feature-access.guard';
+import { AppAccessGuard } from 'projects/insite-kit/src/service/guards/app-access.guard';
+import { AuthGuard } from 'projects/insite-kit/src/service/guards/auth.guard';
+import { FeatureAccessGuard } from 'projects/insite-kit/src/service/guards/feature-access.guard';
 import { CreateGuardianComponent } from 'src/app/pages/guardians/create-guardian/create-guardian.component';
 import { ExistingUserGuardianComponent } from 'src/app/pages/guardians/create-guardian/existing-user-guardian/existing-user-guardian.component';
 import { GuardianDetailComponent } from 'src/app/pages/guardians/guardian-detail/guardian-detail.component';
@@ -17,7 +18,7 @@ import { AuthenticatedLayoutComponent } from '../components/layouts/authenticate
 export const GUARDIANS_ROUTE: Route = {
   path: 'guardians',
   component: AuthenticatedLayoutComponent,
-  canActivate: [AuthGuard, FeatureAccessGuard],
+  canActivate: [AuthGuard, AppAccessGuard, FeatureAccessGuard],
   data: {
     featureAccessGuards: [
       {

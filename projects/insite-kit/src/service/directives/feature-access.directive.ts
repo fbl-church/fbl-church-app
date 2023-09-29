@@ -9,7 +9,7 @@ import {
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, filter, map, takeUntil } from 'rxjs/operators';
 import { Access } from '../../model/common.model';
-import { UserAccessService } from '../../service/auth/user-access.service';
+import { UserAccessService } from '../auth/user-access.service';
 
 @Directive({
   selector: '[featureAccess]',

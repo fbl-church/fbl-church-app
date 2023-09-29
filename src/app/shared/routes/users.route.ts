@@ -4,8 +4,9 @@ import {
   App,
   FeatureType,
 } from 'projects/insite-kit/src/model/common.model';
-import { AuthGuard } from 'projects/insite-kit/src/service/auth/auth.guard';
-import { FeatureAccessGuard } from 'projects/insite-kit/src/service/auth/feature-access.guard';
+import { AppAccessGuard } from 'projects/insite-kit/src/service/guards/app-access.guard';
+import { AuthGuard } from 'projects/insite-kit/src/service/guards/auth.guard';
+import { FeatureAccessGuard } from 'projects/insite-kit/src/service/guards/feature-access.guard';
 import { CreateUserComponent } from 'src/app/pages/users/create-user/create-user.component';
 import { EditUserComponent } from 'src/app/pages/users/user-detail/pages/edit-user/edit-user.component';
 import { ResetPasswordComponent } from 'src/app/pages/users/user-detail/pages/reset-password/reset-password.component';
@@ -17,7 +18,7 @@ import { AuthenticatedLayoutComponent } from '../components/layouts/authenticate
 export const USERS_ROUTE: Route = {
   path: 'users',
   component: AuthenticatedLayoutComponent,
-  canActivate: [AuthGuard, FeatureAccessGuard],
+  canActivate: [AuthGuard, AppAccessGuard, FeatureAccessGuard],
   data: {
     featureAccessGuards: [
       {

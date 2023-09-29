@@ -1,53 +1,28 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
-import { Observable, combineLatest, map, of, tap } from 'rxjs';
-import { JwtService } from './jwt.service';
-import { UserAccessService } from './user-access.service';
+import { Observable, map, of, tap } from 'rxjs';
+import { UserAccessService } from '../auth/user-access.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
-  private readonly UNAUTHENTICATED_ROUTES = ['login', 'register'];
+export class AppAccessGuard implements CanActivate {
   private readonly DEFAULT_APP_ROUTES = ['login', 'home', 'profile'];
 
   constructor(
     private readonly router: Router,
-    private readonly jwt: JwtService,
     private readonly userAccessService: UserAccessService
   ) {}
 
   /**
-   * Determine if the current user JWT token is valid. If the token is invalid or expired
-   * then it will return false, otherwise true.
+   * Determine if the current authenticated user has access to the application
+   * they are trying to route too.
    *
    * @param next snapshot of the active route
    * @returns boolean based on the status of the token
    */
   canActivate(next: ActivatedRouteSnapshot): Observable<boolean> {
-    return combineLatest([this.validToken(next), this.hasAppAccess(next)]).pipe(
-      map(([v, a]) => v && a)
-    );
-  }
-
-  /**
-   * Determine if the current user JWT token is valid. If the token is invalid or expired
-   * then it will return false, otherwise true.
-   *
-   * @param next snapshot of the active route
-   * @returns boolean based on the status of the token
-   */
-  validToken(next: ActivatedRouteSnapshot): Observable<boolean> {
-    if (!this.jwt.isAuthenticated()) {
-      if (!this.UNAUTHENTICATED_ROUTES.includes(next.routeConfig.path)) {
-        this.router.navigate(['/login']);
-        return of(false);
-      }
-    } else if (next.routeConfig.path === 'login') {
-      this.router.navigate(['/profile']);
-      return of(false);
-    }
-    return of(true);
+    return this.hasAppAccess(next);
   }
 
   /**

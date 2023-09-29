@@ -102,6 +102,6 @@ export class JwtService {
    */
   logOut() {
     localStorage.removeItem(TOKEN_NAME);
-    this.router.navigate(['login']);
+    window.location.reload();
   }
 }

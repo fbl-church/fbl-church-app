@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { RankedWebRole, WebRole } from '../../model/common.model';
-import { UserAccessService } from '../../service/auth/user-access.service';
+import { UserAccessService } from '../auth/user-access.service';
 
 @Directive({
   selector: '[webRoleRestrictionAccess]',

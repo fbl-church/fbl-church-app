@@ -3,7 +3,7 @@ import {
   AttendanceRecord,
   AttendanceStatus,
 } from '../../model/attendance-record.model';
-import { CommonService } from '../../service/common/common.service';
+import { CommonService } from '../common/common.service';
 
 @Directive({
   selector: '[attendanceRecordActivation]',

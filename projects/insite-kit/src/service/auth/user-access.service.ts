@@ -15,14 +15,6 @@ export class UserAccessService implements OnDestroy {
     .asObservable()
     .pipe(filter(() => !this.userInitializing));
 
-  get user(): UserAccess | null {
-    return this._user.getValue();
-  }
-
-  set user(user: UserAccess | null) {
-    this._user.next(user);
-  }
-
   constructor(private readonly authService: AuthService) {
     this.authService
       .userAccess()
@@ -33,7 +25,7 @@ export class UserAccessService implements OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.destroyed.next();
   }
 }

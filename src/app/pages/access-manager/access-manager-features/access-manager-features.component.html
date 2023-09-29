@@ -30,4 +30,7 @@
   <ik-grid-pager key="Features" [pageSize]="10"></ik-grid-pager>
 </ik-grid>
 
-<app-create-feature-modal #featureCreateModal></app-create-feature-modal>
+<app-create-feature-modal
+  #featureCreateModal
+  [mappedApplications]="mappedApplications"
+></app-create-feature-modal>

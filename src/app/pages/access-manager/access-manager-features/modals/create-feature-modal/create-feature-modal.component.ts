@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
-import { ApplicationService } from 'src/service/access-manager/application.service';
 import { FeatureService } from 'src/service/access-manager/feature.service';
 
 @Component({
@@ -12,26 +11,20 @@ import { FeatureService } from 'src/service/access-manager/feature.service';
 })
 export class CreateFeatureModalComponent implements OnInit {
   @ViewChild('createFeatureModal') modal: ModalComponent;
+  @Input() mappedApplications: any[];
 
-  mappedApplications: any[];
   form: FormGroup;
   modalLoading = false;
 
   constructor(
     private readonly featureService: FeatureService,
-    private readonly applicationService: ApplicationService,
     private readonly popupService: PopupService,
     private readonly fb: FormBuilder,
     private readonly router: Router
   ) {}
 
   ngOnInit() {
-    this.applicationService.get().subscribe((res) => {
-      this.mappedApplications = res.body.map((a) => {
-        return { name: a.displayName, value: a.id };
-      });
-      this.buildForm();
-    });
+    this.buildForm();
   }
 
   buildForm() {

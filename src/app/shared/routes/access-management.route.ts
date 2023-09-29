@@ -1,7 +1,6 @@
 import { Route } from '@angular/router';
-import { WebRole } from 'projects/insite-kit/src/model/common.model';
-import { AuthGuard } from 'projects/insite-kit/src/service/auth/auth.guard';
-import { WebRoleAccessGuard } from 'projects/insite-kit/src/service/auth/web-role-access.guard';
+import { AppAccessGuard } from 'projects/insite-kit/src/service/guards/app-access.guard';
+import { AuthGuard } from 'projects/insite-kit/src/service/guards/auth.guard';
 import { AccessManagerApplicationsComponent } from 'src/app/pages/access-manager/access-manager-applications/access-manager-applications.component';
 import { ApplicationDetailComponent } from 'src/app/pages/access-manager/access-manager-applications/application-detail/application-detail.component';
 import { AccessManagerFeaturesComponent } from 'src/app/pages/access-manager/access-manager-features/access-manager-features.component';
@@ -14,10 +13,7 @@ import { AuthenticatedLayoutComponent } from '../components/layouts/authenticate
 export const ACCESS_MANAGEMENT_ROUTE: Route = {
   path: 'access-manager',
   component: AuthenticatedLayoutComponent,
-  canActivate: [AuthGuard, WebRoleAccessGuard],
-  data: {
-    roles: [WebRole.ADMINISTRATOR],
-  },
+  canActivate: [AuthGuard, AppAccessGuard],
   children: [
     {
       path: '',

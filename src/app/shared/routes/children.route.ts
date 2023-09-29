@@ -4,8 +4,9 @@ import {
   App,
   FeatureType,
 } from 'projects/insite-kit/src/model/common.model';
-import { AuthGuard } from 'projects/insite-kit/src/service/auth/auth.guard';
-import { FeatureAccessGuard } from 'projects/insite-kit/src/service/auth/feature-access.guard';
+import { AppAccessGuard } from 'projects/insite-kit/src/service/guards/app-access.guard';
+import { AuthGuard } from 'projects/insite-kit/src/service/guards/auth.guard';
+import { FeatureAccessGuard } from 'projects/insite-kit/src/service/guards/feature-access.guard';
 import { ChildDetailComponent } from 'src/app/pages/children/child-detail/child-detail.component';
 import { EditChildGuardiansComponent } from 'src/app/pages/children/child-detail/pages/edit-child-guardians/edit-child-guardians.component';
 import { EditChildComponent } from 'src/app/pages/children/child-detail/pages/edit-child/edit-child.component';
@@ -18,7 +19,7 @@ import { AuthenticatedLayoutComponent } from '../components/layouts/authenticate
 export const CHILDREN_ROUTE: Route = {
   path: 'children',
   component: AuthenticatedLayoutComponent,
-  canActivate: [AuthGuard, FeatureAccessGuard],
+  canActivate: [AuthGuard, AppAccessGuard, FeatureAccessGuard],
   data: {
     featureAccessGuards: [
       {
