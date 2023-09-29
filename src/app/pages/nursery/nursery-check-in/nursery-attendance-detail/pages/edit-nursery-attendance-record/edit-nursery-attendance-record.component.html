@@ -5,6 +5,7 @@
 <app-attendance-record-form
   *ngIf="record && !loading; else pageLoader"
   [record]="record"
+  translation="Nursery"
   leftActionButton="Cancel"
   rightActionButton="Update"
   (save)="onUpdateClick($event)"
