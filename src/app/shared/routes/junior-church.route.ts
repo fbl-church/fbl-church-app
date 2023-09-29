@@ -13,10 +13,12 @@ import { EditJuniorChurchRecordComponent } from 'src/app/pages/junior-church/jun
 import { JuniorChurchChildrenCheckInComponent } from 'src/app/pages/junior-church/junior-church-check-in/junior-church-attendance-detail/pages/junior-church-children-check-in/junior-church-children-check-in.component';
 import { JuniorChurchCheckInComponent } from 'src/app/pages/junior-church/junior-church-check-in/junior-church-check-in.component';
 import { JuniorChurchNewAttendanceRecordComponent } from 'src/app/pages/junior-church/junior-church-check-in/junior-church-new-attendance-record/junior-church-new-attendance-record.component';
+import { JuniorChurchChildDetailComponent } from 'src/app/pages/junior-church/junior-church-children/junior-church-child-detail/junior-church-child-detail.component';
 import { JuniorChurchChildrenComponent } from 'src/app/pages/junior-church/junior-church-children/junior-church-children.component';
 import { JuniorChurchWorkersComponent } from 'src/app/pages/junior-church/junior-church-workers/junior-church-workers.component';
 import { AttendanceRecordResolverService } from 'src/service/attendance/attendance-record-resolver.service';
 import { JuniorChurchWorkersResolverService } from 'src/service/attendance/junior-church-workers-resolver.service';
+import { ChildResolverService } from 'src/service/children/child-resolver.service';
 import { AuthenticatedLayoutComponent } from '../components/layouts/authenticated-layout/authenticated-layout.component';
 import { ChildRegistrationWizardComponent } from '../components/wizards/child-registration/child-registration-wizard.component';
 
@@ -143,6 +145,21 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
     {
       path: 'children',
       component: JuniorChurchChildrenComponent,
+    },
+    {
+      path: 'children/:id/details',
+      component: JuniorChurchChildDetailComponent,
+      canActivate: [FeatureAccessGuard],
+      resolve: { child: ChildResolverService },
+      data: {
+        featureAccessGuards: [
+          {
+            app: App.JUNIOR_CHURCH,
+            feature: FeatureType.OVERVIEW,
+            access: Access.READ,
+          },
+        ],
+      },
     },
   ],
 };

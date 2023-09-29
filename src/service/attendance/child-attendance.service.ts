@@ -38,6 +38,28 @@ export class ChildAttendanceService {
   }
 
   /**
+   * Gets the child attendance records
+   *
+   * @param childId The child to get the records for
+   * @param params to filter on
+   * @returns Attendance Record object
+   */
+  getChildAttendanceRecordsByChildId(
+    childId: any,
+    params?: Map<string, string[]>
+  ): Observable<HttpResponse<ChildAttendance[]>> {
+    return this.request
+      .get<ChildAttendance[]>(`${this.BASE_PATH}/children/${childId}`, params)
+      .pipe(
+        tap((v) =>
+          v.body.forEach(
+            (c) => (c.formattedName = this.commonService.getFormattedName(c))
+          )
+        )
+      );
+  }
+
+  /**
    * Assign a child to an attendance record
    *
    * @param recordId The record id

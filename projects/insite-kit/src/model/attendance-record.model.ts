@@ -25,6 +25,9 @@ export interface ChildAttendance {
   updatedUserId?: number;
   checkInDate?: Date;
   checkOutDate?: Date;
+  recordName?: string;
+  recordType?: ChurchGroup;
+  recordDate?: Date;
   [key: string]: any;
 }
 

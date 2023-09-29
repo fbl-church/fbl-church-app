@@ -8,6 +8,7 @@ import { EditJuniorChurchRecordComponent } from './junior-church-check-in/junior
 import { JuniorChurchChildrenCheckInComponent } from './junior-church-check-in/junior-church-attendance-detail/pages/junior-church-children-check-in/junior-church-children-check-in.component';
 import { JuniorChurchCheckInComponent } from './junior-church-check-in/junior-church-check-in.component';
 import { JuniorChurchNewAttendanceRecordComponent } from './junior-church-check-in/junior-church-new-attendance-record/junior-church-new-attendance-record.component';
+import { JuniorChurchChildDetailComponent } from './junior-church-children/junior-church-child-detail/junior-church-child-detail.component';
 import { JuniorChurchChildrenComponent } from './junior-church-children/junior-church-children.component';
 import { JuniorChurchWorkersComponent } from './junior-church-workers/junior-church-workers.component';
 
@@ -23,6 +24,7 @@ import { JuniorChurchWorkersComponent } from './junior-church-workers/junior-chu
     JuniorChurchChildrenCheckInComponent,
     CheckInChildModalComponent,
     UpdateChildAttendanceModalComponent,
+    JuniorChurchChildDetailComponent,
   ],
 })
 export class JuniorChurchModule {}

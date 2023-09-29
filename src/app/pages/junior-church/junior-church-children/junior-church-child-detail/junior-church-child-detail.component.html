@@ -1,0 +1,30 @@
+<div *ngIf="childData && !loading; else pageLoader">
+  <ik-header title="{{ childData | formatUserName }}">
+    <ik-header-back (back)="onBackClick()"></ik-header-back>
+  </ik-header>
+  <ik-banner *ngIf="childData.guardians?.length <= 0" type="warning">
+    Child does not have any guardians.
+  </ik-banner>
+  <div class="layout__column-left layout__half">
+    <app-child-details-card
+      [child]="childData"
+      (editClick)="onChildDetailEditClick()"
+    ></app-child-details-card>
+    <app-child-additional-info-card
+      [child]="childData"
+    ></app-child-additional-info-card>
+  </div>
+  <div class="layout__column-right layout__half">
+    <app-child-attendance-records-grid
+      [dataloader]="childRecordDataLoader"
+    ></app-child-attendance-records-grid>
+    <app-child-guardians-details-grid
+      [childId]="childData.id"
+      [guardians]="childData.guardians"
+    ></app-child-guardians-details-grid>
+  </div>
+</div>
+
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
+</ng-template>
