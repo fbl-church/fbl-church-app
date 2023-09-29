@@ -8,6 +8,7 @@ import { EditNurseryRecordComponent } from './nursery-check-in/nursery-attendanc
 import { NurseryChildrenCheckInComponent } from './nursery-check-in/nursery-attendance-detail/pages/nursery-children-check-in/nursery-children-check-in.component';
 import { NurseryCheckInComponent } from './nursery-check-in/nursery-check-in.component';
 import { NurseryNewAttendanceRecordComponent } from './nursery-check-in/nursery-new-attendance-record/nursery-new-attendance-record.component';
+import { NurseryChildDetailComponent } from './nursery-children/nursery-child-detail/nursery-child-detail.component';
 import { NurseryChildrenComponent } from './nursery-children/nursery-children.component';
 import { NurseryWorkersComponent } from './nursery-workers/nursery-workers.component';
 
@@ -23,6 +24,7 @@ import { NurseryWorkersComponent } from './nursery-workers/nursery-workers.compo
     EditNurseryRecordComponent,
     NurseryCheckInChildModalComponent,
     NurseryUpdateChildAttendanceModalComponent,
+    NurseryChildDetailComponent,
   ],
 })
 export class NurseryModule {}

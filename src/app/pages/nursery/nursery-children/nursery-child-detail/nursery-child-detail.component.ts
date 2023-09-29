@@ -16,10 +16,10 @@ import { Child } from 'projects/insite-kit/src/model/user.model';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { ChildAttendanceService } from 'src/service/attendance/child-attendance.service';
 @Component({
-  selector: 'app-junior-church-child-detail',
-  templateUrl: './junior-church-child-detail.component.html',
+  selector: 'app-nursery-child-detail',
+  templateUrl: './nursery-child-detail.component.html',
 })
-export class JuniorChurchChildDetailComponent implements OnInit, OnDestroy {
+export class NurseryChildDetailComponent implements OnInit, OnDestroy {
   @ViewChild('childRecordDetailModal')
   childAttendanceDetailModal: ModalComponent;
 
@@ -69,7 +69,7 @@ export class JuniorChurchChildDetailComponent implements OnInit, OnDestroy {
   getChildAttendanceDataloader(params?: Map<string, string[]>) {
     return this.childAttendanceService.getChildAttendanceRecordsByChildId(
       this.childData.id,
-      params.set('group', [ChurchGroup.JUNIOR_CHURCH])
+      params.set('group', [ChurchGroup.NURSERY])
     );
   }
 

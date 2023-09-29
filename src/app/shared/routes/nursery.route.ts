@@ -14,10 +14,12 @@ import { EditNurseryRecordComponent } from 'src/app/pages/nursery/nursery-check-
 import { NurseryChildrenCheckInComponent } from 'src/app/pages/nursery/nursery-check-in/nursery-attendance-detail/pages/nursery-children-check-in/nursery-children-check-in.component';
 import { NurseryCheckInComponent } from 'src/app/pages/nursery/nursery-check-in/nursery-check-in.component';
 import { NurseryNewAttendanceRecordComponent } from 'src/app/pages/nursery/nursery-check-in/nursery-new-attendance-record/nursery-new-attendance-record.component';
+import { NurseryChildDetailComponent } from 'src/app/pages/nursery/nursery-children/nursery-child-detail/nursery-child-detail.component';
 import { NurseryChildrenComponent } from 'src/app/pages/nursery/nursery-children/nursery-children.component';
 import { NurseryWorkersComponent } from 'src/app/pages/nursery/nursery-workers/nursery-workers.component';
 import { AttendanceRecordResolverService } from 'src/service/attendance/attendance-record-resolver.service';
 import { NurseryWorkersResolverService } from 'src/service/attendance/nursery-workers-resolver.service';
+import { ChildResolverService } from 'src/service/children/child-resolver.service';
 import { AuthenticatedLayoutComponent } from '../components/layouts/authenticated-layout/authenticated-layout.component';
 import { ChildRegistrationWizardComponent } from '../components/wizards/child-registration/child-registration-wizard.component';
 
@@ -144,6 +146,21 @@ export const NURSERY_ROUTE: Route = {
     {
       path: 'children',
       component: NurseryChildrenComponent,
+    },
+    {
+      path: 'children/:id/details',
+      component: NurseryChildDetailComponent,
+      canActivate: [FeatureAccessGuard],
+      resolve: { child: ChildResolverService },
+      data: {
+        featureAccessGuards: [
+          {
+            app: App.NURSERY,
+            feature: FeatureType.OVERVIEW,
+            access: Access.READ,
+          },
+        ],
+      },
     },
   ],
 };

@@ -84,6 +84,11 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           },
         },
         {
+          id: 'children',
+          name: 'Children',
+          route: '/children',
+        },
+        {
           id: 'workers',
           name: 'Workers',
           route: '/workers',
@@ -92,11 +97,6 @@ export const NAVIGATION_ROUTES: NavItem[] = [
             feature: FeatureType.WORKERS,
             access: Access.READ,
           },
-        },
-        {
-          id: 'children',
-          name: 'Children',
-          route: '/children',
         },
       ],
     },

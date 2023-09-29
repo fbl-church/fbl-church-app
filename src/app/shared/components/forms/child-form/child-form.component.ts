@@ -50,7 +50,7 @@ export class ChildFormComponent implements OnInit {
       ],
       birthday: [
         this.childData?.birthday
-          ? this.childData.birthday.toString().split('T')[0]
+          ? this.childData.birthday
           : this.commonService.formatDate(new Date(), 'yyyy-MM-dd'),
         Validators.required,
       ],

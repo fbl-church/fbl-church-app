@@ -22,10 +22,11 @@ export class CommonService {
    * @param value The value to be formatted.
    * @returns The formatted string.
    */
-  formatDate(value: Date | string, format: string = 'MM/dd/yyyy'): string {
+  formatDate(value: Date | string, format = 'MM/dd/yyyy'): string {
     if (value === null) {
       return '-';
     }
+
     let dateValue;
     if (value instanceof Date) {
       dateValue = value;
@@ -33,7 +34,7 @@ export class CommonService {
       dateValue = new Date(value);
     }
 
-    return new DatePipe('en-US').transform(dateValue, format);
+    return new DatePipe('en-US', 'UTC').transform(dateValue, format);
   }
 
   formatPhoneNumber(value: string) {

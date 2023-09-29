@@ -78,9 +78,8 @@ export class EditChildGuardiansComponent implements OnInit, OnDestroy {
       .updateChildGuardiansById(this.childId, this.savedGuardians)
       .subscribe({
         next: () => {
+          this.location.back();
           this.popupService.success('Child guardians successfully updated!');
-          this.resetStatus();
-          this.router.navigate([`/children/${this.childId}/details`]);
         },
         error: () => {
           this.popupService.error(

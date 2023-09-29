@@ -77,6 +77,15 @@ export class AttendanceRecordFormComponent implements OnInit, OnDestroy {
         Validators.required,
       ],
     });
+    this.onActiveDateChange();
+  }
+
+  onActiveDateChange() {
+    this.form.controls.activeDate.valueChanges.subscribe((v) => {
+      this.form.patchValue({
+        name: `${this.translation} - ${this.commonService.formatDate(v)}`,
+      });
+    });
   }
 
   onCancelClick() {
