@@ -1,11 +1,13 @@
+@import "/styles/variables";
+
 .global_container {
   width: 100%;
   min-height: 100vh;
-  padding-bottom: 100px; /* Footer height */
+  padding-bottom: $footer-height;
 
   &__background {
     @extend .global_container;
-    background: #EBEFF5;
+    background: #ebeff5;
     text-align: center;
     position: relative;
     overflow-x: hidden;

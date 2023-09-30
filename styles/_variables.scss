@@ -131,7 +131,7 @@ $font-size-header-lg: 44px !default;
 // Content & Layout
 //**************************************************//
 
-$spacing-xs: 18px !default;
+$spacing-xs: 16px !default;
 $spacing-sm: 18px !default;
 $spacing-md: 24px !default;
 $spacing-lg: 24px !default;
@@ -151,7 +151,10 @@ $margin-md: $spacing-md !default;
 $margin-lg: $spacing-lg !default;
 $margin-xl: $margin * 2 !default;
 
-$line-height-base: 27px !default;
+$line-height-sm: 20px !default;
+$line-height-md: 24px !default;
+$line-height-lg: 32px !default;
+$line-height-lg: 44px !default;
 
 //**************************************************//
 // Screen Widths
@@ -206,3 +209,28 @@ $page-screen-xl-max: 1800px;
 
 // Side Bar
 $sidebar-screen-sm-max: $screen-sm-max;
+
+//**************************************************//
+// Footer
+//**************************************************//
+$footer-height: 100px;
+
+//**************************************************//
+// Navbar
+//**************************************************//
+$navbar-height: 80px;
+$navbar-height-small: $navbar-height - 15px;
+
+//**************************************************//
+// Sidebar
+//**************************************************//
+$sidebar-width: 280px;
+$sidebar-height: calc(100% - $navbar-height);
+$sidebar-height-small: calc(100% - $navbar-height-small);
+$sidebar-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, 0.1);
+$sidebar-active: #3366ff;
+$sidebar-text: #656e7e;
+$sidebar-overlay: rgba(0, 0, 0, 0.5);
+$sidebar-item-border: 1px solid #edf1f7;
+$sidebar-scroll-bar: #f7f9fc;
+$sidebar-scroll-thumb: #e4e9f2;
