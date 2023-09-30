@@ -1,6 +1,7 @@
 @import "variables";
 
-.card_header {
+.card__header {
+  animation: 0s 2s delayoverflow;
   display: inline-block;
   height: auto;
   width: 100%;
@@ -8,9 +9,16 @@
   background: #f3f3f3;
   padding: 10px 16px;
   border-bottom: 1px solid #d9dce2;
+  cursor: pointer;
+
+  &--closed {
+    @extend .card__header;
+    border-radius: 8px;
+    border-bottom: none;
+  }
 }
 
-.card_header .title {
+.card__header .title {
   color: $text-color;
   font-size: $font-size-xl;
   font-weight: $font-weight-bold;
@@ -18,8 +26,17 @@
   display: inline-block;
 }
 
+.card__header-toggle-icon {
+  margin: 0 12px 0 0;
+  font-size: 24px;
+}
+
 @media screen and (max-width: $card-screen-sm-max) {
-  .card_header .title {
+  .card__header .title {
     font-size: $font-size-lg;
+  }
+
+  .card__header-toggle-icon {
+    font-size: 20px;
   }
 }

@@ -6,6 +6,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { ToastrModule } from 'ngx-toastr';
 import { BaseInsiteModule } from './base-insite.module';
 import { BannerComponent } from './component/banner/banner.component';
+import { CardHeaderCollapsibleComponent } from './component/card/card-header-collapsible/card-header-collapsible.component';
 import { CardHeaderComponent } from './component/card/card-header/card-header.component';
 import { CardInfoComponent } from './component/card/card-info/card-info.component';
 import { CardComponent } from './component/card/card.component';
@@ -116,6 +117,7 @@ export function tokenGetter() {
     DropdownComponent,
     RelationshipTranslationPipe,
     AttendanceRecordActivationDirective,
+    CardHeaderCollapsibleComponent,
   ],
   imports: [
     BaseInsiteModule,
@@ -183,6 +185,7 @@ export function tokenGetter() {
     DropdownComponent,
     RelationshipTranslationPipe,
     AttendanceRecordActivationDirective,
+    CardHeaderCollapsibleComponent,
   ],
   entryComponents: [ModalComponent, NotificationPopupComponent],
   providers: [

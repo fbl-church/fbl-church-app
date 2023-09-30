@@ -1,9 +1,27 @@
-import { Component, Input } from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  ContentChild,
+  HostBinding,
+} from '@angular/core';
+import { CardHeaderCollapsibleComponent } from './card-header-collapsible/card-header-collapsible.component';
 
 @Component({
   selector: 'ik-card',
   templateUrl: 'card.component.html',
 })
-export class CardComponent {
-  @Input() marginBottom = true;
+export class CardComponent implements AfterContentInit {
+  @HostBinding('class.card') hostClass = true;
+  @ContentChild(CardHeaderCollapsibleComponent)
+  collapsibleHeader: CardHeaderCollapsibleComponent;
+
+  contentClosed = false;
+
+  ngAfterContentInit(): void {
+    if (this.collapsibleHeader) {
+      this.collapsibleHeader.collapseChange
+        .asObservable()
+        .subscribe((res) => (this.contentClosed = !!res));
+    }
+  }
 }

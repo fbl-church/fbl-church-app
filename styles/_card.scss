@@ -7,19 +7,18 @@
   border-radius: 8px;
   border: 0.5px solid #c7c7c7;
   background: linear-gradient(to bottom, #ffffff 12%, #ffffff 100%);
-}
-
-.card__margin-bottom {
   margin-bottom: 24px;
 }
 
-.card__left-column {
-  float: left;
-  padding-right: 50px;
-}
+.card__content {
+  max-height: 9999px;
+  overflow: hidden;
+  transition: max-height 2s ease-in-out 100ms;
 
-.card__right-column {
-  float: right;
+  &--closed {
+    transition: max-height 2s ease-in-out -1.5s;
+    max-height: 0;
+  }
 }
 
 .card__content-padding {
