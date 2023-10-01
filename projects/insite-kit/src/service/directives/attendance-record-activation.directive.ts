@@ -24,6 +24,7 @@ export class AttendanceRecordActivationDirective {
         new Date(),
         'yyyy-MM-dd'
       );
+
       if (record.activeDate === currentDate) {
         this.canActivateRecord = record.status === AttendanceStatus.PENDING;
       }

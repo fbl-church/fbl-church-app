@@ -11,7 +11,11 @@
 }
 
 .card__content {
-  max-height: 9999px;
+  max-height: 1000px;
+}
+
+.card__content--collapsible {
+  max-height: 1000px;
   overflow: hidden;
   transition: max-height 2s ease-in-out 100ms;
 

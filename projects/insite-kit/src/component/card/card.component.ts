@@ -16,9 +16,11 @@ export class CardComponent implements AfterContentInit {
   collapsibleHeader: CardHeaderCollapsibleComponent;
 
   contentClosed = false;
+  isCollapsibleContent = false;
 
   ngAfterContentInit(): void {
     if (this.collapsibleHeader) {
+      this.isCollapsibleContent = true;
       this.collapsibleHeader.collapseChange
         .asObservable()
         .subscribe((res) => (this.contentClosed = !!res));

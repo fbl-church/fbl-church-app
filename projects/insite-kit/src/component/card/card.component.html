@@ -1,15 +1,10 @@
-<!-- <div
-  class="card"
-  [ngClass]="{
-    'card__margin-bottom': marginBottom
-  }"
->
-  <ng-content></ng-content>
-</div> -->
 <ng-content select="ik-card-header,ik-card-header-collapsible"></ng-content>
 <div
-  class="card__content"
-  [ngClass]="{ 'card__content--closed': contentClosed }"
+  [ngClass]="{
+    card__content: !isCollapsibleContent,
+    'card__content--collapsible': isCollapsibleContent,
+    'card__content--collapsible--closed': contentClosed
+  }"
 >
   <ng-content></ng-content>
 </div>
