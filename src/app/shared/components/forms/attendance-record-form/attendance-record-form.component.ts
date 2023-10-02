@@ -30,6 +30,7 @@ export class AttendanceRecordFormComponent implements OnInit, OnDestroy {
   workers: any[];
   form: FormGroup;
   destroy = new Subject<void>();
+  ChurchGroup = ChurchGroup;
 
   constructor(
     private readonly commonService: CommonService,
@@ -60,12 +61,12 @@ export class AttendanceRecordFormComponent implements OnInit, OnDestroy {
       name: [
         this.record
           ? this.record.name
-          : `${this.translation} - ${this.commonService.formatDate(
-              new Date(),
-              'MM/dd/yyyy'
-            )}`,
+          : `${this.translation} ${
+              this.group === ChurchGroup.NURSERY ? '(SS)' : ''
+            }`,
         Validators.required,
       ],
+      radio: true,
       activeDate: [
         this.record
           ? this.record.activeDate
@@ -77,18 +78,16 @@ export class AttendanceRecordFormComponent implements OnInit, OnDestroy {
         Validators.required,
       ],
     });
-    this.onActiveDateChange();
+    this.onTypeChange();
   }
 
-  onActiveDateChange() {
-    this.form.controls.activeDate.valueChanges.subscribe((v) => {
-      this.form.patchValue({
-        name: `${this.translation} - ${this.commonService.formatDate(
-          v,
-          'MM/dd/yyyy',
-          'UTC'
-        )}`,
-      });
+  onTypeChange() {
+    this.form.controls.radio.valueChanges.subscribe((v) => {
+      if (this.group === ChurchGroup.NURSERY) {
+        this.form.patchValue({
+          name: `${this.translation} (${v ? 'SS' : 'AM'})`,
+        });
+      }
     });
   }
 

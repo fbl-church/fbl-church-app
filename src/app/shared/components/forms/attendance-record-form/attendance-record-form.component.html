@@ -1,4 +1,26 @@
 <ik-form [formGroup]="form">
+  <div class="row" *ngIf="group === ChurchGroup.NURSERY">
+    <ik-form-field header="Type*" class="col-12">
+      <label class="radio-inline">
+        <input
+          type="radio"
+          formControlName="radio"
+          class="form-check-input ik-checkbox-default"
+          [value]="true"
+        />
+        <span>Sunday School (SS)</span>
+      </label>
+      <label class="radio-inline">
+        <input
+          type="radio"
+          formControlName="radio"
+          class="form-check-input ik-checkbox-default"
+          [value]="false"
+        />
+        <span>Morning Service (AM)</span>
+      </label>
+    </ik-form-field>
+  </div>
   <div class="row">
     <ik-form-field header="Name*" class="col-md-6"
       ><input
@@ -6,6 +28,8 @@
         class="form-input__normal"
         placeholder="Name"
         formControlName="name"
+        readonly
+        [disabled]="true"
       />
     </ik-form-field>
 

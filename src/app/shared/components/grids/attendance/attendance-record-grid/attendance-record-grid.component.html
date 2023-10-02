@@ -1,6 +1,10 @@
 <ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
   <ik-grid-search></ik-grid-search>
-  <ik-grid-column label="Name" field="name"></ik-grid-column>
+  <ik-grid-column label="Name" field="name">
+    <ng-template let-data>
+      {{ data.name + " - " + (data.activeDate | date : "MM/dd/yyyy") }}
+    </ng-template>
+  </ik-grid-column>
   <ik-grid-column label="Status" field="status">
     <ng-template let-data>
       <div [ngClass]="data.status">{{ data.status }}</div>
