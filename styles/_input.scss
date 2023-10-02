@@ -9,6 +9,11 @@ input {
   border-style: hidden;
 }
 
+input[readonly] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .form-input {
   border-radius: 8px;
   width: 100%;
@@ -20,11 +25,6 @@ input {
     border: 1px solid #ccc;
     padding: 12px;
     font-size: $font-size-lg;
-
-    &:read-only {
-      color: #afaeae;
-      cursor: not-allowed;
-    }
   }
 
   &__outline {
