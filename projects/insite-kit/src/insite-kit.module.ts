@@ -3,6 +3,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
+import { FileUploadModule } from 'ng2-file-upload';
 import { ToastrModule } from 'ngx-toastr';
 import { BaseInsiteModule } from './base-insite.module';
 import { BannerComponent } from './component/banner/banner.component';
@@ -38,9 +39,11 @@ import { ModalComponent } from './component/modal/modal.component';
 import { MultiSelectInputComponent } from './component/multiselect/multi-select-input.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { NotificationPopupComponent } from './component/notification-popup/notification-popup.component';
+import { ProgressComponent } from './component/progress/progress.component';
 import { SingleSelectInputComponent } from './component/select/select.component';
 import { DropdownComponent } from './component/sidebar/dropdown/dropdown.component';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
+import { UploadComponent } from './component/upload/upload.component';
 import { WizardStepComponent } from './component/wizard/wizard-step/wizard-step.component';
 import { WizardStepDirective } from './component/wizard/wizard-step/wizard-step.directive';
 import { WizardComponent } from './component/wizard/wizard.component';
@@ -118,6 +121,8 @@ export function tokenGetter() {
     RelationshipTranslationPipe,
     AttendanceRecordActivationDirective,
     CardHeaderCollapsibleComponent,
+    UploadComponent,
+    ProgressComponent,
   ],
   imports: [
     BaseInsiteModule,
@@ -131,6 +136,7 @@ export function tokenGetter() {
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',
     }),
+    FileUploadModule,
   ],
   exports: [
     IconModule,
@@ -186,6 +192,8 @@ export function tokenGetter() {
     RelationshipTranslationPipe,
     AttendanceRecordActivationDirective,
     CardHeaderCollapsibleComponent,
+    UploadComponent,
+    ProgressComponent,
   ],
   entryComponents: [ModalComponent, NotificationPopupComponent],
   providers: [

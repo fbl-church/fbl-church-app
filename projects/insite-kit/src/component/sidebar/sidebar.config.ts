@@ -84,6 +84,11 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           },
         },
         {
+          id: 'lessons',
+          name: 'Lessons',
+          route: '/lessons',
+        },
+        {
           id: 'children',
           name: 'Children',
           route: '/children',

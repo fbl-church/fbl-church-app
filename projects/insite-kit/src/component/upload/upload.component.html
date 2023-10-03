@@ -1,0 +1,56 @@
+<ik-card>
+  <div class="drop-box__header">
+    <span>Choose a file</span>
+  </div>
+
+  <div
+    class="drop-box"
+    ng2FileDrop
+    [uploader]="uploader"
+    (fileOver)="fileOver($event)"
+    [ngClass]="{ 'drop-box--file-over': hasFileOver }"
+  >
+    <ik-icon classOverride="drop-box__upload-icon" icon="upload"></ik-icon>
+
+    <input
+      #file
+      hidden="true"
+      type="file"
+      ng2FileSelect
+      [uploader]="uploader"
+      [accept]="fileTypes"
+      (change)="onChange($event)"
+      [multiple]="isMultiple"
+    />
+
+    <div>
+      <span translate="liftkit.dropbox.text">Drop here or click to </span>
+      <a role="button" class="link" (click)="file.click()">browse</a>
+    </div>
+  </div>
+
+  <div>
+    <ul *ngFor="let fileItem of uploader.queue" class="drop-box__selected-file">
+      <li>
+        {{ fileItem?.file?.name }}
+
+        <a
+          role="button"
+          class="drop-box__remove link"
+          id="removeButton"
+          (click)="remove(fileItem)"
+          >Remove</a
+        >
+      </li>
+    </ul>
+  </div>
+</ik-card>
+
+<button
+  id="uploadButton"
+  class="btn btn-primary btn-flat btn-right"
+  [disabled]="uploadBtnDisabled"
+  (click)="onUploadClick()"
+>
+  Upload
+</button>

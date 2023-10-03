@@ -32,6 +32,7 @@ import {
   faSeedling,
   faTrashCan,
   faTriangleExclamation,
+  faUpload,
   faUser,
   faUserCheck,
   faUserPen,
@@ -89,7 +90,8 @@ export class IconModule {
       faBabyCarriage,
       faAddressBook,
       faUserXmark,
-      faChurch
+      faChurch,
+      faUpload
     );
   }
 }

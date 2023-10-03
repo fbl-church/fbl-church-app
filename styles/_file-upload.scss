@@ -1,0 +1,62 @@
+.drop-box {
+  margin: $margin;
+  padding: $padding;
+  align-items: center;
+  background: $white;
+  border: 4px dashed $gray-400;
+  display: flex;
+  flex-direction: column;
+  height: 290px;
+  justify-content: center;
+  text-align: center;
+  width: auto;
+}
+
+.drop-box--file-over {
+  background-color: #eee;
+}
+
+.drop-box__header {
+  margin: $margin;
+}
+
+.drop-box__upload-icon {
+  font-size: 80px;
+}
+
+.drop-box__remove {
+  margin-left: 12px;
+}
+
+.drop-box__selected-file {
+  display: inline-block;
+  list-style-type: none;
+  width: 100%;
+}
+
+.drop-box__submit-button {
+  margin: $margin;
+
+  float: right;
+}
+
+.progress-bar {
+  height: 15px;
+  border-radius: 50px;
+  background-color: $white;
+  border: 1px solid $gray-400;
+  margin: $margin;
+}
+
+.progress-bar-fill {
+  background-color: $primary;
+  border-radius: 50px;
+  height: 100%; /* This is important */
+}
+
+.upload__loader {
+  height: 290px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}

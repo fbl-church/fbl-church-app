@@ -1,0 +1,16 @@
+<ik-header title="Junior Church Lessons"> </ik-header>
+
+<ik-upload
+  *ngIf="!filesUploading; else fileLoader"
+  [allFileTypes]="['pdf', 'png', 'jpg']"
+  [isCSVOnly]="false"
+  [isMultiple]="true"
+  (uploadClick)="onUploadClick($event)"
+></ik-upload>
+
+<ng-template #fileLoader>
+  <ik-card class="upload__loader">
+    <ik-progress [progress]="(progress / totalProgress) * 100"></ik-progress>
+    <span>Uploading Files {{ progress }} of {{ totalProgress }}</span>
+  </ik-card>
+</ng-template>
