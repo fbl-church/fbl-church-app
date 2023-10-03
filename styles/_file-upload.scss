@@ -1,62 +1,77 @@
-.drop-box {
+.file-upload {
   margin: $margin;
-  padding: $padding;
   align-items: center;
   background: $white;
-  border: 4px dashed $gray-400;
-  display: flex;
+  border: 2px dashed #bfc6cd;
   flex-direction: column;
-  height: 290px;
+  height: auto;
   justify-content: center;
   text-align: center;
   width: auto;
 }
 
-.drop-box--file-over {
+.file-upload--file-over {
   background-color: #eee;
 }
 
-.drop-box__header {
+.file-upload__header {
   margin: $margin;
 }
 
-.drop-box__upload-icon {
+.file-upload__upload-icon {
   font-size: 80px;
 }
 
-.drop-box__remove {
+.file-upload__remove {
   margin-left: 12px;
 }
 
-.drop-box__selected-file {
+.file-upload__selected-file {
+  text-align: left;
   display: inline-block;
   list-style-type: none;
   width: 100%;
+  height: 60px;
+  border-top: 2px solid #ebedef;
+  padding: 10px;
 }
 
-.drop-box__submit-button {
+.file-upload__submit-button {
   margin: $margin;
-
   float: right;
 }
 
-.progress-bar {
-  height: 15px;
-  border-radius: 50px;
-  background-color: $white;
-  border: 1px solid $gray-400;
-  margin: $margin;
+.file-upload__size {
+  font-weight: 500;
+  color: #6b757e;
+  font-size: $font-size-caption;
 }
 
-.progress-bar-fill {
-  background-color: $primary;
-  border-radius: 50px;
-  height: 100%; /* This is important */
+.file-upload__status {
+  font-size: $font-size-md;
+  font-weight: 600;
+
+  &--success {
+    @extend .file-upload__status;
+    color: $green-400;
+  }
+
+  &--error {
+    @extend .file-upload__status;
+    color: $red-400;
+  }
+
+  &--pending {
+    @extend .file-upload__status;
+    color: $orange-200;
+  }
+
+  &--ready {
+    @extend .file-upload__status;
+    color: $primary;
+  }
 }
 
-.upload__loader {
-  height: 290px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
+.file-upload__progress {
+  margin: 16px;
 }

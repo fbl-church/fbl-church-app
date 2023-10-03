@@ -1,16 +1,16 @@
 <ik-card>
-  <div class="drop-box__header">
+  <div class="file-upload__header">
     <span>Choose a file</span>
   </div>
 
   <div
-    class="drop-box"
+    class="file-upload"
     ng2FileDrop
     [uploader]="uploader"
     (fileOver)="fileOver($event)"
-    [ngClass]="{ 'drop-box--file-over': hasFileOver }"
+    [ngClass]="{ 'file-upload--file-over': hasFileOver }"
   >
-    <ik-icon classOverride="drop-box__upload-icon" icon="upload"></ik-icon>
+    <ik-icon classOverride="file-upload__upload-icon" icon="upload"></ik-icon>
 
     <input
       #file
@@ -27,22 +27,65 @@
       <span translate="liftkit.dropbox.text">Drop here or click to </span>
       <a role="button" class="link" (click)="file.click()">browse</a>
     </div>
-  </div>
+    <div>
+      <ul
+        *ngFor="let fileItem of uploader.queue"
+        class="file-upload__selected-file"
+      >
+        <li>
+          {{ fileItem?.file?.name }}
 
-  <div>
-    <ul *ngFor="let fileItem of uploader.queue" class="drop-box__selected-file">
-      <li>
-        {{ fileItem?.file?.name }}
-
-        <a
-          role="button"
-          class="drop-box__remove link"
-          id="removeButton"
-          (click)="remove(fileItem)"
-          >Remove</a
+          <a
+            role="button"
+            class="file-upload__remove link"
+            id="removeButton"
+            (click)="remove(fileItem)"
+            >Remove</a
+          >
+        </li>
+        <span class="file-upload__size"
+          >{{ fileItem._file.size / 1000000 | number : "1.2-2" }} MB</span
         >
-      </li>
-    </ul>
+
+        <div *ngIf="fileItem.isSuccess" class="file-upload__status--success">
+          Upload Complete
+        </div>
+        <div *ngIf="fileItem.isError" class="file-upload__status--error">
+          Upload Failed
+        </div>
+        <div
+          *ngIf="uploadStarted && !fileItem.isUploaded"
+          class="file-upload__status--pending"
+        >
+          Upload Pending
+        </div>
+        <div *ngIf="!uploadStarted" class="file-upload__status--ready">
+          Ready to Upload
+        </div>
+      </ul>
+    </div>
+  </div>
+  <div class="file-upload__progress" *ngIf="uploadStarted">
+    <span>{{
+      uploadProgress === this.uploader.queue.length
+        ? this.successfulFiles.length +
+          " of " +
+          this.uploader.queue.length +
+          " Files Uploaded"
+        : "Uploading Files " +
+          uploadProgress +
+          " of " +
+          this.uploader.queue.length
+    }}</span>
+    <ik-progress
+      [progress]="(uploadProgress / this.uploader.queue.length) * 100"
+    ></ik-progress>
+  </div>
+  <div
+    class="file-upload__progress"
+    *ngIf="!uploadStarted && this.uploader.queue?.length > 0"
+  >
+    <span>{{ this.uploader.queue.length + " Files to Upload" }}</span>
   </div>
 </ik-card>
 

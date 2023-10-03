@@ -1,0 +1,12 @@
+.progress-bar {
+  height: 8px;
+  border-radius: 50px;
+  background-color: #ebeff5;
+  margin-top: $margin;
+}
+
+.progress-bar-fill {
+  background-color: #2559ff;
+  border-radius: 50px;
+  height: 100%;
+}

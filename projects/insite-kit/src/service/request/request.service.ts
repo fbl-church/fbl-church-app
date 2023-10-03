@@ -1,6 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { FileItem } from 'ng2-file-upload';
+import { Observable, catchError, map, of } from 'rxjs';
 import { UrlService } from '../url-service/url.service';
 
 /**
@@ -91,5 +92,32 @@ export class RequestService {
     return this.http.get(endpoint.slice(0, -1), {
       responseType: 'blob',
     });
+  }
+
+  /**
+   * Upload the given {@link FileItem} to the desired endpoint
+   *
+   * @param url to post body too
+   * @param body to be posted to the endpoint
+   * @returns observable of the passed in object
+   */
+  upload(url: string, fileItem?: FileItem): Observable<FileItem> {
+    let endpoint = `${this.urlService.getAPIUrl()}/${url}`;
+    const formData: FormData = new FormData();
+    formData.append('file', fileItem._file, fileItem._file.name);
+    return this.http.post<FileItem>(endpoint, formData).pipe(
+      map(() => {
+        fileItem.isUploaded = true;
+        fileItem.isUploading = false;
+        fileItem.isSuccess = true;
+        return fileItem;
+      }),
+      catchError(() => {
+        fileItem.isUploaded = true;
+        fileItem.isUploading = false;
+        fileItem.isError = true;
+        return of(fileItem);
+      })
+    );
   }
 }

@@ -1,15 +1,32 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 
 import { FileItem, FileUploaderOptions } from 'ng2-file-upload';
 
+import {
+  Observable,
+  Subject,
+  concat,
+  concatMap,
+  takeUntil,
+  tap,
+  toArray,
+} from 'rxjs';
 import { InsiteFileUploader } from './file-uploader.model';
 
 @Component({
   selector: 'ik-upload',
   templateUrl: './upload.component.html',
 })
-export class UploadComponent implements OnInit {
+export class UploadComponent implements OnInit, OnDestroy {
   @Input() options: FileUploaderOptions;
+  @Input() uploadProcessor: () => Observable<FileItem>;
   @Output() uploadClick: EventEmitter<FileItem[]> = new EventEmitter<
     FileItem[]
   >();
@@ -21,6 +38,12 @@ export class UploadComponent implements OnInit {
   uploadBtnDisabled: boolean;
   hasFileOver: boolean;
   private pFileTypes: string;
+  private stopPreviousUpload = new Subject<void>();
+  progressCount = 0;
+
+  uploadStarted = false;
+  uploadProgress = 0;
+  successfulFiles: FileItem[] = [];
 
   constructor() {}
 
@@ -38,7 +61,6 @@ export class UploadComponent implements OnInit {
    */
   ngOnInit() {
     this.uploader = new InsiteFileUploader(this.options);
-
     this.uploadBtnDisabled = true;
 
     if (this.isCSVOnly === undefined) {
@@ -51,22 +73,38 @@ export class UploadComponent implements OnInit {
 
     this.uploader.onAfterAddingFile = () => {
       this.uploadBtnDisabled = false;
-
       this.fileAdded.emit();
     };
+  }
+
+  ngOnDestroy() {
+    this.stopPreviousUpload.next();
   }
 
   /**
    * Handle upload button click
    */
-
   onUploadClick() {
-    this.uploadClick.emit(this.uploader.queue);
+    this.stopPreviousUpload.next();
+    this.resetQueueFileStatus();
+
+    concat(this.uploader.queue)
+      .pipe(
+        tap((f) => this.fileActiveStatus(f)),
+        concatMap((f) => this.uploadProcessor.call(this, f)),
+        tap(() => this.uploadProgress++),
+        toArray(),
+        takeUntil(this.stopPreviousUpload)
+      )
+      .subscribe(() => {
+        this.successfulFiles = this.uploader.queue.filter((f) => !f.isError);
+        this.uploadClick.emit(this.uploader.queue);
+      });
   }
 
   /**
-   * remove
-   * @description Remove item from queue
+   * Remove item from the queue.
+   *
    * @param item FileItem object
    */
   remove(item: FileItem) {
@@ -82,29 +120,54 @@ export class UploadComponent implements OnInit {
    */
   clearQueue() {
     this.uploader.clearQueue();
-
     this.uploadBtnDisabled = true;
   }
 
   /**
-   * fileOver
-   * @description Sets hasFileOver for styling
+   * Sets hasFileOver for styling
+   *
    * @param event Event
    */
-
   fileOver(e: any) {
     this.hasFileOver = e;
   }
 
   /**
-   * onChange
-   * @description Change event handler for file select input
+   * Change event handler for file select input
+   *
    * @param event Event
    */
-
   onChange(event: any) {
     if (event && event.target) {
       event.target.value = '';
     }
+  }
+
+  resetQueueFileStatus() {
+    this.uploadStarted = true;
+    this.uploadProgress = 0;
+    this.uploader.queue.forEach((f) => {
+      f.isUploaded = false;
+      f.isUploading = false;
+      f.isSuccess = false;
+      f.isError = false;
+    });
+  }
+
+  fileActiveStatus(f: FileItem) {
+    f.isUploaded = false;
+    f.isUploading = true;
+  }
+
+  fileSuccessStatus(f: FileItem) {
+    f.isUploaded = true;
+    f.isUploading = false;
+    f.isSuccess = true;
+  }
+
+  fileErrorStatus(f: FileItem) {
+    f.isUploaded = true;
+    f.isUploading = false;
+    f.isError = true;
   }
 }
