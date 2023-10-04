@@ -87,6 +87,11 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           id: 'lessons',
           name: 'Lessons',
           route: '/lessons',
+          restriction: {
+            app: App.JUNIOR_CHURCH,
+            feature: FeatureType.LESSONS,
+            access: Access.READ,
+          },
         },
         {
           id: 'children',

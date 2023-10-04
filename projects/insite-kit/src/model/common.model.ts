@@ -124,6 +124,7 @@ export enum FeatureType {
   CHECK_IN = 'check-in',
   WORKERS = 'workers',
   NOTIFICATION = 'notification',
+  LESSONS = 'lessons',
 }
 
 export enum App {

@@ -142,6 +142,16 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
     {
       path: 'lessons',
       component: JuniorChurchLessonsComponent,
+      canActivate: [FeatureAccessGuard],
+      data: {
+        featureAccessGuards: [
+          {
+            app: App.JUNIOR_CHURCH,
+            feature: FeatureType.LESSONS,
+            access: Access.READ,
+          },
+        ],
+      },
     },
     {
       path: 'workers',
