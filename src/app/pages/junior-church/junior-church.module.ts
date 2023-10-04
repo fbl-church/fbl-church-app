@@ -11,6 +11,7 @@ import { JuniorChurchNewAttendanceRecordComponent } from './junior-church-check-
 import { JuniorChurchChildDetailComponent } from './junior-church-children/junior-church-child-detail/junior-church-child-detail.component';
 import { JuniorChurchChildrenComponent } from './junior-church-children/junior-church-children.component';
 import { JuniorChurchLessonsComponent } from './junior-church-lessons/junior-church-lessons.component';
+import { LessonsUploadComponent } from './junior-church-lessons/lessons-upload/lessons-upload.component';
 import { JuniorChurchWorkersComponent } from './junior-church-workers/junior-church-workers.component';
 
 @NgModule({
@@ -27,6 +28,7 @@ import { JuniorChurchWorkersComponent } from './junior-church-workers/junior-chu
     UpdateChildAttendanceModalComponent,
     JuniorChurchChildDetailComponent,
     JuniorChurchLessonsComponent,
+    LessonsUploadComponent,
   ],
 })
 export class JuniorChurchModule {}

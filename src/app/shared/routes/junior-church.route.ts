@@ -16,6 +16,7 @@ import { JuniorChurchNewAttendanceRecordComponent } from 'src/app/pages/junior-c
 import { JuniorChurchChildDetailComponent } from 'src/app/pages/junior-church/junior-church-children/junior-church-child-detail/junior-church-child-detail.component';
 import { JuniorChurchChildrenComponent } from 'src/app/pages/junior-church/junior-church-children/junior-church-children.component';
 import { JuniorChurchLessonsComponent } from 'src/app/pages/junior-church/junior-church-lessons/junior-church-lessons.component';
+import { LessonsUploadComponent } from 'src/app/pages/junior-church/junior-church-lessons/lessons-upload/lessons-upload.component';
 import { JuniorChurchWorkersComponent } from 'src/app/pages/junior-church/junior-church-workers/junior-church-workers.component';
 import { AttendanceRecordResolverService } from 'src/service/attendance/attendance-record-resolver.service';
 import { JuniorChurchWorkersResolverService } from 'src/service/attendance/junior-church-workers-resolver.service';
@@ -149,6 +150,20 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
             app: App.JUNIOR_CHURCH,
             feature: FeatureType.LESSONS,
             access: Access.READ,
+          },
+        ],
+      },
+    },
+    {
+      path: 'lessons/upload',
+      component: LessonsUploadComponent,
+      canActivate: [FeatureAccessGuard],
+      data: {
+        featureAccessGuards: [
+          {
+            app: App.JUNIOR_CHURCH,
+            feature: FeatureType.LESSONS,
+            access: Access.CREATE,
           },
         ],
       },

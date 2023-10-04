@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FileItem } from 'ng2-file-upload';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
@@ -11,7 +12,11 @@ export class StorageService {
 
   constructor(private readonly request: RequestService) {}
 
-  upload(fItem: FileItem): Observable<FileItem> {
-    return this.request.upload(this.BASE_PATH, fItem);
+  get(params?: Map<string, string[]>): Observable<HttpResponse<any[]>> {
+    return this.request.get<any[]>(this.BASE_PATH, params);
+  }
+
+  upload(fItem: FileItem, path: string = ''): Observable<FileItem> {
+    return this.request.upload(this.BASE_PATH, fItem, path);
   }
 }

@@ -101,10 +101,15 @@ export class RequestService {
    * @param body to be posted to the endpoint
    * @returns observable of the passed in object
    */
-  upload(url: string, fileItem?: FileItem): Observable<FileItem> {
+  upload(
+    url: string,
+    fileItem?: FileItem,
+    path?: string
+  ): Observable<FileItem> {
     let endpoint = `${this.urlService.getAPIUrl()}/${url}`;
     const formData: FormData = new FormData();
     formData.append('file', fileItem._file, fileItem._file.name);
+    formData.append('path', path);
     return this.http.post<FileItem>(endpoint, formData).pipe(
       map(() => {
         fileItem.isUploaded = true;

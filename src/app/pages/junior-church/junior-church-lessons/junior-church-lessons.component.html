@@ -1,8 +1,25 @@
-<ik-header title="Junior Church Lessons"> </ik-header>
+<ik-header title="Junior Church Lessons">
+  <button
+    *featureAccess="[
+      Application.JUNIOR_CHURCH,
+      FeatureType.WORKERS,
+      Access.CREATE
+    ]"
+    (click)="onUploadClick()"
+    class="btn btn-primary btn-flat btn-header-right"
+  >
+    <ik-icon icon="upload" classOverride="btn-icon"></ik-icon>
+    Upload
+  </button>
+</ik-header>
 
-<ik-upload
-  [allFileTypes]="['pdf', 'png', 'jpg']"
-  [isCSVOnly]="false"
-  [isMultiple]="true"
-  [uploadProcessor]="uploader"
-></ik-upload>
+<ik-grid [dataLoader]="fileDataloader">
+  <ik-grid-search></ik-grid-search>
+  <ik-grid-column label="File Name" field="name"></ik-grid-column>
+  <ik-grid-column label="Upload Date" field="timestampInstant">
+    <ng-template let-data>
+      {{ data.timestampInstant | date : "MMMM d, y 'at' h:mm a" : "GMT-3" }}
+    </ng-template>
+  </ik-grid-column>
+  <ik-grid-pager key="Files"></ik-grid-pager>
+</ik-grid>
