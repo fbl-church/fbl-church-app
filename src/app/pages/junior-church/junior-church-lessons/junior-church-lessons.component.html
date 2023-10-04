@@ -18,7 +18,7 @@
   <ik-grid-column label="File Name" field="name"></ik-grid-column>
   <ik-grid-column label="Upload Date" field="timestampInstant">
     <ng-template let-data>
-      {{ data.timestampInstant | date : "MMMM d, y 'at' h:mm a" : "GMT-3" }}
+      {{ data.timestampInstant | date : "MMMM d, y" }}
     </ng-template>
   </ik-grid-column>
   <ik-grid-pager key="Files"></ik-grid-pager>
