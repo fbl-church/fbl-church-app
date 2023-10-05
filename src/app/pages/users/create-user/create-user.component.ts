@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'projects/insite-kit/src/model/user.model';
@@ -31,8 +32,12 @@ export class CreateUserComponent {
         this.popupService.success('User Successfully created!');
         this.resetStatus();
       },
-      error: () => {
-        this.popupService.error('User could not be created!');
+      error: (err: HttpErrorResponse) => {
+        if (err.error.message.includes('UX_users__email')) {
+          this.popupService.error('User with that email already exists');
+        } else {
+          this.popupService.error('User could not be created!');
+        }
         this.resetStatus();
       },
     });

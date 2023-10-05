@@ -66,8 +66,6 @@ export class CreateChildComponent {
 
   onDuplicateChild(child: Child) {
     if (!!child) {
-      this.loading = false;
-      this.disableSave = false;
       this.duplicateChild = child;
       this.duplicateChildModal.open();
     }

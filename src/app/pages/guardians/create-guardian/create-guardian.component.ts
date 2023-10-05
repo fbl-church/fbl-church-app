@@ -53,8 +53,6 @@ export class CreateGuardianComponent {
 
   onDuplicateGuardian(guardian: Guardian) {
     if (!!guardian) {
-      this.loading = false;
-      this.disableSave = false;
       this.duplicateGuardian = guardian;
       this.duplicateGuardianModal.open();
     }
