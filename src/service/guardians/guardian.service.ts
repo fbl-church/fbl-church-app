@@ -70,6 +70,22 @@ export class GuardianService {
   }
 
   /**
+   * Checks to see if the passed in guardian first name and last name already exist
+   *
+   * @param firstName The first Name
+   * @param lastName The last name
+   * @returns The guardian that was found or null if not found
+   */
+  doesGuardianExist(guardian: Guardian): Observable<HttpResponse<Guardian>> {
+    return this.request.get<Guardian>(
+      `${this.BASE_PATH}/exists`,
+      new Map()
+        .set('firstName', [guardian.firstName])
+        .set('lastName', [guardian.lastName])
+    );
+  }
+
+  /**
    * This will create a guardian for the given object, but will default to a guardian web role object.
    *
    * @param guardian The guardian to be created.

@@ -6,7 +6,7 @@ import { Guardian } from '../../model/user.model';
 })
 export class AddressPipe implements PipeTransform {
   transform(g: Guardian): any {
-    if (g.address) {
+    if (g?.address) {
       return `${g.address} ${g.city}, ${g.state} ${g.zipCode}`;
     }
     return '-';

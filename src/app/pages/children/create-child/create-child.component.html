@@ -20,3 +20,63 @@
 <app-guardian-warning-modal
   (acknowledged)="onNoGuardianAcknowledgement()"
 ></app-guardian-warning-modal>
+
+<ik-modal #duplicateChildModal name="duplicateChildModal">
+  <ik-modal-header title="Duplicate Child?" type="warning"></ik-modal-header>
+  <ik-modal-body>
+    <div>
+      There is already a child in the church directory with similar information.
+      The child below is the one currently in the church system. If this is not
+      the same child, then you can click 'Continue' to create the child.
+      Otherwise if this is the same child you can hit 'Cancel'.
+    </div>
+    <div class="row">
+      <ik-card-info
+        class="col-6"
+        header="Name"
+        [text]="duplicateChild | formatUserName"
+      ></ik-card-info>
+      <ik-card-info
+        class="col-6"
+        header="CUID"
+        [text]="duplicateChild?.cuid"
+      ></ik-card-info>
+    </div>
+    <div class="row">
+      <ik-card-info
+        class="col-6"
+        header="Birthday"
+        [text]="duplicateChild?.birthday | date : 'MMMM d, y'"
+      ></ik-card-info>
+      <ik-card-info
+        class="col-6"
+        header="Created Date"
+        [text]="duplicateChild?.insertDate | date : 'MMMM d, y'"
+      ></ik-card-info>
+    </div>
+    <div class="row">
+      <ik-card-info class="col-6" header="More Details">
+        <a
+          [href]="'/children/' + duplicateChild?.id + '/details'"
+          target="_blank"
+          class="link card-info__label-text"
+          >{{ duplicateChild | formatUserName }}</a
+        ></ik-card-info
+      >
+    </div>
+  </ik-modal-body>
+  <ik-modal-action-bar>
+    <button
+      class="btn btn-warning btn-flat btn-right btn-modal"
+      (click)="onDuplicateChildAcknowledgement()"
+    >
+      Continue
+    </button>
+    <button
+      class="btn btn-default btn-flat btn-right btn-modal"
+      (click)="duplicateChildModal.close()"
+    >
+      Cancel
+    </button>
+  </ik-modal-action-bar>
+</ik-modal>

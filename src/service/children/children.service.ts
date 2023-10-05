@@ -77,6 +77,22 @@ export class ChildrenService {
   }
 
   /**
+   * Checks to see if the passed in child first name and last name already exist
+   *
+   * @param firstName The first Name
+   * @param lastName The last name
+   * @returns The child that was found or null if not found
+   */
+  doesChildExist(child: Child): Observable<HttpResponse<Child>> {
+    return this.request.get<Child>(
+      `${this.BASE_PATH}/exists`,
+      new Map()
+        .set('firstName', [child.firstName])
+        .set('lastName', [child.lastName])
+    );
+  }
+
+  /**
    * This will create a child for the given object, but will default to a child web role object.
    *
    * @param child The child to be created.
