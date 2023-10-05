@@ -19,4 +19,8 @@ export class StorageService {
   upload(fItem: FileItem, path: string = ''): Observable<FileItem> {
     return this.request.upload(this.BASE_PATH, fItem, path);
   }
+
+  delete(filePath: string): Observable<any> {
+    return this.request.delete(`${this.BASE_PATH}?file=${filePath}`);
+  }
 }
