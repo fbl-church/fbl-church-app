@@ -11,12 +11,6 @@ import { Observable } from 'rxjs';
 })
 export class StorageService {
   readonly BASE_PATH = 'api/ftp-storage';
-  readonly BLOB_TYPES = new Map()
-    .set('pdf', 'application/pdf')
-    .set('png', 'image/png')
-    .set('jpg', 'image/jpeg')
-    .set('jpeg', 'image/jpeg')
-    .set('txt', 'text/plain');
 
   constructor(private readonly request: RequestService) {}
 
@@ -40,6 +34,6 @@ export class StorageService {
   }
 
   download(b: Blob, fileName: string) {
-    saveAs(b, fileName);
+    saveAs(new Blob([b], { type: 'application/octet-stream' }), fileName);
   }
 }
