@@ -17,6 +17,7 @@ import {
   faCircleInfo,
   faCirclePlus,
   faClose,
+  faDownload,
   faEnvelope,
   faForwardStep,
   faHome,
@@ -91,7 +92,8 @@ export class IconModule {
       faAddressBook,
       faUserXmark,
       faChurch,
-      faUpload
+      faUpload,
+      faDownload
     );
   }
 }

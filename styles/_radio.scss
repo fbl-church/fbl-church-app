@@ -1,0 +1,19 @@
+.radio-inline {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 0;
+  font-weight: 400;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.radio-inline + .radio-inline {
+  margin-left: 16px;
+}
+
+@media screen and (max-width: $screen-sm-max) {
+  .radio-inline + .radio-inline {
+    margin-left: 0;
+  }
+}

@@ -67,7 +67,7 @@
   </div>
   <div class="file-upload__progress" *ngIf="uploadStarted">
     <span>{{
-      uploadProgress === this.uploader.queue.length
+      uploadProgress >= this.uploader.queue.length
         ? this.successfulFiles.length +
           " of " +
           this.uploader.queue.length +
@@ -78,7 +78,7 @@
           this.uploader.queue.length
     }}</span>
     <ik-progress
-      [progress]="(uploadProgress / this.uploader.queue.length) * 100"
+      [progress]="((uploadProgress - 1) / this.uploader.queue.length) * 100"
     ></ik-progress>
   </div>
   <div

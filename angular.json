@@ -23,7 +23,8 @@
             "allowedCommonJsDependencies": [
               "jwt-decode",
               "angular2-uuid",
-              "clone-deep"
+              "clone-deep",
+              "file-saver"
             ],
             "outputPath": "dist/fbl-church-app",
             "index": "src/index.html",

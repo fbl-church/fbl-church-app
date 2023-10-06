@@ -1,7 +1,7 @@
 <div *ngIf="childData && !loading; else pageLoader">
   <ik-header title="{{ childData | formatUserName }}">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
-    <div class="inline-display header-buttons">
+    <div class="inline header-buttons">
       <button
         class="btn btn-danger btn-flat btn-size btn-header-right"
         (click)="deleteChildModal.modal.open()"

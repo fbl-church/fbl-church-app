@@ -1,0 +1,27 @@
+<ik-modal #deleteFileModal name="deleteFileModal">
+  <ik-modal-header title="Delete File?" type="danger"></ik-modal-header>
+  <ng-container *ngIf="!modalLoading; else modalLoader">
+    <ik-modal-body>
+      <div>Are you sure you want to permanently delete this file?</div>
+      <div class="margin-base">'{{ selectedFile?.name }}'</div>
+    </ik-modal-body>
+    <ik-modal-action-bar>
+      <button
+        class="btn btn-danger btn-flat btn-right btn-modal"
+        (click)="onFileDelete()"
+      >
+        Delete File
+      </button>
+      <button
+        class="btn btn-default btn-flat btn-right btn-modal"
+        (click)="deleteFileModal.close()"
+      >
+        Cancel
+      </button>
+    </ik-modal-action-bar>
+  </ng-container>
+</ik-modal>
+
+<ng-template #modalLoader>
+  <ik-loading></ik-loading>
+</ng-template>

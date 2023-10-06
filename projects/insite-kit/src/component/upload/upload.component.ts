@@ -45,6 +45,8 @@ export class UploadComponent implements OnInit, OnDestroy {
   uploadProgress = 0;
   successfulFiles: FileItem[] = [];
 
+  testProgress = 0;
+
   constructor() {}
 
   @Input('allFileTypes')
@@ -60,6 +62,13 @@ export class UploadComponent implements OnInit, OnDestroy {
    * Initialize component
    */
   ngOnInit() {
+    setInterval(() => {
+      this.testProgress = this.testProgress + 5;
+      if (this.testProgress >= 100) {
+        this.testProgress = 0;
+      }
+    }, 500);
+
     this.uploader = new InsiteFileUploader(this.options);
     this.uploadBtnDisabled = true;
 
@@ -145,7 +154,7 @@ export class UploadComponent implements OnInit, OnDestroy {
 
   resetQueueFileStatus() {
     this.uploadStarted = true;
-    this.uploadProgress = 0;
+    this.uploadProgress = 1;
     this.uploader.queue.forEach((f) => {
       f.isUploaded = false;
       f.isUploading = false;

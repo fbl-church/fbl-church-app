@@ -1,3 +1,4 @@
+// Project Styles
 @import "footer";
 @import "navbar";
 @import "page";
@@ -31,8 +32,11 @@
 @import "file-upload";
 @import "progress";
 @import "multi-select";
-@import "ngx-toastr/toastr";
-@import "ng-select";
 @import "variables";
+@import "radio";
+@import "ng-select";
+
+// Library Styles
+@import "ngx-toastr/toastr";
 @import "bootstrap/dist/css/bootstrap.css";
 @import "angular-calendar/css/angular-calendar.css";

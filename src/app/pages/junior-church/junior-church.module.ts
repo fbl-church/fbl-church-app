@@ -12,6 +12,8 @@ import { JuniorChurchChildDetailComponent } from './junior-church-children/junio
 import { JuniorChurchChildrenComponent } from './junior-church-children/junior-church-children.component';
 import { JuniorChurchLessonsComponent } from './junior-church-lessons/junior-church-lessons.component';
 import { LessonsUploadComponent } from './junior-church-lessons/lessons-upload/lessons-upload.component';
+import { DeleteFileModalComponent } from './junior-church-lessons/modals/delete-file-modal/delete-file-modal.component';
+import { FileDetailsModalComponent } from './junior-church-lessons/modals/file-details-modal/file-details-modal.component';
 import { JuniorChurchWorkersComponent } from './junior-church-workers/junior-church-workers.component';
 
 @NgModule({
@@ -29,6 +31,8 @@ import { JuniorChurchWorkersComponent } from './junior-church-workers/junior-chu
     JuniorChurchChildDetailComponent,
     JuniorChurchLessonsComponent,
     LessonsUploadComponent,
+    DeleteFileModalComponent,
+    FileDetailsModalComponent,
   ],
 })
 export class JuniorChurchModule {}

@@ -2,7 +2,7 @@
   <button
     *featureAccess="[
       Application.JUNIOR_CHURCH,
-      FeatureType.WORKERS,
+      FeatureType.LESSONS,
       Access.CREATE
     ]"
     (click)="onUploadClick()"
@@ -13,50 +13,27 @@
   </button>
 </ik-header>
 
-<ik-grid [dataLoader]="fileDataloader">
+<ik-grid
+  [dataLoader]="fileDataloader"
+  (rowClick)="fileDetailsModal.open($event)"
+>
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="File Name" field="name"></ik-grid-column>
+  <ik-grid-column label="Size">
+    <ng-template let-data>
+      {{ data.size / 1000000 | number : "1.2-2" }} MB
+    </ng-template>
+  </ik-grid-column>
   <ik-grid-column label="Upload Date" field="timestampInstant">
     <ng-template let-data>
       {{ data.timestampInstant | date : "MMMM d, y" }}
     </ng-template>
   </ik-grid-column>
-  <ik-grid-column label="Delete" field="">
-    <ng-template let-data>
-      <ik-icon
-        icon="trash-can"
-        classOverride="icon__danger"
-        (click)="onFileDeleteClick(data)"
-      ></ik-icon>
-    </ng-template>
-  </ik-grid-column>
   <ik-grid-pager key="Files"></ik-grid-pager>
 </ik-grid>
 
-<ik-modal #deleteFileModal name="deleteFileModal">
-  <ik-modal-header title="Delete File?" type="danger"></ik-modal-header>
-  <ng-container *ngIf="!modalLoading; else modalLoader">
-    <ik-modal-body>
-      <div>Are you sure you want to permanently delete this file?</div>
-      <div class="margin-base">'{{ this.selectedFileToDelete?.name }}'</div>
-    </ik-modal-body>
-    <ik-modal-action-bar>
-      <button
-        class="btn btn-danger btn-flat btn-right btn-modal"
-        (click)="onFileDelete()"
-      >
-        Delete File
-      </button>
-      <button
-        class="btn btn-default btn-flat btn-right btn-modal"
-        (click)="deleteFileModal.close()"
-      >
-        Cancel
-      </button>
-    </ik-modal-action-bar>
-  </ng-container>
-</ik-modal>
-
-<ng-template #modalLoader>
-  <ik-loading></ik-loading>
-</ng-template>
+<app-file-details-modal
+  #fileDetailsModal
+  [basePath]="readPath"
+  (fileDeleted)="refreshGrid()"
+></app-file-details-modal>
