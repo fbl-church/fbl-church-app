@@ -16,7 +16,6 @@ export class ProfileChildEditComponent implements OnInit, OnDestroy {
   destroy = new Subject<void>();
   childId: number;
   childUpdating: Child;
-  disableSave = false;
 
   constructor(
     private readonly location: Location,
@@ -44,7 +43,7 @@ export class ProfileChildEditComponent implements OnInit, OnDestroy {
   }
 
   onCancelClick() {
-    this.resetStatus();
+    this.loading = false;
     this.location.back();
   }
 
@@ -60,10 +59,5 @@ export class ProfileChildEditComponent implements OnInit, OnDestroy {
         this.loading = false;
       },
     });
-  }
-
-  resetStatus() {
-    this.loading = false;
-    this.disableSave = false;
   }
 }

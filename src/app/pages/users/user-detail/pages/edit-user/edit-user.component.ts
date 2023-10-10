@@ -18,7 +18,6 @@ export class EditUserComponent implements OnInit, OnDestroy {
   userUpdating: User;
   currentUpdatedInfo: User;
   disableWebRoleUpdate = false;
-  disableSave = false;
 
   constructor(
     private readonly location: Location,
@@ -45,28 +44,22 @@ export class EditUserComponent implements OnInit, OnDestroy {
   }
 
   onCancelClick() {
-    this.resetStatus();
+    this.loading = false;
     this.location.back();
   }
 
   onSaveClick(user: User) {
     this.loading = true;
-    this.disableSave = true;
 
     this.userService.updateUserProfileById(this.userId, user).subscribe({
       next: () => {
-        this.onCancelClick();
+        this.location.back();
         this.popupService.success('User Successfully updated!');
       },
       error: () => {
         this.popupService.error('User could not be updated at this time!');
-        this.resetStatus();
+        this.loading = false;
       },
     });
-  }
-
-  resetStatus() {
-    this.loading = false;
-    this.disableSave = false;
   }
 }

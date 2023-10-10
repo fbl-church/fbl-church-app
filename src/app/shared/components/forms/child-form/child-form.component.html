@@ -67,3 +67,7 @@
   {{ rightActionButton }}
 </button>
 <ng-content select="button"></ng-content>
+
+<app-duplicate-child-modal
+  (acknowledged)="saveChild()"
+></app-duplicate-child-modal>

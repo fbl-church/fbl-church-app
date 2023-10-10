@@ -21,8 +21,11 @@ import { ChildGuardiansDetailsGridComponent } from './components/grids/children/
 import { GuardianChildrenDetailsGridComponent } from './components/grids/guardians/guardian-children-details-grid/guardian-children-details-grid.component';
 import { AttendanceRecordDetailHeaderComponent } from './components/headers/attendance-record-detail-header/attendance-record-detail-header.component';
 import { AuthenticatedLayoutComponent } from './components/layouts/authenticated-layout/authenticated-layout.component';
+import { AddGuardianModalComponent } from './components/modals/add-guardian-modal/add-guardian-modal.component';
 import { CloseAttendanceRecordModalComponent } from './components/modals/close-attendance-record-modal/close-attendance-record-modal.component';
 import { DeleteRecordModalComponent } from './components/modals/delete-record-modal/delete-record-modal.component';
+import { DuplicateChildModalComponent } from './components/modals/duplicate-child-modal/duplicate-child-modal.component';
+import { DuplicateGuardianModalComponent } from './components/modals/duplicate-guardian-modal/duplicate-guardian-modal.component';
 import { GuardianWarningModalComponent } from './components/modals/guardian-warning-modal/guardian-warning-modal.component';
 import { ChildRegistrationWizardComponent } from './components/wizards/child-registration/child-registration-wizard.component';
 import { ChildRegistrationWizardStepOneComponent } from './components/wizards/child-registration/steps/child-registration-1.wizard.step';
@@ -62,6 +65,9 @@ import { ChildRegistrationWizardStepFourComponent } from './components/wizards/c
     ChildRegistrationWizardStepFourComponent,
     GuardianWarningModalComponent,
     ChildAttendanceRecordsGridComponent,
+    DuplicateChildModalComponent,
+    DuplicateGuardianModalComponent,
+    AddGuardianModalComponent,
   ],
   exports: [
     UserFormComponent,
@@ -92,6 +98,9 @@ import { ChildRegistrationWizardStepFourComponent } from './components/wizards/c
     ChildRegistrationWizardStepFourComponent,
     GuardianWarningModalComponent,
     ChildAttendanceRecordsGridComponent,
+    DuplicateChildModalComponent,
+    DuplicateGuardianModalComponent,
+    AddGuardianModalComponent,
   ],
 })
 export class SharedModule {}

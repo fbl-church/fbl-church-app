@@ -16,7 +16,6 @@ export class EditGuardianComponent implements OnInit, OnDestroy {
   destroy = new Subject<void>();
   guardianId: number;
   guardianUpdating: Guardian;
-  disableSave = false;
 
   constructor(
     private readonly location: Location,
@@ -44,7 +43,7 @@ export class EditGuardianComponent implements OnInit, OnDestroy {
   }
 
   onCancelClick() {
-    this.resetStatus();
+    this.loading = false;
     this.location.back();
   }
 
@@ -60,10 +59,5 @@ export class EditGuardianComponent implements OnInit, OnDestroy {
         this.loading = false;
       },
     });
-  }
-
-  resetStatus() {
-    this.loading = false;
-    this.disableSave = false;
   }
 }

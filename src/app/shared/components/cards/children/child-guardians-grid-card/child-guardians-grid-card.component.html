@@ -21,72 +21,7 @@
   <ik-grid-pager key="Guardians" [pageSize]="5"></ik-grid-pager>
 </ik-grid>
 
-<ik-modal #addGuardianModal name="addGuardianModal">
-  <ik-modal-header title="Add New Guardian?" type="info"></ik-modal-header>
-  <ng-container *ngIf="!modalLoading; else modalLoader">
-    <ik-modal-body>
-      <form *ngIf="guardianModalForm" [formGroup]="guardianModalForm">
-        <div class="row">
-          <ik-form-field header="First Name*" class="col-12" [padding]="false"
-            ><input
-              type="text"
-              class="form-input__normal"
-              placeholder="First Name"
-              formControlName="firstName"
-            />
-          </ik-form-field>
-
-          <ik-form-field header="Last Name*" class="col-12" [padding]="false"
-            ><input
-              type="text"
-              class="form-input__normal"
-              placeholder="Last Name"
-              formControlName="lastName"
-            />
-          </ik-form-field>
-        </div>
-        <div class="row">
-          <ik-form-field header="Phone*" class="col-12" [padding]="false">
-            <input
-              phoneMask
-              placeholder="(___) ___-____"
-              inputmode="tel"
-              class="form-input__normal"
-              formControlName="phone"
-              maxlength="14"
-            />
-          </ik-form-field>
-          <ik-form-field
-            header="Relationship*"
-            class="col-12"
-            [padding]="false"
-          >
-            <ik-single-select
-              formControlName="relationship"
-              [items]="relationships"
-            ></ik-single-select>
-          </ik-form-field>
-        </div>
-      </form>
-    </ik-modal-body>
-    <ik-modal-action-bar>
-      <button
-        class="btn btn-primary btn-flat btn-right btn-modal"
-        (click)="onAddGuardian()"
-        [disabled]="guardianModalForm && guardianModalForm.invalid"
-      >
-        Add Guardian
-      </button>
-      <button
-        class="btn btn-default btn-flat btn-right btn-modal"
-        (click)="addGuardianModal.close()"
-      >
-        Cancel
-      </button>
-    </ik-modal-action-bar>
-  </ng-container>
-</ik-modal>
-
-<ng-template #modalLoader>
-  <ik-loading></ik-loading>
-</ng-template>
+<app-add-guardian-modal
+  [loading]="modalLoading"
+  (save)="onAddGuardian($event)"
+></app-add-guardian-modal>

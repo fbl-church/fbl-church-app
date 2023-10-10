@@ -4,7 +4,6 @@
 
 <app-user-form
   *ngIf="!loading; else pageLoader"
-  [disableSave]="disableSave"
   rightActionButton="Save User"
   leftActionButton="Cancel"
   (cancel)="onCancelClick()"

@@ -1,28 +1,42 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Guardian } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { US_STATES } from 'src/app/shared/utils/states.service';
+import { GuardianService } from 'src/service/guardians/guardian.service';
+import { DuplicateGuardianModalComponent } from '../../modals/duplicate-guardian-modal/duplicate-guardian-modal.component';
 
 @Component({
   selector: 'app-guardian-form',
   templateUrl: './guardian-form.component.html',
 })
 export class GuardianFormComponent implements OnInit {
+  @ViewChild(DuplicateGuardianModalComponent)
+  duplicateGuardianModal: DuplicateGuardianModalComponent;
+
   @Input() guardianData: Guardian;
   @Input() rightActionButton: string;
   @Input() leftActionButton: string;
   @Input() disableRoleUpdate = false;
-  @Input() disableSave = false;
   @Output() cancel = new EventEmitter<any>();
   @Output() save = new EventEmitter<Guardian>();
 
   form: FormGroup;
   states = US_STATES;
+  savedGuardianData: Guardian;
+  disableSave = false;
 
   constructor(
     private readonly fb: FormBuilder,
-    private readonly popupService: PopupService
+    private readonly popupService: PopupService,
+    private readonly guardianService: GuardianService
   ) {}
 
   ngOnInit() {
@@ -82,8 +96,22 @@ export class GuardianFormComponent implements OnInit {
     }
 
     if (validAddress) {
-      this.save.emit(guardian);
+      this.savedGuardianData = guardian;
+      this.guardianService
+        .doesGuardianExist(this.savedGuardianData)
+        .subscribe((g) => {
+          if (g.body) {
+            this.duplicateGuardianModal.open(g.body);
+          } else {
+            this.saveGuardian();
+          }
+          this.disableSave = false;
+        });
     }
+  }
+
+  saveGuardian() {
+    this.save.emit(this.savedGuardianData);
   }
 
   isValidAddressField() {

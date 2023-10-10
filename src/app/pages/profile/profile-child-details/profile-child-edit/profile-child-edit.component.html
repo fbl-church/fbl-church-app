@@ -5,7 +5,6 @@
 <app-child-form
   *ngIf="childUpdating && !loading; else pageLoader"
   [childData]="childUpdating"
-  [disableSave]="disableSave"
   [groupEdit]="false"
   rightActionButton="Update Child"
   leftActionButton="Cancel"

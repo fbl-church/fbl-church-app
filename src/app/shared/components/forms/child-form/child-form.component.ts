@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   ChurchGroup,
@@ -6,16 +13,20 @@ import {
 } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
+import { ChildrenService } from 'src/service/children/children.service';
+import { DuplicateChildModalComponent } from '../../modals/duplicate-child-modal/duplicate-child-modal.component';
 
 @Component({
   selector: 'app-child-form',
   templateUrl: './child-form.component.html',
 })
 export class ChildFormComponent implements OnInit {
+  @ViewChild(DuplicateChildModalComponent)
+  duplicateChildModal: DuplicateChildModalComponent;
+
   @Input() childData: Child;
   @Input() rightActionButton: string;
   @Input() leftActionButton: string;
-  @Input() disableSave = false;
   @Input() groupEdit = true;
   @Output() cancel = new EventEmitter<any>();
   @Output() save = new EventEmitter<Child>();
@@ -23,9 +34,14 @@ export class ChildFormComponent implements OnInit {
   churchGroups: any[];
   form: FormGroup;
 
+  savedChildData: Child;
+  duplicateChildData: Child;
+  disableSave = false;
+
   constructor(
     private readonly fb: FormBuilder,
-    private readonly commonService: CommonService
+    private readonly commonService: CommonService,
+    private readonly childrenService: ChildrenService
   ) {}
 
   ngOnInit() {
@@ -65,6 +81,7 @@ export class ChildFormComponent implements OnInit {
   }
 
   onSaveClick() {
+    this.disableSave = true;
     let newChild: Child = {
       firstName: this.form.value.firstName,
       lastName: this.form.value.lastName,
@@ -86,6 +103,18 @@ export class ChildFormComponent implements OnInit {
       newChild.churchGroup = this.form.value.groups;
     }
 
-    this.save.emit(newChild);
+    this.savedChildData = newChild;
+    this.childrenService.doesChildExist(newChild).subscribe((c) => {
+      if (c.body) {
+        this.duplicateChildModal.open(c.body);
+      } else {
+        this.saveChild();
+      }
+      this.disableSave = false;
+    });
+  }
+
+  saveChild() {
+    this.save.emit(this.savedChildData);
   }
 }

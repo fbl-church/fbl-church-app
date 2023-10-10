@@ -5,7 +5,6 @@
 <app-guardian-form
   *ngIf="guardianUpdating && !loading; else pageLoader"
   [guardianData]="guardianUpdating"
-  [disableSave]="disableSave"
   rightActionButton="Update Guardian"
   leftActionButton="Cancel"
   (cancel)="onCancelClick()"

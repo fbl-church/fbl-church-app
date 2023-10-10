@@ -13,7 +13,6 @@ import { RoleService } from 'src/service/roles/roles.service';
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss'],
 })
 export class UserFormComponent implements OnInit {
   @Input() userData: User;
@@ -21,7 +20,6 @@ export class UserFormComponent implements OnInit {
   @Input() leftActionButton: string;
   @Input() enableRoleUpdate = true;
   @Input() enablePasswordUpdate = true;
-  @Input() disableSave = false;
   @Output() cancel = new EventEmitter<any>();
   @Output() save = new EventEmitter<User>();
 

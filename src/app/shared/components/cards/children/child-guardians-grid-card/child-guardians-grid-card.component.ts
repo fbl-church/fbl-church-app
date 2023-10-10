@@ -1,9 +1,8 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { GridChecklistColumnComponent } from 'projects/insite-kit/src/component/grid/grid-checklist-column/grid-checklist-column.component';
 import { GridSelectionColumnComponent } from 'projects/insite-kit/src/component/grid/grid-selection-column/grid-selection-column.component';
 import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
-import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import {
   Relationship,
   TranslationKey,
@@ -12,6 +11,7 @@ import { Guardian } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { GuardianService } from 'src/service/guardians/guardian.service';
+import { AddGuardianModalComponent } from '../../../modals/add-guardian-modal/add-guardian-modal.component';
 
 @Component({
   selector: 'app-child-guardians-grid-card',
@@ -23,7 +23,8 @@ export class ChildGuardiansGridCardComponent implements OnInit {
   gridChecklistColumn: GridChecklistColumnComponent;
   @ViewChild(GridSelectionColumnComponent)
   gridSelection: GridSelectionColumnComponent;
-  @ViewChild('addGuardianModal') addGuardianModal: ModalComponent;
+  @ViewChild(AddGuardianModalComponent)
+  addGuardianModal: AddGuardianModalComponent;
 
   @Input() guardians: Guardian[] = [];
 
@@ -33,7 +34,6 @@ export class ChildGuardiansGridCardComponent implements OnInit {
   guardianSelection: any[] = [];
   guardianIdsChecked: number[] = [];
 
-  guardianModalForm: FormGroup;
   modalLoading = false;
 
   constructor(
@@ -46,22 +46,12 @@ export class ChildGuardiansGridCardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.buildGuardianForm();
     this.setSelectedGuardians();
     this.relationships = Object.keys(Relationship).map((v) => {
       return {
         name: this.commonService.translate(v, TranslationKey.RELATIONSHIP),
         value: v,
       };
-    });
-  }
-
-  buildGuardianForm() {
-    this.guardianModalForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      phone: ['', [Validators.required, Validators.minLength(14)]],
-      relationship: ['', Validators.required],
     });
   }
 
@@ -75,23 +65,16 @@ export class ChildGuardiansGridCardComponent implements OnInit {
       });
   }
 
-  onAddGuardian() {
+  onAddGuardian(g: Guardian) {
     this.modalLoading = true;
-    const createdGuardian: Guardian = {
-      firstName: this.guardianModalForm.value.firstName.trim(),
-      lastName: this.guardianModalForm.value.lastName.trim(),
-      relationship: this.guardianModalForm.value.relationship.value,
-      phone: this.guardianModalForm.value.phone.trim(),
-    };
 
-    this.guardianService.create(createdGuardian).subscribe({
+    this.guardianService.create(g).subscribe({
       next: (res) => {
         this.addGuardianModal.close();
-        this.modalLoading = false;
         this.gridChecklistColumn.addId(res.id);
         this.gridSelection.addSelection({
           id: res.id,
-          value: createdGuardian.relationship,
+          value: g.relationship,
         });
         this.grid.refresh();
         this.popupService.success(
