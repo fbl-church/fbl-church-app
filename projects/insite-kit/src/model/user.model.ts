@@ -19,6 +19,7 @@ export interface Child extends User {
   allergies?: string;
   additionalInfo?: string;
   guardians?: Guardian[];
+  releaseOfLiability?: boolean;
 }
 
 export interface Guardian extends User {

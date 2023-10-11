@@ -45,6 +45,14 @@
   <div class="flex" *ngIf="child.insertDate">
     <div class="left-column">
       <ik-card-info
+        header="Liability Release"
+        [contentColor]="child.releaseOfLiability ? 'ENABLED' : 'DISABLED'"
+        text="{{ child.releaseOfLiability ? 'Agreed' : 'Denied' }}"
+      >
+      </ik-card-info>
+    </div>
+    <div class="right-column">
+      <ik-card-info
         header="Created Date"
         text="{{ child.insertDate | date : 'MMMM d, y' }}"
       >

@@ -1,20 +1,20 @@
 <ik-form [formGroup]="form">
   <div class="row" *ngIf="group === ChurchGroup.NURSERY">
     <ik-form-field header="Type*" class="col-12">
-      <label class="radio-inline">
+      <label class="input-inline">
         <input
           type="radio"
           formControlName="radio"
-          class="form-check-input ik-checkbox-default"
+          class="form-check-input checkbox__default"
           [value]="true"
         />
         <span>Sunday School (SS)</span>
       </label>
-      <label class="radio-inline">
+      <label class="input-inline">
         <input
           type="radio"
           formControlName="radio"
-          class="form-check-input ik-checkbox-default"
+          class="form-check-input checkbox__default"
           [value]="false"
         />
         <span>Morning Service (AM)</span>

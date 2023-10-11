@@ -27,6 +27,7 @@ export class ChildFormComponent implements OnInit {
   @Input() childData: Child;
   @Input() rightActionButton: string;
   @Input() leftActionButton: string;
+  @Input() duplicateCheck = true;
   @Input() groupEdit = true;
   @Output() cancel = new EventEmitter<any>();
   @Output() save = new EventEmitter<Child>();
@@ -73,6 +74,9 @@ export class ChildFormComponent implements OnInit {
       allergies: [this.childData ? this.childData.allergies : ''],
       groups: [this.childData?.churchGroup ? this.childData.churchGroup : ''],
       additionalInfo: [this.childData ? this.childData.additionalInfo : ''],
+      releaseOfLiability: [
+        this.childData ? this.childData.releaseOfLiability : false,
+      ],
     });
   }
 
@@ -85,6 +89,7 @@ export class ChildFormComponent implements OnInit {
     let newChild: Child = {
       firstName: this.form.value.firstName,
       lastName: this.form.value.lastName,
+      releaseOfLiability: this.form.value.releaseOfLiability,
     };
 
     if (this.form.value.birthday) {
@@ -104,14 +109,18 @@ export class ChildFormComponent implements OnInit {
     }
 
     this.savedChildData = newChild;
-    this.childrenService.doesChildExist(newChild).subscribe((c) => {
-      if (c.body) {
-        this.duplicateChildModal.open(c.body);
-      } else {
-        this.saveChild();
-      }
-      this.disableSave = false;
-    });
+    if (this.duplicateCheck) {
+      this.childrenService.doesChildExist(newChild).subscribe((c) => {
+        if (c.body) {
+          this.duplicateChildModal.open(c.body);
+        } else {
+          this.saveChild();
+        }
+        this.disableSave = false;
+      });
+    } else {
+      this.saveChild();
+    }
   }
 
   saveChild() {

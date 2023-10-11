@@ -1,4 +1,4 @@
-.radio-inline {
+.input-inline {
   display: inline-flex;
   align-items: center;
   position: relative;
@@ -8,12 +8,12 @@
   cursor: pointer;
 }
 
-.radio-inline + .radio-inline {
+.input-inline + .input-inline {
   margin-left: 16px;
 }
 
 @media screen and (max-width: $screen-sm-max) {
-  .radio-inline + .radio-inline {
+  .input-inline + .input-inline {
     margin-left: 0;
   }
 }

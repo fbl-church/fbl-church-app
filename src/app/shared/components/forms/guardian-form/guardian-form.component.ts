@@ -22,6 +22,7 @@ export class GuardianFormComponent implements OnInit {
   duplicateGuardianModal: DuplicateGuardianModalComponent;
 
   @Input() guardianData: Guardian;
+  @Input() duplicateCheck = true;
   @Input() rightActionButton: string;
   @Input() leftActionButton: string;
   @Input() disableRoleUpdate = false;
@@ -97,16 +98,20 @@ export class GuardianFormComponent implements OnInit {
 
     if (validAddress) {
       this.savedGuardianData = guardian;
-      this.guardianService
-        .doesGuardianExist(this.savedGuardianData)
-        .subscribe((g) => {
-          if (g.body) {
-            this.duplicateGuardianModal.open(g.body);
-          } else {
-            this.saveGuardian();
-          }
-          this.disableSave = false;
-        });
+      if (this.duplicateCheck) {
+        this.guardianService
+          .doesGuardianExist(this.savedGuardianData)
+          .subscribe((g) => {
+            if (g.body) {
+              this.duplicateGuardianModal.open(g.body);
+            } else {
+              this.saveGuardian();
+            }
+            this.disableSave = false;
+          });
+      } else {
+        this.saveGuardian();
+      }
     }
   }
 
