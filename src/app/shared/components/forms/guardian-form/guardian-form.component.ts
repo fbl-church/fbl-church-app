@@ -38,7 +38,7 @@ export class GuardianFormComponent implements OnInit {
     private readonly fb: FormBuilder,
     private readonly popupService: PopupService,
     private readonly guardianService: GuardianService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.buildForm();
@@ -78,6 +78,7 @@ export class GuardianFormComponent implements OnInit {
   }
 
   onSaveClick() {
+    this.disableSave = true;
     const guardian: Guardian = {
       firstName: this.form.value.firstName.trim(),
       lastName: this.form.value.lastName.trim(),
