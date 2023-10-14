@@ -37,6 +37,7 @@ import { ModalBodyComponent } from './component/modal/modal-body/modal-body.comp
 import { ModalHeaderComponent } from './component/modal/modal-header/modal-header.component';
 import { ModalComponent } from './component/modal/modal.component';
 import { MultiSelectInputComponent } from './component/multiselect/multi-select-input.component';
+import { NavbarProfileContentComponent } from './component/navbar/navbar-profile-content/navbar-profile-content.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { NotificationPopupComponent } from './component/notification-popup/notification-popup.component';
 import { ProgressComponent } from './component/progress/progress.component';
@@ -123,6 +124,7 @@ export function tokenGetter() {
     CardHeaderCollapsibleComponent,
     UploadComponent,
     ProgressComponent,
+    NavbarProfileContentComponent,
   ],
   imports: [
     BaseInsiteModule,
@@ -194,6 +196,7 @@ export function tokenGetter() {
     CardHeaderCollapsibleComponent,
     UploadComponent,
     ProgressComponent,
+    NavbarProfileContentComponent,
   ],
   entryComponents: [ModalComponent, NotificationPopupComponent],
   providers: [

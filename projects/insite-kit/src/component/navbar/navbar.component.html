@@ -9,14 +9,10 @@
   <div class="app-navbar__title inline-block">{{ appName }}</div>
   <ik-icon
     classOverride="app-navbar__icons__right"
-    icon="right-from-bracket"
-    (click)="onLogOutClick()"
-  ></ik-icon>
-  <ik-icon
-    classOverride="app-navbar__icons__right"
     icon="user"
     (click)="onProfileClick()"
   ></ik-icon>
+  <ik-navbar-profile-content></ik-navbar-profile-content>
 </nav>
 <!-- <ik-insite-user-notification></ik-insite-user-notification>
 <ik-insite-general-notification></ik-insite-general-notification> -->

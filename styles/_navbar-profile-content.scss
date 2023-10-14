@@ -1,0 +1,129 @@
+@import "variables";
+
+.navbar_profile__container {
+  border-radius: 3px;
+  top: 65px;
+  right: 12px;
+  position: fixed;
+  background-color: #f9f9f9;
+  width: 240px;
+  box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
+  z-index: 1;
+  box-shadow: 0 3px 20px rgba(89, 105, 129, 0.3), 0 1px 2px rgba(0, 0, 0, 0.05),
+    0 0 0 1px rgba(89, 105, 129, 0.1);
+  transition: 0.25s;
+
+  &--open {
+    opacity: 1;
+  }
+
+  &--closed {
+    opacity: 0;
+  }
+}
+
+// .navbar_profile__container div {
+//   float: none;
+//   color: black;
+//   padding: 12px 16px;
+//   text-decoration: none;
+//   display: block;
+//   text-align: left;
+// }
+
+.navbar_profile__container .header {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-bottom: 1px solid #eef1f6;
+
+  span {
+    width: 100%;
+    text-align: center;
+  }
+
+  .chip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-weight: $font-weight-semi-bold;
+    font-size: $font-size-lg;
+    background-color: #cfd7e6;
+    margin-bottom: 4px;
+  }
+
+  .email {
+    font-size: $font-size-sm;
+    color: #9aa7b9;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+.navbar_profile__container .header:hover {
+  background-color: #f1f1f1;
+  border-radius: 3px 3px 0 0;
+}
+
+.navbar_profile__item:hover {
+  background-color: #f1f1f1;
+}
+
+.navbar_profile__item + .navbar_profile__item:hover {
+  border-radius: 3px 3px 0 0;
+}
+
+.navbar_profile__item {
+  padding: 12px 16px;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  transition: opacity 225ms cubic-bezier(0.4, 0, 1, 1) 175ms;
+  border-bottom: $sidebar-item-border;
+  line-height: $line-height-md;
+  color: $sidebar-text;
+}
+
+.navbar_profile__item-text {
+  font-size: $font-size-md;
+}
+
+.navbar_profile__item-icon {
+  display: block;
+  text-align: left;
+  width: 24px;
+  font-size: $font-size-md;
+}
+
+.navbar_profile__overlay {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+
+  &--open {
+    visibility: visible;
+    opacity: 0;
+  }
+
+  &--closed {
+    opacity: 0;
+  }
+}
+
+@media screen and (max-width: $navbar-screen-sm-max) {
+  .navbar_profile__container {
+    top: 55px;
+  }
+}

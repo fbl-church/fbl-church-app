@@ -1,0 +1,33 @@
+<div
+  [ngClass]="
+    isOpen
+      ? 'navbar_profile__container--open'
+      : 'navbar_profile__container--closed'
+  "
+  class="navbar_profile__container"
+>
+  <div class="header" (click)="onProfileClick()">
+    <div class="chip">{{ initials }}</div>
+    <span>{{ name }}</span>
+    <span class="email">{{ email }}</span>
+  </div>
+  <div class="navbar_profile__item" (click)="onProfileClick()">
+    <ik-icon classOverride="navbar_profile__item-icon" icon="user"></ik-icon>
+    <span class="navbar_profile__item-text">Profile</span>
+  </div>
+  <div class="navbar_profile__item" (click)="onLogOutClick()">
+    <ik-icon
+      classOverride="navbar_profile__item-icon"
+      icon="right-from-bracket"
+    ></ik-icon>
+    <span class="navbar_profile__item-text">Sign out</span>
+  </div>
+</div>
+<div
+  class="navbar_profile__overlay"
+  [ngClass]="{
+    'navbar_profile__overlay--open': isOpen,
+    'navbar_profile__overlay--closed': !isOpen
+  }"
+  (click)="close()"
+></div>
