@@ -1,6 +1,7 @@
 @import "variables";
 
 .navbar_profile__container {
+  visibility: hidden;
   border-radius: 3px;
   top: 65px;
   right: 12px;
@@ -14,6 +15,7 @@
   transition: 0.25s;
 
   &--open {
+    visibility: visible;
     opacity: 1;
   }
 
@@ -21,15 +23,6 @@
     opacity: 0;
   }
 }
-
-// .navbar_profile__container div {
-//   float: none;
-//   color: black;
-//   padding: 12px 16px;
-//   text-decoration: none;
-//   display: block;
-//   text-align: left;
-// }
 
 .navbar_profile__container .header {
   padding: 12px 16px;
