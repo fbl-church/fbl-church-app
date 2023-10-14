@@ -1,6 +1,6 @@
 ---
 name: Hot Fix Report
-about: Immediate fix needed to production
+about: Immediate fix needed in production.
 title: ''
 labels: Hot Fix
 assignees: sambutler1017,suvakpc

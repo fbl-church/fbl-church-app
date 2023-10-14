@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-about: Create a report to help us improve
+about: Create a bug report on something that needs fixed.
 title: ''
 labels: Bug
 assignees: sambutler1017,suvakpc

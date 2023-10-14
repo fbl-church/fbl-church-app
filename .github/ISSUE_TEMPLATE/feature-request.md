@@ -1,6 +1,6 @@
 ---
-name: Feature Request
-about: Suggest an idea or feature to be added to this project
+name: Feature/Improvement Request
+about: Suggest an feature or imporvement to be added.
 title: ''
 labels: Feature
 assignees: sambutler1017,suvakpc

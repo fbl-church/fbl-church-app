@@ -6,6 +6,7 @@ import {
   faBackwardStep,
   faBars,
   faBell,
+  faBug,
   faCaretDown,
   faCaretLeft,
   faCaretUp,
@@ -93,7 +94,8 @@ export class IconModule {
       faUserXmark,
       faChurch,
       faUpload,
-      faDownload
+      faDownload,
+      faBug
     );
   }
 }
