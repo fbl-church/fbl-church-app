@@ -20,4 +20,17 @@ export class EmailService {
   sendContactAdminEmail(message: string): Observable<User[]> {
     return this.request.post<User[]>(`${this.BASE_PATH}/contact`, message);
   }
+
+  /**
+   * Will send a forgot password email
+   *
+   * @param email The email to send the forgot password too
+   * @returns Who the email was sent too.
+   */
+  sendForgotPasswordEmail(email: string): Observable<User[]> {
+    return this.request.post<User[]>(
+      `${this.BASE_PATH}/forgot-password`,
+      email
+    );
+  }
 }

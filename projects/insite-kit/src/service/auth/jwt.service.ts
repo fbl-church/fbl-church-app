@@ -34,6 +34,13 @@ export class JwtService {
   }
 
   /**
+   * Will remove the token from local storage
+   */
+  removeToken() {
+    localStorage.removeItem(TOKEN_NAME);
+  }
+
+  /**
    * Checks to see if the logged in user is authenticated already. If the users
    * token is expired then it will remove and route them to the login screen.
    *
@@ -100,7 +107,7 @@ export class JwtService {
    * page.
    */
   logOut() {
-    localStorage.removeItem(TOKEN_NAME);
+    this.removeToken();
     this.router.navigate(['login']).then(() => window.location.reload());
   }
 }
