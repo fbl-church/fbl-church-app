@@ -1,10 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
@@ -19,7 +14,6 @@ export class UserFormComponent implements OnInit {
   @Input() rightActionButton: string;
   @Input() leftActionButton: string;
   @Input() enableRoleUpdate = true;
-  @Input() enablePasswordUpdate = true;
   @Output() cancel = new EventEmitter<any>();
   @Output() save = new EventEmitter<User>();
 
@@ -63,13 +57,6 @@ export class UserFormComponent implements OnInit {
           : '',
       ],
     });
-
-    if (this.enablePasswordUpdate) {
-      this.form.addControl(
-        'password',
-        new FormControl('', Validators.required)
-      );
-    }
   }
 
   onCancelClick() {

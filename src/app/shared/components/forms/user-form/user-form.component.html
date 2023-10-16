@@ -18,28 +18,13 @@
       </ik-form-field>
     </div>
     <div class="row">
-      <ik-form-field
-        header="Email*"
-        [ngClass]="enablePasswordUpdate ? 'col-md-6' : 'col-md-12'"
-      >
+      <ik-form-field header="Email*" class="col-12">
         <input
           type="email"
           inputmode="email"
           class="form-input__normal"
           placeholder="Email"
           formControlName="email"
-        />
-      </ik-form-field>
-
-      <ik-form-field
-        header="Password*"
-        class="col-md-6"
-        *ngIf="enablePasswordUpdate"
-      >
-        <input
-          class="form-input__normal"
-          placeholder="Password"
-          formControlName="password"
         />
       </ik-form-field>
     </div>
