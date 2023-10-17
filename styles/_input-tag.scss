@@ -19,13 +19,13 @@
   max-width: 100%;
   padding: 0 8px;
   font-size: $font-size-lg;
-  transition: all 0.12s ease-out; // sass-lint:disable-line no-transition-all
+  transition: all 0.12s ease-out;
 }
 
 .input-tag__remove {
   cursor: pointer;
-  display: flex !important; // sass-lint:disable-line no-important
-  font-size: $font-size-base;
+  display: flex !important;
+  font-size: $font-size-lg;
   width: 16px;
 }
 
@@ -37,11 +37,26 @@
   margin-right: 32px;
 }
 
+// IOS Devices ONLY
+@supports (-webkit-touch-callout: none) {
+  .input-tag__remove {
+    margin-top: -4px;
+  }
+}
+
 @media screen and (max-width: $grid-screen-sm-max) {
   .input-tag {
-    font-size: $font-size-caption;
-  }
-  .input-tag__remove {
     font-size: $font-size-md;
+  }
+
+  .input-tag__remove {
+    font-size: $font-size-base;
+  }
+
+  // IOS Devices ONLY
+  @supports (-webkit-touch-callout: none) {
+    .input-tag__remove {
+      margin-top: -2px;
+    }
   }
 }

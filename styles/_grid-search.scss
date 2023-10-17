@@ -11,17 +11,6 @@
   margin: 20px 20px 0 20px;
 }
 
-.grid-search__multi {
-  color: $text-color;
-  border-radius: 10px;
-  background: #f7f9fc;
-  border: 1px solid #e4e9f2;
-  padding: 10px;
-  font-size: $font-size-lg;
-  width: 100%;
-  margin: 20px 20px 0 20px;
-}
-
 .grid-search__multiselect-field {
   background: #f7f9fc;
   border: 0;
@@ -30,7 +19,10 @@
   flex-grow: 2;
   font-size: $font-size-base;
   width: auto;
-  margin-left: 5px;
+
+  &--margin-left {
+    margin-left: 5px;
+  }
 }
 
 .grid-search__multiselect-form {
@@ -57,10 +49,10 @@
 }
 
 @media screen and (max-width: $grid-screen-sm-max) {
-  .grid-search,
-  .grid-search__multi {
+  .grid-search {
     font-size: $font-size-caption;
     margin: 15px 5px 0 5px;
+    padding: 8px;
   }
 
   .grid-search__icon-align {
@@ -70,5 +62,12 @@
 
   .grid-search__icon {
     font-size: 28px;
+  }
+}
+
+// IOS Devices ONLY
+@supports (-webkit-touch-callout: none) {
+  .grid-search__multiselect-field--margin-left {
+    margin-left: 0;
   }
 }
