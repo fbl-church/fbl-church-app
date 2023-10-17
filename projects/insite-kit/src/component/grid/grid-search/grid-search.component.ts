@@ -27,6 +27,10 @@ export class GridSearchComponent implements OnInit {
 
   constructor(private readonly fb: FormBuilder) {}
 
+  set searchValues(values: string[]) {
+    this.tags = values;
+  }
+
   private get searchInputField(): AbstractControl {
     return this.searchForm.get('searchInput');
   }

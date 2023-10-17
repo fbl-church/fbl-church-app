@@ -38,6 +38,7 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
 
   @Input() dataLoader: GridDataloader;
   @Input() overflowEnabled = false;
+  @Input() preferenceKey: string;
 
   @Output() rowClick = new EventEmitter<any>();
 
@@ -102,6 +103,8 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
     this.initSearchSubscription();
     this.initPageChangeSubscription();
     this.initDataSubscription();
+
+    this.loadPreferences();
 
     this.loadData();
   }
@@ -247,9 +250,18 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
    * @returns  The Grid param builder to be passed.
    */
   getGridParams(search?: string[]): GridParamBuilder {
-    return new GridParamBuilder()
+    const params = new GridParamBuilder()
       .withPaging(this.activePage, this.gridPager.pageSize)
       .withSearch(search);
+
+    if (this.preferenceKey) {
+      localStorage.setItem(
+        this.preferenceKey,
+        JSON.stringify([...params.build()])
+      );
+    }
+
+    return params;
   }
 
   /**
@@ -326,6 +338,24 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
     } else {
       let dateWrapper = new Date(value);
       return !isNaN(dateWrapper.getDate());
+    }
+  }
+
+  private loadPreferences() {
+    if (!this.preferenceKey) {
+      return;
+    }
+
+    const pref = new Map<string, string[]>(
+      JSON.parse(localStorage.getItem(this.preferenceKey))
+    );
+
+    if (pref.size > 0) {
+      this.gridPager.pageSize = Number(pref.get('pageSize')[0]);
+      this.activePage =
+        Number(pref.get('rowOffset')[0]) / this.gridPager.pageSize + 1;
+      this.currentSearch = pref.get('search') ? pref.get('search') : [];
+      this.gridSearch.searchValues = this.currentSearch;
     }
   }
 }
