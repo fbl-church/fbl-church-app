@@ -42,7 +42,7 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
   @Output() rowClick = new EventEmitter<any>();
 
   activePage = 1;
-  currentSearch = '';
+  currentSearch: any[] = [];
   loading = true;
   initialLoadComplete = false;
 
@@ -246,7 +246,7 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
    * @param search The search to append to the grid params
    * @returns  The Grid param builder to be passed.
    */
-  getGridParams(search?: string): GridParamBuilder {
+  getGridParams(search?: string[]): GridParamBuilder {
     return new GridParamBuilder()
       .withPaging(this.activePage, this.gridPager.pageSize)
       .withSearch(search);

@@ -1,0 +1,47 @@
+.input-tag__container {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.input-tag {
+  border-radius: 8px;
+  color: #fff;
+  line-height: 25px;
+  text-align: center;
+  align-items: center;
+  background: #666;
+  display: inline-flex;
+  height: 32px;
+  max-width: 100%;
+  padding: 0 8px;
+  font-size: $font-size-lg;
+  transition: all 0.12s ease-out; // sass-lint:disable-line no-transition-all
+}
+
+.input-tag__remove {
+  cursor: pointer;
+  display: flex !important; // sass-lint:disable-line no-important
+  font-size: $font-size-base;
+  width: 16px;
+}
+
+.input-tag__active {
+  background-color: $primary;
+}
+
+.input-tag__margin {
+  margin-right: 32px;
+}
+
+@media screen and (max-width: $grid-screen-sm-max) {
+  .input-tag {
+    font-size: $font-size-caption;
+  }
+  .input-tag__remove {
+    font-size: $font-size-md;
+  }
+}

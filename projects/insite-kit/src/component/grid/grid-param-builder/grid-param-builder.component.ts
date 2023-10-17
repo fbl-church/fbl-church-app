@@ -30,9 +30,9 @@ export class GridParamBuilder {
    * @param search The search object to be added.
    * @returns The current Grid param builder instance.
    */
-  withSearch(search): GridParamBuilder {
-    if (search && search != '') {
-      this.params.set('search', [search]);
+  withSearch(search: any[]): GridParamBuilder {
+    if (search && search.length > 0) {
+      this.params.set('search', search);
     } else {
       this.params.delete('search');
     }

@@ -1,6 +1,6 @@
 @import "variables";
 
-.tag {
+.multiselect__chip {
   background-color: #333;
   border-radius: 8px;
   color: #fff;
@@ -10,7 +10,7 @@
   text-align: center;
 }
 
-.input-tag {
+.multiselect__input-chip {
   align-items: center;
   background: #666;
   display: inline-flex;
@@ -41,8 +41,8 @@
   border-radius: 8px !important;
   color: #fff !important;
   font-size: $font-size-lg !important;
-  @extend .tag;
-  @extend .input-tag;
+  @extend .multiselect__chip;
+  @extend .multiselect__input-chip;
 }
 
 .multiselect-tags div.ng-select-container {

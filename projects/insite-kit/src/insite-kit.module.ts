@@ -30,6 +30,7 @@ import { HeaderComponent } from './component/header/header.component';
 import { IconModule } from './component/icon/icon.module';
 import { IndicatorLightComponent } from './component/indicator-light/indicator-light.component';
 import { InfoCardComponent } from './component/info-card/info-card.component';
+import { InputTagComponent } from './component/input-tag/input-tag.component';
 import { InsitePageComponent } from './component/insite-page/insite-page.component';
 import { LoadingComponent } from './component/loading/loading.component';
 import { ModalActionBarComponent } from './component/modal/modal-action-bar/modal-action-bar.component';
@@ -125,6 +126,7 @@ export function tokenGetter() {
     UploadComponent,
     ProgressComponent,
     NavbarProfileContentComponent,
+    InputTagComponent,
   ],
   imports: [
     BaseInsiteModule,
@@ -197,6 +199,7 @@ export function tokenGetter() {
     UploadComponent,
     ProgressComponent,
     NavbarProfileContentComponent,
+    InputTagComponent,
   ],
   entryComponents: [ModalComponent, NotificationPopupComponent],
   providers: [
