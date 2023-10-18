@@ -6,7 +6,7 @@ import {
 } from '@angular/forms';
 import { NgSelectComponent } from '@ng-select/ng-select';
 import { DeprecatedDropdownItem } from './dropdown-item.model';
-import { DeprecatedValueAccessorBase } from './value-accessor-base';
+import { ValueAccessorBase } from './value-accessor-base';
 
 @Component({
   selector: 'ik-multi-select',
@@ -26,7 +26,7 @@ import { DeprecatedValueAccessorBase } from './value-accessor-base';
   ],
 })
 export class MultiSelectInputComponent
-  extends DeprecatedValueAccessorBase<any>
+  extends ValueAccessorBase<any>
   implements OnInit
 {
   @Input() items: DeprecatedDropdownItem[];

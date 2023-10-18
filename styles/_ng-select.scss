@@ -47,13 +47,13 @@
   padding: 0;
 }
 
-@media screen and ($screen-sm-max) {
+@media screen and (max-width: $screen-sm-max) {
   .ng-select.ng-select-single .ng-select-container {
-    height: 44.5px;
+    height: 52px;
   }
 
   .ng-select > .ng-select-container {
-    height: 44.5px;
-    line-height: 44.5px;
+    height: 52px;
+    line-height: 52px;
   }
 }

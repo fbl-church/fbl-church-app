@@ -5,31 +5,11 @@
     class="grid-search__icon-align"
   ></ik-icon>
   <div class="grid-search">
-    <div class="input-tag__margin flex flex-wrap">
-      <div class="input-tag__container">
-        <ik-input-tag
-          *ngFor="let t of tags; index as i"
-          [text]="t"
-          [selected]="selectedInputTag === i"
-          [index]="i"
-          (remove)="removeTagByIndex($event)"
-        ></ik-input-tag>
-      </div>
-      <form [formGroup]="searchForm" class="grid-search__multiselect-form">
-        <input
-          #multiselectInput
-          formControlName="searchInput"
-          class="grid-search__multiselect-field"
-          [ngClass]="{
-            'grid-search__multiselect-field--margin-left': tags.length > 0
-          }"
-          [placeholder]="tags.length > 0 ? '' : 'Search'"
-          [value]="currentSearch"
-          (paste)="onInputPaste($event)"
-          (keydown)="onKeydown($event)"
-          (blur)="onInputBlurred($event)"
-        />
-      </form>
-    </div>
+    <ik-tag-input-field
+      class="input-tag__margin"
+      placeholder="Search"
+      [tags]="searchTags"
+      (tagsUpdated)="onSearch($event)"
+    ></ik-tag-input-field>
   </div>
 </div>

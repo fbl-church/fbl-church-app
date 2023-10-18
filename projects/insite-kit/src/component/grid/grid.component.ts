@@ -341,6 +341,11 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
     }
   }
 
+  /**
+   * Will load the current user preferences. If the user does not have any
+   * preferences, and the grid supports a preference key then it will be added
+   * for them to store.
+   */
   private loadPreferences() {
     if (!this.preferenceKey) {
       return;

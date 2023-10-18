@@ -26,12 +26,14 @@
         formControlName="birthday"
       />
     </ik-form-field>
-    <ik-form-field header="Allergies" class="col-md-6"
-      ><input
-        class="form-input__normal"
-        placeholder="Allergies"
-        formControlName="allergies"
-      />
+    <ik-form-field header="Allergies" class="col-md-6">
+      <div class="form-input__multi-tag">
+        <ik-tag-input-field
+          [tags]="childData?.allergies ? childData?.allergies : []"
+          classOverride="multi-input"
+          placeholder="Allergies"
+        ></ik-tag-input-field>
+      </div>
     </ik-form-field>
   </div>
   <ik-form-field header="Church Groups" *ngIf="groupEdit">
@@ -80,7 +82,7 @@
   *ngIf="rightActionButton"
   class="btn btn-primary btn-flat btn-right"
   (click)="onSaveClick()"
-  [disabled]="form.invalid || !form.dirty || disableSave"
+  [disabled]="form.invalid || disableSave"
 >
   {{ rightActionButton }}
 </button>

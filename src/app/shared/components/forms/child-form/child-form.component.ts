@@ -7,6 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TagInputFieldComponent } from 'projects/insite-kit/src/component/tag-input-field/tag-input-field.component';
 import {
   ChurchGroup,
   TranslationKey,
@@ -23,6 +24,7 @@ import { DuplicateChildModalComponent } from '../../modals/duplicate-child-modal
 export class ChildFormComponent implements OnInit {
   @ViewChild(DuplicateChildModalComponent)
   duplicateChildModal: DuplicateChildModalComponent;
+  @ViewChild(TagInputFieldComponent) tagInputField: TagInputFieldComponent;
 
   @Input() childData: Child;
   @Input() rightActionButton: string;
@@ -38,6 +40,7 @@ export class ChildFormComponent implements OnInit {
   savedChildData: Child;
   duplicateChildData: Child;
   disableSave = false;
+  currentAllergieTags: string[];
 
   constructor(
     private readonly fb: FormBuilder,
@@ -71,7 +74,6 @@ export class ChildFormComponent implements OnInit {
           : this.commonService.formatDate(new Date(), 'yyyy-MM-dd'),
         Validators.required,
       ],
-      allergies: [this.childData ? this.childData.allergies : ''],
       groups: [this.childData?.churchGroup ? this.childData.churchGroup : ''],
       additionalInfo: [this.childData ? this.childData.additionalInfo : ''],
       releaseOfLiability: [
@@ -96,8 +98,9 @@ export class ChildFormComponent implements OnInit {
       newChild.birthday = this.form.value.birthday;
     }
 
-    if (this.form.value.allergies) {
-      newChild.allergies = this.form.value.allergies;
+    const allergieTags = this.tagInputField.getTags();
+    if (allergieTags && allergieTags.length > 0) {
+      newChild.allergies = allergieTags;
     }
 
     if (this.form.value.additionalInfo) {

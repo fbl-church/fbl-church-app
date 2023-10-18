@@ -5,9 +5,7 @@ import { ControlValueAccessor } from '@angular/forms';
  * Correctly implements the ControlValueAccessor interface for
  * a generic type.
  */
-export abstract class DeprecatedValueAccessorBase<T>
-  implements ControlValueAccessor
-{
+export abstract class ValueAccessorBase<T> implements ControlValueAccessor {
   private innerValue: T;
   private changed = new Array<(value: T) => void>();
   private touched = new Array<() => void>();

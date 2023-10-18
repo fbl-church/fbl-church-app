@@ -47,7 +47,7 @@
 
 .multiselect-tags div.ng-select-container {
   height: auto !important;
-  line-height: 51.02px !important;
+  line-height: 51px !important;
 }
 
 .multiselect-tags span.ng-value-icon {
@@ -75,5 +75,12 @@
 @supports (-webkit-touch-callout: none) {
   .multiselect-tags span.ng-value-icon {
     margin-top: -4px;
+  }
+}
+
+@media screen and (max-width: $screen-sm-max) {
+  .multiselect-tags div.ng-select-container {
+    height: auto !important;
+    line-height: 47px !important;
   }
 }

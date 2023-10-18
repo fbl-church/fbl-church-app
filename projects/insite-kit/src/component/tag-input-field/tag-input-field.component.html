@@ -1,0 +1,23 @@
+<div class="input-tag__container">
+  <ik-input-tag
+    *ngFor="let t of tags; index as i"
+    [text]="t"
+    [selected]="selectedInputTag === i"
+    [index]="i"
+    (remove)="removeTagByIndex($event)"
+  ></ik-input-tag>
+</div>
+<form [formGroup]="tagForm" class="grid-search__multiselect-form">
+  <input
+    #multiselectInput
+    formControlName="searchInput"
+    [class]="classOverride"
+    [ngClass]="{
+      'input-tag__field--margin-left': tags.length > 0
+    }"
+    [placeholder]="tags.length > 0 ? '' : placeholder"
+    (paste)="onInputPaste($event)"
+    (keydown)="onKeydown($event)"
+    (blur)="onInputBlurred()"
+  />
+</form>

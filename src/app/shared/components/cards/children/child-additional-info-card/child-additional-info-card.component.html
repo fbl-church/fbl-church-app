@@ -1,9 +1,26 @@
 <ik-card>
   <ik-card-header title="Additional Information"> </ik-card-header>
-  <ik-card-info
-    header="Allergies"
-    [text]="child?.allergies ? '- ' + child.allergies : '-'"
-  ></ik-card-info>
+  <ik-card-info header="Allergies">
+    <ul
+      *ngIf="child.allergies && child.allergies.length > 0; else noAllergies"
+      class="flex list-style-none card-info__label-text margin-none"
+    >
+      <div class="layout__half">
+        <ng-container *ngFor="let a of child.allergies; let even = even">
+          <li *ngIf="even">{{ "- " + a }}</li>
+        </ng-container>
+      </div>
+
+      <div class="layout__half">
+        <ng-container *ngFor="let a of child.allergies; let odd = odd">
+          <li *ngIf="odd">{{ "- " + a }}</li>
+        </ng-container>
+      </div>
+    </ul>
+    <ng-template #noAllergies>
+      <div class="card-info__label-text">-</div>
+    </ng-template>
+  </ik-card-info>
   <ik-card-info
     header="About"
     class="text-pre-wrap"

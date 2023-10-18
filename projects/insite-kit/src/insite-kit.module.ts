@@ -45,6 +45,7 @@ import { ProgressComponent } from './component/progress/progress.component';
 import { SingleSelectInputComponent } from './component/select/select.component';
 import { DropdownComponent } from './component/sidebar/dropdown/dropdown.component';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
+import { TagInputFieldComponent } from './component/tag-input-field/tag-input-field.component';
 import { UploadComponent } from './component/upload/upload.component';
 import { WizardStepComponent } from './component/wizard/wizard-step/wizard-step.component';
 import { WizardStepDirective } from './component/wizard/wizard-step/wizard-step.directive';
@@ -127,6 +128,7 @@ export function tokenGetter() {
     ProgressComponent,
     NavbarProfileContentComponent,
     InputTagComponent,
+    TagInputFieldComponent,
   ],
   imports: [
     BaseInsiteModule,
@@ -200,6 +202,7 @@ export function tokenGetter() {
     ProgressComponent,
     NavbarProfileContentComponent,
     InputTagComponent,
+    TagInputFieldComponent,
   ],
   entryComponents: [ModalComponent, NotificationPopupComponent],
   providers: [

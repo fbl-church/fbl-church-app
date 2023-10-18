@@ -16,7 +16,7 @@ export interface Child extends User {
   cuid?: string;
   churchGroup?: ChurchGroup[] | any[];
   birthday?: Date | any;
-  allergies?: string;
+  allergies?: string[];
   additionalInfo?: string;
   guardians?: Guardian[];
   releaseOfLiability?: boolean;

@@ -50,6 +50,7 @@ textarea {
 }
 
 .flex-wrap {
+  display: flex;
   flex-wrap: wrap;
 }
 
@@ -99,12 +100,20 @@ textarea {
   margin: 12px;
 }
 
+.margin-none {
+  margin: 0;
+}
+
 .pointer {
   cursor: pointer;
 }
 
 .pointer-none {
   pointer-events: none;
+}
+
+.list-style-none {
+  list-style-type: none;
 }
 
 @media screen and (max-width: $screen-sm-max) {

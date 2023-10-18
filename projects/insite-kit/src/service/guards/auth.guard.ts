@@ -26,7 +26,6 @@ export class AuthGuard implements CanActivate {
    * @returns boolean based on the status of the token
    */
   canActivate(next: ActivatedRouteSnapshot): boolean {
-    console.log(next.routeConfig.path);
     if (!this.jwt.isAuthenticated()) {
       if (!this.UNAUTHENTICATED_ROUTES.includes(next.routeConfig.path)) {
         this.router.navigate(['/login']);

@@ -11,20 +11,6 @@
   margin: 20px 20px 0 20px;
 }
 
-.grid-search__multiselect-field {
-  background: #f7f9fc;
-  border: 0;
-  box-shadow: none;
-  display: inline-block;
-  flex-grow: 2;
-  font-size: $font-size-base;
-  width: auto;
-
-  &--margin-left {
-    margin-left: 5px;
-  }
-}
-
 .grid-search__multiselect-form {
   display: flex;
   flex-grow: 2;
@@ -50,10 +36,6 @@
 
 // IOS Devices ONLY
 @supports (-webkit-touch-callout: none) {
-  .grid-search__multiselect-field--margin-left {
-    margin-left: 0;
-  }
-
   .grid-search__icon-align {
     top: 25px;
   }

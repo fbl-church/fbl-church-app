@@ -37,8 +37,26 @@
   margin-right: 32px;
 }
 
+.input-tag__field {
+  background: #f7f9fc;
+  border: 0;
+  box-shadow: none;
+  display: inline-block;
+  flex-grow: 2;
+  font-size: $font-size-lg;
+  width: auto;
+
+  &--margin-left {
+    margin-left: 5px;
+  }
+}
+
 // IOS Devices ONLY
 @supports (-webkit-touch-callout: none) {
+  .input-tag__field--margin-left {
+    margin-left: 0;
+  }
+
   .input-tag__remove {
     margin-top: -4px;
   }
@@ -51,6 +69,10 @@
 
   .input-tag__remove {
     font-size: $font-size-base;
+  }
+
+  .input-tag__field {
+    font-size: $font-size-md;
   }
 
   // IOS Devices ONLY
