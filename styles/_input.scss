@@ -125,4 +125,9 @@ input[readonly] {
     -moz-appearance: none !important;
     appearance: none !important;
   }
+  .form-input__multi-tag {
+    .multi-input {
+      height: 32px;
+    }
+  }
 }

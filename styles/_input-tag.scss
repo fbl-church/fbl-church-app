@@ -53,12 +53,16 @@
 
 // IOS Devices ONLY
 @supports (-webkit-touch-callout: none) {
-  .input-tag__field--margin-left {
-    margin-left: 0;
+  .input-tag__field {
+    height: 32px;
+
+    &--margin-left {
+      margin-left: 0;
+    }
   }
 
   .input-tag__remove {
-    margin-top: -4px;
+    transform: translateY(-2px);
   }
 }
 
@@ -73,12 +77,5 @@
 
   .input-tag__field {
     font-size: $font-size-md;
-  }
-
-  // IOS Devices ONLY
-  @supports (-webkit-touch-callout: none) {
-    .input-tag__remove {
-      margin-top: -2px;
-    }
   }
 }
