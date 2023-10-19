@@ -3,18 +3,14 @@
 </ik-header>
 
 <app-child-form
-  *ngIf="!loading; else pageLoader"
   rightActionButton="Save Child"
   leftActionButton="Cancel"
+  [(loading)]="loading"
   (cancel)="onCancelClick()"
   (save)="onSaveClick($event)"
 >
   <app-child-guardians-grid-card></app-child-guardians-grid-card>
 </app-child-form>
-
-<ng-template #pageLoader>
-  <ik-loading type="double"></ik-loading>
-</ng-template>
 
 <app-guardian-warning-modal
   (acknowledged)="onNoGuardianAcknowledgement()"

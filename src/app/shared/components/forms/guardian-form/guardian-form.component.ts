@@ -26,6 +26,8 @@ export class GuardianFormComponent implements OnInit {
   @Input() rightActionButton: string;
   @Input() leftActionButton: string;
   @Input() disableRoleUpdate = false;
+  @Input() loading = false;
+  @Output() loadingChange = new EventEmitter<boolean>();
   @Output() cancel = new EventEmitter<any>();
   @Output() save = new EventEmitter<Guardian>();
 
@@ -38,7 +40,7 @@ export class GuardianFormComponent implements OnInit {
     private readonly fb: FormBuilder,
     private readonly popupService: PopupService,
     private readonly guardianService: GuardianService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.buildForm();
@@ -79,6 +81,8 @@ export class GuardianFormComponent implements OnInit {
 
   onSaveClick() {
     this.disableSave = true;
+    this.loadingChange.emit(true);
+
     const guardian: Guardian = {
       firstName: this.form.value.firstName.trim(),
       lastName: this.form.value.lastName.trim(),
@@ -109,6 +113,7 @@ export class GuardianFormComponent implements OnInit {
               this.saveGuardian();
             }
             this.disableSave = false;
+            this.loadingChange.emit(false);
           });
       } else {
         this.saveGuardian();

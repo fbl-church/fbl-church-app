@@ -29,6 +29,7 @@
   leftActionButton="Cancel"
   rightActionButton="Next"
   [groupEdit]="false"
+  [(loading)]="loading"
   (cancel)="onCancelClick()"
   (save)="onNextClick($event)"
 >

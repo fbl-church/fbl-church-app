@@ -61,7 +61,6 @@ export class CreateChildComponent {
 
   createChild() {
     this.loading = true;
-
     this.childrenService.create(this.savedChildData).subscribe({
       next: (child) => {
         this.router.navigate([`/children/${child.id}/details`]);

@@ -14,6 +14,7 @@ export class ChildRegistrationWizardStepTwoComponent {
   @Output() next = new EventEmitter<Child>();
 
   childrenDataloader: any;
+  loading = false;
 
   constructor(
     private readonly router: Router,

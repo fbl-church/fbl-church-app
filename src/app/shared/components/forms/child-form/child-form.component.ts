@@ -31,6 +31,8 @@ export class ChildFormComponent implements OnInit {
   @Input() leftActionButton: string;
   @Input() duplicateCheck = true;
   @Input() groupEdit = true;
+  @Input() loading = false;
+  @Output() loadingChange = new EventEmitter<boolean>();
   @Output() cancel = new EventEmitter<any>();
   @Output() save = new EventEmitter<Child>();
 
@@ -88,6 +90,8 @@ export class ChildFormComponent implements OnInit {
 
   onSaveClick() {
     this.disableSave = true;
+    this.loadingChange.emit(true);
+
     let newChild: Child = {
       firstName: this.form.value.firstName,
       lastName: this.form.value.lastName,
@@ -120,6 +124,7 @@ export class ChildFormComponent implements OnInit {
           this.saveChild();
         }
         this.disableSave = false;
+        this.loadingChange.emit(false);
       });
     } else {
       this.saveChild();

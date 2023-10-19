@@ -63,6 +63,8 @@ export class AddGuardianModalComponent implements OnInit {
 
   onSaveGuardianClick() {
     this.disableSave = true;
+    this.loading = true;
+
     const createdGuardian: Guardian = {
       firstName: this.form.value.firstName.trim(),
       lastName: this.form.value.lastName.trim(),

@@ -11,14 +11,10 @@
 </ik-header>
 
 <app-guardian-form
-  *ngIf="!loading; else pageLoader"
   rightActionButton="Save Guardian"
   leftActionButton="Cancel"
+  [(loading)]="loading"
   (cancel)="onCancelClick()"
   (save)="onSaveClick($event)"
 >
 </app-guardian-form>
-
-<ng-template #pageLoader>
-  <ik-loading type="double"></ik-loading>
-</ng-template>

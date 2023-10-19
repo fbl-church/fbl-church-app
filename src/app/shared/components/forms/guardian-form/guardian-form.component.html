@@ -1,97 +1,104 @@
-<ik-form [formGroup]="form">
-  <div class="row">
-    <ik-form-field header="First Name*" class="col-md-6"
-      ><input
-        type="text"
-        name="name"
-        class="form-input__normal"
-        placeholder="First Name"
-        formControlName="firstName"
-      />
-    </ik-form-field>
+<ng-container *ngIf="!loading; else pageLoader">
+  <ik-form [formGroup]="form">
+    <div class="row">
+      <ik-form-field header="First Name*" class="col-md-6"
+        ><input
+          type="text"
+          name="name"
+          class="form-input__normal"
+          placeholder="First Name"
+          formControlName="firstName"
+        />
+      </ik-form-field>
 
-    <ik-form-field header="Last Name*" class="col-md-6"
-      ><input
-        type="text"
-        class="form-input__normal"
-        placeholder="Last Name"
-        formControlName="lastName"
-      />
-    </ik-form-field>
-  </div>
+      <ik-form-field header="Last Name*" class="col-md-6"
+        ><input
+          type="text"
+          class="form-input__normal"
+          placeholder="Last Name"
+          formControlName="lastName"
+        />
+      </ik-form-field>
+    </div>
 
-  <div class="row">
-    <ik-form-field header="Email" class="col-12">
-      <input
-        type="email"
-        inputmode="email"
-        name="email"
-        class="form-input__normal"
-        placeholder="Email"
-        formControlName="email"
-      />
-    </ik-form-field>
-  </div>
+    <div class="row">
+      <ik-form-field header="Email" class="col-12">
+        <input
+          type="email"
+          inputmode="email"
+          name="email"
+          class="form-input__normal"
+          placeholder="Email"
+          formControlName="email"
+        />
+      </ik-form-field>
+    </div>
 
-  <div class="row">
-    <ik-form-field header="Phone*" class="col-md-4">
-      <input
-        phoneMask
-        placeholder="(___) ___-____"
-        inputmode="tel"
-        name="phone"
-        class="form-input__normal"
-        formControlName="phone"
-        maxlength="14"
-      />
-    </ik-form-field>
-    <ik-form-field header="Address" class="col-md-8">
-      <input
-        class="form-input__normal"
-        placeholder="Address"
-        formControlName="address"
-      />
-    </ik-form-field>
-  </div>
+    <div class="row">
+      <ik-form-field header="Phone*" class="col-md-4">
+        <input
+          phoneMask
+          placeholder="(___) ___-____"
+          inputmode="tel"
+          name="phone"
+          class="form-input__normal"
+          formControlName="phone"
+          maxlength="14"
+        />
+      </ik-form-field>
+      <ik-form-field header="Address" class="col-md-8">
+        <input
+          class="form-input__normal"
+          placeholder="Address"
+          formControlName="address"
+        />
+      </ik-form-field>
+    </div>
 
-  <div class="row">
-    <ik-form-field header="City" class="col-md-4">
-      <input
-        class="form-input__normal"
-        name="city"
-        placeholder="City"
-        formControlName="city"
-      />
-    </ik-form-field>
-    <ik-form-field header="State" class="col-md-4">
-      <ik-single-select
-        formControlName="state"
-        [items]="states"
-      ></ik-single-select>
-    </ik-form-field>
-    <ik-form-field header="Zip Code" class="col-md-4">
-      <input
-        numberRestriction
-        maxlength="5"
-        inputmode="numeric"
-        name="zipCode"
-        class="form-input__normal"
-        placeholder="Zip Code"
-        formControlName="zipCode"
-      />
-    </ik-form-field>
-  </div>
-</ik-form>
-<button class="btn btn-default btn-flat btn-left" (click)="onCancelClick()">
-  {{ leftActionButton }}
-</button>
-<button
-  class="btn btn-primary btn-flat btn-right"
-  (click)="onSaveClick()"
-  [disabled]="form.invalid || !form.dirty || disableSave"
->
-  {{ rightActionButton }}
-</button>
+    <div class="row">
+      <ik-form-field header="City" class="col-md-4">
+        <input
+          class="form-input__normal"
+          name="city"
+          placeholder="City"
+          formControlName="city"
+        />
+      </ik-form-field>
+      <ik-form-field header="State" class="col-md-4">
+        <ik-single-select
+          formControlName="state"
+          [items]="states"
+        ></ik-single-select>
+      </ik-form-field>
+      <ik-form-field header="Zip Code" class="col-md-4">
+        <input
+          numberRestriction
+          maxlength="5"
+          inputmode="numeric"
+          name="zipCode"
+          class="form-input__normal"
+          placeholder="Zip Code"
+          formControlName="zipCode"
+        />
+      </ik-form-field>
+    </div>
+  </ik-form>
+  <button class="btn btn-default btn-flat btn-left" (click)="onCancelClick()">
+    {{ leftActionButton }}
+  </button>
+  <button
+    class="btn btn-primary btn-flat btn-right"
+    (click)="onSaveClick()"
+    [disabled]="form.invalid || !form.dirty || disableSave"
+  >
+    {{ rightActionButton }}
+  </button>
+</ng-container>
+
 <app-duplicate-guardian-modal
   (acknowledged)="saveGuardian()"
 ></app-duplicate-guardian-modal>
+
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
+</ng-template>
