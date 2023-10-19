@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { AccessManagerModule } from './access-manager/access-manager.module';
+import { AwanaModule } from './awana/awana.module';
 import { ChildrenModule } from './children/children.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { GuardianModule } from './guardians/guardian.module';
@@ -22,6 +23,7 @@ import { VBSModule } from './vbs/vbs.module';
     JuniorChurchModule,
     AccessManagerModule,
     NurseryModule,
+    AwanaModule,
   ],
 })
 export class PagesModule {}

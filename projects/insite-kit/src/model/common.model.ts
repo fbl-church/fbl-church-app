@@ -139,6 +139,7 @@ export enum App {
   JUNIOR_CHURCH = 'junior-church',
   NURSERY = 'nursery',
   VBS = 'vbs',
+  AWANA = 'awana',
   GLOBAL = 'global',
 }
 

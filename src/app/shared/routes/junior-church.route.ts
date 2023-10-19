@@ -77,7 +77,6 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
         ],
       },
     },
-
     {
       path: 'check-in/:id/details',
       component: JuniorChurchAttendanceDetailComponent,

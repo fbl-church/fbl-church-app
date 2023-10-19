@@ -124,6 +124,16 @@
 .dropdown-icon {
   float: right;
   font-size: $font-size-md;
+  transition: 0.25s;
+
+  &--open {
+    @extend .dropdown-icon;
+    transform: rotate(-90deg);
+  }
+
+  &--closed {
+    @extend .dropdown-icon;
+  }
 }
 
 @media screen and (max-width: $sidebar-screen-sm-max) {

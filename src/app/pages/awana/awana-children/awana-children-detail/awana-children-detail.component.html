@@ -1,0 +1,76 @@
+<div *ngIf="childData && !loading; else pageLoader">
+  <ik-header title="{{ childData | formatUserName }}">
+    <ik-header-back (back)="onBackClick()"></ik-header-back>
+  </ik-header>
+  <ik-banner *ngIf="childData.guardians?.length <= 0" type="warning">
+    Child does not have any guardians.
+  </ik-banner>
+  <div class="layout__column-left layout__half">
+    <app-child-details-card
+      [child]="childData"
+      (editClick)="onChildDetailEditClick()"
+    ></app-child-details-card>
+    <app-child-additional-info-card
+      [child]="childData"
+    ></app-child-additional-info-card>
+  </div>
+  <div class="layout__column-right layout__half">
+    <app-child-attendance-records-grid
+      [dataloader]="childRecordDataLoader"
+      (rowClick)="onChildAttendanceRowClick($event)"
+    ></app-child-attendance-records-grid>
+    <app-child-guardians-details-grid
+      [childId]="childData.id"
+      [guardians]="childData.guardians"
+      [enableRowClick]="false"
+    ></app-child-guardians-details-grid>
+    <app-child-group-details-grid
+      [child]="childData"
+    ></app-child-group-details-grid>
+  </div>
+</div>
+
+<ik-modal #childRecordDetailModal name="childRecordDetailModal">
+  <ik-modal-header
+    [title]="modalSelectedRecord?.recordName"
+    type="info"
+  ></ik-modal-header>
+  <ik-modal-body *ngIf="modalSelectedRecord">
+    <div class="row">
+      <ik-card-info
+        class="col-6"
+        header="Active Date"
+        [text]="modalSelectedRecord.recordDate | date : 'MMMM d, y'"
+      ></ik-card-info>
+      <ik-card-info
+        class="col-6"
+        header="Group"
+        [text]="modalSelectedRecord.recordType | churchGroupTranslate"
+      ></ik-card-info>
+    </div>
+    <div class="row">
+      <ik-card-info
+        class="col-6"
+        header="Checked In"
+        [text]="modalSelectedRecord.checkInDate | date : 'h:mm a'"
+      ></ik-card-info>
+      <ik-card-info
+        class="col-6"
+        header="Checked Out"
+        [text]="modalSelectedRecord.checkOutDate | date : 'h:mm a'"
+      ></ik-card-info>
+    </div>
+  </ik-modal-body>
+  <ik-modal-action-bar>
+    <button
+      class="btn btn-primary btn-flat btn-right btn-modal"
+      (click)="childRecordDetailModal.close()"
+    >
+      Close
+    </button>
+  </ik-modal-action-bar>
+</ik-modal>
+
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
+</ng-template>

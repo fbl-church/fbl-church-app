@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ACCESS_MANAGEMENT_ROUTE } from './shared/routes/access-management.route';
+import { AWANA_ROUTE } from './shared/routes/awana.route';
 import { CHILDREN_ROUTE } from './shared/routes/children.route';
 import { DASHBOARD_ROUTE } from './shared/routes/dashboard.route';
 import { GUARDIANS_ROUTE } from './shared/routes/guardians.route';
@@ -22,6 +23,7 @@ const routes: Routes = [
   JUNIOR_CHURCH_ROUTE,
   ACCESS_MANAGEMENT_ROUTE,
   NURSERY_ROUTE,
+  AWANA_ROUTE,
   { path: '', redirectTo: 'profile', pathMatch: 'full' },
   { path: '**', redirectTo: 'profile', pathMatch: 'full' },
 ];

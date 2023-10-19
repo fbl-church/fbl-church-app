@@ -171,6 +171,11 @@ export const NAVIGATION_ROUTES: NavItem[] = [
       id: 'awanaDropdown',
       items: [
         {
+          id: 'dashboard',
+          name: 'Dashboard',
+          route: '/dashboard',
+        },
+        {
           id: 'registration',
           name: 'Registration',
           route: '/registration',
@@ -179,6 +184,11 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           id: 'check-in',
           name: 'Check In',
           route: '/check-in',
+          restriction: {
+            app: App.AWANA,
+            feature: FeatureType.CHECK_IN,
+            access: Access.READ,
+          },
         },
         {
           id: 'children',
@@ -189,6 +199,11 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           id: 'workers',
           name: 'Workers',
           route: '/workers',
+          restriction: {
+            app: App.AWANA,
+            feature: FeatureType.WORKERS,
+            access: Access.READ,
+          },
         },
       ],
     },

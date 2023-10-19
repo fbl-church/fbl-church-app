@@ -1,0 +1,67 @@
+<ik-header title="AWANA Workers">
+  <button
+    *featureAccess="[Application.AWANA, FeatureType.WORKERS, Access.CREATE]"
+    (click)="openWorkerModal()"
+    class="btn btn-primary btn-flat btn-header-right"
+  >
+    <ik-icon icon="circle-plus" classOverride="btn-icon"></ik-icon>
+    Add Workers
+  </button>
+  <button
+    *featureAccess="[Application.AWANA, FeatureType.WORKERS, Access.CREATE]"
+    (click)="onSendMassEmail()"
+    class="btn btn-warning btn-flat btn-header-right"
+    [disabled]="emailButtonLoading"
+  >
+    <ik-icon icon="paper-plane" classOverride="btn-icon"></ik-icon>
+    Send Email
+  </button>
+</ik-header>
+<ik-grid [dataLoader]="dataloader">
+  <ik-grid-search></ik-grid-search>
+  <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
+  <ik-grid-column label="Email" field="email"></ik-grid-column>
+  <ik-grid-column label="Created" field="insertDate"></ik-grid-column>
+  <ik-grid-pager key="Workers" [pageSize]="10"></ik-grid-pager>
+</ik-grid>
+
+<ik-modal #addWorkersModal name="userToGuardianModal">
+  <ik-modal-header title="Add New Workers?" type="info"></ik-modal-header>
+  <ng-container *ngIf="!modalLoading; else modalLoader">
+    <ik-modal-body>
+      <form *ngIf="form" [formGroup]="form">
+        <ik-form-field header="Role*" [padding]="false">
+          <ik-single-select
+            formControlName="type"
+            [items]="workerTypes"
+          ></ik-single-select>
+        </ik-form-field>
+        <ik-form-field header="Workers*" [padding]="false">
+          <ik-multi-select
+            formControlName="workers"
+            [items]="nonAwanaWorkers"
+          ></ik-multi-select>
+        </ik-form-field>
+      </form>
+    </ik-modal-body>
+    <ik-modal-action-bar>
+      <button
+        class="btn btn-primary btn-flat btn-right btn-modal"
+        (click)="onAddWorkers()"
+        [disabled]="form && form.invalid"
+      >
+        Add Workers
+      </button>
+      <button
+        class="btn btn-default btn-flat btn-right btn-modal"
+        (click)="addWorkersModal.close()"
+      >
+        Cancel
+      </button>
+    </ik-modal-action-bar>
+  </ng-container>
+</ik-modal>
+
+<ng-template #modalLoader>
+  <ik-loading></ik-loading>
+</ng-template>

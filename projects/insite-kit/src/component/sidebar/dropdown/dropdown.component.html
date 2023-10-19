@@ -8,8 +8,10 @@
 
   <ik-icon
     class="flex-one"
-    classOverride="dropdown-icon"
-    [icon]="this.isOpen ? this.dropdownOpenIcon : this.dropdownCloseIcon"
+    [classOverride]="
+      this.isOpen ? 'dropdown-icon--open' : 'dropdown-icon--closed'
+    "
+    icon="caret-left"
   ></ik-icon>
 </div>
 <div
