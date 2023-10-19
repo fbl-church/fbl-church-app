@@ -1,5 +1,13 @@
 @import "variables";
 
+.grid-pager__footer {
+  color: $text-color;
+  margin: 10px 2px 5px 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .grid-pager__page-number {
   color: $text-color;
   width: 38px;
@@ -7,16 +15,13 @@
   text-align: center;
   font-size: $font-size-xl;
   border-radius: 8px;
-  margin: 0 2px 5px 2px;
   cursor: pointer;
 }
 
 .grid-pager__text-label {
-  margin-top: 5px;
   font-size: $font-size-base;
   margin-right: 5px;
-  margin-bottom: 0;
-  float: right;
+  margin-left: auto;
 }
 
 .grid-pager__page-number:hover {
@@ -31,8 +36,6 @@
 .grid-pager__page-arrow {
   transition: transform 0.2s;
   cursor: pointer;
-  margin: 3px 5px 0 5px;
-  display: inline-block;
 }
 
 .grid-pager__page-arrow:hover {
@@ -43,9 +46,9 @@
   color: #e3e4e5;
 }
 
-.grid-pager__footer {
-  color: $text-color;
-  margin: 10px 2px;
+.grid-pager__no-results-label {
+  font-size: $font-size-base;
+  margin: 15px 18px;
 }
 
 @media screen and (max-width: $grid-screen-sm-max) {
@@ -53,10 +56,14 @@
     width: 30px;
     height: 30px;
     font-size: $font-size-lg;
-    margin: 3px 2px 5px;
   }
 
-  .grid-pager__page-arrow {
-    margin: 4px 5px 0 5px;
+  .grid-pager__footer {
+    margin: 10px 2px 5px 5px;
+  }
+
+  .grid-pager__no-results-label {
+    font-size: $font-size-base;
+    margin: 15px 12px;
   }
 }

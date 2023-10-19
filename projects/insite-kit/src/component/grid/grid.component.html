@@ -22,9 +22,6 @@
     <ng-container [ngTemplateOutlet]="gridContent"></ng-container>
   </table>
   <ng-content *ngIf="!loading" select="ik-grid-pager"></ng-content>
-  <ng-container *ngIf="data?.body.length <= 0 && !loading">
-    <label class="grid__text-label">{{ "No" + " " + gridPager.key }}</label>
-  </ng-container>
   <ng-content select="ik-grid-show-all"></ng-content>
 </ik-card>
 

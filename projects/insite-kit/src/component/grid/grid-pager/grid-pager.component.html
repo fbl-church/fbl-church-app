@@ -1,8 +1,5 @@
-<div
-  *ngIf="dataLength > 0 && (pagerVisible || countVisible)"
-  class="grid-pager__footer"
->
-  <ng-container *ngIf="pagerVisible">
+<ng-container *ngIf="pagerVisible && (pagerVisible || countVisible)">
+  <ng-container *ngIf="dataLength > 0; else noResults">
     <div class="grid-pager__page-arrow left" (click)="onPreviousPageClick()">
       <ik-icon icon="backward-step" classOverride="grid-icon"></ik-icon>
     </div>
@@ -23,8 +20,12 @@
     <div class="grid-pager__page-arrow left" (click)="onNextPageClick()">
       <ik-icon icon="forward-step" classOverride="grid-icon"></ik-icon>
     </div>
+    <ng-container *ngIf="countVisible">
+      <label class="grid-pager__text-label">{{ dataLength + " " + key }}</label>
+    </ng-container>
   </ng-container>
-  <ng-container *ngIf="countVisible">
-    <label class="grid-pager__text-label">{{ dataLength + " " + key }}</label>
-  </ng-container>
-</div>
+</ng-container>
+
+<ng-template #noResults>
+  <label class="grid-pager__no-results-label">{{ "No" + " " + key }}</label>
+</ng-template>
