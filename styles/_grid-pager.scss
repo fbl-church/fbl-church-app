@@ -2,10 +2,13 @@
 
 .grid-pager__footer {
   color: $text-color;
-  margin: 10px 2px 5px 10px;
   display: flex;
   align-items: center;
   gap: 5px;
+
+  &--margin {
+    margin: 10px 2px 5px 10px;
+  }
 }
 
 .grid-pager__page-number {
@@ -57,9 +60,10 @@
     height: 30px;
     font-size: $font-size-lg;
   }
-
   .grid-pager__footer {
-    margin: 10px 2px 5px 5px;
+    &--margin {
+      margin: 10px 2px 5px 5px;
+    }
   }
 
   .grid-pager__no-results-label {

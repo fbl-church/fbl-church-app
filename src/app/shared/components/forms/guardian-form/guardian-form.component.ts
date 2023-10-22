@@ -109,11 +109,11 @@ export class GuardianFormComponent implements OnInit {
           .subscribe((g) => {
             if (g.body) {
               this.duplicateGuardianModal.open(g.body);
+              this.loadingChange.emit(false);
             } else {
               this.saveGuardian();
             }
             this.disableSave = false;
-            this.loadingChange.emit(false);
           });
       } else {
         this.saveGuardian();

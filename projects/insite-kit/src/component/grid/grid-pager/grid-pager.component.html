@@ -1,30 +1,33 @@
-<ng-container *ngIf="pagerVisible && (pagerVisible || countVisible)">
+<div
+  class="grid-pager__footer"
+  [ngClass]="{ 'grid-pager__footer--margin': pagerVisible }"
+>
   <ng-container *ngIf="dataLength > 0; else noResults">
-    <div class="grid-pager__page-arrow left" (click)="onPreviousPageClick()">
-      <ik-icon icon="backward-step" classOverride="grid-icon"></ik-icon>
-    </div>
-    <div
-      *ngFor="let page of pages"
-      class="left"
-      [ngClass]="{
-        'grid-pager__page-active': page.active,
-        'grid-pager__page-number':
-          page.pageNum <= this.totalPages && page.pageNum > 0
-      }"
-      (click)="pageClick(page.pageNum)"
-    >
-      <div *ngIf="page.pageNum <= this.totalPages && page.pageNum > 0">
-        {{ page.pageNum }}
+    <ng-container *ngIf="pagerVisible">
+      <div class="grid-pager__page-arrow left" (click)="onPreviousPageClick()">
+        <ik-icon icon="backward-step" classOverride="grid-icon"></ik-icon>
       </div>
-    </div>
-    <div class="grid-pager__page-arrow left" (click)="onNextPageClick()">
-      <ik-icon icon="forward-step" classOverride="grid-icon"></ik-icon>
-    </div>
-    <ng-container *ngIf="countVisible">
+      <div
+        *ngFor="let page of pages"
+        class="left"
+        [ngClass]="{
+          'grid-pager__page-active': page.active,
+          'grid-pager__page-number':
+            page.pageNum <= this.totalPages && page.pageNum > 0
+        }"
+        (click)="pageClick(page.pageNum)"
+      >
+        <div *ngIf="page.pageNum <= this.totalPages && page.pageNum > 0">
+          {{ page.pageNum }}
+        </div>
+      </div>
+      <div class="grid-pager__page-arrow left" (click)="onNextPageClick()">
+        <ik-icon icon="forward-step" classOverride="grid-icon"></ik-icon>
+      </div>
       <label class="grid-pager__text-label">{{ dataLength + " " + key }}</label>
     </ng-container>
   </ng-container>
-</ng-container>
+</div>
 
 <ng-template #noResults>
   <label class="grid-pager__no-results-label">{{ "No" + " " + key }}</label>

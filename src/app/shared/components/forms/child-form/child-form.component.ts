@@ -120,11 +120,11 @@ export class ChildFormComponent implements OnInit {
       this.childrenService.doesChildExist(newChild).subscribe((c) => {
         if (c.body) {
           this.duplicateChildModal.open(c.body);
+          this.loadingChange.emit(false);
         } else {
           this.saveChild();
         }
         this.disableSave = false;
-        this.loadingChange.emit(false);
       });
     } else {
       this.saveChild();

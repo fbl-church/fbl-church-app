@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   faBackwardStep,
   faForwardStep,
@@ -10,11 +10,9 @@ import { Subject } from 'rxjs';
   templateUrl: './grid-pager.component.html',
 })
 export class GridPagerComponent {
-  @HostBinding('class.grid-pager__footer') hostClass = true;
   @Input() pageSize = 15;
   @Input() key = '';
   @Input() pagerVisible = true;
-  @Input() countVisible = true;
 
   backwardStepIcon = faBackwardStep;
   forwardStepIcon = faForwardStep;

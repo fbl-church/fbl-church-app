@@ -287,7 +287,7 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
     }
 
     let total = 0;
-    if (this.data.headers) {
+    if (this.data.headers.get('total-count')) {
       total = Number(this.data.headers.get('total-count'));
     } else {
       total = this.data.body?.length;
