@@ -7,20 +7,19 @@
       <div class="grid-pager__page-arrow left" (click)="onPreviousPageClick()">
         <ik-icon icon="backward-step" classOverride="grid-icon"></ik-icon>
       </div>
-      <div
-        *ngFor="let page of pages"
-        class="left"
-        [ngClass]="{
-          'grid-pager__page-active': page.active,
-          'grid-pager__page-number':
-            page.pageNum <= this.totalPages && page.pageNum > 0
-        }"
-        (click)="pageClick(page.pageNum)"
-      >
-        <div *ngIf="page.pageNum <= this.totalPages && page.pageNum > 0">
+      <ng-container *ngFor="let page of pages">
+        <div
+          class="grid-pager__page-number left"
+          [ngClass]="{
+            'grid-pager__page-active': page.active
+          }"
+          *ngIf="page.pageNum <= this.totalPages && page.pageNum > 0"
+          (click)="pageClick(page.pageNum)"
+        >
           {{ page.pageNum }}
         </div>
-      </div>
+      </ng-container>
+
       <div class="grid-pager__page-arrow left" (click)="onNextPageClick()">
         <ik-icon icon="forward-step" classOverride="grid-icon"></ik-icon>
       </div>

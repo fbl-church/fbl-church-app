@@ -52,6 +52,12 @@ export class GridPagerComponent {
     }
   }
 
+  /**
+   *
+   * PAGER SPACING ISSUE!
+   *
+   */
+
   updatePageFooter(page: number) {
     this.activePage = page;
 
