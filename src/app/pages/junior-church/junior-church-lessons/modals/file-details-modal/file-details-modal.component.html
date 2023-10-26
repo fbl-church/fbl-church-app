@@ -28,14 +28,14 @@
         FeatureType.LESSONS,
         Access.DELETE
       ]"
-      class="btn btn-danger btn-flat btn-left btn-modal"
+      class="btn btn-danger btn-left btn-modal"
       (click)="onFileDeleteClick()"
     >
       <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
       Delete
     </button>
     <button
-      class="btn btn-primary btn-flat btn-right btn-modal"
+      class="btn btn-primary btn-right btn-modal"
       (click)="onFileDownload()"
       *ngIf="selectedFile?.file"
     >
@@ -53,7 +53,7 @@
       </ng-template>
     </button>
     <button
-      class="btn btn-default btn-flat btn-right btn-modal"
+      class="btn btn-default btn-right btn-modal"
       (click)="fileDetailsModal.close()"
     >
       Close

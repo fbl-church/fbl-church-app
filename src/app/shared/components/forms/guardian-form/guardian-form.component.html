@@ -83,11 +83,11 @@
       </ik-form-field>
     </div>
   </ik-form>
-  <button class="btn btn-default btn-flat btn-left" (click)="onCancelClick()">
+  <button class="btn btn-default btn-left" (click)="onCancelClick()">
     {{ leftActionButton }}
   </button>
   <button
-    class="btn btn-primary btn-flat btn-right"
+    class="btn btn-primary btn-right"
     (click)="onSaveClick()"
     [disabled]="form.invalid || !form.dirty || disableSave"
   >

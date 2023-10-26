@@ -72,7 +72,7 @@
     }
 
     span.progress-info.in-progress {
-      background-color: $blue-700;
+      background-color: $blue-600;
       color: #fff;
       margin-left: -14px;
     }
@@ -118,7 +118,7 @@
 
 .progress-line.active {
   .progress-percent {
-    background: $blue-700;
+    background: $blue-600;
     width: 50%;
   }
 }
@@ -133,7 +133,7 @@
 .check-box.active {
   svg#checkbox {
     .circle {
-      fill: $blue-700;
+      fill: $blue-600;
     }
   }
 }

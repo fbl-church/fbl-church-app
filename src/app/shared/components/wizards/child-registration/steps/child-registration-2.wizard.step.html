@@ -33,16 +33,12 @@
   (cancel)="onCancelClick()"
   (save)="onNextClick($event)"
 >
-  <button wizardStepPrev class="btn btn-default btn-flat btn-right">
-    Previous
-  </button>
+  <button wizardStepPrev class="btn btn-default btn-right">Previous</button>
 </app-child-form>
 
 <ng-container *ngIf="childExists">
-  <button class="btn btn-default btn-flat btn-left" (click)="onCancelClick()">
+  <button class="btn btn-default btn-left" (click)="onCancelClick()">
     Cancel
   </button>
-  <button wizardStepPrev class="btn btn-default btn-flat btn-right">
-    Previous
-  </button>
+  <button wizardStepPrev class="btn btn-default btn-right">Previous</button>
 </ng-container>

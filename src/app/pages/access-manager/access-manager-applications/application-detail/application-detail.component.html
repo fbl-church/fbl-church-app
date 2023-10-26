@@ -3,14 +3,14 @@
     <ik-header-back (back)="onBackClick()"></ik-header-back>
     <div class="inline header-buttons">
       <button
-        class="btn btn-danger btn-flat btn-header-right"
+        class="btn btn-danger btn-header-right"
         (click)="applicationDeleteModal.modal.open()"
       >
         <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
         Delete
       </button>
       <button
-        class="btn btn-success btn-flat btn-header-right"
+        class="btn btn-success btn-header-right"
         *ngIf="!application.enabled"
         (click)="onEnabledUpdateClick(true)"
       >
@@ -19,7 +19,7 @@
       </button>
 
       <button
-        class="btn btn-danger btn-flat btn-header-right"
+        class="btn btn-danger btn-header-right"
         *ngIf="application.enabled"
         (click)="onEnabledUpdateClick(false)"
       >

@@ -2,7 +2,7 @@
   <ik-header-back (back)="onBackClick()"></ik-header-back>
   <div class="inline header-buttons">
     <button
-      class="btn btn-danger btn-flat btn-header-right"
+      class="btn btn-danger btn-header-right"
       *featureAccess="[app, FeatureType.DETAIL, Access.DELETE]"
       (click)="deleteModal.modal.open()"
     >
@@ -11,7 +11,7 @@
     </button>
     <ng-container *featureAccess="[app, FeatureType.CHECK_IN, Access.DELETE]">
       <button
-        class="btn btn-danger btn-flat btn-header-right"
+        class="btn btn-danger btn-header-right"
         *ngIf="record.status === 'ACTIVE'"
         (click)="closeModal.modal.open()"
       >
@@ -22,7 +22,7 @@
 
     <ng-container *featureAccess="[app, FeatureType.CHECK_IN, Access.CREATE]">
       <button
-        class="btn btn-primary btn-flat btn-header-right"
+        class="btn btn-primary btn-header-right"
         *attendanceRecordActivation="record"
         [disabled]="loading"
         (click)="onStartCheckIn()"

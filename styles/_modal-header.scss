@@ -5,8 +5,8 @@
   padding: 10px;
 
   &.info {
-    background-color: #0095ff;
-    border-bottom: 0.5px solid #0095ff;
+    background-color: $primary;
+    border-bottom: 0.5px solid $primary;
   }
 
   &.danger {
@@ -27,8 +27,8 @@
 
   &.info {
     color: white;
-    background-color: #0095ff;
-    border-bottom: 0.5px solid #0095ff;
+    background-color: $primary;
+    border-bottom: 0.5px solid $primary;
   }
 
   &.danger {

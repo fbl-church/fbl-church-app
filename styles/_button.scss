@@ -4,15 +4,11 @@
   display: inline-block;
   margin-bottom: 0;
   text-align: center;
-  vertical-align: middle;
   cursor: pointer;
-  background-image: none;
   padding: 12px 18px;
   font-size: $font-size-xl;
   border-radius: 4px;
   border: 1px solid transparent;
-  text-decoration: none;
-  user-select: none;
   font-weight: $font-weight-semi-bold;
   margin: 15px 0;
   color: white;
@@ -76,43 +72,7 @@
   font-size: $font-size-lg;
 }
 
-@mixin btn-variant(
-  $border,
-  $from,
-  $to,
-  $gloss,
-  $color,
-  $hover-from,
-  $active-border
-) {
-  border-color: $border;
-  background: linear-gradient(to bottom, $from 0%, $to 100%);
-  box-shadow: inset 0 1px $gloss, 0 1px 2px rgba(0, 0, 0, 0.2);
-
-  &:hover {
-    border-color: $to;
-    background: linear-gradient(to bottom, $hover-from 0%, $from 100%);
-    box-shadow: inset 0 1px $color, 0 2px 3px rgba(0, 0, 0, 0.2);
-  }
-
-  &:active,
-  &.active {
-    border-color: $active-border;
-    color: $gloss;
-    background: linear-gradient(to bottom, $to 0%, $border 100%);
-    box-shadow: inset 0 2px 2px $active-border;
-  }
-
-  &.disabled,
-  &[disabled],
-  fieldset[disabled] & {
-    color: white;
-    background: $hover-from;
-    border-color: $from;
-  }
-}
-
-@mixin btn-flat($active, $hover, $normal, $active-color, $color, $disabled) {
+@mixin btn-flat($normal, $hover, $active-color, $disabled) {
   border-color: transparent;
   background: $normal;
   box-shadow: none;
@@ -128,9 +88,9 @@
 
   &:active,
   &.active {
-    border-color: $active;
-    color: $active-color;
-    background: $active;
+    border-color: $normal !important;
+    color: $active-color !important;
+    background: $normal !important;
     box-shadow: none;
   }
 
@@ -142,198 +102,56 @@
   }
 }
 
-@mixin btn-round(
-  $active,
-  $hover,
-  $normal,
-  $active-color,
-  $color,
-  $disabled,
-  $border
-) {
+@mixin btn-round($normal, $hover, $active-color, $disabled) {
   border-radius: 30px;
-  border-color: $border;
-  background: $normal;
-  box-shadow: none;
+  border-color: transparent;
   transition: all 0.5s ease;
-  padding: 6px 12px !important;
+  font-size: $font-size-xl !important;
 
-  &:hover {
-    border-color: transparent;
-    color: #fff;
-    background: $hover;
-    box-shadow: none;
-  }
-
-  &:active,
-  &.active {
-    border-color: $active;
-    color: $active-color;
-    background: $active;
-    box-shadow: none;
-  }
-
-  &.disabled,
-  &[disabled],
-  fieldset[disabled] & {
-    background: $disabled;
-    border-color: $disabled;
-  }
+  @include btn-flat($normal, $hover, $active-color, $disabled);
 }
 
 .btn-default {
-  @include btn-variant(
-    #546e7a,
-    #90a4ae,
-    #78909c,
-    #cfd8dc,
-    #eceff1,
-    #b0bec5,
-    #455a64
-  );
+  @include btn-flat($gray-300, $gray-200, $gray-000, $gray-100);
 
-  &.btn-flat {
-    @include btn-flat(#546e7a, #90a4ae, #78909c, #cfd8dc, #eceff1, #b0bec5);
-  }
-
-  &.btn-round {
-    @include btn-round(
-      #546e7a,
-      #90a4ae,
-      #78909c,
-      #cfd8dc,
-      #eceff1,
-      #b0bec5,
-      transparent
-    );
+  &--round {
+    @include btn-round($gray-300, $gray-200, $gray-000, $gray-100);
   }
 }
 
 .btn-primary {
-  @include btn-variant(
-    #0095ff,
-    #64b5f6,
-    #42a5f5,
-    #bbdefb,
-    #e3f2fd,
-    #90caf9,
-    #1976d2
-  );
+  @include btn-flat($blue-300, $blue-200, $blue-000, $blue-100);
 
-  &.btn-flat {
-    @include btn-flat(#0095ff, #5bb0f7, #0095ff, #bbdefb, #e3f2fd, #85c4f8);
-  }
-
-  &.btn-round {
-    @include btn-round(
-      #0095ff,
-      #239cff,
-      #0095ff,
-      #bbdefb,
-      #e3f2fd,
-      #6cb9f8,
-      transparent
-    );
+  &--round {
+    @include btn-round($blue-300, $blue-200, $blue-000, $blue-100);
   }
 }
 
 .btn-success {
-  @include btn-variant(
-    #43a047,
-    #81c784,
-    #66bb6a,
-    #c8e6c9,
-    #e8f5e9,
-    #a5d6a7,
-    #388e3c
-  );
-
-  &.btn-flat {
-    @include btn-flat(#43a047, #81c784, #66bb6a, #c8e6c9, #e8f5e9, #a5d6a7);
-  }
+  @include btn-flat($green-300, $green-200, $green-000, $green-100);
 }
 
 .btn-info {
-  @include btn-variant(
-    #00acc1,
-    #4dd0e1,
-    #26c6da,
-    #b2ebf2,
-    #e0f7fa,
-    #80deea,
-    #0097a7
-  );
+  @include btn-flat($teal-300, $teal-200, $teal-000, $teal-100);
 
-  &.btn-flat {
-    @include btn-flat(#00acc1, #4dd0e1, #26c6da, #b2ebf2, #e0f7fa, #80deea);
-  }
-
-  &.btn-round {
-    @include btn-round(
-      #00acc1,
-      #4dd0e1,
-      #26c6da,
-      #b2ebf2,
-      #e0f7fa,
-      #80deea,
-      transparent
-    );
+  &--round {
+    @include btn-round($teal-300, $teal-200, $teal-000, $teal-100);
   }
 }
 
 .btn-warning {
-  @include btn-variant(
-    #fb8c00,
-    #ffb74d,
-    #ffa726,
-    #ffe0b2,
-    #fff3e0,
-    #ffcc80,
-    #f57c00
-  );
+  @include btn-flat($orange-300, $orange-200, $orange-000, $orange-100);
 
-  &.btn-flat {
-    @include btn-flat(#fb8c00, #ffb74d, #ffa726, #ffe0b2, #fff3e0, #ffcc80);
-  }
-
-  &.btn-round {
-    @include btn-round(
-      #fb8c00,
-      #ffb74d,
-      #ffa726,
-      #ffe0b2,
-      #fff3e0,
-      #ffcc80,
-      transparent
-    );
+  &--round {
+    @include btn-round($orange-300, $orange-200, $orange-000, $orange-100);
   }
 }
 
 .btn-danger {
-  @include btn-variant(
-    #ff4943,
-    #ff8a65,
-    #ff7043,
-    #ffccbc,
-    #fbe9e7,
-    #ffab91,
-    #e64a19
-  );
+  @include btn-flat($red-300, $red-200, $red-000, $red-100);
 
-  &.btn-flat {
-    @include btn-flat(#ff4943, #ff7c65, #ff4943, #ffccbc, #fbe9e7, #ffab91);
-  }
-
-  &.btn-round {
-    @include btn-round(
-      #f4511e,
-      #ff8a65,
-      #ff7043,
-      #ffccbc,
-      #fbe9e7,
-      #ffab91,
-      transparent
-    );
+  &--round {
+    @include btn-round($red-300, $red-200, $red-000, $red-100);
   }
 }
 
@@ -366,7 +184,12 @@
 }
 
 @media screen and (max-width: $button-screen-sm-max) {
-  .btn-flat {
+  .btn-default,
+  .btn-primary,
+  .btn-info,
+  .btn-success,
+  .btn-warning,
+  .btn-danger {
     padding: 4px 8px !important;
     font-size: $font-size-base !important;
   }

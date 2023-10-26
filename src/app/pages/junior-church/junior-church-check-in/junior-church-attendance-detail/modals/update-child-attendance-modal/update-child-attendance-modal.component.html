@@ -48,7 +48,7 @@
     <ik-modal-action-bar>
       <button
         *ngIf="record.status !== 'CLOSED' && !child?.checkOutDate"
-        class="btn btn-danger btn-flat btn-left btn-modal"
+        class="btn btn-danger btn-left btn-modal"
         (click)="onChildCheckout()"
       >
         Check Out
@@ -56,14 +56,14 @@
 
       <button
         *ngIf="record.status !== 'CLOSED'"
-        class="btn btn-primary btn-flat btn-right btn-modal"
+        class="btn btn-primary btn-right btn-modal"
         (click)="onUpdateChildCheckIn()"
         [disabled]="!form.dirty"
       >
         Update
       </button>
       <button
-        class="btn btn-default btn-flat btn-right btn-modal"
+        class="btn btn-default btn-right btn-modal"
         (click)="childCheckInModal.close()"
       >
         {{ record.status !== "CLOSED" ? "Cancel" : "Close" }}

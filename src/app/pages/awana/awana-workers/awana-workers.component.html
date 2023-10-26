@@ -2,7 +2,7 @@
   <button
     *featureAccess="[Application.AWANA, FeatureType.WORKERS, Access.CREATE]"
     (click)="openWorkerModal()"
-    class="btn btn-primary btn-flat btn-header-right"
+    class="btn btn-primary btn-header-right"
   >
     <ik-icon icon="circle-plus" classOverride="btn-icon"></ik-icon>
     Add Workers
@@ -10,7 +10,7 @@
   <button
     *featureAccess="[Application.AWANA, FeatureType.WORKERS, Access.CREATE]"
     (click)="onSendMassEmail()"
-    class="btn btn-warning btn-flat btn-header-right"
+    class="btn btn-warning btn-header-right"
     [disabled]="emailButtonLoading"
   >
     <ik-icon icon="paper-plane" classOverride="btn-icon"></ik-icon>
@@ -46,14 +46,14 @@
     </ik-modal-body>
     <ik-modal-action-bar>
       <button
-        class="btn btn-primary btn-flat btn-right btn-modal"
+        class="btn btn-primary btn-right btn-modal"
         (click)="onAddWorkers()"
         [disabled]="form && form.invalid"
       >
         Add Workers
       </button>
       <button
-        class="btn btn-default btn-flat btn-right btn-modal"
+        class="btn btn-default btn-right btn-modal"
         (click)="addWorkersModal.close()"
       >
         Cancel

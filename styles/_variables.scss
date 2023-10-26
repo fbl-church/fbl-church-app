@@ -4,109 +4,83 @@ $white: #fff;
 // Black
 $black: #000;
 
-// Ecologic
-$ecologic: #52a145;
-
 // Link Color
 $link: #0068d6;
 $link-hover: #3e88d8;
 
 // Beige scale
 $beige-000: #fafaf8;
-$beige-050: #f7f5f2;
-$beige-100: #eeeae3;
-$beige-200: #e2dbd0;
-$beige-300: #d7cdbe;
-$beige-400: #c3b49d;
-$beige-500: #b4a185;
-$beige-600: #a18966;
-$beige-700: #886a3e;
-$beige-800: #795725;
+$beige-100: #f7f5f2;
+$beige-200: #eeeae3;
+$beige-300: #e2dbd0;
+$beige-400: #d7cdbe;
+$beige-500: #c3b49d;
+$beige-600: #b4a185;
+$beige-700: #a18966;
 
 // Gray Scale
-$gray-000: #f8f8f8;
-$gray-050: #eee;
-$gray-100: #d5d7d8;
-$gray-200: #c2c2c2;
-$gray-300: #acacac;
-$gray-400: #888;
-$gray-500: #666;
-$gray-600: #515151;
-$gray-700: #444;
-$gray-800: #333;
-$gray-900: #2a2a2a;
+$gray-000: #cfd8dc;
+$gray-100: #b0bec5;
+$gray-200: #90a4ae;
+$gray-300: #78909c;
+$gray-400: #666;
+$gray-500: #515151;
+$gray-600: #444;
+$gray-700: #2a2a2a;
 
 // Blue Scale
-$blue-000: #f4fafd;
-$blue-050: #e8f5fa;
-$blue-100: #c3e6f2;
-$blue-200: #98d5e9;
-$blue-300: #57badb;
-$blue-400: #0096c8;
-$blue-500: #1d77bd;
-$blue-600: #2b67b2;
-$blue-700: #3155a6;
-$blue-800: #263c97;
+$blue-000: #bbdefb;
+$blue-100: #85c4f8;
+$blue-200: #5bb0f7;
+$blue-300: #0095ff;
+$blue-400: #1d77bd;
+$blue-500: #2b67b2;
+$blue-600: #3155a6;
+$blue-700: #263c97;
+
+// Teal Scale
+$teal-000: #b2ebf2;
+$teal-100: #80deea;
+$teal-200: #4dd0e1;
+$teal-300: #26c6da;
+$teal-400: #22aec0;
+$teal-500: #1d93a3;
+$teal-600: #1a818f;
+$teal-700: #166d79;
 
 // Green Scale
-$green-000: #f3faf4;
-$green-050: #e0f3e2;
-$green-100: #caebcd;
-$green-200: #92db8e;
-$green-300: #6cce66;
+$green-000: #c8e6c9;
+$green-100: #a5d6a7;
+$green-200: #81c784;
+$green-300: #66bb6a;
 $green-400: #3cbe36;
 $green-500: #2b9936;
 $green-600: #058430;
 $green-700: #056c30;
-$green-800: #005223;
-
-// Yellow Scale
-$yellow-000: #fffdf0;
-$yellow-050: #fffadb;
-$yellow-100: #fff3af;
-$yellow-200: #ffed8c;
-$yellow-300: #ffe154;
-$yellow-400: #ffd200;
-$yellow-500: #ffc400;
-$yellow-600: #fab400;
-$yellow-700: #eb9b00;
-$yellow-800: #de7b00;
 
 // Orange Scale
-$orange-000: #fff3e2;
-$orange-050: #ffe0b6;
-$orange-100: #fecc87;
+$orange-000: #ffe0b2;
+$orange-100: #ffcc80;
 $orange-200: #feb759;
-$orange-300: #fea83a;
-$orange-400: #fd9827;
-$orange-500: #f88e25;
-$orange-600: #f27e22;
+$orange-300: #ffa726;
+$orange-400: #fea83a;
+$orange-500: #fd9827;
+$orange-600: #f88e25;
 $orange-700: #eb6f20;
-$orange-800: #e0571d;
 
 // Red Scale
-$red-000: #fff5f5;
-$red-050: #ffe7e7;
-$red-100: #ffc9c9;
-$red-200: #ffa5a5;
-$red-300: #f05a5a;
+$red-000: #ffccbc;
+$red-100: #ffab91;
+$red-200: #ff7c65;
+$red-300: #ff4943;
 $red-400: #e32323;
 $red-500: #cd1816;
 $red-600: #b50e19;
 $red-700: #950e0c;
-$red-800: #6d0e0c;
 
-// Map Color Scale
-$map-beige-050: #f4f3f2;
-$map-beige-100: #efebe8;
-$map-beige-200: #e8e3da;
-$map-beige-600: #a08467;
-$map-gray-200: #d6d6d6;
-$map-gray-300: #bababa;
-$map-gray-400: #aaa;
-
-$primary: #0095ff;
-$text-color: $gray-900;
+// Base
+$primary: $blue-300;
+$text-color: $gray-700;
 
 //**************************************************//
 // Fonts
@@ -161,7 +135,7 @@ $line-height-lg: 44px !default;
 //**************************************************//
 
 // Base Sizes
-$screen-xs-max: 375px !default; // Small Mobile Devices (300 - 375)
+$screen-xs-max: 375px !default; // Small Mobile Devices (0 - 375)
 $screen-sm-max: 500px !default; // Large Mobile Devices (376 - 500)
 $screen-md-max: 768px !default; // iPad, Tablet (501 - 768)
 $screen-lg-max: 1024px !default; // Small Screens, Laptops (769 - 1024)

@@ -74,14 +74,14 @@
 
   <button
     *ngIf="leftActionButton"
-    class="btn btn-default btn-flat btn-left"
+    class="btn btn-default btn-left"
     (click)="onCancelClick()"
   >
     {{ leftActionButton }}
   </button>
   <button
     *ngIf="rightActionButton"
-    class="btn btn-primary btn-flat btn-right"
+    class="btn btn-primary btn-right"
     (click)="onSaveClick()"
     [disabled]="form.invalid || disableSave"
   >

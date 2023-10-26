@@ -21,13 +21,13 @@
     </ik-modal-body>
     <ik-modal-action-bar>
       <button
-        class="btn btn-default btn-flat btn-left btn-modal"
+        class="btn btn-default btn-left btn-modal"
         (click)="createApplicationModal.close()"
       >
         Cancel
       </button>
       <button
-        class="btn btn-primary btn-flat btn-right btn-modal"
+        class="btn btn-primary btn-right btn-modal"
         (click)="onCreateApplication()"
         [disabled]="form && form.invalid"
       >

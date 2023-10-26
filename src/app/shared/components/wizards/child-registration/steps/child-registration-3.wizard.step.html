@@ -4,15 +4,11 @@
 >
 </ik-info-card>
 <app-child-guardians-grid-card></app-child-guardians-grid-card>
-<button class="btn btn-default btn-flat btn-left" (click)="onCancelClick()">
+<button class="btn btn-default btn-left" (click)="onCancelClick()">
   Cancel
 </button>
-<button class="btn btn-primary btn-flat btn-right" (click)="onNextClick()">
-  Next
-</button>
-<button wizardStepPrev class="btn btn-default btn-flat btn-right">
-  Previous
-</button>
+<button class="btn btn-primary btn-right" (click)="onNextClick()">Next</button>
+<button wizardStepPrev class="btn btn-default btn-right">Previous</button>
 <app-guardian-warning-modal
   (acknowledged)="onNoGuardianAcknowledgement()"
 ></app-guardian-warning-modal>
