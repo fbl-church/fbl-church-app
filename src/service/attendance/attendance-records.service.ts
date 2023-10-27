@@ -17,10 +17,7 @@ import { Observable, tap } from 'rxjs';
 export class AttendanceRecordService {
   readonly BASE_PATH = 'api/attendance-records';
 
-  constructor(
-    private readonly request: RequestService,
-    private readonly commonService: CommonService
-  ) {}
+  constructor(private readonly request: RequestService, private readonly commonService: CommonService) {}
 
   /**
    * Get a list of attendance records based on the given request
@@ -28,16 +25,11 @@ export class AttendanceRecordService {
    * @param params to filter on
    * @returns List of Attendance Record objects
    */
-  get(
-    params?: Map<string, string[]>
-  ): Observable<HttpResponse<AttendanceRecord[]>> {
+  get(params?: Map<string, string[]>): Observable<HttpResponse<AttendanceRecord[]>> {
     return this.request.get<AttendanceRecord[]>(this.BASE_PATH, params).pipe(
       tap((v) =>
         v.body.forEach((ar) => {
-          ar.formattedType = this.commonService.translate(
-            ar.type,
-            TranslationKey.CHURCH_GROUP
-          );
+          ar.formattedType = this.commonService.translate(ar.type, TranslationKey.CHURCH_GROUP);
         })
       )
     );
@@ -53,13 +45,7 @@ export class AttendanceRecordService {
     return this.request
       .get<AttendanceRecord>(`${this.BASE_PATH}/${id}`)
       .pipe(
-        tap(
-          (v) =>
-            (v.body.formattedType = this.commonService.translate(
-              v.body.type,
-              TranslationKey.CHURCH_GROUP
-            ))
-        )
+        tap((v) => (v.body.formattedType = this.commonService.translate(v.body.type, TranslationKey.CHURCH_GROUP)))
       );
   }
 
@@ -69,19 +55,10 @@ export class AttendanceRecordService {
    * @param params to filter on
    * @returns Attendance Record object
    */
-  getAttendanceChildrenById(
-    id: any,
-    params?: Map<string, string[]>
-  ): Observable<HttpResponse<ChildAttendance[]>> {
+  getAttendanceChildrenById(id: any, params?: Map<string, string[]>): Observable<HttpResponse<ChildAttendance[]>> {
     return this.request
       .get<ChildAttendance[]>(`${this.BASE_PATH}/${id}/children`, params)
-      .pipe(
-        tap((v) =>
-          v.body.forEach(
-            (c) => (c.formattedName = this.commonService.getFormattedName(c))
-          )
-        )
-      );
+      .pipe(tap((v) => v.body.forEach((c) => (c.formattedName = this.commonService.getFormattedName(c)))));
   }
 
   /**
@@ -102,10 +79,7 @@ export class AttendanceRecordService {
    * @returns Attendance Record object
    */
   update(id: any, record: AttendanceRecord): Observable<AttendanceRecord> {
-    return this.request.put<AttendanceRecord>(
-      `${this.BASE_PATH}/${id}`,
-      record
-    );
+    return this.request.put<AttendanceRecord>(`${this.BASE_PATH}/${id}`, record);
   }
 
   /**
@@ -115,13 +89,8 @@ export class AttendanceRecordService {
    * @param status The status to update too
    * @returns Updated Attendance Record object
    */
-  updateStatus(
-    id: any,
-    status: AttendanceStatus
-  ): Observable<AttendanceRecord> {
-    return this.request.put<AttendanceRecord>(
-      `${this.BASE_PATH}/${id}/status/${status}`
-    );
+  updateStatus(id: any, status: AttendanceStatus): Observable<AttendanceRecord> {
+    return this.request.put<AttendanceRecord>(`${this.BASE_PATH}/${id}/status/${status}`);
   }
 
   /**
@@ -132,10 +101,7 @@ export class AttendanceRecordService {
    * @returns Teh updated Attendance Record object
    */
   updateChildren(id: any, children: Child[]): Observable<AttendanceRecord> {
-    return this.request.put<AttendanceRecord>(
-      `${this.BASE_PATH}/${id}/children`,
-      children
-    );
+    return this.request.put<AttendanceRecord>(`${this.BASE_PATH}/${id}/children`, children);
   }
 
   /**

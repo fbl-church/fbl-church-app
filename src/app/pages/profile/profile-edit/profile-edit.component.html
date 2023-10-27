@@ -1,6 +1,4 @@
-<ik-header title="Edit Profile"
-  ><ik-header-back (back)="onCancelClick()"></ik-header-back
-></ik-header>
+<ik-header title="Edit Profile"><ik-header-back (back)="onCancelClick()"></ik-header-back></ik-header>
 
 <ng-container *ngIf="!isGuardianUser; else guardianForm">
   <app-user-form

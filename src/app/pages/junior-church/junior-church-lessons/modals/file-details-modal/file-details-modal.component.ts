@@ -1,17 +1,7 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { FTPFile } from 'projects/insite-kit/src/component/upload/file-uploader.model';
-import {
-  Access,
-  App,
-  FeatureType,
-} from 'projects/insite-kit/src/model/common.model';
+import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { StorageService } from 'src/service/storage/storage.service';
 import { DeleteFileModalComponent } from '../delete-file-modal/delete-file-modal.component';
 
@@ -58,11 +48,9 @@ export class FileDetailsModalComponent {
 
   onFileDownload() {
     this.modalDownloadLoading = true;
-    this.storageService
-      .getBlob(`${this.basePath}/${this.selectedFile.name}`)
-      .subscribe((res) => {
-        this.storageService.download(res, this.selectedFile.name);
-        this.modalDownloadLoading = false;
-      });
+    this.storageService.getBlob(`${this.basePath}/${this.selectedFile.name}`).subscribe((res) => {
+      this.storageService.download(res, this.selectedFile.name);
+      this.modalDownloadLoading = false;
+    });
   }
 }

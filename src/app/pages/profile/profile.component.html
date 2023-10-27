@@ -1,10 +1,7 @@
 <ng-container *ngIf="currentUser; else pageLoader">
   <ik-header title="{{ currentUser | formatUserName }}">
     <div class="inline header-buttons">
-      <button
-        class="btn btn-default btn-header-right"
-        (click)="onResetPassword()"
-      >
+      <button class="btn btn-default btn-header-right" (click)="onResetPassword()">
         <ik-icon icon="rotate" classOverride="btn-icon"></ik-icon>
         Reset Password
       </button>
@@ -16,19 +13,11 @@
       [user]="currentUser"
       (editClick)="onEditClick()"
     >
-      <ik-icon
-        icon="pen-to-square"
-        class="right pointer"
-        (click)="onEditClick()"
-      ></ik-icon
+      <ik-icon icon="pen-to-square" class="right pointer" (click)="onEditClick()"></ik-icon
     ></app-user-details-card>
     <ng-template #guardianDetails>
       <app-guardian-details-card [guardian]="currentUser">
-        <ik-icon
-          icon="pen-to-square"
-          class="right pointer"
-          (click)="onEditClick()"
-        ></ik-icon
+        <ik-icon icon="pen-to-square" class="right pointer" (click)="onEditClick()"></ik-icon
       ></app-guardian-details-card>
     </ng-template>
   </div>
@@ -39,10 +28,7 @@
       [guardianId]="currentUser.id"
       (rowClick)="onChildRowClick($event)"
     ></app-guardian-children-details-grid>
-    <app-user-roles-card
-      *ngIf="!isGuardianOnly"
-      [user]="currentUser"
-    ></app-user-roles-card>
+    <app-user-roles-card *ngIf="!isGuardianOnly" [user]="currentUser"></app-user-roles-card>
   </div>
 </ng-container>
 

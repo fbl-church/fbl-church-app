@@ -1,6 +1,4 @@
-<ik-header title="Edit User">
-  <ik-header-back (back)="onCancelClick()"></ik-header-back
-></ik-header>
+<ik-header title="Edit User"> <ik-header-back (back)="onCancelClick()"></ik-header-back></ik-header>
 <app-user-form
   *ngIf="userUpdating && !loading; else pageLoader"
   [userData]="userUpdating"

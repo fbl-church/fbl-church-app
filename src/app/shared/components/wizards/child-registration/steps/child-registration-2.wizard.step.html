@@ -11,11 +11,7 @@
 >
 </ik-info-card>
 
-<ik-grid
-  *ngIf="childExists"
-  [dataLoader]="childrenDataloader"
-  (rowClick)="onNextClick($event)"
->
+<ik-grid *ngIf="childExists" [dataLoader]="childrenDataloader" (rowClick)="onNextClick($event)">
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
   <ik-grid-column label="CUID" field="cuid"></ik-grid-column>
@@ -37,8 +33,6 @@
 </app-child-form>
 
 <ng-container *ngIf="childExists">
-  <button class="btn btn-default btn-left" (click)="onCancelClick()">
-    Cancel
-  </button>
+  <button class="btn btn-default btn-left" (click)="onCancelClick()">Cancel</button>
   <button wizardStepPrev class="btn btn-default btn-right">Previous</button>
 </ng-container>

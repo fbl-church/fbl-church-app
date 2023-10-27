@@ -85,9 +85,7 @@ export class ChildRegistrationWizardComponent implements OnInit, OnDestroy {
         );
       },
       error: () => {
-        this.popupService.error(
-          'Unable to register child at this time. Try again later'
-        );
+        this.popupService.error('Unable to register child at this time. Try again later');
       },
     });
   }

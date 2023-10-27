@@ -1,9 +1,5 @@
 import { Route } from '@angular/router';
-import {
-  Access,
-  App,
-  FeatureType,
-} from 'projects/insite-kit/src/model/common.model';
+import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { AppAccessGuard } from 'projects/insite-kit/src/service/guards/app-access.guard';
 import { AuthGuard } from 'projects/insite-kit/src/service/guards/auth.guard';
 import { FeatureAccessGuard } from 'projects/insite-kit/src/service/guards/feature-access.guard';

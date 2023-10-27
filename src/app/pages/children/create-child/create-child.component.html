@@ -1,6 +1,4 @@
-<ik-header title="Create Child"
-  ><ik-header-back (back)="onCancelClick()"></ik-header-back>
-</ik-header>
+<ik-header title="Create Child"><ik-header-back (back)="onCancelClick()"></ik-header-back> </ik-header>
 
 <app-child-form
   rightActionButton="Save Child"
@@ -12,6 +10,4 @@
   <app-child-guardians-grid-card></app-child-guardians-grid-card>
 </app-child-form>
 
-<app-guardian-warning-modal
-  (acknowledged)="onNoGuardianAcknowledgement()"
-></app-guardian-warning-modal>
+<app-guardian-warning-modal (acknowledged)="onNoGuardianAcknowledgement()"></app-guardian-warning-modal>

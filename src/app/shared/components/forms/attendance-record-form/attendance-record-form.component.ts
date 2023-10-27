@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AttendanceRecord } from 'projects/insite-kit/src/model/attendance-record.model';
@@ -59,24 +52,15 @@ export class AttendanceRecordFormComponent implements OnInit, OnDestroy {
   buildForm() {
     this.form = this.fb.group({
       name: [
-        this.record
-          ? this.record.name
-          : `${this.translation} ${
-              this.group === ChurchGroup.NURSERY ? '(SS)' : ''
-            }`,
+        this.record ? this.record.name : `${this.translation} ${this.group === ChurchGroup.NURSERY ? '(SS)' : ''}`,
         Validators.required,
       ],
       radio: true,
       activeDate: [
-        this.record
-          ? this.record.activeDate
-          : this.commonService.formatDate(new Date(), 'yyyy-MM-dd'),
+        this.record ? this.record.activeDate : this.commonService.formatDate(new Date(), 'yyyy-MM-dd'),
         Validators.required,
       ],
-      workers: [
-        this.record ? this.record.workers.map((v) => v.id) : [],
-        Validators.required,
-      ],
+      workers: [this.record ? this.record.workers.map((v) => v.id) : [], Validators.required],
     });
     this.onTypeChange();
   }

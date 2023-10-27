@@ -1,10 +1,6 @@
 <ik-header title="Junior Church Lessons">
   <button
-    *featureAccess="[
-      Application.JUNIOR_CHURCH,
-      FeatureType.LESSONS,
-      Access.CREATE
-    ]"
+    *featureAccess="[Application.JUNIOR_CHURCH, FeatureType.LESSONS, Access.CREATE]"
     (click)="onUploadClick()"
     class="btn btn-primary btn-header-right"
   >
@@ -13,27 +9,18 @@
   </button>
 </ik-header>
 
-<ik-grid
-  [dataLoader]="fileDataloader"
-  (rowClick)="fileDetailsModal.open($event)"
->
+<ik-grid [dataLoader]="fileDataloader" (rowClick)="fileDetailsModal.open($event)">
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="File Name" field="name"></ik-grid-column>
   <ik-grid-column label="Size">
-    <ng-template let-data>
-      {{ data.size / 1000000 | number : "1.2-2" }} MB
-    </ng-template>
+    <ng-template let-data> {{ data.size / 1000000 | number : '1.2-2' }} MB </ng-template>
   </ik-grid-column>
   <ik-grid-column label="Upload Date" field="timestampInstant">
     <ng-template let-data>
-      {{ data.timestampInstant | date : "MMMM d, y" }}
+      {{ data.timestampInstant | date : 'MMMM d, y' }}
     </ng-template>
   </ik-grid-column>
   <ik-grid-pager key="Files"></ik-grid-pager>
 </ik-grid>
 
-<app-file-details-modal
-  #fileDetailsModal
-  [basePath]="readPath"
-  (fileDeleted)="refreshGrid()"
-></app-file-details-modal>
+<app-file-details-modal #fileDetailsModal [basePath]="readPath" (fileDeleted)="refreshGrid()"></app-file-details-modal>

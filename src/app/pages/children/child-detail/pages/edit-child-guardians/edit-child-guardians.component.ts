@@ -74,20 +74,16 @@ export class EditChildGuardiansComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.disableSave = true;
 
-    this.guardianService
-      .updateChildGuardiansById(this.childId, this.savedGuardians)
-      .subscribe({
-        next: () => {
-          this.location.back();
-          this.popupService.success('Child guardians successfully updated!');
-        },
-        error: () => {
-          this.popupService.error(
-            'Unable to update child guardians at this time. Try again later.'
-          );
-          this.resetStatus();
-        },
-      });
+    this.guardianService.updateChildGuardiansById(this.childId, this.savedGuardians).subscribe({
+      next: () => {
+        this.location.back();
+        this.popupService.success('Child guardians successfully updated!');
+      },
+      error: () => {
+        this.popupService.error('Unable to update child guardians at this time. Try again later.');
+        this.resetStatus();
+      },
+    });
   }
 
   onNoGuardianAcknowledgement() {

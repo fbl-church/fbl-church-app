@@ -36,18 +36,16 @@ export class CreateFeatureModalComponent implements OnInit {
 
   onCreateFeature() {
     this.modalLoading = true;
-    this.featureService
-      .create(this.form.value.feature, this.form.value.app.value)
-      .subscribe({
-        next: (res) => {
-          this.modal.close();
-          this.popupService.success(`Feature successfully created!`);
-          this.router.navigate([`/access-manager/features/${res.id}/details`]);
-        },
-        error: () => {
-          this.popupService.error(`Unable to create feature at this time.`);
-          this.modalLoading = false;
-        },
-      });
+    this.featureService.create(this.form.value.feature, this.form.value.app.value).subscribe({
+      next: (res) => {
+        this.modal.close();
+        this.popupService.success(`Feature successfully created!`);
+        this.router.navigate([`/access-manager/features/${res.id}/details`]);
+      },
+      error: () => {
+        this.popupService.error(`Unable to create feature at this time.`);
+        this.modalLoading = false;
+      },
+    });
   }
 }

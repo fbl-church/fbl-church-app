@@ -1,17 +1,7 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
-import {
-  Relationship,
-  TranslationKey,
-} from 'projects/insite-kit/src/model/common.model';
+import { Relationship, TranslationKey } from 'projects/insite-kit/src/model/common.model';
 import { Guardian } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { GuardianService } from 'src/service/guardians/guardian.service';
@@ -73,16 +63,14 @@ export class AddGuardianModalComponent implements OnInit {
     };
 
     this.savedGuardianData = createdGuardian;
-    this.guardianService
-      .doesGuardianExist(this.savedGuardianData)
-      .subscribe((g) => {
-        if (g.body) {
-          this.modal.close();
-          this.duplicateGuardianModal.open(g.body);
-        } else {
-          this.saveGuardian();
-        }
-      });
+    this.guardianService.doesGuardianExist(this.savedGuardianData).subscribe((g) => {
+      if (g.body) {
+        this.modal.close();
+        this.duplicateGuardianModal.open(g.body);
+      } else {
+        this.saveGuardian();
+      }
+    });
   }
 
   saveGuardian() {

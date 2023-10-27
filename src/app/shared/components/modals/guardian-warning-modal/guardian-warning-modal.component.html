@@ -1,27 +1,11 @@
 <ik-modal #guardianWarningModal name="guardianWarningModal">
-  <ik-modal-header
-    title="Confirm No Guardians"
-    type="warning"
-  ></ik-modal-header>
+  <ik-modal-header title="Confirm No Guardians" type="warning"></ik-modal-header>
   <ik-modal-body>
-    <div>
-      No guardians were selected to be assigned to the child. Do you want to
-      continue?
-    </div>
+    <div>No guardians were selected to be assigned to the child. Do you want to continue?</div>
   </ik-modal-body>
   <ik-modal-action-bar>
-    <button
-      class="btn btn-warning btn-right btn-modal"
-      (click)="onAcknowledged()"
-    >
-      Continue
-    </button>
-    <button
-      class="btn btn-default btn-right btn-modal"
-      (click)="guardianWarningModal.close()"
-    >
-      Cancel
-    </button>
+    <button class="btn btn-warning btn-right btn-modal" (click)="onAcknowledged()">Continue</button>
+    <button class="btn btn-default btn-right btn-modal" (click)="guardianWarningModal.close()">Cancel</button>
   </ik-modal-action-bar>
 </ik-modal>
 

@@ -9,18 +9,11 @@ import { UserService } from '../users/user.service';
   providedIn: 'root',
 })
 export class JuniorChurchWorkersResolverService implements Resolve<any> {
-  constructor(
-    private readonly userService: UserService,
-    private readonly commonService: CommonService
-  ) {}
+  constructor(private readonly userService: UserService, private readonly commonService: CommonService) {}
   resolve(): Observable<User> {
     return this.userService
       .getUsers(
-        new Map().set('webRole', [
-          'JUNIOR_CHURCH_DIRECTOR',
-          'JUNIOR_CHURCH_SUPERVISOR',
-          'JUNIOR_CHURCH_WORKER',
-        ])
+        new Map().set('webRole', ['JUNIOR_CHURCH_DIRECTOR', 'JUNIOR_CHURCH_SUPERVISOR', 'JUNIOR_CHURCH_WORKER'])
       )
       .pipe(
         tap((v) =>

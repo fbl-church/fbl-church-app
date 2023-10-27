@@ -37,25 +37,10 @@ export class UserFormComponent implements OnInit {
 
   buildForm() {
     this.form = this.fb.group({
-      firstName: [
-        this.userData ? this.userData.firstName : '',
-        Validators.required,
-      ],
-      lastName: [
-        this.userData ? this.userData.lastName : '',
-        Validators.required,
-      ],
-      email: [
-        this.userData ? this.userData.email : '',
-        [Validators.required, Validators.email],
-      ],
-      roles: [
-        this.userData
-          ? this.userData.webRole.filter(
-              (r) => !this.NOT_ASSIGNABLE_ROLES.includes(r)
-            )
-          : '',
-      ],
+      firstName: [this.userData ? this.userData.firstName : '', Validators.required],
+      lastName: [this.userData ? this.userData.lastName : '', Validators.required],
+      email: [this.userData ? this.userData.email : '', [Validators.required, Validators.email]],
+      roles: [this.userData ? this.userData.webRole.filter((r) => !this.NOT_ASSIGNABLE_ROLES.includes(r)) : ''],
     });
   }
 
@@ -82,9 +67,7 @@ export class UserFormComponent implements OnInit {
 
     if (this.enableRoleUpdate) {
       const rolesToAdd = this.userData?.webRole
-        ? this.userData.webRole.filter((r) =>
-            this.NOT_ASSIGNABLE_ROLES.includes(r)
-          )
+        ? this.userData.webRole.filter((r) => this.NOT_ASSIGNABLE_ROLES.includes(r))
         : [];
 
       user.webRole = [...rolesToAdd, ...this.form.value.roles];
@@ -99,9 +82,7 @@ export class UserFormComponent implements OnInit {
 
   validPassword() {
     if (this.form.value.password.toString().length < 8) {
-      this.popupService.error(
-        'Password needs to have a length of at least 8 characters.'
-      );
+      this.popupService.error('Password needs to have a length of at least 8 characters.');
       return false;
     }
     return true;

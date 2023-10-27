@@ -37,19 +37,13 @@ export class WebRoleAppUpdateModalComponent {
     this.modalLoading = true;
 
     this.applicationService
-      .updateWebRoleAppAccess(
-        this.webRoleApp.appId,
-        this.webRoleApp.webRole,
-        this.accessField.checked
-      )
+      .updateWebRoleAppAccess(this.webRoleApp.appId, this.webRoleApp.webRole, this.accessField.checked)
       .subscribe({
         next: () => {
           this.modal.close();
           this.modalLoading = false;
           this.webRoleAppUpdate.emit();
-          this.popupService.success(
-            `${this.webRoleApp.webRole} app access successfully updated`
-          );
+          this.popupService.success(`${this.webRoleApp.webRole} app access successfully updated`);
         },
         error: () => {
           this.popupService.error(

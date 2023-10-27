@@ -36,12 +36,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
     this.route.data
       .pipe(
         tap((res) => (this.userUpdating = res.currentUser.body)),
-        tap(
-          () =>
-            (this.isGuardianUser = this.userUpdating.webRole.includes(
-              WebRole.GUARDIAN
-            ))
-        ),
+        tap(() => (this.isGuardianUser = this.userUpdating.webRole.includes(WebRole.GUARDIAN))),
         takeUntil(this.destroy)
       )
       .subscribe(() => (this.loading = false));
@@ -60,23 +55,18 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
 
     let updateObservable = this.userService.updateUserProfile(user);
     if (this.isGuardianUser) {
-      updateObservable = this.guardianService.updateProfile(
-        this.jwt.getUserId(),
-        user
-      );
+      updateObservable = this.guardianService.updateProfile(this.jwt.getUserId(), user);
     }
 
-    updateObservable
-      .pipe(switchMap(() => this.authService.reauthenticate()))
-      .subscribe({
-        next: () => {
-          this.onCancelClick();
-          this.popupService.success('Profile Successfully updated!');
-        },
-        error: () => {
-          this.popupService.error('Profile could not be updated at this time!');
-          this.loading = false;
-        },
-      });
+    updateObservable.pipe(switchMap(() => this.authService.reauthenticate())).subscribe({
+      next: () => {
+        this.onCancelClick();
+        this.popupService.success('Profile Successfully updated!');
+      },
+      error: () => {
+        this.popupService.error('Profile could not be updated at this time!');
+        this.loading = false;
+      },
+    });
   }
 }

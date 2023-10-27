@@ -1,9 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  ChurchGroup,
-  TranslationKey,
-} from 'projects/insite-kit/src/model/common.model';
+import { ChurchGroup, TranslationKey } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
@@ -15,10 +12,7 @@ import { Observable, tap } from 'rxjs';
 export class ChildrenService {
   readonly BASE_PATH = 'api/children';
 
-  constructor(
-    private readonly request: RequestService,
-    private readonly commonService: CommonService
-  ) {}
+  constructor(private readonly request: RequestService, private readonly commonService: CommonService) {}
 
   /**
    * Get a list of children based on the given request
@@ -47,10 +41,7 @@ export class ChildrenService {
       tap((v) =>
         v.body.guardians.forEach((g) => {
           g.formattedName = this.commonService.getFormattedName(g);
-          g.formattedRelationship = this.commonService.translate(
-            g.relationship,
-            TranslationKey.RELATIONSHIP
-          );
+          g.formattedRelationship = this.commonService.translate(g.relationship, TranslationKey.RELATIONSHIP);
         })
       )
     );
@@ -62,18 +53,14 @@ export class ChildrenService {
    * @param params guardian id for the guardian to get
    * @returns Guardian object
    */
-  getChildrenByGuardianId(
-    guardianId: number
-  ): Observable<HttpResponse<Child[]>> {
-    return this.request
-      .get<Child[]>(`${this.BASE_PATH}/guardian/${guardianId}`)
-      .pipe(
-        tap((v) =>
-          v.body.forEach((u) => {
-            u.formattedName = this.commonService.getFormattedName(u);
-          })
-        )
-      );
+  getChildrenByGuardianId(guardianId: number): Observable<HttpResponse<Child[]>> {
+    return this.request.get<Child[]>(`${this.BASE_PATH}/guardian/${guardianId}`).pipe(
+      tap((v) =>
+        v.body.forEach((u) => {
+          u.formattedName = this.commonService.getFormattedName(u);
+        })
+      )
+    );
   }
 
   /**
@@ -86,9 +73,7 @@ export class ChildrenService {
   doesChildExist(child: Child): Observable<HttpResponse<Child>> {
     return this.request.get<Child>(
       `${this.BASE_PATH}/exists`,
-      new Map()
-        .set('firstName', [child.firstName])
-        .set('lastName', [child.lastName])
+      new Map().set('firstName', [child.firstName]).set('lastName', [child.lastName])
     );
   }
 

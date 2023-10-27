@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AttendanceRecord } from 'projects/insite-kit/src/model/attendance-record.model';
-import {
-  Access,
-  App,
-  ChurchGroup,
-  FeatureType,
-  WebRole,
-} from 'projects/insite-kit/src/model/common.model';
+import { Access, App, ChurchGroup, FeatureType, WebRole } from 'projects/insite-kit/src/model/common.model';
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
 
 @Component({
@@ -22,10 +16,7 @@ export class AwanaCheckInComponent {
   Application = App;
   Access = Access;
 
-  constructor(
-    private readonly attendanceRecordService: AttendanceRecordService,
-    private readonly router: Router
-  ) {
+  constructor(private readonly attendanceRecordService: AttendanceRecordService, private readonly router: Router) {
     this.dataloader = (params: any) =>
       this.attendanceRecordService.get(
         params.set('type', [

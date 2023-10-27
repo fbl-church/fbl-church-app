@@ -11,10 +11,7 @@ import { ChildrenService } from 'src/service/children/children.service';
 export class AwanaChildrenComponent {
   dataloader: any;
 
-  constructor(
-    private childrenService: ChildrenService,
-    private readonly router: Router
-  ) {
+  constructor(private childrenService: ChildrenService, private readonly router: Router) {
     this.dataloader = (params) => this.getAwanaChildrenDataloader(params);
   }
 

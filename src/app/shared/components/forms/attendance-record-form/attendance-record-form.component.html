@@ -2,21 +2,11 @@
   <div class="row" *ngIf="group === ChurchGroup.NURSERY">
     <ik-form-field header="Type*" class="col-12">
       <label class="input-inline">
-        <input
-          type="radio"
-          formControlName="radio"
-          class="form-check-input checkbox__default"
-          [value]="true"
-        />
+        <input type="radio" formControlName="radio" class="form-check-input checkbox__default" [value]="true" />
         <span>Sunday School (SS)</span>
       </label>
       <label class="input-inline">
-        <input
-          type="radio"
-          formControlName="radio"
-          class="form-check-input checkbox__default"
-          [value]="false"
-        />
+        <input type="radio" formControlName="radio" class="form-check-input checkbox__default" [value]="false" />
         <span>Morning Service (AM)</span>
       </label>
     </ik-form-field>
@@ -34,30 +24,18 @@
     </ik-form-field>
 
     <ik-form-field header="Active Date*" class="col-md-6"
-      ><input
-        type="date"
-        class="form-input__normal"
-        placeholder="Active Date"
-        formControlName="activeDate"
-      />
+      ><input type="date" class="form-input__normal" placeholder="Active Date" formControlName="activeDate" />
     </ik-form-field>
   </div>
 
   <ik-form-field header="Workers*">
-    <ik-multi-select
-      formControlName="workers"
-      [items]="workers"
-    ></ik-multi-select>
+    <ik-multi-select formControlName="workers" [items]="workers"></ik-multi-select>
   </ik-form-field>
 </ik-form>
 
 <button class="btn btn-default btn-left" (click)="onCancelClick()">
   {{ leftActionButton }}
 </button>
-<button
-  class="btn btn-primary btn-right"
-  (click)="onSaveClick()"
-  [disabled]="form.invalid || disableSave"
->
+<button class="btn btn-primary btn-right" (click)="onSaveClick()" [disabled]="form.invalid || disableSave">
   {{ rightActionButton }}
 </button>

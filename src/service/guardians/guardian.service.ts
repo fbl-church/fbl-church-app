@@ -12,10 +12,7 @@ import { Observable, tap } from 'rxjs';
 export class GuardianService {
   readonly BASE_PATH = 'api/guardians';
 
-  constructor(
-    private readonly request: RequestService,
-    private readonly commonService: CommonService
-  ) {}
+  constructor(private readonly request: RequestService, private readonly commonService: CommonService) {}
 
   /**
    * Get a list of guardians based on the given request
@@ -28,10 +25,7 @@ export class GuardianService {
       tap((v) =>
         v.body.forEach((u) => {
           u.formattedName = this.commonService.getFormattedName(u);
-          u.formattedRelationship = this.commonService.translate(
-            u.relationship,
-            TranslationKey.RELATIONSHIP
-          );
+          u.formattedRelationship = this.commonService.translate(u.relationship, TranslationKey.RELATIONSHIP);
         })
       )
     );
@@ -54,19 +48,14 @@ export class GuardianService {
    * @returns Guardian object
    */
   getGuardiansByChildId(childId: number): Observable<HttpResponse<Guardian>> {
-    return this.request
-      .get<Guardian>(`${this.BASE_PATH}/child/${childId}`)
-      .pipe(
-        tap((v) =>
-          v.body.forEach((u) => {
-            u.formattedName = this.commonService.getFormattedName(u);
-            u.formattedRelationship = this.commonService.translate(
-              u.relationship,
-              TranslationKey.RELATIONSHIP
-            );
-          })
-        )
-      );
+    return this.request.get<Guardian>(`${this.BASE_PATH}/child/${childId}`).pipe(
+      tap((v) =>
+        v.body.forEach((u) => {
+          u.formattedName = this.commonService.getFormattedName(u);
+          u.formattedRelationship = this.commonService.translate(u.relationship, TranslationKey.RELATIONSHIP);
+        })
+      )
+    );
   }
 
   /**
@@ -79,9 +68,7 @@ export class GuardianService {
   doesGuardianExist(guardian: Guardian): Observable<HttpResponse<Guardian>> {
     return this.request.get<Guardian>(
       `${this.BASE_PATH}/exists`,
-      new Map()
-        .set('firstName', [guardian.firstName])
-        .set('lastName', [guardian.lastName])
+      new Map().set('firstName', [guardian.firstName]).set('lastName', [guardian.lastName])
     );
   }
 
@@ -114,10 +101,7 @@ export class GuardianService {
    * @returns Guardian object with the updated guardian object.
    */
   updateProfile(id: any, guardian: Guardian): Observable<Guardian> {
-    return this.request.put<Guardian>(
-      `${this.BASE_PATH}/profile/${id}`,
-      guardian
-    );
+    return this.request.put<Guardian>(`${this.BASE_PATH}/profile/${id}`, guardian);
   }
 
   /**
@@ -127,14 +111,8 @@ export class GuardianService {
    * @param guardians The list of guardians to send
    * @returns The list of updated guardians
    */
-  updateChildGuardiansById(
-    childId: any,
-    guardians: Guardian[]
-  ): Observable<Guardian> {
-    return this.request.put<Guardian[]>(
-      `${this.BASE_PATH}/${childId}/guardians`,
-      guardians
-    );
+  updateChildGuardiansById(childId: any, guardians: Guardian[]): Observable<Guardian> {
+    return this.request.put<Guardian[]>(`${this.BASE_PATH}/${childId}/guardians`, guardians);
   }
 
   /**
@@ -144,14 +122,8 @@ export class GuardianService {
    * @param guardian The guardian user to be inserted
    * @returns The created guardian
    */
-  assignGuardianRoleToExistingUser(
-    userId: any,
-    guardian: Guardian
-  ): Observable<Guardian> {
-    return this.request.put<Guardian>(
-      `${this.BASE_PATH}/${userId}/user`,
-      guardian
-    );
+  assignGuardianRoleToExistingUser(userId: any, guardian: Guardian): Observable<Guardian> {
+    return this.request.put<Guardian>(`${this.BASE_PATH}/${userId}/user`, guardian);
   }
 
   /**

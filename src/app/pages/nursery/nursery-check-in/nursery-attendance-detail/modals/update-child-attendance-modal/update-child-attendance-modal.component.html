@@ -1,35 +1,18 @@
 <ik-modal #childCheckInModal name="childCheckInModal">
   <ik-modal-header
-    [title]="
-      record.status !== 'CLOSED'
-        ? 'Update Child Attendance?'
-        : 'Child Attendance'
-    "
+    [title]="record.status !== 'CLOSED' ? 'Update Child Attendance?' : 'Child Attendance'"
     type="info"
   ></ik-modal-header>
   <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
       <form [formGroup]="form">
         <div class="row">
-          <ik-card-info
-            class="col-6"
-            header="Name"
-            [text]="child | formatUserName"
-          ></ik-card-info>
-          <ik-card-info
-            class="col-6"
-            header="CUID"
-            [text]="child?.cuid"
-          ></ik-card-info>
+          <ik-card-info class="col-6" header="Name" [text]="child | formatUserName"></ik-card-info>
+          <ik-card-info class="col-6" header="CUID" [text]="child?.cuid"></ik-card-info>
         </div>
-        <div
-          class="row"
-          *ngIf="!child?.checkOutDate && record.status !== 'CLOSED'"
-        >
+        <div class="row" *ngIf="!child?.checkOutDate && record.status !== 'CLOSED'">
           <ik-card-info header="Attendance" class="col-12">
-            <a class="link card-info__label-text" (click)="onMarkChildAbsent()"
-              >Mark Absent</a
-            >
+            <a class="link card-info__label-text" (click)="onMarkChildAbsent()">Mark Absent</a>
           </ik-card-info>
         </div>
         <div class="row">
@@ -62,11 +45,8 @@
       >
         Update
       </button>
-      <button
-        class="btn btn-default btn-right btn-modal"
-        (click)="childCheckInModal.close()"
-      >
-        {{ record.status !== "CLOSED" ? "Cancel" : "Close" }}
+      <button class="btn btn-default btn-right btn-modal" (click)="childCheckInModal.close()">
+        {{ record.status !== 'CLOSED' ? 'Cancel' : 'Close' }}
       </button>
     </ik-modal-action-bar>
   </ng-container>

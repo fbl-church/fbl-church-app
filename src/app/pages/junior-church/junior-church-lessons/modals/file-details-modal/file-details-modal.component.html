@@ -2,11 +2,7 @@
   <ik-modal-header title="File Information" type="info"></ik-modal-header>
   <ik-modal-body>
     <div class="row">
-      <ik-card-info
-        class="col-12"
-        header="Name"
-        [text]="selectedFile?.name"
-      ></ik-card-info>
+      <ik-card-info class="col-12" header="Name" [text]="selectedFile?.name"></ik-card-info>
     </div>
     <div class="row">
       <ik-card-info
@@ -23,45 +19,25 @@
   </ik-modal-body>
   <ik-modal-action-bar>
     <button
-      *featureAccess="[
-        Application.JUNIOR_CHURCH,
-        FeatureType.LESSONS,
-        Access.DELETE
-      ]"
+      *featureAccess="[Application.JUNIOR_CHURCH, FeatureType.LESSONS, Access.DELETE]"
       class="btn btn-danger btn-left btn-modal"
       (click)="onFileDeleteClick()"
     >
       <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
       Delete
     </button>
-    <button
-      class="btn btn-primary btn-right btn-modal"
-      (click)="onFileDownload()"
-      *ngIf="selectedFile?.file"
-    >
+    <button class="btn btn-primary btn-right btn-modal" (click)="onFileDownload()" *ngIf="selectedFile?.file">
       <ng-container *ngIf="!modalDownloadLoading; else downloadLoading">
         <ik-icon icon="download" classOverride="btn-icon"></ik-icon>
         Download
       </ng-container>
 
       <ng-template #downloadLoading>
-        <ik-loading
-          size="30px"
-          thickness="2px"
-          margin="0px 47.57px"
-        ></ik-loading>
+        <ik-loading size="30px" thickness="2px" margin="0px 47.57px"></ik-loading>
       </ng-template>
     </button>
-    <button
-      class="btn btn-default btn-right btn-modal"
-      (click)="fileDetailsModal.close()"
-    >
-      Close
-    </button>
+    <button class="btn btn-default btn-right btn-modal" (click)="fileDetailsModal.close()">Close</button>
   </ik-modal-action-bar>
 </ik-modal>
 
-<app-delete-file-modal
-  [basePath]="basePath"
-  (fileDeleted)="onFileDeleted()"
-></app-delete-file-modal>
+<app-delete-file-modal [basePath]="basePath" (fileDeleted)="onFileDeleted()"></app-delete-file-modal>

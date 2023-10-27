@@ -31,33 +31,18 @@
     <ik-modal-body>
       <form *ngIf="form" [formGroup]="form">
         <ik-form-field header="Role*" [padding]="false">
-          <ik-single-select
-            formControlName="type"
-            [items]="workerTypes"
-          ></ik-single-select>
+          <ik-single-select formControlName="type" [items]="workerTypes"></ik-single-select>
         </ik-form-field>
         <ik-form-field header="Workers*" [padding]="false">
-          <ik-multi-select
-            formControlName="workers"
-            [items]="nonAwanaWorkers"
-          ></ik-multi-select>
+          <ik-multi-select formControlName="workers" [items]="nonAwanaWorkers"></ik-multi-select>
         </ik-form-field>
       </form>
     </ik-modal-body>
     <ik-modal-action-bar>
-      <button
-        class="btn btn-primary btn-right btn-modal"
-        (click)="onAddWorkers()"
-        [disabled]="form && form.invalid"
-      >
+      <button class="btn btn-primary btn-right btn-modal" (click)="onAddWorkers()" [disabled]="form && form.invalid">
         Add Workers
       </button>
-      <button
-        class="btn btn-default btn-right btn-modal"
-        (click)="addWorkersModal.close()"
-      >
-        Cancel
-      </button>
+      <button class="btn btn-default btn-right btn-modal" (click)="addWorkersModal.close()">Cancel</button>
     </ik-modal-action-bar>
   </ng-container>
 </ik-modal>

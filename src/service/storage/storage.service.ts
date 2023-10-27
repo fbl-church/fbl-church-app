@@ -23,10 +23,7 @@ export class StorageService {
   }
 
   getBlob(fileName: string, path: string = ''): Observable<Blob> {
-    return this.request.download(
-      `${this.BASE_PATH}/download`,
-      new Map().set('file', [`${path}/${fileName}`])
-    );
+    return this.request.download(`${this.BASE_PATH}/download`, new Map().set('file', [`${path}/${fileName}`]));
   }
 
   delete(filePath: string): Observable<any> {

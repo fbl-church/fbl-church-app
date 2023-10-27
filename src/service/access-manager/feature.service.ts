@@ -1,14 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  CRUD,
-  Feature,
-  WebRoleFeature,
-} from 'projects/insite-kit/src/model/access.model';
-import {
-  TranslationKey,
-  WebRole,
-} from 'projects/insite-kit/src/model/common.model';
+import { CRUD, Feature, WebRoleFeature } from 'projects/insite-kit/src/model/access.model';
+import { TranslationKey, WebRole } from 'projects/insite-kit/src/model/common.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { Observable, tap } from 'rxjs';
@@ -19,10 +12,7 @@ import { Observable, tap } from 'rxjs';
 export class FeatureService {
   readonly BASE_PATH = 'api/features';
 
-  constructor(
-    private readonly request: RequestService,
-    private readonly commonService: CommonService
-  ) {}
+  constructor(private readonly request: RequestService, private readonly commonService: CommonService) {}
 
   /**
    * Get a list of features based on the given request
@@ -50,22 +40,14 @@ export class FeatureService {
    * @param id The id of the feature
    * @returns The page of web role access for the features
    */
-  getWebRoleFeatureAccessById(
-    id: any,
-    params?: Map<string, string[]>
-  ): Observable<HttpResponse<WebRoleFeature[]>> {
-    return this.request
-      .get<WebRoleFeature[]>(`${this.BASE_PATH}/${id}/roles`, params)
-      .pipe(
-        tap((v) =>
-          v.body.forEach((u) => {
-            u.formattedWebRole = this.commonService.translate(
-              u.webRole,
-              TranslationKey.WEB_ROLE
-            );
-          })
-        )
-      );
+  getWebRoleFeatureAccessById(id: any, params?: Map<string, string[]>): Observable<HttpResponse<WebRoleFeature[]>> {
+    return this.request.get<WebRoleFeature[]>(`${this.BASE_PATH}/${id}/roles`, params).pipe(
+      tap((v) =>
+        v.body.forEach((u) => {
+          u.formattedWebRole = this.commonService.translate(u.webRole, TranslationKey.WEB_ROLE);
+        })
+      )
+    );
   }
 
   /**
@@ -76,9 +58,7 @@ export class FeatureService {
    * @returns The updated feature
    */
   updateEnabledFlag(id: any, enabled: boolean): Observable<Feature> {
-    return this.request.put<Feature>(
-      `${this.BASE_PATH}/${id}/enabled/${enabled}`
-    );
+    return this.request.put<Feature>(`${this.BASE_PATH}/${id}/enabled/${enabled}`);
   }
 
   /**
@@ -89,15 +69,8 @@ export class FeatureService {
    * @param crud The crud fields to be set
    * @returns The updated web role feature
    */
-  updateWebRoleFeatureAccess(
-    featureId: number,
-    webRole: WebRole,
-    crud: CRUD
-  ): Observable<WebRoleFeature> {
-    return this.request.put<WebRoleFeature>(
-      `${this.BASE_PATH}/${featureId}/roles/${webRole}`,
-      crud
-    );
+  updateWebRoleFeatureAccess(featureId: number, webRole: WebRole, crud: CRUD): Observable<WebRoleFeature> {
+    return this.request.put<WebRoleFeature>(`${this.BASE_PATH}/${featureId}/roles/${webRole}`, crud);
   }
 
   /**

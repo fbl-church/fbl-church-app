@@ -29,9 +29,7 @@ export class DeleteApplicationModalComponent {
         this.popupService.success('Application successfully deleted!');
       },
       error: () => {
-        this.popupService.error(
-          'Application could not be deleted at this time!'
-        );
+        this.popupService.error('Application could not be deleted at this time!');
         this.modalLoading = false;
       },
     });

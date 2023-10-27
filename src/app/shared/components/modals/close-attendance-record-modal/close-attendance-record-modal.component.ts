@@ -1,15 +1,6 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
-import {
-  AttendanceRecord,
-  AttendanceStatus,
-} from 'projects/insite-kit/src/model/attendance-record.model';
+import { AttendanceRecord, AttendanceStatus } from 'projects/insite-kit/src/model/attendance-record.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
 
@@ -31,21 +22,17 @@ export class CloseAttendanceRecordModalComponent {
 
   onDeleteUser() {
     this.modalLoading = true;
-    this.attendanceRecordService
-      .updateStatus(this.recordId, AttendanceStatus.CLOSED)
-      .subscribe({
-        next: (res) => {
-          this.modal.close();
-          this.popupService.success('Attendance Record successfully Closed!');
-          this.closed.emit(res);
-        },
-        error: () => {
-          this.modal.close();
-          this.popupService.error(
-            'Unable to close Attendance Record at this time. Try again later.'
-          );
-          this.modalLoading = false;
-        },
-      });
+    this.attendanceRecordService.updateStatus(this.recordId, AttendanceStatus.CLOSED).subscribe({
+      next: (res) => {
+        this.modal.close();
+        this.popupService.success('Attendance Record successfully Closed!');
+        this.closed.emit(res);
+      },
+      error: () => {
+        this.modal.close();
+        this.popupService.error('Unable to close Attendance Record at this time. Try again later.');
+        this.modalLoading = false;
+      },
+    });
   }
 }

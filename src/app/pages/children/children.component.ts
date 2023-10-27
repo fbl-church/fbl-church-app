@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  Access,
-  App,
-  FeatureType,
-} from 'projects/insite-kit/src/model/common.model';
+import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { ChildrenService } from 'src/service/children/children.service';
 
 @Component({
@@ -18,10 +14,7 @@ export class ChildrenComponent {
   Application = App;
   Access = Access;
 
-  constructor(
-    private readonly childrenService: ChildrenService,
-    private readonly router: Router
-  ) {
+  constructor(private readonly childrenService: ChildrenService, private readonly router: Router) {
     this.dataloader = (params: any) => this.getchildDataLoader(params);
   }
 

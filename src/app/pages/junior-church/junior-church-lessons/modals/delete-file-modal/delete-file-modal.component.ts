@@ -1,17 +1,7 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { FTPFile } from 'projects/insite-kit/src/component/upload/file-uploader.model';
-import {
-  Access,
-  App,
-  FeatureType,
-} from 'projects/insite-kit/src/model/common.model';
+import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { StorageService } from 'src/service/storage/storage.service';
 
@@ -31,10 +21,7 @@ export class DeleteFileModalComponent {
   Application = App;
   Access = Access;
 
-  constructor(
-    private readonly storageService: StorageService,
-    private readonly popupService: PopupService
-  ) {}
+  constructor(private readonly storageService: StorageService, private readonly popupService: PopupService) {}
 
   open(f: FTPFile) {
     this.modalLoading = false;
@@ -44,22 +31,16 @@ export class DeleteFileModalComponent {
 
   onFileDelete() {
     this.modalLoading = true;
-    this.storageService
-      .delete(`${this.basePath}/${this.selectedFile.name}`)
-      .subscribe({
-        next: () => {
-          this.modal.close();
-          this.popupService.success(
-            `'${this.selectedFile.name}' Successfully Deleted`
-          );
-          this.fileDeleted.emit();
-        },
-        error: () => {
-          this.modal.close();
-          this.popupService.error(
-            'Unable to delete file at this time. Try again later.'
-          );
-        },
-      });
+    this.storageService.delete(`${this.basePath}/${this.selectedFile.name}`).subscribe({
+      next: () => {
+        this.modal.close();
+        this.popupService.success(`'${this.selectedFile.name}' Successfully Deleted`);
+        this.fileDeleted.emit();
+      },
+      error: () => {
+        this.modal.close();
+        this.popupService.error('Unable to delete file at this time. Try again later.');
+      },
+    });
   }
 }

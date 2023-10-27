@@ -10,12 +10,7 @@ import { TEST_ENVIRONMENT } from './test-env';
 export class FBLChurchTestBed extends AbstractTestBed {
   static getModuleMetaData(): TestModuleMetadata {
     return {
-      imports: [
-        InsiteKitModule.forRoot(TEST_ENVIRONMENT),
-        BaseInitModule,
-        PagesModule,
-        SharedModule,
-      ],
+      imports: [InsiteKitModule.forRoot(TEST_ENVIRONMENT), BaseInitModule, PagesModule, SharedModule],
       declarations: [AppComponent],
       providers: [],
     };

@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  Access,
-  App,
-  FeatureType,
-} from 'projects/insite-kit/src/model/common.model';
+import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { GuardianService } from 'src/service/guardians/guardian.service';
 
 @Component({
@@ -18,10 +14,7 @@ export class GuardianComponent {
   Application = App;
   Access = Access;
 
-  constructor(
-    private guardianService: GuardianService,
-    private readonly router: Router
-  ) {
+  constructor(private guardianService: GuardianService, private readonly router: Router) {
     this.dataloader = (params: any) => this.getGuardianDataLoader(params);
   }
 

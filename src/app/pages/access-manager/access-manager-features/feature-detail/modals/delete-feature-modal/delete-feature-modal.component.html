@@ -3,24 +3,13 @@
   <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
       <div>
-        Deleting this feature will result in all information associated to it to
-        be lost and the feature will no longer be able to be accessed. Do you
-        want to continue?
+        Deleting this feature will result in all information associated to it to be lost and the feature will no longer
+        be able to be accessed. Do you want to continue?
       </div>
     </ik-modal-body>
     <ik-modal-action-bar>
-      <button
-        class="btn btn-danger btn-right btn-modal"
-        (click)="onDeleteFeature()"
-      >
-        Delete Feature
-      </button>
-      <button
-        class="btn btn-default btn-right btn-modal"
-        (click)="deleteFeatureModal.close()"
-      >
-        Cancel
-      </button>
+      <button class="btn btn-danger btn-right btn-modal" (click)="onDeleteFeature()">Delete Feature</button>
+      <button class="btn btn-default btn-right btn-modal" (click)="deleteFeatureModal.close()">Cancel</button>
     </ik-modal-action-bar>
   </ng-container>
 </ik-modal>

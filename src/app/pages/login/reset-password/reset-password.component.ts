@@ -66,22 +66,18 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
     }
 
     this.jwt.setToken(this.token);
-    this.userService
-      .resetUserPassword({ newPassword: this.form.value.newPassword })
-      .subscribe({
-        next: () => {
-          this.popupService.success('Password has successfully been reset!');
-          this.jwt.removeToken();
-          this.router.navigate(['/login']);
-        },
-        error: () => {
-          this.popupService.error(
-            'Could not reset password at this time. Please try again later.'
-          );
-          this.jwt.removeToken();
-          this.router.navigate(['/login']);
-        },
-      });
+    this.userService.resetUserPassword({ newPassword: this.form.value.newPassword }).subscribe({
+      next: () => {
+        this.popupService.success('Password has successfully been reset!');
+        this.jwt.removeToken();
+        this.router.navigate(['/login']);
+      },
+      error: () => {
+        this.popupService.error('Could not reset password at this time. Please try again later.');
+        this.jwt.removeToken();
+        this.router.navigate(['/login']);
+      },
+    });
   }
 
   validPassword() {
@@ -91,9 +87,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
     }
 
     if (this.form.value.newPassword.toString().length < 8) {
-      this.popupService.error(
-        'Password needs to have a length of at least 8 characters.'
-      );
+      this.popupService.error('Password needs to have a length of at least 8 characters.');
       return false;
     }
     return true;

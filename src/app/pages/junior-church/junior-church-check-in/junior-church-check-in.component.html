@@ -1,10 +1,6 @@
 <ik-header title="Junior Church Check In">
   <button
-    *featureAccess="[
-      Application.JUNIOR_CHURCH,
-      FeatureType.OVERVIEW,
-      Access.CREATE
-    ]"
+    *featureAccess="[Application.JUNIOR_CHURCH, FeatureType.OVERVIEW, Access.CREATE]"
     (click)="onNewAttendanceRecord()"
     class="btn btn-primary btn-header-right"
   >
@@ -12,7 +8,4 @@
     New Attendance
   </button>
 </ik-header>
-<app-attendance-record-grid
-  [dataloader]="dataloader"
-  (rowClick)="onRowClick($event)"
-></app-attendance-record-grid>
+<app-attendance-record-grid [dataloader]="dataloader" (rowClick)="onRowClick($event)"></app-attendance-record-grid>

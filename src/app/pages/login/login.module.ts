@@ -7,11 +7,6 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 
 @NgModule({
   imports: [BaseInitModule],
-  declarations: [
-    LoginComponent,
-    LoginOverviewComponent,
-    ForgotPasswordComponent,
-    ResetPasswordComponent,
-  ],
+  declarations: [LoginComponent, LoginOverviewComponent, ForgotPasswordComponent, ResetPasswordComponent],
 })
 export class LoginModule {}

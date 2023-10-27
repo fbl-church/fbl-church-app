@@ -1,10 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
-import {
-  Feature,
-  WebRoleFeature,
-} from 'projects/insite-kit/src/model/access.model';
+import { Feature, WebRoleFeature } from 'projects/insite-kit/src/model/access.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { FeatureService } from 'src/service/access-manager/feature.service';
@@ -44,10 +41,7 @@ export class FeatureDetailComponent implements OnInit, OnDestroy {
       .subscribe(
         () =>
           (this.webRoleFeaturesDataloader = (params) =>
-            this.featureService.getWebRoleFeatureAccessById(
-              this.featureId,
-              params
-            ))
+            this.featureService.getWebRoleFeatureAccessById(this.featureId, params))
       );
   }
 

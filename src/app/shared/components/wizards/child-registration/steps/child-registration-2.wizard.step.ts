@@ -16,14 +16,9 @@ export class ChildRegistrationWizardStepTwoComponent {
   childrenDataloader: any;
   loading = false;
 
-  constructor(
-    private readonly router: Router,
-    private readonly childrenService: ChildrenService
-  ) {
+  constructor(private readonly router: Router, private readonly childrenService: ChildrenService) {
     this.childrenDataloader = (params) =>
-      this.childrenService.get(
-        params.set('notChurchGroup', this.wizardData.filteredOutGroups)
-      );
+      this.childrenService.get(params.set('notChurchGroup', this.wizardData.filteredOutGroups));
   }
 
   onCancelClick() {

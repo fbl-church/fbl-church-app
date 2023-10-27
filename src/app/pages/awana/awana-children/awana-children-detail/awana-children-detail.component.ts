@@ -2,16 +2,8 @@ import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
-import {
-  AttendanceRecord,
-  ChildAttendance,
-} from 'projects/insite-kit/src/model/attendance-record.model';
-import {
-  Access,
-  App,
-  ChurchGroup,
-  FeatureType,
-} from 'projects/insite-kit/src/model/common.model';
+import { AttendanceRecord, ChildAttendance } from 'projects/insite-kit/src/model/attendance-record.model';
+import { Access, App, ChurchGroup, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { ChildAttendanceService } from 'src/service/attendance/child-attendance.service';
@@ -48,8 +40,7 @@ export class AwanaChildrenDetailComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy)
       )
       .subscribe(() => {
-        this.childRecordDataLoader = (params) =>
-          this.getChildAttendanceDataloader(params);
+        this.childRecordDataLoader = (params) => this.getChildAttendanceDataloader(params);
         this.loading = false;
       });
   }

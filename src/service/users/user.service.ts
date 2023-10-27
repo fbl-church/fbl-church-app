@@ -64,9 +64,7 @@ export class UserService {
    * @returns Boolean of the status of the email.
    */
   doesEmailExist(email: string): Observable<HttpResponse<boolean>> {
-    return this.request.get<boolean>(
-      `${this.BASE_USER_PATH}/check-email?email=${email}`
-    );
+    return this.request.get<boolean>(`${this.BASE_USER_PATH}/check-email?email=${email}`);
   }
 
   /**
@@ -109,10 +107,7 @@ export class UserService {
    * @returns User object
    */
   updateUserProfileById(id: number, user: User): Observable<User> {
-    return this.request.put<User>(
-      `${this.BASE_USER_PATH}/${id.toString()}`,
-      user
-    );
+    return this.request.put<User>(`${this.BASE_USER_PATH}/${id.toString()}`, user);
   }
 
   /**
@@ -123,10 +118,7 @@ export class UserService {
    * @returns User object
    */
   updateUserRolesById(id: number, roles: any[]): Observable<User> {
-    return this.request.put<User>(
-      `${this.BASE_USER_PATH}/${id.toString()}/roles`,
-      roles
-    );
+    return this.request.put<User>(`${this.BASE_USER_PATH}/${id.toString()}/roles`, roles);
   }
 
   /**
@@ -137,10 +129,7 @@ export class UserService {
    * @returns User object
    */
   addRoleToUsers(role: WebRole, userIds: number[]): Observable<User[]> {
-    return this.request.put<User[]>(
-      `${this.BASE_USER_PATH}/roles/${role}`,
-      userIds
-    );
+    return this.request.put<User[]>(`${this.BASE_USER_PATH}/roles/${role}`, userIds);
   }
 
   /**
@@ -151,10 +140,7 @@ export class UserService {
    * @returns The user object of the user that was updated.
    */
   updateUserPassword(passUpdate: PasswordUpdate): Observable<User> {
-    return this.request.put<User>(
-      `${this.BASE_USER_CREDENTIALS_PATH}/password`,
-      passUpdate
-    );
+    return this.request.put<User>(`${this.BASE_USER_CREDENTIALS_PATH}/password`, passUpdate);
   }
 
   /**
@@ -165,14 +151,8 @@ export class UserService {
    * @param passUpdate The object that contains the current password and new password.
    * @returns The user object of the user that was updated.
    */
-  updateUserPasswordById(
-    userId: number,
-    passUpdate: PasswordUpdate
-  ): Observable<User> {
-    return this.request.put<User>(
-      `${this.BASE_USER_CREDENTIALS_PATH}/password/${userId.toString()}`,
-      passUpdate
-    );
+  updateUserPasswordById(userId: number, passUpdate: PasswordUpdate): Observable<User> {
+    return this.request.put<User>(`${this.BASE_USER_CREDENTIALS_PATH}/password/${userId.toString()}`, passUpdate);
   }
 
   /**
@@ -182,10 +162,7 @@ export class UserService {
    * @returns User Object of the user that was updated.
    */
   resetUserPassword(passUpdate: PasswordUpdate): Observable<User> {
-    return this.request.put<User>(
-      `${this.BASE_USER_CREDENTIALS_PATH}/password/reset`,
-      passUpdate
-    );
+    return this.request.put<User>(`${this.BASE_USER_CREDENTIALS_PATH}/password/reset`, passUpdate);
   }
 
   /**

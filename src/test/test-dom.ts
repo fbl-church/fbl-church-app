@@ -1,61 +1,41 @@
 import { DebugElement, ElementRef } from '@angular/core';
 
 export class TestDOM {
-  static querySelector(
-    selector: string | Element | ElementRef | DebugElement
-  ): Element {
+  static querySelector(selector: string | Element | ElementRef | DebugElement): Element {
     let element = selector as any;
     if (typeof selector === 'string') {
       element = document.querySelector(selector);
-    } else if (
-      selector instanceof DebugElement ||
-      selector instanceof ElementRef
-    ) {
+    } else if (selector instanceof DebugElement || selector instanceof ElementRef) {
       element = selector.nativeElement;
     }
     return element;
   }
 
-  static querySelectorAll(
-    selector: string | Element | ElementRef | DebugElement
-  ): Element[] {
+  static querySelectorAll(selector: string | Element | ElementRef | DebugElement): Element[] {
     let element = selector as any;
     if (typeof selector === 'string') {
       element = document.querySelectorAll(selector);
-    } else if (
-      selector instanceof DebugElement ||
-      selector instanceof ElementRef
-    ) {
+    } else if (selector instanceof DebugElement || selector instanceof ElementRef) {
       element = selector.nativeElement;
     }
     return element;
   }
 
-  static exists(
-    selector: string | HTMLElement | ElementRef | DebugElement
-  ): boolean {
+  static exists(selector: string | HTMLElement | ElementRef | DebugElement): boolean {
     return !!this.querySelector(selector);
   }
-  static textContent(
-    selector: string | Element | HTMLElement | ElementRef | DebugElement
-  ): string {
+  static textContent(selector: string | Element | HTMLElement | ElementRef | DebugElement): string {
     const element = this.querySelector(selector);
     return element ? element.textContent.trim() : '';
   }
-  static href(
-    selector: string | HTMLElement | ElementRef | DebugElement
-  ): string {
+  static href(selector: string | HTMLElement | ElementRef | DebugElement): string {
     const element = this.querySelector(selector) as HTMLAnchorElement;
     const origin = window.location.origin;
     // don't include leading slash of url
-    return element && element.href
-      ? element.href.substr(origin.length + 1)
-      : '';
+    return element && element.href ? element.href.substr(origin.length + 1) : '';
   }
 
-  static routerLink(
-    selector: string | HTMLElement | ElementRef | DebugElement
-  ): string {
+  static routerLink(selector: string | HTMLElement | ElementRef | DebugElement): string {
     const element = this.querySelector(selector);
     let url = element ? element.getAttribute('routerLink') : '';
     if (!url) {
@@ -67,10 +47,7 @@ export class TestDOM {
     return url;
   }
 
-  static updateForm(
-    selector: string | HTMLElement | ElementRef | DebugElement,
-    value: { [key: string]: any }
-  ): void {
+  static updateForm(selector: string | HTMLElement | ElementRef | DebugElement, value: { [key: string]: any }): void {
     let form = this.querySelector(selector) as HTMLFormElement;
     if (!form) {
       // eslint-disable-next-line
@@ -90,10 +67,7 @@ export class TestDOM {
       .forEach((key) => this.updateFormField(form.elements[key], value[key]));
   }
 
-  static updateFormField(
-    selector: string | HTMLElement | ElementRef | DebugElement,
-    value: any
-  ): void {
+  static updateFormField(selector: string | HTMLElement | ElementRef | DebugElement, value: any): void {
     let formElement = this.querySelector(selector) as HTMLFormElement;
     if (!formElement) {
       // eslint-disable-next-line
@@ -118,9 +92,7 @@ export class TestDOM {
     formElement.dispatchEvent(new Event('blur', { bubbles: true }));
   }
 
-  static formFieldValue(
-    selector: string | HTMLElement | ElementRef | DebugElement
-  ): any {
+  static formFieldValue(selector: string | HTMLElement | ElementRef | DebugElement): any {
     const formElement = this.querySelector(selector) as HTMLFormElement;
     if (!formElement) {
       return null;
@@ -132,26 +104,19 @@ export class TestDOM {
     return formElement.value;
   }
 
-  static findRadioButton(
-    radioList: RadioNodeList,
-    value: any
-  ): HTMLFormElement {
+  static findRadioButton(radioList: RadioNodeList, value: any): HTMLFormElement {
     let formElement;
     radioList.forEach((radioElement: HTMLFormElement) => {
       // <input type="radio" value="10" /> uses "value" attribute
       // <input type="radio" [value]="10" /> uses "ng-reflect-value" attribute
-      const radioValue =
-        radioElement.getAttribute('ng-reflect-value') ||
-        radioElement.getAttribute('value');
+      const radioValue = radioElement.getAttribute('ng-reflect-value') || radioElement.getAttribute('value');
       if (radioValue === value) {
         formElement = radioElement;
       }
     });
     if (!formElement) {
       // eslint-disable-next-line
-      console.warn(
-        `Could not find the radio element with the value "${value}"`
-      );
+      console.warn(`Could not find the radio element with the value "${value}"`);
     }
     return formElement;
   }
@@ -187,9 +152,7 @@ export class TestDOM {
     return event;
   }
 
-  static isEnabled(
-    selector: string | Element | NodeList | ElementRef | DebugElement
-  ): boolean {
+  static isEnabled(selector: string | Element | NodeList | ElementRef | DebugElement): boolean {
     // Handle lists
     if (selector instanceof NodeList) {
       let areAllEnabled = true;
@@ -212,9 +175,7 @@ export class TestDOM {
     // So "10: Object" selects the complex object at index "10".
     return `${index}: Object`;
   }
-  static getSelectedComplexValueIndex(
-    selector: string | Element | ElementRef | DebugElement
-  ): number {
+  static getSelectedComplexValueIndex(selector: string | Element | ElementRef | DebugElement): number {
     // Angular uses this string format to determine the index of the complex object array that's stored internally
     // So "10: Object" selects the complex object at index "10".
     const element = this.querySelector(selector) as HTMLFormElement;
@@ -249,23 +210,16 @@ export class TestDOM {
     });
   }
 
-  static updateMultiSelect(
-    selector: string | Element | ElementRef | DebugElement,
-    value: any
-  ): void {
+  static updateMultiSelect(selector: string | Element | ElementRef | DebugElement, value: any): void {
     const multiSelect = this.querySelector(selector);
     if (!multiSelect) {
       // eslint-disable-next-line
       console.warn(`Could not find multi-select ${multiSelect}`);
       return;
     }
-    const multiSelectField = multiSelect.querySelector(
-      '.multiselect-field'
-    ) as HTMLFormElement;
+    const multiSelectField = multiSelect.querySelector('.multiselect-field') as HTMLFormElement;
     this.updateFormField(multiSelectField, value);
-    multiSelectField.dispatchEvent(
-      new KeyboardEvent('keydown', { key: 'Enter' })
-    );
+    multiSelectField.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
   }
 
   static removeMultiSelect(selector: string, indexesToRemove: number[]): void {
@@ -275,17 +229,14 @@ export class TestDOM {
       console.warn(`Could not find multi-select ${multiSelect}`);
       return;
     }
-    const inputTagRemoveElements =
-      multiSelect.querySelectorAll('.input-tag__remove');
+    const inputTagRemoveElements = multiSelect.querySelectorAll('.input-tag__remove');
     indexesToRemove.forEach((indexToRemove) => {
       const inputTagRemoveElement = inputTagRemoveElements[indexToRemove];
       if (inputTagRemoveElement) {
         inputTagRemoveElement.dispatchEvent(new MouseEvent('click'));
       } else {
         // eslint-disable-next-line
-        console.warn(
-          `Could not find multi-select item at index ${indexToRemove}`
-        );
+        console.warn(`Could not find multi-select item at index ${indexToRemove}`);
       }
     });
   }

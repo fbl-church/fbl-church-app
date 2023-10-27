@@ -1,12 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  Access,
-  App,
-  FeatureType,
-  TranslationKey,
-} from 'projects/insite-kit/src/model/common.model';
+import { Access, App, FeatureType, TranslationKey } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { of } from 'rxjs';
@@ -24,10 +19,7 @@ export class ChildGroupDetailsGridComponent implements OnChanges {
   Application = App;
   Access = Access;
 
-  constructor(
-    private readonly commonService: CommonService,
-    private readonly router: Router
-  ) {
+  constructor(private readonly commonService: CommonService, private readonly router: Router) {
     this.dataloader = () => this.getChildChurchGroups();
   }
 

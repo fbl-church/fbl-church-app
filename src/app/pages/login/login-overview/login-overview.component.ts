@@ -33,16 +33,14 @@ export class LoginOverviewComponent implements OnInit {
 
   onLoginClick() {
     this.loading = true;
-    this.authService
-      .authenticate(this.form.value.username, this.form.value.password)
-      .subscribe({
-        next: () => {
-          this.router.navigate(['/profile']);
-        },
-        error: () => {
-          this.popupService.error('Invalid email or password!');
-          this.loading = false;
-        },
-      });
+    this.authService.authenticate(this.form.value.username, this.form.value.password).subscribe({
+      next: () => {
+        this.router.navigate(['/profile']);
+      },
+      error: () => {
+        this.popupService.error('Invalid email or password!');
+        this.loading = false;
+      },
+    });
   }
 }

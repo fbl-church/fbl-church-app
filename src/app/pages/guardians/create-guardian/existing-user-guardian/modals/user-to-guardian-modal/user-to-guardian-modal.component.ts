@@ -37,9 +37,7 @@ export class UserToGuardianModalComponent implements OnInit {
     this.userService.getUserById(userId).subscribe((res) => {
       this.modal.open();
       this.currentUser = res.body;
-      this.form.controls.name.patchValue(
-        this.commonService.getFormattedName(res.body)
-      );
+      this.form.controls.name.patchValue(this.commonService.getFormattedName(res.body));
     });
   }
 
@@ -56,9 +54,7 @@ export class UserToGuardianModalComponent implements OnInit {
         },
 
         error: () => {
-          this.popupService.error(
-            'Unable to add guardian role to user at this time. Try again later.'
-          );
+          this.popupService.error('Unable to add guardian role to user at this time. Try again later.');
           this.modalLoading = false;
         },
       });

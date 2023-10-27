@@ -2,10 +2,7 @@ import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CheckboxComponent } from 'projects/insite-kit/src/component/checkbox/checkbox.component';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
-import {
-  CRUD,
-  WebRoleFeature,
-} from 'projects/insite-kit/src/model/access.model';
+import { CRUD, WebRoleFeature } from 'projects/insite-kit/src/model/access.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { FeatureService } from 'src/service/access-manager/feature.service';
 
@@ -51,19 +48,13 @@ export class WebRoleFeatureUpdateModalComponent {
       delete: this.deleteField.checked,
     };
     this.featureService
-      .updateWebRoleFeatureAccess(
-        this.webRoleFeature.featureId,
-        this.webRoleFeature.webRole,
-        crudData
-      )
+      .updateWebRoleFeatureAccess(this.webRoleFeature.featureId, this.webRoleFeature.webRole, crudData)
       .subscribe({
         next: () => {
           this.modal.close();
           this.modalLoading = false;
           this.webRoleFeatureUpdate.emit();
-          this.popupService.success(
-            `${this.webRoleFeature.webRole} feature access successfully updated`
-          );
+          this.popupService.success(`${this.webRoleFeature.webRole} feature access successfully updated`);
         },
         error: () => {
           this.popupService.error(

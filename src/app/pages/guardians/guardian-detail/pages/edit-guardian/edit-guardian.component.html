@@ -1,6 +1,4 @@
-<ik-header title="Edit Guardian">
-  <ik-header-back (back)="onCancelClick()"></ik-header-back
-></ik-header>
+<ik-header title="Edit Guardian"> <ik-header-back (back)="onCancelClick()"></ik-header-back></ik-header>
 
 <app-guardian-form
   *ngIf="guardianUpdating && !loading; else pageLoader"

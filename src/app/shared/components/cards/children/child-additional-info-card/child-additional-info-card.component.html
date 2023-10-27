@@ -7,13 +7,13 @@
     >
       <div class="layout__half">
         <ng-container *ngFor="let a of child.allergies; let even = even">
-          <li *ngIf="even">{{ "- " + a }}</li>
+          <li *ngIf="even">{{ '- ' + a }}</li>
         </ng-container>
       </div>
 
       <div class="layout__half">
         <ng-container *ngFor="let a of child.allergies; let odd = odd">
-          <li *ngIf="odd">{{ "- " + a }}</li>
+          <li *ngIf="odd">{{ '- ' + a }}</li>
         </ng-container>
       </div>
     </ul>

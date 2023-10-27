@@ -8,11 +8,6 @@ import { AwanaWorkersComponent } from './awana-workers/awana-workers.component';
 
 @NgModule({
   imports: [BaseInitModule, SharedModule],
-  declarations: [
-    AwanaWorkersComponent,
-    AwanaChildrenComponent,
-    AwanaChildrenDetailComponent,
-    AwanaCheckInComponent,
-  ],
+  declarations: [AwanaWorkersComponent, AwanaChildrenComponent, AwanaChildrenDetailComponent, AwanaCheckInComponent],
 })
 export class AwanaModule {}

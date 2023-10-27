@@ -5,12 +5,12 @@
   <ik-grid-column label="CUID" field="cuid"></ik-grid-column>
   <ik-grid-column label="Checked In" field="checkInDate">
     <ng-template let-data>
-      {{ data.checkInDate | date : "h:mm a" }}
+      {{ data.checkInDate | date : 'h:mm a' }}
     </ng-template>
   </ik-grid-column>
   <ik-grid-column label="Checked Out" field="checkOutDate">
     <ng-template let-data>
-      {{ data.checkOutDate ? (data.checkOutDate | date : "h:mm a") : "-" }}
+      {{ data.checkOutDate ? (data.checkOutDate | date : 'h:mm a') : '-' }}
     </ng-template>
   </ik-grid-column>
   <ik-grid-pager key="Children" [pageSize]="5"></ik-grid-pager>

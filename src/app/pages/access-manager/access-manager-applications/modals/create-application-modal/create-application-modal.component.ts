@@ -44,9 +44,7 @@ export class CreateApplicationModalComponent implements OnInit {
         next: (res) => {
           this.modal.close();
           this.popupService.success(`Application successfully created!`);
-          this.router.navigate([
-            `/access-manager/applications/${res.id}/details`,
-          ]);
+          this.router.navigate([`/access-manager/applications/${res.id}/details`]);
         },
         error: () => {
           this.popupService.error(`Unable to create Application at this time.`);

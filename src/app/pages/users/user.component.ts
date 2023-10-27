@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  Access,
-  App,
-  FeatureType,
-} from 'projects/insite-kit/src/model/common.model';
+import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { UserService } from 'src/service/users/user.service';
 
 @Component({
@@ -18,10 +14,7 @@ export class UserComponent {
   Application = App;
   Access = Access;
 
-  constructor(
-    private userService: UserService,
-    private readonly router: Router
-  ) {
+  constructor(private userService: UserService, private readonly router: Router) {
     this.dataloader = (params: any) => this.getUserDataLoader(params);
   }
 

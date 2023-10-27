@@ -1,11 +1,5 @@
 import { HttpResponse } from '@angular/common/http';
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { Observable } from 'rxjs';

@@ -1,19 +1,11 @@
-<ik-info-card
-  title="Summary"
-  description="Confirm that all the childs information is accurate and correct."
->
+<ik-info-card title="Summary" description="Confirm that all the childs information is accurate and correct.">
 </ik-info-card>
 
 <ng-container *ngIf="activeChild && !loading; else pageLoader">
   <div class="flex-wrap">
     <div class="layout__column-left layout__half">
-      <app-child-details-card
-        [child]="activeChild"
-        [showEdit]="false"
-      ></app-child-details-card>
-      <app-child-additional-info-card
-        [child]="activeChild"
-      ></app-child-additional-info-card>
+      <app-child-details-card [child]="activeChild" [showEdit]="false"></app-child-details-card>
+      <app-child-additional-info-card [child]="activeChild"></app-child-additional-info-card>
     </div>
     <div class="layout__column-right layout__half">
       <app-child-guardians-details-grid
@@ -21,22 +13,13 @@
         [enableRowClick]="false"
         [guardians]="activeChild.guardians"
       ></app-child-guardians-details-grid>
-      <app-child-group-details-grid
-        [editIconVisible]=" false"
-        [child]="activeChild"
-      ></app-child-group-details-grid>
+      <app-child-group-details-grid [editIconVisible]=" false" [child]="activeChild"></app-child-group-details-grid>
     </div>
   </div>
 
-  <button class="btn btn-default btn-left" (click)="onCancelClick()">
-    Cancel
-  </button>
-  <button class="btn btn-primary btn-right" (click)="onSaveClick()">
-    Save
-  </button>
-  <button class="btn btn-default btn-right" (click)="onPreviousClick()">
-    Previous
-  </button>
+  <button class="btn btn-default btn-left" (click)="onCancelClick()">Cancel</button>
+  <button class="btn btn-primary btn-right" (click)="onSaveClick()">Save</button>
+  <button class="btn btn-default btn-right" (click)="onPreviousClick()">Previous</button>
 </ng-container>
 
 <ng-template #pageLoader>

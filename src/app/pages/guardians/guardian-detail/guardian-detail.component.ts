@@ -1,11 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {
-  Access,
-  App,
-  FeatureType,
-  WebRole,
-} from 'projects/insite-kit/src/model/common.model';
+import { Access, App, FeatureType, WebRole } from 'projects/insite-kit/src/model/common.model';
 import { UserAccess } from 'projects/insite-kit/src/model/user-access.model';
 import { Child, Guardian } from 'projects/insite-kit/src/model/user.model';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
@@ -63,7 +58,6 @@ export class GuardianDetailComponent implements OnInit, OnDestroy {
 
   canUserEditGuardian(ua: UserAccess) {
     this.canEditGuardian =
-      ua.hasRole(WebRole.ADMINISTRATOR, WebRole.SITE_ADMINISTRATOR) ||
-      this.jwt.isGuardianOnlyUser(this.guardianData);
+      ua.hasRole(WebRole.ADMINISTRATOR, WebRole.SITE_ADMINISTRATOR) || this.jwt.isGuardianOnlyUser(this.guardianData);
   }
 }

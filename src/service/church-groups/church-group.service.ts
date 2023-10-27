@@ -11,10 +11,7 @@ import { Observable, map } from 'rxjs';
 export class ChurchGroupService {
   readonly BASE_PATH = 'api/church-groups';
 
-  constructor(
-    private readonly request: RequestService,
-    private readonly commonService: CommonService
-  ) {}
+  constructor(private readonly request: RequestService, private readonly commonService: CommonService) {}
 
   /**
    * Get a list of church groups based on the given request

@@ -1,15 +1,9 @@
 <ik-grid #guardianGrid [dataLoader]="dataloader">
   <ik-card-header title="Guardians">
-    <ik-icon
-      icon="user-plus"
-      class="right pointer"
-      (click)="addGuardianModal.open()"
-    ></ik-icon>
+    <ik-icon icon="user-plus" class="right pointer" (click)="addGuardianModal.open()"></ik-icon>
   </ik-card-header>
   <ik-grid-search></ik-grid-search>
-  <ik-grid-checklist-column
-    [selectedIds]="guardianIdsChecked"
-  ></ik-grid-checklist-column>
+  <ik-grid-checklist-column [selectedIds]="guardianIdsChecked"></ik-grid-checklist-column>
   <ik-grid-selection-column
     header="Relationship"
     field="relationship"
@@ -21,7 +15,4 @@
   <ik-grid-pager key="Guardians" [pageSize]="5"></ik-grid-pager>
 </ik-grid>
 
-<app-add-guardian-modal
-  [loading]="modalLoading"
-  (save)="onAddGuardian($event)"
-></app-add-guardian-modal>
+<app-add-guardian-modal [loading]="modalLoading" (save)="onAddGuardian($event)"></app-add-guardian-modal>

@@ -15,10 +15,7 @@ export class ExistingUserGuardianComponent {
 
   readonly EXISTING_USER_ROLE_FILTER = ['GUARDIAN', 'CHILD'];
 
-  constructor(
-    private readonly router: Router,
-    private readonly userService: UserService
-  ) {
+  constructor(private readonly router: Router, private readonly userService: UserService) {
     this.userDataloader = (params: any) => this.getUserDataLoader(params);
   }
 
@@ -27,9 +24,7 @@ export class ExistingUserGuardianComponent {
   }
 
   getUserDataLoader(params?: Map<string, string[]>) {
-    return this.userService.getUsers(
-      params.set('notWebRole', this.EXISTING_USER_ROLE_FILTER)
-    );
+    return this.userService.getUsers(params.set('notWebRole', this.EXISTING_USER_ROLE_FILTER));
   }
 
   onUserClick(u: User) {

@@ -1,17 +1,7 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
-import {
-  AttendanceRecord,
-  ChildAttendance,
-} from 'projects/insite-kit/src/model/attendance-record.model';
+import { AttendanceRecord, ChildAttendance } from 'projects/insite-kit/src/model/attendance-record.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { ChildAttendanceService } from 'src/service/attendance/child-attendance.service';
 
@@ -47,67 +37,49 @@ export class UpdateChildAttendanceModalComponent implements OnInit {
 
   onUpdateChildCheckIn() {
     this.modalLoading = true;
-    this.childAttendanceService
-      .updateChildNotes(this.record.id, this.child.id, this.form.value.notes)
-      .subscribe({
-        next: () => {
-          this.childAttendanceUpdated.emit();
-          this.popupService.success(
-            `Notes for ${this.child.formattedName} successfully updated!`
-          );
-          this.modal.close();
-          this.modalLoading = false;
-        },
-        error: () => {
-          this.popupService.error(
-            `Unable to update notes for ${this.child.formattedName} at this time!`
-          );
-          this.modalLoading = false;
-        },
-      });
+    this.childAttendanceService.updateChildNotes(this.record.id, this.child.id, this.form.value.notes).subscribe({
+      next: () => {
+        this.childAttendanceUpdated.emit();
+        this.popupService.success(`Notes for ${this.child.formattedName} successfully updated!`);
+        this.modal.close();
+        this.modalLoading = false;
+      },
+      error: () => {
+        this.popupService.error(`Unable to update notes for ${this.child.formattedName} at this time!`);
+        this.modalLoading = false;
+      },
+    });
   }
 
   onMarkChildAbsent() {
     this.modalLoading = true;
-    this.childAttendanceService
-      .removeChildFromRecord(this.record.id, this.child.id)
-      .subscribe({
-        next: () => {
-          this.childAttendanceUpdated.emit();
-          this.popupService.success(
-            `${this.child.formattedName} successfully removed from Attendance!`
-          );
-          this.modal.close();
-          this.modalLoading = false;
-        },
-        error: () => {
-          this.popupService.error(
-            `Unable to remove '${this.child.formattedName}' from attendance at this time!`
-          );
-          this.modalLoading = false;
-        },
-      });
+    this.childAttendanceService.removeChildFromRecord(this.record.id, this.child.id).subscribe({
+      next: () => {
+        this.childAttendanceUpdated.emit();
+        this.popupService.success(`${this.child.formattedName} successfully removed from Attendance!`);
+        this.modal.close();
+        this.modalLoading = false;
+      },
+      error: () => {
+        this.popupService.error(`Unable to remove '${this.child.formattedName}' from attendance at this time!`);
+        this.modalLoading = false;
+      },
+    });
   }
 
   onChildCheckout() {
     this.modalLoading = true;
-    this.childAttendanceService
-      .checkOutChild(this.record.id, this.child.id)
-      .subscribe({
-        next: () => {
-          this.childAttendanceUpdated.emit();
-          this.popupService.success(
-            `${this.child.formattedName} successfully checked out!`
-          );
-          this.modal.close();
-          this.modalLoading = false;
-        },
-        error: () => {
-          this.popupService.error(
-            `Unable to check out '${this.child.formattedName}' from attendance at this time!`
-          );
-          this.modalLoading = false;
-        },
-      });
+    this.childAttendanceService.checkOutChild(this.record.id, this.child.id).subscribe({
+      next: () => {
+        this.childAttendanceUpdated.emit();
+        this.popupService.success(`${this.child.formattedName} successfully checked out!`);
+        this.modal.close();
+        this.modalLoading = false;
+      },
+      error: () => {
+        this.popupService.error(`Unable to check out '${this.child.formattedName}' from attendance at this time!`);
+        this.modalLoading = false;
+      },
+    });
   }
 }

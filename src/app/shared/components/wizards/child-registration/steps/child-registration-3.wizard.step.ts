@@ -1,10 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Guardian } from 'projects/insite-kit/src/model/user.model';
 import { WizardData } from 'projects/insite-kit/src/model/wizard.model';
@@ -25,10 +19,7 @@ export class ChildRegistrationWizardStepThreeComponent {
   @Input() wizardData: WizardData;
   @Output() next = new EventEmitter<Guardian[]>();
 
-  constructor(
-    private readonly router: Router,
-    private readonly popupService: PopupService
-  ) {}
+  constructor(private readonly router: Router, private readonly popupService: PopupService) {}
 
   onCancelClick() {
     this.router.navigate([`${this.wizardData.baseRoute}/check-in`]);

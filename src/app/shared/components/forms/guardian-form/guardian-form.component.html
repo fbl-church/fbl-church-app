@@ -12,12 +12,7 @@
       </ik-form-field>
 
       <ik-form-field header="Last Name*" class="col-md-6"
-        ><input
-          type="text"
-          class="form-input__normal"
-          placeholder="Last Name"
-          formControlName="lastName"
-        />
+        ><input type="text" class="form-input__normal" placeholder="Last Name" formControlName="lastName" />
       </ik-form-field>
     </div>
 
@@ -47,28 +42,16 @@
         />
       </ik-form-field>
       <ik-form-field header="Address" class="col-md-8">
-        <input
-          class="form-input__normal"
-          placeholder="Address"
-          formControlName="address"
-        />
+        <input class="form-input__normal" placeholder="Address" formControlName="address" />
       </ik-form-field>
     </div>
 
     <div class="row">
       <ik-form-field header="City" class="col-md-4">
-        <input
-          class="form-input__normal"
-          name="city"
-          placeholder="City"
-          formControlName="city"
-        />
+        <input class="form-input__normal" name="city" placeholder="City" formControlName="city" />
       </ik-form-field>
       <ik-form-field header="State" class="col-md-4">
-        <ik-single-select
-          formControlName="state"
-          [items]="states"
-        ></ik-single-select>
+        <ik-single-select formControlName="state" [items]="states"></ik-single-select>
       </ik-form-field>
       <ik-form-field header="Zip Code" class="col-md-4">
         <input
@@ -95,9 +78,7 @@
   </button>
 </ng-container>
 
-<app-duplicate-guardian-modal
-  (acknowledged)="saveGuardian()"
-></app-duplicate-guardian-modal>
+<app-duplicate-guardian-modal (acknowledged)="saveGuardian()"></app-duplicate-guardian-modal>
 
 <ng-template #pageLoader>
   <ik-loading type="double"></ik-loading>

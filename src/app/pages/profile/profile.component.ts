@@ -2,11 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
-import {
-  Child,
-  Guardian,
-  User,
-} from 'projects/insite-kit/src/model/user.model';
+import { Child, Guardian, User } from 'projects/insite-kit/src/model/user.model';
 import { Subject, takeUntil, tap } from 'rxjs';
 @Component({
   selector: 'app-profile',
@@ -52,8 +48,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   guardianOnlyUser() {
-    this.isGuardianOnly =
-      this.currentUser.webRole.includes(WebRole.GUARDIAN) &&
-      this.currentUser.webRole.length == 1;
+    this.isGuardianOnly = this.currentUser.webRole.includes(WebRole.GUARDIAN) && this.currentUser.webRole.length == 1;
   }
 }

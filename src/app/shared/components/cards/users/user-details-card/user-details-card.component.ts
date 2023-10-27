@@ -1,10 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import {
-  Access,
-  App,
-  FeatureType,
-  WebRole,
-} from 'projects/insite-kit/src/model/common.model';
+import { Access, App, FeatureType, WebRole } from 'projects/insite-kit/src/model/common.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
 
 @Component({

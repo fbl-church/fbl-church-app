@@ -91,9 +91,7 @@ export class UpdatePasswordComponent implements OnInit, OnDestroy {
     }
 
     if (this.form.value.newPassword.toString().length < 8) {
-      this.popupService.error(
-        'Password needs to have a length of at least 8 characters.'
-      );
+      this.popupService.error('Password needs to have a length of at least 8 characters.');
       return false;
     }
     return true;

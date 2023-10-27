@@ -5,11 +5,7 @@
       <button
         class="btn btn-danger btn-header-right"
         (click)="deleteGuardianModal.modal.open()"
-        *featureAccess="[
-          Application.GUARDIANS,
-          FeatureType.DETAIL,
-          Access.DELETE
-        ]"
+        *featureAccess="[Application.GUARDIANS, FeatureType.DETAIL, Access.DELETE]"
       >
         <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
         Delete
@@ -23,11 +19,7 @@
           icon="pen-to-square"
           class="right pointer"
           (click)="onEditClick()"
-          *featureAccess="[
-            Application.GUARDIANS,
-            FeatureType.DETAIL,
-            Access.UPDATE
-          ]"
+          *featureAccess="[Application.GUARDIANS, FeatureType.DETAIL, Access.UPDATE]"
         ></ik-icon>
       </ng-container>
     </app-guardian-details-card>
@@ -40,10 +32,7 @@
   </div>
 </div>
 
-<app-delete-guardian-modal
-  #deleteGuardianModal
-  [guardianId]="guardianData?.id"
-></app-delete-guardian-modal>
+<app-delete-guardian-modal #deleteGuardianModal [guardianId]="guardianData?.id"></app-delete-guardian-modal>
 
 <ng-template #pageLoader>
   <ik-loading type="double"></ik-loading>

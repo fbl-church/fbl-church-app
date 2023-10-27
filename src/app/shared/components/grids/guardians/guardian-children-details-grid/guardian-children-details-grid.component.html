@@ -1,8 +1,4 @@
-<ik-grid
-  *ngIf="dataloader"
-  [dataLoader]="dataloader"
-  (rowClick)="onRowClick($event)"
->
+<ik-grid *ngIf="dataloader" [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
   <ik-card-header title="Children"> </ik-card-header>
   <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
   <ik-grid-column label="CUID" field="cuid"></ik-grid-column>

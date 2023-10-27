@@ -30,9 +30,7 @@ export class DeleteRecordModalComponent {
         this.popupService.success('Attendance Record Successfully Deleted!');
       },
       error: () => {
-        this.popupService.error(
-          'Attendance could not be deleted at this time!'
-        );
+        this.popupService.error('Attendance could not be deleted at this time!');
         this.modalLoading = false;
       },
     });

@@ -4,16 +4,10 @@
   </ik-card-header>
   <div class="flex">
     <div class="left-column">
-      <ik-card-info
-        header="Name"
-        text="{{ user | formatUserName }}"
-      ></ik-card-info>
+      <ik-card-info header="Name" text="{{ user | formatUserName }}"></ik-card-info>
     </div>
     <div class="right-column">
-      <ik-card-info
-        header="Email"
-        [text]="user?.email ? user.email : '-'"
-      ></ik-card-info>
+      <ik-card-info header="Email" [text]="user?.email ? user.email : '-'"></ik-card-info>
     </div>
   </div>
 
@@ -26,20 +20,13 @@
       ></ik-card-info>
     </div>
     <div class="right-column">
-      <ik-card-info
-        header="Created Date"
-        [text]="user?.insertDate | date : 'MMMM d, y'"
-      >
-      </ik-card-info>
+      <ik-card-info header="Created Date" [text]="user?.insertDate | date : 'MMMM d, y'"> </ik-card-info>
     </div>
   </div>
 
   <div class="flex">
     <div *webRoleRestrictionAccess="WebRole.ADMINISTRATOR" class="left-column">
-      <ik-card-info
-        header="Last Login"
-        [text]="user?.lastLoginDate | date : 'MMMM d, y, h:mm a'"
-      ></ik-card-info>
+      <ik-card-info header="Last Login" [text]="user?.lastLoginDate | date : 'MMMM d, y, h:mm a'"></ik-card-info>
     </div>
   </div>
 </ik-card>

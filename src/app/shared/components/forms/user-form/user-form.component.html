@@ -2,49 +2,28 @@
   <ik-form [formGroup]="form">
     <div class="row">
       <ik-form-field header="First Name*" class="col-md-6"
-        ><input
-          class="form-input__normal"
-          placeholder="First Name"
-          formControlName="firstName"
-        />
+        ><input class="form-input__normal" placeholder="First Name" formControlName="firstName" />
       </ik-form-field>
 
       <ik-form-field header="Last Name*" class="col-md-6"
-        ><input
-          class="form-input__normal"
-          placeholder="Last Name"
-          formControlName="lastName"
-        />
+        ><input class="form-input__normal" placeholder="Last Name" formControlName="lastName" />
       </ik-form-field>
     </div>
     <div class="row">
       <ik-form-field header="Email*" class="col-12">
-        <input
-          type="email"
-          inputmode="email"
-          class="form-input__normal"
-          placeholder="Email"
-          formControlName="email"
-        />
+        <input type="email" inputmode="email" class="form-input__normal" placeholder="Email" formControlName="email" />
       </ik-form-field>
     </div>
 
     <ik-form-field header="Roles" *ngIf="enableRoleUpdate">
-      <ik-multi-select
-        formControlName="roles"
-        [items]="roleSection"
-      ></ik-multi-select>
+      <ik-multi-select formControlName="roles" [items]="roleSection"></ik-multi-select>
     </ik-form-field>
   </ik-form>
 
   <button class="btn btn-default btn-left" (click)="onCancelClick()">
     {{ leftActionButton }}
   </button>
-  <button
-    class="btn btn-primary btn-right"
-    (click)="onSaveClick()"
-    [disabled]="form && form.invalid"
-  >
+  <button class="btn btn-primary btn-right" (click)="onSaveClick()" [disabled]="form && form.invalid">
     {{ rightActionButton }}
   </button>
 </ng-container>

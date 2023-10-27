@@ -32,23 +32,19 @@ export class ForgotPasswordComponent implements OnInit {
 
   onForgotPasswordClick() {
     this.loading = true;
-    this.emailService
-      .sendForgotPasswordEmail(this.form.value.username)
-      .subscribe({
-        next: () => {
-          this.loading = false;
-          this.popupService.success(
-            'Email has sucessfully been sent! Please follow the instructions to reset your password.'
-          );
-          this.router.navigate(['/login']);
-        },
-        error: () => {
-          this.loading = false;
-          this.popupService.error(
-            'Could not send email! Please try again later.'
-          );
-          this.router.navigate(['/login']);
-        },
-      });
+    this.emailService.sendForgotPasswordEmail(this.form.value.username).subscribe({
+      next: () => {
+        this.loading = false;
+        this.popupService.success(
+          'Email has sucessfully been sent! Please follow the instructions to reset your password.'
+        );
+        this.router.navigate(['/login']);
+      },
+      error: () => {
+        this.loading = false;
+        this.popupService.error('Could not send email! Please try again later.');
+        this.router.navigate(['/login']);
+      },
+    });
   }
 }

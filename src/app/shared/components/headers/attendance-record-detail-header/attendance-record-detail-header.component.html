@@ -33,26 +33,14 @@
         </ng-container>
 
         <ng-template #startCheckInLoader>
-          <ik-loading
-            size="30px"
-            thickness="2px"
-            margin="0 69.54px"
-          ></ik-loading>
+          <ik-loading size="30px" thickness="2px" margin="0 69.54px"></ik-loading>
         </ng-template>
       </button>
     </ng-container>
   </div>
 </ik-header>
 
-<app-delete-record-modal
-  #deleteModal
-  [recordId]="record.id"
-  [route]="route"
-></app-delete-record-modal>
+<app-delete-record-modal #deleteModal [recordId]="record.id" [route]="route"></app-delete-record-modal>
 
-<app-close-attendance-record-modal
-  #closeModal
-  [recordId]="record.id"
-  (closed)="onRecordClosed($event)"
->
+<app-close-attendance-record-modal #closeModal [recordId]="record.id" (closed)="onRecordClosed($event)">
 </app-close-attendance-record-modal>

@@ -11,12 +11,8 @@ export class LessonsUploadComponent {
   readonly uploadPath = `${ChurchGroup.JUNIOR_CHURCH}/lessons`;
   uploader: any;
 
-  constructor(
-    private readonly storageService: StorageService,
-    private readonly router: Router
-  ) {
-    this.uploader = (fileItem) =>
-      this.storageService.upload(fileItem, this.uploadPath);
+  constructor(private readonly storageService: StorageService, private readonly router: Router) {
+    this.uploader = (fileItem) => this.storageService.upload(fileItem, this.uploadPath);
   }
 
   onBackClick() {

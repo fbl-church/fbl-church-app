@@ -26,9 +26,7 @@ describe('LoginOverviewComponent', () => {
     router = TestBed.inject(Router);
     popupService = TestBed.inject(PopupService);
 
-    spyOn(authService, 'authenticate').and.returnValue(
-      of(TestData.getAuthToken())
-    );
+    spyOn(authService, 'authenticate').and.returnValue(of(TestData.getAuthToken()));
 
     spyOn(router, 'navigate');
     spyOn(popupService, 'error');
@@ -55,10 +53,7 @@ describe('LoginOverviewComponent', () => {
     fixture.detectChanges();
     TestDOM.click('#loginButton');
 
-    expect(authService.authenticate).toHaveBeenCalledWith(
-      'test@mail.com',
-      'testPassword'
-    );
+    expect(authService.authenticate).toHaveBeenCalledWith('test@mail.com', 'testPassword');
     expect(router.navigate).toHaveBeenCalledWith(['/profile']);
     expect(popupService.error).not.toHaveBeenCalled();
   });
@@ -73,14 +68,9 @@ describe('LoginOverviewComponent', () => {
 
     TestDOM.click('#loginButton');
 
-    expect(authService.authenticate).toHaveBeenCalledWith(
-      'test@mail.com',
-      'testPassword'
-    );
+    expect(authService.authenticate).toHaveBeenCalledWith('test@mail.com', 'testPassword');
     expect(router.navigate).not.toHaveBeenCalled();
-    expect(popupService.error).toHaveBeenCalledWith(
-      'Invalid email or password!'
-    );
+    expect(popupService.error).toHaveBeenCalledWith('Invalid email or password!');
     expect(component.loading).toBeFalsy();
   });
 });

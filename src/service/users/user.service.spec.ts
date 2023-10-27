@@ -47,9 +47,7 @@ describe('UserService', () => {
 
   it('should call to check if email exist', () => {
     service.doesEmailExist('fake@mail.com');
-    expect(requestService.get).toHaveBeenCalledWith(
-      'api/users/check-email?email=fake@mail.com'
-    );
+    expect(requestService.get).toHaveBeenCalledWith('api/users/check-email?email=fake@mail.com');
   });
 
   it('should call endpoint to create new user', () => {
@@ -61,10 +59,7 @@ describe('UserService', () => {
     };
 
     service.createUser(newUser);
-    expect(requestService.post).toHaveBeenCalledWith(
-      'api/users/create',
-      newUser
-    );
+    expect(requestService.post).toHaveBeenCalledWith('api/users/create', newUser);
   });
 
   it('should call endpoint to register a new user', () => {
@@ -76,10 +71,7 @@ describe('UserService', () => {
     };
 
     service.register(newUser);
-    expect(requestService.post).toHaveBeenCalledWith(
-      'api/users/register',
-      newUser
-    );
+    expect(requestService.post).toHaveBeenCalledWith('api/users/register', newUser);
   });
 
   it('should call endpoint to update user', () => {
@@ -97,10 +89,7 @@ describe('UserService', () => {
     };
 
     service.updateUserProfileById(12, updatedUser);
-    expect(requestService.put).toHaveBeenCalledWith(
-      'api/users/12',
-      updatedUser
-    );
+    expect(requestService.put).toHaveBeenCalledWith('api/users/12', updatedUser);
   });
 
   it('should call endpoint to update user password', () => {
@@ -110,10 +99,7 @@ describe('UserService', () => {
     };
 
     service.updateUserPassword(newPass);
-    expect(requestService.put).toHaveBeenCalledWith(
-      'api/users/credentials/password',
-      newPass
-    );
+    expect(requestService.put).toHaveBeenCalledWith('api/users/credentials/password', newPass);
   });
 
   it('should call endpoint to update user password by id', () => {
@@ -123,20 +109,14 @@ describe('UserService', () => {
     };
 
     service.updateUserPasswordById(1, newPass);
-    expect(requestService.put).toHaveBeenCalledWith(
-      'api/users/credentials/password/1',
-      newPass
-    );
+    expect(requestService.put).toHaveBeenCalledWith('api/users/credentials/password/1', newPass);
   });
 
   it('should call endpoint to reset user password', () => {
     const newPass: PasswordUpdate = { newPassword: 'new' };
 
     service.resetUserPassword(newPass);
-    expect(requestService.put).toHaveBeenCalledWith(
-      'api/users/credentials/password/reset',
-      newPass
-    );
+    expect(requestService.put).toHaveBeenCalledWith('api/users/credentials/password/reset', newPass);
   });
 
   it('should delete user', () => {

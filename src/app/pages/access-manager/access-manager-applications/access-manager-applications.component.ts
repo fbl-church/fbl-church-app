@@ -10,10 +10,7 @@ import { ApplicationService } from 'src/service/access-manager/application.servi
 export class AccessManagerApplicationsComponent {
   dataloader: any;
 
-  constructor(
-    private readonly applicationService: ApplicationService,
-    private readonly router: Router
-  ) {
+  constructor(private readonly applicationService: ApplicationService, private readonly router: Router) {
     this.dataloader = (params: any) => this.applicationService.get(params);
   }
 

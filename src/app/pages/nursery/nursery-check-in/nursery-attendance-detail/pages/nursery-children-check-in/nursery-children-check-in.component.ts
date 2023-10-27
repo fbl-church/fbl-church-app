@@ -1,11 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
-import {
-  Access,
-  App,
-  FeatureType,
-} from 'projects/insite-kit/src/model/common.model';
+import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
@@ -44,10 +40,7 @@ export class NurseryChildrenCheckInComponent implements OnInit, OnDestroy {
       )
       .subscribe(() => {
         this.childrenDataloader = (params) =>
-          this.attendanceRecordService.getAttendanceChildrenById(
-            this.recordId,
-            params.set('present', [false])
-          );
+          this.attendanceRecordService.getAttendanceChildrenById(this.recordId, params.set('present', [false]));
         this.loading = false;
       });
   }

@@ -1,12 +1,6 @@
-<ik-grid
-  *ngIf="dataloader"
-  [dataLoader]="dataloader"
-  (rowClick)="onRowClick($event)"
->
+<ik-grid *ngIf="dataloader" [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
   <ik-card-header title="Guardians">
-    <ng-container
-      *featureAccess="[Application.CHILDREN, FeatureType.DETAIL, Access.UPDATE]"
-    >
+    <ng-container *featureAccess="[Application.CHILDREN, FeatureType.DETAIL, Access.UPDATE]">
       <ik-icon
         *ngIf="editVisible"
         icon="pen-to-square"

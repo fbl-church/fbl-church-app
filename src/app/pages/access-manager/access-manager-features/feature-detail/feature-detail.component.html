@@ -1,32 +1,17 @@
 <ng-container *ngIf="!loading; else pageLoader">
-  <ik-header
-    [title]="
-      (feature.app | titlecase) + ' (' + (feature.feature | titlecase) + ')'
-    "
-  >
+  <ik-header [title]="(feature.app | titlecase) + ' (' + (feature.feature | titlecase) + ')'">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
     <div class="inline header-buttons">
-      <button
-        class="btn btn-danger btn-header-right"
-        (click)="featureDeleteModal.modal.open()"
-      >
+      <button class="btn btn-danger btn-header-right" (click)="featureDeleteModal.modal.open()">
         <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
         Delete
       </button>
-      <button
-        class="btn btn-success btn-header-right"
-        *ngIf="!feature.enabled"
-        (click)="onEnabledUpdateClick(true)"
-      >
+      <button class="btn btn-success btn-header-right" *ngIf="!feature.enabled" (click)="onEnabledUpdateClick(true)">
         <ik-icon icon="check" classOverride="btn-icon"></ik-icon>
         Enable
       </button>
 
-      <button
-        class="btn btn-danger btn-header-right"
-        *ngIf="feature.enabled"
-        (click)="onEnabledUpdateClick(false)"
-      >
+      <button class="btn btn-danger btn-header-right" *ngIf="feature.enabled" (click)="onEnabledUpdateClick(false)">
         <ik-icon icon="lock" classOverride="btn-icon"></ik-icon>
         Disable
       </button>
@@ -38,16 +23,10 @@
       <ik-card-header title="Details"> </ik-card-header>
       <div class="flex">
         <div class="left-column">
-          <ik-card-info
-            header="App"
-            [text]="feature.app | titlecase"
-          ></ik-card-info>
+          <ik-card-info header="App" [text]="feature.app | titlecase"></ik-card-info>
         </div>
         <div class="right-column">
-          <ik-card-info
-            header="Feature"
-            [text]="feature.feature | titlecase"
-          ></ik-card-info>
+          <ik-card-info header="Feature" [text]="feature.feature | titlecase"></ik-card-info>
         </div>
       </div>
 
@@ -60,10 +39,7 @@
           ></ik-card-info>
         </div>
         <div class="right-column">
-          <ik-card-info
-            header="Insert Date"
-            [text]="feature.insertDate | date : 'MMMM d, y'"
-          ></ik-card-info>
+          <ik-card-info header="Insert Date" [text]="feature.insertDate | date : 'MMMM d, y'"></ik-card-info>
         </div>
       </div>
     </ik-card>
@@ -119,10 +95,7 @@
   (webRoleFeatureUpdate)="onWebRoleFeatureUpdated()"
 ></app-web-role-feature-update-modal>
 
-<app-delete-feature-modal
-  [featureId]="feature.id"
-  #featureDeleteModal
-></app-delete-feature-modal>
+<app-delete-feature-modal [featureId]="feature.id" #featureDeleteModal></app-delete-feature-modal>
 
 <ng-template #pageLoader>
   <ik-loading type="double"></ik-loading>

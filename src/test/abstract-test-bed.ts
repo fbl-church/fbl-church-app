@@ -7,9 +7,7 @@ export abstract class AbstractTestBed {
     return null;
   }
 
-  static async setup(
-    updateModuleMetaData?: (moduleMetaData: TestModuleMetadata) => void
-  ): Promise<any> {
+  static async setup(updateModuleMetaData?: (moduleMetaData: TestModuleMetadata) => void): Promise<any> {
     const moduleMetaData = this.getModuleMetaData();
 
     if (updateModuleMetaData) {
@@ -20,9 +18,7 @@ export abstract class AbstractTestBed {
   }
 
   static useProvider(moduleMetaData: TestModuleMetadata, provider: any) {
-    const index = moduleMetaData.providers.findIndex(
-      (p) => p.provide === provider || p.provide === provider.provide
-    );
+    const index = moduleMetaData.providers.findIndex((p) => p.provide === provider || p.provide === provider.provide);
     if (index >= 0) {
       moduleMetaData.providers.splice(index, 1);
     }
@@ -30,9 +26,7 @@ export abstract class AbstractTestBed {
   }
 
   static withRoutes(moduleMetaData: TestModuleMetadata, routes: Routes): void {
-    moduleMetaData.imports = moduleMetaData.imports.filter(
-      (i) => i !== RouterTestingModule
-    );
+    moduleMetaData.imports = moduleMetaData.imports.filter((i) => i !== RouterTestingModule);
     moduleMetaData.imports.push(RouterTestingModule.withRoutes(routes));
   }
 }

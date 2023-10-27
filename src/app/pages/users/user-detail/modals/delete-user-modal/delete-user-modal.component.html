@@ -3,23 +3,13 @@
   <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
       <div>
-        Deleting this user will result in their personal info to be deleted and
-        access to the app to be revoked. Do you want to continue?
+        Deleting this user will result in their personal info to be deleted and access to the app to be revoked. Do you
+        want to continue?
       </div>
     </ik-modal-body>
     <ik-modal-action-bar>
-      <button
-        class="btn btn-danger btn-right btn-modal"
-        (click)="onDeleteUser()"
-      >
-        Delete User
-      </button>
-      <button
-        class="btn btn-default btn-right btn-modal"
-        (click)="deleteUserModal.close()"
-      >
-        Cancel
-      </button>
+      <button class="btn btn-danger btn-right btn-modal" (click)="onDeleteUser()">Delete User</button>
+      <button class="btn btn-default btn-right btn-modal" (click)="deleteUserModal.close()">Cancel</button>
     </ik-modal-action-bar>
   </ng-container>
 </ik-modal>

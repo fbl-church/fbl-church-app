@@ -2,11 +2,7 @@
   <ik-header title="Children Check In">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
     <button
-      *featureAccess="[
-        Application.JUNIOR_CHURCH,
-        FeatureType.OVERVIEW,
-        Access.CREATE
-      ]"
+      *featureAccess="[Application.JUNIOR_CHURCH, FeatureType.OVERVIEW, Access.CREATE]"
       (click)="onNewChild()"
       class="btn btn-primary btn-header-right"
     >
@@ -15,11 +11,7 @@
     </button>
   </ik-header>
 
-  <ik-grid
-    #childrenCheckInGrid
-    [dataLoader]="childrenDataloader"
-    (rowClick)="onRowClick($event)"
-  >
+  <ik-grid #childrenCheckInGrid [dataLoader]="childrenDataloader" (rowClick)="onRowClick($event)">
     <ik-grid-search></ik-grid-search>
     <ik-grid-column label="Name" field="name">
       <ng-template let-data>
@@ -31,10 +23,7 @@
   </ik-grid>
 </ng-container>
 
-<app-check-in-child-modal
-  [recordId]="recordId"
-  (childCheckedIn)="refreshGrid()"
-></app-check-in-child-modal>
+<app-check-in-child-modal [recordId]="recordId" (childCheckedIn)="refreshGrid()"></app-check-in-child-modal>
 
 <ng-template #pageLoader>
   <ik-loading type="double"></ik-loading>

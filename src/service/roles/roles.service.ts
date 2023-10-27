@@ -1,9 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  TranslationKey,
-  WebRole,
-} from 'projects/insite-kit/src/model/common.model';
+import { TranslationKey, WebRole } from 'projects/insite-kit/src/model/common.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { Observable, map } from 'rxjs';
@@ -14,10 +11,7 @@ import { Observable, map } from 'rxjs';
 export class RoleService {
   readonly BASE_PATH = 'api/roles';
 
-  constructor(
-    private readonly request: RequestService,
-    private readonly commonService: CommonService
-  ) {}
+  constructor(private readonly request: RequestService, private readonly commonService: CommonService) {}
 
   /**
    * Get a list of users based on the given request

@@ -2,11 +2,7 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AttendanceRecord } from 'projects/insite-kit/src/model/attendance-record.model';
-import {
-  Access,
-  App,
-  FeatureType,
-} from 'projects/insite-kit/src/model/common.model';
+import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { Subject, of, takeUntil, tap } from 'rxjs';
 import { AttendanceRecordChildrenGridComponent } from 'src/app/shared/components/grids/attendance/attendance-record-children-grid/attendance-record-children-grid.component';
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
@@ -15,9 +11,7 @@ import { AttendanceRecordService } from 'src/service/attendance/attendance-recor
   selector: 'app-junior-church-attendance-detail',
   templateUrl: './junior-church-attendance-detail.component.html',
 })
-export class JuniorChurchAttendanceDetailComponent
-  implements OnInit, OnDestroy
-{
+export class JuniorChurchAttendanceDetailComponent implements OnInit, OnDestroy {
   @ViewChild(AttendanceRecordChildrenGridComponent)
   childrenGrid: AttendanceRecordChildrenGridComponent;
 
@@ -54,10 +48,7 @@ export class JuniorChurchAttendanceDetailComponent
             })
           );
         this.childrenDataloader = (params) =>
-          this.attendanceRecordService.getAttendanceChildrenById(
-            this.record.id,
-            params.set('present', [true])
-          );
+          this.attendanceRecordService.getAttendanceChildrenById(this.record.id, params.set('present', [true]));
         this.loading = false;
       });
   }
@@ -71,15 +62,11 @@ export class JuniorChurchAttendanceDetailComponent
   }
 
   onEditClick() {
-    this.router.navigate([
-      `/junior-church/check-in/${this.record.id}/details/edit`,
-    ]);
+    this.router.navigate([`/junior-church/check-in/${this.record.id}/details/edit`]);
   }
 
   onChildrenCheckInEditClick() {
-    this.router.navigate([
-      `/junior-church/check-in/${this.record.id}/details/children`,
-    ]);
+    this.router.navigate([`/junior-church/check-in/${this.record.id}/details/children`]);
   }
 
   refreshChildrenGrid() {
@@ -87,8 +74,6 @@ export class JuniorChurchAttendanceDetailComponent
   }
 
   onCheckInStarted() {
-    this.router.navigate([
-      `/junior-church/check-in/${this.record.id}/details/children`,
-    ]);
+    this.router.navigate([`/junior-church/check-in/${this.record.id}/details/children`]);
   }
 }

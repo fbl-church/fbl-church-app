@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { WizardData } from 'projects/insite-kit/src/model/wizard.model';
@@ -64,9 +57,7 @@ export class ChildRegistrationWizardStepFourComponent implements OnChanges {
         .subscribe((res) => {
           this.activeChild = { ...this.child };
           this.activeChild.guardians = res.body;
-          this.activeChild.guardians.forEach(
-            (g) => (g.relationship = this.getGuardianRelationship(g.id))
-          );
+          this.activeChild.guardians.forEach((g) => (g.relationship = this.getGuardianRelationship(g.id)));
           this.loading = false;
         });
     } else {

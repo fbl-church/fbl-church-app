@@ -1,8 +1,5 @@
 <ik-header title="Applications">
-  <button
-    (click)="applicationCreateModal.modal.open()"
-    class="btn btn-primary btn-header-right"
-  >
+  <button (click)="applicationCreateModal.modal.open()" class="btn btn-primary btn-header-right">
     <ik-icon icon="circle-plus" classOverride="btn-icon"></ik-icon>
     Create Application
   </button>
@@ -14,13 +11,11 @@
   <ik-grid-column label="Status" field="formattedStatus">
     <ng-template let-data>
       <div [ngClass]="data.enabled ? 'ENABLED' : 'DISABLED'">
-        {{ data.enabled ? "Enabled" : "Disabled" }}
+        {{ data.enabled ? 'Enabled' : 'Disabled' }}
       </div>
     </ng-template>
   </ik-grid-column>
   <ik-grid-pager key="Applications" [pageSize]="10"></ik-grid-pager>
 </ik-grid>
 
-<app-create-application-modal
-  #applicationCreateModal
-></app-create-application-modal>
+<app-create-application-modal #applicationCreateModal></app-create-application-modal>

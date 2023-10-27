@@ -3,10 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { GridChecklistColumnComponent } from 'projects/insite-kit/src/component/grid/grid-checklist-column/grid-checklist-column.component';
 import { GridSelectionColumnComponent } from 'projects/insite-kit/src/component/grid/grid-selection-column/grid-selection-column.component';
 import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
-import {
-  Relationship,
-  TranslationKey,
-} from 'projects/insite-kit/src/model/common.model';
+import { Relationship, TranslationKey } from 'projects/insite-kit/src/model/common.model';
 import { Guardian } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
@@ -77,15 +74,11 @@ export class ChildGuardiansGridCardComponent implements OnInit {
           value: g.relationship,
         });
         this.grid.refresh();
-        this.popupService.success(
-          'Guardian Successfully Created and Selected!'
-        );
+        this.popupService.success('Guardian Successfully Created and Selected!');
       },
       error: () => {
         this.modalLoading = false;
-        this.popupService.error(
-          'Unable to create guardian at this time. Try again later!'
-        );
+        this.popupService.error('Unable to create guardian at this time. Try again later!');
       },
     });
   }

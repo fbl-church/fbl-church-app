@@ -13,12 +13,8 @@ export class GuardianChildrenDetailsGridComponent {
 
   dataloader: any;
 
-  constructor(
-    private readonly childrenService: ChildrenService,
-    private readonly router: Router
-  ) {
-    this.dataloader = () =>
-      this.childrenService.getChildrenByGuardianId(this.guardianId);
+  constructor(private readonly childrenService: ChildrenService, private readonly router: Router) {
+    this.dataloader = () => this.childrenService.getChildrenByGuardianId(this.guardianId);
   }
 
   onRowClick(event: any) {

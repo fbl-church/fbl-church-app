@@ -1,15 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Application } from 'express';
-import {
-  AttendanceRecord,
-  AttendanceStatus,
-} from 'projects/insite-kit/src/model/attendance-record.model';
-import {
-  Access,
-  App,
-  FeatureType,
-  WebRole,
-} from 'projects/insite-kit/src/model/common.model';
+import { AttendanceRecord, AttendanceStatus } from 'projects/insite-kit/src/model/attendance-record.model';
+import { Access, App, FeatureType, WebRole } from 'projects/insite-kit/src/model/common.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
 
@@ -47,20 +39,16 @@ export class AttendanceRecordDetailHeaderComponent {
 
   onStartCheckIn() {
     this.loading = true;
-    this.attendanceRecordService
-      .updateStatus(this.record.id, AttendanceStatus.ACTIVE)
-      .subscribe({
-        next: () => {
-          this.popupService.success(
-            'Attendance Record Successfully Activated! Start Check in!'
-          );
-          this.checkInStarted.emit();
-          this.loading = false;
-        },
-        error: () => {
-          this.popupService.error('Unable to Start Check in. Try again later.');
-          this.loading = false;
-        },
-      });
+    this.attendanceRecordService.updateStatus(this.record.id, AttendanceStatus.ACTIVE).subscribe({
+      next: () => {
+        this.popupService.success('Attendance Record Successfully Activated! Start Check in!');
+        this.checkInStarted.emit();
+        this.loading = false;
+      },
+      error: () => {
+        this.popupService.error('Unable to Start Check in. Try again later.');
+        this.loading = false;
+      },
+    });
   }
 }

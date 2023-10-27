@@ -9,19 +9,10 @@ import { UserService } from '../users/user.service';
   providedIn: 'root',
 })
 export class NurseryWorkersResolverService implements Resolve<any> {
-  constructor(
-    private readonly userService: UserService,
-    private readonly commonService: CommonService
-  ) {}
+  constructor(private readonly userService: UserService, private readonly commonService: CommonService) {}
   resolve(): Observable<User> {
     return this.userService
-      .getUsers(
-        new Map().set('webRole', [
-          'NURSERY_DIRECTOR',
-          'NURSERY_SUPERVISOR',
-          'NURSERY_WORKER',
-        ])
-      )
+      .getUsers(new Map().set('webRole', ['NURSERY_DIRECTOR', 'NURSERY_SUPERVISOR', 'NURSERY_WORKER']))
       .pipe(
         tap((v) =>
           v.body.forEach((u) => {

@@ -18,9 +18,7 @@ describe('ProfileComponent', () => {
     component = fixture.componentInstance;
     userService = TestBed.inject(UserService);
 
-    spyOn(userService, 'getCurrentUser').and.returnValue(
-      of(new HttpResponse({}))
-    );
+    spyOn(userService, 'getCurrentUser').and.returnValue(of(new HttpResponse({})));
 
     fixture.detectChanges();
   });

@@ -1,18 +1,10 @@
 <ik-modal #userToGuardianModal name="userToGuardianModal">
-  <ik-modal-header
-    title="Assign Guardian Role to User?"
-    type="info"
-  ></ik-modal-header>
+  <ik-modal-header title="Assign Guardian Role to User?" type="info"></ik-modal-header>
   <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
       <form *ngIf="form" [formGroup]="form">
         <ik-form-field header="Name*" [padding]="false">
-          <input
-            class="form-input__outline"
-            placeholder="Name"
-            formControlName="name"
-            readonly
-          />
+          <input class="form-input__outline" placeholder="Name" formControlName="name" readonly />
         </ik-form-field>
         <ik-form-field header="Phone*" [padding]="false">
           <input
@@ -33,12 +25,7 @@
       >
         Assign Guardian Role
       </button>
-      <button
-        class="btn btn-default btn-right btn-modal"
-        (click)="userToGuardianModal.close()"
-      >
-        Cancel
-      </button>
+      <button class="btn btn-default btn-right btn-modal" (click)="userToGuardianModal.close()">Cancel</button>
     </ik-modal-action-bar>
   </ng-container>
 </ik-modal>

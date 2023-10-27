@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { Child } from 'projects/insite-kit/src/model/user.model';
@@ -45,28 +38,20 @@ export class CheckInChildModalComponent implements OnInit {
 
   onCheckInChild() {
     this.modalLoading = true;
-    this.childAttendanceService
-      .assignChildToRecord(this.recordId, this.child.id, this.form.value.notes)
-      .subscribe({
-        next: () => {
-          this.childCheckedIn.emit();
-          this.popupService.success(
-            `${this.commonService.getFormattedName(
-              this.child
-            )} successfully checked in!`
-          );
-          this.modal.close();
-          this.modalLoading = false;
-        },
-        error: () => {
-          this.popupService.error(
-            `Unable to check in '${this.commonService.getFormattedName(
-              this.child
-            )}' at this time!`
-          );
-          this.modal.close();
-          this.modalLoading = false;
-        },
-      });
+    this.childAttendanceService.assignChildToRecord(this.recordId, this.child.id, this.form.value.notes).subscribe({
+      next: () => {
+        this.childCheckedIn.emit();
+        this.popupService.success(`${this.commonService.getFormattedName(this.child)} successfully checked in!`);
+        this.modal.close();
+        this.modalLoading = false;
+      },
+      error: () => {
+        this.popupService.error(
+          `Unable to check in '${this.commonService.getFormattedName(this.child)}' at this time!`
+        );
+        this.modal.close();
+        this.modalLoading = false;
+      },
+    });
   }
 }

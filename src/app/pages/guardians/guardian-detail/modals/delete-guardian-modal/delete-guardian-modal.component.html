@@ -3,24 +3,13 @@
   <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
       <div>
-        Deleting this guardian will result in their personal info to be deleted.
-        Before deletion, all children associated to this guardian must be
-        reassigned. Do you want to continue?
+        Deleting this guardian will result in their personal info to be deleted. Before deletion, all children
+        associated to this guardian must be reassigned. Do you want to continue?
       </div>
     </ik-modal-body>
     <ik-modal-action-bar>
-      <button
-        class="btn btn-danger btn-right btn-modal"
-        (click)="onDeleteGuardian()"
-      >
-        Delete Guardian
-      </button>
-      <button
-        class="btn btn-default btn-right btn-modal"
-        (click)="deleteGuardianModal.close()"
-      >
-        Cancel
-      </button>
+      <button class="btn btn-danger btn-right btn-modal" (click)="onDeleteGuardian()">Delete Guardian</button>
+      <button class="btn btn-default btn-right btn-modal" (click)="deleteGuardianModal.close()">Cancel</button>
     </ik-modal-action-bar>
   </ng-container>
 </ik-modal>

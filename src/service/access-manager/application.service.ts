@@ -1,13 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  Application,
-  WebRoleApp,
-} from 'projects/insite-kit/src/model/access.model';
-import {
-  TranslationKey,
-  WebRole,
-} from 'projects/insite-kit/src/model/common.model';
+import { Application, WebRoleApp } from 'projects/insite-kit/src/model/access.model';
+import { TranslationKey, WebRole } from 'projects/insite-kit/src/model/common.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { Observable, tap } from 'rxjs';
@@ -18,10 +12,7 @@ import { Observable, tap } from 'rxjs';
 export class ApplicationService {
   readonly BASE_PATH = 'api/applications';
 
-  constructor(
-    private readonly request: RequestService,
-    private readonly commonService: CommonService
-  ) {}
+  constructor(private readonly request: RequestService, private readonly commonService: CommonService) {}
 
   /**
    * Get a list of applications based on the given request
@@ -49,22 +40,14 @@ export class ApplicationService {
    * @param id The id of the feature
    * @returns The page of web role access for the features
    */
-  getWebRoleAppAccessById(
-    id: any,
-    params?: Map<string, string[]>
-  ): Observable<HttpResponse<WebRoleApp[]>> {
-    return this.request
-      .get<WebRoleApp[]>(`${this.BASE_PATH}/${id}/roles`, params)
-      .pipe(
-        tap((v) =>
-          v.body.forEach((u) => {
-            u.formattedWebRole = this.commonService.translate(
-              u.webRole,
-              TranslationKey.WEB_ROLE
-            );
-          })
-        )
-      );
+  getWebRoleAppAccessById(id: any, params?: Map<string, string[]>): Observable<HttpResponse<WebRoleApp[]>> {
+    return this.request.get<WebRoleApp[]>(`${this.BASE_PATH}/${id}/roles`, params).pipe(
+      tap((v) =>
+        v.body.forEach((u) => {
+          u.formattedWebRole = this.commonService.translate(u.webRole, TranslationKey.WEB_ROLE);
+        })
+      )
+    );
   }
 
   /**
@@ -75,9 +58,7 @@ export class ApplicationService {
    * @returns The updated Application
    */
   updateEnabledFlag(id: any, enabled: boolean): Observable<Application> {
-    return this.request.put<Application>(
-      `${this.BASE_PATH}/${id}/enabled/${enabled}`
-    );
+    return this.request.put<Application>(`${this.BASE_PATH}/${id}/enabled/${enabled}`);
   }
 
   /**
@@ -88,14 +69,8 @@ export class ApplicationService {
    * @param access The access to give the web role
    * @returns The updated web role feature
    */
-  updateWebRoleAppAccess(
-    appId: number,
-    webRole: WebRole,
-    access: boolean
-  ): Observable<WebRoleApp> {
-    return this.request.put<WebRoleApp>(
-      `${this.BASE_PATH}/${appId}/roles/${webRole}/access/${access}`
-    );
+  updateWebRoleAppAccess(appId: number, webRole: WebRole, access: boolean): Observable<WebRoleApp> {
+    return this.request.put<WebRoleApp>(`${this.BASE_PATH}/${appId}/roles/${webRole}/access/${access}`);
   }
 
   /**

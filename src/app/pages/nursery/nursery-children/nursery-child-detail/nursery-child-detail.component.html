@@ -2,17 +2,10 @@
   <ik-header title="{{ childData | formatUserName }}">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
   </ik-header>
-  <ik-banner *ngIf="childData.guardians?.length <= 0" type="warning">
-    Child does not have any guardians.
-  </ik-banner>
+  <ik-banner *ngIf="childData.guardians?.length <= 0" type="warning"> Child does not have any guardians. </ik-banner>
   <div class="layout__column-left layout__half">
-    <app-child-details-card
-      [child]="childData"
-      (editClick)="onChildDetailEditClick()"
-    ></app-child-details-card>
-    <app-child-additional-info-card
-      [child]="childData"
-    ></app-child-additional-info-card>
+    <app-child-details-card [child]="childData" (editClick)="onChildDetailEditClick()"></app-child-details-card>
+    <app-child-additional-info-card [child]="childData"></app-child-additional-info-card>
   </div>
   <div class="layout__column-right layout__half">
     <app-child-attendance-records-grid
@@ -28,10 +21,7 @@
 </div>
 
 <ik-modal #childRecordDetailModal name="childRecordDetailModal">
-  <ik-modal-header
-    [title]="modalSelectedRecord?.recordName"
-    type="info"
-  ></ik-modal-header>
+  <ik-modal-header [title]="modalSelectedRecord?.recordName" type="info"></ik-modal-header>
   <ik-modal-body *ngIf="modalSelectedRecord">
     <div class="row">
       <ik-card-info
@@ -59,12 +49,7 @@
     </div>
   </ik-modal-body>
   <ik-modal-action-bar>
-    <button
-      class="btn btn-primary btn-right btn-modal"
-      (click)="childRecordDetailModal.close()"
-    >
-      Close
-    </button>
+    <button class="btn btn-primary btn-right btn-modal" (click)="childRecordDetailModal.close()">Close</button>
   </ik-modal-action-bar>
 </ik-modal>
 

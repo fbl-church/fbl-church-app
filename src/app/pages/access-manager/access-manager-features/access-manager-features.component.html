@@ -1,8 +1,5 @@
 <ik-header title="Features">
-  <button
-    (click)="featureCreateModal.modal.open()"
-    class="btn btn-primary btn-header-right"
-  >
+  <button (click)="featureCreateModal.modal.open()" class="btn btn-primary btn-header-right">
     <ik-icon icon="circle-plus" classOverride="btn-icon"></ik-icon>
     Create Feature
   </button>
@@ -22,7 +19,7 @@
   <ik-grid-column label="Status" field="enabled">
     <ng-template let-data>
       <div [ngClass]="data.enabled ? 'ENABLED' : 'DISABLED'">
-        {{ data.enabled ? "Enabled" : "Disabled" }}
+        {{ data.enabled ? 'Enabled' : 'Disabled' }}
       </div>
     </ng-template>
   </ik-grid-column>
@@ -30,7 +27,4 @@
   <ik-grid-pager key="Features" [pageSize]="10"></ik-grid-pager>
 </ik-grid>
 
-<app-create-feature-modal
-  #featureCreateModal
-  [mappedApplications]="mappedApplications"
-></app-create-feature-modal>
+<app-create-feature-modal #featureCreateModal [mappedApplications]="mappedApplications"></app-create-feature-modal>

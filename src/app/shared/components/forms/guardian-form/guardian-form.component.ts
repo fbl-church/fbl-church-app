@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Guardian } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
@@ -48,30 +41,16 @@ export class GuardianFormComponent implements OnInit {
 
   buildForm() {
     this.form = this.fb.group({
-      firstName: [
-        this.guardianData?.firstName ? this.guardianData.firstName : '',
-        Validators.required,
-      ],
-      lastName: [
-        this.guardianData?.lastName ? this.guardianData.lastName : '',
-        Validators.required,
-      ],
-      phone: [
-        this.guardianData?.phone ? this.guardianData.phone : '',
-        [Validators.required, Validators.minLength(14)],
-      ],
+      firstName: [this.guardianData?.firstName ? this.guardianData.firstName : '', Validators.required],
+      lastName: [this.guardianData?.lastName ? this.guardianData.lastName : '', Validators.required],
+      phone: [this.guardianData?.phone ? this.guardianData.phone : '', [Validators.required, Validators.minLength(14)]],
       city: [this.guardianData?.city ? this.guardianData.city : ''],
       state: [
-        this.guardianData
-          ? this.states.find((s) => s.code === this.guardianData.state)
-          : { name: 'OHIO', code: 'OH' },
+        this.guardianData ? this.states.find((s) => s.code === this.guardianData.state) : { name: 'OHIO', code: 'OH' },
       ],
       zipCode: [this.guardianData?.zipCode ? this.guardianData.zipCode : ''],
       address: [this.guardianData?.address ? this.guardianData.address : ''],
-      email: [
-        this.guardianData?.email ? this.guardianData.email : '',
-        Validators.email,
-      ],
+      email: [this.guardianData?.email ? this.guardianData.email : '', Validators.email],
     });
   }
 
@@ -104,17 +83,15 @@ export class GuardianFormComponent implements OnInit {
     if (validAddress) {
       this.savedGuardianData = guardian;
       if (this.duplicateCheck) {
-        this.guardianService
-          .doesGuardianExist(this.savedGuardianData)
-          .subscribe((g) => {
-            if (g.body) {
-              this.duplicateGuardianModal.open(g.body);
-              this.loadingChange.emit(false);
-            } else {
-              this.saveGuardian();
-            }
-            this.disableSave = false;
-          });
+        this.guardianService.doesGuardianExist(this.savedGuardianData).subscribe((g) => {
+          if (g.body) {
+            this.duplicateGuardianModal.open(g.body);
+            this.loadingChange.emit(false);
+          } else {
+            this.saveGuardian();
+          }
+          this.disableSave = false;
+        });
       } else {
         this.saveGuardian();
       }
@@ -127,14 +104,8 @@ export class GuardianFormComponent implements OnInit {
 
   isValidAddressField() {
     if (!!this.form.value.address.trim()) {
-      if (
-        !this.form.value.city.trim() ||
-        !this.form.value.state.code ||
-        !this.form.value.zipCode.trim()
-      ) {
-        this.popupService.error(
-          'Address field requires City, State, and Zip Code to be filled out.'
-        );
+      if (!this.form.value.city.trim() || !this.form.value.state.code || !this.form.value.zipCode.trim()) {
+        this.popupService.error('Address field requires City, State, and Zip Code to be filled out.');
         return false;
       }
     }

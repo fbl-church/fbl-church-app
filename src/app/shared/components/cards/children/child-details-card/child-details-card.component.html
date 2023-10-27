@@ -6,24 +6,16 @@
         class="right pointer"
         classOverride="icon__default"
         (click)="onEditIconClick()"
-        *featureAccess="[
-          Application.CHILDREN,
-          FeatureType.DETAIL,
-          Access.UPDATE
-        ]"
+        *featureAccess="[Application.CHILDREN, FeatureType.DETAIL, Access.UPDATE]"
       ></ik-icon>
     </ng-container>
   </ik-card-header>
   <div class="flex">
     <div class="left-column">
-      <ik-card-info
-        header="Name"
-        text="{{ child | formatUserName }}"
-      ></ik-card-info>
+      <ik-card-info header="Name" text="{{ child | formatUserName }}"></ik-card-info>
     </div>
     <div class="right-column">
-      <ik-card-info header="CUID" text="{{ child.cuid ? child.cuid : '-' }}">
-      </ik-card-info>
+      <ik-card-info header="CUID" text="{{ child.cuid ? child.cuid : '-' }}"> </ik-card-info>
     </div>
   </div>
 
@@ -31,14 +23,11 @@
     <div class="left-column">
       <ik-card-info
         header="Birthday"
-        text="{{
-          child?.birthday ? (child.birthday | date : 'MMMM d, y') : '-'
-        }}"
+        text="{{ child?.birthday ? (child.birthday | date : 'MMMM d, y') : '-' }}"
       ></ik-card-info>
     </div>
     <div class="right-column">
-      <ik-card-info header="Age" text="{{ child.birthday | age }}">
-      </ik-card-info>
+      <ik-card-info header="Age" text="{{ child.birthday | age }}"> </ik-card-info>
     </div>
   </div>
 
@@ -52,11 +41,7 @@
       </ik-card-info>
     </div>
     <div class="right-column">
-      <ik-card-info
-        header="Created Date"
-        text="{{ child.insertDate | date : 'MMMM d, y' }}"
-      >
-      </ik-card-info>
+      <ik-card-info header="Created Date" text="{{ child.insertDate | date : 'MMMM d, y' }}"> </ik-card-info>
     </div>
   </div>
 </ik-card>

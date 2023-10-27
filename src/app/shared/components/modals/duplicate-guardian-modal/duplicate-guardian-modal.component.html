@@ -3,35 +3,17 @@
   <ng-container *ngIf="!loading; else modalLoader">
     <ik-modal-body>
       <div>
-        There is already a guardian in the church directory with similar
-        information. The guardian below is the one currently in the church
-        system. If this is not the same guardian, then you can click 'Continue'
-        to create the guardian. Otherwise if this is the same guardian you can
-        hit 'Cancel'.
+        There is already a guardian in the church directory with similar information. The guardian below is the one
+        currently in the church system. If this is not the same guardian, then you can click 'Continue' to create the
+        guardian. Otherwise if this is the same guardian you can hit 'Cancel'.
       </div>
       <div class="row">
-        <ik-card-info
-          class="col-6"
-          header="Name"
-          [text]="duplicateGuardian | formatUserName"
-        ></ik-card-info>
-        <ik-card-info
-          class="col-6"
-          header="Phone"
-          [text]="duplicateGuardian?.phone"
-        ></ik-card-info>
+        <ik-card-info class="col-6" header="Name" [text]="duplicateGuardian | formatUserName"></ik-card-info>
+        <ik-card-info class="col-6" header="Phone" [text]="duplicateGuardian?.phone"></ik-card-info>
       </div>
       <div class="row">
-        <ik-card-info
-          class="col-6"
-          header="Email"
-          [text]="duplicateGuardian?.email"
-        ></ik-card-info>
-        <ik-card-info
-          class="col-6"
-          header="Address"
-          [text]="duplicateGuardian | address"
-        ></ik-card-info>
+        <ik-card-info class="col-6" header="Email" [text]="duplicateGuardian?.email"></ik-card-info>
+        <ik-card-info class="col-6" header="Address" [text]="duplicateGuardian | address"></ik-card-info>
       </div>
       <div class="row">
         <ik-card-info class="col-6" header="More Details">
@@ -45,18 +27,10 @@
       </div>
     </ik-modal-body>
     <ik-modal-action-bar>
-      <button
-        class="btn btn-warning btn-right btn-modal"
-        (click)="onDuplicateGuardianAcknowledgement()"
-      >
+      <button class="btn btn-warning btn-right btn-modal" (click)="onDuplicateGuardianAcknowledgement()">
         Continue
       </button>
-      <button
-        class="btn btn-default btn-right btn-modal"
-        (click)="duplicateGuardianModal.close()"
-      >
-        Cancel
-      </button>
+      <button class="btn btn-default btn-right btn-modal" (click)="duplicateGuardianModal.close()">Cancel</button>
     </ik-modal-action-bar>
   </ng-container>
 </ik-modal>

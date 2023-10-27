@@ -37,21 +37,14 @@
           icon="pen-to-square"
           class="right pointer"
           (click)="onEditClick()"
-          *featureAccess="[
-            Application.USERS,
-            FeatureType.DETAIL,
-            Access.UPDATE
-          ]"
+          *featureAccess="[Application.USERS, FeatureType.DETAIL, Access.UPDATE]"
         ></ik-icon>
       </ng-container>
     </app-user-roles-card>
   </div>
 </div>
 
-<app-delete-user-modal
-  #deleteUserModal
-  [userId]="userData?.id"
-></app-delete-user-modal>
+<app-delete-user-modal #deleteUserModal [userId]="userData?.id"></app-delete-user-modal>
 
 <ng-template #pageLoader>
   <ik-loading type="double"></ik-loading>

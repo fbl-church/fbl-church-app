@@ -1,17 +1,7 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TagInputFieldComponent } from 'projects/insite-kit/src/component/tag-input-field/tag-input-field.component';
-import {
-  ChurchGroup,
-  TranslationKey,
-} from 'projects/insite-kit/src/model/common.model';
+import { ChurchGroup, TranslationKey } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { ChildrenService } from 'src/service/children/children.service';
@@ -62,25 +52,15 @@ export class ChildFormComponent implements OnInit {
 
   buildForm() {
     this.form = this.fb.group({
-      firstName: [
-        this.childData?.firstName ? this.childData.firstName : '',
-        Validators.required,
-      ],
-      lastName: [
-        this.childData?.lastName ? this.childData.lastName : '',
-        Validators.required,
-      ],
+      firstName: [this.childData?.firstName ? this.childData.firstName : '', Validators.required],
+      lastName: [this.childData?.lastName ? this.childData.lastName : '', Validators.required],
       birthday: [
-        this.childData?.birthday
-          ? this.childData.birthday
-          : this.commonService.formatDate(new Date(), 'yyyy-MM-dd'),
+        this.childData?.birthday ? this.childData.birthday : this.commonService.formatDate(new Date(), 'yyyy-MM-dd'),
         Validators.required,
       ],
       groups: [this.childData?.churchGroup ? this.childData.churchGroup : ''],
       additionalInfo: [this.childData ? this.childData.additionalInfo : ''],
-      releaseOfLiability: [
-        this.childData ? this.childData.releaseOfLiability : false,
-      ],
+      releaseOfLiability: [this.childData ? this.childData.releaseOfLiability : false],
     });
   }
 
