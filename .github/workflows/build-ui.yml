@@ -20,12 +20,26 @@ jobs:
           node-version: 16.16.0
       - name: Install dependencies
         run: npm install
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
   validate:
     name: Validate
     runs-on: windows-latest
     needs: install
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      - name: Pull Cached Install
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+            ${{ runner.os }}-
       - name: Lint
         run: npm run lint
       - name: Test
@@ -35,7 +49,13 @@ jobs:
     runs-on: windows-latest
     needs: [install, validate]
     steps:
-      - name: Install dependencies
-        run: npm install
+      - name: Pull Cached Install
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+            ${{ runner.os }}-
       - name: Run Build
         run: npm run build:production --if-present
