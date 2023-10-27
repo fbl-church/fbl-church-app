@@ -26,15 +26,18 @@ module.exports = function (config) {
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    browserConsoleLogOptions: {
-      terminal: false,
-    },
     autoWatch: true,
     browsers: ["Chrome"],
+    singleRun: true,
     captureTimeout: 200000,
     browserDisconnectTolerance: 3,
     browserDisconnectTimeout: 200000,
     browserNoActivityTimeout: 200000,
-    singleRun: true,
+    customLaunchers: {
+      ChromeHeadlessNoSandbox: {
+        base: "ChromeHeadless",
+        flags: ["--no-sandbox", "--disable-dev-shm-usage"],
+      },
+    },
   });
 };
