@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   Access,
@@ -16,7 +16,7 @@ import { Subject, switchMap, takeUntil, tap } from 'rxjs';
   selector: 'app-guardian-detail',
   templateUrl: './guardian-detail.component.html',
 })
-export class GuardianDetailComponent implements OnInit {
+export class GuardianDetailComponent implements OnInit, OnDestroy {
   guardianData: Guardian;
   loading = true;
 

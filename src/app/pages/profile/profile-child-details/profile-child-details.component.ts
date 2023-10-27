@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   Access,
@@ -12,7 +12,7 @@ import { Subject, takeUntil, tap } from 'rxjs';
   selector: 'app-profile-child-details',
   templateUrl: './profile-child-details.component.html',
 })
-export class ProfileChildDetailsComponent implements OnInit {
+export class ProfileChildDetailsComponent implements OnInit, OnDestroy {
   childData: Child;
   loading = true;
 

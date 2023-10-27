@@ -1,10 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 @Component({
   selector: 'app-vbs-registration',
   templateUrl: './vbs-registration.component.html',
 })
-export class VBSRegistrationComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
-}
+export class VBSRegistrationComponent {}
