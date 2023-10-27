@@ -5,58 +5,26 @@ name: FBL Church UI Build
 on:
   push:
     branches:
-      - "**"
+      - '**'
   workflow_dispatch:
 
 jobs:
-  install:
-    name: Install
+  build:
+    name: FBL Church UI Build
     runs-on: windows-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
-      - name: Node
+      - uses: actions/checkout@v3
+      - name: Install Node
         uses: actions/setup-node@v3
         with:
           node-version: 16.16.0
-      - name: Install dependencies
+      - name: Install
         run: npm install
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-          key: npm-${{ hashFiles('**/package-lock.json') }}
-  validate:
-    name: Validate
-    runs-on: windows-latest
-    needs: install
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
-      - name: Pull Cached Install
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-          key: npm-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            npm-
+      - name: Format
+        run: npm run format:check
       - name: Lint
         run: npm run lint
       - name: Test
         run: npm run test:headless
-  build:
-    name: Build
-    runs-on: windows-latest
-    needs: [install, validate]
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
-      - name: Pull Cached Install
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-          key: npm-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            npm-
-      - name: Run Build
+      - name: Build
         run: npm run build:production --if-present
