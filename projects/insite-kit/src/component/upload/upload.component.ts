@@ -1,23 +1,8 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 
 import { FileItem, FileUploaderOptions } from 'ng2-file-upload';
 
-import {
-  Observable,
-  Subject,
-  concat,
-  concatMap,
-  takeUntil,
-  tap,
-  toArray,
-} from 'rxjs';
+import { Observable, Subject, concat, concatMap, takeUntil, tap, toArray } from 'rxjs';
 import { InsiteFileUploader } from './file-uploader.model';
 
 @Component({
@@ -27,9 +12,7 @@ import { InsiteFileUploader } from './file-uploader.model';
 export class UploadComponent implements OnInit, OnDestroy {
   @Input() options: FileUploaderOptions;
   @Input() uploadProcessor: () => Observable<FileItem>;
-  @Output() uploadClick: EventEmitter<FileItem[]> = new EventEmitter<
-    FileItem[]
-  >();
+  @Output() uploadClick: EventEmitter<FileItem[]> = new EventEmitter<FileItem[]>();
   @Output() fileAdded: EventEmitter<void> = new EventEmitter<void>();
   @Input() isCSVOnly: boolean;
   @Input() isMultiple: boolean;
@@ -117,6 +100,8 @@ export class UploadComponent implements OnInit, OnDestroy {
    * @param item FileItem object
    */
   remove(item: FileItem) {
+    this.resetQueueFileStatus();
+    this.uploadStarted = false;
     item.remove();
 
     if (this.uploader.queue.length === 0) {

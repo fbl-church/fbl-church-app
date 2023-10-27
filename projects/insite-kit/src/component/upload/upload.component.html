@@ -28,72 +28,34 @@
       <a role="button" class="link" (click)="file.click()">browse</a>
     </div>
     <div>
-      <ul
-        *ngFor="let fileItem of uploader.queue"
-        class="file-upload__selected-file"
-      >
+      <ul *ngFor="let fileItem of uploader.queue" class="file-upload__selected-file">
         <li>
           {{ fileItem?.file?.name }}
 
-          <a
-            role="button"
-            class="file-upload__remove link"
-            id="removeButton"
-            (click)="remove(fileItem)"
-            >Remove</a
-          >
+          <a role="button" class="file-upload__remove link" id="removeButton" (click)="remove(fileItem)">Remove</a>
         </li>
-        <span class="file-upload__size"
-          >{{ fileItem._file.size / 1000000 | number : "1.2-2" }} MB</span
-        >
+        <span class="file-upload__size">{{ fileItem._file.size / 1000000 | number : '1.2-2' }} MB</span>
 
-        <div *ngIf="fileItem.isSuccess" class="file-upload__status--success">
-          Upload Complete
-        </div>
-        <div *ngIf="fileItem.isError" class="file-upload__status--error">
-          Upload Failed
-        </div>
-        <div
-          *ngIf="uploadStarted && !fileItem.isUploaded"
-          class="file-upload__status--pending"
-        >
-          Upload Pending
-        </div>
-        <div *ngIf="!uploadStarted" class="file-upload__status--ready">
-          Ready to Upload
-        </div>
+        <div *ngIf="fileItem.isSuccess" class="file-upload__status--success">Upload Complete</div>
+        <div *ngIf="fileItem.isError" class="file-upload__status--error">Upload Failed</div>
+        <div *ngIf="uploadStarted && !fileItem.isUploaded" class="file-upload__status--pending">Upload Pending</div>
+        <div *ngIf="!uploadStarted" class="file-upload__status--ready">Ready to Upload</div>
       </ul>
     </div>
   </div>
   <div class="file-upload__progress" *ngIf="uploadStarted">
     <span>{{
-      uploadProgress >= this.uploader.queue.length
-        ? this.successfulFiles.length +
-          " of " +
-          this.uploader.queue.length +
-          " Files Uploaded"
-        : "Uploading Files " +
-          uploadProgress +
-          " of " +
-          this.uploader.queue.length
+      uploadProgress > this.uploader.queue.length
+        ? this.successfulFiles.length + ' of ' + this.uploader.queue.length + ' Files Uploaded'
+        : 'Uploading Files ' + uploadProgress + ' of ' + this.uploader.queue.length
     }}</span>
-    <ik-progress
-      [progress]="((uploadProgress - 1) / this.uploader.queue.length) * 100"
-    ></ik-progress>
+    <ik-progress [progress]="((uploadProgress - 1) / this.uploader.queue.length) * 100"></ik-progress>
   </div>
-  <div
-    class="file-upload__progress"
-    *ngIf="!uploadStarted && this.uploader.queue?.length > 0"
-  >
-    <span>{{ this.uploader.queue.length + " Files to Upload" }}</span>
+  <div class="file-upload__progress" *ngIf="!uploadStarted && this.uploader.queue?.length > 0">
+    <span>{{ this.uploader.queue.length + ' Files to Upload' }}</span>
   </div>
 </ik-card>
 
-<button
-  id="uploadButton"
-  class="btn btn-primary btn-right"
-  [disabled]="uploadBtnDisabled"
-  (click)="onUploadClick()"
->
+<button id="uploadButton" class="btn btn-primary btn-right" [disabled]="uploadBtnDisabled" (click)="onUploadClick()">
   Upload
 </button>
