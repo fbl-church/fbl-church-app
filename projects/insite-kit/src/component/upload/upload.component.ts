@@ -100,8 +100,7 @@ export class UploadComponent implements OnInit, OnDestroy {
    * @param item FileItem object
    */
   remove(item: FileItem) {
-    this.resetQueueFileStatus();
-    this.uploadStarted = false;
+    this.resetQueueFileStatus(false);
     item.remove();
 
     if (this.uploader.queue.length === 0) {
@@ -137,8 +136,8 @@ export class UploadComponent implements OnInit, OnDestroy {
     }
   }
 
-  resetQueueFileStatus() {
-    this.uploadStarted = true;
+  resetQueueFileStatus(uploadStart = true) {
+    this.uploadStarted = uploadStart;
     this.uploadProgress = 1;
     this.uploader.queue.forEach((f) => {
       f.isUploaded = false;
