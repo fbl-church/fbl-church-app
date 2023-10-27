@@ -13,7 +13,8 @@ jobs:
     name: Install
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Repo
+        uses: actions/checkout@v3
       - name: Node
         uses: actions/setup-node@v3
         with:
@@ -36,10 +37,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ./node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-
-            ${{ runner.os }}-
+            npm-
       - name: Lint
         run: npm run lint
       - name: Test
@@ -49,13 +49,14 @@ jobs:
     runs-on: windows-latest
     needs: [install, validate]
     steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
       - name: Pull Cached Install
         uses: actions/cache@v3
         with:
           path: ./node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-
-            ${{ runner.os }}-
+            npm-
       - name: Run Build
         run: npm run build:production --if-present
