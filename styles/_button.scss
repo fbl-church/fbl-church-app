@@ -1,4 +1,4 @@
-@import "variables";
+@import 'variables';
 
 .btn {
   display: inline-block;
@@ -99,6 +99,7 @@
   fieldset[disabled] & {
     background: $disabled;
     border-color: $disabled;
+    color: $white;
   }
 }
 
