@@ -14,6 +14,7 @@ import {
 import { Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 import { GridDataloader } from '../../model/grid.model';
+import { JwtService } from '../../service/auth/jwt.service';
 import { GridChecklistColumnComponent } from './grid-checklist-column/grid-checklist-column.component';
 import { GridColumnComponent } from './grid-column/grid-column.component';
 import { GridPagerComponent } from './grid-pager/grid-pager.component';
@@ -53,6 +54,11 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
 
   data: HttpResponse<any[]>;
 
+  constructor(private readonly jwt: JwtService) {}
+
+  get userPreferenceKey() {
+    return `${this.preferenceKey}-${this.jwt.getEnvironment()}-${this.jwt.getUserId()}`;
+  }
   /**
    * After the content has rendered then check the dataloader to see if a value
    * exists and set initial load to be true.
@@ -178,9 +184,7 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
 
     const currentSelectedIds = this.gridChecklistColumn.getSelected();
     if (currentSelectedIds && currentSelectedIds.length > 0) {
-      this.data.body.forEach(
-        (r) => (r.selected = currentSelectedIds.includes(r.id))
-      );
+      this.data.body.forEach((r) => (r.selected = currentSelectedIds.includes(r.id)));
     }
   }
 
@@ -197,9 +201,7 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
 
     const currentSelections = this.gridSelection.getSelections();
     if (currentSelections.length > 0) {
-      this.data.body.forEach(
-        (r) => (r.value = currentSelections.find((s) => s.id === r.id)?.value)
-      );
+      this.data.body.forEach((r) => (r.value = currentSelections.find((s) => s.id === r.id)?.value));
     }
   }
 
@@ -250,15 +252,10 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
    * @returns  The Grid param builder to be passed.
    */
   getGridParams(search?: string[]): GridParamBuilder {
-    const params = new GridParamBuilder()
-      .withPaging(this.activePage, this.gridPager.pageSize)
-      .withSearch(search);
+    const params = new GridParamBuilder().withPaging(this.activePage, this.gridPager.pageSize).withSearch(search);
 
     if (this.preferenceKey) {
-      localStorage.setItem(
-        this.preferenceKey,
-        JSON.stringify([...params.build()])
-      );
+      localStorage.setItem(this.userPreferenceKey, JSON.stringify([...params.build()]));
     }
 
     return params;
@@ -351,14 +348,11 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
       return;
     }
 
-    const pref = new Map<string, string[]>(
-      JSON.parse(localStorage.getItem(this.preferenceKey))
-    );
+    const pref = new Map<string, string[]>(JSON.parse(localStorage.getItem(this.userPreferenceKey)));
 
     if (pref.size > 0) {
       this.gridPager.pageSize = Number(pref.get('pageSize')[0]);
-      this.activePage =
-        Number(pref.get('rowOffset')[0]) / this.gridPager.pageSize + 1;
+      this.activePage = Number(pref.get('rowOffset')[0]) / this.gridPager.pageSize + 1;
       this.currentSearch = pref.get('search') ? pref.get('search') : [];
       this.gridSearch.searchValues = this.currentSearch;
     }

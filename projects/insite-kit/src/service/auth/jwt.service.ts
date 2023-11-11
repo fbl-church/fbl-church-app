@@ -10,10 +10,7 @@ export const TOKEN_NAME = 'auth-token';
   providedIn: 'root',
 })
 export class JwtService {
-  constructor(
-    private readonly router: Router,
-    private readonly jwtHelperService: JwtHelperService
-  ) {}
+  constructor(private readonly router: Router, private readonly jwtHelperService: JwtHelperService) {}
 
   /**
    * Gets the raw token that is currently stored for the logged in user.
@@ -77,6 +74,15 @@ export class JwtService {
    */
   getUserId(): number {
     return Number(this.get('userId'));
+  }
+
+  /**
+   * Gets the environment of the token
+   *
+   * @returns The tokens environment
+   */
+  getEnvironment(): string {
+    return this.get('env');
   }
 
   /**
