@@ -46,7 +46,9 @@ export class GuardianFormComponent implements OnInit {
       phone: [this.guardianData?.phone ? this.guardianData.phone : '', [Validators.required, Validators.minLength(14)]],
       city: [this.guardianData?.city ? this.guardianData.city : ''],
       state: [
-        this.guardianData ? this.states.find((s) => s.code === this.guardianData.state) : { name: 'OHIO', code: 'OH' },
+        this.guardianData?.state
+          ? this.states.find((s) => s.code === this.guardianData.state)
+          : { name: 'OHIO', code: 'OH' },
       ],
       zipCode: [this.guardianData?.zipCode ? this.guardianData.zipCode : ''],
       address: [this.guardianData?.address ? this.guardianData.address : ''],
