@@ -14,7 +14,7 @@
   <div class="flex">
     <div class="left-column">
       <ik-card-info
-        [contentColor]="user?.appAccess ? 'text-success' : 'text-danger'"
+        [contentColor]="user?.appAccess ? 'ACTIVE' : 'INACTIVE'"
         header="Access"
         [text]="user?.appAccess ? 'GRANTED' : 'DENIED'"
       ></ik-card-info>

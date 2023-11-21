@@ -1,4 +1,4 @@
-@import "variables";
+@import 'variables';
 
 .card-info__content {
   padding-bottom: 24px;
@@ -26,32 +26,18 @@
   overflow-wrap: break-word;
 }
 
-.ACTIVE {
-  font-weight: $font-weight-bold;
-  color: $green-400;
-}
-
+.ACTIVE,
 .ENABLED {
   font-weight: $font-weight-bold;
   color: $green-400;
 }
 
+.CLOSED,
+.DENIED,
+.INACTIVE,
+.FINALIZED,
+.EXPIRED,
 .DISABLED {
-  font-weight: $font-weight-bold;
-  color: $red-400;
-}
-
-.APPROVED {
-  font-weight: $font-weight-bold;
-  color: $green-400;
-}
-
-.CLOSED {
-  font-weight: $font-weight-bold;
-  color: $red-400;
-}
-
-.DENIED {
   font-weight: $font-weight-bold;
   color: $red-400;
 }
@@ -59,16 +45,6 @@
 .PENDING {
   font-weight: $font-weight-bold;
   color: $orange-200;
-}
-
-.FINALIZED {
-  font-weight: $font-weight-bold;
-  color: $red-400;
-}
-
-.EXPIRED {
-  font-weight: $font-weight-bold;
-  color: $red-400;
 }
 
 .DEFAULT {
