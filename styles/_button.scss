@@ -106,7 +106,6 @@
 @mixin btn-round($normal, $hover, $active-color, $disabled) {
   border-radius: 30px;
   border-color: transparent;
-  transition: all 0.5s ease;
   font-size: $font-size-xl !important;
 
   @include btn-flat($normal, $hover, $active-color, $disabled);
