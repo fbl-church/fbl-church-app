@@ -27,13 +27,11 @@
         [disabled]="loading"
         (click)="onStartCheckIn()"
       >
-        <ng-container *ngIf="!loading; else startCheckInLoader">
-          <ik-icon icon="user-check" classOverride="btn-icon"></ik-icon>
-          Start Check In
-        </ng-container>
+        <ik-icon *ngIf="!loading; else startCheckInLoader" icon="user-check" classOverride="btn-icon"></ik-icon>
+        Start Check In
 
         <ng-template #startCheckInLoader>
-          <ik-loading size="30px" thickness="2px" margin="0 69.54px"></ik-loading>
+          <ik-icon icon="spinner" classOverride="btn-icon" [spin]="true"></ik-icon>
         </ng-template>
       </button>
     </ng-container>

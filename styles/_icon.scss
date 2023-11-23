@@ -1,4 +1,4 @@
-@import "variables";
+@import 'variables';
 
 .icon__default {
   font-size: $font-size-xl;
@@ -16,6 +16,10 @@
 
 .icon__base {
   margin-left: 20px;
+}
+
+.fa-spin {
+  animation-duration: 900ms;
 }
 
 @media screen and (max-width: $screen-sm-max) {

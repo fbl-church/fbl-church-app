@@ -13,16 +13,14 @@
       [user]="currentUser"
       (editClick)="onEditClick()"
     >
-      <ik-icon icon="pen-to-square" class="right pointer" (click)="onEditClick()"></ik-icon
+      <ik-icon title="Edit" icon="pen-to-square" class="right pointer" (click)="onEditClick()"></ik-icon
     ></app-user-details-card>
     <ng-template #guardianDetails>
       <app-guardian-details-card [guardian]="currentUser">
-        <ik-icon icon="pen-to-square" class="right pointer" (click)="onEditClick()"></ik-icon
+        <ik-icon title="Edit" icon="pen-to-square" class="right pointer" (click)="onEditClick()"></ik-icon
       ></app-guardian-details-card>
     </ng-template>
   </div>
-
-  <!-- ADD LOGIC FOR A CHILD PROFILE -->
 
   <div class="layout__column-right layout__narrow">
     <app-guardian-children-details-grid

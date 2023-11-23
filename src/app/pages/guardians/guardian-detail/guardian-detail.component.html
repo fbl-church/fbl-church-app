@@ -16,6 +16,7 @@
     <app-guardian-details-card [guardian]="guardianData">
       <ng-container *ngIf="canEditGuardian">
         <ik-icon
+          title="Edit"
           icon="pen-to-square"
           class="right pointer"
           (click)="onEditClick()"

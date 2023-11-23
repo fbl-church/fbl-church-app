@@ -23,6 +23,7 @@
   <div class="layout__column-left layout__wide">
     <app-user-details-card [user]="userData" (editClick)="onEditClick()">
       <ik-icon
+        title="Edit"
         icon="pen-to-square"
         class="right pointer"
         (click)="onEditClick()"
@@ -34,6 +35,7 @@
     <app-user-roles-card [user]="userData">
       <ng-container *ngIf="canEditRoles">
         <ik-icon
+          title="Edit"
           icon="pen-to-square"
           class="right pointer"
           (click)="onEditClick()"

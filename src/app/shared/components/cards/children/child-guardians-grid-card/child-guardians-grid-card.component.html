@@ -1,6 +1,6 @@
 <ik-grid #guardianGrid [dataLoader]="dataloader">
   <ik-card-header title="Guardians">
-    <ik-icon icon="user-plus" class="right pointer" (click)="addGuardianModal.open()"></ik-icon>
+    <ik-icon icon="user-plus" class="right pointer" title="Add Guardian" (click)="addGuardianModal.open()"></ik-icon>
   </ik-card-header>
   <ik-grid-search></ik-grid-search>
   <ik-grid-checklist-column [selectedIds]="guardianIdsChecked"></ik-grid-checklist-column>

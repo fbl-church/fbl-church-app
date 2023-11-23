@@ -13,8 +13,12 @@
     class="btn btn-warning btn-header-right"
     [disabled]="emailButtonLoading"
   >
-    <ik-icon icon="paper-plane" classOverride="btn-icon"></ik-icon>
+    <ik-icon *ngIf="!emailButtonLoading; else emailLoader" icon="paper-plane" classOverride="btn-icon"></ik-icon>
     Send Email
+
+    <ng-template #emailLoader>
+      <ik-icon icon="spinner" classOverride="btn-icon" [spin]="true"></ik-icon>
+    </ng-template>
   </button>
 </ik-header>
 <ik-grid [dataLoader]="dataloader">

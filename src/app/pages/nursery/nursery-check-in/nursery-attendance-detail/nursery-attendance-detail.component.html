@@ -13,6 +13,7 @@
         <ng-container *ngIf="record.status !== 'CLOSED'">
           <ik-icon
             *featureAccess="[Application.NURSERY, FeatureType.DETAIL, Access.UPDATE]"
+            title="Edit"
             icon="pen-to-square"
             class="right pointer"
             classOverride="icon__default"
@@ -46,6 +47,7 @@
         <ng-container *ngIf="record.status !== 'CLOSED'">
           <ik-icon
             *featureAccess="[Application.NURSERY, FeatureType.DETAIL, Access.UPDATE]"
+            title="Edit"
             icon="pen-to-square"
             class="right pointer"
             classOverride="icon__default"

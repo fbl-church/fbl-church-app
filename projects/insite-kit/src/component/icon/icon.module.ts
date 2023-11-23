@@ -32,6 +32,7 @@ import {
   faSchool,
   faSearch,
   faSeedling,
+  faSpinner,
   faTrashCan,
   faTriangleExclamation,
   faUpload,
@@ -95,7 +96,8 @@ export class IconModule {
       faChurch,
       faUpload,
       faDownload,
-      faBug
+      faBug,
+      faSpinner
     );
   }
 }

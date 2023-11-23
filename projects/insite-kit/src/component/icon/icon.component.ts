@@ -9,4 +9,6 @@ export class IconComponent {
   @Input() icon: IconName;
   @Input() classOverride: string;
   @Input() iconPrefix: IconPrefix = 'fas';
+  @Input() spin = false;
+  @Input() title = '';
 }
