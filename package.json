@@ -9,7 +9,7 @@
     "ng": "ng",
     "build": "ng build",
     "build:production": "ng build --configuration production",
-    "format": "prettier --config ./.prettierrc \"src/**/*.{ts,js,csss,scss,md,html}\"",
+    "format": "prettier --config ./.prettierrc  \"src\" \"projects\" \"styles\"",
     "format:check": "npm run format -- --list-different",
     "format:fix": "npm run format -- --write",
     "lint": "ng lint",
