@@ -9,10 +9,7 @@ import { UserAccessService } from '../auth/user-access.service';
 export class AppAccessGuard implements CanActivate {
   private readonly DEFAULT_APP_ROUTES = ['login', 'home', 'profile'];
 
-  constructor(
-    private readonly router: Router,
-    private readonly userAccessService: UserAccessService
-  ) {}
+  constructor(private readonly router: Router, private readonly userAccessService: UserAccessService) {}
 
   /**
    * Determine if the current authenticated user has access to the application

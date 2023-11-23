@@ -5,16 +5,10 @@
     <thead *ngIf="data?.body.length > 0">
       <tr>
         <th *ngIf="gridChecklistColumn"></th>
-        <th
-          *ngFor="let column of columns.toArray()"
-          class="grid__column-header grid__header-padding"
-        >
+        <th *ngFor="let column of columns.toArray()" class="grid__column-header grid__header-padding">
           <strong>{{ column.label }}</strong>
         </th>
-        <th
-          *ngIf="gridSelection"
-          class="grid__column-header grid__header-padding"
-        >
+        <th *ngIf="gridSelection" class="grid__column-header grid__header-padding">
           <strong>{{ gridSelection?.header }}*</strong>
         </th>
       </tr>
@@ -41,34 +35,24 @@
       (click)="onRowClick(row)"
     >
       <ng-container *ngIf="col.templateRef; else defaultCell">
-        <ng-template
-          [ngTemplateOutlet]="col.templateRef"
-          [ngTemplateOutletContext]="{ $implicit: row }"
-        ></ng-template>
+        <ng-template [ngTemplateOutlet]="col.templateRef" [ngTemplateOutletContext]="{ $implicit: row }"></ng-template>
       </ng-container>
 
       <ng-template #defaultCell>
         <ng-container *ngIf="isDate(row[col.field]); else notDate">
-          {{ row[col.field] | date : "longDate" }}
+          {{ row[col.field] | date : 'longDate' }}
         </ng-container>
         <ng-template #notDate>
-          {{ row[col.field] ? row[col.field] : "-" }}
+          {{ row[col.field] ? row[col.field] : '-' }}
         </ng-template>
       </ng-template>
     </td>
     <td *ngIf="gridSelection" class="grid__content">
-      <select
-        class="form-select__normal"
-        (change)="onSelectionChange($event, row.id)"
-      >
+      <select class="form-select__normal" (change)="onSelectionChange($event, row.id)">
         <option value="" disabled selected hidden>
           {{ gridSelection?.header }}
         </option>
-        <option
-          *ngFor="let v of gridSelection.values"
-          [(value)]="v.value"
-          [selected]="v.value === row?.value"
-        >
+        <option *ngFor="let v of gridSelection.values" [(value)]="v.value" [selected]="v.value === row?.value">
           {{ v.name }}
         </option>
       </select>

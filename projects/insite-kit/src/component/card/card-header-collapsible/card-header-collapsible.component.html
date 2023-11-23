@@ -1,6 +1,3 @@
-<ik-icon
-  [icon]="collapsed ? 'caret-down' : 'caret-up'"
-  classOverride="card__header-toggle-icon"
-></ik-icon>
+<ik-icon [icon]="collapsed ? 'caret-down' : 'caret-up'" classOverride="card__header-toggle-icon"></ik-icon>
 <div class="title" *ngIf="title">{{ title }}</div>
 <ng-content></ng-content>

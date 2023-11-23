@@ -19,9 +19,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.userAccessService.user$.subscribe((ua) => {
-      this.navigationConfig = NAVIGATION_ROUTES.filter((n) =>
-        ua.apps.includes(n.id)
-      );
+      this.navigationConfig = NAVIGATION_ROUTES.filter((n) => ua.apps.includes(n.id));
     });
   }
 

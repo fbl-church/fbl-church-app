@@ -1,8 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {
-  faBackwardStep,
-  faForwardStep,
-} from '@fortawesome/free-solid-svg-icons';
+import { faBackwardStep, faForwardStep } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
 
 @Component({

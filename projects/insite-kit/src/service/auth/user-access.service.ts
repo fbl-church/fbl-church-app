@@ -9,11 +9,8 @@ import { AuthService } from './auth.service';
 export class UserAccessService implements OnDestroy {
   private userInitializing = true;
   private readonly destroyed = new Subject<void>();
-  private readonly _user: BehaviorSubject<UserAccess | null> =
-    new BehaviorSubject(null);
-  readonly user$: Observable<UserAccess | null> = this._user
-    .asObservable()
-    .pipe(filter(() => !this.userInitializing));
+  private readonly _user: BehaviorSubject<UserAccess | null> = new BehaviorSubject(null);
+  readonly user$: Observable<UserAccess | null> = this._user.asObservable().pipe(filter(() => !this.userInitializing));
 
   constructor(private readonly authService: AuthService) {
     this.authService

@@ -12,10 +12,7 @@ export class InisteUserNotificationComponent implements OnInit, OnDestroy {
   private readonly USER_SOCKET_URL = '/queue/user/notification';
   destroy = new Subject<void>();
 
-  constructor(
-    private readonly subscriptionService: SubscriptionService,
-    private readonly popupService: PopupService
-  ) {}
+  constructor(private readonly subscriptionService: SubscriptionService, private readonly popupService: PopupService) {}
 
   ngOnDestroy() {
     this.destroy.next();

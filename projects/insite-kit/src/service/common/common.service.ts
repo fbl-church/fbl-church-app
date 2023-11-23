@@ -22,11 +22,7 @@ export class CommonService {
    * @param value The value to be formatted.
    * @returns The formatted string.
    */
-  formatDate(
-    value: Date | string,
-    format = 'MM/dd/yyyy',
-    zone?: string
-  ): string {
+  formatDate(value: Date | string, format = 'MM/dd/yyyy', zone?: string): string {
     if (value === null) {
       return '-';
     }

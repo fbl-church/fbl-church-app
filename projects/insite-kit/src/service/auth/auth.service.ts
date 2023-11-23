@@ -47,8 +47,6 @@ export class AuthService {
    * @returns The users current access data
    */
   userAccess(): Observable<UserAccess> {
-    return this.request
-      .get<UserAccess>(`${this.BASE_AUTH_PATH}/users/access`)
-      .pipe(map((res) => res.body));
+    return this.request.get<UserAccess>(`${this.BASE_AUTH_PATH}/users/access`).pipe(map((res) => res.body));
   }
 }

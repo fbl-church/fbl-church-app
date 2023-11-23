@@ -9,10 +9,7 @@ import {
   QueryList,
 } from '@angular/core';
 import { WizardHelperService } from './wizard-helper.service';
-import {
-  Status,
-  WizardStepHelperService,
-} from './wizard-step/wizard-step-helper.service';
+import { Status, WizardStepHelperService } from './wizard-step/wizard-step-helper.service';
 import { WizardStepComponent } from './wizard-step/wizard-step.component';
 
 @Component({
@@ -20,10 +17,7 @@ import { WizardStepComponent } from './wizard-step/wizard-step.component';
   templateUrl: './wizard.component.html',
   styleUrls: ['./wizard.component.scss'],
 })
-export class WizardComponent
-  extends WizardStepHelperService
-  implements OnInit, AfterContentInit
-{
+export class WizardComponent extends WizardStepHelperService implements OnInit, AfterContentInit {
   itemLength: number;
 
   @Input() public set selectedIndex(value) {

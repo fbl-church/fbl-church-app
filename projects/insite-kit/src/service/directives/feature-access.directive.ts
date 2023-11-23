@@ -1,11 +1,4 @@
-import {
-  Directive,
-  Input,
-  OnDestroy,
-  OnInit,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, filter, map, takeUntil } from 'rxjs/operators';
 import { Access } from '../../model/common.model';

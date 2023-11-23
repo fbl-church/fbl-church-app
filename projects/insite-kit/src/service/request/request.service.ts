@@ -14,10 +14,7 @@ import { UrlService } from '../url-service/url.service';
   providedIn: 'root',
 })
 export class RequestService {
-  constructor(
-    private readonly urlService: UrlService,
-    private readonly http: HttpClient
-  ) {}
+  constructor(private readonly urlService: UrlService, private readonly http: HttpClient) {}
 
   /**
    * Get request service that will add the given parameters provided
@@ -27,15 +24,10 @@ export class RequestService {
    * @param params params to add to endpoint
    * @returns observable of the passed in object
    */
-  get<T>(
-    url: string,
-    params?: Map<string, string[]>
-  ): Observable<HttpResponse<T>> {
+  get<T>(url: string, params?: Map<string, string[]>): Observable<HttpResponse<T>> {
     let endpoint = `${this.urlService.getAPIUrl()}/${url}?`;
     if (params) {
-      params.forEach(
-        (value, key) => (endpoint = `${endpoint}${key}=${value}&`)
-      );
+      params.forEach((value, key) => (endpoint = `${endpoint}${key}=${value}&`));
     }
     return this.http.get<T>(endpoint.slice(0, -1), { observe: 'response' });
   }
@@ -101,11 +93,7 @@ export class RequestService {
    * @param body to be posted to the endpoint
    * @returns observable of the passed in object
    */
-  upload(
-    url: string,
-    fileItem?: FileItem,
-    path?: string
-  ): Observable<FileItem> {
+  upload(url: string, fileItem?: FileItem, path?: string): Observable<FileItem> {
     let endpoint = `${this.urlService.getAPIUrl()}/${url}`;
     const formData: FormData = new FormData();
     formData.append('file', fileItem._file, fileItem._file.name);

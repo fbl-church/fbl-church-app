@@ -1,10 +1,4 @@
-import {
-  Directive,
-  ElementRef,
-  forwardRef,
-  HostListener,
-  Renderer2,
-} from '@angular/core';
+import { Directive, ElementRef, forwardRef, HostListener, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Directive({
@@ -53,11 +47,7 @@ export class NumberRestrictionDirective implements ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
-    this.renderer.setProperty(
-      this.elementRef.nativeElement,
-      'disabled',
-      isDisabled
-    );
+    this.renderer.setProperty(this.elementRef.nativeElement, 'disabled', isDisabled);
   }
 
   writeValue(value: any): void {

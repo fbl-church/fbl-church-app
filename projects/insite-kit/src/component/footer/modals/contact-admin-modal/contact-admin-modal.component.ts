@@ -41,15 +41,11 @@ export class ContactAdminModalComponent implements OnInit {
     this.emailService.sendContactAdminEmail(this.form.value.message).subscribe({
       next: () => {
         this.reset();
-        this.popupService.success(
-          'Email successfully sent! We will get back to you as soon as possible!'
-        );
+        this.popupService.success('Email successfully sent! We will get back to you as soon as possible!');
       },
       error: () => {
         this.reset();
-        this.popupService.error(
-          'Email could not be sent at this time! Please try again later.'
-        );
+        this.popupService.error('Email could not be sent at this time! Please try again later.');
       },
     });
   }

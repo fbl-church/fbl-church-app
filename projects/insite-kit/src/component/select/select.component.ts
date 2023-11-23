@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  forwardRef,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
 
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DropdownItem } from './dropdown-item.model';
@@ -22,10 +15,7 @@ import { ValueAccessorBase } from './value-accessor-base.component';
     },
   ],
 })
-export class SingleSelectInputComponent
-  extends ValueAccessorBase<any>
-  implements OnInit
-{
+export class SingleSelectInputComponent extends ValueAccessorBase<any> implements OnInit {
   @Input() items: DropdownItem[];
   @Input() clearable = false;
   @Input() disable = false;

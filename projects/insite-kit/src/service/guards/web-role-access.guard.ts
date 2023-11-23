@@ -8,10 +8,7 @@ import { UserAccessService } from '../auth/user-access.service';
   providedIn: 'root',
 })
 export class WebRoleAccessGuard implements CanActivate {
-  constructor(
-    private readonly router: Router,
-    private readonly userAccessService: UserAccessService
-  ) {}
+  constructor(private readonly router: Router, private readonly userAccessService: UserAccessService) {}
 
   /**
    * Determine if the user has the correct roles to trigger this guard.

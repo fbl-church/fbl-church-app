@@ -1,8 +1,8 @@
 {
-    "status": {
-        "PENDING": "Pending",
-        "ACTIVE": "Active",
-        "CLOSED": "Closed",
-        "FINALIZED": "Finalized"
-    }
+  "status": {
+    "PENDING": "Pending",
+    "ACTIVE": "Active",
+    "CLOSED": "Closed",
+    "FINALIZED": "Finalized"
+  }
 }

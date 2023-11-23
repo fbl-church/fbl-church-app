@@ -7,10 +7,7 @@ import { UserAccessService } from '../auth/user-access.service';
   providedIn: 'root',
 })
 export class FeatureAccessGuard implements CanActivate {
-  constructor(
-    private router: Router,
-    private readonly userAccessService: UserAccessService
-  ) {}
+  constructor(private router: Router, private readonly userAccessService: UserAccessService) {}
 
   /**
    * Determine if the current user JWT token is valid. If the token is invalid or expired

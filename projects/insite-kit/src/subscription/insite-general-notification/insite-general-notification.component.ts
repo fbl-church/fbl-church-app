@@ -12,10 +12,7 @@ export class InisteGeneralNotificationComponent implements OnInit, OnDestroy {
   private readonly GENERAL_SOCKET_URL = '/topic/general/notification';
   destroy = new Subject<void>();
 
-  constructor(
-    private readonly subscriptionService: SubscriptionService,
-    private readonly popupService: PopupService
-  ) {}
+  constructor(private readonly subscriptionService: SubscriptionService, private readonly popupService: PopupService) {}
 
   ngOnDestroy() {
     this.destroy.next();

@@ -14,8 +14,6 @@ export class AgePipe implements PipeTransform {
       age = timeDiff / (1000 * 3600 * 24) / 365;
     }
 
-    return age > 1
-      ? `${Math.floor(age)} years old`
-      : `${Math.floor(age * 12)} months old`;
+    return age > 1 ? `${Math.floor(age)} years old` : `${Math.floor(age * 12)} months old`;
   }
 }

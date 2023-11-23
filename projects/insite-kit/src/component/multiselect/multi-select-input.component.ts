@@ -1,9 +1,5 @@
 import { Component, forwardRef, Input, OnInit, ViewChild } from '@angular/core';
-import {
-  ControlContainer,
-  FormGroupDirective,
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import { ControlContainer, FormGroupDirective, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NgSelectComponent } from '@ng-select/ng-select';
 import { DeprecatedDropdownItem } from './dropdown-item.model';
 import { ValueAccessorBase } from './value-accessor-base';
@@ -25,10 +21,7 @@ import { ValueAccessorBase } from './value-accessor-base';
     },
   ],
 })
-export class MultiSelectInputComponent
-  extends ValueAccessorBase<any>
-  implements OnInit
-{
+export class MultiSelectInputComponent extends ValueAccessorBase<any> implements OnInit {
   @Input() items: DeprecatedDropdownItem[];
   @Input() formControlName: string;
   @Input() prefix: string;

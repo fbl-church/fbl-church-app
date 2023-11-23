@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtService } from '../../service/auth/jwt.service';
 import { UserAccessService } from '../../service/auth/user-access.service';
@@ -41,9 +34,7 @@ export class NavbarComponent implements OnInit {
       firstName: this.jwt.get('firstName'),
       lastName: this.jwt.get('lastName'),
     });
-    this.userAccessService.user$.subscribe(
-      (ua) => (this.isGuardianOnly = ua.isGuardianOnlyUser())
-    );
+    this.userAccessService.user$.subscribe((ua) => (this.isGuardianOnly = ua.isGuardianOnlyUser()));
   }
 
   onMenuClick() {

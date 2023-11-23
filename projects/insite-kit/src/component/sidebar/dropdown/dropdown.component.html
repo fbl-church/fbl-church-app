@@ -8,26 +8,14 @@
 
   <ik-icon
     class="flex-one"
-    [classOverride]="
-      this.isOpen ? 'dropdown-icon--open' : 'dropdown-icon--closed'
-    "
+    [classOverride]="this.isOpen ? 'dropdown-icon--open' : 'dropdown-icon--closed'"
     icon="caret-left"
   ></ik-icon>
 </div>
-<div
-  [id]="navItem.submenu.id"
-  class="dropdown"
-  [ngClass]="{ 'dropdown--open': isOpen, 'dropdown--closed': !isOpen }"
->
+<div [id]="navItem.submenu.id" class="dropdown" [ngClass]="{ 'dropdown--open': isOpen, 'dropdown--closed': !isOpen }">
   <ng-container *ngFor="let submenu of navItem.submenu.items">
     <ng-container *ngIf="submenu?.restriction; else dropdownContent">
-      <ng-container
-        *featureAccess="[
-          submenu.restriction.app,
-          submenu.restriction.feature,
-          submenu.restriction.access
-        ]"
-      >
+      <ng-container *featureAccess="[submenu.restriction.app, submenu.restriction.feature, submenu.restriction.access]">
         <ng-container *ngTemplateOutlet="dropdownContent"></ng-container>
       </ng-container>
     </ng-container>

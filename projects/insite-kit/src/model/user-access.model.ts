@@ -1,10 +1,4 @@
-import {
-  Access,
-  App,
-  FeatureType,
-  RankedWebRole,
-  WebRole,
-} from './common.model';
+import { Access, App, FeatureType, RankedWebRole, WebRole } from './common.model';
 import { User } from './user.model';
 
 export class UserAccess {
@@ -84,9 +78,7 @@ export class UserAccess {
     let access = [];
 
     if (feature) {
-      access = feature
-        .filter((f) => Object.keys(f)[0] === key)
-        .map((v) => Object.values(v)[0]);
+      access = feature.filter((f) => Object.keys(f)[0] === key).map((v) => Object.values(v)[0]);
     } else {
       return false;
     }
@@ -101,10 +93,7 @@ export class UserAccess {
    * @param level to see they have access
    * @returns boolean
    */
-  private determineAccess(
-    access: string[],
-    level: Access | 'c' | 'r' | 'u' | 'd'
-  ): boolean {
+  private determineAccess(access: string[], level: Access | 'c' | 'r' | 'u' | 'd'): boolean {
     if (access.length === 0) return false;
     return access[0].includes(level);
   }

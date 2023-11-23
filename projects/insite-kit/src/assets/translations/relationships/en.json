@@ -1,13 +1,13 @@
 {
-    "relationships": {
-        "MOTHER": "Mother",
-        "FATHER": "Father",
-        "BROTHER": "Brother",
-        "SISTER": "Sister",
-        "GRANDMA": "Grandma",
-        "GRANDPA": "Grandpa",
-        "AUNT": "Aunt",
-        "UNCLE": "Uncle",
-        "OTHER": "Other"
-    }
+  "relationships": {
+    "MOTHER": "Mother",
+    "FATHER": "Father",
+    "BROTHER": "Brother",
+    "SISTER": "Sister",
+    "GRANDMA": "Grandma",
+    "GRANDPA": "Grandpa",
+    "AUNT": "Aunt",
+    "UNCLE": "Uncle",
+    "OTHER": "Other"
+  }
 }

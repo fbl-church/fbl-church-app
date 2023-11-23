@@ -28,9 +28,6 @@ export class EmailService {
    * @returns Who the email was sent too.
    */
   sendForgotPasswordEmail(email: string): Observable<User[]> {
-    return this.request.post<User[]>(
-      `${this.BASE_PATH}/forgot-password`,
-      email
-    );
+    return this.request.post<User[]>(`${this.BASE_PATH}/forgot-password`, email);
   }
 }

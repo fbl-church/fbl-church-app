@@ -1,8 +1,5 @@
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
-import {
-  AttendanceRecord,
-  AttendanceStatus,
-} from '../../model/attendance-record.model';
+import { AttendanceRecord, AttendanceStatus } from '../../model/attendance-record.model';
 import { CommonService } from '../common/common.service';
 
 @Directive({
@@ -20,10 +17,7 @@ export class AttendanceRecordActivationDirective {
   @Input() set attendanceRecordActivation(record: AttendanceRecord) {
     this.canActivateRecord = false;
     if (record) {
-      const currentDate = this.commonService.formatDate(
-        new Date(),
-        'yyyy-MM-dd'
-      );
+      const currentDate = this.commonService.formatDate(new Date(), 'yyyy-MM-dd');
 
       if (record.activeDate === currentDate) {
         this.canActivateRecord = record.status === AttendanceStatus.PENDING;

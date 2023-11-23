@@ -39,9 +39,7 @@ export class NavbarProfileContentComponent implements OnInit {
       firstName: this.jwt.get('firstName'),
       lastName: this.jwt.get('lastName'),
     });
-    this.initials = `${this.jwt.get('firstName')[0]}${
-      this.jwt.get('lastName')[0]
-    }`;
+    this.initials = `${this.jwt.get('firstName')[0]}${this.jwt.get('lastName')[0]}`;
     this.email = this.jwt.get('email');
   }
 

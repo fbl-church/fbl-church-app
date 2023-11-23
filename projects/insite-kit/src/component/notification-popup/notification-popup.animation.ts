@@ -1,11 +1,4 @@
-import {
-  animate,
-  keyframes,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
 
 export const NOTIFICATION_ANIMATION = trigger('flyInOut', [
   state(

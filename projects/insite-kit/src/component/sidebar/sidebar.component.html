@@ -1,16 +1,7 @@
-<div
-  [ngClass]="{ 'sidebar--open': isOpen, 'sidebar--closed': !isOpen }"
-  class="sidebar"
->
+<div [ngClass]="{ 'sidebar--open': isOpen, 'sidebar--closed': !isOpen }" class="sidebar">
   <ng-container *ngFor="let navItem of navigationConfig">
     <ng-container *ngIf="navItem?.restriction; else navContent">
-      <ng-container
-        *featureAccess="[
-          navItem.restriction.app,
-          navItem.restriction.feature,
-          navItem.restriction.access
-        ]"
-      >
+      <ng-container *featureAccess="[navItem.restriction.app, navItem.restriction.feature, navItem.restriction.access]">
         <ng-container *ngTemplateOutlet="navContent"></ng-container>
       </ng-container>
     </ng-container>

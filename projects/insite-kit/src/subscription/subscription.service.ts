@@ -18,10 +18,7 @@ import { STOMP_SOCKET_CONFIG } from './stomp.config';
   providedIn: 'root',
 })
 export class SubscriptionService extends RxStomp {
-  constructor(
-    private readonly jwt: JwtService,
-    private readonly urlService: UrlService
-  ) {
+  constructor(private readonly jwt: JwtService, private readonly urlService: UrlService) {
     super();
   }
 
@@ -57,9 +54,7 @@ export class SubscriptionService extends RxStomp {
   listen(des: string, userSession: boolean = false): Observable<Notification> {
     return this.subscriptionSession().pipe(
       switchMap((session) =>
-        super
-          .watch(this.buildSocketPath(des, session, userSession))
-          .pipe(map((res: Message) => JSON.parse(res.body)))
+        super.watch(this.buildSocketPath(des, session, userSession)).pipe(map((res: Message) => JSON.parse(res.body)))
       )
     );
   }

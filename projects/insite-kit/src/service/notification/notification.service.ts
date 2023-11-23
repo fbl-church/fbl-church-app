@@ -39,9 +39,7 @@ export class NotificationService {
    * @returns Notification object that was read.
    */
   markNotificationRead(id: number): Observable<Notification> {
-    return this.requestService.put<Notification>(
-      `${this.BASE_PATH}/${id}/read`
-    );
+    return this.requestService.put<Notification>(`${this.BASE_PATH}/${id}/read`);
   }
 
   /**

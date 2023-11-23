@@ -5,7 +5,7 @@ import { NgControl } from '@angular/forms';
   selector: '[phoneMask]',
 })
 export class PhoneMaskDirective {
-  constructor(public ngControl: NgControl) { }
+  constructor(public ngControl: NgControl) {}
 
   @HostListener('ngModelChange', ['$event'])
   onModelChange(event) {

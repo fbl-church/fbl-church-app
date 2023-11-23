@@ -1,9 +1,4 @@
-import {
-  AfterContentInit,
-  Component,
-  ContentChild,
-  HostBinding,
-} from '@angular/core';
+import { AfterContentInit, Component, ContentChild, HostBinding } from '@angular/core';
 import { CardHeaderCollapsibleComponent } from './card-header-collapsible/card-header-collapsible.component';
 
 @Component({
@@ -21,9 +16,7 @@ export class CardComponent implements AfterContentInit {
   ngAfterContentInit(): void {
     if (this.collapsibleHeader) {
       this.isCollapsibleContent = true;
-      this.collapsibleHeader.collapseChange
-        .asObservable()
-        .subscribe((res) => (this.contentClosed = !!res));
+      this.collapsibleHeader.collapseChange.asObservable().subscribe((res) => (this.contentClosed = !!res));
     }
   }
 }

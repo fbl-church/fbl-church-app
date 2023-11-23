@@ -6,17 +6,9 @@ import { JwtService } from '../auth/jwt.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  private readonly UNAUTHENTICATED_ROUTES = [
-    'login',
-    'register',
-    'forgot-password',
-    'reset-password/:id',
-  ];
+  private readonly UNAUTHENTICATED_ROUTES = ['login', 'register', 'forgot-password', 'reset-password/:id'];
 
-  constructor(
-    private readonly router: Router,
-    private readonly jwt: JwtService
-  ) {}
+  constructor(private readonly router: Router, private readonly jwt: JwtService) {}
 
   /**
    * Determine if the current user JWT token is valid. If the token is invalid or expired

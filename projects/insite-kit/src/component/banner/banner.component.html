@@ -1,19 +1,7 @@
 <div class="ik-banner" [ngClass]="type">
-  <ik-icon
-    *ngIf="type === 'info'"
-    icon="circle-info"
-    classOverride="banner-icon"
-  ></ik-icon>
-  <ik-icon
-    *ngIf="type === 'danger'"
-    icon="circle-exclamation"
-    classOverride="banner-icon"
-  ></ik-icon>
-  <ik-icon
-    *ngIf="type === 'warning'"
-    icon="triangle-exclamation"
-    classOverride="banner-icon"
-  ></ik-icon>
+  <ik-icon *ngIf="type === 'info'" icon="circle-info" classOverride="banner-icon"></ik-icon>
+  <ik-icon *ngIf="type === 'danger'" icon="circle-exclamation" classOverride="banner-icon"></ik-icon>
+  <ik-icon *ngIf="type === 'warning'" icon="triangle-exclamation" classOverride="banner-icon"></ik-icon>
   <div class="banner-content" [ngClass]="type">
     <ng-content></ng-content>
   </div>

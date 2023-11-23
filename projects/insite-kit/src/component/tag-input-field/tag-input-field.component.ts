@@ -155,9 +155,7 @@ export class TagInputFieldComponent implements OnInit {
    * @returns True if the tag is valid, otherwise false
    */
   private isTagValid(tagString: string): boolean {
-    return (
-      this.allowedTagsPattern.test(tagString) && this.isTagUnique(tagString)
-    );
+    return this.allowedTagsPattern.test(tagString) && this.isTagUnique(tagString);
   }
 
   /**

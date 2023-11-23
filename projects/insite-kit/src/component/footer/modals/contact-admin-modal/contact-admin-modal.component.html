@@ -1,8 +1,4 @@
-<ik-modal
-  #contactAdminModal
-  name="contactAdminModal"
-  class="modal-body__padding-none"
->
+<ik-modal #contactAdminModal name="contactAdminModal" class="modal-body__padding-none">
   <ik-modal-header title="Contact Us"></ik-modal-header>
   <ng-container *ngIf="!loading; else modalLoader">
     <ik-modal-body>
@@ -22,31 +18,17 @@
         <div class="row">
           <div class="col-xs-12 col-sm-12">
             <ik-form-field header="Message">
-              <textarea
-                formControlName="message"
-                rows="4"
-                cols="50"
-                class="form-input__outline"
-              ></textarea>
+              <textarea formControlName="message" rows="4" cols="50" class="form-input__outline"></textarea>
             </ik-form-field>
           </div>
         </div>
       </form>
     </ik-modal-body>
     <ik-modal-action-bar>
-      <button
-        class="btn btn-primary btn-right btn-modal"
-        (click)="sendMessage()"
-        [disabled]="this.form.invalid"
-      >
+      <button class="btn btn-primary btn-right btn-modal" (click)="sendMessage()" [disabled]="this.form.invalid">
         Send
       </button>
-      <button
-        class="btn btn-default btn-left btn-modal"
-        (click)="contactAdminModal.close()"
-      >
-        Cancel
-      </button>
+      <button class="btn btn-default btn-left btn-modal" (click)="contactAdminModal.close()">Cancel</button>
     </ik-modal-action-bar>
   </ng-container>
 </ik-modal>

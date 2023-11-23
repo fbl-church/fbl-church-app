@@ -1,11 +1,4 @@
-import {
-  Directive,
-  Input,
-  OnDestroy,
-  OnInit,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { Subject } from 'rxjs';
 import { RankedWebRole, WebRole } from '../../model/common.model';
 import { UserAccessService } from '../auth/user-access.service';
@@ -26,9 +19,7 @@ export class WebRoleRestrictionAccessDirective implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.userAccessService.user$.subscribe((ua) => {
-      this.hasPermission =
-        Math.max(...ua.rankedRoles.map((r) => Number(RankedWebRole[r]))) >=
-        RankedWebRole[this.role];
+      this.hasPermission = Math.max(...ua.rankedRoles.map((r) => Number(RankedWebRole[r]))) >= RankedWebRole[this.role];
       this.updateView();
     });
   }
