@@ -1,5 +1,5 @@
-@import "variables";
-@import "~@ng-select/ng-select/themes/default.theme.css";
+@import 'variables';
+@import '~@ng-select/ng-select/themes/default.theme.css';
 
 .ng-select.ng-select-single .ng-select-container {
   height: 56px;
@@ -31,10 +31,7 @@
   color: #2a2a2a;
 }
 
-.ng-select.ng-select-multiple
-  .ng-select-container
-  .ng-value-container
-  .ng-placeholder {
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-placeholder {
   top: 0;
 }
 

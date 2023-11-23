@@ -1,4 +1,4 @@
-@import "variables";
+@import 'variables';
 
 select {
   border-style: hidden;
@@ -30,8 +30,7 @@ input[readonly] {
   &__outline {
     @extend .form-input;
     font-size: $font-size-caption;
-    box-shadow: inset 0 1px 2px rgba(203, 203, 210, 0.2),
-      0 0 4px rgba(121, 88, 159, 0.3), inset 0 0 10px 1000px #ffffff;
+    box-shadow: inset 0 1px 2px rgba(203, 203, 210, 0.2), 0 0 4px rgba(121, 88, 159, 0.3), inset 0 0 10px 1000px #ffffff;
     border: 1px solid #b5b5bb;
     padding: 0.7em 0.7em 0.7em 1em;
     outline: none;
@@ -80,8 +79,7 @@ input[readonly] {
   &__outline {
     @extend .form-select;
     font-size: $font-size-caption;
-    box-shadow: inset 0 1px 2px rgba(203, 203, 210, 0.2),
-      0 0 4px rgba(121, 88, 159, 0.3), inset 0 0 10px 1000px #ffffff;
+    box-shadow: inset 0 1px 2px rgba(203, 203, 210, 0.2), 0 0 4px rgba(121, 88, 159, 0.3), inset 0 0 10px 1000px #ffffff;
     border: 1px solid #b5b5bb;
     padding: 0.7em 0.7em 0.7em 1em;
     outline: none;
@@ -120,7 +118,7 @@ input[readonly] {
     height: 30px;
   }
 
-  .form-input[type="date"] {
+  .form-input[type='date'] {
     -webkit-appearance: none !important;
     -moz-appearance: none !important;
     appearance: none !important;
