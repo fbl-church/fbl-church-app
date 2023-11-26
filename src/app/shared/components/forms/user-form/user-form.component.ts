@@ -22,7 +22,7 @@ export class UserFormComponent implements OnInit {
   WebRole = WebRole;
   roleSection: any[];
 
-  readonly NOT_ASSIGNABLE_ROLES = [WebRole.GUARDIAN];
+  readonly NOT_ASSIGNABLE_ROLES = [WebRole.GUARDIAN, WebRole.CHILD];
 
   constructor(
     private readonly popupService: PopupService,
