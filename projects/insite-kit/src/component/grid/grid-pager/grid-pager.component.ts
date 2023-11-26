@@ -17,7 +17,7 @@ export class GridPagerComponent {
   dataLength = 0;
   totalPages = 0;
   activePage = 1;
-  pages: any;
+  pages: any[];
 
   pageChange = new Subject<number>();
 
@@ -53,50 +53,11 @@ export class GridPagerComponent {
     this.activePage = page;
 
     if (page === 1) {
-      this.pages = [
-        {
-          pageNum: page,
-          active: true,
-        },
-        {
-          pageNum: page + 1,
-          active: false,
-        },
-        {
-          pageNum: page + 2,
-          active: false,
-        },
-      ];
+      this.pages = [page, page + 1, page + 2];
     } else if (page === this.totalPages) {
-      this.pages = [
-        {
-          pageNum: page - 2,
-          active: false,
-        },
-        {
-          pageNum: page - 1,
-          active: false,
-        },
-        {
-          pageNum: page,
-          active: true,
-        },
-      ];
+      this.pages = [page - 2, page - 1, page];
     } else {
-      this.pages = [
-        {
-          pageNum: page - 1,
-          active: false,
-        },
-        {
-          pageNum: page,
-          active: true,
-        },
-        {
-          pageNum: page + 1,
-          active: false,
-        },
-      ];
+      this.pages = [page - 1, page, page + 1];
     }
   }
 }

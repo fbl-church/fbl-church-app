@@ -8,12 +8,12 @@
         <div
           class="grid-pager__page-number left"
           [ngClass]="{
-            'grid-pager__page-active': page.active
+            'grid-pager__page-active': activePage === page
           }"
-          *ngIf="page.pageNum <= this.totalPages && page.pageNum > 0"
-          (click)="pageClick(page.pageNum)"
+          *ngIf="page <= this.totalPages && page > 0"
+          (click)="pageClick(page)"
         >
-          {{ page.pageNum }}
+          {{ page }}
         </div>
       </ng-container>
 
