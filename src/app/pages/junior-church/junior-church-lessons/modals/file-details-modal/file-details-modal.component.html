@@ -26,14 +26,17 @@
       <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
       Delete
     </button>
-    <button class="btn btn-primary btn-right btn-modal" (click)="onFileDownload()" *ngIf="selectedFile?.file">
-      <ng-container *ngIf="!modalDownloadLoading; else downloadLoading">
-        <ik-icon icon="download" classOverride="btn-icon"></ik-icon>
-        Download
-      </ng-container>
+    <button
+      class="btn btn-primary btn-right btn-modal"
+      (click)="onFileDownload()"
+      *ngIf="selectedFile?.file"
+      [disabled]="modalDownloadLoading"
+    >
+      <ik-icon *ngIf="!modalDownloadLoading; else downloadLoading" icon="download" classOverride="btn-icon"></ik-icon>
+      Download
 
       <ng-template #downloadLoading>
-        <ik-loading size="30px" thickness="2px" margin="0px 47.57px"></ik-loading>
+        <ik-icon icon="spinner" classOverride="btn-icon" [spin]="true"></ik-icon>
       </ng-template>
     </button>
     <button class="btn btn-default btn-right btn-modal" (click)="fileDetailsModal.close()">Close</button>
