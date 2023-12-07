@@ -35,7 +35,14 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.data
       .pipe(
+        tap((res) => {
+          if (!res.user) {
+            this.popupService.warning('User not found!');
+            this.router.navigate(['/users']);
+          }
+        }),
         tap((res) => (this.userData = res.user.body)),
+
         tap(() => (this.canEditRoles = Number(this.jwt.getUserId()) !== this.userData.id)),
         takeUntil(this.destroy)
       )
@@ -46,15 +53,17 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     this.destroy.next();
   }
 
-  onDeleteUser() {
+  restoreUser() {
     this.loading = true;
-    this.userService.delete(this.userData.id).subscribe({
+    this.userService.restore(this.userData.id).subscribe({
       next: () => {
-        this.popupService.success('User Successfully Deleted!');
-        this.router.navigate(['/users']);
+        this.popupService.success('User Successfully Restored!');
+        this.userData.accountStatus = 'ACTIVE';
+        this.userData.appAccess = true;
+        this.loading = false;
       },
       error: () => {
-        this.popupService.success('Unable to delete user at this time. Try again later');
+        this.popupService.error('Unable to restore user at this time. Try again later');
         this.loading = false;
       },
     });
@@ -67,6 +76,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   onEditClick() {
     this.router.navigate([`/users/${this.userData.id}/details/edit`]);
   }
+
   onResetPassword() {
     this.router.navigate([`/users/${this.userData.id}/details/reset-password`]);
   }

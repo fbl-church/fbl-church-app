@@ -173,4 +173,22 @@ export class UserService {
   delete(id: number): Observable<any> {
     return this.request.delete<any>(`${this.BASE_USER_PATH}/${id}`);
   }
+
+  /**
+   * Permanently Delete the user associated to the given id.
+   *
+   * @param id of the user to be deleted.
+   */
+  permanentDelete(id: number): Observable<any> {
+    return this.request.delete<any>(`${this.BASE_USER_PATH}/${id}/permanent`);
+  }
+
+  /**
+   * Restore deleted the user associated to the given id.
+   *
+   * @param id of the user to be deleted.
+   */
+  restore(id: number): Observable<any> {
+    return this.request.put<any>(`${this.BASE_USER_PATH}/${id}/restore`);
+  }
 }

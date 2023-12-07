@@ -6,6 +6,8 @@ export interface User {
   lastName?: string;
   email?: string;
   webRole?: WebRole[] | any[];
+  appAccess?: boolean;
+  accountStatus?: any;
   password?: string;
   lastLoginDate?: Date;
   insertDate?: Date;

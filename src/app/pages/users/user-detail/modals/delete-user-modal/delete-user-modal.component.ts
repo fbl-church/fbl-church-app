@@ -13,6 +13,7 @@ export class DeleteUserModalComponent {
   @Input() userId: number;
 
   modalLoading = false;
+  permanentDeletion = false;
 
   constructor(
     private readonly userService: UserService,
@@ -20,9 +21,37 @@ export class DeleteUserModalComponent {
     private readonly router: Router
   ) {}
 
+  open(permanentDelete = false) {
+    this.permanentDeletion = permanentDelete;
+    this.modal.open();
+  }
+
   onDeleteUser() {
     this.modalLoading = true;
+    if (this.permanentDeletion) {
+      this.permanentlyDelete();
+    } else {
+      this.markInactive();
+    }
+  }
+
+  markInactive() {
     this.userService.delete(this.userId).subscribe({
+      next: () => {
+        this.modal.close();
+        this.modalLoading = false;
+        this.popupService.success('User successfully marked inactive!');
+        this.router.navigate(['/users']);
+      },
+      error: () => {
+        this.popupService.error('User could not be marked inactive at this time!');
+        this.modalLoading = false;
+      },
+    });
+  }
+
+  permanentlyDelete() {
+    this.userService.permanentDelete(this.userId).subscribe({
       next: () => {
         this.modal.close();
         this.modalLoading = false;

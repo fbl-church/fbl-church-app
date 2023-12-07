@@ -2,7 +2,11 @@
   <ik-modal-header title="Delete User?" type="danger"></ik-modal-header>
   <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
-      <div>
+      <div *ngIf="!permanentDeletion">
+        Deleting this user will result in their account being marked as inactive and access to the app will be revoked.
+        Do you want to continue?
+      </div>
+      <div *ngIf="permanentDeletion">
         Deleting this user will result in their personal info to be deleted and access to the app to be revoked. Do you
         want to continue?
       </div>

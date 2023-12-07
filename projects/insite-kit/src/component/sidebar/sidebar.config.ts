@@ -47,6 +47,11 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           name: 'Features',
           route: '/features',
         },
+        {
+          id: 'deleted-users',
+          name: 'Deleted Users',
+          route: '/deleted-users',
+        },
       ],
     },
   },
