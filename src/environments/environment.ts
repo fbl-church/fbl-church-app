@@ -10,5 +10,6 @@ export const environment = {
   tag: 'LOCAL',
   production: false,
   isLocal: true,
+  siteUrl: 'localhost:4200',
   apiUrl: 'localhost:8000',
 };

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { QRCodeModule } from 'angularx-qrcode';
 import { BaseInitModule } from 'src/app/common/base-init.module';
 import { AttendanceRecordDetailsCardComponent } from './components/cards/attendance/attendance-record-details-card/attendance-record-details-card.component';
 import { ChildAdditionalInfoCardCardComponent } from './components/cards/children/child-additional-info-card/child-additional-info-card.component';
@@ -101,6 +102,7 @@ import { ChildRegistrationWizardStepFourComponent } from './components/wizards/c
     DuplicateChildModalComponent,
     DuplicateGuardianModalComponent,
     AddGuardianModalComponent,
+    QRCodeModule,
   ],
 })
 export class SharedModule {}

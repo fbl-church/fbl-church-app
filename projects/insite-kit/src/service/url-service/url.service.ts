@@ -26,6 +26,19 @@ export class UrlService {
   }
 
   /**
+   * Get's the full Site URL
+   *
+   * @returns string of the full API url
+   */
+  getSiteUrl(): string {
+    if (this.env.isLocal) {
+      return `http://${this.env.siteUrl}`;
+    } else {
+      return `https://${this.env.siteUrl}`;
+    }
+  }
+
+  /**
    * Gets the API for socket calls
    *
    * @returns The url for the api web socket.

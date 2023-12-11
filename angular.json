@@ -27,7 +27,8 @@
               "jwt-decode",
               "angular2-uuid",
               "clone-deep",
-              "file-saver"
+              "file-saver",
+              "@cordobo/qrcode"
             ],
             "assets": [
               "src/assets",

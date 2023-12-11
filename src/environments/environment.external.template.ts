@@ -9,5 +9,6 @@ export const environment = {
   tag: 'LOCAL-EXTERNAL',
   production: false,
   isLocal: true,
+  siteUrl: '<IP_ADDRESS>:4200',
   apiUrl: '<IP_ADDRESS>:8000',
 };

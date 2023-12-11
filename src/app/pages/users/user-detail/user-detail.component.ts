@@ -5,6 +5,7 @@ import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.m
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
+import { UrlService } from 'projects/insite-kit/src/service/url-service/url.service';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { UserService } from 'src/service/users/user.service';
 
@@ -23,13 +24,15 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   canEditRoles = false;
 
   destroy = new Subject<void>();
+  qrCodeUrl = '';
 
   constructor(
     private userService: UserService,
     private readonly route: ActivatedRoute,
     private readonly popupService: PopupService,
     private readonly router: Router,
-    private readonly jwt: JwtService
+    private readonly jwt: JwtService,
+    private readonly urlService: UrlService
   ) {}
 
   ngOnInit() {
@@ -42,7 +45,6 @@ export class UserDetailComponent implements OnInit, OnDestroy {
           }
         }),
         tap((res) => (this.userData = res.user.body)),
-
         tap(() => (this.canEditRoles = Number(this.jwt.getUserId()) !== this.userData.id)),
         takeUntil(this.destroy)
       )
