@@ -84,6 +84,7 @@ export enum RankedWebRole {
 }
 
 export enum ChurchGroup {
+  AWANA = 'AWANA',
   CUBBIES = 'CUBBIES',
   SPARKS = 'SPARKS',
   TNT_GIRLS = 'TNT_GIRLS',

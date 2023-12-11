@@ -1,0 +1,32 @@
+<ik-modal #childCheckInModal name="childCheckInModal">
+  <ik-modal-header title="Check Child In?" type="info"></ik-modal-header>
+  <ng-container *ngIf="!modalLoading; else modalLoader">
+    <ik-modal-body>
+      <form [formGroup]="form">
+        <div class="row">
+          <div class="col-6">
+            <ik-card-info header="Name" [text]="child | formatUserName"></ik-card-info>
+          </div>
+          <div class="col-6">
+            <ik-card-info header="CUID" [text]="child?.cuid"></ik-card-info>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12">
+            <ik-form-field header="Notes">
+              <textarea formControlName="notes" rows="6" cols="50" class="form-input__outline"></textarea>
+            </ik-form-field>
+          </div>
+        </div>
+      </form>
+    </ik-modal-body>
+    <ik-modal-action-bar>
+      <button class="btn btn-default btn-left btn-modal" (click)="childCheckInModal.close()">Cancel</button>
+      <button class="btn btn-primary btn-right btn-modal" (click)="onCheckInChild()">Check In</button>
+    </ik-modal-action-bar>
+  </ng-container>
+</ik-modal>
+
+<ng-template #modalLoader>
+  <ik-loading></ik-loading>
+</ng-template>

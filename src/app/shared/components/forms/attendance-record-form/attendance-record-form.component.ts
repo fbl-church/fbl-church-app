@@ -17,6 +17,7 @@ export class AttendanceRecordFormComponent implements OnInit, OnDestroy {
   @Input() rightActionButton: string;
   @Input() leftActionButton: string;
   @Input() disableSave = false;
+  @Input() workersRequired = true;
   @Output() cancel = new EventEmitter<any>();
   @Output() save = new EventEmitter<AttendanceRecord>();
 
@@ -60,8 +61,13 @@ export class AttendanceRecordFormComponent implements OnInit, OnDestroy {
         this.record ? this.record.activeDate : this.commonService.formatDate(new Date(), 'yyyy-MM-dd'),
         Validators.required,
       ],
-      workers: [this.record ? this.record.workers.map((v) => v.id) : [], Validators.required],
+      workers: [this.record ? this.record.workers.map((v) => v.id) : []],
     });
+
+    if (this.workersRequired) {
+      this.form.controls.workers.addValidators(Validators.required);
+    }
+
     this.onTypeChange();
   }
 
@@ -81,13 +87,16 @@ export class AttendanceRecordFormComponent implements OnInit, OnDestroy {
 
   onSaveClick() {
     const newRecord: AttendanceRecord = {
-      name: this.form.value.name,
+      name: this.form.value.name.trim(),
       type: this.group,
-      workers: this.form.value.workers.map((w) => {
-        return { id: w };
-      }),
       activeDate: this.form.value.activeDate,
     };
+
+    if (this.form.value.workers && this.form.value.workers.length > 0) {
+      newRecord.workers = this.form.value.workers.map((w) => {
+        return { id: w };
+      });
+    }
     this.save.emit(newRecord);
   }
 }

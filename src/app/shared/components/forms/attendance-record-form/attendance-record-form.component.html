@@ -13,14 +13,7 @@
   </div>
   <div class="row">
     <ik-form-field header="Name*" class="col-md-6"
-      ><input
-        maxlength="26"
-        class="form-input__normal"
-        placeholder="Name"
-        formControlName="name"
-        readonly
-        [disabled]="true"
-      />
+      ><input maxlength="26" class="form-input__normal" placeholder="Name" formControlName="name" readonly />
     </ik-form-field>
 
     <ik-form-field header="Active Date*" class="col-md-6"
@@ -28,7 +21,7 @@
     </ik-form-field>
   </div>
 
-  <ik-form-field header="Workers*">
+  <ik-form-field [header]="workersRequired ? 'Workers*' : 'Workers'">
     <ik-multi-select formControlName="workers" [items]="workers"></ik-multi-select>
   </ik-form-field>
 </ik-form>

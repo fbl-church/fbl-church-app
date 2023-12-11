@@ -20,6 +20,7 @@ export class AwanaCheckInComponent {
     this.dataloader = (params: any) =>
       this.attendanceRecordService.get(
         params.set('type', [
+          ChurchGroup.AWANA,
           ChurchGroup.TNT_BOYS,
           ChurchGroup.TNT_GIRLS,
           ChurchGroup.CUBBIES,
@@ -29,7 +30,12 @@ export class AwanaCheckInComponent {
       );
   }
 
-  onRowClick(event: AttendanceRecord) {}
+  onRowClick(event: AttendanceRecord) {
+    console.log(event);
+    this.router.navigate([`/awana/check-in/${event.id}/details`]);
+  }
 
-  onNewAttendanceRecord() {}
+  onNewAttendanceRecord() {
+    this.router.navigate(['/awana/new-record']);
+  }
 }

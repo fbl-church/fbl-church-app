@@ -1,0 +1,20 @@
+<ik-header title="New Attendance Record">
+  <ik-header-back (back)="onBackClick()"></ik-header-back>
+</ik-header>
+
+<ng-container *ngIf="!loading; else pageLoader">
+  <app-attendance-record-form
+    [group]="ChurchGroup.AWANA"
+    translation="Awana"
+    leftActionButton="Cancel"
+    rightActionButton="Create"
+    (save)="onSaveClick($event)"
+    (cancel)="onCancelClick()"
+    [workersRequired]="false"
+    [disableSave]="loading"
+  ></app-attendance-record-form>
+</ng-container>
+
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
+</ng-template>

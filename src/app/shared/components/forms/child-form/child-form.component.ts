@@ -42,12 +42,14 @@ export class ChildFormComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
-    this.churchGroups = Object.keys(ChurchGroup).map((cg) => {
-      return {
-        value: cg,
-        name: this.commonService.translate(cg, TranslationKey.CHURCH_GROUP),
-      };
-    });
+    this.churchGroups = Object.keys(ChurchGroup)
+      .filter((v) => ChurchGroup.AWANA !== v)
+      .map((cg) => {
+        return {
+          value: cg,
+          name: this.commonService.translate(cg, TranslationKey.CHURCH_GROUP),
+        };
+      });
   }
 
   buildForm() {

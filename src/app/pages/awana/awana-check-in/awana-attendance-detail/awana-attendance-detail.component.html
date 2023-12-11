@@ -1,8 +1,8 @@
 <ng-container *ngIf="!loading; else pageLoader">
   <app-attendance-record-detail-header
     [(record)]="record"
-    route="/nursery/check-in"
-    [app]="Application.NURSERY"
+    route="/awana/check-in"
+    [app]="Application.JUNIOR_CHURCH"
     (backClick)="onBackClick()"
     (checkInStarted)="onCheckInStarted()"
     (recordChange)="refreshChildrenGrid()"
@@ -13,7 +13,7 @@
       <ik-card-header title="Details">
         <ng-container *ngIf="record.status !== 'CLOSED'">
           <ik-icon
-            *featureAccess="[Application.NURSERY, FeatureType.DETAIL, Access.UPDATE]"
+            *featureAccess="[Application.JUNIOR_CHURCH, FeatureType.DETAIL, Access.UPDATE]"
             title="Edit"
             icon="pen-to-square"
             class="right pointer"
@@ -24,15 +24,11 @@
       </ik-card-header>
     </app-attendance-record-details-card>
 
-    <app-attendance-record-children-grid
-      *ngIf="record.status !== 'PENDING'"
-      [dataLoader]="childrenDataloader"
-      (rowClick)="updateChildAttendanceModal.open($event)"
-    >
+    <app-attendance-record-children-grid *ngIf="record.status !== 'PENDING'" [dataLoader]="childrenDataloader">
       <ik-card-header title="Children">
         <ng-container *ngIf="record.status !== 'CLOSED'">
           <ik-icon
-            *featureAccess="[Application.NURSERY, FeatureType.CHECK_IN, Access.UPDATE]"
+            *featureAccess="[Application.JUNIOR_CHURCH, FeatureType.CHECK_IN, Access.UPDATE]"
             icon="user-check"
             class="right pointer"
             classOverride="icon__default"
@@ -47,7 +43,7 @@
       <ik-card-header title="Workers">
         <ng-container *ngIf="record.status !== 'CLOSED'">
           <ik-icon
-            *featureAccess="[Application.NURSERY, FeatureType.DETAIL, Access.UPDATE]"
+            *featureAccess="[Application.JUNIOR_CHURCH, FeatureType.DETAIL, Access.UPDATE]"
             title="Edit"
             icon="pen-to-square"
             class="right pointer"
@@ -60,11 +56,11 @@
   </div>
 </ng-container>
 
-<app-nursery-update-child-attendance-modal
+<!-- <app-update-child-attendance-modal
   #updateChildAttendanceModal
   [record]="record"
   (childAttendanceUpdated)="refreshChildrenGrid()"
-></app-nursery-update-child-attendance-modal>
+></app-update-child-attendance-modal> -->
 
 <ng-template #pageLoader>
   <ik-loading type="double"></ik-loading>
