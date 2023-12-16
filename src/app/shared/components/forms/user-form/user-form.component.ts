@@ -41,6 +41,7 @@ export class UserFormComponent implements OnInit {
       lastName: [this.userData ? this.userData.lastName : '', Validators.required],
       email: [this.userData ? this.userData.email : '', [Validators.required, Validators.email]],
       roles: [this.userData ? this.userData.webRole.filter((r) => !this.NOT_ASSIGNABLE_ROLES.includes(r)) : ''],
+      appAccess: [this.userData ? this.userData.appAccess : true],
     });
   }
 
@@ -54,6 +55,7 @@ export class UserFormComponent implements OnInit {
     let user: User = {
       firstName: this.form.value.firstName.trim(),
       lastName: this.form.value.lastName.trim(),
+      appAccess: this.form.value.appAccess,
     };
 
     if (this.form.value.email) {

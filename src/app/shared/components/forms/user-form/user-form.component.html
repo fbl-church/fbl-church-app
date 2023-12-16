@@ -1,5 +1,15 @@
 <ng-container *ngIf="form">
   <ik-form [formGroup]="form">
+    <ik-form-field header="App Access*" class="col-12" *ngIf="userData">
+      <label class="input-inline">
+        <input type="radio" formControlName="appAccess" class="form-check-input checkbox__default" [value]="true" />
+        <span>Granted</span>
+      </label>
+      <label class="input-inline">
+        <input type="radio" formControlName="appAccess" class="form-check-input checkbox__default" [value]="false" />
+        <span>Denied</span>
+      </label>
+    </ik-form-field>
     <div class="row">
       <ik-form-field header="First Name*" class="col-md-6"
         ><input class="form-input__normal" placeholder="First Name" formControlName="firstName" />

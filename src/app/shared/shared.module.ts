@@ -25,6 +25,7 @@ import { AuthenticatedLayoutComponent } from './components/layouts/authenticated
 import { AddGuardianModalComponent } from './components/modals/add-guardian-modal/add-guardian-modal.component';
 import { CloseAttendanceRecordModalComponent } from './components/modals/close-attendance-record-modal/close-attendance-record-modal.component';
 import { DeleteRecordModalComponent } from './components/modals/delete-record-modal/delete-record-modal.component';
+import { DeleteUserModalComponent } from './components/modals/delete-user-modal/delete-user-modal.component';
 import { DuplicateChildModalComponent } from './components/modals/duplicate-child-modal/duplicate-child-modal.component';
 import { DuplicateGuardianModalComponent } from './components/modals/duplicate-guardian-modal/duplicate-guardian-modal.component';
 import { GuardianWarningModalComponent } from './components/modals/guardian-warning-modal/guardian-warning-modal.component';
@@ -69,6 +70,7 @@ import { ChildRegistrationWizardStepFourComponent } from './components/wizards/c
     DuplicateChildModalComponent,
     DuplicateGuardianModalComponent,
     AddGuardianModalComponent,
+    DeleteUserModalComponent,
   ],
   exports: [
     UserFormComponent,
@@ -103,6 +105,7 @@ import { ChildRegistrationWizardStepFourComponent } from './components/wizards/c
     DuplicateGuardianModalComponent,
     AddGuardianModalComponent,
     QRCodeModule,
+    DeleteUserModalComponent,
   ],
 })
 export class SharedModule {}

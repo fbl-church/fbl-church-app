@@ -2,7 +2,7 @@ import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
 import { PasswordUpdate } from 'projects/insite-kit/src/model/password-update.model';
-import { User } from 'projects/insite-kit/src/model/user.model';
+import { AccountStatus, User } from 'projects/insite-kit/src/model/user.model';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
@@ -28,6 +28,24 @@ export class UserService {
    * @returns User object
    */
   getUsers(params?: Map<string, string[]>): Observable<HttpResponse<User[]>> {
+    params = params ? params.set('status', [AccountStatus.ACTIVE]) : new Map().set('status', AccountStatus.ACTIVE);
+    return this.request.get<User[]>(this.BASE_USER_PATH, params).pipe(
+      tap((v) =>
+        v.body.forEach((u) => {
+          u.formattedName = this.commonService.getFormattedName(u);
+        })
+      )
+    );
+  }
+
+  /**
+   * Get a list of users based on the given request
+   *
+   * @param params to filter on
+   * @returns User object
+   */
+  getInactiveUsers(params?: Map<string, string[]>): Observable<HttpResponse<User[]>> {
+    params = params ? params.set('status', [AccountStatus.INACTIVE]) : new Map().set('status', AccountStatus.INACTIVE);
     return this.request.get<User[]>(this.BASE_USER_PATH, params).pipe(
       tap((v) =>
         v.body.forEach((u) => {

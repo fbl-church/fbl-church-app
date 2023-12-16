@@ -3,15 +3,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { AccountStatus, User } from 'projects/insite-kit/src/model/user.model';
-import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, takeUntil, tap } from 'rxjs';
+import { UserService } from 'src/service/users/user.service';
 
 @Component({
-  selector: 'app-user-detail',
-  templateUrl: './user-detail.component.html',
+  selector: 'app-deleted-users-detail',
+  templateUrl: './deleted-users-detail.component.html',
 })
-export class UserDetailComponent implements OnInit, OnDestroy {
+export class DeletedUsersDetailComponent implements OnInit, OnDestroy {
   userData: User;
   loading = true;
 
@@ -25,23 +25,22 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   qrCodeUrl = '';
 
   constructor(
+    private userService: UserService,
     private readonly route: ActivatedRoute,
     private readonly popupService: PopupService,
-    private readonly router: Router,
-    private readonly jwt: JwtService
+    private readonly router: Router
   ) {}
 
   ngOnInit() {
     this.route.data
       .pipe(
         tap((res) => {
-          if (!res.user?.body || res.user.body.accountStatus !== AccountStatus.ACTIVE) {
-            this.popupService.warning('User not found or is Inactive!');
-            this.router.navigate(['/users']);
+          if (!res.user?.body || res.user.body.accountStatus !== AccountStatus.INACTIVE) {
+            this.popupService.warning('Deleted User not found!');
+            this.router.navigate(['/access-manager/deleted-users']);
           }
         }),
         tap((res) => (this.userData = res.user.body)),
-        tap(() => (this.canEditRoles = Number(this.jwt.getUserId()) !== this.userData.id)),
         takeUntil(this.destroy)
       )
       .subscribe(() => (this.loading = false));
@@ -51,15 +50,23 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     this.destroy.next();
   }
 
+  restoreUser() {
+    this.loading = true;
+    this.userService.restore(this.userData.id).subscribe({
+      next: () => {
+        this.popupService.success('User Successfully Restored!');
+        this.userData.accountStatus = AccountStatus.ACTIVE;
+        this.userData.appAccess = true;
+        this.loading = false;
+      },
+      error: () => {
+        this.popupService.error('Unable to restore user at this time. Try again later');
+        this.loading = false;
+      },
+    });
+  }
+
   onBackClick() {
-    this.router.navigate(['/users']);
-  }
-
-  onEditClick() {
-    this.router.navigate([`/users/${this.userData.id}/details/edit`]);
-  }
-
-  onResetPassword() {
-    this.router.navigate([`/users/${this.userData.id}/details/reset-password`]);
+    this.router.navigate(['/access-manager/deleted-users']);
   }
 }

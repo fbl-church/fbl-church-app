@@ -14,6 +14,13 @@ export interface User {
   [key: string]: any;
 }
 
+export enum AccountStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  PENDING = 'PENDING',
+  DENIED = 'DENIED',
+}
+
 export interface Child extends User {
   cuid?: string;
   churchGroup?: ChurchGroup[] | any[];

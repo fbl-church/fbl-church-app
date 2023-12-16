@@ -6,6 +6,8 @@ import { ApplicationDetailComponent } from './access-manager-applications/applic
 import { DeleteApplicationModalComponent } from './access-manager-applications/application-detail/modals/delete-application-modal/delete-application-modal.component';
 import { WebRoleAppUpdateModalComponent } from './access-manager-applications/application-detail/modals/web-role-app-update-modal/web-role-app-update-modal.component';
 import { CreateApplicationModalComponent } from './access-manager-applications/modals/create-application-modal/create-application-modal.component';
+import { AccessManagerDeletedUsersComponent } from './access-manager-deleted-users/access-manager-deleted-users.component';
+import { DeletedUsersDetailComponent } from './access-manager-deleted-users/deleted-users-detail/deleted-users-detail.component';
 import { AccessManagerFeaturesComponent } from './access-manager-features/access-manager-features.component';
 import { FeatureDetailComponent } from './access-manager-features/feature-detail/feature-detail.component';
 import { DeleteFeatureModalComponent } from './access-manager-features/feature-detail/modals/delete-feature-modal/delete-feature-modal.component';
@@ -27,6 +29,8 @@ import { AccessManagerComponent } from './access-manager.component';
     CreateFeatureModalComponent,
     CreateApplicationModalComponent,
     WebRoleAppUpdateModalComponent,
+    AccessManagerDeletedUsersComponent,
+    DeletedUsersDetailComponent,
   ],
 })
 export class AccessManagerModule {}

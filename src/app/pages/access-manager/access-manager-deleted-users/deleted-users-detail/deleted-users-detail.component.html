@@ -1,0 +1,35 @@
+<div *ngIf="!loading; else pageLoader">
+  <ik-header title="{{ userData | formatUserName }}">
+    <ik-header-back (back)="onBackClick()"></ik-header-back>
+    <div class="inline header-buttons">
+      <button
+        class="btn btn-danger btn-header-right"
+        (click)="deleteUserModal.open(true)"
+        *featureAccess="[Application.USERS, FeatureType.DETAIL, Access.DELETE]"
+      >
+        <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
+        Permanently Delete
+      </button>
+      <button
+        class="btn btn-primary btn-header-right"
+        (click)="restoreUser()"
+        *featureAccess="[Application.USERS, FeatureType.DETAIL, Access.UPDATE]"
+      >
+        <ik-icon icon="user" classOverride="btn-icon"></ik-icon>
+        Restore
+      </button>
+    </div>
+  </ik-header>
+  <div class="layout__column-left layout__wide">
+    <app-user-details-card [user]="userData"></app-user-details-card>
+  </div>
+  <div class="layout__column-right layout__narrow">
+    <app-user-roles-card [user]="userData"> </app-user-roles-card>
+  </div>
+</div>
+
+<app-delete-user-modal #deleteUserModal [userId]="userData?.id"></app-delete-user-modal>
+
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
+</ng-template>
