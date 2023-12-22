@@ -1,10 +1,13 @@
 <div
   class="menu-item"
-  [ngClass]="{ 'sidebar-category__active': isRouteActive(navItem.route) }"
+  [ngClass]="{
+    'sidebar-category__active': isRouteActive(navItem.route) && !isNested,
+    'sidebar-category--nested__active': isRouteActive(navItem.route) && isNested
+  }"
   (click)="toggleDropdown()"
 >
   <ik-icon classOverride="sidebar-icon" [icon]="navItem.icon"></ik-icon>
-  <span class="sidebar-category">{{ navItem.name }}</span>
+  <span [ngClass]="{ 'sidebar-category': !isNested }" class="sidebar-category">{{ navItem.name }}</span>
 
   <ik-icon
     class="flex-one"
@@ -20,21 +23,31 @@
       </ng-container>
     </ng-container>
     <ng-template #dropdownContent>
-      <ng-container *ngIf="submenu.route">
-        <a
-          class="menu-item"
-          [routerLink]="navItem.route + submenu.route"
-          routerLinkActive="dropdown-item__active"
-          (click)="close()"
-        >
-          {{ submenu.name }}
-        </a>
+      <ng-container *ngIf="submenu.submenu; else submenuRouteItem">
+        <ik-dropdown
+          [navItem]="submenu"
+          [isNested]="true"
+          [baseRoute]="navItem.route"
+          (closeSidebar)="close()"
+        ></ik-dropdown>
       </ng-container>
-      <ng-container *ngIf="submenu.href">
-        <a class="menu-item" [href]="submenu.href" (click)="close()">
-          {{ submenu.name }}
-        </a>
-      </ng-container>
+      <ng-template #submenuRouteItem>
+        <ng-container *ngIf="submenu.route">
+          <a
+            class="menu-item"
+            [routerLink]="baseRoute + navItem.route + submenu.route"
+            routerLinkActive="dropdown-item__active"
+            (click)="close()"
+          >
+            {{ submenu.name }}
+          </a>
+        </ng-container>
+        <ng-container *ngIf="submenu.href">
+          <a class="menu-item" [href]="submenu.href" (click)="close()">
+            {{ submenu.name }}
+          </a>
+        </ng-container>
+      </ng-template>
     </ng-template>
   </ng-container>
 </div>

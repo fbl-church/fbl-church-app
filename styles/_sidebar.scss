@@ -64,6 +64,10 @@
   border-left: 5px solid $sidebar-active !important;
 }
 
+.sidebar-category--nested__active {
+  color: $sidebar-active !important;
+}
+
 .dropdown-item__active {
   color: $sidebar-active !important;
 }

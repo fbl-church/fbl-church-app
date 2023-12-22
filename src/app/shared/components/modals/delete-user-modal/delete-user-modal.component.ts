@@ -56,7 +56,7 @@ export class DeleteUserModalComponent {
         this.modal.close();
         this.modalLoading = false;
         this.popupService.success('User successfully deleted!');
-        this.router.navigate(['/users']);
+        this.router.navigate(['/access-manager/deleted/users']);
       },
       error: () => {
         this.popupService.error('User could not be deleted at this time!');

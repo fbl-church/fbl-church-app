@@ -9,6 +9,10 @@
   </div>
   <div class="layout__column-right layout__half">
     <app-child-group-details-grid [child]="childData" [editIconVisible]="false"></app-child-group-details-grid>
+    <ik-card>
+      <ik-card-header title="Child Identification"> </ik-card-header>
+      <qrcode class="text-center" [qrdata]="qrCodeUrl" [width]="150" [errorCorrectionLevel]="'M'"></qrcode>
+    </ik-card>
   </div>
 </div>
 

@@ -44,11 +44,11 @@ export const ACCESS_MANAGEMENT_ROUTE: Route = {
       },
     },
     {
-      path: 'deleted-users',
+      path: 'deleted/users',
       component: AccessManagerDeletedUsersComponent,
     },
     {
-      path: 'deleted-users/:id/details',
+      path: 'deleted/users/:id/details',
       component: DeletedUsersDetailComponent,
       resolve: { user: UserResolverService },
     },

@@ -37,7 +37,7 @@ export class DeletedUsersDetailComponent implements OnInit, OnDestroy {
         tap((res) => {
           if (!res.user?.body || res.user.body.accountStatus !== AccountStatus.INACTIVE) {
             this.popupService.warning('Deleted User not found!');
-            this.router.navigate(['/access-manager/deleted-users']);
+            this.router.navigate(['/access-manager/deleted/users']);
           }
         }),
         tap((res) => (this.userData = res.user.body)),
@@ -55,9 +55,7 @@ export class DeletedUsersDetailComponent implements OnInit, OnDestroy {
     this.userService.restore(this.userData.id).subscribe({
       next: () => {
         this.popupService.success('User Successfully Restored!');
-        this.userData.accountStatus = AccountStatus.ACTIVE;
-        this.userData.appAccess = true;
-        this.loading = false;
+        this.router.navigate([`/users/${this.userData.id}/details`]);
       },
       error: () => {
         this.popupService.error('Unable to restore user at this time. Try again later');
@@ -67,6 +65,6 @@ export class DeletedUsersDetailComponent implements OnInit, OnDestroy {
   }
 
   onBackClick() {
-    this.router.navigate(['/access-manager/deleted-users']);
+    this.router.navigate(['/access-manager/deleted/users']);
   }
 }

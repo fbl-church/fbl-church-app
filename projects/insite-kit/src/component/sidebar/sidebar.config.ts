@@ -4,7 +4,7 @@ import { Access, App, FeatureType } from '../../model/common.model';
 export interface NavItem extends NavItemDetails {
   submenu?: {
     id: string;
-    items: NavItemDetails[];
+    items: NavItem[];
   };
 }
 
@@ -48,9 +48,29 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           route: '/features',
         },
         {
-          id: 'deleted-users',
-          name: 'Deleted Users',
-          route: '/deleted-users',
+          id: 'deleted-accounts',
+          name: 'Deleted Accounts',
+          route: '/deleted',
+          submenu: {
+            id: 'deletedAccountsDropdown',
+            items: [
+              {
+                id: 'deleted-users',
+                name: 'Users',
+                route: '/users',
+              },
+              {
+                id: 'deleted-children',
+                name: 'Children',
+                route: '/children',
+              },
+              {
+                id: 'deleted-guardians',
+                name: 'Guardians',
+                route: '/guardians',
+              },
+            ],
+          },
         },
       ],
     },

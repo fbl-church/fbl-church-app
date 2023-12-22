@@ -8,6 +8,8 @@ import { NavItem } from '../sidebar.config';
 })
 export class DropdownComponent {
   @Input() navItem: NavItem;
+  @Input() isNested = false;
+  @Input() baseRoute = '';
   @Output() closeSidebar = new EventEmitter<void>();
 
   isOpen = false;

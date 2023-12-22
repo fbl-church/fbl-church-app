@@ -19,6 +19,6 @@ export class AccessManagerDeletedUsersComponent {
   }
 
   onRowClick(user: any) {
-    this.router.navigate([`/access-manager/deleted-users/${user.id}/details`]);
+    this.router.navigate([`/access-manager/deleted/users/${user.id}/details`]);
   }
 }
