@@ -57,16 +57,6 @@
   margin: 0 8px 8px 0;
 }
 
-.btn-header-right {
-  float: right;
-  margin: 14px 0 8px 8px;
-}
-
-.btn-header-left {
-  float: left;
-  margin: 14px 8px 8px 0;
-}
-
 .btn-icon {
   margin-right: 4px;
   font-size: $font-size-lg;
@@ -155,16 +145,6 @@
   }
 }
 
-@media screen and (max-width: $button-screen-lg-max) {
-  .btn-header-right {
-    margin: 0 2px 8px 8px;
-  }
-
-  .btn-header-left {
-    margin: 0 8px 8px 2px;
-  }
-}
-
 @media screen and (max-width: $button-screen-md-max) {
   .btn-right {
     margin: 0 2px 8px 8px;
@@ -172,14 +152,6 @@
 
   .btn-left {
     margin: 0 8px 8px 2px;
-  }
-
-  .btn-header-right {
-    margin: 6px 2px 8px 8px;
-  }
-
-  .btn-header-left {
-    margin: 6px 8px 8px 2px;
   }
 }
 
@@ -192,14 +164,6 @@
   .btn-danger {
     padding: 4px 8px !important;
     font-size: $font-size-base !important;
-  }
-
-  .btn-header-right {
-    margin: 4px 2px 8px 8px;
-  }
-
-  .btn-header-left {
-    margin: 4px 8px 8px 2px;
   }
 
   .btn-icon {

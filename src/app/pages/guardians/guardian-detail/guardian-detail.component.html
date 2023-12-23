@@ -1,16 +1,15 @@
 <div *ngIf="!loading; else pageLoader">
   <ik-header title="{{ guardianData | formatUserName }}">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
-    <div class="inline header-buttons">
-      <button
-        class="btn btn-danger btn-header-right"
-        (click)="deleteGuardianModal.modal.open()"
-        *featureAccess="[Application.GUARDIANS, FeatureType.DETAIL, Access.DELETE]"
-      >
-        <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
-        Delete
-      </button>
-    </div>
+
+    <button
+      class="btn btn-danger header-button"
+      (click)="deleteGuardianModal.modal.open()"
+      *featureAccess="[Application.GUARDIANS, FeatureType.DETAIL, Access.DELETE]"
+    >
+      <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
+      Delete
+    </button>
   </ik-header>
   <div class="layout__column-left layout__half">
     <app-guardian-details-card [guardian]="guardianData">

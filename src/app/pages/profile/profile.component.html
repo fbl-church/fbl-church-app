@@ -1,11 +1,9 @@
 <ng-container *ngIf="currentUser; else pageLoader">
   <ik-header title="{{ currentUser | formatUserName }}">
-    <div class="inline header-buttons">
-      <button class="btn btn-default btn-header-right" (click)="onResetPassword()">
-        <ik-icon icon="rotate" classOverride="btn-icon"></ik-icon>
-        Reset Password
-      </button>
-    </div>
+    <button class="btn btn-default header-button" (click)="onResetPassword()">
+      <ik-icon icon="rotate" classOverride="btn-icon"></ik-icon>
+      Reset Password
+    </button>
   </ik-header>
   <div class="layout__column-left layout__wide">
     <app-user-details-card

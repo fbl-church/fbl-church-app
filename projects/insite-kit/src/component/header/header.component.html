@@ -1,11 +1,11 @@
-<div class="header-margin">
-  <div class="header-container">
-    <div class="header__title-content">
-      <ng-content select="ik-header-back"></ng-content>
-      <div class="header-title">{{ title }}</div>
-    </div>
-    <div class="header__base-content">
-      <ng-content></ng-content>
+<div class="header-container">
+  <div class="header__title-content">
+    <ng-content select="ik-header-back"></ng-content>
+    <div class="header-title">{{ title }}</div>
+  </div>
+  <div class="header__base-content">
+    <div class="header-buttons">
+      <ng-content select="button"></ng-content>
     </div>
   </div>
 </div>

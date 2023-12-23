@@ -2,7 +2,7 @@
   <button
     *featureAccess="[Application.NURSERY, FeatureType.WORKERS, Access.CREATE]"
     (click)="openWorkerModal()"
-    class="btn btn-primary btn-header-right"
+    class="btn btn-primary header-button"
   >
     <ik-icon icon="circle-plus" classOverride="btn-icon"></ik-icon>
     Add Workers
@@ -10,7 +10,7 @@
   <button
     *featureAccess="[Application.NURSERY, FeatureType.WORKERS, Access.CREATE]"
     (click)="onSendMassEmail()"
-    class="btn btn-warning btn-header-right"
+    class="btn btn-warning header-button"
     [disabled]="emailButtonLoading"
   >
     <ik-icon *ngIf="!emailButtonLoading; else emailLoader" icon="paper-plane" classOverride="btn-icon"></ik-icon>

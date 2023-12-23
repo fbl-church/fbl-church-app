@@ -1,41 +1,34 @@
 <ik-header [title]="record.name">
   <ik-header-back (back)="onBackClick()"></ik-header-back>
-  <div class="inline header-buttons">
+  <ng-container *featureAccess="[app, FeatureType.CHECK_IN, Access.CREATE]" ngProjectAs="button">
     <button
-      class="btn btn-danger btn-header-right"
-      *featureAccess="[app, FeatureType.DETAIL, Access.DELETE]"
-      (click)="deleteModal.modal.open()"
+      class="btn btn-primary header-button"
+      *attendanceRecordActivation="record"
+      [disabled]="loading"
+      (click)="onStartCheckIn()"
     >
-      <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
-      Delete
+      <ik-icon *ngIf="!loading; else startCheckInLoader" icon="user-check" classOverride="btn-icon"></ik-icon>
+      Start Check In
+
+      <ng-template #startCheckInLoader>
+        <ik-icon icon="spinner" classOverride="btn-icon" [spin]="true"></ik-icon>
+      </ng-template>
     </button>
-    <ng-container *featureAccess="[app, FeatureType.CHECK_IN, Access.DELETE]">
-      <button
-        class="btn btn-danger btn-header-right"
-        *ngIf="record.status === 'ACTIVE'"
-        (click)="closeModal.modal.open()"
-      >
-        <ik-icon icon="lock" classOverride="btn-icon"></ik-icon>
-        Close
-      </button></ng-container
-    >
-
-    <ng-container *featureAccess="[app, FeatureType.CHECK_IN, Access.CREATE]">
-      <button
-        class="btn btn-primary btn-header-right"
-        *attendanceRecordActivation="record"
-        [disabled]="loading"
-        (click)="onStartCheckIn()"
-      >
-        <ik-icon *ngIf="!loading; else startCheckInLoader" icon="user-check" classOverride="btn-icon"></ik-icon>
-        Start Check In
-
-        <ng-template #startCheckInLoader>
-          <ik-icon icon="spinner" classOverride="btn-icon" [spin]="true"></ik-icon>
-        </ng-template>
-      </button>
-    </ng-container>
-  </div>
+  </ng-container>
+  <button
+    class="btn btn-danger header-button"
+    *featureAccess="[app, FeatureType.DETAIL, Access.DELETE]"
+    (click)="deleteModal.modal.open()"
+  >
+    <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
+    Delete
+  </button>
+  <ng-container *featureAccess="[app, FeatureType.CHECK_IN, Access.DELETE]">
+    <button class="btn btn-danger header-button" *ngIf="record.status === 'ACTIVE'" (click)="closeModal.modal.open()">
+      <ik-icon icon="lock" classOverride="btn-icon"></ik-icon>
+      Close
+    </button>
+  </ng-container>
 </ik-header>
 
 <app-delete-record-modal #deleteModal [recordId]="record.id" [route]="route"></app-delete-record-modal>

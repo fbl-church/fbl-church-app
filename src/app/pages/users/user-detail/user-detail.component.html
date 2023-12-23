@@ -1,24 +1,23 @@
-<div *ngIf="!loading; else pageLoader">
+<ng-container *ngIf="!loading; else pageLoader">
   <ik-header title="{{ userData | formatUserName }}">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
-    <div class="inline header-buttons">
-      <button
-        class="btn btn-danger btn-header-right"
-        (click)="deleteUserModal.modal.open()"
-        *featureAccess="[Application.USERS, FeatureType.DETAIL, Access.DELETE]"
-      >
-        <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
-        Delete
-      </button>
-      <button
-        class="btn btn-default btn-header-right"
-        (click)="onResetPassword()"
-        *featureAccess="[Application.USERS, FeatureType.DETAIL, Access.UPDATE]"
-      >
-        <ik-icon icon="rotate" classOverride="btn-icon"></ik-icon>
-        Reset Password
-      </button>
-    </div>
+
+    <button
+      class="btn btn-default header-button"
+      (click)="onResetPassword()"
+      *featureAccess="[Application.USERS, FeatureType.DETAIL, Access.UPDATE]"
+    >
+      <ik-icon icon="rotate" classOverride="btn-icon"></ik-icon>
+      Reset Password
+    </button>
+    <button
+      class="btn btn-danger header-button"
+      (click)="deleteUserModal.modal.open()"
+      *featureAccess="[Application.USERS, FeatureType.DETAIL, Access.DELETE]"
+    >
+      <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
+      Delete
+    </button>
   </ik-header>
   <div class="layout__column-left layout__wide">
     <app-user-details-card [user]="userData" (editClick)="onEditClick()">
@@ -44,7 +43,7 @@
       </ng-container>
     </app-user-roles-card>
   </div>
-</div>
+</ng-container>
 
 <app-delete-user-modal #deleteUserModal [userId]="userData?.id"></app-delete-user-modal>
 

@@ -1,25 +1,18 @@
 <ng-container *ngIf="!loading; else pageLoader">
   <ik-header [title]="application.displayName">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
-    <div class="inline header-buttons">
-      <button class="btn btn-danger btn-header-right" (click)="applicationDeleteModal.modal.open()">
-        <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
-        Delete
-      </button>
-      <button
-        class="btn btn-success btn-header-right"
-        *ngIf="!application.enabled"
-        (click)="onEnabledUpdateClick(true)"
-      >
-        <ik-icon icon="check" classOverride="btn-icon"></ik-icon>
-        Enable
-      </button>
-
-      <button class="btn btn-danger btn-header-right" *ngIf="application.enabled" (click)="onEnabledUpdateClick(false)">
-        <ik-icon icon="lock" classOverride="btn-icon"></ik-icon>
-        Disable
-      </button>
-    </div>
+    <button class="btn btn-success header-button" *ngIf="!application.enabled" (click)="onEnabledUpdateClick(true)">
+      <ik-icon icon="check" classOverride="btn-icon"></ik-icon>
+      Enable
+    </button>
+    <button class="btn btn-danger header-button" *ngIf="application.enabled" (click)="onEnabledUpdateClick(false)">
+      <ik-icon icon="lock" classOverride="btn-icon"></ik-icon>
+      Disable
+    </button>
+    <button class="btn btn-danger header-button" (click)="applicationDeleteModal.modal.open()">
+      <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
+      Delete
+    </button>
   </ik-header>
 
   <div class="layout__column-left layout__narrow">
