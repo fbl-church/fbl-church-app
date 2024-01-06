@@ -13,8 +13,6 @@ jobs:
     name: Install
     runs-on: windows-latest
     steps:
-      - name: Git Checkout
-        uses: actions/checkout@v4
       - name: Install & Cache Node Modules
         uses: ./.github/actions/cached-node-modules
 
@@ -23,8 +21,6 @@ jobs:
     needs: install
     runs-on: windows-latest
     steps:
-      - name: Git Checkout
-        uses: actions/checkout@v4
       - name: Restore Cache
         uses: ./.github/actions/cached-node-modules
       - name: Lint
@@ -35,8 +31,6 @@ jobs:
     needs: install
     runs-on: windows-latest
     steps:
-      - name: Git Checkout
-        uses: actions/checkout@v4
       - name: Restore Cache
         uses: ./.github/actions/cached-node-modules
       - name: Test
@@ -47,8 +41,6 @@ jobs:
     needs: [lint, test]
     runs-on: windows-latest
     steps:
-      - name: Git Checkout
-        uses: actions/checkout@v4
       - name: Restore Cache
         uses: ./.github/actions/cached-node-modules
       - name: Build
