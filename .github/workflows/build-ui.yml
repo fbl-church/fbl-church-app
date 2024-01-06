@@ -9,72 +9,20 @@ on:
   workflow_dispatch:
 
 jobs:
-  install:
-    name: Install
-    runs-on: windows-latest
-    steps:
-      - name: Git Checkout
-        uses: actions/checkout@v4
-      - name: Install & Cache Node Modules
-        uses: ./.github/actions/cached-node-modules
-
-  validate:
-    name: Validate
-    needs: install
-    runs-on: windows-latest
-    steps:
-      - name: Git Checkout
-        uses: actions/checkout@v4
-      - name: Restore Cache
-        uses: ./.github/actions/cached-node-modules
-      - name: Format Check
-        run: npm run pipeline:format
-        shell: bash
-
-  lint:
-    name: Lint
-    needs: install
-    runs-on: windows-latest
-    steps:
-      - name: Git Checkout
-        uses: actions/checkout@v4
-      - name: Restore Cache
-        uses: ./.github/actions/cached-node-modules
-      - name: Lint
-        run: npm run pipeline:lint
-
-  test:
-    name: Test
-    needs: install
-    runs-on: windows-latest
-    steps:
-      - name: Git Checkout
-        uses: actions/checkout@v4
-      - name: Restore Cache
-        uses: ./.github/actions/cached-node-modules
-      - name: Test
-        run: npm run pipeline:test
-
   build:
-    name: Build
-    needs: [validate, lint, test]
+    name: FBL Church UI Build
     runs-on: windows-latest
     steps:
-      - name: Git Checkout
-        uses: actions/checkout@v4
-      - name: Restore Cache
-        uses: ./.github/actions/cached-node-modules
+      - uses: actions/checkout@v3
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.16.0
+      - name: Install
+        run: npm install
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        run: npm run test:headless
       - name: Build
         run: npm run build:production --if-present
-
-  clean:
-    name: Clean Up
-    if: success() || failure()
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Clear cache
-        run: gh cache delete $CACHE_KEY --repo fbl-church/fbl-church-app
-        env:
-          GH_TOKEN: ${{ secrets.ACTION_CLEAR_CACHES_TOKEN  }}
-          CACHE_KEY: ${{ github.run_id }}-node-modules
