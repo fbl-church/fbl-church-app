@@ -20,20 +20,41 @@ jobs:
           node-version: 16.16.0
       - name: Install
         run: npm install
+      - name: Cache Node Modules
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
   lint:
     name: Lint
     needs: install
     runs-on: windows-latest
     steps:
+      - name: Restore Cache
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+            ${{ runner.os }}-
       - name: Lint
         run: npm run lint
 
   test:
     name: Test
-    needs: install
+    needs: [install, lint]
     runs-on: windows-latest
     steps:
+      - name: Restore Cache
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+            ${{ runner.os }}-
       - name: Test
         run: npm run test:headless
 
@@ -42,5 +63,29 @@ jobs:
     needs: test
     runs-on: windows-latest
     steps:
+      - name: Restore Cache
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+            ${{ runner.os }}-
       - name: Build
         run: npm run build:production --if-present
+
+  clean:
+    name: Clean Up
+    runs-on: windows-latest
+    steps:
+      - name: Clear cache
+        uses: actions/github-script@v6
+        with:
+          script: |
+            console.log("Clearing Cache...")
+            github.rest.actions.deleteActionsCacheByKey({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              cache_key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }},
+            })
+            console.log("Cache Successfully Cleared!")
