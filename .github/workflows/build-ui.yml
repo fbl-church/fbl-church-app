@@ -60,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clear cache
-        run: gh cache delete $CACHE_KEY
+        run: gh cache delete $CACHE_KEY --repo fbl-church/fbl-church-app
         env:
           GH_TOKEN: ${{ secrets.ACTION_CLEAR_CACHES_TOKEN  }}
           CACHE_KEY: ${{ github.run_id }}-node-${{ hashFiles('**/package-lock.json') }}
