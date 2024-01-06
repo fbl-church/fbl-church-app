@@ -13,7 +13,8 @@ jobs:
     name: FBL Church UI Build
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Git Checkout
+        uses: actions/checkout@v4
       - name: Install Node
         uses: actions/setup-node@v3
         with:
