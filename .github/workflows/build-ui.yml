@@ -18,13 +18,14 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.16.0
+          cache: 'npm'
       - name: Install
         run: npm install
       - name: Cache Node Modules
         uses: actions/cache@v3
         with:
           path: ./node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ github.run_id }}-node-${{ hashFiles('**/package-lock.json') }}
 
   lint:
     name: Lint
@@ -35,10 +36,10 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ./node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ github.run_id }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-
-            ${{ runner.os }}-
+            ${{ github.run_id }}-node-
+            ${{ github.run_id }}-
       - name: Lint
         run: npm run lint
 
@@ -51,26 +52,26 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ./node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ github.run_id }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-
-            ${{ runner.os }}-
+            ${{ github.run_id }}-node-
+            ${{ github.run_id }}-
       - name: Test
         run: npm run test:headless
 
   build:
     name: Build
-    needs: test
+    needs: [lint, test]
     runs-on: windows-latest
     steps:
       - name: Restore Cache
         uses: actions/cache@v3
         with:
           path: ./node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ github.run_id }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-
-            ${{ runner.os }}-
+            ${{ github.run_id }}-node-
+            ${{ github.run_id }}-
       - name: Build
         run: npm run build:production --if-present
 
@@ -88,4 +89,4 @@ jobs:
           /repos/fbl-church/fbl-church-app/actions/caches?key=$CACHE_KEY
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CACHE_KEY: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          CACHE_KEY: ${{ github.run_id }}-node-${{ hashFiles('**/package-lock.json') }}
