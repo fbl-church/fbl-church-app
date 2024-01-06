@@ -9,11 +9,7 @@ runs:
       id: cache-node-modules
       with:
         path: ./node_modules
-        key: ${{ github.run_id }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ github.run_id }}-node-
-          ${{ github.run_id }}-
-
+        key: ${{ github.run_id }}-node-modules
     - name: Install Dependencies
       if: steps.cache-node-modules.outputs.cache-hit != 'true'
       run: npm install
