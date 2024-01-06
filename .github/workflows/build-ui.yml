@@ -18,7 +18,17 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.16.0
+      - name: Restore Cache
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+            ${{ runner.os }}-
       - name: Install
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm install
       - name: Lint
         run: npm run lint
