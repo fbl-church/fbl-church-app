@@ -13,19 +13,8 @@ jobs:
     name: Install
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Install Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.16.0
-          cache: 'npm'
-      - name: Install
-        run: npm install
-      - name: Cache Node Modules
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-          key: ${{ github.run_id }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: Install & Cache Node Modules
+        uses: ./.github/actions/cached-node-modules
 
   lint:
     name: Lint
@@ -33,13 +22,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Restore Cache
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-          key: ${{ github.run_id }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ github.run_id }}-node-
-            ${{ github.run_id }}-
+        uses: ./.github/actions/cached-node-modules
       - name: Lint
         run: npm run lint
 
@@ -49,13 +32,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Restore Cache
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-          key: ${{ github.run_id }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ github.run_id }}-node-
-            ${{ github.run_id }}-
+        uses: ./.github/actions/cached-node-modules
       - name: Test
         run: npm run test:headless
 
@@ -65,13 +42,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Restore Cache
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-          key: ${{ github.run_id }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ github.run_id }}-node-
-            ${{ github.run_id }}-
+        uses: ./.github/actions/cached-node-modules
       - name: Build
         run: npm run build:production --if-present
 
