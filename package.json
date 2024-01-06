@@ -23,7 +23,10 @@
     "serve:external": "ng serve --host 0.0.0.0 --configuration external",
     "serve:production": "ng serve --configuration production",
     "package:refresh": "rm package-lock.json && npm i",
-    "heroku-postbuild": "ng build --configuration production"
+    "heroku-postbuild": "ng build --configuration production",
+    "pipeline:format": "npm run format:check",
+    "pipeline:lint": "npm run lint",
+    "pipeline:test": "npm run test:headless"
   },
   "dependencies": {
     "@angular/animations": "^14.2.12",

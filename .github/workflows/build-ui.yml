@@ -13,42 +13,44 @@ jobs:
     name: Install
     runs-on: windows-latest
     steps:
-      - name: Git Checkout
-        uses: actions/checkout@v4
       - name: Install & Cache Node Modules
         uses: ./.github/actions/cached-node-modules
+
+  validate:
+    name: Validate
+    needs: install
+    runs-on: windows-latest
+    steps:
+      - name: Restore Cache
+        uses: ./.github/actions/cached-node-modules
+      - name: Format Check
+        run: npm run pipeline:format
 
   lint:
     name: Lint
     needs: install
     runs-on: windows-latest
     steps:
-      - name: Git Checkout
-        uses: actions/checkout@v4
       - name: Restore Cache
         uses: ./.github/actions/cached-node-modules
       - name: Lint
-        run: npm run lint
+        run: npm run pipeline:lint
 
   test:
     name: Test
     needs: install
     runs-on: windows-latest
     steps:
-      - name: Git Checkout
-        uses: actions/checkout@v4
       - name: Restore Cache
         uses: ./.github/actions/cached-node-modules
       - name: Test
-        run: npm run test:headless
+        run: npm run pipeline:test
 
   build:
     name: Build
-    needs: [lint, test]
+    needs: [validate, lint, test]
     runs-on: windows-latest
     steps:
-      - name: Git Checkout
-        uses: actions/checkout@v4
       - name: Restore Cache
         uses: ./.github/actions/cached-node-modules
       - name: Build
