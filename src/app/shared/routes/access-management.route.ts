@@ -7,7 +7,6 @@ import { AccessManagerDeletedUsersComponent } from 'src/app/pages/access-manager
 import { DeletedUsersDetailComponent } from 'src/app/pages/access-manager/access-manager-deleted-users/deleted-users-detail/deleted-users-detail.component';
 import { AccessManagerFeaturesComponent } from 'src/app/pages/access-manager/access-manager-features/access-manager-features.component';
 import { FeatureDetailComponent } from 'src/app/pages/access-manager/access-manager-features/feature-detail/feature-detail.component';
-import { AccessManagerComponent } from 'src/app/pages/access-manager/access-manager.component';
 import { ApplicationResolverService } from 'src/service/access-manager/application-resolver.service';
 import { FeatureResolverService } from 'src/service/access-manager/feature-resolver.service';
 import { UserResolverService } from 'src/service/users/user-resolver.service';
@@ -20,7 +19,7 @@ export const ACCESS_MANAGEMENT_ROUTE: Route = {
   children: [
     {
       path: '',
-      component: AccessManagerComponent,
+      redirectTo: 'applications',
       pathMatch: 'full',
     },
     {

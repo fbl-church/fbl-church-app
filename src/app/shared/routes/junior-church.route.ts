@@ -35,7 +35,7 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
   children: [
     {
       path: '',
-      component: JuniorChurchCheckInComponent,
+      redirectTo: 'check-in',
       pathMatch: 'full',
     },
     {

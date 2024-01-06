@@ -9,20 +9,38 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    name: FBL Church UI Build
+  install:
+    name: Install
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install Node
         uses: actions/setup-node@v3
         with:
           node-version: 16.16.0
       - name: Install
         run: npm install
+
+  lint:
+    name: Lint
+    needs: install
+    runs-on: windows-latest
+    steps:
       - name: Lint
         run: npm run lint
+
+  test:
+    name: Test
+    needs: install
+    runs-on: windows-latest
+    steps:
       - name: Test
         run: npm run test:headless
+
+  build:
+    name: Build
+    needs: test
+    runs-on: windows-latest
+    steps:
       - name: Build
         run: npm run build:production --if-present

@@ -3,7 +3,6 @@ import { Access, App, ChurchGroup, FeatureType } from 'projects/insite-kit/src/m
 import { AppAccessGuard } from 'projects/insite-kit/src/service/guards/app-access.guard';
 import { AuthGuard } from 'projects/insite-kit/src/service/guards/auth.guard';
 import { FeatureAccessGuard } from 'projects/insite-kit/src/service/guards/feature-access.guard';
-import { JuniorChurchCheckInComponent } from 'src/app/pages/junior-church/junior-church-check-in/junior-church-check-in.component';
 import { NurseryAttendanceDetailComponent } from 'src/app/pages/nursery/nursery-check-in/nursery-attendance-detail/nursery-attendance-detail.component';
 import { EditNurseryRecordComponent } from 'src/app/pages/nursery/nursery-check-in/nursery-attendance-detail/pages/edit-nursery-attendance-record/edit-nursery-attendance-record.component';
 import { NurseryChildrenCheckInComponent } from 'src/app/pages/nursery/nursery-check-in/nursery-attendance-detail/pages/nursery-children-check-in/nursery-children-check-in.component';
@@ -34,7 +33,7 @@ export const NURSERY_ROUTE: Route = {
   children: [
     {
       path: '',
-      component: JuniorChurchCheckInComponent,
+      redirectTo: 'check-in',
       pathMatch: 'full',
     },
     {

@@ -22,7 +22,7 @@ export const VBS_ROUTE: Route = {
   children: [
     {
       path: '',
-      component: VBSRegistrationComponent,
+      redirectTo: 'home',
       pathMatch: 'full',
     },
     {

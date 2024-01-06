@@ -12,7 +12,6 @@ import { AwanaWorkersComponent } from 'src/app/pages/awana/awana-workers/awana-w
 import { AttendanceRecordResolverService } from 'src/service/attendance/attendance-record-resolver.service';
 import { AwanaWorkersResolverService } from 'src/service/attendance/awana-workers-resolver.service copy';
 import { ChildResolverService } from 'src/service/children/child-resolver.service';
-import { ProfileResolverService } from 'src/service/users/profile-resolver.service';
 import { AuthenticatedLayoutComponent } from '../components/layouts/authenticated-layout/authenticated-layout.component';
 
 export const AWANA_ROUTE: Route = {
@@ -22,8 +21,7 @@ export const AWANA_ROUTE: Route = {
   children: [
     {
       path: '',
-      component: AwanaWorkersComponent,
-      resolve: { currentUser: ProfileResolverService },
+      redirectTo: 'check-in',
       pathMatch: 'full',
     },
     {
