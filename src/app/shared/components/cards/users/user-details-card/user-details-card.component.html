@@ -16,8 +16,11 @@
       <ik-card-info [contentColor]="user?.accountStatus" header="Account" [text]="user?.accountStatus"></ik-card-info>
     </div>
     <div class="right-column">
-      <ik-card-info [contentColor]="user?.appAccess ? 'ACTIVE' : 'INACTIVE'" header="Access"
-        [text]="user?.appAccess ? 'GRANTED' : 'DENIED'"></ik-card-info>
+      <ik-card-info
+        [contentColor]="user?.appAccess ? 'ACTIVE' : 'INACTIVE'"
+        header="Access"
+        [text]="user?.appAccess ? 'GRANTED' : 'DENIED'"
+      ></ik-card-info>
     </div>
   </div>
 
