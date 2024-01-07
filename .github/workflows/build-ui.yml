@@ -21,7 +21,7 @@ jobs:
   validate:
     name: Validate
     needs: install
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Git Checkout
         uses: actions/checkout@v4
@@ -29,7 +29,6 @@ jobs:
         uses: ./.github/actions/cached-node-modules
       - name: Format Check
         run: npm run pipeline:format
-        shell: bash
 
   lint:
     name: Lint
@@ -57,7 +56,7 @@ jobs:
 
   build:
     name: Build
-    needs: [lint, test]
+    needs: [validate, lint, test]
     runs-on: windows-latest
     steps:
       - name: Git Checkout
@@ -70,7 +69,7 @@ jobs:
   clean:
     name: Clean Up
     needs: build
-    if: success() || failure()
+    if: always()
     runs-on: ubuntu-latest
     steps:
       - name: Clear cache
