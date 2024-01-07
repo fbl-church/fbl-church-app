@@ -15,6 +15,12 @@
       </ng-template>
     </button>
   </ng-container>
+  <ng-container *featureAccess="[app, FeatureType.CHECK_IN, Access.DELETE]" ngProjectAs="button">
+    <button class="btn btn-danger header-button" *ngIf="record.status === 'ACTIVE'" (click)="closeModal.modal.open()">
+      <ik-icon icon="lock" classOverride="btn-icon"></ik-icon>
+      Close
+    </button>
+  </ng-container>
   <button
     class="btn btn-danger header-button"
     *featureAccess="[app, FeatureType.DETAIL, Access.DELETE]"
@@ -23,12 +29,6 @@
     <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
     Delete
   </button>
-  <ng-container *featureAccess="[app, FeatureType.CHECK_IN, Access.DELETE]">
-    <button class="btn btn-danger header-button" *ngIf="record.status === 'ACTIVE'" (click)="closeModal.modal.open()">
-      <ik-icon icon="lock" classOverride="btn-icon"></ik-icon>
-      Close
-    </button>
-  </ng-container>
 </ik-header>
 
 <app-delete-record-modal #deleteModal [recordId]="record.id" [route]="route"></app-delete-record-modal>
