@@ -15,6 +15,11 @@ jobs:
     steps:
       - name: Git Checkout
         uses: actions/checkout@v4
+      - name: Setup Node 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: npm
       - name: Install & Cache Node Modules
         uses: ./.github/actions/cached-node-modules
 
@@ -25,6 +30,11 @@ jobs:
     steps:
       - name: Git Checkout
         uses: actions/checkout@v4
+      - name: Setup Node 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: npm
       - name: Restore Cache
         uses: ./.github/actions/cached-node-modules
       - name: Format Check
@@ -37,6 +47,11 @@ jobs:
     steps:
       - name: Git Checkout
         uses: actions/checkout@v4
+      - name: Setup Node 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: npm
       - name: Restore Cache
         uses: ./.github/actions/cached-node-modules
       - name: Lint
@@ -49,6 +64,11 @@ jobs:
     steps:
       - name: Git Checkout
         uses: actions/checkout@v4
+      - name: Setup Node 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: npm
       - name: Restore Cache
         uses: ./.github/actions/cached-node-modules
       - name: Test
@@ -61,6 +81,11 @@ jobs:
     steps:
       - name: Git Checkout
         uses: actions/checkout@v4
+      - name: Setup Node 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: npm
       - name: Restore Cache
         uses: ./.github/actions/cached-node-modules
       - name: Build
