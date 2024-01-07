@@ -65,15 +65,3 @@ jobs:
         uses: ./.github/actions/cached-node-modules
       - name: Build
         run: npm run build:production --if-present
-
-  clean:
-    name: Clean Up
-    needs: build
-    if: always()
-    runs-on: ubuntu-latest
-    steps:
-      - name: Clear cache
-        run: gh cache delete $CACHE_KEY --repo fbl-church/fbl-church-app
-        env:
-          GH_TOKEN: ${{ secrets.ACTION_CLEAR_CACHES_TOKEN  }}
-          CACHE_KEY: ${{ github.run_id }}-node-modules
