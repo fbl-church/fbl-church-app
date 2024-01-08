@@ -1,6 +1,6 @@
 <ng-container *ngIf="form">
   <ik-form [formGroup]="form">
-    <ik-form-field header="App Access*" class="col-12" *ngIf="userData">
+    <ik-form-field header="App Access*" class="col-12" *ngIf="userData && enableAccessUpdate">
       <label class="input-inline">
         <input type="radio" formControlName="appAccess" class="form-check-input checkbox__default" [value]="true" />
         <span>Granted</span>

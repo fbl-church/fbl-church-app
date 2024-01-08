@@ -14,6 +14,7 @@ export class UserFormComponent implements OnInit {
   @Input() rightActionButton: string;
   @Input() leftActionButton: string;
   @Input() enableRoleUpdate = true;
+  @Input() enableAccessUpdate = true;
   @Output() cancel = new EventEmitter<any>();
   @Output() save = new EventEmitter<User>();
 
