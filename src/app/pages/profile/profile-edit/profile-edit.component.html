@@ -18,6 +18,7 @@
   <app-guardian-form
     *ngIf="userUpdating && !loading; else pageLoader"
     [guardianData]="userUpdating"
+    [duplicateCheck]="false"
     rightActionButton="Update"
     leftActionButton="Cancel"
     (cancel)="onCancelClick()"
