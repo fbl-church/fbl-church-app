@@ -105,7 +105,8 @@ export class JwtService {
     if (u) {
       roles = u.webRole;
     }
-    return roles.includes(WebRole.GUARDIAN) && roles.length == 1;
+    const expectedRolesLength = roles.includes(WebRole.USER) ? 2 : 1;
+    return roles.includes(WebRole.GUARDIAN) && roles.length == expectedRolesLength;
   }
 
   /**
