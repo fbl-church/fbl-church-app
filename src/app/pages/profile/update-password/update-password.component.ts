@@ -10,6 +10,7 @@ import { UserService } from 'src/service/users/user.service';
 @Component({
   selector: 'app-update-password',
   templateUrl: './update-password.component.html',
+  styleUrls: ['./update-password.component.scss'],
 })
 export class UpdatePasswordComponent implements OnInit, OnDestroy {
   loading = true;
@@ -17,6 +18,10 @@ export class UpdatePasswordComponent implements OnInit, OnDestroy {
   form: FormGroup;
   userId: number;
   destroy = new Subject<void>();
+
+  showCurrentPassword = false;
+  showNewPassword = false;
+  showConfirmPassword = false;
 
   constructor(
     private readonly location: Location,
@@ -99,5 +104,19 @@ export class UpdatePasswordComponent implements OnInit, OnDestroy {
 
   passwordsMatch(): boolean {
     return this.form.value.newPassword === this.form.value.confirmNewPassword;
+  }
+
+  updatePasswordVisibility(type: string) {
+    switch (type) {
+      case 'currentPassword':
+        this.showCurrentPassword = !this.showCurrentPassword;
+        break;
+      case 'newPassword':
+        this.showNewPassword = !this.showNewPassword;
+        break;
+      case 'confirmPassword':
+        this.showConfirmPassword = !this.showConfirmPassword;
+        break;
+    }
   }
 }

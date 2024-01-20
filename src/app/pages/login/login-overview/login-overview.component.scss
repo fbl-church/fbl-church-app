@@ -57,6 +57,14 @@
     @extend .login__icon;
     margin: 22px 0;
   }
+
+  &--eye {
+    @extend .login__icon;
+    color: black;
+    cursor: pointer;
+    font-size: 18px;
+    margin: 24px 0 0 -50px;
+  }
 }
 
 .login__forgot-password {

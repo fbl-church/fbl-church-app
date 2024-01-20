@@ -13,6 +13,10 @@ export class LoginOverviewComponent implements OnInit {
   form: FormGroup;
   loading = false;
 
+  passwordField = 'password';
+  passwordShowIcon = 'eye';
+  showPassword = false;
+
   constructor(
     private readonly authService: AuthService,
     private readonly fb: FormBuilder,
@@ -42,5 +46,11 @@ export class LoginOverviewComponent implements OnInit {
         this.loading = false;
       },
     });
+  }
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+    this.passwordField = this.showPassword ? 'text' : 'password';
+    this.passwordShowIcon = this.showPassword ? 'eye-slash' : 'eye';
   }
 }

@@ -20,6 +20,8 @@ import {
   faClose,
   faDownload,
   faEnvelope,
+  faEye,
+  faEyeSlash,
   faForwardStep,
   faHome,
   faLeftLong,
@@ -97,7 +99,9 @@ export class IconModule {
       faUpload,
       faDownload,
       faBug,
-      faSpinner
+      faSpinner,
+      faEye,
+      faEyeSlash
     );
   }
 }

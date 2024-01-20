@@ -19,7 +19,14 @@
     <div class="row">
       <div class="col-12">
         <fa-icon icon="lock" class="login__icon--password"></fa-icon>
-        <input type="password" id="password" formControlName="password" class="login__input" placeholder="Password" />
+        <input
+          [type]="passwordField"
+          id="password"
+          formControlName="password"
+          class="login__input"
+          placeholder="Password"
+        />
+        <fa-icon (click)="toggleShowPassword()" [icon]="passwordShowIcon" class="login__icon--eye"></fa-icon>
       </div>
     </div>
     <div class="row">
