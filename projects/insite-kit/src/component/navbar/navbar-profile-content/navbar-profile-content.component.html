@@ -11,10 +11,14 @@
     <ik-icon classOverride="navbar_profile__item-icon" icon="user"></ik-icon>
     <span class="navbar_profile__item-text">Profile</span>
   </div>
-  <a class="navbar_profile__item" href="https://github.com/fbl-church/fbl-church-app/issues/new/choose" target="_blank">
+  <div class="navbar_profile__item">
+    <ik-icon classOverride="navbar_profile__item-icon" icon="calendar-days"></ik-icon>
+    <span class="navbar_profile__item-text">Schedule</span>
+  </div>
+  <!-- <a class="navbar_profile__item" href="https://github.com/fbl-church/fbl-church-app/issues/new/choose" target="_blank">
     <ik-icon classOverride="navbar_profile__item-icon" icon="warning"></ik-icon>
     <span class="navbar_profile__item-text">Report Issue</span>
-  </a>
+  </a> -->
   <div class="navbar_profile__item" (click)="onLogOutClick()">
     <ik-icon classOverride="navbar_profile__item-icon" icon="right-from-bracket"></ik-icon>
     <span class="navbar_profile__item-text">Sign out</span>

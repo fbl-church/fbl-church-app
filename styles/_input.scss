@@ -61,6 +61,9 @@ input[readonly] {
       width: auto;
     }
   }
+  &.password {
+    padding: 10px 46px 10px 10px;
+  }
 }
 
 .form-select {

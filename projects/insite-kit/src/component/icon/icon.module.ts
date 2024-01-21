@@ -7,6 +7,7 @@ import {
   faBars,
   faBell,
   faBug,
+  faCalendarDays,
   faCaretDown,
   faCaretLeft,
   faCaretUp,
@@ -101,7 +102,8 @@ export class IconModule {
       faBug,
       faSpinner,
       faEye,
-      faEyeSlash
+      faEyeSlash,
+      faCalendarDays
     );
   }
 }
