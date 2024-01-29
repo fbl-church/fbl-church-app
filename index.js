@@ -1,15 +1,19 @@
-//Install express server
-const express = require("express");
-const path = require("path");
-
+const compression = require('compression');
+const path = require('path');
+const express = require('express');
 const app = express();
+const port = process.env.PORT || 8080;
+// Gzip
+app.use(compression());
 
-// Serve only the static files form the dist directory
-app.use(express.static(__dirname + "/dist/fbl-church-app"));
+// Serve static files from the dist directory
+app.use(express.static(__dirname + '/dist/fbl-church-app'));
 
-app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname + "/dist/fbl-church-app/index.html"));
+// Start the app by listening on the default Heroku port
+app.listen(port);
+
+// Return index.html for all GET requests for PathLocationStrategy
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/dist/fbl-church-app/index.html'));
 });
-
-console.log("Application Succesfully Started!");
-app.listen(process.env.PORT || 8080);
+console.log(`Server listening on ${port}`);
