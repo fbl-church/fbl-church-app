@@ -1,0 +1,24 @@
+.cal-month-view .cal-day-cell {
+  height: auto;
+  min-height: 120px;
+}
+
+.cal-month-view .cal-events {
+  display: none;
+}
+
+.cal-month-view .block-day-icon,
+.cal-week-view .cal-day-columns .block-day-icon,
+.cal-day-view .block-day-icon {
+  height: 100px;
+  width: 100px;
+  background: #868686;
+  border-radius: 5px;
+  position: relative;
+}
+
+@media screen and (max-width: 500px) {
+  .cal-month-view .cal-day-cell {
+    min-height: 90px;
+  }
+}

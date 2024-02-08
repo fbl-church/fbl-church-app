@@ -8,6 +8,7 @@ import { JuniorChurchModule } from './junior-church/junior-church.module';
 import { LoginModule } from './login/login.module';
 import { NurseryModule } from './nursery/nursery.module';
 import { ProfileModule } from './profile/profile.module';
+import { ScheduleModule } from './schedule/schedule.module';
 import { UserModule } from './users/user.module';
 import { VBSModule } from './vbs/vbs.module';
 
@@ -24,6 +25,7 @@ import { VBSModule } from './vbs/vbs.module';
     AccessManagerModule,
     NurseryModule,
     AwanaModule,
+    ScheduleModule,
   ],
 })
 export class PagesModule {}

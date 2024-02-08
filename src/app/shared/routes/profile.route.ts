@@ -8,6 +8,7 @@ import { ProfileChildEditComponent } from 'src/app/pages/profile/profile-child-d
 import { ProfileEditComponent } from 'src/app/pages/profile/profile-edit/profile-edit.component';
 import { ProfileComponent } from 'src/app/pages/profile/profile.component';
 import { UpdatePasswordComponent } from 'src/app/pages/profile/update-password/update-password.component';
+import { ScheduleComponent } from 'src/app/pages/schedule/schedule.component';
 import { ChildResolverService } from 'src/service/children/child-resolver.service';
 import { ProfileResolverService } from 'src/service/users/profile-resolver.service';
 import { AuthenticatedLayoutComponent } from '../components/layouts/authenticated-layout/authenticated-layout.component';
@@ -22,6 +23,10 @@ export const PROFILE_ROUTE: Route = {
       component: ProfileComponent,
       resolve: { currentUser: ProfileResolverService },
       pathMatch: 'full',
+    },
+    {
+      path: 'schedule',
+      component: ScheduleComponent,
     },
     {
       path: 'edit',

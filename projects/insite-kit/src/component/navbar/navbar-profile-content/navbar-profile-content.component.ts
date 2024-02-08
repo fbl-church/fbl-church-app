@@ -48,6 +48,11 @@ export class NavbarProfileContentComponent implements OnInit {
     this.router.navigate(['/profile']);
   }
 
+  onScheduleClick() {
+    this.close();
+    this.router.navigate(['/profile/schedule']);
+  }
+
   onLogOutClick() {
     this.close();
     this.subscriptionService.disconnect();
