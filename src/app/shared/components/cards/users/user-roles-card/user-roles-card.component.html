@@ -2,7 +2,7 @@
   <ik-card-header title="Roles">
     <ng-content></ng-content>
   </ik-card-header>
-  <div class="card__content-padding text-lg">
+  <div class="card__content-padding card-info__label-text">
     <ul *ngIf="user.webRole && user.webRole.length > 0; else noRoles" class="flex">
       <div class="layout__half">
         <ng-container *ngFor="let role of user.webRole; let even = even">
