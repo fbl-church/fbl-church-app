@@ -31,7 +31,6 @@ export class AwanaCheckInComponent {
   }
 
   onRowClick(event: AttendanceRecord) {
-    console.log(event);
     this.router.navigate([`/awana/check-in/${event.id}/details`]);
   }
 

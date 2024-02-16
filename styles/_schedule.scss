@@ -1,0 +1,124 @@
+@import 'variables';
+
+// Calendar Header
+.cal-cell-row.cal-header {
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.month-title {
+  margin: 18px 0;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cal-header-button {
+  font-size: 18px;
+  border-radius: 4px !important;
+  max-width: 105px;
+}
+
+.cal-month-view .cal-cell-top {
+  min-height: auto;
+}
+
+// Calendar Content
+.cal-month-view {
+  border-radius: 8px;
+}
+
+.cal-days {
+  border: none !important;
+}
+
+.cal-month-view .cal-day-cell {
+  height: auto;
+  min-height: 120px;
+}
+
+.cal-month-view .cal-day-number {
+  float: left;
+  margin-top: 15px;
+  margin-left: 10px;
+}
+
+.cal-month-view .cal-day-badge {
+  margin-top: 15px;
+  margin-right: 15px;
+  float: right;
+  margin-bottom: 10px;
+}
+
+.cal-month-view .cal-events {
+  display: none;
+}
+
+.cal-month-view .block-day-icon,
+.cal-week-view .cal-day-columns .block-day-icon,
+.cal-day-view .block-day-icon {
+  height: 100px;
+  width: 100px;
+  background: #868686;
+  border-radius: 5px;
+  position: relative;
+}
+
+div.cal-days > div.ng-star-inserted:last-child > div.cal-cell-row {
+  border-bottom: none;
+}
+
+.calendar-event-pill {
+  border-radius: 50px;
+  margin: 5px;
+  padding: 2px;
+  transition: all 0.25s ease;
+
+  &--ACTIVE {
+    @extend .calendar-event-pill;
+    background-color: rgba(200, 230, 201, 75%);
+    border: solid 1px $green-400;
+  }
+
+  &--PENDING {
+    @extend .calendar-event-pill;
+    background-color: rgba(255, 234, 203, 75%);
+    border: solid 1px $orange-200;
+  }
+
+  &--CLOSED {
+    @extend .calendar-event-pill;
+    background-color: rgba(254, 212, 224, 75%);
+    border: solid 1px $red-400;
+  }
+}
+
+.calendar-event-pill:hover {
+  transform: scale(100.5%);
+}
+
+.calendar-event-pill__text {
+  color: #0d6efd;
+  font-size: 16px;
+}
+
+@media screen and (max-width: $screen-sm-max) {
+  .cal-header-button {
+    max-width: 86px;
+    font-size: 16px !important;
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+
+  .month-title {
+    margin: 10px 0;
+  }
+
+  .cal-month-view .cal-day-cell {
+    min-height: 90px;
+  }
+}

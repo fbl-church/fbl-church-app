@@ -5,24 +5,35 @@
   (viewDateChange)="onViewDateChange($event)"
 ></app-calendar-header>
 <ng-template #myTemplateId>my content here</ng-template>
-<div [ngSwitch]="view">
-  <mwl-calendar-month-view
-    *ngSwitchCase="CalendarView.Month"
-    [viewDate]="viewDate"
-    [events]="events"
-    (dayClicked)="dayClicked($event.day)"
-    [excludeDays]="excludeDays"
-  >
-  </mwl-calendar-month-view>
 
-  <mwl-calendar-week-view
-    *ngSwitchCase="CalendarView.Week"
-    [viewDate]="viewDate"
-    [events]="events"
-    [excludeDays]="excludeDays"
-  >
-  </mwl-calendar-week-view>
+<ik-card>
+  <div [ngSwitch]="view" *ngIf="!loading; else calLoader">
+    <mwl-calendar-month-view
+      *ngSwitchCase="CalendarView.Month"
+      [viewDate]="viewDate"
+      [events]="events"
+      [excludeDays]="excludeDays"
+      [cellTemplate]="customCellTemplate"
+    >
+    </mwl-calendar-month-view>
+  </div>
+</ik-card>
 
-  <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events">
-  </mwl-calendar-day-view>
-</div>
+<ng-template #customCellTemplate let-day="day" let-locale="locale">
+  <div class="cal-cell-top">
+    <span class="cal-day-number">{{ day.date | calendarDate : 'monthViewDayNumber' : locale }}</span>
+    <!-- <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span> -->
+  </div>
+  <div
+    [ngClass]="'calendar-event-pill--' + dayEvent.meta.status"
+    *ngFor="let dayEvent of day.events"
+    (click)="eventClicked(dayEvent)"
+  >
+    <small class="calendar-event-pill__text" style="margin: 5px"
+      ><b>{{ dayEvent.meta.time }}</b> - {{ dayEvent.title }}</small
+    >
+  </div>
+</ng-template>
+<ng-template #calLoader>
+  <ik-loading></ik-loading>
+</ng-template>

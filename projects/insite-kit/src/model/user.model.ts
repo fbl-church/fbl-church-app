@@ -1,3 +1,4 @@
+import { AttendanceStatus } from './attendance-record.model';
 import { ChurchGroup, Relationship, WebRole } from './common.model';
 
 export interface User {
@@ -12,6 +13,15 @@ export interface User {
   lastLoginDate?: Date;
   insertDate?: Date;
   [key: string]: any;
+}
+
+export interface UserSchedule {
+  recordId?: number;
+  userId?: number;
+  recordName?: string;
+  status?: AttendanceStatus;
+  type?: ChurchGroup;
+  activeDate?: Date;
 }
 
 export enum AccountStatus {
