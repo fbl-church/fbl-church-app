@@ -4,8 +4,9 @@ import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { AccountStatus, User } from 'projects/insite-kit/src/model/user.model';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
+import { UserAccessService } from 'projects/insite-kit/src/service/auth/user-access.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
-import { Subject, takeUntil, tap } from 'rxjs';
+import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 
 @Component({
   selector: 'app-user-detail',
@@ -20,6 +21,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   Access = Access;
   editIcon = faPenToSquare;
   canEditRoles = false;
+  canEditUser = false;
 
   destroy = new Subject<void>();
   qrCodeUrl = '';
@@ -28,7 +30,8 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     private readonly route: ActivatedRoute,
     private readonly popupService: PopupService,
     private readonly router: Router,
-    private readonly jwt: JwtService
+    private readonly jwt: JwtService,
+    private readonly userAccessService: UserAccessService
   ) {}
 
   ngOnInit() {
@@ -41,6 +44,8 @@ export class UserDetailComponent implements OnInit, OnDestroy {
           }
         }),
         tap((res) => (this.userData = res.user.body)),
+        switchMap(() => this.userAccessService.user$),
+        tap((ua) => (this.canEditUser = ua.canEditUser(this.userData.webRole))),
         tap(() => (this.canEditRoles = Number(this.jwt.getUserId()) !== this.userData.id)),
         takeUntil(this.destroy)
       )

@@ -2,37 +2,41 @@
   <ik-header title="{{ userData | formatUserName }}">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
 
-    <button
-      class="btn btn-default header-button"
-      (click)="onResetPassword()"
-      *featureAccess="[Application.USERS, FeatureType.DETAIL, Access.UPDATE]"
-    >
-      <ik-icon icon="rotate" classOverride="btn-icon"></ik-icon>
-      Reset Password
-    </button>
-    <button
-      class="btn btn-danger header-button"
-      (click)="deleteUserModal.modal.open()"
-      *featureAccess="[Application.USERS, FeatureType.DETAIL, Access.DELETE]"
-    >
-      <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
-      Delete
-    </button>
+    <ng-container *ngIf="canEditUser" ngProjectAs="button">
+      <button
+        class="btn btn-default header-button"
+        (click)="onResetPassword()"
+        *featureAccess="[Application.USERS, FeatureType.DETAIL, Access.UPDATE]"
+      >
+        <ik-icon icon="rotate" classOverride="btn-icon"></ik-icon>
+        Reset Password
+      </button>
+      <button
+        class="btn btn-danger header-button"
+        (click)="deleteUserModal.modal.open()"
+        *featureAccess="[Application.USERS, FeatureType.DETAIL, Access.DELETE]"
+      >
+        <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
+        Delete
+      </button>
+    </ng-container>
   </ik-header>
   <div class="layout__column-left layout__wide">
     <app-user-details-card [user]="userData" (editClick)="onEditClick()">
-      <ik-icon
-        title="Edit"
-        icon="pen-to-square"
-        class="right pointer"
-        (click)="onEditClick()"
-        *featureAccess="[Application.USERS, FeatureType.DETAIL, Access.UPDATE]"
-      ></ik-icon
-    ></app-user-details-card>
+      <ng-container *ngIf="canEditUser">
+        <ik-icon
+          title="Edit"
+          icon="pen-to-square"
+          class="right pointer"
+          (click)="onEditClick()"
+          *featureAccess="[Application.USERS, FeatureType.DETAIL, Access.UPDATE]"
+        ></ik-icon>
+      </ng-container>
+    </app-user-details-card>
   </div>
   <div class="layout__column-right layout__narrow">
     <app-user-roles-card [user]="userData">
-      <ng-container *ngIf="canEditRoles">
+      <ng-container *ngIf="canEditUser && canEditRoles">
         <ik-icon
           title="Edit"
           icon="pen-to-square"

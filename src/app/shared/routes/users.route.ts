@@ -3,6 +3,7 @@ import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.m
 import { AppAccessGuard } from 'projects/insite-kit/src/service/guards/app-access.guard';
 import { AuthGuard } from 'projects/insite-kit/src/service/guards/auth.guard';
 import { FeatureAccessGuard } from 'projects/insite-kit/src/service/guards/feature-access.guard';
+import { UserEditAccessGuard } from 'projects/insite-kit/src/service/guards/user-edit-access.guard';
 import { CreateUserComponent } from 'src/app/pages/users/create-user/create-user.component';
 import { EditUserComponent } from 'src/app/pages/users/user-detail/pages/edit-user/edit-user.component';
 import { ResetPasswordComponent } from 'src/app/pages/users/user-detail/pages/reset-password/reset-password.component';
@@ -51,7 +52,7 @@ export const USERS_ROUTE: Route = {
     },
     {
       path: ':id/details/edit',
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FeatureAccessGuard, UserEditAccessGuard],
       component: EditUserComponent,
       resolve: { user: UserResolverService },
       data: {
@@ -66,7 +67,7 @@ export const USERS_ROUTE: Route = {
     },
     {
       path: ':id/details/reset-password',
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FeatureAccessGuard, UserEditAccessGuard],
       component: ResetPasswordComponent,
       data: {
         featureAccessGuards: [

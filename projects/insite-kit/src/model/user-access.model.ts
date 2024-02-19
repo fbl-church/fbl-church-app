@@ -15,6 +15,10 @@ export class UserAccess {
     return stringArray.map((r) => r as RankedWebRole);
   }
 
+  get highestRole(): WebRole {
+    return this.getHighestRankingRole(this.roles);
+  }
+
   get apps(): string[] {
     return this.applications;
   }
@@ -84,6 +88,22 @@ export class UserAccess {
     }
 
     return this.determineAccess(access, level);
+  }
+
+  getHighestRankingRole(roles: WebRole[]) {
+    return roles.reduce((max, currentRole) =>
+      Number(RankedWebRole[max]) > Number(RankedWebRole[currentRole]) ? max : currentRole
+    );
+  }
+
+  /**
+   * Determines if the current user can edit the passed in role type based on the
+   * highest ranking of the user.
+   *
+   * @param roleToEdit The roles of the user to edit
+   */
+  canEditUser(userRoles: WebRole[]) {
+    return Number(RankedWebRole[this.highestRole]) > Number(RankedWebRole[this.getHighestRankingRole(userRoles)]);
   }
 
   /**
