@@ -1,18 +1,18 @@
 import { formatDate } from '@angular/common';
-import { Component, Inject, LOCALE_ID, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CalendarDateFormatter, CalendarEvent, CalendarEventTitleFormatter, CalendarView } from 'angular-calendar';
-import { startOfDay } from 'date-fns';
+import { EventColor } from 'calendar-utils';
+import { isSameDay, isSameMonth, startOfDay } from 'date-fns';
+import { AttendanceStatus } from 'projects/insite-kit/src/model/attendance-record.model';
 import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
 import { UserSchedule } from 'projects/insite-kit/src/model/user.model';
 import { UserScheduleService } from 'src/service/schedule/user-schedule.service';
 import { CustomDateFormatter } from './custom-date.formatter';
 import { CustomEventTitleFormatter } from './customer-event-title.formatter';
-
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
-  encapsulation: ViewEncapsulation.None,
   providers: [
     {
       provide: CalendarDateFormatter,
@@ -32,9 +32,8 @@ export class ScheduleComponent implements OnInit {
   events: CalendarEvent[] = [];
   canEdit = false;
   loading = true;
+  activeDayIsOpen = false;
   previousLoadedMonth = -1;
-  excludeDays: number[] = [1, 2, 3, 4, 5, 6];
-  JSON = JSON;
 
   constructor(
     @Inject(LOCALE_ID) private locale: string,
@@ -56,6 +55,7 @@ export class ScheduleComponent implements OnInit {
 
   onViewDateChange(value: Date) {
     this.viewDate = value;
+    this.activeDayIsOpen = false;
     this.reloadCalendarEvents(value.getMonth() + 1);
   }
 
@@ -84,16 +84,53 @@ export class ScheduleComponent implements OnInit {
       this.events.push({
         start: startDate,
         title: s.recordName,
+        color: this.getEventStatusColor(s.status),
         meta: { schedule: s, status: s.status, time: formatDate(startDate, 'h:mm a', this.locale) },
       });
     });
   }
 
-  eventClicked(event: any) {
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    if (isSameMonth(date, this.viewDate)) {
+      if ((isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) || events.length === 0) {
+        this.activeDayIsOpen = false;
+      } else {
+        this.activeDayIsOpen = true;
+      }
+      this.viewDate = date;
+    }
+  }
+
+  eventClicked({ event }: { event: CalendarEvent }) {
     if (event.meta.schedule.type === ChurchGroup.NURSERY) {
       this.router.navigate([`/nursery/check-in/${event.meta.schedule.recordId}/details`]);
     } else if (event.meta.schedule.type === ChurchGroup.JUNIOR_CHURCH) {
       this.router.navigate([`/junior-church/check-in/${event.meta.schedule.recordId}/details`]);
+    }
+  }
+
+  getEventStatusColor(recordStatus: AttendanceStatus): EventColor {
+    switch (recordStatus) {
+      case AttendanceStatus.ACTIVE:
+        return {
+          primary: '#3cbe36',
+          secondary: '#3cbe36',
+        };
+      case AttendanceStatus.PENDING:
+        return {
+          primary: '#feb759',
+          secondary: '#feb759',
+        };
+      case AttendanceStatus.CLOSED:
+        return {
+          primary: '#e32323',
+          secondary: '#e32323',
+        };
+      default:
+        return {
+          primary: '#666',
+          secondary: '#666',
+        };
     }
   }
 }

@@ -6,6 +6,7 @@ import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.m
 import { Subject, of, takeUntil, tap } from 'rxjs';
 import { AttendanceRecordChildrenGridComponent } from 'src/app/shared/components/grids/attendance/attendance-record-children-grid/attendance-record-children-grid.component';
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
+import { NavigationService } from 'src/service/navigation/navigation.service';
 
 @Component({
   selector: 'app-junior-church-attendance-detail',
@@ -28,7 +29,8 @@ export class JuniorChurchAttendanceDetailComponent implements OnInit, OnDestroy 
   constructor(
     private readonly router: Router,
     private readonly route: ActivatedRoute,
-    private readonly attendanceRecordService: AttendanceRecordService
+    private readonly attendanceRecordService: AttendanceRecordService,
+    private readonly navigationService: NavigationService
   ) {}
 
   ngOnInit() {
@@ -58,6 +60,7 @@ export class JuniorChurchAttendanceDetailComponent implements OnInit, OnDestroy 
   }
 
   onBackClick() {
+    this.navigationService.back('/junior-church/check-in');
     this.router.navigate(['/junior-church/check-in']);
   }
 

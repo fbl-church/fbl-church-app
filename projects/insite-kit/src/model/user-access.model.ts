@@ -90,10 +90,13 @@ export class UserAccess {
     return this.determineAccess(access, level);
   }
 
-  getHighestRankingRole(roles: WebRole[]) {
-    return roles.reduce((max, currentRole) =>
-      Number(RankedWebRole[max]) > Number(RankedWebRole[currentRole]) ? max : currentRole
-    );
+  getHighestRankingRole(roles: WebRole[]): WebRole {
+    if (roles && roles.length > 0) {
+      return roles.reduce((max, currentRole) =>
+        Number(RankedWebRole[max]) > Number(RankedWebRole[currentRole]) ? max : currentRole
+      );
+    }
+    return WebRole.USER;
   }
 
   /**
@@ -102,7 +105,7 @@ export class UserAccess {
    *
    * @param roleToEdit The roles of the user to edit
    */
-  canEditUser(userRoles: WebRole[]) {
+  canEditUser(userRoles: WebRole[]): boolean {
     return Number(RankedWebRole[this.highestRole]) > Number(RankedWebRole[this.getHighestRankingRole(userRoles)]);
   }
 

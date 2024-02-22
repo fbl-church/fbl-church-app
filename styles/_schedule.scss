@@ -32,6 +32,28 @@
   border-radius: 8px;
 }
 
+.calendar-event-circle--multi {
+  width: 10px;
+  height: 10px;
+  margin: 4px;
+
+  border-radius: 50%;
+  padding: 2px;
+  font-size: 12px;
+  background: #666;
+  border: 2px solid #666;
+  color: white;
+  text-align: center;
+}
+
+.calendar-cell-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 15px 10px;
+}
+
 .cal-days {
   border: none !important;
 }
@@ -43,15 +65,12 @@
 
 .cal-month-view .cal-day-number {
   float: left;
-  margin-top: 15px;
-  margin-left: 10px;
+  margin: 0 !important;
 }
 
 .cal-month-view .cal-day-badge {
-  margin-top: 15px;
-  margin-right: 15px;
   float: right;
-  margin-bottom: 10px;
+  margin: 0 !important;
 }
 
 .cal-month-view .cal-events {
@@ -72,27 +91,34 @@ div.cal-days > div.ng-star-inserted:last-child > div.cal-cell-row {
   border-bottom: none;
 }
 
+.calendar-event-pill--container {
+  margin: 3px 10px;
+}
+
 .calendar-event-pill {
-  border-radius: 50px;
-  margin: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 2px;
   padding: 2px;
   transition: all 0.25s ease;
 
   &--ACTIVE {
     @extend .calendar-event-pill;
-    background-color: rgba(200, 230, 201, 75%);
+    background-color: $green-400;
     border: solid 1px $green-400;
   }
 
   &--PENDING {
     @extend .calendar-event-pill;
-    background-color: rgba(255, 234, 203, 75%);
+    background-color: $orange-200;
     border: solid 1px $orange-200;
   }
 
   &--CLOSED {
     @extend .calendar-event-pill;
-    background-color: rgba(254, 212, 224, 75%);
+    background-color: $red-400;
     border: solid 1px $red-400;
   }
 }
@@ -120,5 +146,13 @@ div.cal-days > div.ng-star-inserted:last-child > div.cal-cell-row {
 
   .cal-month-view .cal-day-cell {
     min-height: 90px;
+  }
+
+  .calendar-cell-top {
+    margin: 15px 5px;
+  }
+
+  .calendar-event-pill--container {
+    margin: 3px 5px;
   }
 }

@@ -40,6 +40,6 @@
 @import 'schedule';
 
 // Library Styles
-@import 'ngx-toastr/toastr';
-@import 'bootstrap/dist/css/bootstrap.css';
-@import 'angular-calendar/css/angular-calendar.css';
+@import '../node_modules/ngx-toastr/toastr';
+@import '../node_modules/bootstrap/dist/css/bootstrap.css';
+@import '../node_modules/angular-calendar/css/angular-calendar.css';
