@@ -27,6 +27,41 @@
   min-height: auto;
 }
 
+.calendar-navigation {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 5px;
+}
+
+.calendar-navigation--text {
+  font-size: 20px;
+  text-align: center;
+  color: #007afe;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.calendar-nav--icon {
+  font-size: 24px;
+  color: #007afe;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.calendar-navigation--view {
+  background-color: white;
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.calendar-navigation--text:hover,
+.calendar-nav--icon:hover {
+  color: #56a5fa;
+}
+
 // Calendar Content
 .cal-month-view {
   border-radius: 8px;
@@ -141,7 +176,24 @@ div.cal-days > div.ng-star-inserted:last-child > div.cal-cell-row {
   }
 
   .month-title {
-    margin: 10px 0;
+    margin: 10px 5px;
+  }
+
+  .calendar-navigation {
+    margin-right: 5px;
+  }
+
+  .calendar-navigation--text {
+    font-size: 18px;
+  }
+
+  .calendar-nav--icon {
+    font-size: 22px;
+  }
+
+  .calendar-navigation--view {
+    padding: 8px;
+    font-size: 18px;
   }
 
   .cal-month-view .cal-day-cell {

@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import {
   faAddressBook,
+  faAngleLeft,
+  faAngleRight,
   faBabyCarriage,
   faBackwardStep,
   faBars,
@@ -26,6 +28,7 @@ import {
   faForwardStep,
   faHome,
   faLeftLong,
+  faList,
   faLock,
   faPaperPlane,
   faPenToSquare,
@@ -103,7 +106,10 @@ export class IconModule {
       faSpinner,
       faEye,
       faEyeSlash,
-      faCalendarDays
+      faCalendarDays,
+      faAngleLeft,
+      faAngleRight,
+      faList
     );
   }
 }

@@ -1,22 +1,47 @@
-<app-calendar-header
-  [view]="view"
-  [viewDate]="viewDate"
-  (viewChange)="onViewChange($event)"
-  (viewDateChange)="onViewDateChange($event)"
-></app-calendar-header>
-
-<ik-card>
-  <mwl-calendar-month-view
-    *ngIf="!loading; else calLoader"
+<ng-container *ngIf="showCalendar; else listView">
+  <app-calendar-header
+    [view]="view"
     [viewDate]="viewDate"
-    [events]="events"
-    [activeDayIsOpen]="activeDayIsOpen"
-    (dayClicked)="dayClicked($event.day)"
-    (eventClicked)="eventClicked($event)"
-    [cellTemplate]="customCellTemplate"
-  >
-  </mwl-calendar-month-view>
-</ik-card>
+    (viewChange)="onViewChange($event)"
+    (viewDateChange)="onViewDateChange($event)"
+    (calendarViewChange)="onCalendarViewChange($event)"
+  ></app-calendar-header>
+
+  <ik-card>
+    <mwl-calendar-month-view
+      *ngIf="!loading; else calLoader"
+      [viewDate]="viewDate"
+      [events]="events"
+      [activeDayIsOpen]="activeDayIsOpen"
+      (dayClicked)="dayClicked($event.day)"
+      (eventClicked)="eventClicked($event)"
+      [cellTemplate]="customCellTemplate"
+    >
+    </mwl-calendar-month-view>
+  </ik-card>
+</ng-container>
+
+<ng-template #listView>
+  <ik-header title="User Schedule">
+    <button (click)="onCalendarViewChange('calendar')" class="btn btn-primary header-button">
+      <ik-icon icon="calendar-days" classOverride="btn-icon"></ik-icon>
+      View Calendar
+    </button>
+  </ik-header>
+
+  <ik-grid [dataLoader]="listDataloader" (rowClick)="onRowClick($event)" preferenceKey="userScheduleGrid">
+    <ik-grid-search></ik-grid-search>
+    <ik-grid-column label="Name" field="recordName"> </ik-grid-column>
+    <ik-grid-column label="Status" field="status">
+      <ng-template let-data>
+        <div [ngClass]="data.status">{{ data.status }}</div>
+      </ng-template>
+    </ik-grid-column>
+    <ik-grid-column label="Type" field="type"></ik-grid-column>
+    <ik-grid-column label="Active Date" field="activeDate"></ik-grid-column>
+    <ik-grid-pager key="Records" [pageSize]="25"></ik-grid-pager>
+  </ik-grid>
+</ng-template>
 
 <ng-template #customCellTemplate let-day="day" let-locale="locale">
   <div class="cal-cell-top">

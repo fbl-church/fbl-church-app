@@ -34,12 +34,16 @@ export class ScheduleComponent implements OnInit {
   loading = true;
   activeDayIsOpen = false;
   previousLoadedMonth = -1;
+  listDataloader: any;
+  showCalendar = true;
 
   constructor(
     @Inject(LOCALE_ID) private locale: string,
     private readonly scheduleService: UserScheduleService,
     private readonly router: Router
-  ) {}
+  ) {
+    this.listDataloader = (params) => this.scheduleService.getCurrentUserSchedule(params);
+  }
 
   ngOnInit() {
     this.reloadCalendarEvents(new Date().getMonth() + 1);
@@ -57,6 +61,10 @@ export class ScheduleComponent implements OnInit {
     this.viewDate = value;
     this.activeDayIsOpen = false;
     this.reloadCalendarEvents(value.getMonth() + 1);
+  }
+
+  onCalendarViewChange(viewType: string) {
+    this.showCalendar = viewType === 'calendar';
   }
 
   reloadCalendarEvents(month: number) {
@@ -106,6 +114,14 @@ export class ScheduleComponent implements OnInit {
       this.router.navigate([`/nursery/check-in/${event.meta.schedule.recordId}/details`]);
     } else if (event.meta.schedule.type === ChurchGroup.JUNIOR_CHURCH) {
       this.router.navigate([`/junior-church/check-in/${event.meta.schedule.recordId}/details`]);
+    }
+  }
+
+  onRowClick(event: UserSchedule) {
+    if (event.type === ChurchGroup.NURSERY) {
+      this.router.navigate([`/nursery/check-in/${event.recordId}/details`]);
+    } else if (event.type === ChurchGroup.JUNIOR_CHURCH) {
+      this.router.navigate([`/junior-church/check-in/${event.recordId}/details`]);
     }
   }
 
