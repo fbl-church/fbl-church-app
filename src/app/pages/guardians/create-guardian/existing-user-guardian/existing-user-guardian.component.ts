@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { User } from 'projects/insite-kit/src/model/user.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { UserService } from 'src/service/users/user.service';
 import { UserToGuardianModalComponent } from './modals/user-to-guardian-modal/user-to-guardian-modal.component';
 
@@ -15,12 +15,12 @@ export class ExistingUserGuardianComponent {
 
   readonly EXISTING_USER_ROLE_FILTER = ['GUARDIAN', 'CHILD'];
 
-  constructor(private readonly router: Router, private readonly userService: UserService) {
+  constructor(private readonly navigationService: NavigationService, private readonly userService: UserService) {
     this.userDataloader = (params: any) => this.getUserDataLoader(params);
   }
 
   onCancelClick() {
-    this.router.navigate(['/guardians/create']);
+    this.navigationService.navigate('/guardians/create');
   }
 
   getUserDataLoader(params?: Map<string, string[]>) {

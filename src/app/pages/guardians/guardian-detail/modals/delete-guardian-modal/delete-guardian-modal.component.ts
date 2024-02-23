@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { GuardianService } from 'src/service/guardians/guardian.service';
 
@@ -17,7 +17,7 @@ export class DeleteGuardianModalComponent {
   constructor(
     private readonly guardianService: GuardianService,
     private readonly popupService: PopupService,
-    private readonly router: Router
+    private readonly navigationService: NavigationService
   ) {}
 
   onDeleteGuardian() {
@@ -27,7 +27,7 @@ export class DeleteGuardianModalComponent {
         this.modal.close();
         this.modalLoading = false;
         this.popupService.success('Guardian successfully deleted!');
-        this.router.navigate(['/guardians']);
+        this.navigationService.navigate('/guardians');
       },
       error: () => {
         this.modal.close();

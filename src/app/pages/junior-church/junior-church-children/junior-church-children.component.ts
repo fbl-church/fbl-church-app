@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { ChildrenService } from 'src/service/children/children.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class JuniorChurchChildrenComponent {
   Application = App;
   Access = Access;
 
-  constructor(private childrenService: ChildrenService, private readonly router: Router) {
+  constructor(private childrenService: ChildrenService, private readonly navigationService: NavigationService) {
     this.dataloader = (params) => this.getJuniorChurchChildrenDataloader(params);
   }
 
@@ -24,6 +24,6 @@ export class JuniorChurchChildrenComponent {
   }
 
   onRowClick(event: Child) {
-    this.router.navigate([`/junior-church/children/${event.id}/details`]);
+    this.navigationService.navigate(`/junior-church/children/${event.id}/details`);
   }
 }

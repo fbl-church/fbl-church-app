@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { AccountStatus, User } from 'projects/insite-kit/src/model/user.model';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { UserAccessService } from 'projects/insite-kit/src/service/auth/user-access.service';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 
@@ -29,7 +30,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly popupService: PopupService,
-    private readonly router: Router,
+    private readonly navigationService: NavigationService,
     private readonly jwt: JwtService,
     private readonly userAccessService: UserAccessService
   ) {}
@@ -40,7 +41,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
         tap((res) => {
           if (!res.user?.body || res.user.body.accountStatus !== AccountStatus.ACTIVE) {
             this.popupService.warning('User not found or is Inactive!');
-            this.router.navigate(['/users']);
+            this.navigationService.navigate('/users');
           }
         }),
         tap((res) => (this.userData = res.user.body)),
@@ -57,14 +58,14 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   }
 
   onBackClick() {
-    this.router.navigate(['/users']);
+    this.navigationService.back('/users');
   }
 
   onEditClick() {
-    this.router.navigate([`/users/${this.userData.id}/details/edit`]);
+    this.navigationService.navigate(`/users/${this.userData.id}/details/edit`);
   }
 
   onResetPassword() {
-    this.router.navigate([`/users/${this.userData.id}/details/reset-password`]);
+    this.navigationService.navigate(`/users/${this.userData.id}/details/reset-password`);
   }
 }

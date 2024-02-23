@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { GuardianService } from 'src/service/guardians/guardian.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class GuardianComponent {
   Application = App;
   Access = Access;
 
-  constructor(private guardianService: GuardianService, private readonly router: Router) {
+  constructor(private guardianService: GuardianService, private readonly navigationService: NavigationService) {
     this.dataloader = (params: any) => this.getGuardianDataLoader(params);
   }
 
@@ -23,10 +23,10 @@ export class GuardianComponent {
   }
 
   onAddGuardian() {
-    this.router.navigate(['/guardians/create']);
+    this.navigationService.navigate('/guardians/create');
   }
 
   onRowClick(event: any) {
-    this.router.navigate([`/guardians/${event.id}/details`]);
+    this.navigationService.navigate(`/guardians/${event.id}/details`);
   }
 }

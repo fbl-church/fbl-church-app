@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { WizardData } from 'projects/insite-kit/src/model/wizard.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { ChildrenService } from 'src/service/children/children.service';
 
 @Component({
@@ -16,13 +16,16 @@ export class ChildRegistrationWizardStepTwoComponent {
   childrenDataloader: any;
   loading = false;
 
-  constructor(private readonly router: Router, private readonly childrenService: ChildrenService) {
+  constructor(
+    private readonly navigationService: NavigationService,
+    private readonly childrenService: ChildrenService
+  ) {
     this.childrenDataloader = (params) =>
       this.childrenService.get(params.set('notChurchGroup', this.wizardData.filteredOutGroups));
   }
 
   onCancelClick() {
-    this.router.navigate([`${this.wizardData.baseRoute}/check-in`]);
+    this.navigationService.navigate(`${this.wizardData.baseRoute}/check-in`);
   }
 
   onNextClick(child: Child) {

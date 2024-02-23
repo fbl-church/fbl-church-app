@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { FeatureService } from 'src/service/access-manager/feature.service';
 
@@ -20,7 +20,7 @@ export class CreateFeatureModalComponent implements OnInit {
     private readonly featureService: FeatureService,
     private readonly popupService: PopupService,
     private readonly fb: FormBuilder,
-    private readonly router: Router
+    private readonly navigationService: NavigationService
   ) {}
 
   ngOnInit() {
@@ -40,7 +40,7 @@ export class CreateFeatureModalComponent implements OnInit {
       next: (res) => {
         this.modal.close();
         this.popupService.success(`Feature successfully created!`);
-        this.router.navigate([`/access-manager/features/${res.id}/details`]);
+        this.navigationService.navigate(`/access-manager/features/${res.id}/details`);
       },
       error: () => {
         this.popupService.error(`Unable to create feature at this time.`);

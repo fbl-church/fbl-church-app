@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { JwtService } from '../../service/auth/jwt.service';
 import { UserAccessService } from '../../service/auth/user-access.service';
 import { CommonService } from '../../service/common/common.service';
+import { NavigationService } from '../../service/navigation/navigation.service';
 import { SubscriptionService } from '../../subscription/subscription.service';
 import { NavbarProfileContentComponent } from './navbar-profile-content/navbar-profile-content.component';
 
@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
   email: string;
 
   constructor(
-    private readonly router: Router,
+    private readonly navigationService: NavigationService,
     private readonly jwt: JwtService,
     private readonly userAccessService: UserAccessService,
     private readonly subscriptionService: SubscriptionService,
@@ -42,7 +42,7 @@ export class NavbarComponent implements OnInit {
   }
 
   onBellClick() {
-    this.router.navigate(['/notification']);
+    this.navigationService.navigate('/notification');
   }
 
   onProfileClick() {

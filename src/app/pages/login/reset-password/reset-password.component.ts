@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, catchError, map, of, takeUntil, tap } from 'rxjs';
 import { UserService } from 'src/service/users/user.service';
@@ -20,7 +21,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
   constructor(
     private readonly userService: UserService,
     private readonly fb: FormBuilder,
-    private readonly router: Router,
+    private readonly navigationService: NavigationService,
     private readonly popupService: PopupService,
     private readonly jwt: JwtService,
     private readonly route: ActivatedRoute
@@ -34,11 +35,11 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
         tap((token) => {
           const value = this.jwt.get('passwordReset', token);
           if (value === null || !value) {
-            this.router.navigate(['/login']);
+            this.navigationService.navigate('/login');
           }
         }),
         catchError(() => {
-          this.router.navigate(['/login']);
+          this.navigationService.navigate('/login');
           return of(null);
         }),
         takeUntil(this.destroy)
@@ -70,12 +71,12 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
       next: () => {
         this.popupService.success('Password has successfully been reset!');
         this.jwt.removeToken();
-        this.router.navigate(['/login']);
+        this.navigationService.navigate('/login');
       },
       error: () => {
         this.popupService.error('Could not reset password at this time. Please try again later.');
         this.jwt.removeToken();
-        this.router.navigate(['/login']);
+        this.navigationService.navigate('/login');
       },
     });
   }

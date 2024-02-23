@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { WizardComponent } from 'projects/insite-kit/src/component/wizard/wizard.component';
 import { Child, Guardian } from 'projects/insite-kit/src/model/user.model';
 import { WizardData } from 'projects/insite-kit/src/model/wizard.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Observable, Subject, map, takeUntil, tap } from 'rxjs';
 import { ChildrenService } from 'src/service/children/children.service';
@@ -19,7 +20,7 @@ export class ChildRegistrationWizardComponent implements OnInit, OnDestroy {
   destroy = new Subject<void>();
 
   constructor(
-    private readonly router: Router,
+    private readonly navigationService: NavigationService,
     private readonly popupService: PopupService,
     private readonly childrenService: ChildrenService,
     private readonly route: ActivatedRoute
@@ -40,7 +41,7 @@ export class ChildRegistrationWizardComponent implements OnInit, OnDestroy {
   }
 
   onCancelClick() {
-    this.router.navigate([`${this.wizardData.baseRoute}/check-in`]);
+    this.navigationService.navigate(`${this.wizardData.baseRoute}/check-in`);
   }
 
   onStep1Next(exists: boolean, wizard: WizardComponent) {
@@ -79,7 +80,7 @@ export class ChildRegistrationWizardComponent implements OnInit, OnDestroy {
     }
     saveObservable.subscribe({
       next: () => {
-        this.router.navigate([`${this.wizardData.baseRoute}/children`]);
+        this.navigationService.navigate(`${this.wizardData.baseRoute}/children`);
         this.popupService.success(
           `${child.firstName} ${child.lastName} has successfully been registered for ${this.wizardData.translation}!`
         );

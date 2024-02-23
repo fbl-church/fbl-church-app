@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { Guardian } from 'projects/insite-kit/src/model/user.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { GuardianService } from 'src/service/guardians/guardian.service';
 
@@ -19,16 +19,16 @@ export class CreateGuardianComponent {
 
   constructor(
     private readonly guardianService: GuardianService,
-    private readonly router: Router,
+    private readonly navigationService: NavigationService,
     private readonly popupService: PopupService
   ) {}
 
   onCancelClick() {
-    this.router.navigate(['/guardians']);
+    this.navigationService.navigate('/guardians');
   }
 
   onExistingUserClick() {
-    this.router.navigate(['/guardians/create/existing-user']);
+    this.navigationService.navigate('/guardians/create/existing-user');
   }
 
   onSaveClick(guardian: Guardian) {
@@ -37,7 +37,7 @@ export class CreateGuardianComponent {
 
     this.guardianService.create(this.savedGuardianData).subscribe({
       next: (guardian) => {
-        this.router.navigate([`/guardians/${guardian.id}/details`]);
+        this.navigationService.navigate(`/guardians/${guardian.id}/details`);
         this.popupService.success('Guardian Successfully created!');
       },
       error: () => {

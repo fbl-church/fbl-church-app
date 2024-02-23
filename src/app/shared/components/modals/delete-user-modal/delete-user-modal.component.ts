@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { UserService } from 'src/service/users/user.service';
 
@@ -18,7 +18,7 @@ export class DeleteUserModalComponent {
   constructor(
     private readonly userService: UserService,
     private readonly popupService: PopupService,
-    private readonly router: Router
+    private readonly navigationService: NavigationService
   ) {}
 
   open(permanentDelete = false) {
@@ -41,7 +41,7 @@ export class DeleteUserModalComponent {
         this.modal.close();
         this.modalLoading = false;
         this.popupService.success('User successfully marked inactive!');
-        this.router.navigate(['/users']);
+        this.navigationService.navigate('/users');
       },
       error: () => {
         this.popupService.error('User could not be marked inactive at this time!');
@@ -56,7 +56,7 @@ export class DeleteUserModalComponent {
         this.modal.close();
         this.modalLoading = false;
         this.popupService.success('User successfully deleted!');
-        this.router.navigate(['/access-manager/deleted/users']);
+        this.navigationService.navigate('/access-manager/deleted/users');
       },
       error: () => {
         this.popupService.error('User could not be deleted at this time!');

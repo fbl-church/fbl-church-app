@@ -1,9 +1,9 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { GuardianService } from 'src/service/guardians/guardian.service';
 import { UserService } from 'src/service/users/user.service';
@@ -25,7 +25,7 @@ export class UserToGuardianModalComponent implements OnInit {
     private readonly guardianService: GuardianService,
     private readonly commonService: CommonService,
     private readonly popupService: PopupService,
-    private readonly router: Router,
+    private readonly navigationService: NavigationService,
     private readonly fb: FormBuilder
   ) {}
 
@@ -50,7 +50,7 @@ export class UserToGuardianModalComponent implements OnInit {
       .subscribe({
         next: () => {
           this.popupService.success('User succesfully assigned Guardian role!');
-          this.router.navigate([`/guardians/${this.currentUser.id}/details`]);
+          this.navigationService.navigate(`/guardians/${this.currentUser.id}/details`);
         },
 
         error: () => {

@@ -1,8 +1,8 @@
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { UrlService } from 'projects/insite-kit/src/service/url-service/url.service';
 import { Subject, takeUntil, tap } from 'rxjs';
 @Component({
@@ -21,8 +21,7 @@ export class ChildDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly location: Location,
-    private readonly router: Router,
+    private readonly navigationService: NavigationService,
     private readonly urlService: UrlService
   ) {}
 
@@ -41,10 +40,10 @@ export class ChildDetailComponent implements OnInit, OnDestroy {
   }
 
   onBackClick() {
-    this.location.back();
+    this.navigationService.back();
   }
 
   onChildDetailEditClick() {
-    this.router.navigate([`/children/${this.childData.id}/details/edit`]);
+    this.navigationService.navigate(`/children/${this.childData.id}/details/edit`);
   }
 }

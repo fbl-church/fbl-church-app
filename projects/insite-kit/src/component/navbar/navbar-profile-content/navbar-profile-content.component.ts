@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { SubscriptionService } from 'projects/insite-kit/src/subscription/subscription.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class NavbarProfileContentComponent implements OnInit {
   isOpen = false;
 
   constructor(
-    private readonly router: Router,
+    private readonly navigationService: NavigationService,
     private readonly jwt: JwtService,
     private readonly subscriptionService: SubscriptionService,
     private readonly commonService: CommonService
@@ -45,12 +45,12 @@ export class NavbarProfileContentComponent implements OnInit {
 
   onProfileClick() {
     this.close();
-    this.router.navigate(['/profile']);
+    this.navigationService.navigate('/profile');
   }
 
   onScheduleClick() {
     this.close();
-    this.router.navigate(['/profile/schedule']);
+    this.navigationService.navigate('/profile/schedule');
   }
 
   onLogOutClick() {

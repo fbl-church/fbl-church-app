@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { AttendanceRecord } from 'projects/insite-kit/src/model/attendance-record.model';
 import { Access, App, ChurchGroup, FeatureType, WebRole } from 'projects/insite-kit/src/model/common.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
 
 @Component({
@@ -16,15 +16,18 @@ export class NurseryCheckInComponent {
   Application = App;
   Access = Access;
 
-  constructor(private readonly attendanceRecordService: AttendanceRecordService, private readonly router: Router) {
+  constructor(
+    private readonly attendanceRecordService: AttendanceRecordService,
+    private readonly navigationService: NavigationService
+  ) {
     this.dataloader = (params: any) => this.attendanceRecordService.get(params.set('type', [ChurchGroup.NURSERY]));
   }
 
   onRowClick(event: AttendanceRecord) {
-    this.router.navigate([`/nursery/check-in/${event.id}/details`]);
+    this.navigationService.navigate(`/nursery/check-in/${event.id}/details`);
   }
 
   onNewAttendanceRecord() {
-    this.router.navigate(['/nursery/new-record']);
+    this.navigationService.navigate('/nursery/new-record');
   }
 }

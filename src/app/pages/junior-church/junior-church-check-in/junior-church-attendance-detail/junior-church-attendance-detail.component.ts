@@ -1,12 +1,12 @@
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AttendanceRecord } from 'projects/insite-kit/src/model/attendance-record.model';
 import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { Subject, of, takeUntil, tap } from 'rxjs';
 import { AttendanceRecordChildrenGridComponent } from 'src/app/shared/components/grids/attendance/attendance-record-children-grid/attendance-record-children-grid.component';
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
-import { NavigationService } from 'src/service/navigation/navigation.service';
 
 @Component({
   selector: 'app-junior-church-attendance-detail',
@@ -27,7 +27,6 @@ export class JuniorChurchAttendanceDetailComponent implements OnInit, OnDestroy 
   childrenDataloader: any;
 
   constructor(
-    private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly attendanceRecordService: AttendanceRecordService,
     private readonly navigationService: NavigationService
@@ -61,15 +60,14 @@ export class JuniorChurchAttendanceDetailComponent implements OnInit, OnDestroy 
 
   onBackClick() {
     this.navigationService.back('/junior-church/check-in');
-    this.router.navigate(['/junior-church/check-in']);
   }
 
   onEditClick() {
-    this.router.navigate([`/junior-church/check-in/${this.record.id}/details/edit`]);
+    this.navigationService.navigate(`/junior-church/check-in/${this.record.id}/details/edit`);
   }
 
   onChildrenCheckInEditClick() {
-    this.router.navigate([`/junior-church/check-in/${this.record.id}/details/children`]);
+    this.navigationService.navigate(`/junior-church/check-in/${this.record.id}/details/children`);
   }
 
   refreshChildrenGrid() {
@@ -77,6 +75,6 @@ export class JuniorChurchAttendanceDetailComponent implements OnInit, OnDestroy 
   }
 
   onCheckInStarted() {
-    this.router.navigate([`/junior-church/check-in/${this.record.id}/details/children`]);
+    this.navigationService.navigate(`/junior-church/check-in/${this.record.id}/details/children`);
   }
 }

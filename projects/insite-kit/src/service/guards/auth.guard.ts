@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { JwtService } from '../auth/jwt.service';
+import { NavigationService } from '../navigation/navigation.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,7 @@ import { JwtService } from '../auth/jwt.service';
 export class AuthGuard implements CanActivate {
   private readonly UNAUTHENTICATED_ROUTES = ['login', 'register', 'forgot-password', 'reset-password/:id'];
 
-  constructor(private readonly router: Router, private readonly jwt: JwtService) {}
+  constructor(private readonly navigationService: NavigationService, private readonly jwt: JwtService) {}
 
   /**
    * Determine if the current user JWT token is valid. If the token is invalid or expired
@@ -20,11 +21,11 @@ export class AuthGuard implements CanActivate {
   canActivate(next: ActivatedRouteSnapshot): boolean {
     if (!this.jwt.isAuthenticated()) {
       if (!this.UNAUTHENTICATED_ROUTES.includes(next.routeConfig.path)) {
-        this.router.navigate(['/login']);
+        this.navigationService.navigate('/login');
         return false;
       }
     } else if (next.routeConfig.path === 'login') {
-      this.router.navigate(['/profile']);
+      this.navigationService.navigate('/profile');
       return false;
     }
     return true;

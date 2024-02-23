@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Access, App, FeatureType, WebRole } from 'projects/insite-kit/src/model/common.model';
 import { UserAccess } from 'projects/insite-kit/src/model/user-access.model';
 import { Child, Guardian } from 'projects/insite-kit/src/model/user.model';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { UserAccessService } from 'projects/insite-kit/src/service/auth/user-access.service';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 
 @Component({
@@ -24,9 +25,9 @@ export class GuardianDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly router: Router,
     private readonly jwt: JwtService,
-    private readonly userAccessService: UserAccessService
+    private readonly userAccessService: UserAccessService,
+    private readonly navigationService: NavigationService
   ) {}
 
   ngOnInit() {
@@ -45,15 +46,15 @@ export class GuardianDetailComponent implements OnInit, OnDestroy {
   }
 
   onBackClick() {
-    this.router.navigate(['/guardians']);
+    this.navigationService.back('/guardians');
   }
 
   onEditClick() {
-    this.router.navigate([`/guardians/${this.guardianData.id}/details/edit`]);
+    this.navigationService.navigate(`/guardians/${this.guardianData.id}/details/edit`);
   }
 
   onChildRowClick(event: Child) {
-    this.router.navigate([`/children/${event.id}/details`]);
+    this.navigationService.navigate(`/children/${event.id}/details`);
   }
 
   canUserEditGuardian(ua: UserAccess) {

@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
 import { Application, WebRoleApp } from 'projects/insite-kit/src/model/access.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, map, takeUntil } from 'rxjs';
 import { ApplicationService } from 'src/service/access-manager/application.service';
@@ -25,8 +26,8 @@ export class ApplicationDetailComponent implements OnInit, OnDestroy {
   constructor(
     private readonly applicationService: ApplicationService,
     private readonly route: ActivatedRoute,
-    private readonly router: Router,
-    private readonly popupService: PopupService
+    private readonly popupService: PopupService,
+    private readonly navigationService: NavigationService
   ) {}
 
   ngOnInit() {
@@ -47,7 +48,7 @@ export class ApplicationDetailComponent implements OnInit, OnDestroy {
   }
 
   onBackClick() {
-    this.router.navigate(['/access-manager/applications']);
+    this.navigationService.back('/access-manager/applications');
   }
 
   onWebRoleAppUpdated() {

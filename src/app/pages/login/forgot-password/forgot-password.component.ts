@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { EmailService } from 'projects/insite-kit/src/service/email/email.service';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class ForgotPasswordComponent implements OnInit {
   constructor(
     private readonly emailService: EmailService,
     private readonly fb: FormBuilder,
-    private readonly router: Router,
+    private readonly navigationService: NavigationService,
     private readonly popupService: PopupService
   ) {}
 
@@ -38,12 +38,12 @@ export class ForgotPasswordComponent implements OnInit {
         this.popupService.success(
           'Email has sucessfully been sent! Please follow the instructions to reset your password.'
         );
-        this.router.navigate(['/login']);
+        this.navigationService.navigate('/login');
       },
       error: () => {
         this.loading = false;
         this.popupService.error('Could not send email! Please try again later.');
-        this.router.navigate(['/login']);
+        this.navigationService.navigate('/login');
       },
     });
   }

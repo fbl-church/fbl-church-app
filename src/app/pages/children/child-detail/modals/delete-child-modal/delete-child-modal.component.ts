@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { ChildrenService } from 'src/service/children/children.service';
 
@@ -17,7 +17,7 @@ export class DeleteChildModalComponent {
   constructor(
     private readonly childrenService: ChildrenService,
     private readonly popupService: PopupService,
-    private readonly router: Router
+    private readonly navigationService: NavigationService
   ) {}
 
   onDeleteChild() {
@@ -27,7 +27,7 @@ export class DeleteChildModalComponent {
         this.modal.close();
         this.modalLoading = false;
         this.popupService.success('Child successfully deleted!');
-        this.router.navigate(['/children']);
+        this.navigationService.navigate('/children');
       },
       error: () => {
         this.popupService.error('Child could not be deleted at this time!');

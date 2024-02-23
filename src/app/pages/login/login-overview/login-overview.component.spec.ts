@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
 import { AuthService } from 'projects/insite-kit/src/service/auth/auth.service';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { of, throwError } from 'rxjs';
 import { FBLChurchTestBed } from 'src/test/test-bed';
@@ -13,7 +13,7 @@ describe('LoginOverviewComponent', () => {
   let component: LoginOverviewComponent;
   let fixture: ComponentFixture<LoginOverviewComponent>;
   let authService;
-  let router;
+  let navigationService;
   let popupService;
 
   setupTests(async () => FBLChurchTestBed.setup());
@@ -23,12 +23,12 @@ describe('LoginOverviewComponent', () => {
     component = fixture.componentInstance;
 
     authService = TestBed.inject(AuthService);
-    router = TestBed.inject(Router);
+    navigationService = TestBed.inject(NavigationService);
     popupService = TestBed.inject(PopupService);
 
     spyOn(authService, 'authenticate').and.returnValue(of(TestData.getAuthToken()));
 
-    spyOn(router, 'navigate');
+    spyOn(navigationService, 'navigate');
     spyOn(popupService, 'error');
 
     fixture.detectChanges();
@@ -54,7 +54,7 @@ describe('LoginOverviewComponent', () => {
     TestDOM.click('#loginButton');
 
     expect(authService.authenticate).toHaveBeenCalledWith('test@mail.com', 'testPassword');
-    expect(router.navigate).toHaveBeenCalledWith(['/profile']);
+    expect(navigationService.navigate).toHaveBeenCalledWith('/profile');
     expect(popupService.error).not.toHaveBeenCalled();
   });
 
@@ -69,7 +69,7 @@ describe('LoginOverviewComponent', () => {
     TestDOM.click('#loginButton');
 
     expect(authService.authenticate).toHaveBeenCalledWith('test@mail.com', 'testPassword');
-    expect(router.navigate).not.toHaveBeenCalled();
+    expect(navigationService.navigate).not.toHaveBeenCalled();
     expect(popupService.error).toHaveBeenCalledWith('Invalid email or password!');
     expect(component.loading).toBeFalsy();
   });

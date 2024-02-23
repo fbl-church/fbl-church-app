@@ -1,7 +1,7 @@
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject } from 'rxjs';
 import { map, takeUntil, tap } from 'rxjs/operators';
@@ -19,7 +19,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
   destroy = new Subject<void>();
 
   constructor(
-    private readonly location: Location,
+    private readonly navigationService: NavigationService,
     private readonly popupService: PopupService,
     private readonly userService: UserService,
     private readonly fb: FormBuilder,
@@ -50,11 +50,11 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
   }
 
   onCancelClick() {
-    this.location.back();
+    this.onBackClick();
   }
 
   onBackClick() {
-    this.location.back();
+    this.navigationService.back();
   }
 
   onResetClick() {
@@ -69,7 +69,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
     this.userService.updateUserPasswordById(this.userId, passUpdate).subscribe({
       next: () => {
         this.popupService.success('User password successfully reset!');
-        this.location.back();
+        this.onBackClick();
       },
       error: () => {
         this.popupService.error('Could not reset user password at this time!');

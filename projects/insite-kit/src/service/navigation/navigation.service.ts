@@ -6,7 +6,11 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class NavigationService {
-  constructor(private readonly location: Location, private readonly router: Router) {}
+  constructor(private readonly location: Location, private readonly navigationRouter: Router) {}
+
+  get router() {
+    return this.navigationRouter;
+  }
 
   /**
    * This will navigate to the previous route. If there is no previous route in
@@ -21,10 +25,28 @@ export class NavigationService {
       this.location.back();
     } else {
       if (defaultRoute) {
-        this.router.navigate([defaultRoute]);
+        this.navigationRouter.navigate([defaultRoute]);
       } else {
-        this.router.navigate(['/profile']);
+        this.navigationRouter.navigate(['/profile']);
       }
     }
+  }
+
+  /**
+   * Navigates to the given route based on the current tree url.
+   *
+   * @param route The route to go to
+   */
+  navigate(route: string): Promise<boolean> {
+    return this.navigationRouter.navigate([route]);
+  }
+
+  /**
+   * Gets the current router url
+   *
+   * @returns String of the current router url
+   */
+  routerUrl(): string {
+    return this.navigationRouter.routerState.snapshot.url;
   }
 }

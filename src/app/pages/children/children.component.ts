@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { ChildrenService } from 'src/service/children/children.service';
 
 @Component({
@@ -14,7 +14,10 @@ export class ChildrenComponent {
   Application = App;
   Access = Access;
 
-  constructor(private readonly childrenService: ChildrenService, private readonly router: Router) {
+  constructor(
+    private readonly childrenService: ChildrenService,
+    private readonly navigationService: NavigationService
+  ) {
     this.dataloader = (params: any) => this.getchildDataLoader(params);
   }
 
@@ -23,10 +26,10 @@ export class ChildrenComponent {
   }
 
   onAddChild() {
-    this.router.navigate(['/children/create']);
+    this.navigationService.navigate('/children/create');
   }
 
   onRowClick(event: any) {
-    this.router.navigate([`/children/${event.id}/details`]);
+    this.navigationService.navigate(`/children/${event.id}/details`);
   }
 }

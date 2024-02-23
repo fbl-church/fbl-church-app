@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { Child } from 'projects/insite-kit/src/model/user.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { ChildGuardiansGridCardComponent } from 'src/app/shared/components/cards/children/child-guardians-grid-card/child-guardians-grid-card.component';
 import { DuplicateChildModalComponent } from 'src/app/shared/components/modals/duplicate-child-modal/duplicate-child-modal.component';
@@ -26,12 +26,12 @@ export class CreateChildComponent {
 
   constructor(
     private readonly childrenService: ChildrenService,
-    private readonly router: Router,
+    private readonly navigationService: NavigationService,
     private readonly popupService: PopupService
   ) {}
 
   onCancelClick() {
-    this.router.navigate(['/children']);
+    this.navigationService.back('/children');
   }
 
   onSaveClick(child: Child) {
@@ -63,7 +63,7 @@ export class CreateChildComponent {
     this.loading = true;
     this.childrenService.create(this.savedChildData).subscribe({
       next: (child) => {
-        this.router.navigate([`/children/${child.id}/details`]);
+        this.navigationService.navigate(`/children/${child.id}/details`);
         this.popupService.success('Child Successfully created!');
       },
       error: () => {

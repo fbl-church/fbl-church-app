@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { Router } from '@angular/router';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { WizardData } from 'projects/insite-kit/src/model/wizard.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { ChildrenService } from 'src/service/children/children.service';
 import { GuardianService } from 'src/service/guardians/guardian.service';
 
@@ -19,7 +19,7 @@ export class ChildRegistrationWizardStepFourComponent implements OnChanges {
   activeChild: Child;
 
   constructor(
-    private readonly router: Router,
+    private readonly navigationService: NavigationService,
     private readonly childrenService: ChildrenService,
     private readonly guardianService: GuardianService
   ) {}
@@ -67,7 +67,7 @@ export class ChildRegistrationWizardStepFourComponent implements OnChanges {
   }
 
   onCancelClick() {
-    this.router.navigate([`${this.wizardData.baseRoute}/check-in`]);
+    this.navigationService.navigate(`${this.wizardData.baseRoute}/check-in`);
   }
 
   onPreviousClick() {

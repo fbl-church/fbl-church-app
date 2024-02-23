@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { UrlService } from 'projects/insite-kit/src/service/url-service/url.service';
 import { Subject, takeUntil, tap } from 'rxjs';
 @Component({
@@ -20,7 +21,7 @@ export class ProfileChildDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly router: Router,
+    private readonly navigationService: NavigationService,
     private readonly urlService: UrlService
   ) {}
 
@@ -39,10 +40,10 @@ export class ProfileChildDetailsComponent implements OnInit, OnDestroy {
   }
 
   onBackClick() {
-    this.router.navigate([`/profile`]);
+    this.navigationService.back(`/profile`);
   }
 
   onChildDetailEditClick() {
-    this.router.navigate([`/profile/child/${this.childData.id}/edit`]);
+    this.navigationService.navigate(`/profile/child/${this.childData.id}/edit`);
   }
 }

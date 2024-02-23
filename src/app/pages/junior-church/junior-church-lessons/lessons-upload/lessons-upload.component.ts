@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { StorageService } from 'src/service/storage/storage.service';
 
 @Component({
@@ -11,11 +11,11 @@ export class LessonsUploadComponent {
   readonly uploadPath = `${ChurchGroup.JUNIOR_CHURCH}/lessons`;
   uploader: any;
 
-  constructor(private readonly storageService: StorageService, private readonly router: Router) {
+  constructor(private readonly storageService: StorageService, private readonly navigationService: NavigationService) {
     this.uploader = (fileItem) => this.storageService.upload(fileItem, this.uploadPath);
   }
 
   onBackClick() {
-    this.router.navigate(['/junior-church/lessons']);
+    this.navigationService.back('/junior-church/lessons');
   }
 }

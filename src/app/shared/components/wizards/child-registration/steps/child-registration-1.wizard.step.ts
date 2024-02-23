@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import { WizardData } from 'projects/insite-kit/src/model/wizard.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 
 @Component({
   selector: 'app-child-registration-wizard-step-one',
@@ -10,10 +10,10 @@ export class ChildRegistrationWizardStepOneComponent {
   @Input() wizardData: WizardData;
   @Output() next = new EventEmitter<boolean>();
 
-  constructor(private readonly router: Router) {}
+  constructor(private readonly navigationService: NavigationService) {}
 
   onCancelClick() {
-    this.router.navigate([`${this.wizardData.baseRoute}/check-in`]);
+    this.navigationService.navigate(`${this.wizardData.baseRoute}/check-in`);
   }
 
   onNextClick(exists: boolean) {

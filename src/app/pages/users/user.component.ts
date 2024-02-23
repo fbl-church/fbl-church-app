@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { UserService } from 'src/service/users/user.service';
 
 @Component({
@@ -14,16 +14,16 @@ export class UserComponent {
   Application = App;
   Access = Access;
 
-  constructor(private userService: UserService, private readonly router: Router) {
+  constructor(private userService: UserService, private readonly navigationService: NavigationService) {
     this.dataloader = (params: any) => this.getUserDataLoader(params);
   }
 
   onAddUser() {
-    this.router.navigate(['/users/create']);
+    this.navigationService.navigate('/users/create');
   }
 
   onRowClick(user: any) {
-    this.router.navigate([`/users/${user.id}/details`]);
+    this.navigationService.navigate(`/users/${user.id}/details`);
   }
 
   getUserDataLoader(params?: Map<string, string[]>) {

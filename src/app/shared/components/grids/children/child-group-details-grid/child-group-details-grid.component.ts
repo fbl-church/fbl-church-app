@@ -1,9 +1,9 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Router } from '@angular/router';
 import { Access, App, FeatureType, TranslationKey } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { of } from 'rxjs';
 
 @Component({
@@ -19,7 +19,7 @@ export class ChildGroupDetailsGridComponent implements OnChanges {
   Application = App;
   Access = Access;
 
-  constructor(private readonly commonService: CommonService, private readonly router: Router) {
+  constructor(private readonly commonService: CommonService, private readonly navigationService: NavigationService) {
     this.dataloader = () => this.getChildChurchGroups();
   }
 
@@ -41,6 +41,6 @@ export class ChildGroupDetailsGridComponent implements OnChanges {
   }
 
   onEditIconClick() {
-    this.router.navigate([`/children/${this.child.id}/details/edit`]);
+    this.navigationService.navigate(`/children/${this.child.id}/details/edit`);
   }
 }

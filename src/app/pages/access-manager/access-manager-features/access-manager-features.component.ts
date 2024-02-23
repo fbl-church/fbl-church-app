@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Application } from 'projects/insite-kit/src/model/access.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { ApplicationService } from 'src/service/access-manager/application.service';
 import { FeatureService } from 'src/service/access-manager/feature.service';
 
@@ -15,7 +15,7 @@ export class AccessManagerFeaturesComponent implements OnInit {
   constructor(
     private readonly featureService: FeatureService,
     private readonly applicationService: ApplicationService,
-    private readonly router: Router
+    private readonly navigationService: NavigationService
   ) {
     this.dataloader = (params: any) => this.featureService.get(params);
   }
@@ -29,6 +29,6 @@ export class AccessManagerFeaturesComponent implements OnInit {
   }
 
   onRowClick(app: Application) {
-    this.router.navigate([`/access-manager/features/${app.id}/details`]);
+    this.navigationService.navigate(`/access-manager/features/${app.id}/details`);
   }
 }

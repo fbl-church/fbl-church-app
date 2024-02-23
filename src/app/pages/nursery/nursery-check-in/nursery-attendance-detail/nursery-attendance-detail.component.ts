@@ -1,8 +1,9 @@
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AttendanceRecord } from 'projects/insite-kit/src/model/attendance-record.model';
 import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { Subject, of, takeUntil, tap } from 'rxjs';
 import { AttendanceRecordChildrenGridComponent } from 'src/app/shared/components/grids/attendance/attendance-record-children-grid/attendance-record-children-grid.component';
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
@@ -26,9 +27,9 @@ export class NurseryAttendanceDetailComponent implements OnInit, OnDestroy {
   childrenDataloader: any;
 
   constructor(
-    private readonly router: Router,
     private readonly route: ActivatedRoute,
-    private readonly attendanceRecordService: AttendanceRecordService
+    private readonly attendanceRecordService: AttendanceRecordService,
+    private readonly navigationService: NavigationService
   ) {}
 
   ngOnInit() {
@@ -58,15 +59,15 @@ export class NurseryAttendanceDetailComponent implements OnInit, OnDestroy {
   }
 
   onBackClick() {
-    this.router.navigate(['/nursery/check-in']);
+    this.navigationService.back('/nursery/check-in');
   }
 
   onEditClick() {
-    this.router.navigate([`/nursery/check-in/${this.record.id}/details/edit`]);
+    this.navigationService.navigate(`/nursery/check-in/${this.record.id}/details/edit`);
   }
 
   onChildrenCheckInEditClick() {
-    this.router.navigate([`/nursery/check-in/${this.record.id}/details/children`]);
+    this.navigationService.navigate(`/nursery/check-in/${this.record.id}/details/children`);
   }
 
   refreshChildrenGrid() {
@@ -74,6 +75,6 @@ export class NurseryAttendanceDetailComponent implements OnInit, OnDestroy {
   }
 
   onCheckInStarted() {
-    this.router.navigate([`/nursery/check-in/${this.record.id}/details/children`]);
+    this.navigationService.navigate(`/nursery/check-in/${this.record.id}/details/children`);
   }
 }

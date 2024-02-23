@@ -29,7 +29,11 @@
     </button>
   </ik-header>
 
-  <ik-grid [dataLoader]="listDataloader" (rowClick)="onRowClick($event)" preferenceKey="userScheduleGrid">
+  <ik-grid
+    [dataLoader]="listDataloader"
+    (rowClick)="routeToEvent($event.type, $event.recordId)"
+    preferenceKey="userScheduleGrid"
+  >
     <ik-grid-search></ik-grid-search>
     <ik-grid-column label="Name" field="recordName"> </ik-grid-column>
     <ik-grid-column label="Status" field="status">

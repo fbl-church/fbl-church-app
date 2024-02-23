@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { Observable, map, of, tap } from 'rxjs';
 import { UserAccessService } from '../auth/user-access.service';
+import { NavigationService } from '../navigation/navigation.service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,10 @@ import { UserAccessService } from '../auth/user-access.service';
 export class AppAccessGuard implements CanActivate {
   private readonly DEFAULT_APP_ROUTES = ['login', 'home', 'profile'];
 
-  constructor(private readonly router: Router, private readonly userAccessService: UserAccessService) {}
+  constructor(
+    private readonly navigationService: NavigationService,
+    private readonly userAccessService: UserAccessService
+  ) {}
 
   /**
    * Determine if the current authenticated user has access to the application
@@ -49,8 +53,8 @@ export class AppAccessGuard implements CanActivate {
    * @returns If the user is able to see the route.
    */
   private emptyRoute(access: boolean): boolean {
-    if (!access && this.router.routerState.snapshot.url === '') {
-      this.router.navigate(['/profile']);
+    if (!access && this.navigationService.routerUrl() === '') {
+      this.navigationService.navigate('/profile');
     }
     return access;
   }

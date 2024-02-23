@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
 import { Access, App, ChurchGroup, FeatureType } from 'projects/insite-kit/src/model/common.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { StorageService } from 'src/service/storage/storage.service';
 
 @Component({
@@ -18,12 +18,12 @@ export class JuniorChurchLessonsComponent {
   Application = App;
   Access = Access;
 
-  constructor(private readonly storageService: StorageService, private readonly router: Router) {
+  constructor(private readonly storageService: StorageService, private readonly navigationService: NavigationService) {
     this.fileDataloader = (params) => this.storageService.get(params.set('path', [this.readPath]));
   }
 
   onUploadClick() {
-    this.router.navigate(['/junior-church/lessons/upload']);
+    this.navigationService.navigate('/junior-church/lessons/upload');
   }
 
   refreshGrid() {

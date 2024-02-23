@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 
 @Component({
   selector: 'ik-info-card',
@@ -10,11 +10,11 @@ export class InfoCardComponent {
   @Input() title: string;
   @Input() pageRoute: string;
 
-  constructor(private router: Router) {}
+  constructor(private navigationService: NavigationService) {}
 
   routeToApp() {
     if (this.pageRoute) {
-      this.router.navigate([this.pageRoute]);
+      this.navigationService.navigate(this.pageRoute);
     }
   }
 }

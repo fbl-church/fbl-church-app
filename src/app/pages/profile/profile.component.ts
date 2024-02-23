@@ -1,8 +1,8 @@
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
 import { Child, Guardian, User } from 'projects/insite-kit/src/model/user.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { Subject, takeUntil, tap } from 'rxjs';
 @Component({
   selector: 'app-profile',
@@ -15,11 +15,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   isGuardianOnly = false;
   destroy = new Subject<void>();
 
-  constructor(
-    private readonly route: ActivatedRoute,
-    private readonly location: Location,
-    private readonly router: Router
-  ) {}
+  constructor(private readonly route: ActivatedRoute, private readonly navigationService: NavigationService) {}
 
   ngOnInit() {
     this.route.data
@@ -36,15 +32,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   onEditClick() {
-    this.router.navigate(['/profile/edit']);
+    this.navigationService.navigate('/profile/edit');
   }
 
   onResetPassword() {
-    this.router.navigate(['/profile/reset-password']);
+    this.navigationService.navigate('/profile/reset-password');
   }
 
   onChildRowClick(child: Child) {
-    this.router.navigate([`/profile/child/${child.id}`]);
+    this.navigationService.navigate(`/profile/child/${child.id}`);
   }
 
   guardianOnlyUser() {

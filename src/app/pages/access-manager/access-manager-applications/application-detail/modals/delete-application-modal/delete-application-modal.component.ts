@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { ApplicationService } from 'src/service/access-manager/application.service';
 
@@ -17,7 +17,7 @@ export class DeleteApplicationModalComponent {
   constructor(
     private readonly applicationService: ApplicationService,
     private readonly popupService: PopupService,
-    private readonly router: Router
+    private readonly navigationService: NavigationService
   ) {}
 
   onDeleteApplication() {
@@ -25,7 +25,7 @@ export class DeleteApplicationModalComponent {
     this.applicationService.delete(this.appId).subscribe({
       next: () => {
         this.modal.close();
-        this.router.navigate(['/access-manager/applications']);
+        this.navigationService.navigate('/access-manager/applications');
         this.popupService.success('Application successfully deleted!');
       },
       error: () => {

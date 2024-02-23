@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
 
@@ -18,7 +18,7 @@ export class DeleteRecordModalComponent {
   constructor(
     private readonly attendanceRecordService: AttendanceRecordService,
     private readonly popupService: PopupService,
-    private readonly router: Router
+    private readonly navigationService: NavigationService
   ) {}
 
   onDeleteUser() {
@@ -26,7 +26,7 @@ export class DeleteRecordModalComponent {
     this.attendanceRecordService.delete(this.recordId).subscribe({
       next: () => {
         this.modal.close();
-        this.router.navigate([this.route]);
+        this.navigationService.navigate(this.route);
         this.popupService.success('Attendance Record Successfully Deleted!');
       },
       error: () => {

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { ChildrenService } from 'src/service/children/children.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { ChildrenService } from 'src/service/children/children.service';
 export class AwanaChildrenComponent {
   dataloader: any;
 
-  constructor(private childrenService: ChildrenService, private readonly router: Router) {
+  constructor(private childrenService: ChildrenService, private readonly navigationService: NavigationService) {
     this.dataloader = (params) => this.getAwanaChildrenDataloader(params);
   }
 
@@ -28,6 +28,6 @@ export class AwanaChildrenComponent {
   }
 
   onRowClick(event: Child) {
-    this.router.navigate([`/awana/children/${event.id}/details`]);
+    this.navigationService.navigate(`/awana/children/${event.id}/details`);
   }
 }

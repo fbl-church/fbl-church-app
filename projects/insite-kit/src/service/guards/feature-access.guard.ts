@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { Observable, filter, forkJoin, map, take } from 'rxjs';
 import { UserAccessService } from '../auth/user-access.service';
+import { NavigationService } from '../navigation/navigation.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FeatureAccessGuard implements CanActivate {
-  constructor(private router: Router, private readonly userAccessService: UserAccessService) {}
+  constructor(
+    private readonly navigationService: NavigationService,
+    private readonly userAccessService: UserAccessService
+  ) {}
 
   /**
    * Determine if the current user JWT token is valid. If the token is invalid or expired
@@ -29,8 +33,8 @@ export class FeatureAccessGuard implements CanActivate {
       map((v: any) => {
         if (!v.includes(false)) {
           return true;
-        } else if (this.router.routerState.snapshot.url === '') {
-          this.router.navigate(['/profile']);
+        } else if (this.navigationService.routerUrl() === '') {
+          this.navigationService.navigate('/profile');
         }
         return false;
       })

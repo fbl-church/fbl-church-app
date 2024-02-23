@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { AccountStatus, User } from 'projects/insite-kit/src/model/user.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { UserService } from 'src/service/users/user.service';
@@ -28,7 +29,7 @@ export class DeletedUsersDetailComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private readonly route: ActivatedRoute,
     private readonly popupService: PopupService,
-    private readonly router: Router
+    private readonly navigationService: NavigationService
   ) {}
 
   ngOnInit() {
@@ -37,7 +38,7 @@ export class DeletedUsersDetailComponent implements OnInit, OnDestroy {
         tap((res) => {
           if (!res.user?.body || res.user.body.accountStatus !== AccountStatus.INACTIVE) {
             this.popupService.warning('Deleted User not found!');
-            this.router.navigate(['/access-manager/deleted/users']);
+            this.onBackClick();
           }
         }),
         tap((res) => (this.userData = res.user.body)),
@@ -55,7 +56,7 @@ export class DeletedUsersDetailComponent implements OnInit, OnDestroy {
     this.userService.restore(this.userData.id).subscribe({
       next: () => {
         this.popupService.success('User Successfully Restored!');
-        this.router.navigate([`/users/${this.userData.id}/details`]);
+        this.navigationService.navigate(`/users/${this.userData.id}/details`);
       },
       error: () => {
         this.popupService.error('Unable to restore user at this time. Try again later');
@@ -65,6 +66,6 @@ export class DeletedUsersDetailComponent implements OnInit, OnDestroy {
   }
 
   onBackClick() {
-    this.router.navigate(['/access-manager/deleted/users']);
+    this.navigationService.back('/access-manager/deleted/users');
   }
 }

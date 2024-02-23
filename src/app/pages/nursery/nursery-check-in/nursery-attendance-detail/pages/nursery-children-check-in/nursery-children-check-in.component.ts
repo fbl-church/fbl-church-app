@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
 import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
 import { NurseryCheckInChildModalComponent } from '../../modals/check-in-child-modal/check-in-child-modal.component';
@@ -29,7 +30,7 @@ export class NurseryChildrenCheckInComponent implements OnInit, OnDestroy {
   constructor(
     private readonly attendanceRecordService: AttendanceRecordService,
     private readonly route: ActivatedRoute,
-    private readonly router: Router
+    private readonly navigationService: NavigationService
   ) {}
 
   ngOnInit() {
@@ -50,7 +51,7 @@ export class NurseryChildrenCheckInComponent implements OnInit, OnDestroy {
   }
 
   onBackClick() {
-    this.router.navigate([`/nursery/check-in/${this.recordId}/details`]);
+    this.navigationService.back(`/nursery/check-in/${this.recordId}/details`);
   }
 
   onCancelClick() {
@@ -66,6 +67,6 @@ export class NurseryChildrenCheckInComponent implements OnInit, OnDestroy {
   }
 
   onNewChild() {
-    this.router.navigate(['/nursery/registration']);
+    this.navigationService.navigate('/nursery/registration');
   }
 }

@@ -1,10 +1,10 @@
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { AttendanceRecord, ChildAttendance } from 'projects/insite-kit/src/model/attendance-record.model';
 import { Access, App, ChurchGroup, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { ChildAttendanceService } from 'src/service/attendance/child-attendance.service';
 @Component({
@@ -28,8 +28,7 @@ export class NurseryChildDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly location: Location,
-    private readonly router: Router,
+    private readonly navigationService: NavigationService,
     private readonly childAttendanceService: ChildAttendanceService
   ) {}
 
@@ -50,11 +49,11 @@ export class NurseryChildDetailComponent implements OnInit, OnDestroy {
   }
 
   onBackClick() {
-    this.location.back();
+    this.navigationService.back();
   }
 
   onChildDetailEditClick() {
-    this.router.navigate([`/children/${this.childData.id}/details/edit`]);
+    this.navigationService.navigate(`/children/${this.childData.id}/details/edit`);
   }
 
   getChildAttendanceDataloader(params?: Map<string, string[]>) {

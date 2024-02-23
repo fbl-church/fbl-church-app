@@ -1,8 +1,8 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Router } from '@angular/router';
 import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { Guardian } from 'projects/insite-kit/src/model/user.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { of } from 'rxjs';
 
 @Component({
@@ -21,7 +21,7 @@ export class ChildGuardiansDetailsGridComponent implements OnChanges {
   Application = App;
   Access = Access;
 
-  constructor(private readonly router: Router) {}
+  constructor(private readonly navigationService: NavigationService) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.guardians && changes.guardians.currentValue) {
@@ -30,12 +30,12 @@ export class ChildGuardiansDetailsGridComponent implements OnChanges {
   }
 
   onEditIconClick() {
-    this.router.navigate([`/children/${this.childId}/details/guardians/edit`]);
+    this.navigationService.navigate(`/children/${this.childId}/details/guardians/edit`);
   }
 
   onRowClick(event: any) {
     if (this.enableRowClick) {
-      this.router.navigate([`/guardians/${event.id}/details`]);
+      this.navigationService.navigate(`/guardians/${event.id}/details`);
     }
   }
 }

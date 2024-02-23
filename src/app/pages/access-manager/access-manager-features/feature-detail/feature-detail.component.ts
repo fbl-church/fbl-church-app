@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
 import { Feature, WebRoleFeature } from 'projects/insite-kit/src/model/access.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { FeatureService } from 'src/service/access-manager/feature.service';
@@ -26,7 +27,7 @@ export class FeatureDetailComponent implements OnInit, OnDestroy {
   constructor(
     private readonly featureService: FeatureService,
     private readonly route: ActivatedRoute,
-    private readonly router: Router,
+    private readonly navigationService: NavigationService,
     private readonly popupService: PopupService
   ) {}
 
@@ -50,7 +51,7 @@ export class FeatureDetailComponent implements OnInit, OnDestroy {
   }
 
   onBackClick() {
-    this.router.navigate(['/access-manager/features']);
+    this.navigationService.back('/access-manager/features');
   }
 
   onRowClick(event: WebRoleFeature) {

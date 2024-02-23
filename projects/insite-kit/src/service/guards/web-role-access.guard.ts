@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { Observable, filter, forkJoin, map, take } from 'rxjs';
 import { WebRole } from '../../model/common.model';
 import { UserAccessService } from '../auth/user-access.service';
+import { NavigationService } from '../navigation/navigation.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WebRoleAccessGuard implements CanActivate {
-  constructor(private readonly router: Router, private readonly userAccessService: UserAccessService) {}
+  constructor(
+    private readonly navigationService: NavigationService,
+    private readonly userAccessService: UserAccessService
+  ) {}
 
   /**
    * Determine if the user has the correct roles to trigger this guard.
@@ -29,8 +33,8 @@ export class WebRoleAccessGuard implements CanActivate {
       map((v: any) => {
         if (!v.includes(false)) {
           return true;
-        } else if (this.router.routerState.snapshot.url === '') {
-          this.router.navigate(['/profile']);
+        } else if (this.navigationService.routerUrl() === '') {
+          this.navigationService.navigate('/profile');
           return false;
         } else {
           return false;

@@ -1,12 +1,12 @@
 import { formatDate } from '@angular/common';
 import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { CalendarDateFormatter, CalendarEvent, CalendarEventTitleFormatter, CalendarView } from 'angular-calendar';
 import { EventColor } from 'calendar-utils';
 import { isSameDay, isSameMonth, startOfDay } from 'date-fns';
 import { AttendanceStatus } from 'projects/insite-kit/src/model/attendance-record.model';
 import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
 import { UserSchedule } from 'projects/insite-kit/src/model/user.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { UserScheduleService } from 'src/service/schedule/user-schedule.service';
 import { CustomDateFormatter } from './custom-date.formatter';
 import { CustomEventTitleFormatter } from './customer-event-title.formatter';
@@ -40,7 +40,7 @@ export class ScheduleComponent implements OnInit {
   constructor(
     @Inject(LOCALE_ID) private locale: string,
     private readonly scheduleService: UserScheduleService,
-    private readonly router: Router
+    private readonly navigationService: NavigationService
   ) {
     this.listDataloader = (params) => this.scheduleService.getCurrentUserSchedule(params);
   }
@@ -110,18 +110,14 @@ export class ScheduleComponent implements OnInit {
   }
 
   eventClicked({ event }: { event: CalendarEvent }) {
-    if (event.meta.schedule.type === ChurchGroup.NURSERY) {
-      this.router.navigate([`/nursery/check-in/${event.meta.schedule.recordId}/details`]);
-    } else if (event.meta.schedule.type === ChurchGroup.JUNIOR_CHURCH) {
-      this.router.navigate([`/junior-church/check-in/${event.meta.schedule.recordId}/details`]);
-    }
+    this.routeToEvent(event.meta.schedule.type, event.meta.schedule.recordId);
   }
 
-  onRowClick(event: UserSchedule) {
-    if (event.type === ChurchGroup.NURSERY) {
-      this.router.navigate([`/nursery/check-in/${event.recordId}/details`]);
-    } else if (event.type === ChurchGroup.JUNIOR_CHURCH) {
-      this.router.navigate([`/junior-church/check-in/${event.recordId}/details`]);
+  routeToEvent(group: ChurchGroup, recordId: number) {
+    if (group === ChurchGroup.NURSERY) {
+      this.navigationService.navigate(`/nursery/check-in/${recordId}/details`);
+    } else if (group === ChurchGroup.JUNIOR_CHURCH) {
+      this.navigationService.navigate(`/junior-church/check-in/${recordId}/details`);
     }
   }
 

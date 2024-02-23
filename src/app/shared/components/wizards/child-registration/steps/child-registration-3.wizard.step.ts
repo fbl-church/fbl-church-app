@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { Guardian } from 'projects/insite-kit/src/model/user.model';
 import { WizardData } from 'projects/insite-kit/src/model/wizard.model';
-import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { ChildGuardiansGridCardComponent } from 'src/app/shared/components/cards/children/child-guardians-grid-card/child-guardians-grid-card.component';
 import { GuardianWarningModalComponent } from '../../../modals/guardian-warning-modal/guardian-warning-modal.component';
 
@@ -19,10 +18,10 @@ export class ChildRegistrationWizardStepThreeComponent {
   @Input() wizardData: WizardData;
   @Output() next = new EventEmitter<Guardian[]>();
 
-  constructor(private readonly router: Router, private readonly popupService: PopupService) {}
+  constructor(private readonly navigationService: NavigationService) {}
 
   onCancelClick() {
-    this.router.navigate([`${this.wizardData.baseRoute}/check-in`]);
+    this.navigationService.navigate(`${this.wizardData.baseRoute}/check-in`);
   }
 
   onNextClick() {

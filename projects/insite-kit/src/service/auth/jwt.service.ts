@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { WebRole } from '../../model/common.model';
 import { User } from '../../model/user.model';
+import { NavigationService } from '../navigation/navigation.service';
 
 export const TOKEN_NAME = 'auth-token';
 
@@ -10,7 +10,10 @@ export const TOKEN_NAME = 'auth-token';
   providedIn: 'root',
 })
 export class JwtService {
-  constructor(private readonly router: Router, private readonly jwtHelperService: JwtHelperService) {}
+  constructor(
+    private readonly navigationService: NavigationService,
+    private readonly jwtHelperService: JwtHelperService
+  ) {}
 
   /**
    * Gets the raw token that is currently stored for the logged in user.
@@ -115,6 +118,6 @@ export class JwtService {
    */
   logOut() {
     this.removeToken();
-    this.router.navigate(['login']).then(() => window.location.reload());
+    this.navigationService.navigate('login').then(() => window.location.reload());
   }
 }

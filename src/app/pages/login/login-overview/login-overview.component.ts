@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from 'projects/insite-kit/src/service/auth/auth.service';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class LoginOverviewComponent implements OnInit {
   constructor(
     private readonly authService: AuthService,
     private readonly fb: FormBuilder,
-    private readonly router: Router,
+    private readonly navigationService: NavigationService,
     private readonly popupService: PopupService
   ) {}
 
@@ -38,9 +38,7 @@ export class LoginOverviewComponent implements OnInit {
   onLoginClick() {
     this.loading = true;
     this.authService.authenticate(this.form.value.username, this.form.value.password).subscribe({
-      next: () => {
-        this.router.navigate(['/profile']);
-      },
+      next: () => this.navigationService.navigate('/profile'),
       error: () => {
         this.popupService.error('Invalid email or password!');
         this.loading = false;

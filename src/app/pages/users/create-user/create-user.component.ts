@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { User } from 'projects/insite-kit/src/model/user.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { UserService } from 'src/service/users/user.service';
 
@@ -13,13 +13,13 @@ export class CreateUserComponent {
   loading = false;
 
   constructor(
-    private userService: UserService,
-    private readonly router: Router,
+    private readonly userService: UserService,
+    private readonly navigationService: NavigationService,
     private readonly popupService: PopupService
   ) {}
 
   onCancelClick() {
-    this.router.navigate(['/users']);
+    this.navigationService.back('/users');
   }
 
   onSaveClick(user: User) {
@@ -27,7 +27,7 @@ export class CreateUserComponent {
 
     this.userService.createUser(user).subscribe({
       next: (res) => {
-        this.router.navigate([`/users/${res.id}/details`]);
+        this.navigationService.navigate(`/users/${res.id}/details`);
         this.popupService.success('User Successfully created!');
       },
       error: (err: HttpErrorResponse) => {
