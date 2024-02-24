@@ -1,10 +1,8 @@
 <ng-container *ngIf="showCalendar; else listView">
   <app-calendar-header
-    [view]="view"
     [viewDate]="viewDate"
-    (viewChange)="onViewChange($event)"
     (viewDateChange)="onViewDateChange($event)"
-    (calendarViewChange)="onCalendarViewChange($event)"
+    (showListView)="onToggleCalendarView()"
   ></app-calendar-header>
 
   <ik-card>
@@ -13,9 +11,9 @@
       [viewDate]="viewDate"
       [events]="events"
       [activeDayIsOpen]="activeDayIsOpen"
-      (dayClicked)="dayClicked($event.day)"
-      (eventClicked)="eventClicked($event)"
       [cellTemplate]="customCellTemplate"
+      (dayClicked)="dayClicked($event.day)"
+      (eventClicked)="routeToEvent($event.event.meta.schedule.type, $event.event.meta.schedule.recordId)"
     >
     </mwl-calendar-month-view>
   </ik-card>
@@ -23,7 +21,7 @@
 
 <ng-template #listView>
   <ik-header title="User Schedule">
-    <button (click)="onCalendarViewChange('calendar')" class="btn btn-primary header-button">
+    <button (click)="onToggleCalendarView()" class="btn btn-primary header-button">
       <ik-icon icon="calendar-days" classOverride="btn-icon"></ik-icon>
       View Calendar
     </button>
@@ -57,7 +55,7 @@
   <div class="calendar-event-pill--container" [ngClass]="{ 'text-center': day.badgeTotal >= 5 }">
     <ng-container *ngIf="day.badgeTotal > 0">
       <span
-        [ngClass]="'calendar-event-pill--' + dayEvent.meta.status"
+        [ngClass]="'calendar-event-pill--' + dayEvent.meta.schedule.status"
         class="calendar-event-circle"
         *ngFor="let dayEvent of day.events"
       ></span>

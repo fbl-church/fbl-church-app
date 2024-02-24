@@ -1,13 +1,11 @@
-import { formatDate } from '@angular/common';
-import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
-import { CalendarDateFormatter, CalendarEvent, CalendarEventTitleFormatter, CalendarView } from 'angular-calendar';
-import { EventColor } from 'calendar-utils';
+import { Component, OnInit } from '@angular/core';
+import { CalendarDateFormatter, CalendarEvent, CalendarEventTitleFormatter } from 'angular-calendar';
 import { isSameDay, isSameMonth, startOfDay } from 'date-fns';
-import { AttendanceStatus } from 'projects/insite-kit/src/model/attendance-record.model';
 import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
 import { UserSchedule } from 'projects/insite-kit/src/model/user.model';
 import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { UserScheduleService } from 'src/service/schedule/user-schedule.service';
+import { CALENDAR_COLOR } from './calendar-event.colors';
 import { CustomDateFormatter } from './custom-date.formatter';
 import { CustomEventTitleFormatter } from './customer-event-title.formatter';
 @Component({
@@ -26,35 +24,24 @@ import { CustomEventTitleFormatter } from './customer-event-title.formatter';
 })
 export class ScheduleComponent implements OnInit {
   viewDate: Date = new Date();
-  view: CalendarView = CalendarView.Month;
-  CalendarView = CalendarView;
-
   events: CalendarEvent[] = [];
-  canEdit = false;
+
   loading = true;
   activeDayIsOpen = false;
   previousLoadedMonth = -1;
-  listDataloader: any;
   showCalendar = true;
 
+  listDataloader: any;
+
   constructor(
-    @Inject(LOCALE_ID) private locale: string,
     private readonly scheduleService: UserScheduleService,
     private readonly navigationService: NavigationService
   ) {
-    this.listDataloader = (params) => this.scheduleService.getCurrentUserSchedule(params);
+    this.listDataloader = (params: Map<string, string[]>) => this.scheduleService.getCurrentUserSchedule(params);
   }
 
   ngOnInit() {
     this.reloadCalendarEvents(new Date().getMonth() + 1);
-  }
-
-  setView(view: CalendarView) {
-    this.view = view;
-  }
-
-  onViewChange(value: CalendarView) {
-    this.view = value;
   }
 
   onViewDateChange(value: Date) {
@@ -63,8 +50,8 @@ export class ScheduleComponent implements OnInit {
     this.reloadCalendarEvents(value.getMonth() + 1);
   }
 
-  onCalendarViewChange(viewType: string) {
-    this.showCalendar = viewType === 'calendar';
+  onToggleCalendarView() {
+    this.showCalendar = !this.showCalendar;
   }
 
   reloadCalendarEvents(month: number) {
@@ -87,30 +74,22 @@ export class ScheduleComponent implements OnInit {
         .split('-')
         .map((v) => Number(v));
       const startDate = startOfDay(new Date(dateString[0], dateString[1] - 1, dateString[2]));
-      s.recordName === 'Nursery (SS)' ? startDate.setHours(9, 0, 0, 0) : startDate.setHours(10, 0, 0, 0);
+      startDate.setHours(s.recordName === 'Nursery (SS)' ? 9 : 10, 0, 0, 0);
 
       this.events.push({
         start: startDate,
         title: s.recordName,
-        color: this.getEventStatusColor(s.status),
-        meta: { schedule: s, status: s.status, time: formatDate(startDate, 'h:mm a', this.locale) },
+        color: CALENDAR_COLOR[s.status],
+        meta: { schedule: s },
       });
     });
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
-      if ((isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) || events.length === 0) {
-        this.activeDayIsOpen = false;
-      } else {
-        this.activeDayIsOpen = true;
-      }
+      this.activeDayIsOpen = !((isSameDay(this.viewDate, date) && this.activeDayIsOpen) || events.length === 0);
       this.viewDate = date;
     }
-  }
-
-  eventClicked({ event }: { event: CalendarEvent }) {
-    this.routeToEvent(event.meta.schedule.type, event.meta.schedule.recordId);
   }
 
   routeToEvent(group: ChurchGroup, recordId: number) {
@@ -118,31 +97,6 @@ export class ScheduleComponent implements OnInit {
       this.navigationService.navigate(`/nursery/check-in/${recordId}/details`);
     } else if (group === ChurchGroup.JUNIOR_CHURCH) {
       this.navigationService.navigate(`/junior-church/check-in/${recordId}/details`);
-    }
-  }
-
-  getEventStatusColor(recordStatus: AttendanceStatus): EventColor {
-    switch (recordStatus) {
-      case AttendanceStatus.ACTIVE:
-        return {
-          primary: '#3cbe36',
-          secondary: '#3cbe36',
-        };
-      case AttendanceStatus.PENDING:
-        return {
-          primary: '#feb759',
-          secondary: '#feb759',
-        };
-      case AttendanceStatus.CLOSED:
-        return {
-          primary: '#e32323',
-          secondary: '#e32323',
-        };
-      default:
-        return {
-          primary: '#666',
-          secondary: '#666',
-        };
     }
   }
 }

@@ -1,22 +1,18 @@
 <div class="btn-group header-flex">
   <div class="text-center">
     <h3 class="month-title">
-      {{ viewDate | calendarDate : view + 'ViewTitle' : 'en' }}
+      {{ viewDate | calendarDate : CalendarView.Month + 'ViewTitle' : 'en' }}
     </h3>
   </div>
 
   <div class="calendar-navigation">
-    <ik-icon
-      [icon]="currentCalendarView"
-      (click)="onCalendarViewChangeClick()"
-      classOverride="calendar-navigation--view"
-    ></ik-icon>
+    <ik-icon icon="list" (click)="onCalendarViewChangeClick()" classOverride="calendar-navigation--view"></ik-icon>
     <ik-icon
       icon="angle-left"
       classOverride="calendar-nav--icon"
       mwlCalendarPreviousView
       (click)="onViewDateChange()"
-      [view]="view"
+      [view]="CalendarView.Month"
       [(viewDate)]="viewDate"
     ></ik-icon>
     <div class="calendar-navigation--text" mwlCalendarToday [(viewDate)]="viewDate" (click)="onViewDateChange()">
@@ -27,34 +23,8 @@
       classOverride="calendar-nav--icon"
       mwlCalendarNextView
       (click)="onViewDateChange()"
-      [view]="view"
+      [view]="CalendarView.Month"
       [(viewDate)]="viewDate"
     ></ik-icon>
   </div>
 </div>
-
-<!-- <div class="col-xs-3 col-sm-4 buttons-right">
-    <div class="btn-group flex">
-      <div
-        class="btn btn-flat btn-primary button-width indiv-button-right"
-        (click)="setView(CalendarView.Month)"
-        [class.active]="view === CalendarView.Month"
-      >
-        Month
-      </div>
-      <div
-        class="btn btn-flat btn-primary button-width indiv-button-right"
-        (click)="setView(CalendarView.Week)"
-        [class.active]="view === CalendarView.Week"
-      >
-        Week
-      </div>
-      <div
-        class="btn btn-flat btn-primary button-width indiv-button-right"
-        (click)="setView(CalendarView.Day)"
-        [class.active]="view === CalendarView.Day"
-      >
-        Day
-      </div>
-    </div>
-  </div> -->
