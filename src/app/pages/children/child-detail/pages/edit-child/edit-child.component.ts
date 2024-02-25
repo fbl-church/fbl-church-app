@@ -1,7 +1,7 @@
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Child } from 'projects/insite-kit/src/model/user.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject } from 'rxjs';
 import { map, takeUntil, tap } from 'rxjs/operators';
@@ -18,7 +18,7 @@ export class EditChildComponent implements OnInit, OnDestroy {
   childUpdating: Child;
 
   constructor(
-    private readonly location: Location,
+    private readonly navigationService: NavigationService,
     private readonly popupService: PopupService,
     private readonly route: ActivatedRoute,
     private readonly childrenService: ChildrenService
@@ -43,15 +43,14 @@ export class EditChildComponent implements OnInit, OnDestroy {
   }
 
   onCancelClick() {
-    this.loading = false;
-    this.location.back();
+    this.navigationService.back('/users');
   }
 
   onSaveClick(child: Child) {
     this.loading = true;
     this.childrenService.update(this.childId, child).subscribe({
       next: () => {
-        this.location.back();
+        this.onCancelClick();
         this.popupService.success('Child Successfully updated!');
       },
       error: () => {

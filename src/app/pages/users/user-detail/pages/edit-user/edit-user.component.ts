@@ -1,7 +1,7 @@
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'projects/insite-kit/src/model/user.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject } from 'rxjs';
 import { map, takeUntil, tap } from 'rxjs/operators';
@@ -20,7 +20,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
   disableWebRoleUpdate = false;
 
   constructor(
-    private readonly location: Location,
+    private readonly navigationService: NavigationService,
     private readonly popupService: PopupService,
     private readonly userService: UserService,
     private readonly route: ActivatedRoute
@@ -44,8 +44,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
   }
 
   onCancelClick() {
-    this.loading = false;
-    this.location.back();
+    this.navigationService.back('/profile');
   }
 
   onSaveClick(user: User) {
@@ -53,7 +52,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
 
     this.userService.updateUserProfileById(this.userId, user).subscribe({
       next: () => {
-        this.location.back();
+        this.onCancelClick();
         this.popupService.success('User Successfully updated!');
       },
       error: () => {

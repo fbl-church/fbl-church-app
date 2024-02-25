@@ -1,7 +1,7 @@
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Guardian } from 'projects/insite-kit/src/model/user.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject } from 'rxjs';
 import { map, takeUntil, tap } from 'rxjs/operators';
@@ -18,7 +18,7 @@ export class EditGuardianComponent implements OnInit, OnDestroy {
   guardianUpdating: Guardian;
 
   constructor(
-    private readonly location: Location,
+    private readonly navigationService: NavigationService,
     private readonly popupService: PopupService,
     private readonly route: ActivatedRoute,
     private readonly guardianService: GuardianService
@@ -43,15 +43,14 @@ export class EditGuardianComponent implements OnInit, OnDestroy {
   }
 
   onCancelClick() {
-    this.loading = false;
-    this.location.back();
+    this.navigationService.back('/guardians');
   }
 
   onSaveClick(guardian: Guardian) {
     this.loading = true;
     this.guardianService.update(this.guardianId, guardian).subscribe({
       next: () => {
-        this.location.back();
+        this.onCancelClick();
         this.popupService.success('Guardian Successfully updated!');
       },
       error: () => {

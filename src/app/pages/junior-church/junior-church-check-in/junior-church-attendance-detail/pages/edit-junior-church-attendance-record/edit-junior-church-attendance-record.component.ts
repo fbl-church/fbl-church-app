@@ -47,18 +47,14 @@ export class EditJuniorChurchRecordComponent implements OnInit, OnDestroy {
     this.navigationService.back(`/junior-church/check-in/${this.record.id}/details`);
   }
 
-  onCancelClick() {
-    this.onBackClick();
-  }
-
   onUpdateClick(newRecord: AttendanceRecord) {
     this.loading = true;
     newRecord.type = ChurchGroup.JUNIOR_CHURCH;
 
     this.attendanceService.update(this.record.id, newRecord).subscribe({
-      next: (res) => {
+      next: () => {
         this.popupService.success('Junior Church Attendance Record Successfully Updated!');
-        this.navigationService.navigate(`/junior-church/check-in/${res.id}/details`);
+        this.onBackClick();
       },
       error: () => {
         this.popupService.error('Unable to update Junior Church Attendance Record. Try again later.');

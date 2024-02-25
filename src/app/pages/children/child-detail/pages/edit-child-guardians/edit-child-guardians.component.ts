@@ -1,7 +1,7 @@
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Guardian } from 'projects/insite-kit/src/model/user.model';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject } from 'rxjs';
 import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
@@ -29,9 +29,8 @@ export class EditChildGuardiansComponent implements OnInit, OnDestroy {
   savedGuardians: Guardian[];
 
   constructor(
-    private readonly location: Location,
+    private readonly navigationService: NavigationService,
     private readonly route: ActivatedRoute,
-    private readonly router: Router,
     private readonly guardianService: GuardianService,
     private readonly popupService: PopupService
   ) {}
@@ -42,7 +41,7 @@ export class EditChildGuardiansComponent implements OnInit, OnDestroy {
     this.route.params
       .pipe(
         tap((p) => (this.childId = p.id)),
-        switchMap((res) => this.route.data),
+        switchMap(() => this.route.data),
         map((res) => res.guardians.body),
         takeUntil(this.destroy)
       )
@@ -57,8 +56,7 @@ export class EditChildGuardiansComponent implements OnInit, OnDestroy {
   }
 
   onCancelClick() {
-    this.resetStatus();
-    this.location.back();
+    this.navigationService.back('/children');
   }
 
   onUpdateClick() {
@@ -76,7 +74,7 @@ export class EditChildGuardiansComponent implements OnInit, OnDestroy {
 
     this.guardianService.updateChildGuardiansById(this.childId, this.savedGuardians).subscribe({
       next: () => {
-        this.location.back();
+        this.onCancelClick();
         this.popupService.success('Child guardians successfully updated!');
       },
       error: () => {

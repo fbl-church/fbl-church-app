@@ -1,10 +1,10 @@
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
 import { Guardian, User } from 'projects/insite-kit/src/model/user.model';
 import { AuthService } from 'projects/insite-kit/src/service/auth/auth.service';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject } from 'rxjs';
 import { switchMap, takeUntil, tap } from 'rxjs/operators';
@@ -23,7 +23,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
   isGuardianUser = false;
 
   constructor(
-    private readonly location: Location,
+    private readonly navigationService: NavigationService,
     private readonly popupService: PopupService,
     private readonly userService: UserService,
     private readonly authService: AuthService,
@@ -47,7 +47,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
   }
 
   onCancelClick() {
-    this.location.back();
+    this.navigationService.back('/profile');
   }
 
   onSaveClick(user: User | Guardian) {
