@@ -28,7 +28,25 @@
               "angular2-uuid",
               "clone-deep",
               "file-saver",
-              "@cordobo/qrcode"
+              "@cordobo/qrcode",
+              "raf",
+              "rgbcolor",
+              "dompurify",
+              "html2canvas",
+              "core-js/modules/es.array.index-of.js",
+              "core-js/modules/es.array.iterator.js",
+              "core-js/modules/es.array.reduce.js",
+              "core-js/modules/es.array.reverse.js",
+              "core-js/modules/es.promise.js",
+              "core-js/modules/es.regexp.to-string.js",
+              "core-js/modules/es.string.ends-with.js",
+              "core-js/modules/es.string.includes.js",
+              "core-js/modules/es.string.match.js",
+              "core-js/modules/es.string.replace.js",
+              "core-js/modules/es.string.split.js",
+              "core-js/modules/es.string.starts-with.js",
+              "core-js/modules/es.string.trim.js",
+              "core-js/modules/web.dom-collections.iterator.js"
             ],
             "assets": [
               "src/assets",
@@ -37,9 +55,7 @@
             "styles": [
               "styles/styles.scss"
             ],
-            "scripts": [
-              "./node_modules/jquery/dist/jquery.min.js"
-            ],
+            "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
@@ -58,7 +74,7 @@
                 "fonts": true
               },
               "outputHashing": "all",
-              "sourceMap": false,
+              "sourceMap": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -75,6 +91,14 @@
                   "maximumError": "6kb"
                 }
               ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.production.ts"
+                }
+              ]
+            },
+            "local-production": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -100,6 +124,9 @@
           "configurations": {
             "production": {
               "browserTarget": "fbl-church-app:build:production"
+            },
+            "local-production": {
+              "browserTarget": "fbl-church-app:build:local-production"
             },
             "external": {
               "browserTarget": "fbl-church-app:build:external"
