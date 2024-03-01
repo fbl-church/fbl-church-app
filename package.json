@@ -63,8 +63,6 @@
     "ngx-toastr": "^13.2.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.0.0",
-    "typescript": "~4.6.4",
-    "html2canvas": "^1.4.1",
     "zone.js": "~0.11.7"
   },
   "devDependencies": {
