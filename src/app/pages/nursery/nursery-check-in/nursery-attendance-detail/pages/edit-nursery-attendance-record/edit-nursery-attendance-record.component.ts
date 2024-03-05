@@ -56,13 +56,13 @@ export class EditNurseryRecordComponent implements OnInit, OnDestroy {
     newRecord.type = ChurchGroup.NURSERY;
 
     this.attendanceService.update(this.record.id, newRecord).subscribe({
-      next: (res) => {
+      next: () => {
+        this.onBackClick();
         this.popupService.success('Nursery Attendance Record Successfully Updated!');
-        this.navigationService.navigate(`/nursery/check-in/${res.id}/details`);
       },
       error: () => {
         this.popupService.error('Unable to update Nursery Attendance Record. Try again later.');
-        this.navigationService.navigate(`/nursery/check-in/${this.record.id}/details`);
+        this.loading = false;
       },
     });
   }

@@ -49,7 +49,7 @@ export class JuniorChurchChildDetailComponent implements OnInit, OnDestroy {
   }
 
   onBackClick() {
-    this.navigationService.back();
+    this.navigationService.back('/junior-church/children');
   }
 
   onChildDetailEditClick() {

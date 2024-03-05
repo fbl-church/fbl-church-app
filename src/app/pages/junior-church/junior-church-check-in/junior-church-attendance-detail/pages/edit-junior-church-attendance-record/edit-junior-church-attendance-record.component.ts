@@ -53,12 +53,12 @@ export class EditJuniorChurchRecordComponent implements OnInit, OnDestroy {
 
     this.attendanceService.update(this.record.id, newRecord).subscribe({
       next: () => {
-        this.popupService.success('Junior Church Attendance Record Successfully Updated!');
         this.onBackClick();
+        this.popupService.success('Junior Church Attendance Record Successfully Updated!');
       },
       error: () => {
         this.popupService.error('Unable to update Junior Church Attendance Record. Try again later.');
-        this.navigationService.navigate(`/junior-church/check-in/${this.record.id}/details`);
+        this.loading = false;
       },
     });
   }

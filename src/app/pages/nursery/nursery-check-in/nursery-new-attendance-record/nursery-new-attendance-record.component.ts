@@ -39,8 +39,8 @@ export class NurseryNewAttendanceRecordComponent {
 
     this.attendanceService.create(newRecord).subscribe({
       next: (res) => {
+        this.navigationService.navigate(`/nursery/check-in/${res.id}/details`, false);
         this.popupService.success('Nursery Attendance Record Successfully Created!');
-        this.navigationService.navigate(`/nursery/check-in/${res.id}/details`);
       },
       error: () => {
         this.popupService.error('Unable to create Nursery Attendance Record. Try again later.');

@@ -44,7 +44,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
   }
 
   onCancelClick() {
-    this.navigationService.back('/profile');
+    this.navigationService.back('/users');
   }
 
   onSaveClick(user: User) {

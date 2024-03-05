@@ -27,7 +27,7 @@ export class CreateUserComponent {
 
     this.userService.createUser(user).subscribe({
       next: (res) => {
-        this.navigationService.navigate(`/users/${res.id}/details`);
+        this.navigationService.navigate(`/users/${res.id}/details`, false);
         this.popupService.success('User Successfully created!');
       },
       error: (err: HttpErrorResponse) => {

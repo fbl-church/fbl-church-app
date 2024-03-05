@@ -79,8 +79,8 @@ export class ChildRegistrationWizardComponent implements OnInit, OnDestroy {
       saveObservable = this.childrenService.create(child);
     }
     saveObservable.subscribe({
-      next: () => {
-        this.navigationService.navigate(`${this.wizardData.baseRoute}/children`);
+      next: (c) => {
+        this.navigationService.navigate(`${this.wizardData.baseRoute}/children/${c.id}/details`, false);
         this.popupService.success(
           `${child.firstName} ${child.lastName} has successfully been registered for ${this.wizardData.translation}!`
         );

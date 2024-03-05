@@ -36,8 +36,8 @@ export class JuniorChurchNewAttendanceRecordComponent {
 
     this.attendanceService.create(newRecord).subscribe({
       next: (res) => {
+        this.navigationService.navigate(`/junior-church/check-in/${res.id}/details`, false);
         this.popupService.success('Junior Church Attendance Record Successfully Created!');
-        this.navigationService.navigate(`/junior-church/check-in/${res.id}/details`);
       },
       error: () => {
         this.popupService.error('Unable to create Junior Church Attendance Record. Try again later.');

@@ -63,7 +63,7 @@ export class CreateChildComponent {
     this.loading = true;
     this.childrenService.create(this.savedChildData).subscribe({
       next: (child) => {
-        this.navigationService.navigate(`/children/${child.id}/details`);
+        this.navigationService.navigate(`/children/${child.id}/details`, false);
         this.popupService.success('Child Successfully created!');
       },
       error: () => {
