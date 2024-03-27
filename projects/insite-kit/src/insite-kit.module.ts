@@ -204,7 +204,6 @@ export function tokenGetter() {
     InputTagComponent,
     TagInputFieldComponent,
   ],
-  entryComponents: [ModalComponent, NotificationPopupComponent],
   providers: [UsernamePipe, NotificationMessagePipe, { provide: APP_BASE_HREF, useValue: '/' }],
 })
 export class InsiteKitModule {

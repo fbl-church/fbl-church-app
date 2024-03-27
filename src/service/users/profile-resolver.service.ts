@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve } from '@angular/router';
+
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
 import { UserAccess } from 'projects/insite-kit/src/model/user-access.model';
 import { Guardian, User } from 'projects/insite-kit/src/model/user.model';
@@ -12,7 +12,7 @@ import { UserService } from './user.service';
 @Injectable({
   providedIn: 'root',
 })
-export class ProfileResolverService implements Resolve<any> {
+export class ProfileResolverService  {
   constructor(
     private userService: UserService,
     private readonly guardianService: GuardianService,

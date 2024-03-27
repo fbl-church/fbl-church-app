@@ -11,7 +11,7 @@ import { AwanaChildrenComponent } from 'src/app/pages/awana/awana-children/awana
 import { AwanaGrandPrixComponent } from 'src/app/pages/awana/awana-grand-prix/awana-grand-prix.component';
 import { AwanaWorkersComponent } from 'src/app/pages/awana/awana-workers/awana-workers.component';
 import { AttendanceRecordResolverService } from 'src/service/attendance/attendance-record-resolver.service';
-import { AwanaWorkersResolverService } from 'src/service/attendance/awana-workers-resolver.service copy';
+import { AwanaWorkersResolverService } from 'src/service/attendance/awana-workers-resolver.service';
 import { ChildResolverService } from 'src/service/children/child-resolver.service';
 import { AuthenticatedLayoutComponent } from '../components/layouts/authenticated-layout/authenticated-layout.component';
 

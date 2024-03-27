@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+import { ActivatedRouteSnapshot } from '@angular/router';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { Observable, of } from 'rxjs';
@@ -9,7 +9,7 @@ import { AttendanceRecordService } from './attendance-records.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AttendanceRecordResolverService implements Resolve<any> {
+export class AttendanceRecordResolverService {
   constructor(
     private readonly attendanceRecordService: AttendanceRecordService,
     private readonly commonService: CommonService

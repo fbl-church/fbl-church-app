@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve } from '@angular/router';
+
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
@@ -9,7 +9,7 @@ import { UserService } from '../users/user.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AwanaWorkersResolverService implements Resolve<any> {
+export class AwanaWorkersResolverService  {
   constructor(private readonly userService: UserService, private readonly commonService: CommonService) {}
   resolve(): Observable<User> {
     return this.userService

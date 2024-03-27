@@ -53,7 +53,7 @@ export class UploadComponent implements OnInit, OnDestroy {
       }
     }, 500);
 
-    this.options = { maxFileSize: this.MAX_FILE_SIZE };
+    this.options = { url: '', maxFileSize: this.MAX_FILE_SIZE };
     this.uploader = new InsiteFileUploader(this.options);
     this.uploadBtnDisabled = true;
 
