@@ -1,9 +1,9 @@
 import { Route } from '@angular/router';
 import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
-import { AppAccessGuard } from 'projects/insite-kit/src/service/guards/app-access.guard';
-import { AuthGuard } from 'projects/insite-kit/src/service/guards/auth.guard';
-import { FeatureAccessGuard } from 'projects/insite-kit/src/service/guards/feature-access.guard';
-import { UserEditAccessGuard } from 'projects/insite-kit/src/service/guards/user-edit-access.guard';
+import { APP_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/app-access.guard';
+import { AUTH_GUARD } from 'projects/insite-kit/src/service/guards/auth.guard';
+import { FEATURE_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/feature-access.guard';
+import { USER_EDIT_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/user-edit-access.guard';
 import { CreateUserComponent } from 'src/app/pages/users/create-user/create-user.component';
 import { EditUserComponent } from 'src/app/pages/users/user-detail/pages/edit-user/edit-user.component';
 import { ResetPasswordComponent } from 'src/app/pages/users/user-detail/pages/reset-password/reset-password.component';
@@ -15,9 +15,9 @@ import { AuthenticatedLayoutComponent } from '../components/layouts/authenticate
 export const USERS_ROUTE: Route = {
   path: 'users',
   component: AuthenticatedLayoutComponent,
-  canActivate: [AuthGuard, AppAccessGuard, FeatureAccessGuard],
+  canActivate: [AUTH_GUARD, APP_ACCESS_GUARD, FEATURE_ACCESS_GUARD],
   data: {
-    featureAccessGuards: [
+    FEATURE_ACCESS_GUARDs: [
       {
         app: App.USERS,
         feature: FeatureType.DETAIL,
@@ -33,10 +33,10 @@ export const USERS_ROUTE: Route = {
     },
     {
       path: 'create',
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD],
       component: CreateUserComponent,
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.USERS,
             feature: FeatureType.OVERVIEW,
@@ -52,11 +52,11 @@ export const USERS_ROUTE: Route = {
     },
     {
       path: ':id/details/edit',
-      canActivate: [FeatureAccessGuard, UserEditAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD, USER_EDIT_ACCESS_GUARD],
       component: EditUserComponent,
       resolve: { user: UserResolverService },
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.USERS,
             feature: FeatureType.DETAIL,
@@ -67,10 +67,10 @@ export const USERS_ROUTE: Route = {
     },
     {
       path: ':id/details/reset-password',
-      canActivate: [FeatureAccessGuard, UserEditAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD, USER_EDIT_ACCESS_GUARD],
       component: ResetPasswordComponent,
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.USERS,
             feature: FeatureType.DETAIL,

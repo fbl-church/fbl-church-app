@@ -1,8 +1,8 @@
 import { Route } from '@angular/router';
 import { Access, App, ChurchGroup, FeatureType } from 'projects/insite-kit/src/model/common.model';
-import { AppAccessGuard } from 'projects/insite-kit/src/service/guards/app-access.guard';
-import { AuthGuard } from 'projects/insite-kit/src/service/guards/auth.guard';
-import { FeatureAccessGuard } from 'projects/insite-kit/src/service/guards/feature-access.guard';
+import { APP_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/app-access.guard';
+import { AUTH_GUARD } from 'projects/insite-kit/src/service/guards/auth.guard';
+import { FEATURE_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/feature-access.guard';
 import { NurseryAttendanceDetailComponent } from 'src/app/pages/nursery/nursery-check-in/nursery-attendance-detail/nursery-attendance-detail.component';
 import { EditNurseryRecordComponent } from 'src/app/pages/nursery/nursery-check-in/nursery-attendance-detail/pages/edit-nursery-attendance-record/edit-nursery-attendance-record.component';
 import { NurseryChildrenCheckInComponent } from 'src/app/pages/nursery/nursery-check-in/nursery-attendance-detail/pages/nursery-children-check-in/nursery-children-check-in.component';
@@ -20,9 +20,9 @@ import { ChildRegistrationWizardComponent } from '../components/wizards/child-re
 export const NURSERY_ROUTE: Route = {
   path: 'nursery',
   component: AuthenticatedLayoutComponent,
-  canActivate: [AuthGuard, AppAccessGuard, FeatureAccessGuard],
+  canActivate: [AUTH_GUARD, APP_ACCESS_GUARD, FEATURE_ACCESS_GUARD],
   data: {
-    featureAccessGuards: [
+    FEATURE_ACCESS_GUARDs: [
       {
         app: App.NURSERY,
         feature: FeatureType.OVERVIEW,
@@ -39,9 +39,9 @@ export const NURSERY_ROUTE: Route = {
     {
       path: 'registration',
       component: ChildRegistrationWizardComponent,
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.NURSERY,
             feature: FeatureType.REGISTRATION,
@@ -59,9 +59,9 @@ export const NURSERY_ROUTE: Route = {
     {
       path: 'check-in',
       component: NurseryCheckInComponent,
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.NURSERY,
             feature: FeatureType.CHECK_IN,
@@ -75,9 +75,9 @@ export const NURSERY_ROUTE: Route = {
       path: 'check-in/:id/details',
       component: NurseryAttendanceDetailComponent,
       resolve: { attendanceRecord: AttendanceRecordResolverService },
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.NURSERY,
             feature: FeatureType.DETAIL,
@@ -93,9 +93,9 @@ export const NURSERY_ROUTE: Route = {
         attendanceRecord: AttendanceRecordResolverService,
         workers: NurseryWorkersResolverService,
       },
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.NURSERY,
             feature: FeatureType.DETAIL,
@@ -107,9 +107,9 @@ export const NURSERY_ROUTE: Route = {
     {
       path: 'check-in/:id/details/children',
       component: NurseryChildrenCheckInComponent,
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.NURSERY,
             feature: FeatureType.CHECK_IN,
@@ -122,9 +122,9 @@ export const NURSERY_ROUTE: Route = {
       path: 'new-record',
       component: NurseryNewAttendanceRecordComponent,
       resolve: { workers: NurseryWorkersResolverService },
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.NURSERY,
             feature: FeatureType.OVERVIEW,
@@ -144,10 +144,10 @@ export const NURSERY_ROUTE: Route = {
     {
       path: 'children/:id/details',
       component: NurseryChildDetailComponent,
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD],
       resolve: { child: ChildResolverService },
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.NURSERY,
             feature: FeatureType.OVERVIEW,

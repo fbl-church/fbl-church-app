@@ -1,8 +1,8 @@
 import { Route } from '@angular/router';
 import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
-import { AppAccessGuard } from 'projects/insite-kit/src/service/guards/app-access.guard';
-import { AuthGuard } from 'projects/insite-kit/src/service/guards/auth.guard';
-import { FeatureAccessGuard } from 'projects/insite-kit/src/service/guards/feature-access.guard';
+import { APP_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/app-access.guard';
+import { AUTH_GUARD } from 'projects/insite-kit/src/service/guards/auth.guard';
+import { FEATURE_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/feature-access.guard';
 import { CreateGuardianComponent } from 'src/app/pages/guardians/create-guardian/create-guardian.component';
 import { ExistingUserGuardianComponent } from 'src/app/pages/guardians/create-guardian/existing-user-guardian/existing-user-guardian.component';
 import { GuardianDetailComponent } from 'src/app/pages/guardians/guardian-detail/guardian-detail.component';
@@ -14,9 +14,9 @@ import { AuthenticatedLayoutComponent } from '../components/layouts/authenticate
 export const GUARDIANS_ROUTE: Route = {
   path: 'guardians',
   component: AuthenticatedLayoutComponent,
-  canActivate: [AuthGuard, AppAccessGuard, FeatureAccessGuard],
+  canActivate: [AUTH_GUARD, APP_ACCESS_GUARD, FEATURE_ACCESS_GUARD],
   data: {
-    featureAccessGuards: [
+    FEATURE_ACCESS_GUARDs: [
       {
         app: App.GUARDIANS,
         feature: FeatureType.OVERVIEW,
@@ -33,9 +33,9 @@ export const GUARDIANS_ROUTE: Route = {
     {
       path: 'create',
       component: CreateGuardianComponent,
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.GUARDIANS,
             feature: FeatureType.DETAIL,
@@ -47,9 +47,9 @@ export const GUARDIANS_ROUTE: Route = {
     {
       path: 'create/existing-user',
       component: ExistingUserGuardianComponent,
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.GUARDIANS,
             feature: FeatureType.DETAIL,
@@ -61,10 +61,10 @@ export const GUARDIANS_ROUTE: Route = {
     {
       path: ':id/details',
       component: GuardianDetailComponent,
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD],
       resolve: { guardian: GuardianResolverService },
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.GUARDIANS,
             feature: FeatureType.DETAIL,
@@ -75,11 +75,11 @@ export const GUARDIANS_ROUTE: Route = {
     },
     {
       path: ':id/details/edit',
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD],
       component: EditGuardianComponent,
       resolve: { guardian: GuardianResolverService },
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.GUARDIANS,
             feature: FeatureType.DETAIL,

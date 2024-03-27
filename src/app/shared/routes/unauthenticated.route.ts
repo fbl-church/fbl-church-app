@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { AuthGuard } from 'projects/insite-kit/src/service/guards/auth.guard';
+import { AUTH_GUARD } from 'projects/insite-kit/src/service/guards/auth.guard';
 import { ForgotPasswordComponent } from 'src/app/pages/login/forgot-password/forgot-password.component';
 import { LoginOverviewComponent } from 'src/app/pages/login/login-overview/login-overview.component';
 import { LoginComponent } from 'src/app/pages/login/login.component';
@@ -11,17 +11,17 @@ export const UNAUTHENTICATED_ROUTE: Route = {
   children: [
     {
       path: 'login',
-      canActivate: [AuthGuard],
+      canActivate: [AUTH_GUARD],
       component: LoginOverviewComponent,
     },
     {
       path: 'forgot-password',
-      canActivate: [AuthGuard],
+      canActivate: [AUTH_GUARD],
       component: ForgotPasswordComponent,
     },
     {
       path: 'reset-password/:id',
-      canActivate: [AuthGuard],
+      canActivate: [AUTH_GUARD],
       component: ResetPasswordComponent,
     },
     { path: '', redirectTo: 'login', pathMatch: 'full' },

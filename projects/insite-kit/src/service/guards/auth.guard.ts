@@ -1,12 +1,14 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { Injectable, inject } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivateFn } from '@angular/router';
 import { JwtService } from '../auth/jwt.service';
 import { NavigationService } from '../navigation/navigation.service';
+
+export const AUTH_GUARD: CanActivateFn = (route) => inject(AuthGuard).canActivate(route);
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard {
+class AuthGuard {
   private readonly UNAUTHENTICATED_ROUTES = ['login', 'register', 'forgot-password', 'reset-password/:id'];
 
   constructor(private readonly navigationService: NavigationService, private readonly jwt: JwtService) {}

@@ -1,13 +1,15 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { Injectable, inject } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivateFn } from '@angular/router';
 import { Observable, map, of, tap } from 'rxjs';
 import { UserAccessService } from '../auth/user-access.service';
 import { NavigationService } from '../navigation/navigation.service';
 
+export const APP_ACCESS_GUARD: CanActivateFn = (route) => inject(AppAccessGuard).canActivate(route);
+
 @Injectable({
   providedIn: 'root',
 })
-export class AppAccessGuard {
+class AppAccessGuard {
   private readonly DEFAULT_APP_ROUTES = ['login', 'home', 'profile'];
 
   constructor(

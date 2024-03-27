@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { Injectable, inject } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivateFn } from '@angular/router';
 import { Observable, filter, forkJoin, map, take } from 'rxjs';
 import { WebRole } from '../../model/common.model';
 import { UserAccessService } from '../auth/user-access.service';
 import { NavigationService } from '../navigation/navigation.service';
 
+export const WEB_ROLE_ACCESS_GUARD: CanActivateFn = (route) => inject(WebRoleAccessGuard).canActivate(route);
+
 @Injectable({
   providedIn: 'root',
 })
-export class WebRoleAccessGuard {
+class WebRoleAccessGuard {
   constructor(
     private readonly navigationService: NavigationService,
     private readonly userAccessService: UserAccessService

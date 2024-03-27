@@ -1,13 +1,15 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { Injectable, inject } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivateFn } from '@angular/router';
 import { Observable, filter, forkJoin, map, take } from 'rxjs';
 import { UserAccessService } from '../auth/user-access.service';
 import { NavigationService } from '../navigation/navigation.service';
 
+export const FEATURE_ACCESS_GUARD: CanActivateFn = (route) => inject(FeatureAccessGuard).canActivate(route);
+
 @Injectable({
   providedIn: 'root',
 })
-export class FeatureAccessGuard {
+class FeatureAccessGuard {
   constructor(
     private readonly navigationService: NavigationService,
     private readonly userAccessService: UserAccessService
@@ -22,7 +24,7 @@ export class FeatureAccessGuard {
    */
   canActivate(next: ActivatedRouteSnapshot): Observable<boolean> {
     return forkJoin(
-      next.data.featureAccessGuards.map((d) =>
+      next.data.FEATURE_ACCESS_GUARDs.map((d) =>
         this.userAccessService.user$.pipe(
           filter((u) => !!u),
           map((ua) => ua.hasFeature(d.app, d.feature, d.access)),

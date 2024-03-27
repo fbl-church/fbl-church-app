@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
-import { AppAccessGuard } from 'projects/insite-kit/src/service/guards/app-access.guard';
-import { AuthGuard } from 'projects/insite-kit/src/service/guards/auth.guard';
+import { APP_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/app-access.guard';
+import { AUTH_GUARD } from 'projects/insite-kit/src/service/guards/auth.guard';
 import { AccessManagerApplicationsComponent } from 'src/app/pages/access-manager/access-manager-applications/access-manager-applications.component';
 import { ApplicationDetailComponent } from 'src/app/pages/access-manager/access-manager-applications/application-detail/application-detail.component';
 import { AccessManagerDeletedUsersComponent } from 'src/app/pages/access-manager/access-manager-deleted-users/access-manager-deleted-users.component';
@@ -15,7 +15,7 @@ import { AuthenticatedLayoutComponent } from '../components/layouts/authenticate
 export const ACCESS_MANAGEMENT_ROUTE: Route = {
   path: 'access-manager',
   component: AuthenticatedLayoutComponent,
-  canActivate: [AuthGuard, AppAccessGuard],
+  canActivate: [AUTH_GUARD, APP_ACCESS_GUARD],
   children: [
     {
       path: '',

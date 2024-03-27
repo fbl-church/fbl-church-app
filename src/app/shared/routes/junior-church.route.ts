@@ -1,8 +1,8 @@
 import { Route } from '@angular/router';
 import { Access, App, ChurchGroup, FeatureType } from 'projects/insite-kit/src/model/common.model';
-import { AppAccessGuard } from 'projects/insite-kit/src/service/guards/app-access.guard';
-import { AuthGuard } from 'projects/insite-kit/src/service/guards/auth.guard';
-import { FeatureAccessGuard } from 'projects/insite-kit/src/service/guards/feature-access.guard';
+import { APP_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/app-access.guard';
+import { AUTH_GUARD } from 'projects/insite-kit/src/service/guards/auth.guard';
+import { FEATURE_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/feature-access.guard';
 import { JuniorChurchAttendanceDetailComponent } from 'src/app/pages/junior-church/junior-church-check-in/junior-church-attendance-detail/junior-church-attendance-detail.component';
 import { EditJuniorChurchRecordComponent } from 'src/app/pages/junior-church/junior-church-check-in/junior-church-attendance-detail/pages/edit-junior-church-attendance-record/edit-junior-church-attendance-record.component';
 import { JuniorChurchChildrenCheckInComponent } from 'src/app/pages/junior-church/junior-church-check-in/junior-church-attendance-detail/pages/junior-church-children-check-in/junior-church-children-check-in.component';
@@ -22,9 +22,9 @@ import { ChildRegistrationWizardComponent } from '../components/wizards/child-re
 export const JUNIOR_CHURCH_ROUTE: Route = {
   path: 'junior-church',
   component: AuthenticatedLayoutComponent,
-  canActivate: [AuthGuard, AppAccessGuard, FeatureAccessGuard],
+  canActivate: [AUTH_GUARD, APP_ACCESS_GUARD, FEATURE_ACCESS_GUARD],
   data: {
-    featureAccessGuards: [
+    FEATURE_ACCESS_GUARDs: [
       {
         app: App.JUNIOR_CHURCH,
         feature: FeatureType.OVERVIEW,
@@ -41,9 +41,9 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
     {
       path: 'registration',
       component: ChildRegistrationWizardComponent,
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.JUNIOR_CHURCH,
             feature: FeatureType.REGISTRATION,
@@ -61,9 +61,9 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
     {
       path: 'check-in',
       component: JuniorChurchCheckInComponent,
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.JUNIOR_CHURCH,
             feature: FeatureType.CHECK_IN,
@@ -76,9 +76,9 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
       path: 'check-in/:id/details',
       component: JuniorChurchAttendanceDetailComponent,
       resolve: { attendanceRecord: AttendanceRecordResolverService },
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.JUNIOR_CHURCH,
             feature: FeatureType.DETAIL,
@@ -94,9 +94,9 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
         attendanceRecord: AttendanceRecordResolverService,
         workers: JuniorChurchWorkersResolverService,
       },
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.JUNIOR_CHURCH,
             feature: FeatureType.DETAIL,
@@ -108,9 +108,9 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
     {
       path: 'check-in/:id/details/children',
       component: JuniorChurchChildrenCheckInComponent,
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.JUNIOR_CHURCH,
             feature: FeatureType.CHECK_IN,
@@ -123,9 +123,9 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
       path: 'new-record',
       component: JuniorChurchNewAttendanceRecordComponent,
       resolve: { workers: JuniorChurchWorkersResolverService },
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.JUNIOR_CHURCH,
             feature: FeatureType.OVERVIEW,
@@ -137,9 +137,9 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
     {
       path: 'lessons',
       component: JuniorChurchLessonsComponent,
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.JUNIOR_CHURCH,
             feature: FeatureType.LESSONS,
@@ -151,9 +151,9 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
     {
       path: 'lessons/upload',
       component: LessonsUploadComponent,
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.JUNIOR_CHURCH,
             feature: FeatureType.LESSONS,
@@ -173,10 +173,10 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
     {
       path: 'children/:id/details',
       component: JuniorChurchChildDetailComponent,
-      canActivate: [FeatureAccessGuard],
+      canActivate: [FEATURE_ACCESS_GUARD],
       resolve: { child: ChildResolverService },
       data: {
-        featureAccessGuards: [
+        FEATURE_ACCESS_GUARDs: [
           {
             app: App.JUNIOR_CHURCH,
             feature: FeatureType.OVERVIEW,
