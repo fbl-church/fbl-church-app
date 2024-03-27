@@ -230,6 +230,16 @@ export const NAVIGATION_ROUTES: NavItem[] = [
             access: Access.READ,
           },
         },
+        {
+          id: 'grand-prix',
+          name: 'Grand Prix',
+          route: '/grand-prix',
+          restriction: {
+            app: App.AWANA,
+            feature: FeatureType.GRAND_PRIX,
+            access: Access.READ,
+          },
+        },
       ],
     },
   },

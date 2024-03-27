@@ -1,0 +1,35 @@
+<app-grand-prix-tournament>
+  <div class="gp-round--winner">
+    <app-grand-prix-bracket [racers]="[{ firstName: 'WINNER' }]"></app-grand-prix-bracket>
+  </div>
+  <app-grand-prix-match>
+    <app-grand-prix-round>
+      <div class="gp-round--winner">
+        <app-grand-prix-bracket [racers]="testData"></app-grand-prix-bracket>
+      </div>
+      <app-grand-prix-match>
+        <app-grand-prix-round>
+          <div class="gp-round--winner">
+            <app-grand-prix-bracket [racers]="testData"></app-grand-prix-bracket>
+          </div>
+          <app-grand-prix-match>
+            <app-grand-prix-bracket [racers]="testData"></app-grand-prix-bracket>
+            <app-grand-prix-bracket [racers]="testData"></app-grand-prix-bracket>
+            <app-grand-prix-bracket [racers]="testData"></app-grand-prix-bracket>
+            <app-grand-prix-bracket [racers]="testData"></app-grand-prix-bracket>
+          </app-grand-prix-match>
+        </app-grand-prix-round>
+        <app-grand-prix-round>
+          <div class="gp-round--winner">
+            <app-grand-prix-bracket [racers]="testData"></app-grand-prix-bracket>
+          </div>
+          <app-grand-prix-match>
+            <app-grand-prix-bracket [racers]="testData"></app-grand-prix-bracket>
+            <app-grand-prix-bracket [racers]="testData"></app-grand-prix-bracket>
+            <app-grand-prix-bracket [racers]="testData"></app-grand-prix-bracket>
+          </app-grand-prix-match>
+        </app-grand-prix-round>
+      </app-grand-prix-match>
+    </app-grand-prix-round>
+  </app-grand-prix-match>
+</app-grand-prix-tournament>

@@ -1,0 +1,16 @@
+<ng-container *ngIf="loadComplete && brackets && brackets.length > 0; else emptyMatch">
+  <div class="gp-players" *ngFor="let b of brackets.toArray()">
+    <ng-container *ngIf="b?.racers">
+      <div class="gp-bracket-container">
+        <div class="gp-bracket-chip" *ngFor="let u of b.racers">
+          <div *ngIf="u?.icon">{{ u.icon }}</div>
+          {{ u | formatUserName }}
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
+
+<ng-template #emptyMatch>
+  <ng-content></ng-content>
+</ng-template>

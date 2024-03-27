@@ -49,3 +49,7 @@ export interface Guardian extends User {
   state?: string;
   zipCode?: string;
 }
+
+export interface GrandPrixUser extends User {
+  icon?: string;
+}

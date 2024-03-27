@@ -8,6 +8,7 @@ import { AwanaCheckInComponent } from 'src/app/pages/awana/awana-check-in/awana-
 import { AwanaNewAttendanceRecordComponent } from 'src/app/pages/awana/awana-check-in/awana-new-attendance-record/awana-new-attendance-record.component';
 import { AwanaChildrenDetailComponent } from 'src/app/pages/awana/awana-children/awana-children-detail/awana-children-detail.component';
 import { AwanaChildrenComponent } from 'src/app/pages/awana/awana-children/awana-children.component';
+import { AwanaGrandPrixComponent } from 'src/app/pages/awana/awana-grand-prix/awana-grand-prix.component';
 import { AwanaWorkersComponent } from 'src/app/pages/awana/awana-workers/awana-workers.component';
 import { AttendanceRecordResolverService } from 'src/service/attendance/attendance-record-resolver.service';
 import { AwanaWorkersResolverService } from 'src/service/attendance/awana-workers-resolver.service copy';
@@ -86,6 +87,20 @@ export const AWANA_ROUTE: Route = {
           {
             app: App.AWANA,
             feature: FeatureType.OVERVIEW,
+            access: Access.READ,
+          },
+        ],
+      },
+    },
+    {
+      path: 'grand-prix',
+      component: AwanaGrandPrixComponent,
+      canActivate: [FeatureAccessGuard],
+      data: {
+        featureAccessGuards: [
+          {
+            app: App.AWANA,
+            feature: FeatureType.GRAND_PRIX,
             access: Access.READ,
           },
         ],

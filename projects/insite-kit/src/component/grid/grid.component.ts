@@ -69,7 +69,7 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
   }
 
   /**
-   * List for changes to the component. If the dataloader is updated,
+   * Listen for changes to the component. If the dataloader is updated,
    * reload the grid.
    */
   ngOnChanges() {
