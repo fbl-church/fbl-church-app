@@ -8,7 +8,7 @@ import { FeatureService } from './feature.service';
 @Injectable({
   providedIn: 'root',
 })
-export class FeatureResolverService  {
+export class FeatureResolverService {
   constructor(private readonly featureService: FeatureService) {}
   resolve(route: ActivatedRouteSnapshot): Observable<User> {
     return this.featureService.getById(route.params.id).pipe(

@@ -9,7 +9,7 @@ import { UserService } from '../users/user.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AwanaWorkersResolverService  {
+export class AwanaWorkersResolverService {
   constructor(private readonly userService: UserService, private readonly commonService: CommonService) {}
   resolve(): Observable<User> {
     return this.userService

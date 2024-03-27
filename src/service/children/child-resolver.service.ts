@@ -8,7 +8,7 @@ import { ChildrenService } from './children.service';
 @Injectable({
   providedIn: 'root',
 })
-export class ChildResolverService  {
+export class ChildResolverService {
   constructor(private childrenService: ChildrenService) {}
   resolve(route: ActivatedRouteSnapshot): Observable<User> {
     return this.childrenService.getById(route.params.id).pipe(

@@ -8,7 +8,7 @@ import { UserService } from '../users/user.service';
 @Injectable({
   providedIn: 'root',
 })
-export class JuniorChurchWorkersResolverService  {
+export class JuniorChurchWorkersResolverService {
   constructor(private readonly userService: UserService, private readonly commonService: CommonService) {}
   resolve(): Observable<User> {
     return this.userService

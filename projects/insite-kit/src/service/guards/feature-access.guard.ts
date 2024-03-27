@@ -7,7 +7,7 @@ import { NavigationService } from '../navigation/navigation.service';
 @Injectable({
   providedIn: 'root',
 })
-export class FeatureAccessGuard  {
+export class FeatureAccessGuard {
   constructor(
     private readonly navigationService: NavigationService,
     private readonly userAccessService: UserAccessService

@@ -8,7 +8,7 @@ import { NavigationService } from '../navigation/navigation.service';
 @Injectable({
   providedIn: 'root',
 })
-export class WebRoleAccessGuard  {
+export class WebRoleAccessGuard {
   constructor(
     private readonly navigationService: NavigationService,
     private readonly userAccessService: UserAccessService

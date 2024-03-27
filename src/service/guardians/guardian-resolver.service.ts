@@ -8,7 +8,7 @@ import { GuardianService } from './guardian.service';
 @Injectable({
   providedIn: 'root',
 })
-export class GuardianResolverService  {
+export class GuardianResolverService {
   constructor(private guardianService: GuardianService) {}
   resolve(route: ActivatedRouteSnapshot): Observable<Guardian> {
     return this.guardianService.getById(route.params.id).pipe(

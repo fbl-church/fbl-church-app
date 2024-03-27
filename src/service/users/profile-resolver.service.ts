@@ -12,7 +12,7 @@ import { UserService } from './user.service';
 @Injectable({
   providedIn: 'root',
 })
-export class ProfileResolverService  {
+export class ProfileResolverService {
   constructor(
     private userService: UserService,
     private readonly guardianService: GuardianService,

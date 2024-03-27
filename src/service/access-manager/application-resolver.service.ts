@@ -8,7 +8,7 @@ import { ApplicationService } from './application.service';
 @Injectable({
   providedIn: 'root',
 })
-export class ApplicationResolverService  {
+export class ApplicationResolverService {
   constructor(private applicationService: ApplicationService) {}
   resolve(route: ActivatedRouteSnapshot): Observable<User> {
     return this.applicationService.getById(route.params.id).pipe(

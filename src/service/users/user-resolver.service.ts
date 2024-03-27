@@ -8,7 +8,7 @@ import { UserService } from './user.service';
 @Injectable({
   providedIn: 'root',
 })
-export class UserResolverService  {
+export class UserResolverService {
   constructor(private userService: UserService) {}
   resolve(route: ActivatedRouteSnapshot): Observable<User> {
     return this.userService.getUserById(route.params.id).pipe(

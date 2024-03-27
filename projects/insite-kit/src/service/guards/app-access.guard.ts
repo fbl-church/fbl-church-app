@@ -7,7 +7,7 @@ import { NavigationService } from '../navigation/navigation.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AppAccessGuard  {
+export class AppAccessGuard {
   private readonly DEFAULT_APP_ROUTES = ['login', 'home', 'profile'];
 
   constructor(
