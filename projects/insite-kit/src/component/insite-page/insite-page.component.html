@@ -1,8 +1,6 @@
-<div class="flex">
-  <ik-navbar [appName]="appName" [sideBarOpen]="sideBar.isOpen" (menuClick)="sideBar.toggle()"></ik-navbar>
-  <div class="app-container">
-    <ik-sidebar #sideBar></ik-sidebar>
-    <ng-content></ng-content>
-  </div>
+<ik-navbar [appName]="appName" [sideBarOpen]="sideBar.isOpen" (menuClick)="sideBar.toggle()"></ik-navbar>
+<div class="app-container">
+  <ik-sidebar #sideBar></ik-sidebar>
+  <ng-content></ng-content>
 </div>
 <ik-footer></ik-footer>

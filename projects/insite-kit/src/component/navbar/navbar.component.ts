@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { JwtService } from '../../service/auth/jwt.service';
 import { UserAccessService } from '../../service/auth/user-access.service';
 import { CommonService } from '../../service/common/common.service';
@@ -11,6 +11,7 @@ import { NavbarProfileContentComponent } from './navbar-profile-content/navbar-p
   templateUrl: 'navbar.component.html',
 })
 export class NavbarComponent implements OnInit {
+  @HostBinding('class.app-navbar') hostClass = true;
   @ViewChild(NavbarProfileContentComponent)
   profileContent: NavbarProfileContentComponent;
   @Input() appName: string;

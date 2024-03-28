@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'ik-footer',
   templateUrl: 'footer.component.html',
 })
-export class FooterComponent {}
+export class FooterComponent {
+  @HostBinding('class.app-footer') hostClass = true;
+}

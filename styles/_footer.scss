@@ -1,6 +1,6 @@
 @import 'variables';
 
-footer {
+.app-footer {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -8,6 +8,8 @@ footer {
   border-top: 2px solid #edf1f7;
   padding: 0 250px;
   background-color: white;
+  display: block;
+  unicode-bidi: isolate;
 
   .copyright {
     text-align: center;
@@ -26,29 +28,29 @@ footer {
 }
 
 @media screen and (max-width: $footer-screen-lg-max) {
-  footer {
+  .app-footer {
     padding: 0 150px;
   }
 }
 
 @media screen and (max-width: $footer-screen-md-max) {
-  footer {
+  .app-footer {
     padding: 0 100px;
   }
 }
 
 @media screen and (max-width: $footer-screen-sm-max) {
-  footer {
+  .app-footer {
     padding: 0 50px;
   }
 }
 
 @media screen and (max-width: $footer-screen-xs-max) {
-  footer .row {
+  .app-footer .row {
     margin: 5px;
   }
 
-  footer {
+  .app-footer {
     padding: 0 5px;
 
     .copyright {
