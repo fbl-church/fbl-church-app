@@ -40,7 +40,7 @@ export class ProfileChildDetailsComponent implements OnInit, OnDestroy {
   }
 
   onBackClick() {
-    this.navigationService.back(`/profile`);
+    this.navigationService.back(`/profile/child/${this.childData.id}/details`);
   }
 
   onChildDetailEditClick() {

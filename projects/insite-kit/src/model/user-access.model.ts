@@ -74,6 +74,10 @@ export class UserAccess {
     key: FeatureType | string,
     level: Access | 'c' | 'r' | 'u' | 'd' = Access.READ
   ): boolean {
+    if (!app && !key) {
+      return true;
+    }
+
     if (!this.hasApp(app)) {
       return false;
     }

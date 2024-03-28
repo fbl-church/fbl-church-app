@@ -86,7 +86,7 @@ export const AWANA_ROUTE: Route = {
         FEATURE_ACCESS_GUARDs: [
           {
             app: App.AWANA,
-            feature: FeatureType.OVERVIEW,
+            feature: FeatureType.DETAIL,
             access: Access.READ,
           },
         ],

@@ -4,6 +4,7 @@
   *ngIf="childUpdating && !loading; else pageLoader"
   [childData]="childUpdating"
   [groupEdit]="false"
+  [duplicateCheck]="false"
   rightActionButton="Update Child"
   leftActionButton="Cancel"
   (cancel)="onCancelClick()"

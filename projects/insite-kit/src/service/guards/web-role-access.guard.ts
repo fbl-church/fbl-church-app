@@ -8,7 +8,7 @@ import { NavigationService } from '../navigation/navigation.service';
 export const WEB_ROLE_ACCESS_GUARD: CanActivateFn = (route) => {
   const userAccessService = inject(UserAccessService);
   const navigationService = inject(NavigationService);
-  console.log('WEBROLE CALLED', route.data.roles);
+
   return forkJoin(
     route.data.roles.map((r: WebRole) =>
       userAccessService.user$.pipe(
@@ -19,7 +19,6 @@ export const WEB_ROLE_ACCESS_GUARD: CanActivateFn = (route) => {
     )
   ).pipe(
     map((v: any) => {
-      console.log('ACCESS', v);
       if (!v.includes(false)) {
         return true;
       } else if (navigationService.routerUrl() === '') {

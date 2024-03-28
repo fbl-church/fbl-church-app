@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BaseInitModule } from 'src/app/common/base-init.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AwanaAttendanceDetailComponent } from './awana-check-in/awana-attendance-detail/awana-attendance-detail.component';
-import { UpdateChildAttendanceModalComponent } from './awana-check-in/awana-attendance-detail/modals/update-child-attendance-modal/update-child-attendance-modal.component';
+import { AwanaUpdateChildAttendanceModalComponent } from './awana-check-in/awana-attendance-detail/modals/update-child-attendance-modal/update-child-attendance-modal.component';
 import { AwanaCheckInComponent } from './awana-check-in/awana-check-in.component';
 import { AwanaNewAttendanceRecordComponent } from './awana-check-in/awana-new-attendance-record/awana-new-attendance-record.component';
 import { AwanaChildrenDetailComponent } from './awana-children/awana-children-detail/awana-children-detail.component';
@@ -28,7 +28,7 @@ import { AwanaWorkersComponent } from './awana-workers/awana-workers.component';
     GrandPrixBracketComponent,
     GrandPrixMatchComponent,
     GrandPrixRoundComponent,
-    UpdateChildAttendanceModalComponent,
+    AwanaUpdateChildAttendanceModalComponent,
   ],
 })
 export class AwanaModule {}

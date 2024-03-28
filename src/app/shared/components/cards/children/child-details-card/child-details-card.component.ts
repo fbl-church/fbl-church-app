@@ -11,6 +11,7 @@ export class ChildDetailsCardComponent {
   @Input() title = 'Details';
   @Input() loading = false;
   @Input() showEdit = true;
+  @Input() featureRestriction = [App.CHILDREN, FeatureType.DETAIL, Access.UPDATE];
   @Output() editClick = new EventEmitter<any>();
 
   FeatureType = FeatureType;

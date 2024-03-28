@@ -4,7 +4,11 @@
   </ik-header>
   <ik-banner *ngIf="childData.guardians?.length <= 0" type="warning"> Child does not have any guardians. </ik-banner>
   <div class="layout__column-left layout__half">
-    <app-child-details-card [child]="childData" (editClick)="onChildDetailEditClick()"></app-child-details-card>
+    <app-child-details-card
+      [featureRestriction]="[]"
+      [child]="childData"
+      (editClick)="onChildDetailEditClick()"
+    ></app-child-details-card>
     <app-child-additional-info-card [child]="childData"></app-child-additional-info-card>
   </div>
   <div class="layout__column-right layout__half">
