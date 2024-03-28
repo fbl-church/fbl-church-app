@@ -1,47 +1,32 @@
-import { Injectable, inject } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivateFn } from '@angular/router';
-import { Observable, filter, forkJoin, map, take } from 'rxjs';
+import { inject } from '@angular/core';
+import { CanActivateFn, createUrlTreeFromSnapshot } from '@angular/router';
+import { filter, forkJoin, map, take } from 'rxjs';
 import { WebRole } from '../../model/common.model';
 import { UserAccessService } from '../auth/user-access.service';
 import { NavigationService } from '../navigation/navigation.service';
 
-export const WEB_ROLE_ACCESS_GUARD: CanActivateFn = (route) => inject(WebRoleAccessGuard).canActivate(route);
-
-@Injectable({
-  providedIn: 'root',
-})
-class WebRoleAccessGuard {
-  constructor(
-    private readonly navigationService: NavigationService,
-    private readonly userAccessService: UserAccessService
-  ) {}
-
-  /**
-   * Determine if the user has the correct roles to trigger this guard.
-   *
-   * @param next snapshot of the active route
-   * @returns boolean based on the status of the user roles
-   */
-  canActivate(next: ActivatedRouteSnapshot): Observable<boolean> {
-    return forkJoin(
-      next.data.roles.map((r: WebRole) =>
-        this.userAccessService.user$.pipe(
-          filter((u) => !!u),
-          map((ua) => ua.hasRole(r)),
-          take(1)
-        )
+export const WEB_ROLE_ACCESS_GUARD: CanActivateFn = (route) => {
+  const userAccessService = inject(UserAccessService);
+  const navigationService = inject(NavigationService);
+  console.log('WEBROLE CALLED', route.data.roles);
+  return forkJoin(
+    route.data.roles.map((r: WebRole) =>
+      userAccessService.user$.pipe(
+        filter((u) => !!u),
+        map((ua) => ua.hasRole(r)),
+        take(1)
       )
-    ).pipe(
-      map((v: any) => {
-        if (!v.includes(false)) {
-          return true;
-        } else if (this.navigationService.routerUrl() === '') {
-          this.navigationService.navigate('/profile');
-          return false;
-        } else {
-          return false;
-        }
-      })
-    );
-  }
-}
+    )
+  ).pipe(
+    map((v: any) => {
+      console.log('ACCESS', v);
+      if (!v.includes(false)) {
+        return true;
+      } else if (navigationService.routerUrl() === '') {
+        return createUrlTreeFromSnapshot(route, ['/', 'profile']);
+      } else {
+        return false;
+      }
+    })
+  );
+};
