@@ -4,7 +4,7 @@
     Create Application
   </button>
 </ik-header>
-<ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
+<ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)" preferenceKey="applicationsGrid">
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="Name" field="displayName"></ik-grid-column>
   <ik-grid-column label="Key" field="key"></ik-grid-column>

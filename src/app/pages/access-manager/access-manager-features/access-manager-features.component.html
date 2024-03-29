@@ -4,7 +4,7 @@
     Create Feature
   </button>
 </ik-header>
-<ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
+<ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)" preferenceKey="featuresGrid">
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="App" field="app">
     <ng-template let-data>
