@@ -1,12 +1,10 @@
-@import 'variables';
-
 .header-title {
   display: inline-block;
   text-align: center;
   font-size: $font-size-header-lg;
   font-family: emoji, sans-serif;
   font-weight: $font-weight-semi-bold;
-  color: $text-color;
+  color: var(--text-color);
 }
 
 .header-container {

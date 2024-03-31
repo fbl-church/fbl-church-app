@@ -1,5 +1,3 @@
-@import 'variables';
-
 * {
   font-family: emoji, sans-serif;
 }
@@ -31,6 +29,10 @@ textarea {
 .link {
   cursor: pointer;
   color: #0d6efd;
+}
+
+.text-color {
+  color: var(--text-color);
 }
 
 .inline {

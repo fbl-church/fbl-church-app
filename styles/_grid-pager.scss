@@ -1,7 +1,5 @@
-@import 'variables';
-
 .grid-pager__footer {
-  color: $text-color;
+  color: var(--text-color);
   display: flex;
   align-items: center;
   gap: 5px;
@@ -12,7 +10,7 @@
 }
 
 .grid-pager__page-number {
-  color: $text-color;
+  color: var(--text-color);
   width: 38px;
   height: 38px;
   text-align: center;

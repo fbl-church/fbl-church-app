@@ -18,7 +18,14 @@ export class UserDetailsCardComponent {
   Application = App;
   Access = Access;
 
+  darkThemeEnabled = false;
+
   onEditIconClick() {
     this.editClick.emit();
+  }
+
+  updateTheme() {
+    this.darkThemeEnabled = !this.darkThemeEnabled;
+    document.body.setAttribute('data-theme', this.darkThemeEnabled ? 'dark' : 'light');
   }
 }

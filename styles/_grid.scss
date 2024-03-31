@@ -1,12 +1,10 @@
-@import 'variables';
-
 td {
   text-align: center;
 }
 
 thead {
   line-height: 32px;
-  border-bottom: 1px solid #d2d4d6;
+  border-bottom: 1px solid var(--grid-header-border);
 }
 
 table {
@@ -21,7 +19,7 @@ table {
 }
 
 .grid__content {
-  color: $text-color;
+  color: var(--text-color);
   cursor: pointer;
   font-size: $font-size-base;
   font-weight: $font-weight-normal;
@@ -40,7 +38,7 @@ table {
 }
 
 .grid__column-header {
-  color: $text-color;
+  color: var(--text-color);
   font-size: $font-size-lg;
   font-weight: $font-weight-normal;
   text-align: left;
@@ -51,15 +49,15 @@ table {
 }
 
 .grid__content-row:nth-child(even) {
-  background-color: #f7f9fc;
+  background-color: var(--grid-item-background-even);
 }
 
 .grid__content-row:nth-child(odd) {
-  background-color: white;
+  background-color: var(--grid-item-background-odd);
 }
 
 .grid__content-row:hover {
-  background-color: #edf1f7;
+  background-color: var(--grid-item-background-hover);
 }
 
 .grid-icon {

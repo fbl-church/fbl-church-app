@@ -1,5 +1,3 @@
-@import 'variables';
-
 .app-navbar {
   display: flex;
   flex-direction: row;
@@ -8,7 +6,7 @@
   min-height: 50px;
   height: 80px;
   border: 1px solid transparent;
-  background: $primary;
+  background: var(--navbar-background);
   position: fixed;
   width: 100%;
   overflow: hidden;
@@ -35,7 +33,7 @@
   float: left;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
-  color: $white;
+  color: var(--navbar-icons);
 
   &__left {
     @extend .app-navbar__icons;

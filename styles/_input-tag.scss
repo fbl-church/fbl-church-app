@@ -38,7 +38,8 @@
 }
 
 .input-tag__field {
-  background: #f7f9fc;
+  background: var(--grid-search-background);
+  color: var(--text-color);
   border: 0;
   box-shadow: none;
   display: inline-block;

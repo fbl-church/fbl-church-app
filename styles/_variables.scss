@@ -82,6 +82,88 @@ $red-700: #950e0c;
 $primary: $blue-300;
 $text-color: $gray-700;
 
+// App Background
+
+[data-theme='light'] {
+  --base-color: #ebeff5;
+  --base-border: #101426;
+  --base-background: white;
+  --text-color: #2a2a2a;
+
+  --card-background: white;
+  --card-border: #c7c7c7;
+  --card-header-background: #f3f3f3;
+
+  --icon-color: #212529;
+
+  --form-input-background: #ebeff5;
+  --form-input-border: #ccc;
+
+  --footer-background: white;
+  --footer-border: #edf1f7;
+
+  --sidebar-background: white;
+  --sidebar-text-color: #656e7e;
+  --sidebar-item-border: #edf1f7;
+
+  --grid-item-background-even: #f7f9fc;
+  --grid-item-background-odd: white;
+  --grid-item-background-hover: #edf1f7;
+  --grid-header-border: #d2d4d6;
+  --grid-search-background: #f7f9fc;
+  --grid-search-border: #e4e9f2;
+
+  --navbar-background: #0095ff;
+  --navbar-icons: white;
+
+  --ng-select-background: #ebeff5;
+  --ng-select-dropdown-background: white;
+  --ng-select-top-border: #e6e6e6;
+  --ng-select-marked: #ebf5ff;
+  --ng-select-hover: #f5faff;
+  --ng-select-border: #cccccc;
+}
+
+[data-theme='dark'] {
+  --base-color: #151a30;
+  --base-border: #101426;
+  --base-background: #222b45;
+  --text-color: white;
+
+  --card-background: #222b45;
+  --card-border: #101426;
+  --card-header-background: #2d3553;
+
+  --icon-color: white;
+
+  --form-input-background: #192038;
+  --form-input-border: #101426;
+
+  --footer-background: #222b45;
+  --footer-border: #101426;
+
+  --sidebar-background: #222b45;
+  --sidebar-text-color: white;
+  --sidebar-item-border: #101426;
+
+  --grid-item-background-even: #222b45;
+  --grid-item-background-odd: #192038;
+  --grid-item-background-hover: #151a30;
+  --grid-header-border: #101426;
+  --grid-search-background: #192038;
+  --grid-search-border: #101426;
+
+  --navbar-background: #222b45;
+  --navbar-icons: #8f9bb3;
+
+  --ng-select-background: #151a30;
+  --ng-select-dropdown-background: #222b45;
+  --ng-select-top-border: #21253b;
+  --ng-select-marked: #2d3553;
+  --ng-select-hover: #363f5f;
+  --ng-select-border: #101426;
+}
+
 //**************************************************//
 // Fonts
 //**************************************************//

@@ -1,14 +1,12 @@
-@import 'variables';
-
 .card__header {
   animation: 0s 2s delayoverflow;
   display: inline-block;
   height: auto;
   width: 100%;
   border-radius: 8px 8px 0 0;
-  background: #f3f3f3;
+  background: var(--card-header-background);
   padding: 10px 16px;
-  border-bottom: 1px solid #d9dce2;
+  border-bottom: 1px solid var(--card-border);
   cursor: pointer;
 
   &--closed {
@@ -19,7 +17,7 @@
 }
 
 .card__header .title {
-  color: $text-color;
+  color: var(--text-color);
   font-size: $font-size-xl;
   font-weight: $font-weight-bold;
   font-family: Verdana;

@@ -1,12 +1,10 @@
-@import 'variables';
-
 .header-back__arrow-icon {
   display: inline-block;
   transition: transform 0.2s;
   margin-right: 20px;
   margin-left: 5px;
   cursor: pointer;
-  color: $text-color;
+  color: var(--text-color);
   font-size: $font-size-header-md;
 }
 

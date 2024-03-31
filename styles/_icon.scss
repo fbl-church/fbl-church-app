@@ -1,7 +1,6 @@
-@import 'variables';
-
 .icon__default {
   font-size: $font-size-xl;
+  color: var(--icon-color);
 }
 
 .icon__danger {

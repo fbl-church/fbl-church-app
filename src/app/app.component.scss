@@ -7,7 +7,7 @@
 
   &__background {
     @extend .global_container;
-    background: #ebeff5;
+    background: var(--base-color);
     text-align: center;
     position: relative;
     overflow-x: hidden;

@@ -1,5 +1,3 @@
-@import 'variables';
-
 select {
   border-style: hidden;
   cursor: pointer;
@@ -18,11 +16,12 @@ input[readonly] {
   border-radius: 8px;
   width: 100%;
   border-style: hidden;
+  background: var(--form-input-background);
+  color: var(--text-color);
+  border: 1px solid var(--form-input-border);
 
   &__normal {
     @extend .form-input;
-    background: #ebeff5;
-    border: 1px solid #ccc;
     padding: 12px;
     font-size: $font-size-lg;
   }
@@ -31,7 +30,6 @@ input[readonly] {
     @extend .form-input;
     font-size: $font-size-base;
     box-shadow: inset 0 1px 2px rgba(203, 203, 210, 0.2), 0 0 4px rgba(121, 88, 159, 0.3), inset 0 0 10px 1000px #ffffff;
-    border: 1px solid #b5b5bb;
     padding: 0.7em 0.7em 0.7em 1em;
     outline: none;
     margin: 0.5em auto;
@@ -44,15 +42,14 @@ input[readonly] {
 
   &__multi-tag {
     @extend .form-input;
-    background: #ebeff5;
-    border: 1px solid #ccc;
     padding: 11px;
     font-size: $font-size-lg;
     display: inline-block;
     flex-grow: 2;
 
     .multi-input {
-      background: #ebeff5;
+      background: var(--form-input-background);
+      color: var(--text-color);
       border: 0;
       box-shadow: none;
       display: inline-block;
@@ -70,11 +67,12 @@ input[readonly] {
   border-radius: 8px;
   width: 100%;
   border-style: hidden;
+  background: var(--form-input-background);
+  color: var(--text-color);
+  border: 1px solid var(--form-input-border);
 
   &__normal {
     @extend .form-select;
-    background: #ebeff5;
-    border: 1px solid #ccc;
     padding: 12px;
     font-size: $font-size-lg;
   }
@@ -83,7 +81,6 @@ input[readonly] {
     @extend .form-select;
     font-size: $font-size-caption;
     box-shadow: inset 0 1px 2px rgba(203, 203, 210, 0.2), 0 0 4px rgba(121, 88, 159, 0.3), inset 0 0 10px 1000px #ffffff;
-    border: 1px solid #b5b5bb;
     padding: 0.7em 0.7em 0.7em 1em;
     outline: none;
     margin: 1.5em auto;

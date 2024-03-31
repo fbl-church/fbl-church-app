@@ -1,10 +1,8 @@
-@import 'variables';
-
 .grid-search {
-  color: $text-color;
+  color: var(--text-color);
   border-radius: 10px;
-  background: #f7f9fc;
-  border: 1px solid #e4e9f2;
+  background: var(--grid-search-background);
+  border: 1px solid var(--grid-search-border);
   padding: 10px;
   font-size: $font-size-lg;
   width: 100%;
@@ -17,7 +15,7 @@
 }
 
 .grid-search__icon {
-  color: $text-color;
+  color: var(--text-color);
   font-size: $font-size-header-xs;
   cursor: pointer;
 }

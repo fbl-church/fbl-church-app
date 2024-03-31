@@ -32,4 +32,10 @@
       <ik-card-info header="Last Login" [text]="user?.lastLoginDate | date : 'MMMM d, y, h:mm a'"></ik-card-info>
     </div>
   </div>
+
+  <div class="flex" *webRoleRestrictionAccess="WebRole.ADMINISTRATOR">
+    <div class="left-column">
+      <ik-card-info header="Dark Theme"> <ik-checkbox (checkboxChange)="updateTheme()"></ik-checkbox></ik-card-info>
+    </div>
+  </div>
 </ik-card>

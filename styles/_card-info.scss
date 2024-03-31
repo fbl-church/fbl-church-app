@@ -1,5 +1,3 @@
-@import 'variables';
-
 .card-info__content {
   padding-bottom: 24px;
   display: block;
@@ -11,7 +9,7 @@
 }
 
 .card-info__label-header {
-  color: $text-color;
+  color: var(--text-color);
   font-size: $font-size-lg;
   font-weight: $font-weight-semi-bold;
   font-family: emoji, sans-serif;
@@ -19,7 +17,7 @@
 }
 
 .card-info__label-text {
-  color: $text-color;
+  color: var(--text-color);
   font-size: $font-size-base;
   font-weight: $font-weight-normal;
   padding-left: 10px;
@@ -48,7 +46,7 @@
 }
 
 .DEFAULT {
-  color: $text-color;
+  color: var(--text-color);
 }
 
 @media screen and (max-width: $card-screen-sm-max) {
