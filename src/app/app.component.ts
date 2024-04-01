@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
+import { ThemeService } from 'projects/insite-kit/src/service/auth/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +7,7 @@ import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(private readonly jwt: JwtService) {
-    document.body.setAttribute('data-theme', this.jwt.getTheme());
+  constructor(private readonly themeService: ThemeService) {
+    this.themeService.setThemeToLoggedInUser();
   }
 }

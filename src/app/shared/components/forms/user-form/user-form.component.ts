@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
-import { Theme, User } from 'projects/insite-kit/src/model/user.model';
+import { ThemeType, User } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { RoleService } from 'src/service/roles/roles.service';
 
@@ -44,7 +44,7 @@ export class UserFormComponent implements OnInit {
       lastName: [this.userData ? this.userData.lastName : '', Validators.required],
       email: [this.userData ? this.userData.email : '', [Validators.required, Validators.email]],
       roles: [this.userData ? this.userData.webRole.filter((r) => !this.NOT_ASSIGNABLE_ROLES.includes(r)) : ''],
-      theme: [this.userData?.theme ? this.userData.theme : Theme.LIGHT, Validators.required],
+      theme: [this.userData?.theme ? this.userData.theme : ThemeType.LIGHT, Validators.required],
       appAccess: [this.userData ? this.userData.appAccess : true],
     });
 

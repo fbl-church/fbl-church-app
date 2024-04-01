@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { WebRole } from '../../model/common.model';
-import { Theme, User } from '../../model/user.model';
+import { ThemeType, User } from '../../model/user.model';
 import { NavigationService } from '../navigation/navigation.service';
 
 export const TOKEN_NAME = 'auth-token';
@@ -84,8 +84,9 @@ export class JwtService {
    *
    * @returns The tokens environment
    */
-  getTheme(): string {
-    return Theme[this.get('theme')];
+  getTheme(): ThemeType {
+    const theme: ThemeType = this.get('theme');
+    return theme;
   }
 
   /**

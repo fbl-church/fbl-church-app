@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
-import { Guardian, Theme, User } from 'projects/insite-kit/src/model/user.model';
+import { Guardian, ThemeType, User } from 'projects/insite-kit/src/model/user.model';
 import { AuthService } from 'projects/insite-kit/src/service/auth/auth.service';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
@@ -61,7 +61,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
     updateObservable.pipe(switchMap(() => this.authService.reauthenticate())).subscribe({
       next: () => {
         if (!this.isGuardianUser) {
-          document.body.setAttribute('data-theme', Theme[user.theme]);
+          document.body.setAttribute('data-theme', ThemeType[user.theme]);
         }
 
         this.onCancelClick();

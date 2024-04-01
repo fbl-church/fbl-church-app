@@ -54,7 +54,7 @@ export interface GrandPrixUser extends User {
   icon?: string;
 }
 
-export enum Theme {
+export enum ThemeType {
   LIGHT = 'light',
   DARK = 'dark',
 }
