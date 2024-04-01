@@ -1,9 +1,28 @@
 // Calendar Header
 .cal-cell-row.cal-header {
-  border-bottom: 1px solid #e1e1e1;
+  border-radius: 5px 5px 0 0;
+  color: var(--text-color);
+  background-color: var(--schedule-header-background);
+}
+
+.cal-month-view .cal-cell-row:hover {
+  background-color: var(--schedule-row-hover);
+}
+
+.cal-cell-row.cal-header {
+  border-bottom: 1px solid var(--schedule-border);
+}
+
+.cal-cell-row.cal-header div:last-child {
+  border-radius: 0 5px 0 0;
+}
+
+.cal-cell-row.cal-header div:first-child {
+  border-radius: 5px 0 0 0;
 }
 
 .month-title {
+  color: var(--text-color);
   margin: 18px 0;
   font-weight: bold;
   cursor: pointer;
@@ -48,7 +67,7 @@
 }
 
 .calendar-navigation--view {
-  background-color: white;
+  background-color: var(--schedule-icons);
   padding: 10px;
   font-size: 20px;
   cursor: pointer;
@@ -61,6 +80,57 @@
 }
 
 // Calendar Content
+.cal-month-view .cal-days {
+  background-color: var(--schedule-background);
+  color: var(--text-color);
+  border-radius: 0 0 5px 5px;
+}
+
+.cal-month-view .cal-day-cell:not(:last-child) {
+  border-right: 1px solid var(--schedule-border);
+}
+
+.cal-month-view .cal-cell-row .cal-cell:hover {
+  background-color: var(--schedule-cell-hover);
+}
+
+.cal-days div:last-child .cal-cell-row .cal-day-cell:hover:last-child {
+  border-radius: 0 0 5px 0;
+}
+
+.cal-days div:last-child .cal-cell-row .cal-day-cell:hover:first-child {
+  border-radius: 0 0 0 5px;
+}
+
+.cal-month-view .cal-days .cal-cell-row {
+  border-bottom: 1px solid var(--schedule-border);
+}
+
+.cal-month-view .cal-cell.cal-has-events.cal-open {
+  background-color: var(--schedule-cell-hover);
+}
+
+.cal-month-view .cal-days .cal-cell-row:hover {
+  background-color: var(--schedule-row-hover);
+  // border-radius: 0 0 5px 5px;
+}
+
+.cal-days div:last-child .cal-cell-row:hover {
+  border-radius: 0 0 5px 5px;
+}
+
+.cal-month-view .cal-open-day-events {
+  background-color: var(--schedule-row-hover);
+}
+
+.cal-month-view .cal-day-cell.cal-today {
+  background-color: var(--schedule-today);
+}
+
+.cal-month-view .cal-day-cell.cal-weekend .cal-day-number {
+  color: var(--schedule-weekend-color);
+}
+
 .cal-month-view {
   border-radius: 8px;
 }

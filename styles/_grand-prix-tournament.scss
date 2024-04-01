@@ -84,15 +84,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  border: solid 1px #d9d9d9;
+  border: 1px solid var(--grand-prix-match-border);
   padding: 10px;
 }
 
 .gp-bracket-chip {
   padding: 5px;
   font-weight: bold;
-  background-color: white;
-  border: 0.5px solid #c7c7c7;
+  background-color: var(--card-background);
+  color: var(--text-color);
+  border: 0.5px solid var(--grand-prix-player-border);
   border-radius: 10px;
   min-width: 200px;
   cursor: pointer;

@@ -82,11 +82,9 @@ $red-700: #950e0c;
 $primary: $blue-300;
 $text-color: $gray-700;
 
-// App Background
-
+// App Theme Colors
 [data-theme='light'] {
   --base-color: #ebeff5;
-  --base-border: #101426;
   --base-background: white;
   --text-color: #2a2a2a;
 
@@ -95,6 +93,8 @@ $text-color: $gray-700;
   --card-header-background: #f3f3f3;
 
   --icon-color: #212529;
+
+  --file-upload-border-top: #ebedef;
 
   --form-input-background: #ebeff5;
   --form-input-border: #ccc;
@@ -106,6 +106,10 @@ $text-color: $gray-700;
   --sidebar-text-color: #656e7e;
   --sidebar-item-border: #edf1f7;
 
+  // Grand Prix
+  --grand-prix-match-border: #d9d9d9;
+  --grand-prix-player-border: #c7c7c7;
+
   --grid-item-background-even: #f7f9fc;
   --grid-item-background-odd: white;
   --grid-item-background-hover: #edf1f7;
@@ -113,8 +117,30 @@ $text-color: $gray-700;
   --grid-search-background: #f7f9fc;
   --grid-search-border: #e4e9f2;
 
+  --model-header-background: #f3f3f3;
+  --modal-header-border: white;
+  --modal-background: white;
+
   --navbar-background: #0095ff;
   --navbar-icons: white;
+  --navbar-profile-background: #f9f9f9;
+  --navbar-profile-border: #c7c7c7;
+  --navbar-profile-item-border: #edf1f7;
+  --navbar-profile-text-color: #656e7e;
+  --navbar-profile-item-hover: #f1f1f1;
+  --navbar-profile-shadow: rgba(89, 105, 129, 0.3);
+
+  --radio-background: white;
+  --radio-border: #b5b5bb;
+
+  --schedule-background: white;
+  --schedule-today: #e8fde7;
+  --schedule-header-background: white;
+  --schedule-icons: white;
+  --schedule-border: #e1e1e1;
+  --schedule-row-hover: #f5faff;
+  --schedule-cell-hover: #e1e1e1;
+  --schedule-weekend-color: #8b0000;
 
   --ng-select-background: #ebeff5;
   --ng-select-dropdown-background: white;
@@ -125,43 +151,91 @@ $text-color: $gray-700;
 }
 
 [data-theme='dark'] {
-  --base-color: #151a30;
-  --base-border: #101426;
-  --base-background: #222b45;
-  --text-color: white;
+  --dark-000: white;
+  --dark-050: #8f9bb3;
+  --dark-100: #363f5f;
+  --dark-200: #2d3553;
+  --dark-300: #222b45;
+  --dark-400: #192038;
+  --dark-500: #151a30;
+  --dark-600: #101426;
 
-  --card-background: #222b45;
-  --card-border: #101426;
-  --card-header-background: #2d3553;
+  --base-color: var(--dark-500);
+  --base-background: var(--dark-300);
+  --text-color: var(--dark-000);
 
-  --icon-color: white;
+  // Card
+  --card-background: var(--dark-300);
+  --card-border: var(--dark-600);
+  --card-header-background: var(--dark-200);
 
-  --form-input-background: #192038;
-  --form-input-border: #101426;
+  // Icons
+  --icon-color: var(--dark-000);
 
-  --footer-background: #222b45;
-  --footer-border: #101426;
+  // File Upload
+  --file-upload-border-top: var(--dark-200);
 
-  --sidebar-background: #222b45;
-  --sidebar-text-color: white;
-  --sidebar-item-border: #101426;
+  // Form
+  --form-input-background: var(--dark-400);
+  --form-input-border: var(--dark-600);
 
-  --grid-item-background-even: #222b45;
-  --grid-item-background-odd: #192038;
-  --grid-item-background-hover: #151a30;
-  --grid-header-border: #101426;
-  --grid-search-background: #192038;
-  --grid-search-border: #101426;
+  // Footer
+  --footer-background: var(--dark-300);
+  --footer-border: var(--dark-600);
 
-  --navbar-background: #222b45;
-  --navbar-icons: #8f9bb3;
+  // Sidebar
+  --sidebar-background: var(--dark-300);
+  --sidebar-text-color: var(--dark-000);
+  --sidebar-item-border: var(--dark-600);
 
-  --ng-select-background: #151a30;
-  --ng-select-dropdown-background: #222b45;
-  --ng-select-top-border: #21253b;
-  --ng-select-marked: #2d3553;
-  --ng-select-hover: #363f5f;
-  --ng-select-border: #101426;
+  // Grand Prix
+  --grand-prix-match-border: var(--dark-050);
+  --grand-prix-player-border: var(--dark-050);
+
+  // Grid
+  --grid-item-background-even: var(--dark-300);
+  --grid-item-background-odd: var(--dark-400);
+  --grid-item-background-hover: var(--dark-500);
+  --grid-header-border: var(--dark-600);
+  --grid-search-background: var(--dark-400);
+  --grid-search-border: var(--dark-600);
+
+  // Modal
+  --modal-header-background: var(--dark-200);
+  --modal-header-border: var(--dark-600);
+  --modal-background: var(--dark-300);
+
+  // Navbar
+  --navbar-background: var(--dark-300);
+  --navbar-icons: var(--dark-050);
+  --navbar-profile-background: var(--dark-300);
+  --navbar-profile-border: var(--dark-600);
+  --navbar-profile-item-border: var(--dark-600);
+  --navbar-profile-text-color: var(--text-color);
+  --navbar-profile-item-hover: var(--dark-100);
+  --navbar-profile-shadow: rgb(0 0 0 / 30%);
+
+  // Radio
+  --radio-background: var(--dark-400);
+  --radio-border: var(--dark-600);
+
+  // Schedule
+  --schedule-background: var(--dark-300);
+  --schedule-today: var(--dark-050);
+  --schedule-icons: var(--dark-050);
+  --schedule-header-background: var(--dark-200);
+  --schedule-border: var(--dark-600);
+  --schedule-row-hover: var(--dark-100);
+  --schedule-cell-hover: var(--dark-200);
+  --schedule-weekend-color: #cd5c5c;
+
+  // Ng Select
+  --ng-select-background: var(--dark-500);
+  --ng-select-dropdown-background: var(--dark-300);
+  --ng-select-top-border: var(--dark-600);
+  --ng-select-marked: var(--dark-200);
+  --ng-select-hover: var(--dark-100);
+  --ng-select-border: var(--dark-600);
 }
 
 //**************************************************//

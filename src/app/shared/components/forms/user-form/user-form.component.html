@@ -1,4 +1,7 @@
 <ng-container *ngIf="form">
+  <ik-banner *ngIf="showThemeChangeBanner" type="warning"
+    >Application Theme will take affect when you click 'Update'</ik-banner
+  >
   <ik-form [formGroup]="form">
     <ik-form-field header="App Access*" class="col-12" *ngIf="userData && enableAccessUpdate">
       <label class="input-inline">
@@ -10,6 +13,17 @@
         <span>Denied</span>
       </label>
     </ik-form-field>
+    <ik-form-field header="App Theme*" class="col-12" *ngIf="userData && enabledThemeChange">
+      <label class="input-inline">
+        <input type="radio" formControlName="theme" class="form-check-input checkbox__default" [value]="'LIGHT'" />
+        <span>Light</span>
+      </label>
+      <label class="input-inline">
+        <input type="radio" formControlName="theme" class="form-check-input checkbox__default" [value]="'DARK'" />
+        <span>Dark</span>
+      </label>
+    </ik-form-field>
+
     <div class="row">
       <ik-form-field header="First Name*" class="col-md-6"
         ><input class="form-input__normal" placeholder="First Name" formControlName="firstName" />
@@ -19,11 +33,9 @@
         ><input class="form-input__normal" placeholder="Last Name" formControlName="lastName" />
       </ik-form-field>
     </div>
-    <div class="row">
-      <ik-form-field header="Email*" class="col-12">
-        <input type="email" inputmode="email" class="form-input__normal" placeholder="Email" formControlName="email" />
-      </ik-form-field>
-    </div>
+    <ik-form-field header="Email*">
+      <input type="email" inputmode="email" class="form-input__normal" placeholder="Email" formControlName="email" />
+    </ik-form-field>
 
     <ik-form-field header="Roles" *ngIf="enableRoleUpdate">
       <ik-multi-select formControlName="roles" [items]="roleSection"></ik-multi-select>

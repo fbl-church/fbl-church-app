@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
-import { User } from 'projects/insite-kit/src/model/user.model';
+import { Theme, User } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { RoleService } from 'src/service/roles/roles.service';
 
@@ -15,11 +15,13 @@ export class UserFormComponent implements OnInit {
   @Input() leftActionButton: string;
   @Input() enableRoleUpdate = true;
   @Input() enableAccessUpdate = true;
+  @Input() enabledThemeChange = true;
   @Output() cancel = new EventEmitter<any>();
   @Output() save = new EventEmitter<User>();
 
   form: FormGroup;
 
+  showThemeChangeBanner = false;
   WebRole = WebRole;
   roleSection: any[];
 
@@ -42,8 +44,11 @@ export class UserFormComponent implements OnInit {
       lastName: [this.userData ? this.userData.lastName : '', Validators.required],
       email: [this.userData ? this.userData.email : '', [Validators.required, Validators.email]],
       roles: [this.userData ? this.userData.webRole.filter((r) => !this.NOT_ASSIGNABLE_ROLES.includes(r)) : ''],
+      theme: [this.userData?.theme ? this.userData.theme : Theme.LIGHT, Validators.required],
       appAccess: [this.userData ? this.userData.appAccess : true],
     });
+
+    this.form.controls.theme.valueChanges.subscribe((res) => (this.showThemeChangeBanner = true));
   }
 
   onCancelClick() {
@@ -57,6 +62,7 @@ export class UserFormComponent implements OnInit {
       firstName: this.form.value.firstName.trim(),
       lastName: this.form.value.lastName.trim(),
       appAccess: this.form.value.appAccess,
+      theme: this.form.value.theme,
     };
 
     if (this.form.value.email) {

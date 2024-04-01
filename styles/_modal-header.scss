@@ -1,6 +1,7 @@
 .ik-modal-header {
-  background-color: #f3f3f3;
+  background-color: var(--modal-header-background);
   padding: 10px;
+  border-bottom: 1px solid var(--modal-header-border);
 
   &.info {
     background-color: $primary;

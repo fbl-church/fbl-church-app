@@ -5,7 +5,14 @@
   margin-bottom: 0;
   font-weight: 400;
   vertical-align: middle;
+  color: var(--text-color);
+
   cursor: pointer;
+}
+
+.form-check-input {
+  background-color: var(--radio-background);
+  border: 1px solid var(--radio-border);
 }
 
 .input-inline + .input-inline {

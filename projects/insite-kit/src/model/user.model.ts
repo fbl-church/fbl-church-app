@@ -53,3 +53,8 @@ export interface Guardian extends User {
 export interface GrandPrixUser extends User {
   icon?: string;
 }
+
+export enum Theme {
+  LIGHT = 'light',
+  DARK = 'dark',
+}

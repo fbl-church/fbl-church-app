@@ -41,6 +41,7 @@ export class ScheduleComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.body.classList.add('dark');
     this.reloadCalendarEvents(new Date().getMonth() + 1);
   }
 
