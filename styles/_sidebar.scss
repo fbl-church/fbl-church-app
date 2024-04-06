@@ -1,10 +1,10 @@
 .sidebar::-webkit-scrollbar {
   width: 5px;
-  background: $sidebar-scroll-bar;
+  background: var(--sidebar-scroll-background);
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-  background: $sidebar-scroll-thumb;
+  background: var(--sidebar-scroll-pill);
   border-radius: 10px;
 }
 

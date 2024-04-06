@@ -113,6 +113,8 @@ $text-color: $gray-700;
   --sidebar-background: white;
   --sidebar-text-color: #656e7e;
   --sidebar-item-border: #edf1f7;
+  --sidebar-scroll-background: #f7f9fc;
+  --sidebar-scroll-pill: #d1d6df;
 
   // Grand Prix
   --grand-prix-match-border: #d9d9d9;
@@ -158,7 +160,7 @@ $text-color: $gray-700;
   // Ng Select
   --ng-select-background: #ebeff5;
   --ng-select-dropdown-background: white;
-  --ng-select-scroll-pill: #ebeff5;
+  --ng-select-scroll-pill: #d1d6df;
   --ng-select-top-border: #e6e6e6;
   --ng-select-marked: #ebf5ff;
   --ng-select-hover: #f5faff;
@@ -204,6 +206,8 @@ $text-color: $gray-700;
   --sidebar-background: var(--dark-300);
   --sidebar-text-color: var(--dark-000);
   --sidebar-item-border: var(--dark-600);
+  --sidebar-scroll-background: var(--dark-300);
+  --sidebar-scroll-pill: var(--dark-500);
 
   // Grand Prix
   --grand-prix-match-border: var(--dark-050);
@@ -377,8 +381,4 @@ $sidebar-height: calc(100% - $navbar-height);
 $sidebar-height-small: calc(100% - $navbar-height-small);
 $sidebar-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, 0.1);
 $sidebar-active: #3366ff;
-$sidebar-text: #656e7e;
 $sidebar-overlay: rgba(0, 0, 0, 0.5);
-$sidebar-item-border: 1px solid #edf1f7;
-$sidebar-scroll-bar: #f7f9fc;
-$sidebar-scroll-thumb: #e4e9f2;
