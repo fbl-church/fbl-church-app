@@ -103,6 +103,7 @@ $text-color: $gray-700;
   // Form
   --form-input-background: #ebeff5;
   --form-input-border: #ccc;
+  --form-input-color-scheme: light
 
   // Footer
   --footer-background: white;
@@ -193,6 +194,7 @@ $text-color: $gray-700;
   // Form
   --form-input-background: var(--dark-400);
   --form-input-border: var(--dark-600);
+  --form-input-color-scheme: dark;
 
   // Footer
   --footer-background: var(--dark-300);

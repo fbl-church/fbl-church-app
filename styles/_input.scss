@@ -5,6 +5,7 @@ select {
 
 input {
   border-style: hidden;
+  color-scheme: var(--form-input-color-scheme);
 }
 
 input[readonly] {
