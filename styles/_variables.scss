@@ -88,20 +88,27 @@ $text-color: $gray-700;
   --base-background: white;
   --text-color: #2a2a2a;
 
+  // Card
   --card-background: white;
   --card-border: #c7c7c7;
   --card-header-background: #f3f3f3;
+  --card-header-border: #d9dce2;
 
+  // Icon
   --icon-color: #212529;
 
+  // File Upload
   --file-upload-border-top: #ebedef;
 
+  // Form
   --form-input-background: #ebeff5;
   --form-input-border: #ccc;
 
+  // Footer
   --footer-background: white;
   --footer-border: #edf1f7;
 
+  // Sidebar
   --sidebar-background: white;
   --sidebar-text-color: #656e7e;
   --sidebar-item-border: #edf1f7;
@@ -110,6 +117,7 @@ $text-color: $gray-700;
   --grand-prix-match-border: #d9d9d9;
   --grand-prix-player-border: #c7c7c7;
 
+  // Grid
   --grid-item-background-even: #f7f9fc;
   --grid-item-background-odd: white;
   --grid-item-background-hover: #edf1f7;
@@ -117,10 +125,12 @@ $text-color: $gray-700;
   --grid-search-background: #f7f9fc;
   --grid-search-border: #e4e9f2;
 
-  --model-header-background: #f3f3f3;
-  --modal-header-border: white;
+  // Model
+  --modal-header-background: #f3f3f3;
+  --modal-header-border: #d9dce2;
   --modal-background: white;
 
+  // Navbar
   --navbar-background: #0095ff;
   --navbar-icons: white;
   --navbar-profile-background: #f9f9f9;
@@ -130,9 +140,11 @@ $text-color: $gray-700;
   --navbar-profile-item-hover: #f1f1f1;
   --navbar-profile-shadow: rgba(89, 105, 129, 0.3);
 
+  // Radio
   --radio-background: white;
   --radio-border: #b5b5bb;
 
+  // Schedule
   --schedule-background: white;
   --schedule-today: #e8fde7;
   --schedule-header-background: white;
@@ -142,8 +154,10 @@ $text-color: $gray-700;
   --schedule-cell-hover: #e1e1e1;
   --schedule-weekend-color: #8b0000;
 
+  // Ng Select
   --ng-select-background: #ebeff5;
   --ng-select-dropdown-background: white;
+  --ng-select-scroll-pill: #ebeff5;
   --ng-select-top-border: #e6e6e6;
   --ng-select-marked: #ebf5ff;
   --ng-select-hover: #f5faff;
@@ -168,6 +182,7 @@ $text-color: $gray-700;
   --card-background: var(--dark-300);
   --card-border: var(--dark-600);
   --card-header-background: var(--dark-200);
+  --card-header-border: var(--dark-600);
 
   // Icons
   --icon-color: var(--dark-000);
@@ -230,8 +245,9 @@ $text-color: $gray-700;
   --schedule-weekend-color: #cd5c5c;
 
   // Ng Select
-  --ng-select-background: var(--dark-500);
+  --ng-select-background: var(--dark-400);
   --ng-select-dropdown-background: var(--dark-300);
+  --ng-select-scroll-pill: var(--dark-500);
   --ng-select-top-border: var(--dark-600);
   --ng-select-marked: var(--dark-200);
   --ng-select-hover: var(--dark-100);

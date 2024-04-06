@@ -61,6 +61,7 @@ export class AttendanceRecordFormComponent implements OnInit, OnDestroy {
         this.record ? this.record.activeDate : this.commonService.formatDate(new Date(), 'yyyy-MM-dd'),
         Validators.required,
       ],
+      unitSession: [this.record?.unitSession ? this.record.unitSession : ''],
       workers: [this.record ? this.record.workers.map((v) => v.id) : []],
     });
 
@@ -89,6 +90,7 @@ export class AttendanceRecordFormComponent implements OnInit, OnDestroy {
     const newRecord: AttendanceRecord = {
       name: this.form.value.name.trim(),
       type: this.group,
+      unitSession: this.form.value.unitSession,
       activeDate: this.form.value.activeDate,
     };
 

@@ -1,0 +1,11 @@
+<ik-icon
+  *ngIf="!loading; else downloadLoading"
+  iconPrefix="far"
+  icon="circle-down"
+  classOverride="grid-header-icon"
+  (click)="onDownloadClick()"
+></ik-icon>
+
+<ng-template #downloadLoading>
+  <ik-icon icon="spinner" classOverride="grid-header-icon" [spin]="true"></ik-icon>
+</ng-template>

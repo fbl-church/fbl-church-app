@@ -1,5 +1,12 @@
 <ik-card>
-  <ng-content select="ik-card-header, ik-grid-search"></ng-content>
+  <ng-content select="ik-card-header"></ng-content>
+  <ng-container *ngIf="gridSearch">
+    <div class="grid-header">
+      <ng-content select="ik-grid-search"></ng-content>
+      <ng-content select="ik-grid-download"></ng-content>
+    </div>
+  </ng-container>
+
   <table *ngIf="!loading; else gridLoader" class="grid__table">
     <col *ngIf="gridChecklistColumn" class="grid__checklist-column" />
     <thead *ngIf="data?.body.length > 0">

@@ -6,7 +6,6 @@
   padding: 10px;
   font-size: $font-size-lg;
   width: 100%;
-  margin: 18px 18px 0 18px;
 }
 
 .grid-search__multiselect-form {
@@ -22,33 +21,34 @@
 
 .grid-search__icon-align {
   position: absolute;
-  top: 22px;
-  right: 30px;
+  top: 4px;
+  right: 12px;
 }
 
 .grid-search__container {
   display: flex;
   align-items: center;
   position: relative;
-}
-
-// IOS Devices ONLY
-@supports (-webkit-touch-callout: none) {
-  .grid-search__icon-align {
-    top: 22px;
-  }
+  flex: 1;
 }
 
 @media screen and (max-width: $grid-screen-sm-max) {
   .grid-search {
     font-size: $font-size-caption;
-    margin: 15px 5px 0 5px;
     padding: 8px;
   }
 
-  .grid-search__icon-align {
-    top: 18px !important;
-    right: 15px;
+  @supports (-webkit-touch-callout: none) {
+    .grid-search__icon-align {
+      right: 10px;
+    }
+  }
+
+  @supports not (-webkit-touch-callout: none) {
+    .grid-search__icon-align {
+      top: 2px !important;
+      right: 10px;
+    }
   }
 
   .grid-search__icon {

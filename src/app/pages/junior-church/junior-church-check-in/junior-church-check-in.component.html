@@ -8,4 +8,43 @@
     New Attendance
   </button>
 </ik-header>
-<app-attendance-record-grid [dataloader]="dataloader" (rowClick)="onRowClick($event)"></app-attendance-record-grid>
+
+<app-attendance-record-grid
+  [dataloader]="dataloader"
+  [downloadEnabled]="true"
+  [downloadLoading]="downloadLoading"
+  (rowClick)="onRowClick($event)"
+  (downloadClick)="juniorChurchScheduleDownloadModal.open()"
+></app-attendance-record-grid>
+
+<ik-modal #juniorChurchScheduleDownloadModal name="juniorChurchScheduleDownloadModal">
+  <ik-modal-header title="Download Junior Church Schedule" type="info"></ik-modal-header>
+  <ik-modal-body>
+    <form *ngIf="downloadForm" [formGroup]="downloadForm">
+      <ik-form-field header="Start Date*"
+        ><input type="date" class="form-input__normal" placeholder="Start Date" formControlName="startDate" />
+      </ik-form-field>
+      <ik-form-field header="End Date*"
+        ><input
+          type="date"
+          class="form-input__normal"
+          placeholder="End Date"
+          formControlName="endDate"
+          [min]="downloadForm.value.startDate"
+        />
+      </ik-form-field>
+    </form>
+  </ik-modal-body>
+  <ik-modal-action-bar>
+    <button
+      class="btn btn-primary btn-right btn-modal"
+      (click)="onJuniorChurchDownloadClick()"
+      [disabled]="downloadForm && downloadForm.invalid"
+    >
+      Download
+    </button>
+    <button class="btn btn-default btn-right btn-modal" (click)="juniorChurchScheduleDownloadModal.close()">
+      Cancel
+    </button>
+  </ik-modal-action-bar>
+</ik-modal>

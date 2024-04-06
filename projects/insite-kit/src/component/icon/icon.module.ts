@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { faCircleDown } from '@fortawesome/free-regular-svg-icons';
 import {
   faAddressBook,
   faAngleLeft,
@@ -109,7 +110,8 @@ export class IconModule {
       faCalendarDays,
       faAngleLeft,
       faAngleRight,
-      faList
+      faList,
+      faCircleDown
     );
   }
 }

@@ -1,3 +1,17 @@
+.grid-header {
+  display: flex;
+  margin: 18px 18px 0 18px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.grid-header-icon {
+  font-size: $font-size-header-sm;
+  color: var(--icon-color);
+  cursor: pointer;
+}
+
 td {
   text-align: center;
 }
@@ -73,6 +87,14 @@ table {
 @media screen and (max-width: $grid-screen-sm-max) {
   thead {
     line-height: 20px;
+  }
+
+  .grid-header {
+    margin: 15px 5px 0 5px;
+  }
+
+  .grid-header-icon {
+    font-size: $font-size-header-xs;
   }
 
   .grid__content {

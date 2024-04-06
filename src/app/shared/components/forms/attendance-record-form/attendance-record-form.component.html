@@ -21,6 +21,12 @@
     </ik-form-field>
   </div>
 
+  <ik-form-field
+    header="Unit/Session"
+    *ngIf="group === ChurchGroup.JUNIOR_CHURCH || record.type === ChurchGroup.JUNIOR_CHURCH"
+    ><input maxlength="100" class="form-input__normal" placeholder="Unit/Session" formControlName="unitSession" />
+  </ik-form-field>
+
   <ik-form-field [header]="workersRequired ? 'Workers*' : 'Workers'">
     <ik-multi-select formControlName="workers" [items]="workers"></ik-multi-select>
   </ik-form-field>

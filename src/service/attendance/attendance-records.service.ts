@@ -5,7 +5,7 @@ import {
   AttendanceStatus,
   ChildAttendance,
 } from 'projects/insite-kit/src/model/attendance-record.model';
-import { TranslationKey } from 'projects/insite-kit/src/model/common.model';
+import { ChurchGroup, TranslationKey } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
@@ -59,6 +59,26 @@ export class AttendanceRecordService {
     return this.request
       .get<ChildAttendance[]>(`${this.BASE_PATH}/${id}/children`, params)
       .pipe(tap((v) => v.body.forEach((c) => (c.formattedName = this.commonService.getFormattedName(c)))));
+  }
+
+  /**
+   * Download Attendance Record Schedule
+   *
+   * @param type The type of church group schedule to download
+   * @param startDate The start date
+   * @param endDate The end date
+   * @returns The pdf of the schedule
+   */
+  downloadAttendanceSchedule(type: ChurchGroup, startDate?: any, endDate?: any) {
+    const params = new Map<string, string[]>();
+    params.set('type', [type]);
+
+    if (startDate && endDate) {
+      params.set('startDate', [startDate]);
+      params.set('endDate', [endDate]);
+    }
+
+    return this.request.download(`${this.BASE_PATH}/schedule`, params);
   }
 
   /**

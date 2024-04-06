@@ -20,6 +20,7 @@ import { FormFieldComponent } from './component/form/field/form-field.component'
 import { FormComponent } from './component/form/form.component';
 import { GridChecklistColumnComponent } from './component/grid/grid-checklist-column/grid-checklist-column.component';
 import { GridColumnComponent } from './component/grid/grid-column/grid-column.component';
+import { GridDownloadComponent } from './component/grid/grid-download/grid-download.component';
 import { GridPagerComponent } from './component/grid/grid-pager/grid-pager.component';
 import { GridSearchComponent } from './component/grid/grid-search/grid-search.component';
 import { GridSelectionColumnComponent } from './component/grid/grid-selection-column/grid-selection-column.component';
@@ -129,6 +130,7 @@ export function tokenGetter() {
     NavbarProfileContentComponent,
     InputTagComponent,
     TagInputFieldComponent,
+    GridDownloadComponent,
   ],
   imports: [
     BaseInsiteModule,
@@ -203,6 +205,7 @@ export function tokenGetter() {
     NavbarProfileContentComponent,
     InputTagComponent,
     TagInputFieldComponent,
+    GridDownloadComponent,
   ],
   providers: [UsernamePipe, NotificationMessagePipe, { provide: APP_BASE_HREF, useValue: '/' }],
 })
