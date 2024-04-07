@@ -23,7 +23,7 @@
 
   <ik-form-field
     header="Unit/Session"
-    *ngIf="group === ChurchGroup.JUNIOR_CHURCH || record.type === ChurchGroup.JUNIOR_CHURCH"
+    *ngIf="group === ChurchGroup.JUNIOR_CHURCH || record?.type === ChurchGroup.JUNIOR_CHURCH"
     ><input maxlength="100" class="form-input__normal" placeholder="Unit/Session" formControlName="unitSession" />
   </ik-form-field>
 
