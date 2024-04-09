@@ -1,10 +1,6 @@
 <ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
   <ik-grid-search></ik-grid-search>
-  <ik-grid-download
-    *ngIf="downloadEnabled"
-    [loading]="downloadLoading"
-    (download)="onDownloadClick()"
-  ></ik-grid-download>
+  <ik-grid-download *ngIf="downloadEnabled" (download)="onDownloadClick()"></ik-grid-download>
   <ik-grid-column label="Name" field="name">
     <ng-template let-data>
       {{ data.name + ' - ' + (data.activeDate | date : 'MM/dd/yyyy') }}

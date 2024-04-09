@@ -23,6 +23,7 @@ import { GuardianChildrenDetailsGridComponent } from './components/grids/guardia
 import { AttendanceRecordDetailHeaderComponent } from './components/headers/attendance-record-detail-header/attendance-record-detail-header.component';
 import { AuthenticatedLayoutComponent } from './components/layouts/authenticated-layout/authenticated-layout.component';
 import { AddGuardianModalComponent } from './components/modals/add-guardian-modal/add-guardian-modal.component';
+import { AttendanceScheduleDownloadModalComponent } from './components/modals/attendance-schedule-download-modal/attendance-schedule-download-modal.component';
 import { CloseAttendanceRecordModalComponent } from './components/modals/close-attendance-record-modal/close-attendance-record-modal.component';
 import { DeleteRecordModalComponent } from './components/modals/delete-record-modal/delete-record-modal.component';
 import { DeleteUserModalComponent } from './components/modals/delete-user-modal/delete-user-modal.component';
@@ -71,6 +72,7 @@ import { ChildRegistrationWizardStepFourComponent } from './components/wizards/c
     DuplicateGuardianModalComponent,
     AddGuardianModalComponent,
     DeleteUserModalComponent,
+    AttendanceScheduleDownloadModalComponent,
   ],
   exports: [
     UserFormComponent,
@@ -106,6 +108,7 @@ import { ChildRegistrationWizardStepFourComponent } from './components/wizards/c
     AddGuardianModalComponent,
     QRCodeModule,
     DeleteUserModalComponent,
+    AttendanceScheduleDownloadModalComponent,
   ],
 })
 export class SharedModule {}

@@ -15,6 +15,7 @@ export class NurseryCheckInComponent {
   FeatureType = FeatureType;
   Application = App;
   Access = Access;
+  ChurchGroup = ChurchGroup;
 
   constructor(
     private readonly attendanceRecordService: AttendanceRecordService,
