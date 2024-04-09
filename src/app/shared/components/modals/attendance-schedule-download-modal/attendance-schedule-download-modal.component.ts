@@ -17,6 +17,8 @@ export class AttendanceScheduleDownloadModalComponent implements OnInit {
   @ViewChild(ModalComponent) modal: ModalComponent;
   @Input() type: ChurchGroup = ChurchGroup.JUNIOR_CHURCH;
 
+  typeTranslation: string;
+  title = '';
   savedGuardianData: Guardian;
   downloadForm: FormGroup;
   downloadLoading = false;
@@ -31,6 +33,9 @@ export class AttendanceScheduleDownloadModalComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.typeTranslation = this.commonService.translate(this.type, TranslationKey.CHURCH_GROUP);
+    this.title = `Download ${this.typeTranslation} Schedule`;
+
     this.downloadForm = this.fb.group({
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
@@ -69,18 +74,17 @@ export class AttendanceScheduleDownloadModalComponent implements OnInit {
       return;
     }
 
-    const typeTranslation = this.commonService.translate(this.type, TranslationKey.CHURCH_GROUP);
     this.attendanceRecordService
       .downloadAttendanceSchedule(this.type, this.downloadForm.value.startDate, this.downloadForm.value.endDate)
       .subscribe({
         next: (res) => {
-          this.toastService.success(`Download Complete for ${typeTranslation} Attendance Record!`);
-          this.storageService.download(res, `${typeTranslation} Schedule.pdf`);
+          this.toastService.success(`Download Complete for ${this.typeTranslation} Attendance Record!`);
+          this.storageService.download(res, `${this.typeTranslation} Schedule.pdf`);
           this.close();
           this.downloadLoading = false;
         },
         error: (err) => {
-          this.toastService.error(`Unable to download ${typeTranslation} Attendance Record. Try again later.`);
+          this.toastService.error(`Unable to download ${this.typeTranslation} Attendance Record. Try again later.`);
           this.downloadLoading = false;
         },
       });

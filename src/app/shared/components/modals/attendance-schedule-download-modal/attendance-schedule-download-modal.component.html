@@ -1,5 +1,5 @@
 <ik-modal #attendanceScheduleDownloadModal name="attendanceScheduleDownloadModal">
-  <ik-modal-header title="Download Junior Church Schedule" type="info"></ik-modal-header>
+  <ik-modal-header [title]="title" type="info"></ik-modal-header>
   <ik-modal-body>
     <form *ngIf="downloadForm" [formGroup]="downloadForm">
       <ik-form-field header="Start Date*"
