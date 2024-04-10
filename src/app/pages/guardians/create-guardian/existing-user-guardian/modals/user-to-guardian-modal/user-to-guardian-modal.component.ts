@@ -27,7 +27,7 @@ export class UserToGuardianModalComponent implements OnInit {
     private readonly popupService: PopupService,
     private readonly navigationService: NavigationService,
     private readonly fb: FormBuilder
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.buildForm();

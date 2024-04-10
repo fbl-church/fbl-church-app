@@ -6,7 +6,7 @@ import { JwtService } from './jwt.service';
   providedIn: 'root',
 })
 export class ThemeService {
-  constructor(private readonly jwt: JwtService) { }
+  constructor(private readonly jwt: JwtService) {}
 
   setThemeToLoggedInUser() {
     if (this.jwt.isAuthenticated()) {
