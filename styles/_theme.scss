@@ -1,5 +1,5 @@
 // App Theme Colors
-[data-theme='light'] {
+[data-theme='LIGHT'] {
   --base-color: #ebeff5;
   --base-background: white;
   --text-color: #2a2a2a;
@@ -83,7 +83,7 @@
   --ng-select-border: #cccccc;
 }
 
-[data-theme='dark'] {
+[data-theme='DARK'] {
   --dark-000: white;
   --dark-050: #8f9bb3;
   --dark-100: #363f5f;

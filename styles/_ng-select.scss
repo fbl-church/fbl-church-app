@@ -23,7 +23,7 @@
   border-width: 8px 8px 3.5px;
 }
 
-.ng-select > .ng-select-container {
+.ng-select>.ng-select-container {
   background-color: var(--ng-select-background);
   color: var(--text-color);
   border: 1px solid var(--ng-select-border);
@@ -32,7 +32,7 @@
   line-height: 56.22px;
 }
 
-.ng-select.ng-select-focused:not(.ng-select-opened) > .ng-select-container {
+.ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
   box-shadow: none;
   border-color: var(--ng-select-border);
 }
@@ -40,13 +40,12 @@
 .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
   top: 0;
 }
-.ng-select.ng-select-multiple
-  .ng-select-container
-  .ng-value-container
-  .ng-select
-  .ng-select-container
-  .ng-value-container
-  .ng-placeholder,
+
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-input>input {
+  color: var(--text-color);
+}
+
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-select .ng-select-container .ng-value-container .ng-placeholder,
 .ng-select .ng-select-container .ng-value-container .ng-multi-value-label {
   color: #2a2a2a;
 }
@@ -70,15 +69,15 @@
   color: var(--text-color);
 }
 
-.ng-select.ng-select-opened > .ng-select-container {
+.ng-select.ng-select-opened>.ng-select-container {
   background-color: var(--ng-select-dropdown-background);
 }
 
-.ng-select.ng-select-opened > .ng-select-container {
+.ng-select.ng-select-opened>.ng-select-container {
   background-color: var(--ng-select-dropdown-background);
 }
 
-.ng-select > .ng-select-container {
+.ng-select>.ng-select-container {
   background-color: var(--ng-select-background);
 }
 
@@ -101,8 +100,8 @@
   color: var(--text-color);
 }
 
-.ng-select.ng-select-opened > .ng-select-container,
-.ng-select > .ng-select-container {
+.ng-select.ng-select-opened>.ng-select-container,
+.ng-select>.ng-select-container {
   border: 1px solid var(--ng-select-border);
 }
 
@@ -116,7 +115,7 @@
     height: 52px;
   }
 
-  .ng-select > .ng-select-container {
+  .ng-select>.ng-select-container {
     height: 52px;
     line-height: 52px;
   }

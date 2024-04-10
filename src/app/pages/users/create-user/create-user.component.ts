@@ -16,7 +16,7 @@ export class CreateUserComponent {
     private readonly userService: UserService,
     private readonly navigationService: NavigationService,
     private readonly popupService: PopupService
-  ) {}
+  ) { }
 
   onCancelClick() {
     this.navigationService.back('/users');

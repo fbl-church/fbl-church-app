@@ -27,7 +27,7 @@ export class UserToGuardianModalComponent implements OnInit {
     private readonly popupService: PopupService,
     private readonly navigationService: NavigationService,
     private readonly fb: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -51,14 +51,15 @@ export class UserToGuardianModalComponent implements OnInit {
         next: () => {
           this.navigationService.navigate(`/guardians/${this.currentUser.id}/details`, false);
           this.popupService.success('User succesfully assigned Guardian role!');
+          this.modal.close();
         },
 
         error: () => {
           this.popupService.error('Unable to add guardian role to user at this time. Try again later.');
           this.modalLoading = false;
+          this.modal.close();
         },
       });
-    this.modal.close();
   }
 
   buildForm() {

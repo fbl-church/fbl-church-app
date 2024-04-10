@@ -24,7 +24,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
     private readonly popupService: PopupService,
     private readonly userService: UserService,
     private readonly route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.route.data

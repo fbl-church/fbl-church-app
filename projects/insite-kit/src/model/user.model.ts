@@ -7,6 +7,7 @@ export interface User {
   lastName?: string;
   email?: string;
   webRole?: WebRole[] | any[];
+  themeType?: ThemeType;
   appAccess?: boolean;
   accountStatus?: any;
   password?: string;
@@ -55,6 +56,6 @@ export interface GrandPrixUser extends User {
 }
 
 export enum ThemeType {
-  LIGHT = 'light',
-  DARK = 'dark',
+  LIGHT = 'LIGHT',
+  DARK = 'DARK',
 }

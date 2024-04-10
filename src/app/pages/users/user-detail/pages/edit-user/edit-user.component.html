@@ -1,12 +1,6 @@
 <ik-header title="Edit User"> <ik-header-back (back)="onCancelClick()"></ik-header-back></ik-header>
-<app-user-form
-  *ngIf="userUpdating && !loading; else pageLoader"
-  [userData]="userUpdating"
-  rightActionButton="Update User"
-  leftActionButton="Cancel"
-  (cancel)="onCancelClick()"
-  (save)="onSaveClick($event)"
->
+<app-user-form *ngIf="userUpdating && !loading; else pageLoader" [userData]="userUpdating" [enabledThemeChange]="false"
+  rightActionButton="Update User" leftActionButton="Cancel" (cancel)="onCancelClick()" (save)="onSaveClick($event)">
 </app-user-form>
 
 <ng-template #pageLoader>
