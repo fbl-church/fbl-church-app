@@ -30,6 +30,7 @@ import { DeleteUserModalComponent } from './components/modals/delete-user-modal/
 import { DuplicateChildModalComponent } from './components/modals/duplicate-child-modal/duplicate-child-modal.component';
 import { DuplicateGuardianModalComponent } from './components/modals/duplicate-guardian-modal/duplicate-guardian-modal.component';
 import { GuardianWarningModalComponent } from './components/modals/guardian-warning-modal/guardian-warning-modal.component';
+import { ResetPasswordModalComponent } from './components/modals/reset-password-modal/reset-password-modal.component';
 import { ChildRegistrationWizardComponent } from './components/wizards/child-registration/child-registration-wizard.component';
 import { ChildRegistrationWizardStepOneComponent } from './components/wizards/child-registration/steps/child-registration-1.wizard.step';
 import { ChildRegistrationWizardStepTwoComponent } from './components/wizards/child-registration/steps/child-registration-2.wizard.step';
@@ -73,6 +74,7 @@ import { ChildRegistrationWizardStepFourComponent } from './components/wizards/c
     AddGuardianModalComponent,
     DeleteUserModalComponent,
     AttendanceScheduleDownloadModalComponent,
+    ResetPasswordModalComponent,
   ],
   exports: [
     UserFormComponent,
@@ -109,6 +111,7 @@ import { ChildRegistrationWizardStepFourComponent } from './components/wizards/c
     QRCodeModule,
     DeleteUserModalComponent,
     AttendanceScheduleDownloadModalComponent,
+    ResetPasswordModalComponent,
   ],
 })
 export class SharedModule {}

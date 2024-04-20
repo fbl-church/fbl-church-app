@@ -5,7 +5,7 @@
     <ng-container *ngIf="canEditUser" ngProjectAs="button">
       <button
         class="btn btn-default header-button"
-        (click)="onResetPassword()"
+        (click)="resetPasswordModal.open()"
         *featureAccess="[Application.USERS, FeatureType.DETAIL, Access.UPDATE]"
       >
         <ik-icon icon="rotate" classOverride="btn-icon"></ik-icon>
@@ -50,6 +50,11 @@
 </ng-container>
 
 <app-delete-user-modal #deleteUserModal [userId]="userData?.id"></app-delete-user-modal>
+<app-reset-password-modal
+  #resetPasswordModal
+  [userId]="userData?.id"
+  [email]="userData?.email"
+></app-reset-password-modal>
 
 <ng-template #pageLoader>
   <ik-loading type="double"></ik-loading>

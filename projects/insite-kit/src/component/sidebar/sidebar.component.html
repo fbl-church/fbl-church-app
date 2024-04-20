@@ -16,7 +16,7 @@
           class="menu-item"
           [routerLink]="navItem.route"
           routerLinkActive="sidebar-category__active"
-          (click)="close()"
+          (click)="onRoute(navItem.route)"
         >
           <ik-icon classOverride="sidebar-icon" [icon]="navItem.icon"></ik-icon>
           <span class="sidebar-category">{{ navItem.name }}</span>

@@ -64,8 +64,4 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   onEditClick() {
     this.navigationService.navigate(`/users/${this.userData.id}/details/edit`);
   }
-
-  onResetPassword() {
-    this.navigationService.navigate(`/users/${this.userData.id}/details/reset-password`);
-  }
 }

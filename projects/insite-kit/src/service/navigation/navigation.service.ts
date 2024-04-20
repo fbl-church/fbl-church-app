@@ -39,7 +39,7 @@ export class NavigationService {
    * @param addToHistory Determines if the route should be added to the history tree
    */
   navigate(route: string, addToHistory = true): Promise<boolean> {
-    return this.navigationRouter.navigate([route], { skipLocationChange: !addToHistory });
+    return this.navigationRouter.navigate([route], { replaceUrl: !addToHistory });
   }
 
   /**

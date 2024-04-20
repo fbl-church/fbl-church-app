@@ -54,7 +54,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
   }
 
   onBackClick() {
-    this.navigationService.back();
+    this.navigationService.back(`/users/${this.userId}/details`);
   }
 
   onResetClick() {
@@ -69,7 +69,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
     this.userService.updateUserPasswordById(this.userId, passUpdate).subscribe({
       next: () => {
         this.popupService.success('User password successfully reset!');
-        this.navigationService.navigate(`/users/${this.userId}/details`, false);
+        this.navigationService.navigate(`/users/${this.userId}/details`);
       },
       error: () => {
         this.popupService.error('Could not reset user password at this time!');
