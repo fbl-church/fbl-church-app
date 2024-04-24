@@ -1,0 +1,55 @@
+<ik-info-card
+  title="3. Guridan of the Child"
+  description="Please fill out the form below so that we have some basic information on file incase of emergencies."
+>
+</ik-info-card>
+
+<ik-form [formGroup]="guardianForm">
+  <ik-card-header title="Guardian Information"></ik-card-header>
+  <div class="row">
+    <ik-form-field header="First Name*" class="col-md-6"
+      ><input class="form-input__normal" placeholder="First Name" formControlName="firstName" />
+    </ik-form-field>
+
+    <ik-form-field header="Last Name*" class="col-md-6"
+      ><input class="form-input__normal" placeholder="Last Name" formControlName="lastName" />
+    </ik-form-field>
+  </div>
+
+  <div class="row">
+    <ik-form-field header="Email*" class="col-md-6">
+      <input
+        type="email"
+        inputmode="email"
+        name="email"
+        class="form-input__normal"
+        placeholder="Email"
+        formControlName="email"
+      />
+    </ik-form-field>
+    <ik-form-field header="Phone*" class="col-md-6">
+      <input
+        phoneMask
+        placeholder="(___) ___-____"
+        inputmode="tel"
+        name="phone"
+        class="form-input__normal"
+        formControlName="phone"
+        maxlength="14"
+      />
+    </ik-form-field>
+  </div>
+  <ik-form-field header="Release of Liability Agreement">
+    <div class="input-inline">
+      <input type="checkbox" class="form-check-input checkbox__default" formControlName="releaseOfLiability" />
+      <span class="text-color"
+        >Yes, Guardian Agrees to the
+        <a href="assets/images/Liability-Agreement.png" target="_blank" class="link">Release of Liability</a></span
+      >
+    </div>
+  </ik-form-field>
+</ik-form>
+
+<button class="btn btn-default btn-left" (click)="onCancelClick()">Cancel</button>
+<button class="btn btn-primary btn-right" (click)="onNextClick()">Next</button>
+<button wizardStepPrev class="btn btn-default btn-right">Previous</button>

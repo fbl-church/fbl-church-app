@@ -4,6 +4,7 @@ import { ACCESS_MANAGEMENT_ROUTE } from './shared/routes/access-management.route
 import { AWANA_ROUTE } from './shared/routes/awana.route';
 import { CHILDREN_ROUTE } from './shared/routes/children.route';
 import { DASHBOARD_ROUTE } from './shared/routes/dashboard.route';
+import { EXTERNAL_ROUTE } from './shared/routes/external.route';
 import { GUARDIANS_ROUTE } from './shared/routes/guardians.route';
 import { JUNIOR_CHURCH_ROUTE } from './shared/routes/junior-church.route';
 import { NURSERY_ROUTE } from './shared/routes/nursery.route';
@@ -24,6 +25,7 @@ const routes: Routes = [
   ACCESS_MANAGEMENT_ROUTE,
   NURSERY_ROUTE,
   AWANA_ROUTE,
+  EXTERNAL_ROUTE,
   { path: '', redirectTo: 'profile', pathMatch: 'full' },
   { path: '**', redirectTo: 'profile', pathMatch: 'full' },
 ];

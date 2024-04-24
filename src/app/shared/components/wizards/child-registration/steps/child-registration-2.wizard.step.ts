@@ -30,6 +30,7 @@ export class ChildRegistrationWizardStepTwoComponent {
 
   onNextClick(child: Child) {
     child.churchGroup = [this.wizardData.registrationGroup];
+    this.loading = false;
     this.next.emit(child);
   }
 }

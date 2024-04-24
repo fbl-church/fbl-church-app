@@ -1,6 +1,6 @@
 <div class="copyright">Powered by Heroku | © Copyright 2020-2024</div>
 <div class="row">
-  <div class="content-link col-4" (click)="contact.modal.open()">Contact Us</div>
+  <div class="content-link col-4" (click)="authenticated ? contact.modal.open() : null">Contact Us</div>
   <div class="content-link col-4" (click)="project.modal.open()">Project</div>
   <div class="content-link col-4" (click)="privacy.modal.open()">Privacy Policy</div>
 </div>

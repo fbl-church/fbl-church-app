@@ -35,12 +35,14 @@ export class NavbarProfileContentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.name = this.commonService.getFormattedName({
-      firstName: this.jwt.get('firstName'),
-      lastName: this.jwt.get('lastName'),
-    });
-    this.initials = `${this.jwt.get('firstName')[0]}${this.jwt.get('lastName')[0]}`;
-    this.email = this.jwt.get('email');
+    if (this.jwt.isAuthenticated()) {
+      this.name = this.commonService.getFormattedName({
+        firstName: this.jwt.get('firstName'),
+        lastName: this.jwt.get('lastName'),
+      });
+      this.initials = `${this.jwt.get('firstName')[0]}${this.jwt.get('lastName')[0]}`;
+      this.email = this.jwt.get('email');
+    }
   }
 
   onProfileClick() {

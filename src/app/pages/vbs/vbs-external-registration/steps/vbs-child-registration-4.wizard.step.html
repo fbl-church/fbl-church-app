@@ -1,0 +1,12 @@
+<ik-info-card title="Summary" description="Confirm that all the childs information is accurate and correct.">
+</ik-info-card>
+
+<ng-container *ngIf="activeChild && !loading; else pageLoader">
+  <button class="btn btn-default btn-left" (click)="onCancelClick()">Cancel</button>
+  <button class="btn btn-primary btn-right" (click)="onSaveClick()">Save</button>
+  <button class="btn btn-default btn-right" (click)="onPreviousClick()">Previous</button>
+</ng-container>
+
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
+</ng-template>

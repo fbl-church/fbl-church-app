@@ -111,7 +111,8 @@ export class IconModule {
       faAngleLeft,
       faAngleRight,
       faList,
-      faCircleDown
+      faCircleDown,
+      faUserXmark
     );
   }
 }

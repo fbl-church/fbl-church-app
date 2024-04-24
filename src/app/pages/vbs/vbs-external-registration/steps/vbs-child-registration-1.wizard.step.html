@@ -1,0 +1,22 @@
+<ik-info-card
+  title="1. Child"
+  description="Pick the section that best applies. If your child attended VBS last year, they are likely already in the system and you can click 'Returning Child' and look them up by your email or phone number. If your child is new to VBS or you were unable to find them under your email, you can click 'Register New Child'"
+>
+</ik-info-card>
+
+<div class="row">
+  <ik-info-card
+    class="col-md-6 pointer info-card__center"
+    title="Returning Child"
+    description="Your child attended VBS last year. Look them up by your email address or phone number."
+    (click)="onNextClick(true)"
+  >
+  </ik-info-card>
+  <ik-info-card
+    class="col-md-6 pointer info-card__center"
+    title="Register New Child"
+    description="Your child is new to VBS and needs to be registered as a new child."
+    (click)="onNextClick(false)"
+  >
+  </ik-info-card>
+</div>

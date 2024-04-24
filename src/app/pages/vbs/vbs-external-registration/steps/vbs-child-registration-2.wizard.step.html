@@ -1,0 +1,74 @@
+<ik-info-card
+  *ngIf="!childExists"
+  title="2. Child Information"
+  description="Create a new child record by entering in the childs information. This includes the required fields of childs first name, last name, and birthday. Optional fields such as allergies and any other additional information needed may be included."
+>
+</ik-info-card>
+<ik-info-card
+  *ngIf="childExists"
+  title="2. Select Children to Register"
+  description="Search for your children by your email address or phone number. Select your children you would like to register for VBS. If no children were found for your email address or phone number, please return to the 'Previous' page and click 'Register New Child'"
+>
+</ik-info-card>
+
+<ik-grid *ngIf="childExists" [dataLoader]="childrenDataloader">
+  <ik-grid-search></ik-grid-search>
+  <ik-grid-checklist-column></ik-grid-checklist-column>
+  <ik-grid-selection-column header="Grade Going Into" [values]="churchGroups"></ik-grid-selection-column>
+  <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
+  <ik-grid-pager key="Children" [pageSize]="10"></ik-grid-pager>
+</ik-grid>
+
+<ng-container *ngIf="!childExists">
+  <ik-form [formGroup]="childForm" *ngFor="let childForm of childForms; index as i">
+    <ik-card-header [title]="'Child ' + (i + 1) + ' Information'">
+      <ik-icon
+        *ngIf="childForms.length > 1"
+        title="Remove Child"
+        icon="user-xmark"
+        class="right pointer"
+        (click)="onRemoveChildClick(i)"
+      ></ik-icon>
+    </ik-card-header>
+    <div class="row">
+      <ik-form-field header="First Name*" class="col-md-6"
+        ><input class="form-input__normal" placeholder="First Name" formControlName="firstName" />
+      </ik-form-field>
+
+      <ik-form-field header="Last Name*" class="col-md-6"
+        ><input class="form-input__normal" placeholder="Last Name" formControlName="lastName" />
+      </ik-form-field>
+    </div>
+
+    <div class="row">
+      <ik-form-field header="Birthday*" class="col-md-6"
+        ><input type="date" class="form-input__normal" placeholder="Birthday" formControlName="birthday" />
+      </ik-form-field>
+      <ik-form-field header="Allergies" class="col-md-6">
+        <div class="form-input__multi-tag">
+          <ik-tag-input-field
+            [uniqueId]="'tagInput-' + i"
+            [tags]="[]"
+            classOverride="multi-input"
+            placeholder="Allergies"
+          ></ik-tag-input-field>
+        </div>
+      </ik-form-field>
+    </div>
+    <ik-form-field header="Grade Going Into*">
+      <ik-single-select formControlName="group" [items]="churchGroups"></ik-single-select>
+    </ik-form-field>
+    <ik-form-field header="Additional Information">
+      <textarea formControlName="additionalInfo" rows="4" cols="50" class="form-input__normal"></textarea>
+    </ik-form-field>
+  </ik-form>
+
+  <button class="btn btn-warning btn-center btn-full" (click)="addChildForm()">
+    <ik-icon title="Edit" icon="user-plus" classOverride="btn-icon"></ik-icon>
+    Add Child
+  </button>
+</ng-container>
+
+<button wizardStepPrev class="btn btn-default btn-left" (click)="onCancelClick()">Cancel</button>
+<button class="btn btn-primary btn-right" (click)="onNextClick()" [disabled]="disableNext()">Next</button>
+<button wizardStepPrev class="btn btn-default btn-right">Previous</button>

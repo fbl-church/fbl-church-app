@@ -10,6 +10,7 @@ export class GridSelectionColumnComponent {
   @Input() selections: { id: any; value: any }[] = [];
 
   updateSelection(data: { id: any; value: any }, selected: boolean) {
+    console.log('UPDATE CALLED', data);
     if (selected) {
       this.addSelection(data);
     } else {
@@ -18,6 +19,9 @@ export class GridSelectionColumnComponent {
   }
 
   addSelection(data: { id: any; value: any }) {
+    if (this.selections.find((d) => d.id === data.id)) {
+      this.removeSelection(data.id);
+    }
     this.selections.push(data);
   }
 

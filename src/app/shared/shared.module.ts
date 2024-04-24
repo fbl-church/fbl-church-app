@@ -22,6 +22,7 @@ import { ChildGuardiansDetailsGridComponent } from './components/grids/children/
 import { GuardianChildrenDetailsGridComponent } from './components/grids/guardians/guardian-children-details-grid/guardian-children-details-grid.component';
 import { AttendanceRecordDetailHeaderComponent } from './components/headers/attendance-record-detail-header/attendance-record-detail-header.component';
 import { AuthenticatedLayoutComponent } from './components/layouts/authenticated-layout/authenticated-layout.component';
+import { UnauthenticatedLayoutComponent } from './components/layouts/unauthenticated-layout/unauthenticated-layout.component';
 import { AddGuardianModalComponent } from './components/modals/add-guardian-modal/add-guardian-modal.component';
 import { AttendanceScheduleDownloadModalComponent } from './components/modals/attendance-schedule-download-modal/attendance-schedule-download-modal.component';
 import { CloseAttendanceRecordModalComponent } from './components/modals/close-attendance-record-modal/close-attendance-record-modal.component';
@@ -41,6 +42,7 @@ import { ChildRegistrationWizardStepFourComponent } from './components/wizards/c
   imports: [BaseInitModule],
   declarations: [
     AuthenticatedLayoutComponent,
+    UnauthenticatedLayoutComponent,
     UserFormComponent,
     UserDetailsCardComponent,
     ChildFormComponent,

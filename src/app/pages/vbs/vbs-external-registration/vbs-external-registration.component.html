@@ -1,0 +1,38 @@
+<ng-container *ngIf="wizardData; else pageLoader">
+  <ik-header title="VBS Registration"> </ik-header>
+  <ik-wizard #wizard>
+    <ik-wizard-step>
+      <app-vbs-child-registration-wizard-step-one
+        [wizardData]="wizardData"
+        (next)="onStep1Next($event, wizard)"
+      ></app-vbs-child-registration-wizard-step-one>
+    </ik-wizard-step>
+
+    <ik-wizard-step>
+      <app-vbs-child-registration-wizard-step-two
+        [wizardData]="wizardData"
+        [childExists]="childExists"
+        (next)="onStep2Next($event, wizard)"
+      ></app-vbs-child-registration-wizard-step-two>
+    </ik-wizard-step>
+
+    <ik-wizard-step>
+      <app-vbs-child-registration-wizard-step-three
+        [wizardData]="wizardData"
+        (next)="onStep3Next($event, wizard)"
+      ></app-vbs-child-registration-wizard-step-three>
+    </ik-wizard-step>
+    <ik-wizard-step>
+      <app-vbs-child-registration-wizard-step-four
+        [loading]="loading"
+        [wizardData]="wizardData"
+        (previous)="onPrevious(wizard)"
+        (save)="onSaveClick($event)"
+      ></app-vbs-child-registration-wizard-step-four>
+    </ik-wizard-step>
+  </ik-wizard>
+</ng-container>
+
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
+</ng-template>

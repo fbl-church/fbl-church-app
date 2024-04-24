@@ -11,6 +11,8 @@ export class ThemeService {
   setThemeToLoggedInUser() {
     if (this.jwt.isAuthenticated()) {
       this.setTheme(this.jwt.getTheme());
+    } else {
+      this.setTheme(ThemeType.LIGHT);
     }
   }
 

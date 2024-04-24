@@ -18,6 +18,7 @@ import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 export class TagInputFieldComponent implements OnInit {
   @HostBinding('class.flex-wrap') hostClass = true;
   @ViewChild('multiselectInput') multiselectInput: ElementRef;
+  @Input() uniqueId: string;
   @Input() tags: string[] = [];
   @Input() placeholder = '';
   @Input() classOverride = 'input-tag__field';
