@@ -1,36 +1,48 @@
-import { Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GridChecklistColumnComponent } from 'projects/insite-kit/src/component/grid/grid-checklist-column/grid-checklist-column.component';
 import { GridSelectionColumnComponent } from 'projects/insite-kit/src/component/grid/grid-selection-column/grid-selection-column.component';
+import { DropdownItem } from 'projects/insite-kit/src/component/select/dropdown-item.model';
 import { TagInputFieldComponent } from 'projects/insite-kit/src/component/tag-input-field/tag-input-field.component';
-import { ChurchGroup, TranslationKey } from 'projects/insite-kit/src/model/common.model';
+import { WizardComponent } from 'projects/insite-kit/src/component/wizard/wizard.component';
+import { ChurchGroup, Relationship, TranslationKey } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
-import { WizardData } from 'projects/insite-kit/src/model/wizard.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
-import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { VBSService } from 'src/service/vbs/vbs.service';
 
 @Component({
   selector: 'app-vbs-child-registration-wizard-step-two',
   templateUrl: './vbs-child-registration-2.wizard.step.html',
 })
-export class VBSChildRegistrationWizardStepTwoComponent implements OnInit {
+export class VBSChildRegistrationWizardStepTwoComponent implements OnChanges, OnInit {
   @ViewChild(GridChecklistColumnComponent)
   gridChecklistColumn: GridChecklistColumnComponent;
   @ViewChild(GridSelectionColumnComponent)
   gridSelection: GridSelectionColumnComponent;
   @ViewChildren(TagInputFieldComponent) tagInputField: QueryList<TagInputFieldComponent>;
 
-  @Input() wizardData: WizardData;
+  @Input() wizard: WizardComponent;
+  @Input() activeStep: number = 0;
   @Input() childExists = false;
   @Output() next = new EventEmitter<Child[]>();
 
   childrenDataloader: any;
   loading = false;
   childForms: FormGroup[] = [];
-  churchGroups: any[];
+  churchGroups: DropdownItem[];
+  relationshipTypes: DropdownItem[];
 
-  childGroups = [
+  excludedGroups = [
     ChurchGroup.VBS_PRE_PRIMARY,
     ChurchGroup.VBS_PRIMARY,
     ChurchGroup.VBS_JUNIOR,
@@ -39,7 +51,6 @@ export class VBSChildRegistrationWizardStepTwoComponent implements OnInit {
   ];
 
   constructor(
-    private readonly navigationService: NavigationService,
     private readonly vbsService: VBSService,
     private readonly fb: FormBuilder,
     private readonly commonService: CommonService
@@ -48,20 +59,24 @@ export class VBSChildRegistrationWizardStepTwoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.addChildForm();
-    this.churchGroups = Object.keys(ChurchGroup)
-      .filter((v) => this.childGroups.includes(ChurchGroup[v]))
-      .map((cg) => {
-        return {
-          value: cg,
-          name: this.commonService.translate(cg, TranslationKey.CHURCH_GROUP),
-        };
-      });
+    this.wizard.wizardCancelled.subscribe(() => (this.childForms = []));
+  }
+
+  ngOnChanges() {
+    if (this.activeStep == 1 && this.childForms.length === 0) {
+      this.addChildForm();
+      this.churchGroups = this.commonService.getDropDownItems(
+        ChurchGroup,
+        TranslationKey.CHURCH_GROUP,
+        this.excludedGroups
+      );
+
+      this.relationshipTypes = this.commonService.getDropDownItems(Relationship, TranslationKey.RELATIONSHIP);
+    }
   }
 
   onCancelClick() {
-    this.childForms = [];
-    this.addChildForm();
+    this.wizard.resetWizard();
   }
 
   onNextClick() {
@@ -74,7 +89,9 @@ export class VBSChildRegistrationWizardStepTwoComponent implements OnInit {
       lastName: ['', Validators.required],
       birthday: [this.commonService.formatDate(new Date(), 'yyyy-MM-dd'), Validators.required],
       group: ['', Validators.required],
+      relationship: ['', Validators.required],
       additionalInfo: [''],
+      releaseOfLiability: [false],
     });
     this.childForms.push(newChildForm);
   }
@@ -88,7 +105,8 @@ export class VBSChildRegistrationWizardStepTwoComponent implements OnInit {
       let newChild: Child = {
         firstName: form.value.firstName,
         lastName: form.value.lastName,
-        churchGroup: [form.value.group],
+        churchGroup: [form.value.group.value],
+        relationship: form.value.relationship.value,
         releaseOfLiability: form.value.releaseOfLiability,
       };
 

@@ -1,11 +1,19 @@
 <ik-info-card
-  title="3. Guridan of the Child"
+  title="3. Guardians of the Child"
   description="Please fill out the form below so that we have some basic information on file incase of emergencies."
 >
 </ik-info-card>
 
-<ik-form [formGroup]="guardianForm">
-  <ik-card-header title="Guardian Information"></ik-card-header>
+<ik-form *ngFor="let guardianForm of guardianForms; index as i" [formGroup]="guardianForm">
+  <ik-card-header [title]="'Guardian ' + (i + 1) +' Information'">
+    <ik-icon
+      *ngIf="guardianForms.length > 1"
+      title="Remove Child"
+      icon="user-xmark"
+      class="right pointer"
+      (click)="onRemoveChildClick(i)"
+    ></ik-icon
+  ></ik-card-header>
   <div class="row">
     <ik-form-field header="First Name*" class="col-md-6"
       ><input class="form-input__normal" placeholder="First Name" formControlName="firstName" />
@@ -39,17 +47,13 @@
       />
     </ik-form-field>
   </div>
-  <ik-form-field header="Release of Liability Agreement">
-    <div class="input-inline">
-      <input type="checkbox" class="form-check-input checkbox__default" formControlName="releaseOfLiability" />
-      <span class="text-color"
-        >Yes, Guardian Agrees to the
-        <a href="assets/images/Liability-Agreement.png" target="_blank" class="link">Release of Liability</a></span
-      >
-    </div>
-  </ik-form-field>
 </ik-form>
 
+<button class="btn btn-warning btn-center btn-full" (click)="addGuardianForm()">
+  <ik-icon title="Edit" icon="user-plus" classOverride="btn-icon"></ik-icon>
+  Add Alternate Guardian
+</button>
+
 <button class="btn btn-default btn-left" (click)="onCancelClick()">Cancel</button>
-<button class="btn btn-primary btn-right" (click)="onNextClick()">Next</button>
+<button class="btn btn-primary btn-right" (click)="onNextClick()" [disabled]="disableNext()">Next</button>
 <button wizardStepPrev class="btn btn-default btn-right">Previous</button>

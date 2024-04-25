@@ -1,0 +1,85 @@
+<ik-card>
+  <ik-card-header [title]="title">
+    <ng-container *ngIf="showEdit">
+      <ik-icon
+        title="Edit"
+        icon="pen-to-square"
+        class="right pointer"
+        classOverride="icon__default"
+        (click)="onEditIconClick()"
+      ></ik-icon>
+    </ng-container>
+  </ik-card-header>
+  <div class="flex">
+    <div class="left-column">
+      <ik-card-info header="Name" text="{{ child | formatUserName }}"></ik-card-info>
+    </div>
+    <div class="right-column">
+      <ik-card-info
+        header="Birthday"
+        text="{{ child?.birthday ? (child.birthday | date : 'MMMM d, y') : '-' }}"
+      ></ik-card-info>
+    </div>
+  </div>
+
+  <div class="flex">
+    <div class="left-column">
+      <ik-card-info
+        header="Grade Going Into"
+        text="{{ (child.churchGroup ? child.churchGroup[0] : '-') | churchGroupTranslate }}"
+      >
+      </ik-card-info>
+    </div>
+    <div class="right-column">
+      <ik-card-info
+        *ngIf="child.relationship"
+        header="Relationship to Child"
+        [text]="child.relationship | relationshipTranslate"
+      >
+      </ik-card-info>
+      <ik-card-info
+        *ngIf="!child.relationship"
+        header="Liability Release"
+        [contentColor]="child.releaseOfLiability ? 'ENABLED' : 'DISABLED'"
+        text="{{ child.releaseOfLiability ? 'Agreed' : 'Denied' }}"
+      >
+      </ik-card-info>
+    </div>
+  </div>
+
+  <div class="flex">
+    <div class="left-column">
+      <ik-card-info header="Allergies">
+        <ul
+          *ngIf="child.allergies && child.allergies.length > 0; else noAllergies"
+          class="flex list-style-none card-info__label-text margin-none"
+        >
+          <div class="layout__half">
+            <li *ngFor="let a of child.allergies">{{ '- ' + a }}</li>
+          </div>
+        </ul>
+        <ng-template #noAllergies>
+          <div class="card-info__label-text">-</div>
+        </ng-template>
+      </ik-card-info>
+    </div>
+    <div class="right-column">
+      <ik-card-info
+        header="Additional Info"
+        class="text-pre-wrap"
+        [text]="child?.additionalInfo ? child.additionalInfo.trim() : '-'"
+      ></ik-card-info>
+    </div>
+  </div>
+
+  <div class="flex" *ngIf="child.relationship">
+    <div class="left-column">
+      <ik-card-info
+        header="Liability Release"
+        [contentColor]="child.releaseOfLiability ? 'ENABLED' : 'DISABLED'"
+        text="{{ child.releaseOfLiability ? 'Agreed' : 'Denied' }}"
+      >
+      </ik-card-info>
+    </div>
+  </div>
+</ik-card>

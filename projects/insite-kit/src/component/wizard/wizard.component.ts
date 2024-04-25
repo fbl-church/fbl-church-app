@@ -29,6 +29,8 @@ export class WizardComponent extends WizardStepHelperService implements OnInit, 
     activeStep: WizardStepComponent;
   }>();
 
+  @Output() public wizardCancelled = new EventEmitter<void>();
+
   @ContentChildren(WizardStepComponent)
   public steps: QueryList<WizardStepComponent>;
 
@@ -62,6 +64,24 @@ export class WizardComponent extends WizardStepHelperService implements OnInit, 
 
   public prev() {
     this.decreaseStep();
+  }
+
+  public goToStep(index: number) {
+    this.setFutureToPending(index);
+    this.setCurrentToInProgress(index);
+    this.setPastToComplete(index);
+
+    this.activeIndex = index;
+    this.setActiveStep(index);
+    this.emitStateChange();
+  }
+
+  public resetWizard() {
+    this.activeIndex = 0;
+    this.resetProgress();
+    this.setActiveStep(0);
+    this.emitStateChange();
+    this.wizardCancelled.emit();
   }
 
   private increaseStep() {
@@ -135,7 +155,7 @@ export class WizardComponent extends WizardStepHelperService implements OnInit, 
   }
 
   private get progressSteps(): WizardStepComponent[] {
-    return this.steps.toArray();
+    return this.steps ? this.steps.toArray() : [];
   }
 
   protected generateProgressArray(length): any[] {

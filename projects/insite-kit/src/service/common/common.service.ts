@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { TranslateMapping, TranslationKey } from '../../model/common.model';
+import { DropdownItem } from '../../component/select/dropdown-item.model';
+import { Enum, TranslateMapping, TranslationKey } from '../../model/common.model';
 
 @Injectable({
   providedIn: 'root',
@@ -50,6 +51,25 @@ export class CommonService {
   translate(value: string, key: TranslationKey) {
     const v = Object.values(TranslateMapping[key])[0][value];
     return v ? v : '-';
+  }
+
+  /**
+   * Gets a list of dropdown items based on the passed in enum.
+   *
+   * @param enumType The type of enum to get the types for
+   * @param translationKey The translation key for the enum
+   * @param exclude Optional param if specific enum types should be excluded
+   * @returns List of dropdown items
+   */
+  getDropDownItems(enumType: Enum, translationKey: TranslationKey, exclude?: any[]): DropdownItem[] {
+    return Object.keys(enumType)
+      .filter((v) => (exclude ? exclude.includes(enumType[v]) : true))
+      .map((cg) => {
+        return {
+          value: cg,
+          name: this.translate(cg, translationKey),
+        };
+      });
   }
 
   /**

@@ -55,11 +55,27 @@
         </div>
       </ik-form-field>
     </div>
-    <ik-form-field header="Grade Going Into*">
-      <ik-single-select formControlName="group" [items]="churchGroups"></ik-single-select>
-    </ik-form-field>
+    <div class="row">
+      <ik-form-field header="Grade Going Into*" class="col-md-6">
+        <ik-single-select formControlName="group" [items]="churchGroups"></ik-single-select>
+      </ik-form-field>
+      <ik-form-field header="Relationship to Child*" class="col-md-6">
+        <ik-single-select formControlName="relationship" [items]="relationshipTypes"></ik-single-select>
+      </ik-form-field>
+    </div>
+
     <ik-form-field header="Additional Information">
       <textarea formControlName="additionalInfo" rows="4" cols="50" class="form-input__normal"></textarea>
+    </ik-form-field>
+
+    <ik-form-field header="Release of Liability Agreement">
+      <div class="input-inline">
+        <input type="checkbox" class="form-check-input checkbox__default" formControlName="releaseOfLiability" />
+        <span class="text-color"
+          >Yes, Guardian Agrees to the
+          <a href="assets/images/Liability-Agreement.png" target="_blank" class="link">Release of Liability</a></span
+        >
+      </div>
     </ik-form-field>
   </ik-form>
 

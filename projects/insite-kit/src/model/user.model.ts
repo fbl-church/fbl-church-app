@@ -39,6 +39,7 @@ export interface Child extends User {
   allergies?: string[];
   additionalInfo?: string;
   guardians?: Guardian[];
+  relationship?: Relationship | any;
   releaseOfLiability?: boolean;
 }
 

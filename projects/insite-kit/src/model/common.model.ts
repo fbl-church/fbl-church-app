@@ -159,3 +159,7 @@ export const TranslateMapping = {
   STATUS: statusJson,
   WEB_ROLE: webRolesJson,
 };
+
+export interface Enum {
+  [key: string]: any;
+}

@@ -5,7 +5,6 @@ import { Child, Guardian } from 'projects/insite-kit/src/model/user.model';
 import { WizardData } from 'projects/insite-kit/src/model/wizard.model';
 import { Subject } from 'rxjs';
 import { map, takeUntil, tap } from 'rxjs/operators';
-import { ChildrenService } from 'src/service/children/children.service';
 
 @Component({
   selector: 'app-vbs-external-registration',
@@ -14,12 +13,13 @@ import { ChildrenService } from 'src/service/children/children.service';
 export class VBSExternalRegistrationComponent implements OnInit, OnDestroy {
   wizardData: WizardData;
   childrenToRegister: Child[];
+  guardiansToCreate: Guardian[];
   childExists = false;
   loading = false;
   disableSave = false;
   destroy = new Subject<void>();
 
-  constructor(private readonly childrenService: ChildrenService, private readonly route: ActivatedRoute) {}
+  constructor(private readonly route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.data
@@ -49,11 +49,14 @@ export class VBSExternalRegistrationComponent implements OnInit, OnDestroy {
   }
 
   onStep3Next(guardians: Guardian[], wizard: WizardComponent) {
+    this.guardiansToCreate = guardians;
     wizard.next();
   }
 
-  onPrevious(wizard: WizardComponent) {
-    console.log('PREVIOUS CALLED');
+  onStep4Previous(wizard: WizardComponent) {
+    if (this.childExists) {
+      wizard.prev();
+    }
     wizard.prev();
   }
 

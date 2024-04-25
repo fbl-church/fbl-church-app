@@ -34,4 +34,29 @@ export class WizardStepHelperService {
     this.itemProgressList[this.activeIndex + 1].status = Status.PENDING;
     this.itemProgressList[index].status = Status.IN_PROGRESS;
   }
+
+  protected setCurrentToInProgress(index) {
+    this.itemProgressList[index].status = Status.IN_PROGRESS;
+  }
+
+  protected resetProgress() {
+    this.itemProgressList.forEach((item) => (item.status = Status.PENDING));
+    this.itemProgressList[0].status = Status.IN_PROGRESS;
+  }
+
+  protected setFutureToPending(index) {
+    this.itemProgressList.forEach((item, i) => {
+      if (i > index) {
+        item.status = Status.PENDING;
+      }
+    });
+  }
+
+  protected setPastToComplete(index) {
+    this.itemProgressList.forEach((item, i) => {
+      if (i < index) {
+        item.status = Status.COMPLETED;
+      }
+    });
+  }
 }

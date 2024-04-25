@@ -29,4 +29,20 @@ export class VBSService {
       )
     );
   }
+
+  /**
+   * Get a children for a given request
+   *
+   * @param params child id for the child to get
+   * @returns Child object
+   */
+  getChildren(params?: Map<string, string[]>): Observable<HttpResponse<Child[]>> {
+    return this.request.get<Child[]>(`${this.BASE_VBS_PATH}/children`, params).pipe(
+      tap((v) =>
+        v.body.forEach((c) => {
+          c.formattedName = this.commonService.getFormattedName(c);
+        })
+      )
+    );
+  }
 }
