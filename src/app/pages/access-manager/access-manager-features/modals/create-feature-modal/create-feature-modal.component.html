@@ -7,7 +7,11 @@
           <input class="form-input__normal" placeholder="Feature Name" formControlName="feature" />
         </ik-form-field>
         <ik-form-field header="App*" [padding]="false">
-          <ik-single-select formControlName="app" [items]="mappedApplications"></ik-single-select>
+          <ik-single-select
+            formControlName="app"
+            placeholder="Select App"
+            [items]="mappedApplications"
+          ></ik-single-select>
         </ik-form-field>
       </form>
     </ik-modal-body>

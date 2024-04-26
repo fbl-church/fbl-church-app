@@ -323,6 +323,22 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
   }
 
   /**
+   * Clear the grid search and refresh.
+   */
+  clearSearch() {
+    this.currentSearch = [];
+    this.refresh();
+  }
+
+  resetGrid() {
+    this.currentSearch = [];
+    this.gridSearch.clearSearch();
+    this.gridChecklistColumn.selectedIds = [];
+    this.gridSelection.selections = [];
+    this.refresh();
+  }
+
+  /**
    * Helper method to check if a grid value is a date, If it is a date then it
    * will format the date, otherwise just return false.
    *

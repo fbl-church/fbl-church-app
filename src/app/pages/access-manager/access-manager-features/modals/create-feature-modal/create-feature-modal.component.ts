@@ -29,7 +29,7 @@ export class CreateFeatureModalComponent implements OnInit {
 
   buildForm() {
     this.form = this.fb.group({
-      app: ['', Validators.required],
+      app: [null, Validators.required],
       feature: ['', Validators.required],
     });
   }

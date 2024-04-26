@@ -57,10 +57,19 @@
     </div>
     <div class="row">
       <ik-form-field header="Grade Going Into*" class="col-md-6">
-        <ik-single-select formControlName="group" [items]="churchGroups"></ik-single-select>
+        <ik-single-select
+          formControlName="group"
+          [items]="churchGroups"
+          placeholder="Grade Going Into"
+        ></ik-single-select>
       </ik-form-field>
       <ik-form-field header="Relationship to Child*" class="col-md-6">
-        <ik-single-select formControlName="relationship" [items]="relationshipTypes"></ik-single-select>
+        <ik-single-select
+          [searchable]="false"
+          formControlName="relationship"
+          [items]="relationshipTypes"
+          placeholder="Relationship to Child"
+        ></ik-single-select>
       </ik-form-field>
     </div>
 

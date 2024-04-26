@@ -55,7 +55,7 @@
       </ng-template>
     </td>
     <td *ngIf="gridSelection" class="grid__content">
-      <select class="form-select__normal" (change)="onSelectionChange($event, row.id)">
+      <select class="form-select__grid" (change)="onSelectionChange($event, row.id)">
         <option value="" disabled selected hidden>
           {{ gridSelection?.header }}
         </option>

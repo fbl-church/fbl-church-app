@@ -26,10 +26,6 @@
   <button class="btn btn-default btn-right" (click)="onPreviousClick()">Previous</button>
 </ng-container>
 
-<ng-template #pageLoader>
-  <ik-loading type="double"></ik-loading>
-</ng-template>
-
 <ng-template #multipleGuardians>
   <ng-container *ngIf="guardians && guardians.length > 0">
     <app-vbs-guardian-detail-card
@@ -39,4 +35,8 @@
       (editClick)="goToChildGuardianInformation()"
     ></app-vbs-guardian-detail-card>
   </ng-container>
+</ng-template>
+
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
 </ng-template>

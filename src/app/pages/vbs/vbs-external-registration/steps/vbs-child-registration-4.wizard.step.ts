@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { WizardComponent } from 'projects/insite-kit/src/component/wizard/wizard.component';
-import { Child, Guardian } from 'projects/insite-kit/src/model/user.model';
+import { Child, Guardian, VBSRegistration } from 'projects/insite-kit/src/model/user.model';
 import { VBSService } from 'src/service/vbs/vbs.service';
 
 @Component({
@@ -10,22 +10,21 @@ import { VBSService } from 'src/service/vbs/vbs.service';
 export class VBSChildRegistrationWizardStepFourComponent implements OnChanges {
   @Input() wizard: WizardComponent;
   @Input() activeStep: number = 0;
+  @Input() loading = true;
   @Input() guardians: Guardian[];
   @Input() children: Child[];
   @Input() childExists = false;
-  @Output() save = new EventEmitter<Child[]>();
-  @Output() previous = new EventEmitter<void>();
+  @Output() save = new EventEmitter<VBSRegistration>();
 
   childrenToRegister: Child[] = [];
-  loading = true;
 
   constructor(private readonly vbsService: VBSService) {}
 
-  ngOnChanges() {
-    this.loading = true;
-    this.childrenToRegister = [];
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.activeStep && changes.activeStep.currentValue === 3) {
+      this.loading = true;
+      this.childrenToRegister = [];
 
-    if (this.activeStep === 3) {
       const childrenExisting = this.children.filter((c) => c.id) || [];
       const childrenToCreate = this.children.filter((c) => !c.id) || [];
 
@@ -51,7 +50,12 @@ export class VBSChildRegistrationWizardStepFourComponent implements OnChanges {
   }
 
   onPreviousClick() {
-    this.previous.next();
+    console.log(this.childExists);
+    if (this.childExists) {
+      this.wizard.goToStep(1);
+    } else {
+      this.wizard.prev();
+    }
   }
 
   goToChildInformation() {
@@ -63,6 +67,10 @@ export class VBSChildRegistrationWizardStepFourComponent implements OnChanges {
   }
 
   onSaveClick() {
-    this.save.emit(this.childrenToRegister);
+    const registration: VBSRegistration = {
+      guardians: this.guardians,
+      children: this.childrenToRegister,
+    };
+    this.save.emit(registration);
   }
 }

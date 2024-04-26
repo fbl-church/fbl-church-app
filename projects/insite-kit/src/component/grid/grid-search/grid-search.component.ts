@@ -17,4 +17,8 @@ export class GridSearchComponent {
   onSearch(tags: string[]) {
     this.search.emit(tags);
   }
+
+  clearSearch() {
+    this.searchTags = [];
+  }
 }

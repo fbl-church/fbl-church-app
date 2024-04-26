@@ -73,6 +73,13 @@ input[readonly] {
 
   &__normal {
     @extend .form-select;
+    height: 56px;
+    padding: 12px;
+    font-size: $font-size-lg;
+  }
+
+  &__grid {
+    @extend .form-select;
     padding: 12px;
     font-size: $font-size-lg;
   }
@@ -106,6 +113,11 @@ input[readonly] {
   }
 
   .form-select__normal {
+    padding: 2px;
+    font-size: $font-size-caption;
+  }
+
+  .form-select__grid {
     padding: 2px;
     font-size: $font-size-caption;
   }

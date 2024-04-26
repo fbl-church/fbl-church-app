@@ -24,7 +24,11 @@
             />
           </ik-form-field>
           <ik-form-field header="Relationship*" class="col-12" [padding]="false">
-            <ik-single-select formControlName="relationship" [items]="relationships"></ik-single-select>
+            <ik-single-select
+              formControlName="relationship"
+              placeholder="Relationship to Child"
+              [items]="relationships"
+            ></ik-single-select>
           </ik-form-field>
         </div>
       </form>

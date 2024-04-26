@@ -19,6 +19,8 @@ export class SingleSelectInputComponent extends ValueAccessorBase<any> implement
   @Input() items: DropdownItem[];
   @Input() clearable = false;
   @Input() disable = false;
+  @Input() searchable = true;
+  @Input() placeholder = 'Select Item';
 
   // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() change = new EventEmitter<any>();

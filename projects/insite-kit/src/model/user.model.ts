@@ -32,6 +32,11 @@ export enum AccountStatus {
   DENIED = 'DENIED',
 }
 
+export interface VBSRegistration {
+  guardians?: Guardian[];
+  children?: Child[];
+}
+
 export interface Child extends User {
   cuid?: string;
   churchGroup?: ChurchGroup[] | any[];

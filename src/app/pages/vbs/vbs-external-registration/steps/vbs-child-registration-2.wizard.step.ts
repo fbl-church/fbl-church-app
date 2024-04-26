@@ -6,12 +6,14 @@ import {
   OnInit,
   Output,
   QueryList,
+  SimpleChanges,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GridChecklistColumnComponent } from 'projects/insite-kit/src/component/grid/grid-checklist-column/grid-checklist-column.component';
 import { GridSelectionColumnComponent } from 'projects/insite-kit/src/component/grid/grid-selection-column/grid-selection-column.component';
+import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
 import { DropdownItem } from 'projects/insite-kit/src/component/select/dropdown-item.model';
 import { TagInputFieldComponent } from 'projects/insite-kit/src/component/tag-input-field/tag-input-field.component';
 import { WizardComponent } from 'projects/insite-kit/src/component/wizard/wizard.component';
@@ -29,6 +31,7 @@ export class VBSChildRegistrationWizardStepTwoComponent implements OnChanges, On
   gridChecklistColumn: GridChecklistColumnComponent;
   @ViewChild(GridSelectionColumnComponent)
   gridSelection: GridSelectionColumnComponent;
+  @ViewChild(GridComponent) grid: GridComponent;
   @ViewChildren(TagInputFieldComponent) tagInputField: QueryList<TagInputFieldComponent>;
 
   @Input() wizard: WizardComponent;
@@ -59,11 +62,17 @@ export class VBSChildRegistrationWizardStepTwoComponent implements OnChanges, On
   }
 
   ngOnInit() {
-    this.wizard.wizardCancelled.subscribe(() => (this.childForms = []));
+    this.wizard.wizardCancelled.subscribe(() => {
+      if (this.childExists) {
+        this.grid.resetGrid();
+      } else {
+        this.childForms = [];
+      }
+    });
   }
 
-  ngOnChanges() {
-    if (this.activeStep == 1 && this.childForms.length === 0) {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.activeStep && changes.activeStep.currentValue == 1 && this.childForms.length === 0) {
       this.addChildForm();
       this.churchGroups = this.commonService.getDropDownItems(
         ChurchGroup,
@@ -88,8 +97,8 @@ export class VBSChildRegistrationWizardStepTwoComponent implements OnChanges, On
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       birthday: [this.commonService.formatDate(new Date(), 'yyyy-MM-dd'), Validators.required],
-      group: ['', Validators.required],
-      relationship: ['', Validators.required],
+      group: [null, Validators.required],
+      relationship: [null, Validators.required],
       additionalInfo: [''],
       releaseOfLiability: [false],
     });

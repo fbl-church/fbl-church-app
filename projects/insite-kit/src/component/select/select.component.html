@@ -1,10 +1,12 @@
 <ng-select
+  [searchable]="searchable"
   [disabled]="disable"
   [ngModel]="value"
   [items]="items"
   [clearable]="clearable"
   [virtualScroll]="true"
   bindLabel="name"
+  [placeholder]="placeholder"
   (blur)="onBlur()"
   (change)="onChange($event)"
 >

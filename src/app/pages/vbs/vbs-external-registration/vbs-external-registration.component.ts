@@ -1,39 +1,19 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WizardComponent } from 'projects/insite-kit/src/component/wizard/wizard.component';
-import { Child, Guardian } from 'projects/insite-kit/src/model/user.model';
-import { WizardData } from 'projects/insite-kit/src/model/wizard.model';
-import { Subject } from 'rxjs';
-import { map, takeUntil, tap } from 'rxjs/operators';
+import { Child, Guardian, VBSRegistration } from 'projects/insite-kit/src/model/user.model';
 
 @Component({
   selector: 'app-vbs-external-registration',
   templateUrl: './vbs-external-registration.component.html',
 })
-export class VBSExternalRegistrationComponent implements OnInit, OnDestroy {
-  wizardData: WizardData;
+export class VBSExternalRegistrationComponent {
   childrenToRegister: Child[];
   guardiansToCreate: Guardian[];
   childExists = false;
   loading = false;
-  disableSave = false;
-  destroy = new Subject<void>();
 
   constructor(private readonly route: ActivatedRoute) {}
-
-  ngOnInit() {
-    this.route.data
-      .pipe(
-        map((res) => res.wizardData),
-        tap((res) => (this.wizardData = res)),
-        takeUntil(this.destroy)
-      )
-      .subscribe();
-  }
-
-  ngOnDestroy() {
-    this.destroy.next();
-  }
 
   onStep1Next(exists: boolean, wizard: WizardComponent) {
     this.childExists = exists;
@@ -43,9 +23,10 @@ export class VBSExternalRegistrationComponent implements OnInit, OnDestroy {
   onStep2Next(children: Child[], wizard: WizardComponent) {
     this.childrenToRegister = children;
     if (this.childExists) {
+      wizard.goToStep(3);
+    } else {
       wizard.next();
     }
-    wizard.next();
   }
 
   onStep3Next(guardians: Guardian[], wizard: WizardComponent) {
@@ -53,14 +34,12 @@ export class VBSExternalRegistrationComponent implements OnInit, OnDestroy {
     wizard.next();
   }
 
-  onStep4Previous(wizard: WizardComponent) {
-    if (this.childExists) {
-      wizard.prev();
-    }
-    wizard.prev();
+  onCancelClick(wizard: WizardComponent) {
+    wizard.resetWizard();
   }
 
-  onCancelClick() {}
-
-  onSaveClick(event?: any) {}
+  onSaveClick(event?: VBSRegistration) {
+    console.log(event);
+    this.loading = true;
+  }
 }
