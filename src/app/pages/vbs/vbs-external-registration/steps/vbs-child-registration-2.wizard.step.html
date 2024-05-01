@@ -58,6 +58,7 @@
     <div class="row">
       <ik-form-field header="Grade Going Into*" class="col-md-6">
         <ik-single-select
+          [searchable]="false"
           formControlName="group"
           [items]="churchGroups"
           placeholder="Grade Going Into"
