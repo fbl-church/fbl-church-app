@@ -18,6 +18,7 @@
 
   // Form
   --form-input-background: #ebeff5;
+  --form-input-grid-background: #ebeff5;
   --form-input-border: #ccc;
   --form-input-color-scheme: light;
 
@@ -111,6 +112,7 @@
 
   // Form
   --form-input-background: var(--dark-400);
+  --form-input-grid-background: var(--dark-200);
   --form-input-border: var(--dark-600);
   --form-input-color-scheme: dark;
 
@@ -153,7 +155,7 @@
   --navbar-profile-shadow: rgb(0 0 0 / 30%);
 
   // Radio
-  --radio-background: var(--dark-400);
+  --radio-background: var(--dark-100);
   --radio-border: var(--dark-600);
 
   // Schedule

@@ -80,6 +80,7 @@ input[readonly] {
 
   &__grid {
     @extend .form-select;
+    background: var(--form-input-grid-background);
     padding: 12px;
     font-size: $font-size-lg;
   }
