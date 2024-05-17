@@ -1,4 +1,4 @@
-<div [ngClass]="{ 'card-info__padding': padding }">
+<div [ngClass]="{ 'card-info--padding': padding }">
   <div class="card-info__label-header">{{ header }}</div>
   <ng-container *ngIf="!text; else textFieldData">
     <ng-content></ng-content>

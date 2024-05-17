@@ -6,8 +6,8 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: 'card-header-collapsible.component.html',
 })
 export class CardHeaderCollapsibleComponent {
-  @HostBinding('class.card__header') hostClass = true;
-  @HostBinding('class.card__header--closed') hostClosedClass = false;
+  @HostBinding('class.card-header') hostClass = true;
+  @HostBinding('class.card-header--closed') hostClosedClass = false;
 
   @Input() title: string;
   @Input() collapsed = false;

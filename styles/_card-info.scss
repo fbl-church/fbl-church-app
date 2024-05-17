@@ -1,64 +1,40 @@
-.card-info__content {
+.card-info {
   padding-bottom: 24px;
   display: block;
-}
 
-.card-info__padding {
-  display: block;
-  padding: 24px 16px;
-}
+  &__label-header {
+    color: var(--text-color);
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semi-bold;
+    font-family: emoji, sans-serif;
+    text-align: left;
+  }
 
-.card-info__label-header {
-  color: var(--text-color);
-  font-size: $font-size-lg;
-  font-weight: $font-weight-semi-bold;
-  font-family: emoji, sans-serif;
-  text-align: left;
-}
+  &__label-text {
+    color: var(--text-color);
+    font-size: $font-size-base;
+    font-weight: $font-weight-normal;
+    padding-left: 10px;
+    overflow-wrap: break-word;
+  }
 
-.card-info__label-text {
-  color: var(--text-color);
-  font-size: $font-size-base;
-  font-weight: $font-weight-normal;
-  padding-left: 10px;
-  overflow-wrap: break-word;
-}
-
-.ACTIVE,
-.ENABLED {
-  font-weight: $font-weight-bold;
-  color: $green-400;
-}
-
-.CLOSED,
-.DENIED,
-.INACTIVE,
-.FINALIZED,
-.EXPIRED,
-.DISABLED {
-  font-weight: $font-weight-bold;
-  color: $red-400;
-}
-
-.PENDING {
-  font-weight: $font-weight-bold;
-  color: $orange-200;
-}
-
-.DEFAULT {
-  color: var(--text-color);
+  &--padding {
+    padding: 24px 16px;
+  }
 }
 
 @media screen and (max-width: $card-screen-sm-max) {
-  .card-info__label-header {
-    font-size: $font-size-base !important;
-  }
+  .card-info {
+    &__label-header {
+      font-size: $font-size-base !important;
+    }
 
-  .card-info__label-text {
-    font-size: $font-size-md;
-  }
+    &__label-text {
+      font-size: $font-size-md;
+    }
 
-  .card-info__padding {
-    padding: 16px;
+    &--padding {
+      padding: 16px;
+    }
   }
 }

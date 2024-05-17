@@ -5,6 +5,6 @@ import { Component, HostBinding, Input } from '@angular/core';
   templateUrl: 'card-header.component.html',
 })
 export class CardHeaderComponent {
-  @HostBinding('class.card__header') hostClass = true;
+  @HostBinding('class.card-header') hostClass = true;
   @Input() title: string;
 }

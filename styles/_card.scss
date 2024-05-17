@@ -6,23 +6,23 @@
   border: 0.5px solid var(--card-border);
   background: var(--card-background);
   margin-bottom: 24px;
-}
 
-.card__content {
-  display: block;
-}
+  &__content {
+    display: block;
 
-.card__content--collapsible {
-  max-height: 1000px;
-  overflow: hidden;
-  transition: max-height 2s ease-in-out 100ms;
+    &--collapsible {
+      max-height: 1000px;
+      overflow: hidden;
+      transition: max-height 2s ease-in-out 100ms;
 
-  &--closed {
-    transition: max-height 2s ease-in-out -1.5s;
-    max-height: 0;
+      &--closed {
+        transition: max-height 2s ease-in-out -1.5s;
+        max-height: 0;
+      }
+    }
+
+    &--padding {
+      padding: 12px 4px;
+    }
   }
-}
-
-.card__content-padding {
-  padding: 12px 4px;
 }

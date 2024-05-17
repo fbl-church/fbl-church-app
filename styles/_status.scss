@@ -1,0 +1,24 @@
+.ACTIVE,
+.ENABLED {
+  font-weight: $font-weight-bold;
+  color: $green-400;
+}
+
+.CLOSED,
+.DENIED,
+.INACTIVE,
+.FINALIZED,
+.EXPIRED,
+.DISABLED {
+  font-weight: $font-weight-bold;
+  color: $red-400;
+}
+
+.PENDING {
+  font-weight: $font-weight-bold;
+  color: $orange-200;
+}
+
+.DEFAULT {
+  color: var(--text-color);
+}
