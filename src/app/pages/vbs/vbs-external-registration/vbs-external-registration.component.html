@@ -24,14 +24,23 @@
   </ik-wizard-step>
   <ik-wizard-step>
     <app-vbs-child-registration-wizard-step-four
+      [wizard]="wizard"
+      [guardians]="guardiansToCreate"
+      [children]="childrenToRegister"
+      [activeStep]="wizard.activeIndex"
+      (next)="onStep4Next($event, wizard)"
+    ></app-vbs-child-registration-wizard-step-four>
+  </ik-wizard-step>
+  <ik-wizard-step>
+    <app-vbs-child-registration-wizard-step-five
       [loading]="loading"
       [wizard]="wizard"
       [childExists]="childExists"
       [guardians]="guardiansToCreate"
-      [children]="childrenToRegister"
+      [children]="childGuardianAssociations"
       [activeStep]="wizard.activeIndex"
       (save)="onSaveClick($event)"
-    ></app-vbs-child-registration-wizard-step-four>
+    ></app-vbs-child-registration-wizard-step-five>
   </ik-wizard-step>
 </ik-wizard>
 

@@ -14,6 +14,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GridChecklistColumnComponent } from 'projects/insite-kit/src/component/grid/grid-checklist-column/grid-checklist-column.component';
 import { GridSelectionColumnComponent } from 'projects/insite-kit/src/component/grid/grid-selection-column/grid-selection-column.component';
 import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
+import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { DropdownItem } from 'projects/insite-kit/src/component/select/dropdown-item.model';
 import { TagInputFieldComponent } from 'projects/insite-kit/src/component/tag-input-field/tag-input-field.component';
 import { WizardComponent } from 'projects/insite-kit/src/component/wizard/wizard.component';
@@ -33,6 +34,7 @@ export class VBSChildRegistrationWizardStepTwoComponent implements OnChanges, On
   gridSelection: GridSelectionColumnComponent;
   @ViewChild(GridComponent) grid: GridComponent;
   @ViewChildren(TagInputFieldComponent) tagInputField: QueryList<TagInputFieldComponent>;
+  @ViewChild(ModalComponent) duplicateChildInformationModal: ModalComponent;
 
   @Input() wizard: WizardComponent;
   @Input() activeStep: number = 0;
@@ -69,18 +71,18 @@ export class VBSChildRegistrationWizardStepTwoComponent implements OnChanges, On
         this.childForms = [];
       }
     });
+
+    this.relationshipTypes = this.commonService.getDropDownItems(Relationship, TranslationKey.RELATIONSHIP);
+    this.churchGroups = this.commonService.getDropDownItems(
+      ChurchGroup,
+      TranslationKey.CHURCH_GROUP,
+      this.excludedGroups
+    );
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.activeStep && changes.activeStep.currentValue == 1 && this.childForms.length === 0) {
       this.addChildForm();
-      this.churchGroups = this.commonService.getDropDownItems(
-        ChurchGroup,
-        TranslationKey.CHURCH_GROUP,
-        this.excludedGroups
-      );
-
-      this.relationshipTypes = this.commonService.getDropDownItems(Relationship, TranslationKey.RELATIONSHIP);
     }
   }
 
@@ -89,7 +91,11 @@ export class VBSChildRegistrationWizardStepTwoComponent implements OnChanges, On
   }
 
   onNextClick() {
-    this.next.emit(this.childExists ? this.getSelectedChildren() : this.getCreatedChildren());
+    if (this.hasDuplicateChildInformation()) {
+      this.duplicateChildInformationModal.open();
+    } else {
+      this.next.emit(this.childExists ? this.getSelectedChildren() : this.getCreatedChildren());
+    }
   }
 
   addChildForm() {
@@ -98,7 +104,6 @@ export class VBSChildRegistrationWizardStepTwoComponent implements OnChanges, On
       lastName: ['', Validators.required],
       birthday: [this.commonService.formatDate(new Date(), 'yyyy-MM-dd'), Validators.required],
       group: [null, Validators.required],
-      relationship: [null, Validators.required],
       additionalInfo: [''],
       releaseOfLiability: [false],
     });
@@ -115,7 +120,6 @@ export class VBSChildRegistrationWizardStepTwoComponent implements OnChanges, On
         firstName: form.value.firstName,
         lastName: form.value.lastName,
         churchGroup: [form.value.group.value],
-        relationship: form.value.relationship.value,
         releaseOfLiability: form.value.releaseOfLiability,
       };
 
@@ -159,5 +163,17 @@ export class VBSChildRegistrationWizardStepTwoComponent implements OnChanges, On
     } else {
       return !this.childForms.map((f) => f.valid).every((validForm) => validForm);
     }
+  }
+
+  hasDuplicateChildInformation() {
+    const uniqueData = new Set(
+      this.childForms.map((form) =>
+        JSON.stringify({
+          firstName: form.value.firstName.toLocaleLowerCase(),
+          lastName: form.value.lastName.toLocaleLowerCase(),
+        })
+      )
+    );
+    return uniqueData.size !== this.childForms.length;
   }
 }

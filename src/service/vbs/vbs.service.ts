@@ -1,6 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AccountStatus, Child, User } from 'projects/insite-kit/src/model/user.model';
+import { AccountStatus, Child, User, VBSRegistration } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { Observable, tap } from 'rxjs';
@@ -44,5 +44,15 @@ export class VBSService {
         })
       )
     );
+  }
+
+  /**
+   * Register the given children
+   *
+   * @param registration The registration structure
+   * @returns The processed request
+   */
+  registerChildren(registration: VBSRegistration): Observable<any> {
+    return this.request.post<any>(`${this.BASE_VBS_PATH}/register`, registration);
   }
 }

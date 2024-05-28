@@ -1,61 +1,50 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { DropdownItem } from 'projects/insite-kit/src/component/select/dropdown-item.model';
 import { WizardComponent } from 'projects/insite-kit/src/component/wizard/wizard.component';
-import { Child, Guardian, VBSRegistration } from 'projects/insite-kit/src/model/user.model';
-import { VBSService } from 'src/service/vbs/vbs.service';
+import { Relationship, TranslationKey } from 'projects/insite-kit/src/model/common.model';
+import { Child, Guardian } from 'projects/insite-kit/src/model/user.model';
+import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 
 @Component({
   selector: 'app-vbs-child-registration-wizard-step-four',
   templateUrl: './vbs-child-registration-4.wizard.step.html',
 })
-export class VBSChildRegistrationWizardStepFourComponent implements OnChanges {
+export class VBSChildRegistrationWizardStepFourComponent implements OnInit, OnChanges {
   @Input() wizard: WizardComponent;
   @Input() activeStep: number = 0;
-  @Input() loading = true;
   @Input() guardians: Guardian[];
   @Input() children: Child[];
-  @Input() childExists = false;
-  @Output() save = new EventEmitter<VBSRegistration>();
+  @Output() next = new EventEmitter<Child[]>();
 
   childrenToRegister: Child[] = [];
+  relationshipTypes: DropdownItem[];
 
-  constructor(private readonly vbsService: VBSService) {}
+  constructor(private readonly commonService: CommonService) {}
+
+  ngOnInit(): void {
+    this.wizard.wizardCancelled.subscribe(() => (this.childrenToRegister = []));
+    this.relationshipTypes = this.commonService.getDropDownItems(Relationship, TranslationKey.RELATIONSHIP);
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.activeStep && changes.activeStep.currentValue === 3) {
-      this.loading = true;
-      this.childrenToRegister = [];
-
-      const childrenExisting = this.children.filter((c) => c.id) || [];
-      const childrenToCreate = this.children.filter((c) => !c.id) || [];
-
-      if (childrenExisting.length > 0) {
-        const childIds = childrenExisting.map((c) => c.id);
-        this.vbsService.getChildren(new Map().set('id', childIds)).subscribe((res) => {
-          res.body.forEach((ch) => {
-            const vbsGroup = childrenExisting.find((c) => c.id === ch.id).churchGroup;
-            ch.churchGroup = vbsGroup;
-            this.childrenToRegister.push(ch);
-            this.loading = false;
-          });
-        });
-      } else {
-        this.childrenToRegister = childrenToCreate;
-        this.loading = false;
+      if (this.children && this.children.length > 0) {
+        this.children.forEach((c) => (c.guardians = []));
       }
     }
   }
 
-  onCancelClick() {
-    this.wizard.resetWizard();
+  onGuardianChildRelationshipChange(g: Guardian, c: Child, event: any) {
+    const childGuardian: Guardian = { ...g };
+    childGuardian.relationship = event.value;
+    c.guardians = c.guardians ? c.guardians.filter((guardian) => guardian.email != childGuardian.email) : [];
+    c.guardians.push(childGuardian);
+
+    console.log(this.children);
   }
 
-  onPreviousClick() {
-    console.log(this.childExists);
-    if (this.childExists) {
-      this.wizard.goToStep(1);
-    } else {
-      this.wizard.prev();
-    }
+  onCancelClick() {
+    this.wizard.resetWizard();
   }
 
   goToChildInformation() {
@@ -66,11 +55,15 @@ export class VBSChildRegistrationWizardStepFourComponent implements OnChanges {
     this.wizard.goToStep(2);
   }
 
-  onSaveClick() {
-    const registration: VBSRegistration = {
-      guardians: this.guardians,
-      children: this.childrenToRegister,
-    };
-    this.save.emit(registration);
+  onNextClick() {
+    this.next.emit(this.children);
+  }
+
+  disableNext(): boolean {
+    if (this.children && this.children.length > 0) {
+      return !this.children.every((c) => c.guardians && c.guardians.length === this.guardians.length);
+    } else {
+      return true;
+    }
   }
 }

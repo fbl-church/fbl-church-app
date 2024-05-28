@@ -35,7 +35,6 @@ export class SingleSelectInputComponent extends ValueAccessorBase<any> implement
 
   onChange(event) {
     this.value = event;
-
     this.change.emit(this.value);
   }
 

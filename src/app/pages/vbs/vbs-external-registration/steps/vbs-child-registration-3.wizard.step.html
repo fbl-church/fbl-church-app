@@ -1,6 +1,6 @@
 <ik-info-card
   title="3. Guardians of the Child"
-  description="Please fill out the form below so that we have some basic information on file incase of emergencies."
+  description="Please fill out the form below so that we have some basic information on file incase of emergencies. The fields followed by an asterisk(*) are required."
 >
 </ik-info-card>
 
@@ -57,3 +57,31 @@
 <button class="btn btn-default btn-left" (click)="onCancelClick()">Cancel</button>
 <button class="btn btn-primary btn-right" (click)="onNextClick()" [disabled]="disableNext()">Next</button>
 <button wizardStepPrev class="btn btn-default btn-right">Previous</button>
+
+<ik-modal #duplicateGuardianInformationModal name="duplicateGuardianInformationModal">
+  <ik-modal-header title="Duplicate Guardian" type="warning"></ik-modal-header>
+  <ik-modal-body>
+    <div>
+      It looks like you duplicated guardian information. Please confirm that you only created each guardian once and
+      that all the information is correct.
+    </div>
+  </ik-modal-body>
+  <ik-modal-action-bar>
+    <button class="btn btn-default btn-right btn-modal" (click)="duplicateGuardianInformationModal.close()">
+      Okay
+    </button>
+  </ik-modal-action-bar>
+</ik-modal>
+
+<ik-modal #duplicateEmailModal name="duplicateEmailModal">
+  <ik-modal-header title="Duplicate Email" type="warning"></ik-modal-header>
+  <ik-modal-body>
+    <div>
+      It looks like the email was used more the once. The email must be unqiue for each guardian. Please confirm that
+      each guardian has it's own unique email.
+    </div>
+  </ik-modal-body>
+  <ik-modal-action-bar>
+    <button class="btn btn-default btn-right btn-modal" (click)="duplicateEmailModal.close()">Okay</button>
+  </ik-modal-action-bar>
+</ik-modal>

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { WizardComponent } from 'projects/insite-kit/src/component/wizard/wizard.component';
 import { Guardian } from 'projects/insite-kit/src/model/user.model';
 import { ChildGuardiansGridCardComponent } from 'src/app/shared/components/cards/children/child-guardians-grid-card/child-guardians-grid-card.component';
@@ -11,6 +12,8 @@ import { ChildGuardiansGridCardComponent } from 'src/app/shared/components/cards
 export class VBSChildRegistrationWizardStepThreeComponent implements OnChanges, OnInit {
   @ViewChild(ChildGuardiansGridCardComponent)
   guardianSelectionGrid: ChildGuardiansGridCardComponent;
+  @ViewChild('duplicateGuardianInformationModal') duplicateGuardianInformationModal: ModalComponent;
+  @ViewChild('duplicateEmailModal') duplicateEmailModal: ModalComponent;
 
   @Input() wizard: WizardComponent;
   @Input() activeStep: number = 0;
@@ -49,7 +52,13 @@ export class VBSChildRegistrationWizardStepThreeComponent implements OnChanges, 
   }
 
   onNextClick() {
-    this.next.emit(this.getCreatedGuardians());
+    if (this.hasDuplicateGuardianInformation()) {
+      this.duplicateGuardianInformationModal.open();
+    } else if (this.hasDuplicateEmail()) {
+      this.duplicateEmailModal.open();
+    } else {
+      this.next.emit(this.getCreatedGuardians());
+    }
   }
 
   getCreatedGuardians(): Guardian[] {
@@ -66,5 +75,23 @@ export class VBSChildRegistrationWizardStepThreeComponent implements OnChanges, 
 
   disableNext(): boolean {
     return !this.guardianForms.map((f) => f.valid).every((validForm) => validForm);
+  }
+
+  hasDuplicateGuardianInformation() {
+    const uniqueData = new Set(
+      this.guardianForms.map((form) =>
+        JSON.stringify({
+          firstName: form.value.firstName.toLocaleLowerCase(),
+          lastName: form.value.lastName.toLocaleLowerCase(),
+        })
+      )
+    );
+
+    return uniqueData.size !== this.guardianForms.length;
+  }
+
+  hasDuplicateEmail() {
+    const unqiueEmail = new Set(this.guardianForms.map((form) => form.value.email.toLocaleLowerCase()));
+    return unqiueEmail.size !== this.guardianForms.length;
   }
 }

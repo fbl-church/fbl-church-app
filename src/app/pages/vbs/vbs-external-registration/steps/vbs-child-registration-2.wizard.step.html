@@ -1,7 +1,7 @@
 <ik-info-card
   *ngIf="!childExists"
   title="2. Child Information"
-  description="Create a new child record by entering in the childs information. This includes the required fields of childs first name, last name, and birthday. Optional fields such as allergies and any other additional information needed may be included."
+  description="Create a new child record by entering in the childs information. This includes the required fields of childs first name, last name, and birthday. Optional fields such as allergies and any other additional information needed may be included. The fields followed by an asterisk(*) are required."
 >
 </ik-info-card>
 <ik-info-card
@@ -55,24 +55,14 @@
         </div>
       </ik-form-field>
     </div>
-    <div class="row">
-      <ik-form-field header="Grade Going Into*" class="col-md-6">
-        <ik-single-select
-          [searchable]="false"
-          formControlName="group"
-          [items]="churchGroups"
-          placeholder="Grade Going Into"
-        ></ik-single-select>
-      </ik-form-field>
-      <ik-form-field header="Relationship to Child*" class="col-md-6">
-        <ik-single-select
-          [searchable]="false"
-          formControlName="relationship"
-          [items]="relationshipTypes"
-          placeholder="Relationship to Child"
-        ></ik-single-select>
-      </ik-form-field>
-    </div>
+    <ik-form-field header="Grade Going Into*">
+      <ik-single-select
+        [searchable]="false"
+        formControlName="group"
+        [items]="churchGroups"
+        placeholder="Grade Going Into"
+      ></ik-single-select>
+    </ik-form-field>
 
     <ik-form-field header="Additional Information">
       <textarea formControlName="additionalInfo" rows="4" cols="50" class="form-input__normal"></textarea>
@@ -98,3 +88,16 @@
 <button wizardStepPrev class="btn btn-default btn-left" (click)="onCancelClick()">Cancel</button>
 <button class="btn btn-primary btn-right" (click)="onNextClick()" [disabled]="disableNext()">Next</button>
 <button wizardStepPrev class="btn btn-default btn-right">Previous</button>
+
+<ik-modal #duplicateChildInformationModal name="duplicateChildInformationModal">
+  <ik-modal-header title="Duplicate Child" type="warning"></ik-modal-header>
+  <ik-modal-body>
+    <div>
+      It looks like you duplicated child information. Please confirm that you only created each child once and that all
+      the information is correct.
+    </div>
+  </ik-modal-body>
+  <ik-modal-action-bar>
+    <button class="btn btn-default btn-right btn-modal" (click)="duplicateChildInformationModal.close()">Okay</button>
+  </ik-modal-action-bar>
+</ik-modal>
