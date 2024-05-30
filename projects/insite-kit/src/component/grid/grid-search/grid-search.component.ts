@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostBinding, Output } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'ik-grid-search',
@@ -6,6 +6,7 @@ import { Component, EventEmitter, HostBinding, Output } from '@angular/core';
 })
 export class GridSearchComponent {
   @HostBinding('class.grid-search__container') hostClass = true;
+  @Input() maxSearchInputs: number;
   @Output() search = new EventEmitter<any[]>();
 
   searchTags: string[] = [];

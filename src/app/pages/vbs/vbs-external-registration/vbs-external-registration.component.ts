@@ -12,6 +12,7 @@ import { VBSService } from 'src/service/vbs/vbs.service';
 export class VBSExternalRegistrationComponent {
   childrenToRegister: Child[];
   guardiansToCreate: Guardian[];
+  selectedGuardian: Guardian;
   childGuardianAssociations: Child[];
   childExists = false;
   loading = false;
@@ -22,21 +23,6 @@ export class VBSExternalRegistrationComponent {
     private readonly popupService: PopupService
   ) {}
 
-  onStep1Next(exists: boolean, wizard: WizardComponent) {
-    this.childExists = exists;
-    wizard.next();
-  }
-
-  onStep2Next(children: Child[], wizard: WizardComponent) {
-    if (this.childExists) {
-      this.childGuardianAssociations = children;
-      wizard.goToStep(4);
-    } else {
-      this.childrenToRegister = children;
-      wizard.next();
-    }
-  }
-
   onStep3Next(guardians: Guardian[], wizard: WizardComponent) {
     this.guardiansToCreate = guardians;
     wizard.next();
@@ -45,10 +31,6 @@ export class VBSExternalRegistrationComponent {
   onStep4Next(children: Child[], wizard: WizardComponent) {
     this.childGuardianAssociations = children;
     wizard.next();
-  }
-
-  onCancelClick(wizard: WizardComponent) {
-    wizard.resetWizard();
   }
 
   onSaveClick(event?: VBSRegistration) {

@@ -54,7 +54,7 @@
     "calendar-utils": "0.10.4",
     "compression": "^1.7.4",
     "core-js": "^3.23.4",
-    "date-fns": "^2.28.0",
+    "date-fns": "^3.6.0",
     "express": "^4.17.1",
     "file-saver": "^2.0.5",
     "jquery": "^3.5.1",

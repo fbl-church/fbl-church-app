@@ -1,66 +1,34 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  QueryList,
-  SimpleChanges,
-  ViewChild,
-  ViewChildren,
-} from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { GridChecklistColumnComponent } from 'projects/insite-kit/src/component/grid/grid-checklist-column/grid-checklist-column.component';
-import { GridSelectionColumnComponent } from 'projects/insite-kit/src/component/grid/grid-selection-column/grid-selection-column.component';
 import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
-import { DropdownItem } from 'projects/insite-kit/src/component/select/dropdown-item.model';
-import { TagInputFieldComponent } from 'projects/insite-kit/src/component/tag-input-field/tag-input-field.component';
 import { WizardComponent } from 'projects/insite-kit/src/component/wizard/wizard.component';
-import { ChurchGroup, Relationship, TranslationKey } from 'projects/insite-kit/src/model/common.model';
-import { Child } from 'projects/insite-kit/src/model/user.model';
-import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
+import { Guardian } from 'projects/insite-kit/src/model/user.model';
 import { VBSService } from 'src/service/vbs/vbs.service';
+import { VBSExternalRegistrationWizardDataService } from '../vbs-external-registration-wizard-data.service';
 
 @Component({
   selector: 'app-vbs-child-registration-wizard-step-two',
   templateUrl: './vbs-child-registration-2.wizard.step.html',
 })
 export class VBSChildRegistrationWizardStepTwoComponent implements OnChanges, OnInit {
-  @ViewChild(GridChecklistColumnComponent)
-  gridChecklistColumn: GridChecklistColumnComponent;
-  @ViewChild(GridSelectionColumnComponent)
-  gridSelection: GridSelectionColumnComponent;
+  @ViewChild('duplicateGuardianInformationModal') duplicateGuardianInformationModal: ModalComponent;
+  @ViewChild('duplicateEmailModal') duplicateEmailModal: ModalComponent;
   @ViewChild(GridComponent) grid: GridComponent;
-  @ViewChildren(TagInputFieldComponent) tagInputField: QueryList<TagInputFieldComponent>;
-  @ViewChild(ModalComponent) duplicateChildInformationModal: ModalComponent;
 
   @Input() wizard: WizardComponent;
   @Input() activeStep: number = 0;
-  @Input() childExists = false;
-  @Output() next = new EventEmitter<Child[]>();
 
-  childrenDataloader: any;
-  loading = false;
-  childForms: FormGroup[] = [];
-  churchGroups: DropdownItem[];
-  relationshipTypes: DropdownItem[];
-
-  excludedGroups = [
-    ChurchGroup.VBS_PRE_PRIMARY,
-    ChurchGroup.VBS_PRIMARY,
-    ChurchGroup.VBS_JUNIOR,
-    ChurchGroup.VBS_MIDDLER,
-    ChurchGroup.VBS_PRIMARY,
-  ];
+  guardianDataloader: any;
+  childExists = false;
+  guardianForms: FormGroup[] = [];
 
   constructor(
+    private readonly wizardDataService: VBSExternalRegistrationWizardDataService,
     private readonly vbsService: VBSService,
-    private readonly fb: FormBuilder,
-    private readonly commonService: CommonService
+    private readonly fb: FormBuilder
   ) {
-    this.childrenDataloader = (params) => this.vbsService.getGuardianVbsChildren(params);
+    this.guardianDataloader = (params) => this.vbsService.getVBSGuardians(params);
   }
 
   ngOnInit() {
@@ -68,112 +36,85 @@ export class VBSChildRegistrationWizardStepTwoComponent implements OnChanges, On
       if (this.childExists) {
         this.grid.resetGrid();
       } else {
-        this.childForms = [];
+        this.guardianForms = [];
       }
     });
-
-    this.relationshipTypes = this.commonService.getDropDownItems(Relationship, TranslationKey.RELATIONSHIP);
-    this.churchGroups = this.commonService.getDropDownItems(
-      ChurchGroup,
-      TranslationKey.CHURCH_GROUP,
-      this.excludedGroups
-    );
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.activeStep && changes.activeStep.currentValue == 1 && this.childForms.length === 0) {
-      this.addChildForm();
+    if (changes.activeStep && changes.activeStep.currentValue == 1) {
+      this.childExists = this.wizardDataService.data.childExists;
+      if (this.guardianForms.length === 0) {
+        this.addGuardianForm();
+      }
     }
   }
 
   onCancelClick() {
-    this.wizard.resetWizard();
+    this.wizard.resetWizard(this.wizardDataService);
+  }
+
+  onGridRowClick(g: Guardian) {
+    this.wizardDataService.updateData({ guardians: [g] });
+    this.wizard.next();
   }
 
   onNextClick() {
-    if (this.hasDuplicateChildInformation()) {
-      this.duplicateChildInformationModal.open();
+    if (this.hasDuplicateGuardianInformation()) {
+      this.duplicateGuardianInformationModal.open();
+    } else if (this.hasDuplicateEmail()) {
+      this.duplicateEmailModal.open();
     } else {
-      this.next.emit(this.childExists ? this.getSelectedChildren() : this.getCreatedChildren());
+      this.wizardDataService.updateData({ guardians: this.getCreatedGuardians() });
+      this.wizard.next();
     }
   }
 
-  addChildForm() {
-    const newChildForm = this.fb.group({
+  addGuardianForm() {
+    const newGuardianForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      birthday: [this.commonService.formatDate(new Date(), 'yyyy-MM-dd'), Validators.required],
-      group: [null, Validators.required],
-      additionalInfo: [''],
-      releaseOfLiability: [false],
+      email: ['', Validators.email],
+      phone: ['', [Validators.required, Validators.minLength(14)]],
     });
-    this.childForms.push(newChildForm);
+    this.guardianForms.push(newGuardianForm);
   }
 
-  onRemoveChildClick(index: any) {
-    this.childForms.splice(index, 1);
+  onRemoveGuardianClick(index: any) {
+    this.guardianForms.splice(index, 1);
   }
 
-  getCreatedChildren(): Child[] {
-    return this.childForms.map((form, i) => {
-      let newChild: Child = {
+  getCreatedGuardians(): Guardian[] {
+    return this.guardianForms.map((form, i) => {
+      let newGuardian: Guardian = {
         firstName: form.value.firstName,
         lastName: form.value.lastName,
-        churchGroup: [form.value.group.value],
-        releaseOfLiability: form.value.releaseOfLiability,
+        email: form.value.email,
+        phone: form.value.phone,
       };
-
-      if (form.value.birthday) {
-        newChild.birthday = form.value.birthday;
-      }
-
-      const allergieTags = this.getChildAllergiesByIndex(i);
-      if (allergieTags && allergieTags.length > 0) {
-        newChild.allergies = allergieTags;
-      }
-
-      if (form.value.additionalInfo) {
-        newChild.additionalInfo = form.value.additionalInfo;
-      }
-      return newChild;
+      return newGuardian;
     });
-  }
-
-  getSelectedChildren(): Child[] {
-    if (this.gridChecklistColumn) {
-      const selectedIds = this.gridChecklistColumn.getSelected();
-      return this.gridSelection
-        .getSelections()
-        .filter((g) => selectedIds.includes(g.id))
-        .map((g) => {
-          return { id: g.id, churchGroup: [g.value] };
-        });
-    } else {
-      return [];
-    }
-  }
-
-  getChildAllergiesByIndex(index: any): string[] {
-    return this.tagInputField.find((t) => t.uniqueId === `tagInput-${index}`).getTags();
   }
 
   disableNext(): boolean {
-    if (this.childExists) {
-      return !(this.getSelectedChildren().length > 0);
-    } else {
-      return !this.childForms.map((f) => f.valid).every((validForm) => validForm);
-    }
+    return !this.guardianForms.map((f) => f.valid).every((validForm) => validForm);
   }
 
-  hasDuplicateChildInformation() {
+  hasDuplicateGuardianInformation() {
     const uniqueData = new Set(
-      this.childForms.map((form) =>
+      this.guardianForms.map((form) =>
         JSON.stringify({
           firstName: form.value.firstName.toLocaleLowerCase(),
           lastName: form.value.lastName.toLocaleLowerCase(),
         })
       )
     );
-    return uniqueData.size !== this.childForms.length;
+
+    return uniqueData.size !== this.guardianForms.length;
+  }
+
+  hasDuplicateEmail() {
+    const unqiueEmail = new Set(this.guardianForms.map((form) => form.value.email.toLocaleLowerCase()));
+    return unqiueEmail.size !== this.guardianForms.length;
   }
 }

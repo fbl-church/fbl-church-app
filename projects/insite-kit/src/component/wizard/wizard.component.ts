@@ -8,6 +8,7 @@ import {
   Output,
   QueryList,
 } from '@angular/core';
+import { WizardDataService } from './wizard-data.service';
 import { WizardHelperService } from './wizard-helper.service';
 import { Status, WizardStepHelperService } from './wizard-step/wizard-step-helper.service';
 import { WizardStepComponent } from './wizard-step/wizard-step.component';
@@ -76,11 +77,15 @@ export class WizardComponent extends WizardStepHelperService implements OnInit, 
     this.emitStateChange();
   }
 
-  public resetWizard() {
+  public resetWizard<T extends WizardDataService>(wizardDataService?: T) {
     this.activeIndex = 0;
     this.resetProgress();
     this.setActiveStep(0);
     this.emitStateChange();
+    if (wizardDataService) {
+      wizardDataService.clearData();
+    }
+
     this.wizardCancelled.emit();
   }
 

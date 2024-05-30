@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { DropdownItem } from 'projects/insite-kit/src/component/select/dropdown-item.model';
 import { WizardComponent } from 'projects/insite-kit/src/component/wizard/wizard.component';
 import { Relationship, TranslationKey } from 'projects/insite-kit/src/model/common.model';
 import { Child, Guardian } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
+import { VBSExternalRegistrationWizardDataService } from '../vbs-external-registration-wizard-data.service';
 
 @Component({
   selector: 'app-vbs-child-registration-wizard-step-four',
@@ -12,14 +13,16 @@ import { CommonService } from 'projects/insite-kit/src/service/common/common.ser
 export class VBSChildRegistrationWizardStepFourComponent implements OnInit, OnChanges {
   @Input() wizard: WizardComponent;
   @Input() activeStep: number = 0;
-  @Input() guardians: Guardian[];
-  @Input() children: Child[];
-  @Output() next = new EventEmitter<Child[]>();
 
+  guardians: Guardian[];
+  children: Child[];
   childrenToRegister: Child[] = [];
   relationshipTypes: DropdownItem[];
 
-  constructor(private readonly commonService: CommonService) {}
+  constructor(
+    private readonly commonService: CommonService,
+    private readonly wizardDataService: VBSExternalRegistrationWizardDataService
+  ) {}
 
   ngOnInit(): void {
     this.wizard.wizardCancelled.subscribe(() => (this.childrenToRegister = []));
@@ -28,6 +31,8 @@ export class VBSChildRegistrationWizardStepFourComponent implements OnInit, OnCh
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.activeStep && changes.activeStep.currentValue === 3) {
+      this.children = this.wizardDataService.data.children;
+      this.guardians = this.wizardDataService.data.guardians;
       if (this.children && this.children.length > 0) {
         this.children.forEach((c) => (c.guardians = []));
       }
@@ -39,12 +44,10 @@ export class VBSChildRegistrationWizardStepFourComponent implements OnInit, OnCh
     childGuardian.relationship = event.value;
     c.guardians = c.guardians ? c.guardians.filter((guardian) => guardian.email != childGuardian.email) : [];
     c.guardians.push(childGuardian);
-
-    console.log(this.children);
   }
 
   onCancelClick() {
-    this.wizard.resetWizard();
+    this.wizard.resetWizard(this.wizardDataService);
   }
 
   goToChildInformation() {
@@ -56,7 +59,8 @@ export class VBSChildRegistrationWizardStepFourComponent implements OnInit, OnCh
   }
 
   onNextClick() {
-    this.next.emit(this.children);
+    this.wizardDataService.updateData({ children: this.children });
+    this.wizard.next();
   }
 
   disableNext(): boolean {

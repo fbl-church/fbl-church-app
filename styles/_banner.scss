@@ -10,27 +10,55 @@
 
   &.info {
     background-color: #358af1;
+
+    .banner-content {
+      font-size: $font-size-caption;
+      color: white;
+      font-weight: $font-weight-bold;
+      text-align: center;
+    }
+
+    .banner-icon {
+      float: left;
+      margin-right: 10px;
+      color: white;
+      font-size: $font-size-xl;
+    }
   }
 
   &.danger {
     background-color: #e32323;
+
+    .banner-content {
+      font-size: $font-size-caption;
+      color: white;
+      font-weight: $font-weight-bold;
+      text-align: center;
+    }
+
+    .banner-icon {
+      float: left;
+      margin-right: 10px;
+      color: white;
+      font-size: $font-size-xl;
+    }
   }
 
   &.warning {
     background-color: #ffd200;
+
+    .banner-content {
+      font-size: $font-size-caption;
+      color: $black;
+      font-weight: $font-weight-bold;
+      text-align: center;
+    }
+
+    .banner-icon {
+      float: left;
+      margin-right: 10px;
+      color: $black;
+      font-size: $font-size-xl;
+    }
   }
-}
-
-.banner-content {
-  font-size: $font-size-caption;
-  color: $black;
-  font-weight: $font-weight-bold;
-  text-align: center;
-}
-
-.banner-icon {
-  float: left;
-  margin-right: 10px;
-  color: $black;
-  font-size: $font-size-xl;
 }

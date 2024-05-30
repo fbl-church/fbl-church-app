@@ -21,6 +21,7 @@ export class TagInputFieldComponent implements OnInit {
   @Input() uniqueId: string;
   @Input() tags: string[] = [];
   @Input() placeholder = '';
+  @Input() maxInputs: number;
   @Input() classOverride = 'input-tag__field';
   @Output() tagsUpdated = new EventEmitter<string[]>();
 
@@ -135,16 +136,19 @@ export class TagInputFieldComponent implements OnInit {
    * @param tags - the list of tags to add
    */
   private addTags(tags: string[]): void {
-    const validTags = tags
-      .map((tag) => tag.trim())
-      .filter((tag) => this.isTagValid(tag))
-      .filter((tag, index, tagArray) => tagArray.indexOf(tag) === index);
+    if (!this.maxInputs || this.tags.length < this.maxInputs) {
+      const validTags = tags
+        .map((tag) => tag.trim())
+        .filter((tag) => this.isTagValid(tag))
+        .filter((tag, index, tagArray) => tagArray.indexOf(tag) === index);
 
-    const newTags = this.tags.concat(validTags);
-    if (!newTags.every((val) => this.tags.includes(val))) {
-      this.tagsUpdated.emit(newTags);
+      const newTags = this.tags.concat(validTags);
+      if (!newTags.every((val) => this.tags.includes(val))) {
+        this.tagsUpdated.emit(newTags);
+      }
+      this.tags = newTags;
     }
-    this.tags = newTags;
+
     this.resetSearchInput();
     this.resetSelected();
   }

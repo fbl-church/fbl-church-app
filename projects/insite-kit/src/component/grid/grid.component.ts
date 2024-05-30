@@ -332,9 +332,19 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
 
   resetGrid() {
     this.currentSearch = [];
-    this.gridSearch.clearSearch();
-    this.gridChecklistColumn.selectedIds = [];
-    this.gridSelection.selections = [];
+
+    if (this.gridSearch) {
+      this.gridSearch.clearSearch();
+    }
+
+    if (this.gridChecklistColumn) {
+      this.gridChecklistColumn.selectedIds = [];
+    }
+
+    if (this.gridSelection) {
+      this.gridSelection.selections = [];
+    }
+
     this.refresh();
   }
 
