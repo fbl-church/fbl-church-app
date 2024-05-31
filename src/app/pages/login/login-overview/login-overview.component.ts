@@ -40,9 +40,9 @@ export class LoginOverviewComponent implements OnInit {
   onLoginClick() {
     this.loading = true;
     this.authService.authenticate(this.form.value.username, this.form.value.password).subscribe({
-      next: () => {
+      next: (redirect) => {
         this.themeService.setThemeToLoggedInUser();
-        this.navigationService.navigate('/profile');
+        this.navigationService.navigate(redirect ? redirect : '/profile');
       },
       error: () => {
         this.popupService.error('Invalid email or password!');

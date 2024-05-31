@@ -15,10 +15,10 @@ import { ChildAttendanceService } from 'src/service/attendance/child-attendance.
 import { GuardianService } from 'src/service/guardians/guardian.service';
 
 @Component({
-  selector: 'app-nursery-update-child-attendance-modal',
+  selector: 'app-update-child-attendance-modal',
   templateUrl: './update-child-attendance-modal.component.html',
 })
-export class NurseryUpdateChildAttendanceModalComponent implements OnInit {
+export class UpdateChildAttendanceModalComponent implements OnInit {
   @ViewChild('childCheckInModal') modal: ModalComponent;
   @ViewChild(SingleSelectInputComponent) singleSelect: SingleSelectInputComponent;
   @Input() record: AttendanceRecord;

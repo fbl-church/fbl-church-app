@@ -32,6 +32,7 @@ import { DuplicateChildModalComponent } from './components/modals/duplicate-chil
 import { DuplicateGuardianModalComponent } from './components/modals/duplicate-guardian-modal/duplicate-guardian-modal.component';
 import { GuardianWarningModalComponent } from './components/modals/guardian-warning-modal/guardian-warning-modal.component';
 import { ResetPasswordModalComponent } from './components/modals/reset-password-modal/reset-password-modal.component';
+import { UpdateChildAttendanceModalComponent } from './components/modals/update-child-attendance-modal/update-child-attendance-modal.component';
 import { ChildRegistrationWizardComponent } from './components/wizards/child-registration/child-registration-wizard.component';
 import { ChildRegistrationWizardStepOneComponent } from './components/wizards/child-registration/steps/child-registration-1.wizard.step';
 import { ChildRegistrationWizardStepTwoComponent } from './components/wizards/child-registration/steps/child-registration-2.wizard.step';
@@ -77,6 +78,7 @@ import { ChildRegistrationWizardStepFourComponent } from './components/wizards/c
     DeleteUserModalComponent,
     AttendanceScheduleDownloadModalComponent,
     ResetPasswordModalComponent,
+    UpdateChildAttendanceModalComponent,
   ],
   exports: [
     UserFormComponent,
@@ -114,6 +116,7 @@ import { ChildRegistrationWizardStepFourComponent } from './components/wizards/c
     DeleteUserModalComponent,
     AttendanceScheduleDownloadModalComponent,
     ResetPasswordModalComponent,
+    UpdateChildAttendanceModalComponent,
   ],
 })
 export class SharedModule {}

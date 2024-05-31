@@ -37,7 +37,7 @@ export class JuniorChurchUpdateChildAttendanceModalComponent implements OnInit {
 
   onUpdateChildCheckIn() {
     this.modalLoading = true;
-    this.childAttendanceService.updateChildNotes(this.record.id, this.child.id, this.form.value.notes).subscribe({
+    this.childAttendanceService.updateChild(this.record.id, this.child.id, this.form.value.notes).subscribe({
       next: () => {
         this.childAttendanceUpdated.emit();
         this.popupService.success(`Notes for ${this.child.formattedName} successfully updated!`);

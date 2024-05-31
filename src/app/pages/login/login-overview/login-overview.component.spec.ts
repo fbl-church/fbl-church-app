@@ -4,7 +4,6 @@ import { NavigationService } from 'projects/insite-kit/src/service/navigation/na
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { of, throwError } from 'rxjs';
 import { FBLChurchTestBed } from 'src/test/test-bed';
-import { TestData } from 'src/test/test-data';
 import { TestDOM } from 'src/test/test-dom';
 import { setupTests } from 'src/test/test-setup';
 import { LoginOverviewComponent } from './login-overview.component';
@@ -26,7 +25,7 @@ describe('LoginOverviewComponent', () => {
     navigationService = TestBed.inject(NavigationService);
     popupService = TestBed.inject(PopupService);
 
-    spyOn(authService, 'authenticate').and.returnValue(of(TestData.getAuthToken()));
+    spyOn(authService, 'authenticate').and.returnValue(of(null));
 
     spyOn(navigationService, 'navigate');
     spyOn(popupService, 'error');

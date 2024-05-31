@@ -1,5 +1,5 @@
 import { ChurchGroup } from './common.model';
-import { User } from './user.model';
+import { Guardian, User } from './user.model';
 
 export interface AttendanceRecord {
   id?: number;
@@ -24,6 +24,8 @@ export interface ChildAttendance {
   notes?: string;
   cuid?: string;
   updatedUserId?: number;
+  guardianPickedUpId?: number;
+  guardianPickedUp?: Guardian;
   checkInDate?: Date;
   checkOutDate?: Date;
   recordName?: string;

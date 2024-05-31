@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { CanActivateFn, createUrlTreeFromSnapshot } from '@angular/router';
+import { CanActivateFn, Router } from '@angular/router';
 import { filter, forkJoin, map, take } from 'rxjs';
 import { UserAccessService } from '../auth/user-access.service';
 import { NavigationService } from '../navigation/navigation.service';
@@ -21,7 +21,8 @@ export const FEATURE_ACCESS_GUARD: CanActivateFn = (route) => {
       if (!v.includes(false)) {
         return true;
       } else if (navigationService.routerUrl() === '') {
-        return createUrlTreeFromSnapshot(route, ['/', 'profile']);
+        inject(Router).navigate(['/profile']);
+        return false;
       }
       return false;
     })

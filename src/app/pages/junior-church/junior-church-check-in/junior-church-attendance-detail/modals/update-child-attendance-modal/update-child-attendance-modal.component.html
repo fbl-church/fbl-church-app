@@ -7,7 +7,11 @@
     <ik-modal-body>
       <form [formGroup]="form">
         <div class="row">
-          <ik-card-info class="col-6" header="Name" [text]="child | formatUserName"></ik-card-info>
+          <ik-card-info class="col-6" header="Name">
+            <a [href]="'/children/' + child?.id + '/details'" target="_blank" class="link card-info__label-text">{{
+              child | formatUserName
+            }}</a></ik-card-info
+          >
           <ik-card-info class="col-6" header="CUID" [text]="child?.cuid"></ik-card-info>
         </div>
         <div class="row" *ngIf="record.status !== 'CLOSED'">

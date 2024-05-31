@@ -23,6 +23,7 @@ export class AttendanceRecordDetailHeaderComponent {
   WebRole = WebRole;
 
   loading = false;
+  reopenLoading = false;
 
   constructor(
     private readonly attendanceRecordService: AttendanceRecordService,
@@ -48,6 +49,21 @@ export class AttendanceRecordDetailHeaderComponent {
       error: () => {
         this.popupService.error('Unable to Start Check in. Try again later.');
         this.loading = false;
+      },
+    });
+  }
+
+  onReopenAttendance() {
+    this.reopenLoading = true;
+    this.attendanceRecordService.reopenAttendance(this.record.id).subscribe({
+      next: (res) => {
+        this.popupService.success('Attendance Record successfully Re-Opened!');
+        this.recordChange.emit(res);
+        this.reopenLoading = false;
+      },
+      error: () => {
+        this.popupService.error('Unable to Re-Open Attendance Record at this time. Try again later.');
+        this.reopenLoading = false;
       },
     });
   }

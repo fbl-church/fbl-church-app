@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, switchMap, take, tap } from 'rxjs/operators';
 import { AuthToken } from '../../model/auth-token.model';
 import { UserAccess } from '../../model/user-access.model';
 import { RequestService } from '../request/request.service';
@@ -12,7 +13,7 @@ import { JwtService } from './jwt.service';
 export class AuthService {
   readonly BASE_AUTH_PATH = 'api';
 
-  constructor(private request: RequestService, private jwt: JwtService) {}
+  constructor(private request: RequestService, private jwt: JwtService, private readonly route: ActivatedRoute) {}
 
   /**
    * Authenticate a user and get a token for the user
@@ -21,13 +22,18 @@ export class AuthService {
    * @param password associated to the user
    * @returns
    */
-  authenticate(email: string, password: string): Observable<AuthToken> {
+  authenticate(email: string, password: string): Observable<string> {
     return this.request
       .post<AuthToken>(`${this.BASE_AUTH_PATH}/authenticate`, {
         email,
         password,
       })
-      .pipe(tap((u) => this.jwt.setToken(u.token)));
+      .pipe(
+        tap((u) => this.jwt.setToken(u.token)),
+        switchMap(() => this.route.queryParams),
+        map((qp) => qp.redirect),
+        take(1)
+      );
   }
 
   /**

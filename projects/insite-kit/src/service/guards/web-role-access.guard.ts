@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { CanActivateFn, createUrlTreeFromSnapshot } from '@angular/router';
+import { CanActivateFn, Router } from '@angular/router';
 import { filter, forkJoin, map, take } from 'rxjs';
 import { WebRole } from '../../model/common.model';
 import { UserAccessService } from '../auth/user-access.service';
@@ -22,10 +22,9 @@ export const WEB_ROLE_ACCESS_GUARD: CanActivateFn = (route) => {
       if (!v.includes(false)) {
         return true;
       } else if (navigationService.routerUrl() === '') {
-        return createUrlTreeFromSnapshot(route, ['/', 'profile']);
-      } else {
-        return false;
+        inject(Router).navigate(['/profile']);
       }
+      return false;
     })
   );
 };

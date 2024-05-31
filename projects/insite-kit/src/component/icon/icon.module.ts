@@ -5,6 +5,7 @@ import {
   faAddressBook,
   faAngleLeft,
   faAngleRight,
+  faArrowRotateLeft,
   faBabyCarriage,
   faBackwardStep,
   faBars,
@@ -112,7 +113,8 @@ export class IconModule {
       faAngleRight,
       faList,
       faCircleDown,
-      faUserXmark
+      faUserXmark,
+      faArrowRotateLeft
     );
   }
 }

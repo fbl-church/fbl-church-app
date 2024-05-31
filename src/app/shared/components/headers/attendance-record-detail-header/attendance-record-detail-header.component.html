@@ -21,6 +21,25 @@
       Close
     </button>
   </ng-container>
+  <ng-container *webRoleRestrictionAccess="[WebRole.ADMINISTRATOR]" ngProjectAs="button">
+    <button
+      class="btn btn-primary header-button"
+      *ngIf="record.status === 'CLOSED'"
+      [disabled]="reopenLoading"
+      (click)="onReopenAttendance()"
+    >
+      <ik-icon
+        *ngIf="!reopenLoading; else startCheckInLoader"
+        icon="arrow-rotate-left"
+        classOverride="btn-icon"
+      ></ik-icon>
+      Re-Open
+
+      <ng-template #startCheckInLoader>
+        <ik-icon icon="spinner" classOverride="btn-icon" [spin]="true"></ik-icon>
+      </ng-template>
+    </button>
+  </ng-container>
   <button
     class="btn btn-danger header-button"
     *featureAccess="[app, FeatureType.DETAIL, Access.DELETE]"

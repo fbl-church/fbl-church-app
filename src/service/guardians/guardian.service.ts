@@ -47,8 +47,8 @@ export class GuardianService {
    * @param params guardian id for the guardian to get
    * @returns Guardian object
    */
-  getGuardiansByChildId(childId: number): Observable<HttpResponse<Guardian>> {
-    return this.request.get<Guardian>(`${this.BASE_PATH}/child/${childId}`).pipe(
+  getGuardiansByChildId(childId: number): Observable<HttpResponse<Guardian[]>> {
+    return this.request.get<Guardian[]>(`${this.BASE_PATH}/child/${childId}`).pipe(
       tap((v) =>
         v.body.forEach((u) => {
           u.formattedName = this.commonService.getFormattedName(u);

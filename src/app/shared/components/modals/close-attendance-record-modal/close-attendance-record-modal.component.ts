@@ -20,12 +20,13 @@ export class CloseAttendanceRecordModalComponent {
     private readonly popupService: PopupService
   ) {}
 
-  onDeleteUser() {
+  onCloseAttendance() {
     this.modalLoading = true;
     this.attendanceRecordService.updateStatus(this.recordId, AttendanceStatus.CLOSED).subscribe({
       next: (res) => {
         this.modal.close();
         this.popupService.success('Attendance Record successfully Closed!');
+        this.modalLoading = false;
         this.closed.emit(res);
       },
       error: () => {

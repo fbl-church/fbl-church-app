@@ -114,6 +114,16 @@ export class AttendanceRecordService {
   }
 
   /**
+   * Reopens an Attendance record by id
+   *
+   * @param id The id of the record to update
+   * @returns The repoened Attendance Record object
+   */
+  reopenAttendance(id: any): Observable<AttendanceRecord> {
+    return this.request.put<AttendanceRecord>(`${this.BASE_PATH}/${id}/reopen`);
+  }
+
+  /**
    * Update the children of an attendance record
    *
    * @param id The id of the record to update

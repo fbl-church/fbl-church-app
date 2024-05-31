@@ -60,8 +60,12 @@ export class ChildAttendanceService {
    * @param notes The children to put on the attendance record
    * @returns The updated Attendance Record object
    */
-  updateChildNotes(recordId: any, childId: any, notes: string): Observable<ChildAttendance> {
-    return this.request.put<ChildAttendance>(`${this.BASE_PATH}/${recordId}/children`, { id: childId, notes: notes });
+  updateChild(recordId: any, childId: any, notes: string, guardianId?: any): Observable<ChildAttendance> {
+    return this.request.put<ChildAttendance>(`${this.BASE_PATH}/${recordId}/children`, {
+      id: childId,
+      notes: notes,
+      guardianPickedUpId: guardianId,
+    });
   }
 
   /**
@@ -71,8 +75,8 @@ export class ChildAttendanceService {
    * @param childId The id of the child
    * @returns The updated child attendance
    */
-  checkOutChild(recordId: any, childId: any): Observable<ChildAttendance> {
-    return this.request.put<ChildAttendance>(`${this.BASE_PATH}/${recordId}/children/${childId}`);
+  checkOutChild(recordId: any, childId: any, guardianId?: any): Observable<ChildAttendance> {
+    return this.request.put<ChildAttendance>(`${this.BASE_PATH}/${recordId}/children/${childId}`, guardianId);
   }
 
   /**
