@@ -33,6 +33,7 @@ export class VBSChildRegistrationWizardStepFourComponent implements OnInit, OnCh
     if (changes.activeStep && changes.activeStep.currentValue === 3) {
       this.children = this.wizardDataService.data.children;
       this.guardians = this.wizardDataService.data.guardians;
+      console.log(this.children);
       if (this.children && this.children.length > 0) {
         this.children.forEach((c) => (c.guardians = []));
       }

@@ -1,12 +1,12 @@
-<ng-container *ngIf="childExists; else newGuardianProcess">
+<ng-container *ngIf="guardianExists; else newGuardianProcess">
   <ik-info-card
-    *ngIf="childExists"
+    *ngIf="guardianExists"
     title="2. Search for Guardian Account"
     description="Search for your account by your email address or phone number and then select your matching account. If no account was found for your email address or phone number, please return to the 'Previous' page and click 'Register New Child'"
   >
   </ik-info-card>
 
-  <ik-grid *ngIf="childExists" [dataLoader]="guardianDataloader" (rowClick)="onGridRowClick($event)">
+  <ik-grid *ngIf="guardianExists" [dataLoader]="guardianDataloader" (rowClick)="onGridRowClick($event)">
     <ik-grid-search [maxSearchInputs]="1"></ik-grid-search>
     <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
     <ik-grid-column label="Phone" field="phone"></ik-grid-column>
@@ -82,7 +82,7 @@
 </ng-template>
 
 <button class="btn btn-default btn-left" (click)="onCancelClick()">Cancel</button>
-<button *ngIf="!childExists" class="btn btn-primary btn-right" (click)="onNextClick()" [disabled]="disableNext()">
+<button *ngIf="!guardianExists" class="btn btn-primary btn-right" (click)="onNextClick()" [disabled]="disableNext()">
   Next
 </button>
 <button wizardStepPrev class="btn btn-default btn-right">Previous</button>

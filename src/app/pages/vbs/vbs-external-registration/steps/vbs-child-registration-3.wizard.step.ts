@@ -41,7 +41,7 @@ export class VBSChildRegistrationWizardStepThreeComponent implements OnChanges, 
     ChurchGroup.VBS_MIDDLER,
     ChurchGroup.VBS_PRIMARY,
   ];
-  childExists = false;
+  guardianExists = false;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -63,9 +63,9 @@ export class VBSChildRegistrationWizardStepThreeComponent implements OnChanges, 
 
   ngOnChanges() {
     if (this.activeStep === 2) {
-      this.childExists = this.wizardDataService.data.childExists;
+      this.guardianExists = this.wizardDataService.data.guardianExists;
 
-      if (this.childExists) {
+      if (this.guardianExists) {
         const id = this.wizardDataService.data.guardians[0].id;
         this.childrenDataloader = (params) => this.vbsService.getGuardianVbsChildren(id, params);
       } else {
@@ -80,12 +80,13 @@ export class VBSChildRegistrationWizardStepThreeComponent implements OnChanges, 
     if (this.hasDuplicateChildInformation()) {
       this.duplicateChildInformationModal.open();
     } else {
-      if (this.childExists) {
+      const createdChildren = this.getCreatedChildren();
+      if (createdChildren && createdChildren.length > 0) {
+        this.wizardDataService.updateData({ children: [...this.getSelectedChildren(), ...createdChildren] });
+        this.wizard.next();
+      } else {
         this.wizardDataService.updateData({ children: this.getSelectedChildren() });
         this.wizard.goToStep(4);
-      } else {
-        this.wizardDataService.updateData({ children: this.getCreatedChildren() });
-        this.wizard.next();
       }
     }
   }
@@ -154,8 +155,12 @@ export class VBSChildRegistrationWizardStepThreeComponent implements OnChanges, 
   }
 
   disableNext(): boolean {
-    if (this.childExists) {
-      return !(this.getSelectedChildren().length > 0);
+    if (this.guardianExists) {
+      const invalidSelectedChildren = !(this.getSelectedChildren().length > 0);
+      if (this.childForms && this.childForms.length > 0) {
+        return invalidSelectedChildren || !this.childForms.map((f) => f.valid).every((validForm) => validForm);
+      }
+      return invalidSelectedChildren;
     } else {
       return !this.childForms.map((f) => f.valid).every((validForm) => validForm);
     }

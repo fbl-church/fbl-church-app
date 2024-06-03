@@ -1,6 +1,9 @@
 <div class="card-info" [ngClass]="{ 'card-info--padding': padding, 'form-input--has-error': shouldShowError() }">
-  <div class="card-info__label-header">{{ getLabel() }}</div>
-  <i *ngIf="getControl()?.pending" class="form-label--loader"></i>
+  <div class="form-label--container">
+    <div class="card-info__label-header">{{ getLabel() }}</div>
+    <i *ngIf="getControl()?.pending" class="form-label--loader"></i>
+  </div>
+
   <ng-content></ng-content>
   <ik-form-field-error
     *ngFor="let error of getControl()?.errors | keyvalue"

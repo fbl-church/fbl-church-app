@@ -23,7 +23,7 @@ export class VBSChildRegistrationWizardStepTwoComponent implements OnChanges, On
   @Input() activeStep: number = 0;
 
   guardianDataloader: any;
-  childExists = false;
+  guardianExists = false;
   guardianForms: FormGroup[] = [];
 
   constructor(
@@ -38,7 +38,7 @@ export class VBSChildRegistrationWizardStepTwoComponent implements OnChanges, On
 
   ngOnInit() {
     this.wizard.wizardCancelled.subscribe(() => {
-      if (this.childExists) {
+      if (this.guardianExists) {
         this.grid.resetGrid();
       } else {
         this.guardianForms = [];
@@ -48,7 +48,7 @@ export class VBSChildRegistrationWizardStepTwoComponent implements OnChanges, On
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.activeStep && changes.activeStep.currentValue == 1) {
-      this.childExists = this.wizardDataService.data.childExists;
+      this.guardianExists = this.wizardDataService.data.guardianExists;
       if (this.guardianForms.length === 0) {
         this.addGuardianForm();
       }

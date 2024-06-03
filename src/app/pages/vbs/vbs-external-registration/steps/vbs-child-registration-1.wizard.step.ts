@@ -13,7 +13,7 @@ export class VBSChildRegistrationWizardStepOneComponent {
 
   onNextClick(exists: boolean) {
     this.wizardDataService.clearData();
-    this.wizardDataService.updateData({ childExists: exists });
+    this.wizardDataService.updateData({ guardianExists: exists });
     this.wizard.next();
   }
 }

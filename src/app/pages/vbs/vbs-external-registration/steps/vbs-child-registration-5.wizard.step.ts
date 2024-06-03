@@ -12,11 +12,11 @@ export class VBSChildRegistrationWizardStepFiveComponent implements OnChanges {
   @Input() wizard: WizardComponent;
   @Input() activeStep: number = 0;
   @Input() loading = true;
-  @Input() childExists = false;
   @Output() save = new EventEmitter<VBSRegistration>();
 
   childrenToRegister: Child[] = [];
   guardians: Guardian[];
+  guardianExists = false;
 
   constructor(
     private readonly vbsService: VBSService,
@@ -26,7 +26,7 @@ export class VBSChildRegistrationWizardStepFiveComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes.activeStep && changes.activeStep.currentValue === 4) {
       this.loading = true;
-      this.childExists = this.wizardDataService.data.childExists;
+      this.guardianExists = this.wizardDataService.data.guardianExists;
       this.guardians = this.wizardDataService.data.guardians;
       this.childrenToRegister = [];
 
@@ -40,12 +40,16 @@ export class VBSChildRegistrationWizardStepFiveComponent implements OnChanges {
             const vbsGroup = childrenExisting.find((c) => c.id === ch.id).churchGroup;
             ch.churchGroup = vbsGroup;
             this.childrenToRegister.push(ch);
+            if (childrenToCreate.length > 0) {
+              this.childrenToRegister.push(...childrenToCreate);
+            }
+            console.log('FINAL', this.childrenToRegister);
             this.loading = false;
           });
         });
       } else {
         this.childrenToRegister = childrenToCreate;
-        console.log(this.childrenToRegister);
+        console.log('FINAL', this.childrenToRegister);
         this.loading = false;
       }
     }
@@ -56,7 +60,7 @@ export class VBSChildRegistrationWizardStepFiveComponent implements OnChanges {
   }
 
   onPreviousClick() {
-    if (this.childExists) {
+    if (this.guardianExists) {
       this.wizard.goToStep(2);
     } else {
       this.wizard.prev();

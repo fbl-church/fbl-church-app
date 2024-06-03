@@ -14,7 +14,7 @@ export class VBSExternalRegistrationComponent {
   guardiansToCreate: Guardian[];
   selectedGuardian: Guardian;
   childGuardianAssociations: Child[];
-  childExists = false;
+  guardianExists = false;
   loading = false;
 
   constructor(
@@ -36,7 +36,7 @@ export class VBSExternalRegistrationComponent {
   onSaveClick(event?: VBSRegistration) {
     this.loading = true;
 
-    if (this.childExists) {
+    if (this.guardianExists) {
       // register them as existing children with already set guardians
     } else {
       this.vbsService.registerChildren(event).subscribe({
