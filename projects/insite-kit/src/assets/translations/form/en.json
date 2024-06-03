@@ -1,48 +1,48 @@
 {
-    "form": {
-        "firstName": {
-            "required": "First Name is a required field"
-        },
-        "lastName": {
-            "required": "Last Name is a required field"
-        },
-        "email": {
-            "required": "Email is a required field",
-            "email": "Email is invalid",
-            "duplicate": "Email already exists"
-        },
-        "phone": {
-            "required": "Phone Number is a required field",
-            "email": "Phone Number is invalid",
-            "duplicate": "Phone Number already exists",
-            "minlength": "Phone Number is required and must have at least 10 digits"
-        },
-        "startDate": {
-            "required": "Start date is a required field"
-        },
-        "endDate": {
-            "required": "End date is a required field"
-        },
-        "activeDate": {
-            "required": "Active date is a required field"
-        },
-        "birthday": {
-            "required": "Birthday is a required field"
-        },
-        "password": {
-            "required": "Password is a required field"
-        },
-        "confirmPassword": {
-            "required": "Confirm Password is a required field"
-        },
-        "currentPassword": {
-            "required": "Current Password is a required field"
-        },
-        "newPassword": {
-            "required": "New Password is a required field"
-        },
-        "confirmNewPassword": {
-            "required": "Confirm New Password is a required field"
-        }
+  "form": {
+    "firstName": {
+      "required": "First Name is a required field"
+    },
+    "lastName": {
+      "required": "Last Name is a required field"
+    },
+    "email": {
+      "required": "Email is a required field",
+      "email": "Email is invalid",
+      "duplicate": "Email already exists"
+    },
+    "phone": {
+      "required": "Phone Number is a required field",
+      "email": "Phone Number is invalid",
+      "duplicate": "Phone Number already exists",
+      "minlength": "Phone Number is required and must have at least 10 digits"
+    },
+    "startDate": {
+      "required": "Start date is a required field"
+    },
+    "endDate": {
+      "required": "End date is a required field"
+    },
+    "activeDate": {
+      "required": "Active date is a required field"
+    },
+    "birthday": {
+      "required": "Birthday is a required field"
+    },
+    "password": {
+      "required": "Password is a required field"
+    },
+    "confirmPassword": {
+      "required": "Confirm Password is a required field"
+    },
+    "currentPassword": {
+      "required": "Current Password is a required field"
+    },
+    "newPassword": {
+      "required": "New Password is a required field"
+    },
+    "confirmNewPassword": {
+      "required": "Confirm New Password is a required field"
     }
+  }
 }
