@@ -4,16 +4,16 @@
     <ik-modal-body>
       <form *ngIf="form" [formGroup]="form">
         <div class="row">
-          <ik-form-field header="First Name*" class="col-12" [padding]="false"
+          <ik-form-field header="First Name" class="col-12" [padding]="false"
             ><input type="text" class="form-input__normal" placeholder="First Name" formControlName="firstName" />
           </ik-form-field>
 
-          <ik-form-field header="Last Name*" class="col-12" [padding]="false"
+          <ik-form-field header="Last Name" class="col-12" [padding]="false"
             ><input type="text" class="form-input__normal" placeholder="Last Name" formControlName="lastName" />
           </ik-form-field>
         </div>
         <div class="row">
-          <ik-form-field header="Phone*" class="col-12" [padding]="false">
+          <ik-form-field header="Phone" class="col-12" [padding]="false">
             <input
               phoneMask
               placeholder="(___) ___-____"
@@ -23,7 +23,7 @@
               maxlength="14"
             />
           </ik-form-field>
-          <ik-form-field header="Relationship*" class="col-12" [padding]="false">
+          <ik-form-field header="Relationship" class="col-12" [padding]="false">
             <ik-single-select
               formControlName="relationship"
               placeholder="Relationship to Child"

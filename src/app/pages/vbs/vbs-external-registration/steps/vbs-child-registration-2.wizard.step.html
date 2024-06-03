@@ -33,17 +33,30 @@
       ></ik-icon
     ></ik-card-header>
     <div class="row">
-      <ik-form-field header="First Name*" class="col-md-6"
+      <ik-form-field header="First Name" class="col-md-6"
         ><input class="form-input__normal" placeholder="First Name" formControlName="firstName" />
       </ik-form-field>
 
-      <ik-form-field header="Last Name*" class="col-md-6"
+      <ik-form-field header="Last Name" class="col-md-6"
         ><input class="form-input__normal" placeholder="Last Name" formControlName="lastName" />
       </ik-form-field>
     </div>
 
     <div class="row">
-      <ik-form-field header="Email*" class="col-md-6">
+      <!-- <div class="col-md-12">
+        <label class="left text-label">Email</label>
+
+        <div class="input-container">
+          <input type="text" formControlName="email" class="form-input__shadow margin-top-none" placeholder="Email" />
+          <div class="icon-container">
+            <i class="loader-email"></i>
+            <i class="close-mark"></i>
+            <i class="check-mark"></i>
+          </div>
+        </div>
+      </div> -->
+
+      <ik-form-field header="Email" class="col-md-6">
         <input
           type="email"
           inputmode="email"
@@ -53,7 +66,7 @@
           formControlName="email"
         />
       </ik-form-field>
-      <ik-form-field header="Phone*" class="col-md-6">
+      <ik-form-field header="Phone" class="col-md-6">
         <input
           phoneMask
           placeholder="(___) ___-____"

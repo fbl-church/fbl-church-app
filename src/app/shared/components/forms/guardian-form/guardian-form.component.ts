@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { createUniqueValidator } from 'projects/insite-kit/src/component/form/service/async.validator';
 import { Guardian } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { US_STATES } from 'src/app/shared/utils/states.service';
@@ -43,7 +44,15 @@ export class GuardianFormComponent implements OnInit {
     this.form = this.fb.group({
       firstName: [this.guardianData?.firstName ? this.guardianData.firstName : '', Validators.required],
       lastName: [this.guardianData?.lastName ? this.guardianData.lastName : '', Validators.required],
-      phone: [this.guardianData?.phone ? this.guardianData.phone : '', [Validators.required, Validators.minLength(14)]],
+      phone: [
+        this.guardianData?.phone ? this.guardianData.phone : '',
+        {
+          validators: [Validators.required, Validators.minLength(14)],
+          asyncValidators: createUniqueValidator('duplicate', (value) =>
+            this.guardianService.doesPhoneNumberExist(value)
+          ),
+        },
+      ],
       city: [this.guardianData?.city ? this.guardianData.city : ''],
       state: [
         this.guardianData?.state

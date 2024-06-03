@@ -45,6 +45,7 @@ export class VBSChildRegistrationWizardStepFiveComponent implements OnChanges {
         });
       } else {
         this.childrenToRegister = childrenToCreate;
+        console.log(this.childrenToRegister);
         this.loading = false;
       }
     }

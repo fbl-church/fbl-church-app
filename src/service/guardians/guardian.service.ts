@@ -73,6 +73,17 @@ export class GuardianService {
   }
 
   /**
+   * This will check to see if the phone exists already. Used to see if a user can create
+   * an account with the phone they have chosen.
+   *
+   * @param phone The phone to check.
+   * @returns Boolean of the status of the phone.
+   */
+  doesPhoneNumberExist(phone: string): Observable<HttpResponse<boolean>> {
+    return this.request.get<boolean>(`${this.BASE_PATH}/check-phone?phone=${phone}`);
+  }
+
+  /**
    * This will create a guardian for the given object, but will default to a guardian web role object.
    *
    * @param guardian The guardian to be created.

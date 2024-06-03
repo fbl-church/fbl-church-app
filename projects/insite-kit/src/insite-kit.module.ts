@@ -16,6 +16,7 @@ import { FooterComponent } from './component/footer/footer.component';
 import { ContactAdminModalComponent } from './component/footer/modals/contact-admin-modal/contact-admin-modal.component';
 import { PrivacyPolicyModalComponent } from './component/footer/modals/privacy-policy-modal/privacy-policy-modal.component';
 import { ProjectModalComponent } from './component/footer/modals/project-modal/project-modal.component';
+import { FormFieldErrorComponent } from './component/form/field-error/form-field-error.component';
 import { FormFieldComponent } from './component/form/field/form-field.component';
 import { FormComponent } from './component/form/form.component';
 import { GridChecklistColumnComponent } from './component/grid/grid-checklist-column/grid-checklist-column.component';
@@ -119,6 +120,7 @@ export function tokenGetter() {
     WizardStepDirective,
     InfoCardComponent,
     FormFieldComponent,
+    FormFieldErrorComponent,
     FormComponent,
     MultiSelectInputComponent,
     DropdownComponent,
@@ -194,6 +196,7 @@ export function tokenGetter() {
     WizardStepDirective,
     InfoCardComponent,
     FormFieldComponent,
+    FormFieldErrorComponent,
     FormComponent,
     MultiSelectInputComponent,
     DropdownComponent,

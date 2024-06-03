@@ -3,10 +3,10 @@
   <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
       <form *ngIf="form" [formGroup]="form">
-        <ik-form-field header="Application Key*" [padding]="false">
+        <ik-form-field header="Application Key" [padding]="false">
           <input class="form-input__normal" placeholder="Application Key" formControlName="key" />
         </ik-form-field>
-        <ik-form-field header="Display Name*" [padding]="false">
+        <ik-form-field header="Display Name" [padding]="false">
           <input class="form-input__normal" placeholder="Display Name" formControlName="displayName" />
         </ik-form-field>
       </form>

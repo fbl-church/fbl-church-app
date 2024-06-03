@@ -66,6 +66,16 @@
 .btn-icon {
   margin-right: 4px;
   font-size: $font-size-lg;
+
+  &--left {
+    margin-right: 4px;
+    font-size: $font-size-lg;
+  }
+
+  &--right {
+    margin-left: 4px;
+    font-size: $font-size-lg;
+  }
 }
 
 @mixin btn-flat($normal, $hover, $active-color, $disabled) {

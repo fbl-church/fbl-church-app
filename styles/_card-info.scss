@@ -3,6 +3,7 @@
   display: block;
 
   &__label-header {
+    display: inline-block;
     color: var(--text-color);
     font-size: $font-size-lg;
     font-weight: $font-weight-semi-bold;
@@ -16,6 +17,14 @@
     font-weight: $font-weight-normal;
     padding-left: 10px;
     overflow-wrap: break-word;
+  }
+
+  &--anchor {
+    display: block;
+
+    &:hover {
+      text-decoration: underline !important;
+    }
   }
 
   &--padding {

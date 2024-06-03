@@ -14,8 +14,8 @@ export class VBSChildRegistrationWizardStepFourComponent implements OnInit, OnCh
   @Input() wizard: WizardComponent;
   @Input() activeStep: number = 0;
 
-  guardians: Guardian[];
-  children: Child[];
+  guardians: Guardian[] = [];
+  children: Child[] = [];
   childrenToRegister: Child[] = [];
   relationshipTypes: DropdownItem[];
 
@@ -60,6 +60,7 @@ export class VBSChildRegistrationWizardStepFourComponent implements OnInit, OnCh
 
   onNextClick() {
     this.wizardDataService.updateData({ children: this.children });
+    this.resetForms();
     this.wizard.next();
   }
 
@@ -69,5 +70,10 @@ export class VBSChildRegistrationWizardStepFourComponent implements OnInit, OnCh
     } else {
       return true;
     }
+  }
+
+  resetForms() {
+    this.children = [];
+    this.guardians = [];
   }
 }

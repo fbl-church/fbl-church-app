@@ -4,7 +4,10 @@ import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.compo
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { WizardComponent } from 'projects/insite-kit/src/component/wizard/wizard.component';
 import { Guardian } from 'projects/insite-kit/src/model/user.model';
+import { GuardianService } from 'src/service/guardians/guardian.service';
+import { UserService } from 'src/service/users/user.service';
 import { VBSService } from 'src/service/vbs/vbs.service';
+import { createUniqueValidator } from '../../../../../../projects/insite-kit/src/component/form/service/async.validator';
 import { VBSExternalRegistrationWizardDataService } from '../vbs-external-registration-wizard-data.service';
 
 @Component({
@@ -26,7 +29,9 @@ export class VBSChildRegistrationWizardStepTwoComponent implements OnChanges, On
   constructor(
     private readonly wizardDataService: VBSExternalRegistrationWizardDataService,
     private readonly vbsService: VBSService,
-    private readonly fb: FormBuilder
+    private readonly fb: FormBuilder,
+    private readonly userService: UserService,
+    private readonly guardianService: GuardianService
   ) {
     this.guardianDataloader = (params) => this.vbsService.getVBSGuardians(params);
   }
@@ -74,8 +79,22 @@ export class VBSChildRegistrationWizardStepTwoComponent implements OnChanges, On
     const newGuardianForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', Validators.email],
-      phone: ['', [Validators.required, Validators.minLength(14)]],
+      email: [
+        '',
+        {
+          validators: [Validators.email, Validators.required],
+          asyncValidators: createUniqueValidator('duplicate', (value) => this.userService.doesEmailExist(value)),
+        },
+      ],
+      phone: [
+        '',
+        {
+          validators: [Validators.required, Validators.minLength(14)],
+          asyncValidators: createUniqueValidator('duplicate', (value) =>
+            this.guardianService.doesPhoneNumberExist(value)
+          ),
+        },
+      ],
     });
     this.guardianForms.push(newGuardianForm);
   }

@@ -32,12 +32,6 @@
     </div>
     <div class="right-column">
       <ik-card-info
-        *ngIf="child.relationship"
-        header="Relationship to Child"
-        [text]="child.relationship | relationshipTranslate"
-      >
-      </ik-card-info>
-      <ik-card-info
         *ngIf="!child.relationship"
         header="Liability Release"
         [contentColor]="child.releaseOfLiability ? 'ENABLED' : 'DISABLED'"
@@ -72,14 +66,13 @@
     </div>
   </div>
 
-  <div class="flex" *ngIf="child.relationship">
-    <div class="left-column">
-      <ik-card-info
-        header="Liability Release"
-        [contentColor]="child.releaseOfLiability ? 'ENABLED' : 'DISABLED'"
-        text="{{ child.releaseOfLiability ? 'Agreed' : 'Denied' }}"
-      >
-      </ik-card-info>
-    </div>
+  <div class="flex" *ngIf="child.guardians">
+    <ik-card-info header="Guardians of Child">
+      <ul class="list-style-none card-info__label-text margin-none">
+        <li *ngFor="let g of child.guardians">
+          {{ '- ' + (g | formatUserName) + ' (' + (g.relationship | relationshipTranslate) + ')' }}
+        </li>
+      </ul></ik-card-info
+    >
   </div>
 </ik-card>

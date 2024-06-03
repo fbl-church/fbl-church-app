@@ -34,10 +34,10 @@
   <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
       <form *ngIf="form" [formGroup]="form">
-        <ik-form-field header="Role*" [padding]="false">
+        <ik-form-field header="Role" [padding]="false">
           <ik-single-select formControlName="type" [items]="workerTypes"></ik-single-select>
         </ik-form-field>
-        <ik-form-field header="Workers*" [padding]="false">
+        <ik-form-field header="Workers" [padding]="false">
           <ik-multi-select formControlName="workers" [items]="nonNurseryWorkers"></ik-multi-select>
         </ik-form-field>
       </form>

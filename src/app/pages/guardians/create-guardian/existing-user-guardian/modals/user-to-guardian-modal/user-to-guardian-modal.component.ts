@@ -64,7 +64,7 @@ export class UserToGuardianModalComponent implements OnInit {
 
   buildForm() {
     this.form = this.fb.group({
-      name: '',
+      name: ['', Validators.required],
       phone: ['', [Validators.required, Validators.minLength(14)]],
     });
   }

@@ -3,7 +3,7 @@
     >Application Theme will take affect when you click 'Update'</ik-banner
   >
   <ik-form [formGroup]="form">
-    <ik-form-field header="App Access*" class="col-12" *ngIf="userData && enableAccessUpdate">
+    <ik-form-field header="App Access" class="col-12" *ngIf="userData && enableAccessUpdate">
       <label class="input-inline">
         <input type="radio" formControlName="appAccess" class="form-check-input checkbox__default" [value]="true" />
         <span>Granted</span>
@@ -13,7 +13,7 @@
         <span>Denied</span>
       </label>
     </ik-form-field>
-    <ik-form-field header="App Theme*" class="col-12" *ngIf="userData && enabledThemeChange">
+    <ik-form-field header="App Theme" class="col-12" *ngIf="userData && enabledThemeChange">
       <label class="input-inline">
         <input type="radio" formControlName="theme" class="form-check-input checkbox__default" [value]="'LIGHT'" />
         <span>Light</span>
@@ -25,15 +25,15 @@
     </ik-form-field>
 
     <div class="row">
-      <ik-form-field header="First Name*" class="col-md-6"
+      <ik-form-field header="First Name" class="col-md-6"
         ><input class="form-input__normal" placeholder="First Name" formControlName="firstName" />
       </ik-form-field>
 
-      <ik-form-field header="Last Name*" class="col-md-6"
+      <ik-form-field header="Last Name" class="col-md-6"
         ><input class="form-input__normal" placeholder="Last Name" formControlName="lastName" />
       </ik-form-field>
     </div>
-    <ik-form-field header="Email*">
+    <ik-form-field header="Email">
       <input type="email" inputmode="email" class="form-input__normal" placeholder="Email" formControlName="email" />
     </ik-form-field>
 

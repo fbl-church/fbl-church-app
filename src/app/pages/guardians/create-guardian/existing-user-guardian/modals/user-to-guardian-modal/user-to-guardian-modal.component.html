@@ -3,15 +3,15 @@
   <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
       <form *ngIf="form" [formGroup]="form">
-        <ik-form-field header="Name*" [padding]="false">
-          <input class="form-input__outline" placeholder="Name" formControlName="name" readonly />
+        <ik-form-field header="Name" [padding]="false">
+          <input class="form-input__normal" placeholder="Name" formControlName="name" readonly />
         </ik-form-field>
-        <ik-form-field header="Phone*" [padding]="false">
+        <ik-form-field header="Phone" [padding]="false">
           <input
             phoneMask
             placeholder="(___) ___-____"
             inputmode="tel"
-            class="form-input__outline"
+            class="form-input__normal"
             formControlName="phone"
           />
         </ik-form-field>
