@@ -38,6 +38,6 @@ export class AwanaCheckInComponent {
   }
 
   onNewAttendanceRecord() {
-    this.navigationService.navigate('/awana/new-record');
+    this.navigationService.navigate('/awana/check-in/new');
   }
 }

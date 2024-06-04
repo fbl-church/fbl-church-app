@@ -9,6 +9,7 @@ export const USER_EDIT_ACCESS_GUARD: CanActivateFn = (route) => {
   const userService = inject(UserService);
   const userAccessService = inject(UserAccessService);
   const navigationService = inject(NavigationService);
+  const router = inject(Router);
 
   return combineLatest([userService.getUserById(route.paramMap.get('id')), userAccessService.user$]).pipe(
     map(([userToEdit, currentUser]) => {
@@ -16,7 +17,7 @@ export const USER_EDIT_ACCESS_GUARD: CanActivateFn = (route) => {
       if (canEdit) {
         return true;
       } else if (navigationService.routerUrl() === '') {
-        inject(Router).navigate(['/profile']);
+        router.navigate(['/profile']);
         return false;
       }
       return false;

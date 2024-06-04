@@ -7,9 +7,10 @@ import { NavigationService } from '../navigation/navigation.service';
 export const FEATURE_ACCESS_GUARD: CanActivateFn = (route) => {
   const userAccessService = inject(UserAccessService);
   const navigationService = inject(NavigationService);
+  const router = inject(Router);
 
   return forkJoin(
-    route.data.FEATURE_ACCESS_GUARDs.map((d: any) =>
+    route.data.FEATURE_ACCESS_GUARDS.map((d: any) =>
       userAccessService.user$.pipe(
         filter((u) => !!u),
         map((ua) => ua.hasFeature(d.app, d.feature, d.access)),
@@ -21,7 +22,7 @@ export const FEATURE_ACCESS_GUARD: CanActivateFn = (route) => {
       if (!v.includes(false)) {
         return true;
       } else if (navigationService.routerUrl() === '') {
-        inject(Router).navigate(['/profile']);
+        router.navigate(['/profile']);
         return false;
       }
       return false;

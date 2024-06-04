@@ -13,7 +13,7 @@
       <ik-card-header title="Details">
         <ng-container *ngIf="record.status !== 'CLOSED'">
           <ik-icon
-            *featureAccess="[Application.JUNIOR_CHURCH, FeatureType.DETAIL, Access.UPDATE]"
+            *featureAccess="[Application.JUNIOR_CHURCH, FeatureType.CHECK_IN_DETAIL, Access.UPDATE]"
             title="Edit"
             icon="pen-to-square"
             class="right pointer"
@@ -32,7 +32,7 @@
       <ik-card-header title="Children">
         <ng-container *ngIf="record.status !== 'CLOSED'">
           <ik-icon
-            *featureAccess="[Application.JUNIOR_CHURCH, FeatureType.CHECK_IN, Access.UPDATE]"
+            *featureAccess="[Application.JUNIOR_CHURCH, FeatureType.CHECK_IN_CHILDREN, Access.UPDATE]"
             icon="user-check"
             class="right pointer"
             classOverride="icon__default"
@@ -47,7 +47,7 @@
       <ik-card-header title="Workers">
         <ng-container *ngIf="record.status !== 'CLOSED'">
           <ik-icon
-            *featureAccess="[Application.JUNIOR_CHURCH, FeatureType.DETAIL, Access.UPDATE]"
+            *featureAccess="[Application.JUNIOR_CHURCH, FeatureType.CHECK_IN_DETAIL, Access.UPDATE]"
             title="Edit"
             icon="pen-to-square"
             class="right pointer"

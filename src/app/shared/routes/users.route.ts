@@ -15,16 +15,7 @@ import { AuthenticatedLayoutComponent } from '../components/layouts/authenticate
 export const USERS_ROUTE: Route = {
   path: 'users',
   component: AuthenticatedLayoutComponent,
-  canActivate: [AUTH_GUARD, APP_ACCESS_GUARD, FEATURE_ACCESS_GUARD],
-  data: {
-    FEATURE_ACCESS_GUARDs: [
-      {
-        app: App.USERS,
-        feature: FeatureType.DETAIL,
-        access: Access.READ,
-      },
-    ],
-  },
+  canActivate: [AUTH_GUARD, APP_ACCESS_GUARD],
   children: [
     {
       path: '',
@@ -36,7 +27,7 @@ export const USERS_ROUTE: Route = {
       canActivate: [FEATURE_ACCESS_GUARD],
       component: CreateUserComponent,
       data: {
-        FEATURE_ACCESS_GUARDs: [
+        FEATURE_ACCESS_GUARDS: [
           {
             app: App.USERS,
             feature: FeatureType.OVERVIEW,
@@ -56,7 +47,7 @@ export const USERS_ROUTE: Route = {
       component: EditUserComponent,
       resolve: { user: UserResolverService },
       data: {
-        FEATURE_ACCESS_GUARDs: [
+        FEATURE_ACCESS_GUARDS: [
           {
             app: App.USERS,
             feature: FeatureType.DETAIL,
@@ -70,7 +61,7 @@ export const USERS_ROUTE: Route = {
       canActivate: [FEATURE_ACCESS_GUARD, USER_EDIT_ACCESS_GUARD],
       component: ResetPasswordComponent,
       data: {
-        FEATURE_ACCESS_GUARDs: [
+        FEATURE_ACCESS_GUARDS: [
           {
             app: App.USERS,
             feature: FeatureType.DETAIL,

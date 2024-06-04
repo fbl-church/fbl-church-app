@@ -27,47 +27,52 @@ export const AWANA_ROUTE: Route = {
     },
     {
       path: 'check-in',
-      component: AwanaCheckInComponent,
       canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        FEATURE_ACCESS_GUARDs: [
+        FEATURE_ACCESS_GUARDS: [
           {
             app: App.AWANA,
-            feature: FeatureType.CHECK_IN,
+            feature: FeatureType.CHECK_IN_OVERVIEW,
             access: Access.READ,
           },
         ],
       },
-    },
-    {
-      path: 'check-in/:id/details',
-      component: AwanaAttendanceDetailComponent,
-      resolve: { attendanceRecord: AttendanceRecordResolverService },
-      canActivate: [FEATURE_ACCESS_GUARD],
-      data: {
-        FEATURE_ACCESS_GUARDs: [
-          {
-            app: App.AWANA,
-            feature: FeatureType.DETAIL,
-            access: Access.READ,
+      children: [
+        {
+          path: '',
+          component: AwanaCheckInComponent,
+        },
+        {
+          path: ':id/details',
+          component: AwanaAttendanceDetailComponent,
+          resolve: { attendanceRecord: AttendanceRecordResolverService },
+          canActivate: [FEATURE_ACCESS_GUARD],
+          data: {
+            FEATURE_ACCESS_GUARDS: [
+              {
+                app: App.AWANA,
+                feature: FeatureType.DETAIL,
+                access: Access.READ,
+              },
+            ],
           },
-        ],
-      },
-    },
-    {
-      path: 'new-record',
-      component: AwanaNewAttendanceRecordComponent,
-      resolve: { workers: AwanaWorkersResolverService },
-      canActivate: [FEATURE_ACCESS_GUARD],
-      data: {
-        FEATURE_ACCESS_GUARDs: [
-          {
-            app: App.JUNIOR_CHURCH,
-            feature: FeatureType.OVERVIEW,
-            access: Access.CREATE,
+        },
+        {
+          path: 'new',
+          component: AwanaNewAttendanceRecordComponent,
+          resolve: { workers: AwanaWorkersResolverService },
+          canActivate: [FEATURE_ACCESS_GUARD],
+          data: {
+            FEATURE_ACCESS_GUARDS: [
+              {
+                app: App.AWANA,
+                feature: FeatureType.CHECK_IN_OVERVIEW,
+                access: Access.CREATE,
+              },
+            ],
           },
-        ],
-      },
+        },
+      ],
     },
     {
       path: 'workers',
@@ -83,7 +88,7 @@ export const AWANA_ROUTE: Route = {
       canActivate: [FEATURE_ACCESS_GUARD],
       resolve: { child: ChildResolverService },
       data: {
-        FEATURE_ACCESS_GUARDs: [
+        FEATURE_ACCESS_GUARDS: [
           {
             app: App.AWANA,
             feature: FeatureType.DETAIL,
@@ -97,7 +102,7 @@ export const AWANA_ROUTE: Route = {
       component: AwanaGrandPrixComponent,
       canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        FEATURE_ACCESS_GUARDs: [
+        FEATURE_ACCESS_GUARDS: [
           {
             app: App.AWANA,
             feature: FeatureType.GRAND_PRIX,

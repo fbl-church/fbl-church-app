@@ -74,12 +74,19 @@ export class UserAccess {
     key: FeatureType | string,
     level: Access | 'c' | 'r' | 'u' | 'd' = Access.READ
   ): boolean {
+    // Checks if the app and the key are both null, return true
     if (!app && !key) {
       return true;
     }
 
+    // Check if they have access to the app
     if (!this.hasApp(app)) {
       return false;
+    }
+
+    // Checks if there is no key, return true they have access to the app
+    if (!key) {
+      return true;
     }
 
     const feature: [{}] = this.features[app];

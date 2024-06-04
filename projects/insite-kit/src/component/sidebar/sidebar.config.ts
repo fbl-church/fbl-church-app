@@ -18,8 +18,8 @@ export interface NavItemDetails {
 
 export interface FeatureRestriction {
   app: App;
-  feature: FeatureType;
-  access: Access;
+  feature?: FeatureType;
+  access?: Access;
 }
 
 export const NAVIGATION_ROUTES: NavItem[] = [
@@ -82,8 +82,6 @@ export const NAVIGATION_ROUTES: NavItem[] = [
     icon: 'seedling',
     restriction: {
       app: App.JUNIOR_CHURCH,
-      feature: FeatureType.OVERVIEW,
-      access: Access.READ,
     },
     submenu: {
       id: 'juniorChurchDropdown',
@@ -104,7 +102,7 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           route: '/check-in',
           restriction: {
             app: App.JUNIOR_CHURCH,
-            feature: FeatureType.CHECK_IN,
+            feature: FeatureType.CHECK_IN_OVERVIEW,
             access: Access.READ,
           },
         },
@@ -143,8 +141,6 @@ export const NAVIGATION_ROUTES: NavItem[] = [
     icon: 'baby-carriage',
     restriction: {
       app: App.NURSERY,
-      feature: FeatureType.OVERVIEW,
-      access: Access.READ,
     },
     submenu: {
       id: 'nurseryDropdown',
@@ -165,7 +161,7 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           route: '/check-in',
           restriction: {
             app: App.NURSERY,
-            feature: FeatureType.CHECK_IN,
+            feature: FeatureType.CHECK_IN_CHILDREN,
             access: Access.READ,
           },
         },
@@ -211,7 +207,7 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           route: '/check-in',
           restriction: {
             app: App.AWANA,
-            feature: FeatureType.CHECK_IN,
+            feature: FeatureType.CHECK_IN_OVERVIEW,
             access: Access.READ,
           },
         },
@@ -286,8 +282,6 @@ export const NAVIGATION_ROUTES: NavItem[] = [
     icon: 'users',
     restriction: {
       app: App.USERS,
-      feature: FeatureType.OVERVIEW,
-      access: Access.READ,
     },
   },
   {
@@ -297,8 +291,6 @@ export const NAVIGATION_ROUTES: NavItem[] = [
     route: '/children',
     restriction: {
       app: App.CHILDREN,
-      feature: FeatureType.OVERVIEW,
-      access: Access.READ,
     },
   },
   {
@@ -308,8 +300,6 @@ export const NAVIGATION_ROUTES: NavItem[] = [
     route: '/guardians',
     restriction: {
       app: App.GUARDIANS,
-      feature: FeatureType.OVERVIEW,
-      access: Access.READ,
     },
   },
   {

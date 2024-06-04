@@ -1,5 +1,5 @@
 <ng-container *ngIf="!loading; else pageLoader">
-  <ik-header [title]="(feature.app | titlecase) + ' (' + (feature.feature | titlecase) + ')'">
+  <ik-header [title]="feature.feature">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
     <button class="btn btn-success header-button" *ngIf="!feature.enabled" (click)="onEnabledUpdateClick(true)">
       <ik-icon icon="check" classOverride="btn-icon"></ik-icon>
@@ -20,10 +20,10 @@
       <ik-card-header title="Details"> </ik-card-header>
       <div class="flex">
         <div class="left-column">
-          <ik-card-info header="App" [text]="feature.app | titlecase"></ik-card-info>
+          <ik-card-info header="App" [text]="feature.app"></ik-card-info>
         </div>
         <div class="right-column">
-          <ik-card-info header="Feature" [text]="feature.feature | titlecase"></ik-card-info>
+          <ik-card-info header="Feature" [text]="feature.feature"></ik-card-info>
         </div>
       </div>
 

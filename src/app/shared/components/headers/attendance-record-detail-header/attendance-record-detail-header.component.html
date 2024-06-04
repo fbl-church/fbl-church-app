@@ -1,6 +1,6 @@
 <ik-header [title]="record.name">
   <ik-header-back (back)="onBackClick()"></ik-header-back>
-  <ng-container *featureAccess="[app, FeatureType.CHECK_IN, Access.CREATE]" ngProjectAs="button">
+  <ng-container *featureAccess="[app, FeatureType.CHECK_IN_DETAIL, Access.UPDATE]" ngProjectAs="button">
     <button
       class="btn btn-primary header-button"
       *attendanceRecordActivation="record"
@@ -15,7 +15,7 @@
       </ng-template>
     </button>
   </ng-container>
-  <ng-container *featureAccess="[app, FeatureType.CHECK_IN, Access.DELETE]" ngProjectAs="button">
+  <ng-container *featureAccess="[app, FeatureType.CHECK_IN_DETAIL, Access.DELETE]" ngProjectAs="button">
     <button class="btn btn-danger header-button" *ngIf="record.status === 'ACTIVE'" (click)="closeModal.modal.open()">
       <ik-icon icon="lock" classOverride="btn-icon"></ik-icon>
       Close
@@ -42,7 +42,7 @@
   </ng-container>
   <button
     class="btn btn-danger header-button"
-    *featureAccess="[app, FeatureType.DETAIL, Access.DELETE]"
+    *featureAccess="[app, FeatureType.CHECK_IN_DETAIL, Access.DELETE]"
     (click)="deleteModal.modal.open()"
   >
     <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>

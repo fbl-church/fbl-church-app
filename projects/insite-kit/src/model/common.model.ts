@@ -119,10 +119,14 @@ export enum Access {
 
 export enum FeatureType {
   OVERVIEW = 'overview',
+  CHILDREN = 'children',
   DETAIL = 'detail',
   PROFILE = 'profile',
   REGISTRATION = 'registration',
-  CHECK_IN = 'check-in',
+  // Check In Features
+  CHECK_IN_OVERVIEW = 'check-in.overview',
+  CHECK_IN_DETAIL = 'check-in.detail',
+  CHECK_IN_CHILDREN = 'check-in.children',
   WORKERS = 'workers',
   NOTIFICATION = 'notification',
   LESSONS = 'lessons',

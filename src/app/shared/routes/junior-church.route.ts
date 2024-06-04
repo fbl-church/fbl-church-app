@@ -22,28 +22,14 @@ import { ChildRegistrationWizardComponent } from '../components/wizards/child-re
 export const JUNIOR_CHURCH_ROUTE: Route = {
   path: 'junior-church',
   component: AuthenticatedLayoutComponent,
-  canActivate: [AUTH_GUARD, APP_ACCESS_GUARD, FEATURE_ACCESS_GUARD],
-  data: {
-    FEATURE_ACCESS_GUARDs: [
-      {
-        app: App.JUNIOR_CHURCH,
-        feature: FeatureType.OVERVIEW,
-        access: Access.READ,
-      },
-    ],
-  },
+  canActivate: [AUTH_GUARD, APP_ACCESS_GUARD],
   children: [
-    {
-      path: '',
-      redirectTo: 'check-in',
-      pathMatch: 'full',
-    },
     {
       path: 'registration',
       component: ChildRegistrationWizardComponent,
       canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        FEATURE_ACCESS_GUARDs: [
+        FEATURE_ACCESS_GUARDS: [
           {
             app: App.JUNIOR_CHURCH,
             feature: FeatureType.REGISTRATION,
@@ -60,86 +46,91 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
     },
     {
       path: 'check-in',
-      component: JuniorChurchCheckInComponent,
       canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        FEATURE_ACCESS_GUARDs: [
+        FEATURE_ACCESS_GUARDS: [
           {
             app: App.JUNIOR_CHURCH,
-            feature: FeatureType.CHECK_IN,
+            feature: FeatureType.CHECK_IN_OVERVIEW,
             access: Access.READ,
           },
         ],
       },
-    },
-    {
-      path: 'check-in/:id/details',
-      component: JuniorChurchAttendanceDetailComponent,
-      resolve: { attendanceRecord: AttendanceRecordResolverService },
-      canActivate: [FEATURE_ACCESS_GUARD],
-      data: {
-        FEATURE_ACCESS_GUARDs: [
-          {
-            app: App.JUNIOR_CHURCH,
-            feature: FeatureType.DETAIL,
-            access: Access.READ,
+      children: [
+        {
+          path: '',
+          component: JuniorChurchCheckInComponent,
+        },
+        {
+          path: ':id/details',
+          component: JuniorChurchAttendanceDetailComponent,
+          resolve: { attendanceRecord: AttendanceRecordResolverService },
+          canActivate: [FEATURE_ACCESS_GUARD],
+          data: {
+            FEATURE_ACCESS_GUARDS: [
+              {
+                app: App.JUNIOR_CHURCH,
+                feature: FeatureType.CHECK_IN_DETAIL,
+                access: Access.READ,
+              },
+            ],
           },
-        ],
-      },
-    },
-    {
-      path: 'check-in/:id/details/edit',
-      component: EditJuniorChurchRecordComponent,
-      resolve: {
-        attendanceRecord: AttendanceRecordResolverService,
-        workers: JuniorChurchWorkersResolverService,
-      },
-      canActivate: [FEATURE_ACCESS_GUARD],
-      data: {
-        FEATURE_ACCESS_GUARDs: [
-          {
-            app: App.JUNIOR_CHURCH,
-            feature: FeatureType.DETAIL,
-            access: Access.UPDATE,
+        },
+        {
+          path: ':id/details/edit',
+          component: EditJuniorChurchRecordComponent,
+          resolve: {
+            attendanceRecord: AttendanceRecordResolverService,
+            workers: JuniorChurchWorkersResolverService,
           },
-        ],
-      },
-    },
-    {
-      path: 'check-in/:id/details/children',
-      component: JuniorChurchChildrenCheckInComponent,
-      canActivate: [FEATURE_ACCESS_GUARD],
-      data: {
-        FEATURE_ACCESS_GUARDs: [
-          {
-            app: App.JUNIOR_CHURCH,
-            feature: FeatureType.CHECK_IN,
-            access: Access.UPDATE,
+          canActivate: [FEATURE_ACCESS_GUARD],
+          data: {
+            FEATURE_ACCESS_GUARDS: [
+              {
+                app: App.JUNIOR_CHURCH,
+                feature: FeatureType.CHECK_IN_DETAIL,
+                access: Access.UPDATE,
+              },
+            ],
           },
-        ],
-      },
-    },
-    {
-      path: 'new-record',
-      component: JuniorChurchNewAttendanceRecordComponent,
-      resolve: { workers: JuniorChurchWorkersResolverService },
-      canActivate: [FEATURE_ACCESS_GUARD],
-      data: {
-        FEATURE_ACCESS_GUARDs: [
-          {
-            app: App.JUNIOR_CHURCH,
-            feature: FeatureType.OVERVIEW,
-            access: Access.CREATE,
+        },
+        {
+          path: ':id/details/children',
+          component: JuniorChurchChildrenCheckInComponent,
+          canActivate: [FEATURE_ACCESS_GUARD],
+          data: {
+            FEATURE_ACCESS_GUARDS: [
+              {
+                app: App.JUNIOR_CHURCH,
+                feature: FeatureType.CHECK_IN_CHILDREN,
+                access: Access.UPDATE,
+              },
+            ],
           },
-        ],
-      },
+        },
+        {
+          path: 'new',
+          component: JuniorChurchNewAttendanceRecordComponent,
+          resolve: { workers: JuniorChurchWorkersResolverService },
+          canActivate: [FEATURE_ACCESS_GUARD],
+          data: {
+            FEATURE_ACCESS_GUARDS: [
+              {
+                app: App.JUNIOR_CHURCH,
+                feature: FeatureType.CHECK_IN_OVERVIEW,
+                access: Access.CREATE,
+              },
+            ],
+          },
+        },
+      ],
     },
     {
       path: 'lessons',
       component: JuniorChurchLessonsComponent,
       canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        FEATURE_ACCESS_GUARDs: [
+        FEATURE_ACCESS_GUARDS: [
           {
             app: App.JUNIOR_CHURCH,
             feature: FeatureType.LESSONS,
@@ -153,7 +144,7 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
       component: LessonsUploadComponent,
       canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        FEATURE_ACCESS_GUARDs: [
+        FEATURE_ACCESS_GUARDS: [
           {
             app: App.JUNIOR_CHURCH,
             feature: FeatureType.LESSONS,
@@ -176,14 +167,16 @@ export const JUNIOR_CHURCH_ROUTE: Route = {
       canActivate: [FEATURE_ACCESS_GUARD],
       resolve: { child: ChildResolverService },
       data: {
-        FEATURE_ACCESS_GUARDs: [
+        FEATURE_ACCESS_GUARDS: [
           {
             app: App.JUNIOR_CHURCH,
-            feature: FeatureType.OVERVIEW,
+            feature: FeatureType.CHILDREN,
             access: Access.READ,
           },
         ],
       },
     },
+    { path: '', redirectTo: 'check-in', pathMatch: 'full' },
+    { path: '**', redirectTo: 'check-in', pathMatch: 'full' },
   ],
 };

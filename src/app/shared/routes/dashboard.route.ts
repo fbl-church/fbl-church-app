@@ -11,7 +11,7 @@ export const DASHBOARD_ROUTE: Route = {
   component: AuthenticatedLayoutComponent,
   canActivate: [AUTH_GUARD, APP_ACCESS_GUARD, FEATURE_ACCESS_GUARD],
   data: {
-    FEATURE_ACCESS_GUARDs: [
+    FEATURE_ACCESS_GUARDS: [
       {
         app: App.DASHBOARD,
         feature: FeatureType.OVERVIEW,

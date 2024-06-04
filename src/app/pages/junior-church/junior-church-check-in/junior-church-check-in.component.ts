@@ -30,6 +30,6 @@ export class JuniorChurchCheckInComponent {
   }
 
   onNewAttendanceRecord() {
-    this.navigationService.navigate('/junior-church/new-record');
+    this.navigationService.navigate('/junior-church/check-in/new');
   }
 }

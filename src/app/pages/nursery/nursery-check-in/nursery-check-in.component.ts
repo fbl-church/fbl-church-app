@@ -29,6 +29,6 @@ export class NurseryCheckInComponent {
   }
 
   onNewAttendanceRecord() {
-    this.navigationService.navigate('/nursery/new-record');
+    this.navigationService.navigate('/nursery/check-in/new');
   }
 }

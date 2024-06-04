@@ -20,16 +20,7 @@ import { ChildRegistrationWizardComponent } from '../components/wizards/child-re
 export const NURSERY_ROUTE: Route = {
   path: 'nursery',
   component: AuthenticatedLayoutComponent,
-  canActivate: [AUTH_GUARD, APP_ACCESS_GUARD, FEATURE_ACCESS_GUARD],
-  data: {
-    FEATURE_ACCESS_GUARDs: [
-      {
-        app: App.NURSERY,
-        feature: FeatureType.OVERVIEW,
-        access: Access.READ,
-      },
-    ],
-  },
+  canActivate: [AUTH_GUARD, APP_ACCESS_GUARD],
   children: [
     {
       path: '',
@@ -41,7 +32,7 @@ export const NURSERY_ROUTE: Route = {
       component: ChildRegistrationWizardComponent,
       canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        FEATURE_ACCESS_GUARDs: [
+        FEATURE_ACCESS_GUARDS: [
           {
             app: App.NURSERY,
             feature: FeatureType.REGISTRATION,
@@ -58,80 +49,84 @@ export const NURSERY_ROUTE: Route = {
     },
     {
       path: 'check-in',
-      component: NurseryCheckInComponent,
       canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        FEATURE_ACCESS_GUARDs: [
+        FEATURE_ACCESS_GUARDS: [
           {
             app: App.NURSERY,
-            feature: FeatureType.CHECK_IN,
+            feature: FeatureType.CHECK_IN_OVERVIEW,
             access: Access.READ,
           },
         ],
       },
-    },
-
-    {
-      path: 'check-in/:id/details',
-      component: NurseryAttendanceDetailComponent,
-      resolve: { attendanceRecord: AttendanceRecordResolverService },
-      canActivate: [FEATURE_ACCESS_GUARD],
-      data: {
-        FEATURE_ACCESS_GUARDs: [
-          {
-            app: App.NURSERY,
-            feature: FeatureType.DETAIL,
-            access: Access.READ,
+      children: [
+        {
+          path: '',
+          component: NurseryCheckInComponent,
+        },
+        {
+          path: ':id/details',
+          component: NurseryAttendanceDetailComponent,
+          resolve: { attendanceRecord: AttendanceRecordResolverService },
+          canActivate: [FEATURE_ACCESS_GUARD],
+          data: {
+            FEATURE_ACCESS_GUARDS: [
+              {
+                app: App.NURSERY,
+                feature: FeatureType.CHECK_IN_DETAIL,
+                access: Access.READ,
+              },
+            ],
           },
-        ],
-      },
-    },
-    {
-      path: 'check-in/:id/details/edit',
-      component: EditNurseryRecordComponent,
-      resolve: {
-        attendanceRecord: AttendanceRecordResolverService,
-        workers: NurseryWorkersResolverService,
-      },
-      canActivate: [FEATURE_ACCESS_GUARD],
-      data: {
-        FEATURE_ACCESS_GUARDs: [
-          {
-            app: App.NURSERY,
-            feature: FeatureType.DETAIL,
-            access: Access.UPDATE,
+        },
+        {
+          path: ':id/details/edit',
+          component: EditNurseryRecordComponent,
+          resolve: {
+            attendanceRecord: AttendanceRecordResolverService,
+            workers: NurseryWorkersResolverService,
           },
-        ],
-      },
-    },
-    {
-      path: 'check-in/:id/details/children',
-      component: NurseryChildrenCheckInComponent,
-      canActivate: [FEATURE_ACCESS_GUARD],
-      data: {
-        FEATURE_ACCESS_GUARDs: [
-          {
-            app: App.NURSERY,
-            feature: FeatureType.CHECK_IN,
-            access: Access.UPDATE,
+          canActivate: [FEATURE_ACCESS_GUARD],
+          data: {
+            FEATURE_ACCESS_GUARDS: [
+              {
+                app: App.NURSERY,
+                feature: FeatureType.CHECK_IN_DETAIL,
+                access: Access.UPDATE,
+              },
+            ],
           },
-        ],
-      },
-    },
-    {
-      path: 'new-record',
-      component: NurseryNewAttendanceRecordComponent,
-      resolve: { workers: NurseryWorkersResolverService },
-      canActivate: [FEATURE_ACCESS_GUARD],
-      data: {
-        FEATURE_ACCESS_GUARDs: [
-          {
-            app: App.NURSERY,
-            feature: FeatureType.OVERVIEW,
-            access: Access.CREATE,
+        },
+        {
+          path: ':id/details/children',
+          component: NurseryChildrenCheckInComponent,
+          canActivate: [FEATURE_ACCESS_GUARD],
+          data: {
+            FEATURE_ACCESS_GUARDS: [
+              {
+                app: App.NURSERY,
+                feature: FeatureType.CHECK_IN_CHILDREN,
+                access: Access.UPDATE,
+              },
+            ],
           },
-        ],
-      },
+        },
+        {
+          path: 'new',
+          component: NurseryNewAttendanceRecordComponent,
+          resolve: { workers: NurseryWorkersResolverService },
+          canActivate: [FEATURE_ACCESS_GUARD],
+          data: {
+            FEATURE_ACCESS_GUARDS: [
+              {
+                app: App.NURSERY,
+                feature: FeatureType.CHECK_IN_OVERVIEW,
+                access: Access.CREATE,
+              },
+            ],
+          },
+        },
+      ],
     },
     {
       path: 'workers',
@@ -147,7 +142,7 @@ export const NURSERY_ROUTE: Route = {
       canActivate: [FEATURE_ACCESS_GUARD],
       resolve: { child: ChildResolverService },
       data: {
-        FEATURE_ACCESS_GUARDs: [
+        FEATURE_ACCESS_GUARDS: [
           {
             app: App.NURSERY,
             feature: FeatureType.OVERVIEW,

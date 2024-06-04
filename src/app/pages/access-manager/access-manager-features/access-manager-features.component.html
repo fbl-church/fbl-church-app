@@ -6,16 +6,8 @@
 </ik-header>
 <ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)" preferenceKey="featuresGrid">
   <ik-grid-search></ik-grid-search>
-  <ik-grid-column label="App" field="app">
-    <ng-template let-data>
-      {{ data.app | titlecase }}
-    </ng-template>
-  </ik-grid-column>
-  <ik-grid-column label="Name" field="feature">
-    <ng-template let-data>
-      {{ data.feature | titlecase }}
-    </ng-template>
-  </ik-grid-column>
+  <ik-grid-column label="App" field="app"> </ik-grid-column>
+  <ik-grid-column label="Name" field="feature"> </ik-grid-column>
   <ik-grid-column label="Status" field="enabled">
     <ng-template let-data>
       <div [ngClass]="data.enabled ? 'ENABLED' : 'DISABLED'">

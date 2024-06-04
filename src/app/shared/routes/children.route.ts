@@ -15,16 +15,7 @@ import { AuthenticatedLayoutComponent } from '../components/layouts/authenticate
 export const CHILDREN_ROUTE: Route = {
   path: 'children',
   component: AuthenticatedLayoutComponent,
-  canActivate: [AUTH_GUARD, APP_ACCESS_GUARD, FEATURE_ACCESS_GUARD],
-  data: {
-    FEATURE_ACCESS_GUARDs: [
-      {
-        app: App.CHILDREN,
-        feature: FeatureType.OVERVIEW,
-        access: Access.READ,
-      },
-    ],
-  },
+  canActivate: [AUTH_GUARD, APP_ACCESS_GUARD],
   children: [
     {
       path: '',
@@ -36,7 +27,7 @@ export const CHILDREN_ROUTE: Route = {
       component: CreateChildComponent,
       canActivate: [FEATURE_ACCESS_GUARD],
       data: {
-        FEATURE_ACCESS_GUARDs: [
+        FEATURE_ACCESS_GUARDS: [
           {
             app: App.CHILDREN,
             feature: FeatureType.DETAIL,
@@ -51,7 +42,7 @@ export const CHILDREN_ROUTE: Route = {
       canActivate: [FEATURE_ACCESS_GUARD],
       resolve: { child: ChildResolverService },
       data: {
-        FEATURE_ACCESS_GUARDs: [
+        FEATURE_ACCESS_GUARDS: [
           {
             app: App.CHILDREN,
             feature: FeatureType.DETAIL,
@@ -66,7 +57,7 @@ export const CHILDREN_ROUTE: Route = {
       component: EditChildComponent,
       resolve: { child: ChildResolverService },
       data: {
-        FEATURE_ACCESS_GUARDs: [
+        FEATURE_ACCESS_GUARDS: [
           {
             app: App.CHILDREN,
             feature: FeatureType.DETAIL,
@@ -81,7 +72,7 @@ export const CHILDREN_ROUTE: Route = {
       component: EditChildGuardiansComponent,
       resolve: { guardians: ChildGuardiansResolverService },
       data: {
-        FEATURE_ACCESS_GUARDs: [
+        FEATURE_ACCESS_GUARDS: [
           {
             app: App.CHILDREN,
             feature: FeatureType.DETAIL,

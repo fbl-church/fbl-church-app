@@ -356,7 +356,7 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
    * @returns The formatted date if it is a date.
    */
   isDate(value: any): boolean {
-    if (value && (typeof value === 'number' || /[a-zA-Z]/g.test(value))) {
+    if (value && (typeof value === 'number' || /[a-zA-Z()]/g.test(value))) {
       return false;
     } else {
       let dateWrapper = new Date(value);
