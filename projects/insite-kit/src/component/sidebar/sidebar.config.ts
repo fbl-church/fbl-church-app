@@ -244,13 +244,16 @@ export const NAVIGATION_ROUTES: NavItem[] = [
     name: 'VBS',
     route: '/vbs',
     icon: 'school',
+    restriction: {
+      app: App.VBS,
+    },
     submenu: {
       id: 'vbsDropdown',
       items: [
         {
-          id: 'home',
-          name: 'Home',
-          route: '/home',
+          id: 'dashboard',
+          name: 'Dashboard',
+          route: '/dashboard',
         },
         {
           id: 'registration',

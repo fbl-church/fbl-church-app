@@ -1,7 +1,7 @@
 import { Route } from '@angular/router';
 import { APP_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/app-access.guard';
 import { AUTH_GUARD } from 'projects/insite-kit/src/service/guards/auth.guard';
-import { VBSRegistrationComponent } from 'src/app/pages/vbs/vbs-registration.component';
+import { VBSDashboardComponent } from 'src/app/pages/vbs/dashboard/vbs-dashboard.component';
 import { AuthenticatedLayoutComponent } from '../components/layouts/authenticated-layout/authenticated-layout.component';
 
 export const VBS_ROUTE: Route = {
@@ -11,21 +11,20 @@ export const VBS_ROUTE: Route = {
   children: [
     {
       path: '',
-      redirectTo: 'home',
+      redirectTo: 'dashboard',
       pathMatch: 'full',
     },
     {
-      path: 'home',
-      component: VBSRegistrationComponent,
-      pathMatch: 'full',
+      path: 'dashboard',
+      component: VBSDashboardComponent,
     },
     {
       path: 'registration',
-      component: VBSRegistrationComponent,
+      component: VBSDashboardComponent,
     },
     {
       path: 'groups',
-      component: VBSRegistrationComponent,
+      component: VBSDashboardComponent,
     },
   ],
 };

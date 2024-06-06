@@ -1,13 +1,13 @@
 // App Theme Colors
 [data-theme='LIGHT'] {
-  --base-color: #ebeff5;
+  --base-color: #edf1f7;
   --base-background: white;
-  --text-color: #2a2a2a;
+  --text-color: #222b45;
 
   // Card
   --card-background: white;
-  --card-border: #c7c7c7;
-  --card-header-background: #f3f3f3;
+  --card-border: #dcdcdc;
+  --card-header-background: #f7f7f7;
   --card-header-border: #d9dce2;
 
   // Icon
@@ -17,8 +17,8 @@
   --file-upload-border-top: #ebedef;
 
   // Form
-  --form-input-background: #ebeff5;
-  --form-input-grid-background: #ebeff5;
+  --form-input-background: #edf1f7;
+  --form-input-grid-background: #edf1f7;
   --form-input-border: #ccc;
   --form-input-color-scheme: light;
 
@@ -35,7 +35,7 @@
 
   // Grand Prix
   --grand-prix-match-border: #d9d9d9;
-  --grand-prix-player-border: #c7c7c7;
+  --grand-prix-player-border: #dcdcdc;
 
   // Grid
   --grid-item-background-even: #f7f9fc;
@@ -75,7 +75,7 @@
   --schedule-weekend-color: #8b0000;
 
   // Ng Select
-  --ng-select-background: #ebeff5;
+  --ng-select-background: #edf1f7;
   --ng-select-dropdown-background: white;
   --ng-select-scroll-pill: #d1d6df;
   --ng-select-top-border: #e6e6e6;
