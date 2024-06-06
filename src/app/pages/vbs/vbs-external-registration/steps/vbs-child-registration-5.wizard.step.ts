@@ -26,9 +26,9 @@ export class VBSChildRegistrationWizardStepFiveComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes.activeStep && changes.activeStep.currentValue === 4) {
       this.loading = true;
+      this.childrenToRegister = [];
       this.guardianExists = this.wizardDataService.data.guardianExists;
       this.guardians = this.wizardDataService.data.guardians;
-      this.childrenToRegister = [];
 
       const childrenExisting = this.wizardDataService.data.children.filter((c) => c.id) || [];
       const childrenToCreate = this.wizardDataService.data.children.filter((c) => !c.id) || [];
@@ -36,22 +36,27 @@ export class VBSChildRegistrationWizardStepFiveComponent implements OnChanges {
       if (childrenExisting.length > 0) {
         const childIds = childrenExisting.map((c) => c.id);
         this.vbsService.getChildren(new Map().set('id', childIds)).subscribe((res) => {
-          res.body.forEach((ch) => {
-            const vbsGroup = childrenExisting.find((c) => c.id === ch.id).churchGroup;
-            ch.churchGroup = vbsGroup;
-            this.childrenToRegister.push(ch);
-            if (childrenToCreate.length > 0) {
-              this.childrenToRegister.push(...childrenToCreate);
-            }
-            console.log('FINAL', this.childrenToRegister);
-            this.loading = false;
-          });
+          this.processExistingChildren(res.body, childrenExisting);
+          this.processNewChildren(childrenToCreate);
+          this.loading = false;
         });
       } else {
-        this.childrenToRegister = childrenToCreate;
-        console.log('FINAL', this.childrenToRegister);
+        this.processNewChildren(childrenToCreate);
         this.loading = false;
       }
+    }
+  }
+
+  processExistingChildren(foundChildren: Child[], selectedChildren: Child[]) {
+    foundChildren.forEach((ch) => {
+      ch.churchGroup = selectedChildren.find((c) => c.id === ch.id).churchGroup;
+      this.childrenToRegister.push(ch);
+    });
+  }
+
+  processNewChildren(newChildren: Child[]) {
+    if (newChildren.length > 0) {
+      this.childrenToRegister.push(...newChildren);
     }
   }
 
@@ -61,7 +66,12 @@ export class VBSChildRegistrationWizardStepFiveComponent implements OnChanges {
 
   onPreviousClick() {
     if (this.guardianExists) {
-      this.wizard.goToStep(2);
+      const childrenToCreate: any[] = this.wizardDataService.data.children.filter((c) => !c.id) || [];
+      if (childrenToCreate.length > 0) {
+        this.wizard.prev();
+      } else {
+        this.wizard.goToStep(2);
+      }
     } else {
       this.wizard.prev();
     }

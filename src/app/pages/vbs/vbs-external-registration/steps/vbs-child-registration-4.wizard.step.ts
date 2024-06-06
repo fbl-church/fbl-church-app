@@ -15,7 +15,8 @@ export class VBSChildRegistrationWizardStepFourComponent implements OnInit, OnCh
   @Input() activeStep: number = 0;
 
   guardians: Guardian[] = [];
-  children: Child[] = [];
+  newChildren: Child[] = [];
+  existingChildren: Child[] = [];
   childrenToRegister: Child[] = [];
   relationshipTypes: DropdownItem[];
 
@@ -31,11 +32,12 @@ export class VBSChildRegistrationWizardStepFourComponent implements OnInit, OnCh
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.activeStep && changes.activeStep.currentValue === 3) {
-      this.children = this.wizardDataService.data.children;
+      this.newChildren = this.wizardDataService.data.children.filter((c) => !c.id);
+      this.existingChildren = this.wizardDataService.data.children.filter((c) => c.id);
       this.guardians = this.wizardDataService.data.guardians;
-      console.log(this.children);
-      if (this.children && this.children.length > 0) {
-        this.children.forEach((c) => (c.guardians = []));
+
+      if (this.newChildren && this.newChildren.length > 0) {
+        this.newChildren.forEach((c) => (c.guardians = []));
       }
     }
   }
@@ -60,21 +62,21 @@ export class VBSChildRegistrationWizardStepFourComponent implements OnInit, OnCh
   }
 
   onNextClick() {
-    this.wizardDataService.updateData({ children: this.children });
+    this.wizardDataService.updateData({ children: [...this.existingChildren, ...this.newChildren] });
     this.resetForms();
     this.wizard.next();
   }
 
   disableNext(): boolean {
-    if (this.children && this.children.length > 0) {
-      return !this.children.every((c) => c.guardians && c.guardians.length === this.guardians.length);
+    if (this.newChildren && this.newChildren.length > 0) {
+      return !this.newChildren.every((c) => c.guardians && c.guardians.length === this.guardians.length);
     } else {
       return true;
     }
   }
 
   resetForms() {
-    this.children = [];
+    this.newChildren = [];
     this.guardians = [];
   }
 }

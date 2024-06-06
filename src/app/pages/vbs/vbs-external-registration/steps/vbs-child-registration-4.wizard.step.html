@@ -1,12 +1,12 @@
 <ik-info-card
   title="Guardian Relationship to Children"
-  description="Fill out the form below to specify how the guaridans and any alternate guardians relate to the children being registered for VBS. The fields followed by an asterisk(*) are required."
+  description="Fill out the form below to specify how the guardians and any alternate guardians relate to the children being registered for VBS. Only newly registered children will show up in the list below. The fields followed by an asterisk(*) are required."
 >
 </ik-info-card>
 
 <ik-card *ngFor="let g of guardians">
   <ik-card-header [title]="g | formatUserName"></ik-card-header>
-  <div class="row" *ngFor="let c of children; index as i">
+  <div class="row" *ngFor="let c of newChildren; index as i">
     <ik-card-info [header]="'Child ' + (i + 1)" class="col-md-6"
       ><input class="form-input__normal" [value]="c | formatUserName" placeholder="Child Name" readonly />
     </ik-card-info>

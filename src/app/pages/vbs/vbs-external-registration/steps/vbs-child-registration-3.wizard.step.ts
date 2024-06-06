@@ -141,9 +141,9 @@ export class VBSChildRegistrationWizardStepThreeComponent implements OnChanges, 
       const selectedIds = this.gridChecklistColumn.getSelected();
       return this.gridSelection
         .getSelections()
-        .filter((g) => selectedIds.includes(g.id))
-        .map((g) => {
-          return { id: g.id, churchGroup: [g.value] };
+        .filter((c) => selectedIds.includes(c.id))
+        .map((c) => {
+          return { id: c.id, churchGroup: [c.value] };
         });
     } else {
       return [];
@@ -157,13 +157,20 @@ export class VBSChildRegistrationWizardStepThreeComponent implements OnChanges, 
   disableNext(): boolean {
     if (this.guardianExists) {
       const invalidSelectedChildren = !(this.getSelectedChildren().length > 0);
-      if (this.childForms && this.childForms.length > 0) {
-        return invalidSelectedChildren || !this.childForms.map((f) => f.valid).every((validForm) => validForm);
+      const hasNewChildForms = this.childForms && this.childForms.length > 0;
+
+      if (hasNewChildForms) {
+        if (this.gridChecklistColumn.getSelected().length > 0) {
+          // There are selected children, validate the forms are valid and the drop down is selected
+          return invalidSelectedChildren || !this.childForms.map((f) => f.valid).every((validForm) => validForm);
+        }
+      } else {
+        // No child forms added, validate they selected at least one of the existing children
+        return invalidSelectedChildren;
       }
-      return invalidSelectedChildren;
-    } else {
-      return !this.childForms.map((f) => f.valid).every((validForm) => validForm);
     }
+    // There are no selected children, just check the forms are valid
+    return !this.childForms.map((f) => f.valid).every((validForm) => validForm);
   }
 
   hasDuplicateChildInformation() {

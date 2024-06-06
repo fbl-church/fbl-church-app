@@ -1,0 +1,25 @@
+.vbs-external {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+
+  &__complete-icon {
+    font-size: 100px;
+    color: #1ccd7a;
+  }
+
+  &__complete-header {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    color: var(--text-color);
+  }
+
+  &__complete-body {
+    font-size: 18px;
+    text-align: center;
+    color: var(--text-color);
+  }
+}

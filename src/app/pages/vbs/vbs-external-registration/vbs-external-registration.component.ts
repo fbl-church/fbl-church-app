@@ -14,7 +14,6 @@ export class VBSExternalRegistrationComponent {
   guardiansToCreate: Guardian[];
   selectedGuardian: Guardian;
   childGuardianAssociations: Child[];
-  guardianExists = false;
   loading = false;
 
   constructor(
@@ -36,18 +35,15 @@ export class VBSExternalRegistrationComponent {
   onSaveClick(event?: VBSRegistration) {
     this.loading = true;
 
-    if (this.guardianExists) {
-      // register them as existing children with already set guardians
-    } else {
-      this.vbsService.registerChildren(event).subscribe({
-        next: () => {
-          this.navigationService.navigate('/external/vbs/registration/complete');
-        },
-        error: (res) => {
-          this.popupService.error('Unable to register children at this time. Please try again later.');
-          this.loading = false;
-        },
-      });
-    }
+    this.vbsService.registerChildren(event).subscribe({
+      next: () => {
+        this.navigationService.navigate('/external/vbs/registration/complete');
+        this.loading = false;
+      },
+      error: (res) => {
+        this.popupService.error('Unable to register children at this time. Please try again later.');
+        this.loading = false;
+      },
+    });
   }
 }

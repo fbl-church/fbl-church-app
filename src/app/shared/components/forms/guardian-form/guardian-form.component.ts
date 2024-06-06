@@ -5,6 +5,7 @@ import { Guardian } from 'projects/insite-kit/src/model/user.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { US_STATES } from 'src/app/shared/utils/states.service';
 import { GuardianService } from 'src/service/guardians/guardian.service';
+import { UserService } from 'src/service/users/user.service';
 import { DuplicateGuardianModalComponent } from '../../modals/duplicate-guardian-modal/duplicate-guardian-modal.component';
 
 @Component({
@@ -33,7 +34,8 @@ export class GuardianFormComponent implements OnInit {
   constructor(
     private readonly fb: FormBuilder,
     private readonly popupService: PopupService,
-    private readonly guardianService: GuardianService
+    private readonly guardianService: GuardianService,
+    private readonly userService: UserService
   ) {}
 
   ngOnInit() {
@@ -61,7 +63,13 @@ export class GuardianFormComponent implements OnInit {
       ],
       zipCode: [this.guardianData?.zipCode ? this.guardianData.zipCode : ''],
       address: [this.guardianData?.address ? this.guardianData.address : ''],
-      email: [this.guardianData?.email ? this.guardianData.email : '', Validators.email],
+      email: [
+        this.guardianData?.email ? this.guardianData.email : '',
+        {
+          validators: [Validators.email],
+          asyncValidators: createUniqueValidator('duplicate', (value) => this.userService.doesEmailExist(value)),
+        },
+      ],
     });
   }
 

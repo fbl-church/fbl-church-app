@@ -7,6 +7,7 @@ import { VBSChildRegistrationWizardStepTwoComponent } from './vbs-external-regis
 import { VBSChildRegistrationWizardStepThreeComponent } from './vbs-external-registration/steps/vbs-child-registration-3.wizard.step';
 import { VBSChildRegistrationWizardStepFourComponent } from './vbs-external-registration/steps/vbs-child-registration-4.wizard.step';
 import { VBSChildRegistrationWizardStepFiveComponent } from './vbs-external-registration/steps/vbs-child-registration-5.wizard.step';
+import { VBSExternalRegistrationCompleteComponent } from './vbs-external-registration/vbs-external-registration-complete/vbs-external-registration-complete.component';
 import { VBSExternalRegistrationComponent } from './vbs-external-registration/vbs-external-registration.component';
 import { VBSGuardianDetailCardComponent } from './vbs-guardian-detail-card/vbs-guardian-detail-card.component';
 import { VBSRegistrationComponent } from './vbs-registration.component';
@@ -23,6 +24,7 @@ import { VBSRegistrationComponent } from './vbs-registration.component';
     VBSChildRegistrationWizardStepFiveComponent,
     VBSChildDetailCardComponent,
     VBSGuardianDetailCardComponent,
+    VBSExternalRegistrationCompleteComponent,
   ],
 })
 export class VBSModule {}
