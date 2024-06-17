@@ -31,7 +31,8 @@
               "raf",
               "rgbcolor",
               "dompurify",
-              "qrcode"
+              "qrcode",
+              "highcharts"
             ],
             "assets": [
               "src/assets",
