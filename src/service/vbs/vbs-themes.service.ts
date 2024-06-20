@@ -1,0 +1,23 @@
+import { HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class VBSThemesService {
+  readonly BASE_VBS_PATH = 'api/vbs/themes';
+
+  constructor(private readonly request: RequestService) {}
+
+  /**
+   * Get a list of vbs themes
+   *
+   * @param params to filter on
+   * @returns vbs theme object
+   */
+  get(params?: Map<string, string[]>): Observable<HttpResponse<any[]>> {
+    return this.request.get<any[]>(this.BASE_VBS_PATH, params);
+  }
+}

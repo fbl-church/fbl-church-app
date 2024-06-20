@@ -251,9 +251,9 @@ export const NAVIGATION_ROUTES: NavItem[] = [
       id: 'vbsDropdown',
       items: [
         {
-          id: 'dashboard',
-          name: 'Dashboard',
-          route: '/dashboard',
+          id: 'themes',
+          name: 'Themes',
+          route: '/themes',
         },
         {
           id: 'registration',
@@ -261,14 +261,34 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           route: '/registration',
         },
         {
-          id: 'check-in',
-          name: 'Check In',
-          route: '/check-in',
-        },
-        {
           id: 'groups',
           name: 'Groups',
           route: '/groups',
+          submenu: {
+            id: 'vbsGroupsDropdown',
+            items: [
+              {
+                id: 'pre-primary',
+                name: 'Pre-Primary',
+                route: '/pre-primary',
+              },
+              {
+                id: 'primary',
+                name: 'Primary',
+                route: '/primary',
+              },
+              {
+                id: 'middler',
+                name: 'Middler',
+                route: '/middler',
+              },
+              {
+                id: 'junior',
+                name: 'Junior',
+                route: '/junior',
+              },
+            ],
+          },
         },
         {
           id: 'workers',

@@ -1,0 +1,21 @@
+<ik-header title="VBS Themes">
+  <button class="btn btn-primary header-button">
+    <ik-icon title="Create" icon="circle-plus" classOverride="btn-icon"></ik-icon>
+    Create Theme
+  </button>
+</ik-header>
+
+<!-- <app-vbs-stat-cards></app-vbs-stat-cards> -->
+
+<ik-grid [dataLoader]="dataloader" preferenceKey="vbsThemeGrid">
+  <ik-grid-search></ik-grid-search>
+  <ik-grid-column label="Name" field="name"> </ik-grid-column>
+
+  <ik-grid-column label="Status" field="status">
+    <ng-template let-data>
+      <div [ngClass]="data.status">{{ data.status }}</div>
+    </ng-template>
+  </ik-grid-column>
+  <ik-grid-column label="Active Year" field="year"></ik-grid-column>
+  <ik-grid-pager key="VBS Themes"></ik-grid-pager>
+</ik-grid>
