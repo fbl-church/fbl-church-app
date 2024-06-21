@@ -5,7 +5,10 @@ import { VBSGroupsJuniorComponent } from 'src/app/pages/vbs/groups/junior/vbs-gr
 import { VBSGroupsMiddlerComponent } from 'src/app/pages/vbs/groups/middler/vbs-groups-middler.component';
 import { VBSGroupsPrePrimaryComponent } from 'src/app/pages/vbs/groups/pre-primary/vbs-groups-pre-primary.component';
 import { VBSGroupsPrimaryComponent } from 'src/app/pages/vbs/groups/primary/vbs-groups-primary.component';
+import { VBSCreateThemeComponent } from 'src/app/pages/vbs/themes/create-theme/vbs-create-theme.component';
+import { VBSThemeDetailsComponent } from 'src/app/pages/vbs/themes/theme-details/vbs-theme-details.component';
 import { VBSThemesComponent } from 'src/app/pages/vbs/themes/vbs-themes.component';
+import { VBSThemeResolverService } from 'src/service/vbs/vbs-theme-resolver.service';
 import { AuthenticatedLayoutComponent } from '../components/layouts/authenticated-layout/authenticated-layout.component';
 
 export const VBS_ROUTE: Route = {
@@ -20,7 +23,21 @@ export const VBS_ROUTE: Route = {
     },
     {
       path: 'themes',
-      component: VBSThemesComponent,
+      children: [
+        {
+          path: '',
+          component: VBSThemesComponent,
+        },
+        {
+          path: 'new',
+          component: VBSCreateThemeComponent,
+        },
+        {
+          path: ':id',
+          component: VBSThemeDetailsComponent,
+          resolve: { theme: VBSThemeResolverService },
+        },
+      ],
     },
     {
       path: 'registration',

@@ -6,6 +6,10 @@
 .icon__danger {
   margin-left: 20px;
   color: $red-400;
+
+  &--margin-none {
+    color: $red-400;
+  }
 }
 
 .icon__success {
@@ -19,6 +23,11 @@
 
 .fa-spin {
   animation-duration: 900ms;
+}
+
+.icon--disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 @media screen and (max-width: $screen-sm-max) {

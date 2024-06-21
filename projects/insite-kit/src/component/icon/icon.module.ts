@@ -35,6 +35,7 @@ import {
   faPaperPlane,
   faPenToSquare,
   faPerson,
+  faPlus,
   faRightFromBracket,
   faRotate,
   faSchool,
@@ -115,7 +116,8 @@ export class IconModule {
       faCircleDown,
       faUserXmark,
       faArrowRotateLeft,
-      faCircleCheck
+      faCircleCheck,
+      faPlus
     );
   }
 }

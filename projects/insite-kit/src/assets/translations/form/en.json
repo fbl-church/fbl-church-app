@@ -43,6 +43,19 @@
     },
     "confirmNewPassword": {
       "required": "Confirm New Password is a required field"
+    },
+    "donation": {
+      "required": "Donation is a required field"
+    },
+    "themeName": {
+      "required": "Theme Name is a required field"
+    },
+    "name": {
+      "required": "Name is a required field"
+    },
+    "points": {
+      "required": "Points is a required field",
+      "min": "Points must be a value greater than 0"
     }
   }
 }

@@ -5,6 +5,8 @@ import { VBSGroupsJuniorComponent } from './groups/junior/vbs-groups-junior.comp
 import { VBSGroupsMiddlerComponent } from './groups/middler/vbs-groups-middler.component';
 import { VBSGroupsPrePrimaryComponent } from './groups/pre-primary/vbs-groups-pre-primary.component';
 import { VBSGroupsPrimaryComponent } from './groups/primary/vbs-groups-primary.component';
+import { VBSCreateThemeComponent } from './themes/create-theme/vbs-create-theme.component';
+import { VBSThemeDetailsComponent } from './themes/theme-details/vbs-theme-details.component';
 import { VBSStatCardsComponent } from './themes/vbs-stat-cards/vbs-stat-cards.component';
 import { VBSThemesComponent } from './themes/vbs-themes.component';
 import { VBSChildRegistrationWizardStepOneComponent } from './vbs-external-registration/steps/vbs-child-registration-1.wizard.step';
@@ -35,6 +37,8 @@ import { VBSGuardianDetailCardComponent } from './vbs-external-registration/vbs-
     VBSGroupsPrePrimaryComponent,
     VBSGroupsJuniorComponent,
     VBSGroupsMiddlerComponent,
+    VBSCreateThemeComponent,
+    VBSThemeDetailsComponent,
   ],
 })
 export class VBSModule {}

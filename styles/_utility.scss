@@ -66,6 +66,12 @@ textarea {
   }
 }
 
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .right {
   float: right !important;
 }
@@ -94,6 +100,18 @@ textarea {
 
 .margin-base {
   margin: 12px;
+}
+
+.margin {
+  &__top {
+    &--base {
+      margin-top: 12px;
+    }
+
+    &--large {
+      margin-top: 24px;
+    }
+  }
 }
 
 .margin-none {

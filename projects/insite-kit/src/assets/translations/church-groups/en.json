@@ -11,6 +11,7 @@
     "VBS_PRE_PRIMARY": "VBS Pre-Primary (4's & 5's)",
     "VBS_PRIMARY": "VBS Primary (1st & 2nd)",
     "VBS_MIDDLER": "VBS Middler (3rd & 4th)",
-    "VBS_JUNIOR": "VBS Junior (5th & 6th)"
+    "VBS_JUNIOR": "VBS Junior (5th & 6th)",
+    "VBS": "VBS"
   }
 }

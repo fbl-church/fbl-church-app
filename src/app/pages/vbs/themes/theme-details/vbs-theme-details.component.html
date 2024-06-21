@@ -1,0 +1,67 @@
+<ng-container *ngIf="!loading; else pageLoader">
+  <ik-header [title]="themeData.name">
+    <ik-header-back (back)="onBackClick()"></ik-header-back>
+    <button class="btn btn-primary header-button">
+      <ik-icon title="Edit" icon="pen-to-square" classOverride="btn-icon"></ik-icon>
+      Edit
+    </button>
+    <button class="btn btn-danger header-button">
+      <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
+      Delete
+    </button>
+  </ik-header>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <ik-card class="vbs-stats__card">
+        <div class="vbs-stats__header">Children Registered</div>
+        <div class="vbs-stats__body">{{ vbsChildrenStats ? vbsChildrenStats.registeredChildren : '-' }}</div>
+      </ik-card>
+    </div>
+
+    <div class="col-sm-4">
+      <ik-card class="vbs-stats__card">
+        <div class="vbs-stats__header">Children Attended</div>
+        <div class="vbs-stats__body">{{ themeData.childrenAttended }}</div>
+      </ik-card>
+    </div>
+
+    <div class="col-sm-4">
+      <ik-card class="vbs-stats__card">
+        <div class="vbs-stats__header">Offering Total</div>
+        <div class="vbs-stats__body">{{ themeData.money | currency }}</div>
+      </ik-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <ik-card>
+        <ik-card-header title="Details"> </ik-card-header>
+        <div class="flex">
+          <div class="left-column">
+            <ik-card-info header="Theme" [text]="themeData.name"></ik-card-info>
+          </div>
+          <div class="right-column">
+            <ik-card-info header="Donating To" [text]="themeData.donation"></ik-card-info>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="right-column">
+            <ik-card-info header="Start Date" [text]="themeData.startDate | date : 'MMMM d, y'"></ik-card-info>
+          </div>
+          <div class="right-column">
+            <ik-card-info header="End Date" [text]="themeData.endDate | date : 'MMMM d, y'"></ik-card-info>
+          </div>
+        </div>
+        <ik-card-info [contentColor]="themeData.status" header="Status" [text]="themeData.status"></ik-card-info>
+      </ik-card>
+    </div>
+    <div class="col-md-6">
+      <div #charts class="vbs-stats__worker-chart"></div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
+</ng-template>

@@ -1,0 +1,112 @@
+<ik-header title="New Theme">
+  <ik-header-back (back)="onCancelClick()"></ik-header-back>
+</ik-header>
+
+<ng-container *ngIf="!loading; else pageLoader">
+  <ik-form *ngIf="form" [formGroup]="form">
+    <div class="row">
+      <ik-form-field header="Theme Name" class="col-md-6"
+        ><input class="form-input__normal" placeholder="Theme Name" formControlName="themeName" />
+      </ik-form-field>
+
+      <ik-form-field header="Dontating To" class="col-md-6"
+        ><input class="form-input__normal" placeholder="Dontating To" formControlName="donation" />
+      </ik-form-field>
+    </div>
+    <div class="row">
+      <ik-form-field header="Start Date" class="col-md-6"
+        ><input type="date" class="form-input__normal" placeholder="Start Date" formControlName="startDate" />
+      </ik-form-field>
+      <ik-form-field header="End Date" class="col-md-6"
+        ><input
+          type="date"
+          class="form-input__normal"
+          placeholder="End Date"
+          formControlName="endDate"
+          [min]="form.value.startDate"
+        />
+      </ik-form-field>
+    </div>
+  </ik-form>
+
+  <ik-card>
+    <ik-card-header title="Group Names"> </ik-card-header>
+    <form [formGroup]="g" *ngFor="let g of vbsFormGroupsArray; index as i">
+      <div class="row">
+        <ik-form-field header="Group" class="col-sm-6"
+          ><input
+            class="form-input__normal"
+            placeholder="Group"
+            [value]="g.value.vbsGroup | churchGroupTranslate"
+            disabled
+            readonly
+          />
+        </ik-form-field>
+
+        <ik-form-field header="Themed Group Name" class="col-sm-6"
+          ><input class="form-input__normal" placeholder="Themed Group Name" formControlName="name" maxlength="50" />
+        </ik-form-field>
+      </div>
+    </form>
+  </ik-card>
+
+  <ik-card>
+    <ik-card-header title="Point Structure">
+      <ik-icon
+        [disabled]="pointsFormGroupArray.length >= 8"
+        title="Add Points"
+        icon="plus"
+        class="right pointer"
+        (click)="pushNewPointConfig()"
+      ></ik-icon>
+    </ik-card-header>
+
+    <ng-container *ngIf="pointsFormGroupArray && pointsFormGroupArray.length === 0">
+      <div class="info-card__message margin-base">
+        Add a points structure for VBS. You can do this by hitting the plus (+) icon in the top right hand corner of
+        this card.
+      </div>
+    </ng-container>
+
+    <form [formGroup]="pointGroup" *ngFor="let pointGroup of pointsFormGroupArray; index as i">
+      <div class="row">
+        <ik-icon
+          title="trash-can"
+          icon="trash-can"
+          class="right pointer flex-center margin__top--large col-1"
+          classOverride="icon__default icon__danger--margin-none"
+          (click)="onRemovePointGroup(i)"
+        ></ik-icon>
+        <div class="row col-11">
+          <ik-form-field header="Name" class="col-sm-6"
+            ><input class="form-input__normal" placeholder="Name" formControlName="name" />
+          </ik-form-field>
+
+          <ik-form-field header="Points" class="col-sm-6"
+            ><input
+              type="number"
+              inputmode="numeric"
+              min="0"
+              class="form-input__normal"
+              placeholder="Points"
+              formControlName="points"
+            />
+          </ik-form-field>
+        </div>
+      </div>
+    </form>
+  </ik-card>
+
+  <button class="btn btn-default btn-left" (click)="onCancelClick()">Cancel</button>
+  <button
+    class="btn btn-primary btn-right"
+    (click)="onSaveClick()"
+    [disabled]="(form && form.invalid) || isInvalidPointStructure()"
+  >
+    Save
+  </button>
+</ng-container>
+
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
+</ng-template>
