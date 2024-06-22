@@ -5,7 +5,8 @@ import { ThemeType } from 'projects/insite-kit/src/model/user.model';
 import { VBSTheme } from 'projects/insite-kit/src/model/vbs.model';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
-import { Subject, map, switchMap, takeUntil, tap } from 'rxjs';
+import { Subject, map, of, switchMap, takeUntil, tap } from 'rxjs';
+import { VBSAttendanceService } from 'src/service/vbs/vbs-attendance.service';
 import { VBSReportsService } from 'src/service/vbs/vbs-report.service';
 
 @Component({
@@ -32,7 +33,7 @@ export class VBSThemeDetailsComponent implements OnInit, AfterViewInit {
       type: 'pie',
     },
     title: {
-      text: 'Worker Group Distribution',
+      text: 'Worker Distribution',
     },
     tooltip: {
       pointFormat: '{point.name}: <b>{point.y}</b>',
@@ -75,12 +76,15 @@ export class VBSThemeDetailsComponent implements OnInit, AfterViewInit {
   loading = true;
   themeData: VBSTheme;
   vbsChildrenStats: any;
+  vbsAttendanceDataloader: any;
+  vbsThemeId: any;
 
   constructor(
     private readonly jwt: JwtService,
     private readonly route: ActivatedRoute,
     private readonly vbsReportsService: VBSReportsService,
-    private readonly navigationService: NavigationService
+    private readonly navigationService: NavigationService,
+    private readonly vbsAttendanceService: VBSAttendanceService
   ) {}
 
   ngAfterViewInit(): void {
@@ -98,10 +102,13 @@ export class VBSThemeDetailsComponent implements OnInit, AfterViewInit {
 
     this.route.params
       .pipe(
-        switchMap((res) => this.vbsReportsService.getChildrenStats(res.id)),
+        tap((res) => (this.vbsThemeId = res.id)),
+        switchMap(() => this.vbsReportsService.getChildrenStats(this.vbsThemeId)),
+        tap((res) => (this.vbsChildrenStats = res.body)),
+        switchMap(() => this.vbsAttendanceService.getByThemeId(this.vbsThemeId)),
         takeUntil(this.destroy)
       )
-      .subscribe((res) => (this.vbsChildrenStats = res.body));
+      .subscribe((res) => (this.vbsAttendanceDataloader = () => of(res)));
   }
 
   onBackClick() {

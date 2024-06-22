@@ -17,6 +17,6 @@ export class VBSReportsService {
    * @param id The vbs theme id
    */
   getChildrenStats(id: any): Observable<HttpResponse<any>> {
-    return this.request.get<any>(`${this.BASE_VBS_PATH}/${id}/children`);
+    return this.request.get<any>(`${this.BASE_VBS_PATH}/children`);
   }
 }

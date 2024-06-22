@@ -22,6 +22,7 @@ import {
   faCircleExclamation,
   faCircleInfo,
   faCirclePlus,
+  faClipboardCheck,
   faClose,
   faDownload,
   faEnvelope,
@@ -117,7 +118,8 @@ export class IconModule {
       faUserXmark,
       faArrowRotateLeft,
       faCircleCheck,
-      faPlus
+      faPlus,
+      faClipboardCheck
     );
   }
 }
