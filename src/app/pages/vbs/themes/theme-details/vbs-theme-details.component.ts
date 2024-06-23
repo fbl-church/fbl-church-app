@@ -1,13 +1,16 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as Highcharts from 'highcharts';
+import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { ThemeType } from 'projects/insite-kit/src/model/user.model';
 import { VBSTheme } from 'projects/insite-kit/src/model/vbs.model';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
+import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, map, of, switchMap, takeUntil, tap } from 'rxjs';
 import { VBSAttendanceService } from 'src/service/vbs/vbs-attendance.service';
 import { VBSReportsService } from 'src/service/vbs/vbs-report.service';
+import { VBSThemesService } from 'src/service/vbs/vbs-themes.service';
 
 @Component({
   selector: 'app-vbs-theme-details',
@@ -16,6 +19,7 @@ import { VBSReportsService } from 'src/service/vbs/vbs-report.service';
 })
 export class VBSThemeDetailsComponent implements OnInit, AfterViewInit {
   @ViewChild('charts') public chartEl: ElementRef;
+  @ViewChild(ModalComponent) deleteModal: ModalComponent;
 
   highcharts = Highcharts;
   charts = [];
@@ -74,6 +78,7 @@ export class VBSThemeDetailsComponent implements OnInit, AfterViewInit {
 
   destroy = new Subject<void>();
   loading = true;
+  deleteModalLoading = false;
   themeData: VBSTheme;
   vbsChildrenStats: any;
   vbsAttendanceDataloader: any;
@@ -84,7 +89,9 @@ export class VBSThemeDetailsComponent implements OnInit, AfterViewInit {
     private readonly route: ActivatedRoute,
     private readonly vbsReportsService: VBSReportsService,
     private readonly navigationService: NavigationService,
-    private readonly vbsAttendanceService: VBSAttendanceService
+    private readonly vbsAttendanceService: VBSAttendanceService,
+    private readonly vbsThemeService: VBSThemesService,
+    private readonly popupService: PopupService
   ) {}
 
   ngAfterViewInit(): void {
@@ -113,6 +120,23 @@ export class VBSThemeDetailsComponent implements OnInit, AfterViewInit {
 
   onBackClick() {
     this.navigationService.navigate('/vbs/themes');
+  }
+
+  onDeleteTheme() {
+    this.deleteModalLoading = true;
+    this.vbsThemeService.delete(this.vbsThemeId).subscribe({
+      next: (res) => {
+        this.deleteModal.close();
+        this.popupService.success('VBS Theme Successfully Deleted!');
+        this.navigationService.navigate('/vbs/themes');
+      },
+      error: () => {
+        this.deleteModal.close();
+        this.popupService.error('Unable to delete VBS Theme. Try again later.');
+
+        this.deleteModalLoading = false;
+      },
+    });
   }
 
   createChart(container, options?: Object) {

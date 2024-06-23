@@ -2,7 +2,7 @@
   <ik-header [title]="themeData.name">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
 
-    <button class="btn btn-danger header-button">
+    <button class="btn btn-danger header-button" (click)="deleteThemeModal.open()">
       <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
       Delete
     </button>
@@ -85,4 +85,24 @@
 
 <ng-template #pageLoader>
   <ik-loading type="double"></ik-loading>
+</ng-template>
+
+<ik-modal #deleteThemeModal name="deleteThemeModal">
+  <ik-modal-header title="Delete Theme?" type="danger"></ik-modal-header>
+  <ng-container *ngIf="!deleteModalLoading; else modalLoader">
+    <ik-modal-body>
+      <div>
+        Deleting this theme will result in all data associated to '{{ themeData.name }}' to be deleted. This includes
+        attendance records, points, and group names. Do you want to continue?
+      </div>
+    </ik-modal-body>
+    <ik-modal-action-bar>
+      <button class="btn btn-danger btn-right btn-modal" (click)="onDeleteTheme()">Delete Theme</button>
+      <button class="btn btn-default btn-right btn-modal" (click)="deleteThemeModal.close()">Cancel</button>
+    </ik-modal-action-bar>
+  </ng-container>
+</ik-modal>
+
+<ng-template #modalLoader>
+  <ik-loading></ik-loading>
 </ng-template>

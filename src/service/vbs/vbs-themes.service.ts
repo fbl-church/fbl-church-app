@@ -41,4 +41,14 @@ export class VBSThemesService {
   create(body: VBSTheme): Observable<VBSTheme> {
     return this.request.post<VBSTheme>(this.BASE_VBS_PATH, body);
   }
+
+  /**
+   * Get a list of vbs themes
+   *
+   * @param params to filter on
+   * @returns vbs theme object
+   */
+  delete(id: any): Observable<VBSTheme> {
+    return this.request.delete(`${this.BASE_VBS_PATH}/${id}`);
+  }
 }
