@@ -1,17 +1,18 @@
-<ik-header [title]="record.name">
-  <ik-header-back (back)="onBackClick()"></ik-header-back>
-</ik-header>
+<ng-container *ngIf="record && !loading; else pageLoader">
+  <ik-header [title]="record.name">
+    <ik-header-back (back)="onBackClick()"></ik-header-back>
+  </ik-header>
 
-<app-attendance-record-form
-  *ngIf="record && !loading; else pageLoader"
-  translation="Junior Church"
-  [record]="record"
-  leftActionButton="Cancel"
-  rightActionButton="Update"
-  (save)="onUpdateClick($event)"
-  (cancel)="onBackClick()"
-  [disableSave]="loading"
-></app-attendance-record-form>
+  <app-attendance-record-form
+    translation="Junior Church"
+    [record]="record"
+    leftActionButton="Cancel"
+    rightActionButton="Update"
+    (save)="onUpdateClick($event)"
+    (cancel)="onBackClick()"
+    [disableSave]="loading"
+  ></app-attendance-record-form>
+</ng-container>
 
 <ng-template #pageLoader>
   <ik-loading type="double"></ik-loading>

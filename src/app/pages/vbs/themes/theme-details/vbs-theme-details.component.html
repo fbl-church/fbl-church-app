@@ -63,8 +63,15 @@
       </ik-card>
     </div>
     <div class="col-md-6">
-      <ik-grid [dataLoader]="vbsAttendanceDataloader">
-        <ik-card-header title="Attendance Records"> </ik-card-header>
+      <ik-grid [dataLoader]="vbsAttendanceDataloader" (rowClick)="onRowClick($event)">
+        <ik-card-header title="Attendance Records">
+          <ik-icon
+            title="Add Record"
+            icon="plus"
+            class="right pointer"
+            *featureAccess="[Application.VBS, FeatureType.CHECK_IN_OVERVIEW, Access.CREATE]"
+          ></ik-icon>
+        </ik-card-header>
         <ik-grid-column label="Name" field="name"> </ik-grid-column>
         <ik-grid-column label="Status" field="status">
           <ng-template let-data>
@@ -76,11 +83,12 @@
       </ik-grid>
     </div>
   </div>
-  <div class="row">
+  <!-- Worker Distribution Chart -->
+  <!-- <div class="row">
     <div class="col-md-6">
       <div #charts class="vbs-stats__worker-chart"></div>
     </div>
-  </div>
+  </div> -->
 </ng-container>
 
 <ng-template #pageLoader>

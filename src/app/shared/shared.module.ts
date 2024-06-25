@@ -8,6 +8,7 @@ import { ChildGuardiansGridCardComponent } from './components/cards/children/chi
 import { GuardianDetailsCardComponent } from './components/cards/guardians/guardian-details-card/guardian-details-card.component';
 import { UserDetailsCardComponent } from './components/cards/users/user-details-card/user-details-card.component';
 import { UserRolesCardComponent } from './components/cards/users/user-roles-card/user-roles-card.component';
+import { VBSAttendanceDetailsCardComponent } from './components/cards/vbs/vbs-attendance-details-card/vbs-attendance-details-card.component';
 import { AttendanceRecordFormComponent } from './components/forms/attendance-record-form/attendance-record-form.component';
 import { ChildFormComponent } from './components/forms/child-form/child-form.component';
 import { GuardianFormComponent } from './components/forms/guardian-form/guardian-form.component';
@@ -33,6 +34,8 @@ import { DuplicateGuardianModalComponent } from './components/modals/duplicate-g
 import { GuardianWarningModalComponent } from './components/modals/guardian-warning-modal/guardian-warning-modal.component';
 import { ResetPasswordModalComponent } from './components/modals/reset-password-modal/reset-password-modal.component';
 import { UpdateChildAttendanceModalComponent } from './components/modals/update-child-attendance-modal/update-child-attendance-modal.component';
+import { VBSAttendanceDetailEditComponent } from './components/pages/vbs/vbs-attendance-detail-edit/vbs-attendance-detail-edit.component';
+import { VBSAttendanceDetailComponent } from './components/pages/vbs/vbs-attendance-detail/vbs-attendance-detail.component';
 import { ChildRegistrationWizardComponent } from './components/wizards/child-registration/child-registration-wizard.component';
 import { ChildRegistrationWizardStepOneComponent } from './components/wizards/child-registration/steps/child-registration-1.wizard.step';
 import { ChildRegistrationWizardStepTwoComponent } from './components/wizards/child-registration/steps/child-registration-2.wizard.step';
@@ -79,6 +82,9 @@ import { ChildRegistrationWizardStepFourComponent } from './components/wizards/c
     AttendanceScheduleDownloadModalComponent,
     ResetPasswordModalComponent,
     UpdateChildAttendanceModalComponent,
+    VBSAttendanceDetailComponent,
+    VBSAttendanceDetailsCardComponent,
+    VBSAttendanceDetailEditComponent,
   ],
   exports: [
     UserFormComponent,
@@ -117,6 +123,9 @@ import { ChildRegistrationWizardStepFourComponent } from './components/wizards/c
     AttendanceScheduleDownloadModalComponent,
     ResetPasswordModalComponent,
     UpdateChildAttendanceModalComponent,
+    VBSAttendanceDetailComponent,
+    VBSAttendanceDetailsCardComponent,
+    VBSAttendanceDetailEditComponent,
   ],
 })
 export class SharedModule {}

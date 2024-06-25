@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as Highcharts from 'highcharts';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
+import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { ThemeType } from 'projects/insite-kit/src/model/user.model';
-import { VBSTheme } from 'projects/insite-kit/src/model/vbs.model';
+import { VBSAttendanceRecord, VBSTheme } from 'projects/insite-kit/src/model/vbs.model';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
@@ -17,7 +18,7 @@ import { VBSThemesService } from 'src/service/vbs/vbs-themes.service';
   templateUrl: './vbs-theme-details.component.html',
   styleUrls: ['./vbs-theme-details.component.scss'],
 })
-export class VBSThemeDetailsComponent implements OnInit, AfterViewInit {
+export class VBSThemeDetailsComponent implements OnInit {
   @ViewChild('charts') public chartEl: ElementRef;
   @ViewChild(ModalComponent) deleteModal: ModalComponent;
 
@@ -84,6 +85,10 @@ export class VBSThemeDetailsComponent implements OnInit, AfterViewInit {
   vbsAttendanceDataloader: any;
   vbsThemeId: any;
 
+  FeatureType = FeatureType;
+  Application = App;
+  Access = Access;
+
   constructor(
     private readonly jwt: JwtService,
     private readonly route: ActivatedRoute,
@@ -94,9 +99,9 @@ export class VBSThemeDetailsComponent implements OnInit, AfterViewInit {
     private readonly popupService: PopupService
   ) {}
 
-  ngAfterViewInit(): void {
-    this.createChart(this.chartEl.nativeElement);
-  }
+  // ngAfterViewInit(): void {
+  //   this.createChart(this.chartEl.nativeElement);
+  // }
 
   ngOnInit(): void {
     this.route.data
@@ -122,6 +127,10 @@ export class VBSThemeDetailsComponent implements OnInit, AfterViewInit {
     this.navigationService.navigate('/vbs/themes');
   }
 
+  onRowClick(event: VBSAttendanceRecord) {
+    this.navigationService.navigate(`/vbs/themes/${this.vbsThemeId}/attendance/${event.id}`);
+  }
+
   onDeleteTheme() {
     this.deleteModalLoading = true;
     this.vbsThemeService.delete(this.vbsThemeId).subscribe({
@@ -139,7 +148,7 @@ export class VBSThemeDetailsComponent implements OnInit, AfterViewInit {
     });
   }
 
-  createChart(container, options?: Object) {
+  createChart(container) {
     let opts: any = this.defaultOptions;
 
     if (this.jwt.getTheme() === ThemeType.DARK) {
@@ -147,13 +156,8 @@ export class VBSThemeDetailsComponent implements OnInit, AfterViewInit {
       opts.title.style = { color: 'white' };
     }
 
-    let e = document.createElement('div');
+    container.appendChild(document.createElement('div'));
 
-    container.appendChild(e);
-
-    if (opts.chart) {
-      // opts.chart['renderTo'] = e;
-    }
     this.highcharts.chart(container, opts);
   }
 }

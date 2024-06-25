@@ -1,19 +1,18 @@
 import { Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
-import { AttendanceRecord } from 'projects/insite-kit/src/model/attendance-record.model';
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
 import { UserAccess } from 'projects/insite-kit/src/model/user-access.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
+import { VBSAttendanceRecord } from 'projects/insite-kit/src/model/vbs.model';
 import { UserAccessService } from 'projects/insite-kit/src/service/auth/user-access.service';
 import { Observable, Subject, iif, map, of, switchMap, takeUntil, tap } from 'rxjs';
 import { UserService } from 'src/service/users/user.service';
 
 @Component({
-  selector: 'app-attendance-record-details-card',
-  templateUrl: './attendance-record-details-card.component.html',
+  selector: 'app-vbs-attendance-details-card',
+  templateUrl: './vbs-attendance-details-card.component.html',
 })
-export class AttendanceRecordDetailsCardComponent implements OnChanges, OnDestroy {
-  @Input() record: AttendanceRecord;
-  @Input() showUnitSessionField = false;
+export class VBSAttendanceDetailsCardComponent implements OnChanges, OnDestroy {
+  @Input() record: VBSAttendanceRecord;
 
   startedByUser: User;
   closedByUser: User;

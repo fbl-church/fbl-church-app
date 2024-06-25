@@ -36,6 +36,7 @@ export interface VBSPoint {
 export interface VBSAttendanceRecord extends AttendanceRecord {
   vbsThemeId?: number;
   money?: number;
+  spiritTheme?: string;
   offeringWinners?: ChurchGroup[];
 }
 

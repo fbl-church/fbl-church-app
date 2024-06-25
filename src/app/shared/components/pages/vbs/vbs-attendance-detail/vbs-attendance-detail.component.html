@@ -1,0 +1,66 @@
+<ng-container *ngIf="!loading; else pageLoader">
+  <app-attendance-record-detail-header
+    [(record)]="attendanceRecord"
+    [route]="'/vbs/themes/' + attendanceRecord.id"
+    [app]="Application.VBS"
+    (backClick)="onBackClick()"
+  ></app-attendance-record-detail-header>
+  <!-- (checkInStarted)="onCheckInStarted()"
+(recordChange)="refreshChildrenGrid()" -->
+  <div class="layout__column-left layout__wide">
+    <app-vbs-attendance-details-card [record]="attendanceRecord">
+      <ik-card-header title="Details">
+        <ng-container *ngIf="attendanceRecord.status !== 'CLOSED'">
+          <ik-icon
+            *featureAccess="[Application.VBS, FeatureType.CHECK_IN_DETAIL, Access.UPDATE]"
+            title="Edit"
+            icon="pen-to-square"
+            class="right pointer"
+            classOverride="icon__default"
+            (click)="onEditClick()"
+          ></ik-icon>
+        </ng-container>
+      </ik-card-header>
+    </app-vbs-attendance-details-card>
+
+    <app-attendance-record-children-grid
+      *ngIf="attendanceRecord.status !== 'PENDING'"
+      [dataLoader]="vbsChildrenDataloader"
+    >
+      <ik-card-header title="Children">
+        <ng-container *ngIf="attendanceRecord.status !== 'CLOSED'">
+          <ik-icon
+            *featureAccess="[Application.VBS, FeatureType.CHECK_IN_CHILDREN, Access.UPDATE]"
+            icon="user-check"
+            class="right pointer"
+            classOverride="icon__default"
+          ></ik-icon>
+        </ng-container> </ik-card-header
+    ></app-attendance-record-children-grid>
+  </div>
+</ng-container>
+
+<div class="layout__column-right layout__narrow">
+  <ik-grid [dataLoader]="vbsOfferingWinnersDataloader">
+    <ik-card-header title="Offering Winners"> </ik-card-header>
+    <ik-grid-column label="Group" field="group">
+      <ng-template let-data>
+        {{ data.group | churchGroupTranslate }}
+      </ng-template>
+    </ik-grid-column>
+    <ik-grid-column label="Name" field="name"></ik-grid-column>
+    <ik-grid-pager key="Offering Winners" [pagerVisible]="false" [pageSize]="5"></ik-grid-pager>
+  </ik-grid>
+
+  <ik-grid [dataLoader]="vbsWorkersDataloader">
+    <ik-card-header title="Workers"> </ik-card-header>
+    <ik-grid-search></ik-grid-search>
+    <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
+    <ik-grid-column label="Email" field="email"></ik-grid-column>
+    <ik-grid-pager key="Workers" [pageSize]="5"></ik-grid-pager>
+  </ik-grid>
+</div>
+
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
+</ng-template>

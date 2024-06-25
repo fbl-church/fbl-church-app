@@ -1,4 +1,5 @@
 import { Route } from '@angular/router';
+import { WebRole } from 'projects/insite-kit/src/model/common.model';
 import { APP_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/app-access.guard';
 import { AUTH_GUARD } from 'projects/insite-kit/src/service/guards/auth.guard';
 import { RouteDataResolver } from 'projects/insite-kit/src/service/request/route-data.resolver';
@@ -9,8 +10,11 @@ import { VBSGroupsPrimaryComponent } from 'src/app/pages/vbs/groups/primary/vbs-
 import { VBSCreateThemeComponent } from 'src/app/pages/vbs/themes/create-theme/vbs-create-theme.component';
 import { VBSThemeDetailsComponent } from 'src/app/pages/vbs/themes/theme-details/vbs-theme-details.component';
 import { VBSThemesComponent } from 'src/app/pages/vbs/themes/vbs-themes.component';
+import { VBSAttendanceService } from 'src/service/vbs/vbs-attendance.service';
 import { VBSThemesService } from 'src/service/vbs/vbs-themes.service';
 import { AuthenticatedLayoutComponent } from '../components/layouts/authenticated-layout/authenticated-layout.component';
+import { VBSAttendanceDetailEditComponent } from '../components/pages/vbs/vbs-attendance-detail-edit/vbs-attendance-detail-edit.component';
+import { VBSAttendanceDetailComponent } from '../components/pages/vbs/vbs-attendance-detail/vbs-attendance-detail.component';
 
 export const VBS_ROUTE: Route = {
   path: 'vbs',
@@ -37,6 +41,28 @@ export const VBS_ROUTE: Route = {
           path: ':id',
           component: VBSThemeDetailsComponent,
           resolve: { theme: RouteDataResolver.for(VBSThemesService) },
+        },
+        {
+          path: ':id/attendance/:attendanceId',
+          component: VBSAttendanceDetailComponent,
+          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
+          data: {
+            workerRoles: [
+              WebRole.VBS_JUNIOR,
+              WebRole.VBS_MIDDLER,
+              WebRole.VBS_PRE_PRIMARY,
+              WebRole.VBS_PRIMARY,
+              WebRole.VBS_CRAFTS,
+              WebRole.VBS_GAMES,
+              WebRole.VBS_REGISTRATION,
+              WebRole.VBS_SNACKS,
+            ],
+          },
+        },
+        {
+          path: ':id/attendance/:attendanceId/edit',
+          component: VBSAttendanceDetailEditComponent,
+          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
         },
       ],
     },

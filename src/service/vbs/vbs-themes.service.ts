@@ -1,6 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { VBSTheme } from 'projects/insite-kit/src/model/vbs.model';
+import { VBSTheme, VBSThemeGroup } from 'projects/insite-kit/src/model/vbs.model';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { Observable } from 'rxjs';
 
@@ -30,6 +30,16 @@ export class VBSThemesService {
    */
   getById(id: any): Observable<HttpResponse<VBSTheme>> {
     return this.request.get<VBSTheme>(`${this.BASE_VBS_PATH}/${id}`);
+  }
+
+  /**
+   * Get a list of vbs theme groups
+   *
+   * @param id The id of the theme
+   * @returns vbs theme groups
+   */
+  getGroupsByThemeId(id: any): Observable<HttpResponse<VBSThemeGroup[]>> {
+    return this.request.get<VBSThemeGroup[]>(`${this.BASE_VBS_PATH}/${id}/groups`);
   }
 
   /**
