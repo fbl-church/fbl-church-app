@@ -3,6 +3,7 @@ import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.m
 import { APP_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/app-access.guard';
 import { AUTH_GUARD } from 'projects/insite-kit/src/service/guards/auth.guard';
 import { FEATURE_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/feature-access.guard';
+import { RouteDataResolver } from 'projects/insite-kit/src/service/request/route-data.resolver';
 import { AwanaAttendanceDetailComponent } from 'src/app/pages/awana/awana-check-in/awana-attendance-detail/awana-attendance-detail.component';
 import { AwanaCheckInComponent } from 'src/app/pages/awana/awana-check-in/awana-check-in.component';
 import { AwanaNewAttendanceRecordComponent } from 'src/app/pages/awana/awana-check-in/awana-new-attendance-record/awana-new-attendance-record.component';
@@ -12,7 +13,7 @@ import { AwanaGrandPrixComponent } from 'src/app/pages/awana/awana-grand-prix/aw
 import { AwanaWorkersComponent } from 'src/app/pages/awana/awana-workers/awana-workers.component';
 import { AttendanceRecordResolverService } from 'src/service/attendance/attendance-record-resolver.service';
 import { AwanaWorkersResolverService } from 'src/service/attendance/awana-workers-resolver.service';
-import { ChildResolverService } from 'src/service/children/child-resolver.service';
+import { ChildrenService } from 'src/service/children/children.service';
 import { AuthenticatedLayoutComponent } from '../components/layouts/authenticated-layout/authenticated-layout.component';
 
 export const AWANA_ROUTE: Route = {
@@ -86,7 +87,7 @@ export const AWANA_ROUTE: Route = {
       path: 'children/:id/details',
       component: AwanaChildrenDetailComponent,
       canActivate: [FEATURE_ACCESS_GUARD],
-      resolve: { child: ChildResolverService },
+      resolve: { child: RouteDataResolver.for(ChildrenService) },
       data: {
         FEATURE_ACCESS_GUARDS: [
           {

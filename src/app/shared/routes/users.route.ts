@@ -4,12 +4,13 @@ import { APP_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/app-acc
 import { AUTH_GUARD } from 'projects/insite-kit/src/service/guards/auth.guard';
 import { FEATURE_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/feature-access.guard';
 import { USER_EDIT_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/user-edit-access.guard';
+import { RouteDataResolver } from 'projects/insite-kit/src/service/request/route-data.resolver';
 import { CreateUserComponent } from 'src/app/pages/users/create-user/create-user.component';
 import { EditUserComponent } from 'src/app/pages/users/user-detail/pages/edit-user/edit-user.component';
 import { ResetPasswordComponent } from 'src/app/pages/users/user-detail/pages/reset-password/reset-password.component';
 import { UserDetailComponent } from 'src/app/pages/users/user-detail/user-detail.component';
 import { UserComponent } from 'src/app/pages/users/user.component';
-import { UserResolverService } from 'src/service/users/user-resolver.service';
+import { UserService } from 'src/service/users/user.service';
 import { AuthenticatedLayoutComponent } from '../components/layouts/authenticated-layout/authenticated-layout.component';
 
 export const USERS_ROUTE: Route = {
@@ -39,13 +40,13 @@ export const USERS_ROUTE: Route = {
     {
       path: ':id/details',
       component: UserDetailComponent,
-      resolve: { user: UserResolverService },
+      resolve: { user: RouteDataResolver.for(UserService) },
     },
     {
       path: ':id/details/edit',
       canActivate: [FEATURE_ACCESS_GUARD, USER_EDIT_ACCESS_GUARD],
       component: EditUserComponent,
-      resolve: { user: UserResolverService },
+      resolve: { user: RouteDataResolver.for(UserService) },
       data: {
         FEATURE_ACCESS_GUARDS: [
           {

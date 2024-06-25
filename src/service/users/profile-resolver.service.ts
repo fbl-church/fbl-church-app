@@ -14,10 +14,11 @@ import { UserService } from './user.service';
 })
 export class ProfileResolverService {
   constructor(
-    private userService: UserService,
+    private readonly userService: UserService,
     private readonly guardianService: GuardianService,
     private readonly userAccessService: UserAccessService
   ) {}
+
   resolve(): Observable<User | Guardian> {
     return this.userAccessService.user$.pipe(
       switchMap((ua) => this.getUserTypeData(ua)),

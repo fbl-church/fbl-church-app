@@ -43,7 +43,7 @@ export class AttendanceRecordDetailsCardComponent implements OnChanges, OnDestro
   }
 
   getUser(id: any): Observable<User> {
-    return iif(() => !!id, this.userService.getUserById(id).pipe(map((res) => res.body)), of(null));
+    return iif(() => !!id, this.userService.getById(id).pipe(map((res) => res.body)), of(null));
   }
 
   elevatedDataAccess(ua: UserAccess) {

@@ -3,6 +3,7 @@ import { Access, App, ChurchGroup, FeatureType } from 'projects/insite-kit/src/m
 import { APP_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/app-access.guard';
 import { AUTH_GUARD } from 'projects/insite-kit/src/service/guards/auth.guard';
 import { FEATURE_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/feature-access.guard';
+import { RouteDataResolver } from 'projects/insite-kit/src/service/request/route-data.resolver';
 import { NurseryAttendanceDetailComponent } from 'src/app/pages/nursery/nursery-check-in/nursery-attendance-detail/nursery-attendance-detail.component';
 import { EditNurseryRecordComponent } from 'src/app/pages/nursery/nursery-check-in/nursery-attendance-detail/pages/edit-nursery-attendance-record/edit-nursery-attendance-record.component';
 import { NurseryChildrenCheckInComponent } from 'src/app/pages/nursery/nursery-check-in/nursery-attendance-detail/pages/nursery-children-check-in/nursery-children-check-in.component';
@@ -13,7 +14,7 @@ import { NurseryChildrenComponent } from 'src/app/pages/nursery/nursery-children
 import { NurseryWorkersComponent } from 'src/app/pages/nursery/nursery-workers/nursery-workers.component';
 import { AttendanceRecordResolverService } from 'src/service/attendance/attendance-record-resolver.service';
 import { NurseryWorkersResolverService } from 'src/service/attendance/nursery-workers-resolver.service';
-import { ChildResolverService } from 'src/service/children/child-resolver.service';
+import { ChildrenService } from 'src/service/children/children.service';
 import { AuthenticatedLayoutComponent } from '../components/layouts/authenticated-layout/authenticated-layout.component';
 import { ChildRegistrationWizardComponent } from '../components/wizards/child-registration/child-registration-wizard.component';
 
@@ -131,21 +132,41 @@ export const NURSERY_ROUTE: Route = {
     {
       path: 'workers',
       component: NurseryWorkersComponent,
+      canActivate: [FEATURE_ACCESS_GUARD],
+      data: {
+        FEATURE_ACCESS_GUARDS: [
+          {
+            app: App.NURSERY,
+            feature: FeatureType.WORKERS,
+            access: Access.READ,
+          },
+        ],
+      },
     },
     {
       path: 'children',
       component: NurseryChildrenComponent,
+      canActivate: [FEATURE_ACCESS_GUARD],
+      data: {
+        FEATURE_ACCESS_GUARDS: [
+          {
+            app: App.NURSERY,
+            feature: FeatureType.CHILDREN,
+            access: Access.READ,
+          },
+        ],
+      },
     },
     {
       path: 'children/:id/details',
       component: NurseryChildDetailComponent,
       canActivate: [FEATURE_ACCESS_GUARD],
-      resolve: { child: ChildResolverService },
+      resolve: { child: RouteDataResolver.for(ChildrenService) },
       data: {
         FEATURE_ACCESS_GUARDS: [
           {
             app: App.NURSERY,
-            feature: FeatureType.OVERVIEW,
+            feature: FeatureType.CHILDREN,
             access: Access.READ,
           },
         ],

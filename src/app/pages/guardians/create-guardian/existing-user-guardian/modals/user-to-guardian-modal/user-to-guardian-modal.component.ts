@@ -34,7 +34,7 @@ export class UserToGuardianModalComponent implements OnInit {
   }
 
   open(userId: number) {
-    this.userService.getUserById(userId).subscribe((res) => {
+    this.userService.getById(userId).subscribe((res) => {
       this.modal.open();
       this.currentUser = res.body;
       this.form.controls.name.patchValue(this.commonService.getFormattedName(res.body));

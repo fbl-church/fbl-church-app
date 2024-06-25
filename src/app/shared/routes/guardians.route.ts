@@ -3,12 +3,13 @@ import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.m
 import { APP_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/app-access.guard';
 import { AUTH_GUARD } from 'projects/insite-kit/src/service/guards/auth.guard';
 import { FEATURE_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/feature-access.guard';
+import { RouteDataResolver } from 'projects/insite-kit/src/service/request/route-data.resolver';
 import { CreateGuardianComponent } from 'src/app/pages/guardians/create-guardian/create-guardian.component';
 import { ExistingUserGuardianComponent } from 'src/app/pages/guardians/create-guardian/existing-user-guardian/existing-user-guardian.component';
 import { GuardianDetailComponent } from 'src/app/pages/guardians/guardian-detail/guardian-detail.component';
 import { EditGuardianComponent } from 'src/app/pages/guardians/guardian-detail/pages/edit-guardian/edit-guardian.component';
 import { GuardianComponent } from 'src/app/pages/guardians/guardian.component';
-import { GuardianResolverService } from 'src/service/guardians/guardian-resolver.service';
+import { GuardianService } from 'src/service/guardians/guardian.service';
 import { AuthenticatedLayoutComponent } from '../components/layouts/authenticated-layout/authenticated-layout.component';
 
 export const GUARDIANS_ROUTE: Route = {
@@ -53,7 +54,7 @@ export const GUARDIANS_ROUTE: Route = {
       path: ':id/details',
       component: GuardianDetailComponent,
       canActivate: [FEATURE_ACCESS_GUARD],
-      resolve: { guardian: GuardianResolverService },
+      resolve: { guardian: RouteDataResolver.for(GuardianService) },
       data: {
         FEATURE_ACCESS_GUARDS: [
           {
@@ -68,7 +69,7 @@ export const GUARDIANS_ROUTE: Route = {
       path: ':id/details/edit',
       canActivate: [FEATURE_ACCESS_GUARD],
       component: EditGuardianComponent,
-      resolve: { guardian: GuardianResolverService },
+      resolve: { guardian: RouteDataResolver.for(GuardianService) },
       data: {
         FEATURE_ACCESS_GUARDS: [
           {

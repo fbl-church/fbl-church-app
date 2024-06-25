@@ -40,7 +40,7 @@ export class ChildDetailComponent implements OnInit, OnDestroy {
   }
 
   onBackClick() {
-    this.navigationService.back();
+    this.navigationService.back('/children');
   }
 
   onChildDetailEditClick() {

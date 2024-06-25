@@ -41,7 +41,7 @@ describe('UserService', () => {
   });
 
   it('should call get user by id endpoint', () => {
-    service.getUserById(1);
+    service.getById(1);
     expect(requestService.get).toHaveBeenCalledWith('api/users/1');
   });
 

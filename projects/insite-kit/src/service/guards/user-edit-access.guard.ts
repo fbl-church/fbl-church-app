@@ -11,7 +11,7 @@ export const USER_EDIT_ACCESS_GUARD: CanActivateFn = (route) => {
   const navigationService = inject(NavigationService);
   const router = inject(Router);
 
-  return combineLatest([userService.getUserById(route.paramMap.get('id')), userAccessService.user$]).pipe(
+  return combineLatest([userService.getById(route.paramMap.get('id')), userAccessService.user$]).pipe(
     map(([userToEdit, currentUser]) => {
       const canEdit = currentUser.canEditUser(userToEdit.body.webRole);
       if (canEdit) {

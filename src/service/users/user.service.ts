@@ -61,7 +61,7 @@ export class UserService {
    * @returns User object of the current user.
    */
   getCurrentUser(): Observable<HttpResponse<User>> {
-    return this.getUserById(this.jwt.getUserId());
+    return this.getById(this.jwt.getUserId());
   }
 
   /**
@@ -70,7 +70,7 @@ export class UserService {
    * @param params user id for the user to get
    * @returns User object
    */
-  getUserById(id: any): Observable<HttpResponse<User>> {
+  getById(id: any): Observable<HttpResponse<User>> {
     return this.request.get<User>(`${this.BASE_USER_PATH}/${id}`);
   }
 

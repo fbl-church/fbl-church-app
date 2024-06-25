@@ -169,6 +169,11 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           id: 'children',
           name: 'Children',
           route: '/children',
+          restriction: {
+            app: App.NURSERY,
+            feature: FeatureType.CHILDREN,
+            access: Access.READ,
+          },
         },
         {
           id: 'workers',

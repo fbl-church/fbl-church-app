@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RouteDataResolver } from 'projects/insite-kit/src/service/request/route-data.resolver';
 import { ACCESS_MANAGEMENT_ROUTE } from './shared/routes/access-management.route';
 import { AWANA_ROUTE } from './shared/routes/awana.route';
 import { CHILDREN_ROUTE } from './shared/routes/children.route';
@@ -33,5 +34,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
+  providers: [...RouteDataResolver.resolvers],
 })
 export class AppRoutingModule {}
