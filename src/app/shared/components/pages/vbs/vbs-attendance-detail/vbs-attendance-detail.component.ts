@@ -73,7 +73,7 @@ export class VBSAttendanceDetailComponent implements OnInit, OnDestroy {
   }
 
   onBackClick() {
-    this.navigationService.back(`/vbs/themes/${this.attendanceRecord.vbsThemeId}`);
+    this.navigationService.navigate(`/vbs/themes/${this.attendanceRecord.vbsThemeId}`);
   }
 
   onEditClick() {
