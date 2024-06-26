@@ -5,7 +5,7 @@ export interface AttendanceRecord {
   id?: number;
   name?: string;
   status?: AttendanceStatus;
-  type?: ChurchGroup;
+  type?: ChurchGroup | string;
   unitSession?: string;
   workers?: User[] | any[];
   activeDate?: Date | any;

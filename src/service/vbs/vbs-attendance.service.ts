@@ -33,10 +33,20 @@ export class VBSAttendanceService {
   /**
    * Update a VBS Attendance record by id
    *
-   * @param vbsThemeId The vbs attendance record id
+   * @param id The vbs attendance record id
    * @param record The vbs attendance record to update
    */
   update(id: any, record: VBSAttendanceRecord): Observable<HttpResponse<any>> {
     return this.request.put<any>(`${this.BASE_VBS_PATH}/${id}`, record);
+  }
+
+  /**
+   * Create a VBS Attendance record by theme id
+   *
+   * @param vbsThemeId The vbs attendance record id
+   * @param record The vbs attendance record to create
+   */
+  create(vbsThemeId: any, record: VBSAttendanceRecord): Observable<VBSAttendanceRecord> {
+    return this.request.post<VBSAttendanceRecord>(`${this.BASE_VBS_PATH}/themes/${vbsThemeId}`, record);
   }
 }

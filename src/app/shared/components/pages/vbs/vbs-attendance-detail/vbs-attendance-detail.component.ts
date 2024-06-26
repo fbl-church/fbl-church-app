@@ -15,6 +15,7 @@ import { VBSThemesService } from 'src/service/vbs/vbs-themes.service';
 })
 export class VBSAttendanceDetailComponent implements OnInit, OnDestroy {
   attendanceRecord: VBSAttendanceRecord;
+  vbsThemeId: number;
   loading = true;
 
   vbsWorkersDataloader: any;
@@ -39,6 +40,7 @@ export class VBSAttendanceDetailComponent implements OnInit, OnDestroy {
     this.route.data
       .pipe(
         tap((res) => (this.attendanceRecord = res.record.body)),
+        tap(() => (this.vbsThemeId = this.attendanceRecord.vbsThemeId)),
         switchMap(() => this.vbsThemeService.getGroupsByThemeId(this.attendanceRecord.vbsThemeId)),
         takeUntil(this.destroy)
       )
@@ -73,7 +75,7 @@ export class VBSAttendanceDetailComponent implements OnInit, OnDestroy {
   }
 
   onBackClick() {
-    this.navigationService.navigate(`/vbs/themes/${this.attendanceRecord.vbsThemeId}`);
+    this.navigationService.navigate(`/vbs/themes/${this.vbsThemeId}`);
   }
 
   onEditClick() {

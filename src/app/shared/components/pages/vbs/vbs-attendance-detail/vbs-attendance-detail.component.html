@@ -1,7 +1,7 @@
 <ng-container *ngIf="!loading; else pageLoader">
   <app-attendance-record-detail-header
     [(record)]="attendanceRecord"
-    [route]="'/vbs/themes/' + attendanceRecord.id"
+    [route]="'/vbs/themes/' + vbsThemeId"
     [app]="Application.VBS"
     (backClick)="onBackClick()"
   ></app-attendance-record-detail-header>

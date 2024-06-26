@@ -1,0 +1,28 @@
+<ik-modal #vbsAttendanceModal name="vbsAttendanceModal">
+  <ik-modal-header title="Add New VBS Record?" type="info"></ik-modal-header>
+  <ng-container *ngIf="!modalLoading; else modalLoader">
+    <ik-modal-body>
+      <form *ngIf="form" [formGroup]="form">
+        <ik-form-field header="Name" [padding]="false"
+          ><input maxlength="26" class="form-input__normal" placeholder="Name" formControlName="name" />
+        </ik-form-field>
+        <ik-form-field header="Active Date" [padding]="false"
+          ><input type="date" class="form-input__normal" placeholder="Active Date" formControlName="activeDate" />
+        </ik-form-field>
+        <ik-form-field header="Spirit Theme" [padding]="false"
+          ><input maxlength="100" class="form-input__normal" placeholder="Spirit Theme" formControlName="spiritTheme" />
+        </ik-form-field>
+      </form>
+    </ik-modal-body>
+    <ik-modal-action-bar>
+      <button class="btn btn-primary btn-right btn-modal" (click)="onSaveClick()" [disabled]="form && form.invalid">
+        Save Record
+      </button>
+      <button class="btn btn-default btn-right btn-modal" (click)="vbsAttendanceModal.close()">Cancel</button>
+    </ik-modal-action-bar>
+  </ng-container>
+</ik-modal>
+
+<ng-template #modalLoader>
+  <ik-loading></ik-loading>
+</ng-template>

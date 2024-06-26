@@ -259,11 +259,21 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           id: 'themes',
           name: 'Themes',
           route: '/themes',
+          restriction: {
+            app: App.VBS,
+            feature: FeatureType.THEMES,
+            access: Access.READ,
+          },
         },
         {
           id: 'registration',
           name: 'Registration',
           route: '/registration',
+          restriction: {
+            app: App.VBS,
+            feature: FeatureType.REGISTRATION,
+            access: Access.READ,
+          },
         },
         {
           id: 'groups',

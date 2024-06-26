@@ -10,6 +10,7 @@ import { NavigationService } from 'projects/insite-kit/src/service/navigation/na
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, map, of, switchMap, takeUntil, tap } from 'rxjs';
 import { VBSAttendanceService } from 'src/service/vbs/vbs-attendance.service';
+import { VBSPointsService } from 'src/service/vbs/vbs-points.service';
 import { VBSReportsService } from 'src/service/vbs/vbs-report.service';
 import { VBSThemesService } from 'src/service/vbs/vbs-themes.service';
 
@@ -83,6 +84,7 @@ export class VBSThemeDetailsComponent implements OnInit {
   themeData: VBSTheme;
   vbsChildrenStats: any;
   vbsAttendanceDataloader: any;
+  vbsPointsDataloader: any;
   vbsThemeId: any;
 
   FeatureType = FeatureType;
@@ -96,7 +98,8 @@ export class VBSThemeDetailsComponent implements OnInit {
     private readonly navigationService: NavigationService,
     private readonly vbsAttendanceService: VBSAttendanceService,
     private readonly vbsThemeService: VBSThemesService,
-    private readonly popupService: PopupService
+    private readonly popupService: PopupService,
+    private readonly vbsPointsService: VBSPointsService
   ) {}
 
   // ngAfterViewInit(): void {
@@ -118,9 +121,11 @@ export class VBSThemeDetailsComponent implements OnInit {
         switchMap(() => this.vbsReportsService.getChildrenStats(this.vbsThemeId)),
         tap((res) => (this.vbsChildrenStats = res.body)),
         switchMap(() => this.vbsAttendanceService.getByThemeId(this.vbsThemeId)),
+        tap((res) => (this.vbsAttendanceDataloader = () => of(res))),
+        switchMap(() => this.vbsPointsService.getByThemeId(this.vbsThemeId)),
         takeUntil(this.destroy)
       )
-      .subscribe((res) => (this.vbsAttendanceDataloader = () => of(res)));
+      .subscribe((res) => (this.vbsPointsDataloader = () => of(res)));
   }
 
   onBackClick() {

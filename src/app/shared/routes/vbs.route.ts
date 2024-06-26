@@ -1,7 +1,8 @@
 import { Route } from '@angular/router';
-import { WebRole } from 'projects/insite-kit/src/model/common.model';
+import { Access, App, FeatureType, WebRole } from 'projects/insite-kit/src/model/common.model';
 import { APP_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/app-access.guard';
 import { AUTH_GUARD } from 'projects/insite-kit/src/service/guards/auth.guard';
+import { FEATURE_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/feature-access.guard';
 import { RouteDataResolver } from 'projects/insite-kit/src/service/request/route-data.resolver';
 import { VBSGroupsJuniorComponent } from 'src/app/pages/vbs/groups/junior/vbs-groups-junior.component';
 import { VBSGroupsMiddlerComponent } from 'src/app/pages/vbs/groups/middler/vbs-groups-middler.component';
@@ -28,6 +29,16 @@ export const VBS_ROUTE: Route = {
     },
     {
       path: 'themes',
+      canActivate: [FEATURE_ACCESS_GUARD],
+      data: {
+        FEATURE_ACCESS_GUARDS: [
+          {
+            app: App.VBS,
+            feature: FeatureType.THEMES,
+            access: Access.READ,
+          },
+        ],
+      },
       children: [
         {
           path: '',
@@ -36,6 +47,16 @@ export const VBS_ROUTE: Route = {
         {
           path: 'new',
           component: VBSCreateThemeComponent,
+          canActivate: [FEATURE_ACCESS_GUARD],
+          data: {
+            FEATURE_ACCESS_GUARDS: [
+              {
+                app: App.VBS,
+                feature: FeatureType.THEMES,
+                access: Access.CREATE,
+              },
+            ],
+          },
         },
         {
           path: ':id',
@@ -63,6 +84,16 @@ export const VBS_ROUTE: Route = {
           path: ':id/attendance/:attendanceId/edit',
           component: VBSAttendanceDetailEditComponent,
           resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
+          canActivate: [FEATURE_ACCESS_GUARD],
+          data: {
+            FEATURE_ACCESS_GUARDS: [
+              {
+                app: App.VBS,
+                feature: FeatureType.CHECK_IN_DETAIL,
+                access: Access.UPDATE,
+              },
+            ],
+          },
         },
       ],
     },

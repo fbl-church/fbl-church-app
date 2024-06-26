@@ -1,0 +1,56 @@
+<ik-header [title]="record.name">
+  <ik-header-back (back)="onBackClick()"></ik-header-back>
+  <ng-container *featureAccess="[app, FeatureType.CHECK_IN_DETAIL, Access.UPDATE]" ngProjectAs="button">
+    <button
+      class="btn btn-primary header-button"
+      *attendanceRecordActivation="record"
+      [disabled]="loading"
+      (click)="onStartCheckIn()"
+    >
+      <ik-icon *ngIf="!loading; else startCheckInLoader" icon="user-check" classOverride="btn-icon"></ik-icon>
+      Start Check In
+
+      <ng-template #startCheckInLoader>
+        <ik-icon icon="spinner" classOverride="btn-icon" [spin]="true"></ik-icon>
+      </ng-template>
+    </button>
+  </ng-container>
+  <ng-container *featureAccess="[app, FeatureType.CHECK_IN_DETAIL, Access.DELETE]" ngProjectAs="button">
+    <button class="btn btn-danger header-button" *ngIf="record.status === 'ACTIVE'" (click)="closeModal.modal.open()">
+      <ik-icon icon="lock" classOverride="btn-icon"></ik-icon>
+      Close
+    </button>
+  </ng-container>
+  <ng-container *webRoleRestrictionAccess="[WebRole.ADMINISTRATOR]" ngProjectAs="button">
+    <button
+      class="btn btn-primary header-button"
+      *ngIf="record.status === 'CLOSED'"
+      [disabled]="reopenLoading"
+      (click)="onReopenAttendance()"
+    >
+      <ik-icon
+        *ngIf="!reopenLoading; else startCheckInLoader"
+        icon="arrow-rotate-left"
+        classOverride="btn-icon"
+      ></ik-icon>
+      Re-Open
+
+      <ng-template #startCheckInLoader>
+        <ik-icon icon="spinner" classOverride="btn-icon" [spin]="true"></ik-icon>
+      </ng-template>
+    </button>
+  </ng-container>
+  <button
+    class="btn btn-danger header-button"
+    *featureAccess="[app, FeatureType.CHECK_IN_DETAIL, Access.DELETE]"
+    (click)="deleteModal.modal.open()"
+  >
+    <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
+    Delete
+  </button>
+</ik-header>
+
+<app-delete-record-modal #deleteModal [recordId]="record.id" [route]="route"></app-delete-record-modal>
+
+<app-close-attendance-record-modal #closeModal [recordId]="record.id" (closed)="onRecordClosed($event)">
+</app-close-attendance-record-modal>

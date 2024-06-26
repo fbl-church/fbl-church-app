@@ -6,8 +6,7 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: 'card-header-collapsible.component.html',
 })
 export class CardHeaderCollapsibleComponent {
-  @HostBinding('class.card-header') hostClass = true;
-  @HostBinding('class.card-header--closed') hostClosedClass = false;
+  @HostBinding('class') hostClass = 'card-header';
 
   @Input() title: string;
   @Input() collapsed = false;
@@ -16,7 +15,6 @@ export class CardHeaderCollapsibleComponent {
   @HostListener('click') headerClick() {
     this.collapsed = !this.collapsed;
     this.collapseChange.next(this.collapsed);
-    this.hostClass = !this.collapsed;
-    this.hostClosedClass = this.collapsed;
+    this.hostClass = `card-header ${this.collapsed ? 'card-header--closed' : ''}`;
   }
 }

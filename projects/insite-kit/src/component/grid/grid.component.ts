@@ -330,6 +330,9 @@ export class GridComponent implements OnChanges, OnDestroy, AfterContentInit {
     this.refresh();
   }
 
+  /**
+   * Will Reset the grid
+   */
   resetGrid() {
     this.currentSearch = [];
 

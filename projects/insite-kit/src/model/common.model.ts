@@ -131,6 +131,9 @@ export enum FeatureType {
   NOTIFICATION = 'notification',
   LESSONS = 'lessons',
   GRAND_PRIX = 'grand-prix',
+  // Theme Features
+  THEMES = 'themes',
+  THEMES_POINTS = 'themes.points',
 }
 
 export enum App {

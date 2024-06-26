@@ -1,5 +1,6 @@
 .card-header {
-  animation: 0s 2s delayoverflow;
+  transition-delay: 150ms;
+  transition-property: border-radius, border-bottom;
   display: inline-block;
   height: auto;
   width: 100%;
@@ -9,7 +10,9 @@
   border-bottom: 1px solid var(--card-header-border);
 
   &--closed {
-    border-radius: 8px;
+    transition-delay: 350ms;
+    transition-property: border-radius, border;
+    border-radius: 8px !important;
     border-bottom: none;
   }
 

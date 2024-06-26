@@ -2,7 +2,11 @@
   <ik-header [title]="themeData.name">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
 
-    <button class="btn btn-danger header-button" (click)="deleteThemeModal.open()">
+    <button
+      class="btn btn-danger header-button"
+      (click)="deleteThemeModal.open()"
+      *featureAccess="[Application.VBS, FeatureType.THEMES, Access.DELETE]"
+    >
       <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
       Delete
     </button>
@@ -34,7 +38,12 @@
     <div class="col-lg-6">
       <ik-card>
         <ik-card-header title="Details">
-          <ik-icon title="Edit" icon="pen-to-square" class="right pointer"></ik-icon>
+          <ik-icon
+            title="Edit"
+            icon="pen-to-square"
+            class="right pointer"
+            *featureAccess="[Application.VBS, FeatureType.THEMES, Access.UPDATE]"
+          ></ik-icon>
         </ik-card-header>
         <div class="flex">
           <div class="left-column">
@@ -69,7 +78,8 @@
             title="Add Record"
             icon="plus"
             class="right pointer"
-            *featureAccess="[Application.VBS, FeatureType.CHECK_IN_OVERVIEW, Access.CREATE]"
+            *featureAccess="[Application.VBS, FeatureType.CHECK_IN_DETAIL, Access.CREATE]"
+            (click)="vbsAttendanceModal.open()"
           ></ik-icon>
         </ik-card-header>
         <ik-grid-column label="Name" field="name"> </ik-grid-column>
@@ -81,6 +91,21 @@
         <ik-grid-column label="Active Date" field="activeDate"></ik-grid-column>
         <ik-grid-pager key="Records" [pagerVisible]="false"></ik-grid-pager>
       </ik-grid>
+
+      <ik-grid [dataLoader]="vbsPointsDataloader">
+        <ik-card-header title="Point Structure">
+          <ik-icon
+            title="Add Points"
+            icon="plus"
+            class="right pointer"
+            *featureAccess="[Application.VBS, FeatureType.THEMES_POINTS, Access.CREATE]"
+          ></ik-icon>
+        </ik-card-header>
+        <ik-grid-column label="Name" field="displayName"> </ik-grid-column>
+        <ik-grid-column label="Points" field="points"></ik-grid-column>
+        <ik-grid-column label="Updated Date" field="updatedDate"></ik-grid-column>
+        <ik-grid-pager key="Points" [pagerVisible]="false"></ik-grid-pager>
+      </ik-grid>
     </div>
   </div>
   <!-- Worker Distribution Chart -->
@@ -89,6 +114,7 @@
       <div #charts class="vbs-stats__worker-chart"></div>
     </div>
   </div> -->
+  <app-vbs-attendance-record-modal #vbsAttendanceModal [theme]="themeData"></app-vbs-attendance-record-modal>
 </ng-container>
 
 <ng-template #pageLoader>
