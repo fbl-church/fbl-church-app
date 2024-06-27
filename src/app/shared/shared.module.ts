@@ -36,6 +36,9 @@ import { GuardianWarningModalComponent } from './components/modals/guardian-warn
 import { ResetPasswordModalComponent } from './components/modals/reset-password-modal/reset-password-modal.component';
 import { UpdateChildAttendanceModalComponent } from './components/modals/update-child-attendance-modal/update-child-attendance-modal.component';
 import { VBSAttendanceRecordModalComponent } from './components/modals/vbs-attendance-record-modal/vbs-attendance-record-modal.component';
+import { VBSCreatePointsModalComponent } from './components/modals/vbs-create-points-modal/vbs-create-points-modal.component';
+import { VBSDeletePointsModalComponent } from './components/modals/vbs-delete-points-modal/vbs-delete-points-modal.component';
+import { VBSPointsModalComponent } from './components/modals/vbs-points-modal/vbs-points-modal.component';
 import { VBSAttendanceDetailEditComponent } from './components/pages/vbs/vbs-attendance-detail-edit/vbs-attendance-detail-edit.component';
 import { VBSAttendanceDetailComponent } from './components/pages/vbs/vbs-attendance-detail/vbs-attendance-detail.component';
 import { ChildRegistrationWizardComponent } from './components/wizards/child-registration/child-registration-wizard.component';
@@ -89,6 +92,9 @@ import { ChildRegistrationWizardStepFourComponent } from './components/wizards/c
     VBSAttendanceDetailEditComponent,
     VBSAttendanceRecordModalComponent,
     VBSAttendanceDetailHeaderComponent,
+    VBSCreatePointsModalComponent,
+    VBSPointsModalComponent,
+    VBSDeletePointsModalComponent,
   ],
   exports: [
     UserFormComponent,
@@ -132,6 +138,9 @@ import { ChildRegistrationWizardStepFourComponent } from './components/wizards/c
     VBSAttendanceDetailEditComponent,
     VBSAttendanceRecordModalComponent,
     VBSAttendanceDetailHeaderComponent,
+    VBSCreatePointsModalComponent,
+    VBSPointsModalComponent,
+    VBSDeletePointsModalComponent,
   ],
 })
 export class SharedModule {}

@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as Highcharts from 'highcharts';
+import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { ThemeType } from 'projects/insite-kit/src/model/user.model';
@@ -22,6 +23,7 @@ import { VBSThemesService } from 'src/service/vbs/vbs-themes.service';
 export class VBSThemeDetailsComponent implements OnInit {
   @ViewChild('charts') public chartEl: ElementRef;
   @ViewChild(ModalComponent) deleteModal: ModalComponent;
+  @ViewChild('vbsPointsGrid') vbsPointsGrid: GridComponent;
 
   highcharts = Highcharts;
   charts = [];
@@ -134,6 +136,14 @@ export class VBSThemeDetailsComponent implements OnInit {
 
   onRowClick(event: VBSAttendanceRecord) {
     this.navigationService.navigate(`/vbs/themes/${this.vbsThemeId}/attendance/${event.id}`);
+  }
+
+  refreshPointsGrid() {
+    this.vbsPointsGrid.loading = true;
+    this.vbsPointsService.getByThemeId(this.vbsThemeId).subscribe((event) => {
+      this.vbsPointsDataloader = () => of(event);
+      this.vbsPointsGrid.loading = false;
+    });
   }
 
   onDeleteTheme() {

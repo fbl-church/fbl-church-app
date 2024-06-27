@@ -20,4 +20,31 @@ export class VBSPointsService {
   getByThemeId(themeId: any): Observable<HttpResponse<VBSPoint[]>> {
     return this.request.get<VBSPoint[]>(`${this.BASE_VBS_PATH}/themes/${themeId}`);
   }
+
+  /**
+   * Create a new VBS point
+   *
+   * @param point The point to create
+   */
+  create(vbsThemeId: any, point: VBSPoint[]): Observable<VBSPoint[]> {
+    return this.request.post<VBSPoint[]>(`${this.BASE_VBS_PATH}/themes/${vbsThemeId}`, point);
+  }
+
+  /**
+   * Update a VBS point
+   *
+   * @param point The point to update
+   */
+  update(pointId: any, point: VBSPoint): Observable<VBSPoint[]> {
+    return this.request.put<VBSPoint[]>(`${this.BASE_VBS_PATH}/${pointId}`, point);
+  }
+
+  /**
+   * Delete a VBS point
+   *
+   * @param point The point to delete
+   */
+  delete(pointId: any): Observable<void> {
+    return this.request.delete<void>(`${this.BASE_VBS_PATH}/${pointId}`);
+  }
 }

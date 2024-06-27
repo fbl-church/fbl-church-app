@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { WebRole } from 'projects/insite-kit/src/model/common.model';
 import { UserAccess } from 'projects/insite-kit/src/model/user-access.model';
 import { Guardian, User } from 'projects/insite-kit/src/model/user.model';
+import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { UserAccessService } from 'projects/insite-kit/src/service/auth/user-access.service';
 import { Observable, iif, of } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
@@ -16,7 +17,8 @@ export class ProfileResolverService {
   constructor(
     private readonly userService: UserService,
     private readonly guardianService: GuardianService,
-    private readonly userAccessService: UserAccessService
+    private readonly userAccessService: UserAccessService,
+    private readonly jwt: JwtService
   ) {}
 
   resolve(): Observable<User | Guardian> {
@@ -31,7 +33,7 @@ export class ProfileResolverService {
   getUserTypeData(ua: UserAccess) {
     return iif(
       () => ua.hasRole(WebRole.GUARDIAN),
-      this.guardianService.getById(ua.userId),
+      this.guardianService.getById(this.jwt.getUserId()),
       this.userService.getCurrentUser()
     );
   }

@@ -1,0 +1,17 @@
+<ik-modal #vbsDeletePointsModal name="vbsDeletePointsModal">
+  <ik-modal-header title="Delete Point Value?" type="danger"></ik-modal-header>
+  <ng-container *ngIf="!modalLoading; else modalLoader">
+    <ik-modal-body>
+      Deleting this point value map will result in the points being removed from any child that has been assigned this
+      point map. Do you want to continue?
+    </ik-modal-body>
+    <ik-modal-action-bar>
+      <button class="btn btn-danger btn-right btn-modal" (click)="onDeletePoints()">Delete Points</button>
+      <button class="btn btn-default btn-right btn-modal" (click)="vbsDeletePointsModal.close()">Cancel</button>
+    </ik-modal-action-bar>
+  </ng-container>
+</ik-modal>
+
+<ng-template #modalLoader>
+  <ik-loading></ik-loading>
+</ng-template>
