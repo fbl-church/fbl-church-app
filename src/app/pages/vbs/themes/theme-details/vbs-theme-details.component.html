@@ -104,7 +104,11 @@
         </ik-card-header>
         <ik-grid-column label="Name" field="displayName"> </ik-grid-column>
         <ik-grid-column label="Points" field="points"></ik-grid-column>
-        <ik-grid-column label="Updated Date" field="updatedDate"></ik-grid-column>
+        <ik-grid-column label="Registration">
+          <ng-template let-data>
+            <div>{{ data.registrationOnly ? 'Yes' : 'No' }}</div>
+          </ng-template>
+        </ik-grid-column>
         <ik-grid-pager key="Points" [pagerVisible]="false"></ik-grid-pager>
       </ik-grid>
     </div>

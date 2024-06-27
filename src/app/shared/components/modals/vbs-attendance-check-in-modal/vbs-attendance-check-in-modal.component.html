@@ -1,0 +1,31 @@
+<ik-modal #vbsAttendanceCheckInModal name="vbsAttendanceCheckInModal">
+  <ik-modal-header title="Check In Child?" type="info"></ik-modal-header>
+  <ng-container *ngIf="!modalLoading && vbsPoints; else modalLoader">
+    <ik-modal-body>
+      <div class="row">
+        <div class="col-6">
+          <ik-card-info header="Name" [text]="'Samuel Butler'"></ik-card-info>
+        </div>
+        <div class="col-6">
+          <ik-card-info header="CUID" [text]="12345678"></ik-card-info>
+        </div>
+      </div>
+      <div class="row">
+        <ik-form-field header="Points" class="col-12">
+          <div *ngFor="let p of vbsPoints" class="flex-center--start">
+            <ik-checkbox #fieldRead [checkId]="p.id" (checkboxChange)="onCheckBoxUpdate($event)"></ik-checkbox>
+            <div class="card-info__label-text padding-none">{{ p.displayName + ' (' + p.points + ' points)' }}</div>
+          </div>
+        </ik-form-field>
+      </div>
+    </ik-modal-body>
+    <ik-modal-action-bar>
+      <button class="btn btn-default btn-left btn-modal" (click)="vbsAttendanceCheckInModal.close()">Cancel</button>
+      <button class="btn btn-primary btn-right btn-modal" (click)="onCheckIn()">Check In</button>
+    </ik-modal-action-bar>
+  </ng-container>
+</ik-modal>
+
+<ng-template #modalLoader>
+  <ik-loading></ik-loading>
+</ng-template>

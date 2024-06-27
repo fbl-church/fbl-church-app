@@ -26,6 +26,7 @@ export interface VBSPoint {
   type?: string;
   displayName?: string;
   points?: number;
+  registrationOnly?: boolean;
   vbsThemeId?: number;
   updatedUserId?: number;
   updatedDate?: Date;

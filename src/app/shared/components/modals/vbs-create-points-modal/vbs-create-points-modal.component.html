@@ -3,6 +3,27 @@
   <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
       <form *ngIf="form" [formGroup]="form">
+        <ik-form-field header="Registration Only" [padding]="false">
+          <label class="input-inline">
+            <input
+              type="radio"
+              formControlName="registrationOnly"
+              class="form-check-input checkbox__default"
+              [value]="true"
+            />
+            <span>Yes</span>
+          </label>
+          <label class="input-inline">
+            <input
+              type="radio"
+              formControlName="registrationOnly"
+              class="form-check-input checkbox__default"
+              [value]="false"
+            />
+            <span>No</span>
+          </label>
+        </ik-form-field>
+
         <ik-form-field header="Name" [padding]="false"
           ><input maxlength="26" class="form-input__normal" placeholder="Name" formControlName="name" />
         </ik-form-field>

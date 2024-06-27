@@ -22,6 +22,17 @@ export class VBSPointsService {
   }
 
   /**
+   *  Check if a point name exists for a theme id
+   *
+   * @param themeId The vbs theme id
+   * @param name  The name of the point
+   * @returns  A boolean value indicating if the point name exists
+   */
+  doesPointNameExistForThemeId(themeId: any, name: string): Observable<HttpResponse<boolean>> {
+    return this.request.get<boolean>(`${this.BASE_VBS_PATH}/themes/${themeId}/points/name/${name}`);
+  }
+
+  /**
    * Create a new VBS point
    *
    * @param point The point to create

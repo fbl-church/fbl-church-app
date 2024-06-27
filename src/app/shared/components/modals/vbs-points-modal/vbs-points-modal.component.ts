@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { createUniqueValidator } from 'projects/insite-kit/src/component/form/service/async.validator';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { VBSPoint, VBSTheme } from 'projects/insite-kit/src/model/vbs.model';
@@ -36,7 +37,7 @@ export class VBSPointsModalComponent implements OnInit {
   open(p: VBSPoint) {
     this.currentVBSPoint = p;
     this.form.reset();
-    this.form.patchValue({ name: p.displayName, points: p.points });
+    this.form.patchValue({ name: p.displayName, points: p.points, registrationOnly: !!p.registrationOnly || false });
     this.modal.open();
   }
 
@@ -68,13 +69,23 @@ export class VBSPointsModalComponent implements OnInit {
     return {
       displayName: this.form.value.name.trim(),
       points: this.form.value.points,
+      registrationOnly: this.form.value.registrationOnly,
     };
   }
 
   buildForm() {
     this.form = this.fb.group({
-      name: [null, Validators.required],
+      name: [
+        null,
+        {
+          validators: [Validators.required],
+          asyncValidators: createUniqueValidator('duplicate', (value) =>
+            this.vbsPointService.doesPointNameExistForThemeId(this.theme.id, value)
+          ),
+        },
+      ],
       points: [null, Validators.required],
+      registrationOnly: [false, Validators.required],
     });
   }
 }

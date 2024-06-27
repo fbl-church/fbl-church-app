@@ -51,7 +51,8 @@
       "required": "Theme Name is a required field"
     },
     "name": {
-      "required": "Name is a required field"
+      "required": "Name is a required field",
+      "duplicate": "Name must be unique"
     },
     "points": {
       "required": "Points is a required field",

@@ -63,7 +63,7 @@
         <ik-grid-pager key="Offering Winners" [pagerVisible]="false" [pageSize]="5"></ik-grid-pager>
       </ik-grid>
 
-      <ik-grid [dataLoader]="vbsWorkersDataloader">
+      <ik-grid [dataLoader]="vbsWorkersDataloader" (rowClick)="checkInModal.open()">
         <ik-card-header title="Workers"> </ik-card-header>
         <ik-grid-search></ik-grid-search>
         <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
@@ -72,6 +72,7 @@
       </ik-grid>
     </div>
   </div>
+  <app-vbs-attendance-check-in-modal #checkInModal [vbsThemeId]="vbsThemeId"></app-vbs-attendance-check-in-modal>
 </ng-container>
 
 <ng-template #pageLoader>

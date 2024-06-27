@@ -70,6 +70,12 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &--start {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
 }
 
 .right {
@@ -116,6 +122,10 @@ textarea {
 
 .margin-none {
   margin: 0;
+}
+
+.padding-none {
+  padding: 0 !important;
 }
 
 .pointer {

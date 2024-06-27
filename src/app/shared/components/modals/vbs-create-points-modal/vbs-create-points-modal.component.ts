@@ -31,6 +31,7 @@ export class VBSCreatePointsModalComponent implements OnInit {
 
   open() {
     this.form.reset();
+    this.form.patchValue({ registrationOnly: false });
     this.modal.open();
   }
 
@@ -55,6 +56,7 @@ export class VBSCreatePointsModalComponent implements OnInit {
 
   buildVBSPointData(): VBSPoint {
     return {
+      registrationOnly: this.form.value.registrationOnly,
       displayName: this.form.value.name.trim(),
       points: this.form.value.points,
     };
@@ -64,6 +66,7 @@ export class VBSCreatePointsModalComponent implements OnInit {
     this.form = this.fb.group({
       name: [null, Validators.required],
       points: [null, Validators.required],
+      registrationOnly: [false, Validators.required],
     });
   }
 }
