@@ -84,6 +84,10 @@ export class VBSAttendanceDetailComponent implements OnInit, OnDestroy {
     );
   }
 
+  onCheckInChildrenClick() {
+    this.navigationService.navigate(`/vbs/themes/${this.vbsThemeId}/attendance/${this.attendanceRecord.id}/children`);
+  }
+
   getFormattedOfferingWinners(winners: ChurchGroup[], themeGroups: VBSThemeGroup[]) {
     return themeGroups.filter((g) => winners.includes(g.group));
   }

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { CheckboxComponent } from 'projects/insite-kit/src/component/checkbox/checkbox.component';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { WebRoleFeature } from 'projects/insite-kit/src/model/access.model';
+import { Child } from 'projects/insite-kit/src/model/user.model';
 import { VBSPoint } from 'projects/insite-kit/src/model/vbs.model';
 import { VBSPointsService } from 'src/service/vbs/vbs-points.service';
 
@@ -15,13 +16,14 @@ export class VBSAttendanceCheckInModalComponent implements OnInit {
   @ViewChild('fieldRead') readField: CheckboxComponent;
   @ViewChild('fieldUpdate') updateField: CheckboxComponent;
   @ViewChild('fieldDelete') deleteField: CheckboxComponent;
-  @Output() webRoleFeatureUpdate = new EventEmitter<void>();
+  @Output() childCheckedIn = new EventEmitter<void>();
   @Input() vbsThemeId: any;
 
   webRoleFeature: WebRoleFeature;
 
   modalLoading = false;
   vbsPoints: VBSPoint[] = [];
+  child: Child;
 
   constructor(private readonly vbsPointsService: VBSPointsService) {}
 
@@ -33,7 +35,8 @@ export class VBSAttendanceCheckInModalComponent implements OnInit {
     });
   }
 
-  open() {
+  open(c: Child) {
+    this.child = c;
     this.modal.open();
   }
 

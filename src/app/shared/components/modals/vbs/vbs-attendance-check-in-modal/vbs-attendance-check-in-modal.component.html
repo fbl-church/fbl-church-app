@@ -4,10 +4,10 @@
     <ik-modal-body>
       <div class="row">
         <div class="col-6">
-          <ik-card-info header="Name" [text]="'Samuel Butler'"></ik-card-info>
+          <ik-card-info header="Name" [text]="child | formatUserName"></ik-card-info>
         </div>
         <div class="col-6">
-          <ik-card-info header="CUID" [text]="12345678"></ik-card-info>
+          <ik-card-info header="CUID" [text]="child.cuid"></ik-card-info>
         </div>
       </div>
       <div class="row">

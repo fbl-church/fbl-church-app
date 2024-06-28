@@ -4,9 +4,9 @@
     [route]="'/vbs/themes/' + vbsThemeId"
     [app]="Application.VBS"
     (backClick)="onBackClick()"
+    (checkInStarted)="onCheckInChildrenClick()"
   ></app-attendance-record-detail-header>
-  <!-- (checkInStarted)="onCheckInStarted()"
-(recordChange)="refreshChildrenGrid()" -->
+
   <div class="row">
     <div class="col-lg-7">
       <app-vbs-attendance-details-card [record]="attendanceRecord">
@@ -35,6 +35,7 @@
               icon="user-check"
               class="right pointer"
               classOverride="icon__default"
+              (click)="onCheckInChildrenClick()"
             ></ik-icon>
           </ng-container> </ik-card-header
       ></app-attendance-record-children-grid>
@@ -63,7 +64,7 @@
         <ik-grid-pager key="Offering Winners" [pagerVisible]="false" [pageSize]="5"></ik-grid-pager>
       </ik-grid>
 
-      <ik-grid [dataLoader]="vbsWorkersDataloader" (rowClick)="checkInModal.open()">
+      <ik-grid [dataLoader]="vbsWorkersDataloader">
         <ik-card-header title="Workers"> </ik-card-header>
         <ik-grid-search></ik-grid-search>
         <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
@@ -72,7 +73,6 @@
       </ik-grid>
     </div>
   </div>
-  <app-vbs-attendance-check-in-modal #checkInModal [vbsThemeId]="vbsThemeId"></app-vbs-attendance-check-in-modal>
 </ng-container>
 
 <ng-template #pageLoader>

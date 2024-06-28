@@ -1,0 +1,34 @@
+<ng-container *ngIf="!loading; else pageLoader">
+  <ik-header title="VBS Check In">
+    <ik-header-back (back)="onBackClick()"></ik-header-back>
+    <button
+      *featureAccess="[Application.JUNIOR_CHURCH, FeatureType.CHECK_IN_CHILDREN, Access.CREATE]"
+      (click)="onNewChild()"
+      class="btn btn-primary header-button"
+    >
+      <ik-icon icon="circle-plus" classOverride="btn-icon"></ik-icon>
+      New Child
+    </button>
+  </ik-header>
+
+  <ik-grid #childrenCheckInGrid [dataLoader]="childrenDataloader" (rowClick)="checkInModal.open($event)">
+    <ik-grid-search></ik-grid-search>
+    <ik-grid-column label="Name" field="name">
+      <ng-template let-data>
+        {{ data | formatUserName }}
+      </ng-template>
+    </ik-grid-column>
+    <ik-grid-column label="CUID" field="cuid"></ik-grid-column>
+    <ik-grid-pager key="Children" [pageSize]="10"></ik-grid-pager>
+  </ik-grid>
+</ng-container>
+
+<app-vbs-attendance-check-in-modal
+  #checkInModal
+  [vbsThemeId]="vbsThemeId"
+  (childCheckedIn)="refreshGrid()"
+></app-vbs-attendance-check-in-modal>
+
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
+</ng-template>
