@@ -4,6 +4,13 @@
     <ik-modal-body>
       <form *ngIf="form" [formGroup]="form">
         <ik-form-field header="Registration Only" [padding]="false">
+          <ik-icon
+            icon="circle-info"
+            classOverride="btn-icon"
+            [ikTooltip]="'This will only allow people in registration to apply these points.'"
+            [ikTooltipWrapText]="true"
+            ikTooltipPosition="right top"
+          ></ik-icon>
           <label class="input-inline">
             <input
               type="radio"

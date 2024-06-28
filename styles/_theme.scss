@@ -82,6 +82,10 @@
   --ng-select-marked: #ebf5ff;
   --ng-select-hover: #f5faff;
   --ng-select-border: #cccccc;
+
+  // Tooltip
+  --tooptip-background: #222b45;
+  --tooltip-text-color: white;
 }
 
 [data-theme='DARK'] {
@@ -176,4 +180,8 @@
   --ng-select-marked: var(--dark-200);
   --ng-select-hover: var(--dark-100);
   --ng-select-border: var(--dark-600);
+
+  // Tooltip
+  --tooptip-background: #edf1f7;
+  --tooltip-text-color: #222b45;
 }

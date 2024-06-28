@@ -56,7 +56,9 @@ import { AttendanceRecordActivationDirective } from './service/directives/attend
 import { FeatureAccessDirective } from './service/directives/feature-access.directive';
 import { NumberRestrictionDirective } from './service/directives/number-restriction.directive';
 import { PhoneMaskDirective } from './service/directives/phone-mask.directive';
+import { TooltipDirective } from './service/directives/tooltip.directive';
 import { WebRoleRestrictionAccessDirective } from './service/directives/webRole-restriction-access.directive';
+import { DOMModule } from './service/dom/dom.module';
 import { BasicHttpInterceptorService } from './service/interceptor/http-interceptor.service';
 import { AddressPipe } from './service/pipe/address.pipe';
 import { AgePipe } from './service/pipe/age.pipe';
@@ -133,10 +135,12 @@ export function tokenGetter() {
     InputTagComponent,
     TagInputFieldComponent,
     GridDownloadComponent,
+    TooltipDirective,
   ],
   imports: [
     BaseInsiteModule,
     IconModule,
+    DOMModule,
     RouterModule.forRoot([]),
     JwtModule.forRoot({
       config: {
@@ -209,6 +213,8 @@ export function tokenGetter() {
     InputTagComponent,
     TagInputFieldComponent,
     GridDownloadComponent,
+    DOMModule,
+    TooltipDirective,
   ],
   providers: [UsernamePipe, NotificationMessagePipe, { provide: APP_BASE_HREF, useValue: '/' }],
 })

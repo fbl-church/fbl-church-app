@@ -119,7 +119,8 @@ export class IconModule {
       faArrowRotateLeft,
       faCircleCheck,
       faPlus,
-      faClipboardCheck
+      faClipboardCheck,
+      faCircleInfo
     );
   }
 }
