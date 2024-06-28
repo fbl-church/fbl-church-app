@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
-import { Subject, merge } from 'rxjs';
-import { delay, takeUntil, tap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { takeUntil, tap } from 'rxjs/operators';
 import { DOMService } from '../dom/dom.service';
 import { CollisionType } from '../dom/geometry.model';
 import { PositionService } from '../dom/position.service';
@@ -46,7 +46,7 @@ export class TooltipDirective implements OnDestroy, OnInit {
 
   listenForShowEvent() {
     this.domService
-      .fromEvent(this.elementRef, 'mouseenter,touchstart')
+      .fromEvent(this.elementRef, 'mousedown,touchstart')
       .pipe(
         tap(() => this.show()),
         takeUntil(this.destroy)
@@ -55,14 +55,14 @@ export class TooltipDirective implements OnDestroy, OnInit {
   }
 
   listenForHideEvent() {
-    this.domService
-      .fromEvent(this.elementRef, 'mouseleave,touchend')
-      .pipe(
-        delay(0),
-        tap(() => this.hide()),
-        takeUntil(merge(this.cancelHide, this.destroy))
-      )
-      .subscribe();
+    // this.domService
+    //   .fromEvent(this.elementRef, 'mouseleave,touchend')
+    //   .pipe(
+    //     delay(0),
+    //     tap(() => this.hide()),
+    //     takeUntil(merge(this.cancelHide, this.destroy))
+    //   )
+    //   .subscribe();
   }
 
   listenForTooltipEvent() {
@@ -103,12 +103,16 @@ export class TooltipDirective implements OnDestroy, OnInit {
    * Show the tooltip
    */
   show() {
-    this.tooltip.innerHTML = this.tooltipText;
-    this.tooltip.classList.add('ik-tooltip--show');
-    this.domService.appendChild(document.body, this.tooltip);
-    this.setPosition();
-    this.listenForTooltipEvent();
-    this.listenForHideEvent();
+    if (!this.tooltip.classList.contains('ik-tooltip--show')) {
+      this.tooltip.innerHTML = this.tooltipText;
+      this.tooltip.classList.add('ik-tooltip--show');
+      this.domService.appendChild(document.body, this.tooltip);
+      this.setPosition();
+      this.listenForTooltipEvent();
+      this.listenForHideEvent();
+    } else {
+      this.tooltip.classList.remove('ik-tooltip--show');
+    }
   }
 
   /**
