@@ -8,7 +8,7 @@ import { Guardian } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { GuardianService } from 'src/service/guardians/guardian.service';
-import { AddGuardianModalComponent } from '../../../modals/add-guardian-modal/add-guardian-modal.component';
+import { AddGuardianModalComponent } from '../../../modals/guardian/add-guardian-modal/add-guardian-modal.component';
 
 @Component({
   selector: 'app-child-guardians-grid-card',

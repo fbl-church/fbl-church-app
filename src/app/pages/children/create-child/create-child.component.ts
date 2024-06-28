@@ -3,8 +3,8 @@ import { Child } from 'projects/insite-kit/src/model/user.model';
 import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { ChildGuardiansGridCardComponent } from 'src/app/shared/components/cards/children/child-guardians-grid-card/child-guardians-grid-card.component';
-import { DuplicateChildModalComponent } from 'src/app/shared/components/modals/duplicate-child-modal/duplicate-child-modal.component';
-import { GuardianWarningModalComponent } from 'src/app/shared/components/modals/guardian-warning-modal/guardian-warning-modal.component';
+import { DuplicateChildModalComponent } from 'src/app/shared/components/modals/children/duplicate-child-modal/duplicate-child-modal.component';
+import { GuardianWarningModalComponent } from 'src/app/shared/components/modals/guardian/guardian-warning-modal/guardian-warning-modal.component';
 import { ChildrenService } from 'src/service/children/children.service';
 
 @Component({

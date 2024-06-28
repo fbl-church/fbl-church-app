@@ -6,7 +6,7 @@ import { PopupService } from 'projects/insite-kit/src/service/notification/popup
 import { US_STATES } from 'src/app/shared/utils/states.service';
 import { GuardianService } from 'src/service/guardians/guardian.service';
 import { UserService } from 'src/service/users/user.service';
-import { DuplicateGuardianModalComponent } from '../../modals/duplicate-guardian-modal/duplicate-guardian-modal.component';
+import { DuplicateGuardianModalComponent } from '../../modals/guardian/duplicate-guardian-modal/duplicate-guardian-modal.component';
 
 @Component({
   selector: 'app-guardian-form',

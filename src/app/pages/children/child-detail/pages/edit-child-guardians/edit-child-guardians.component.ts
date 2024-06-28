@@ -6,7 +6,7 @@ import { PopupService } from 'projects/insite-kit/src/service/notification/popup
 import { Subject } from 'rxjs';
 import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { ChildGuardiansGridCardComponent } from 'src/app/shared/components/cards/children/child-guardians-grid-card/child-guardians-grid-card.component';
-import { GuardianWarningModalComponent } from 'src/app/shared/components/modals/guardian-warning-modal/guardian-warning-modal.component';
+import { GuardianWarningModalComponent } from 'src/app/shared/components/modals/guardian/guardian-warning-modal/guardian-warning-modal.component';
 import { GuardianService } from 'src/service/guardians/guardian.service';
 
 @Component({

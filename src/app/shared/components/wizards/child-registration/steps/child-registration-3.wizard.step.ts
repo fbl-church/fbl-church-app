@@ -3,7 +3,7 @@ import { Guardian } from 'projects/insite-kit/src/model/user.model';
 import { WizardData } from 'projects/insite-kit/src/model/wizard.model';
 import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { ChildGuardiansGridCardComponent } from 'src/app/shared/components/cards/children/child-guardians-grid-card/child-guardians-grid-card.component';
-import { GuardianWarningModalComponent } from '../../../modals/guardian-warning-modal/guardian-warning-modal.component';
+import { GuardianWarningModalComponent } from '../../../modals/guardian/guardian-warning-modal/guardian-warning-modal.component';
 
 @Component({
   selector: 'app-child-registration-wizard-step-three',

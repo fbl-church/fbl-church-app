@@ -5,7 +5,7 @@ import { ChurchGroup, TranslationKey } from 'projects/insite-kit/src/model/commo
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { ChildrenService } from 'src/service/children/children.service';
-import { DuplicateChildModalComponent } from '../../modals/duplicate-child-modal/duplicate-child-modal.component';
+import { DuplicateChildModalComponent } from '../../modals/children/duplicate-child-modal/duplicate-child-modal.component';
 
 @Component({
   selector: 'app-child-form',
