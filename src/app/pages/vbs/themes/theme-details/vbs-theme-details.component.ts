@@ -1,15 +1,13 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import * as Highcharts from 'highcharts';
 import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
-import { ThemeType } from 'projects/insite-kit/src/model/user.model';
-import { VBSAttendanceRecord, VBSTheme } from 'projects/insite-kit/src/model/vbs.model';
-import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
+import { VBSAttendanceRecord, VBSPoint, VBSTheme } from 'projects/insite-kit/src/model/vbs.model';
 import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
-import { Subject, map, of, switchMap, takeUntil, tap } from 'rxjs';
+import { Observable, Subject, map, of, switchMap, takeUntil, tap } from 'rxjs';
+import { VBSPointsModalComponent } from 'src/app/shared/components/modals/vbs/vbs-points-modal/vbs-points-modal.component';
 import { VBSAttendanceService } from 'src/service/vbs/vbs-attendance.service';
 import { VBSPointsService } from 'src/service/vbs/vbs-points.service';
 import { VBSReportsService } from 'src/service/vbs/vbs-report.service';
@@ -21,64 +19,10 @@ import { VBSThemesService } from 'src/service/vbs/vbs-themes.service';
   styleUrls: ['./vbs-theme-details.component.scss'],
 })
 export class VBSThemeDetailsComponent implements OnInit {
-  @ViewChild('charts') public chartEl: ElementRef;
   @ViewChild(ModalComponent) deleteModal: ModalComponent;
   @ViewChild('vbsPointsGrid') vbsPointsGrid: GridComponent;
-
-  highcharts = Highcharts;
-  charts = [];
-  defaultOptions = {
-    credits: {
-      enabled: false,
-    },
-    accessibility: {
-      enabled: false,
-    },
-    chart: {
-      plotBackgroundColor: null,
-      plotBorderWidth: null,
-      plotShadow: false,
-      type: 'pie',
-    },
-    title: {
-      text: 'Worker Distribution',
-    },
-    tooltip: {
-      pointFormat: '{point.name}: <b>{point.y}</b>',
-    },
-    plotOptions: {
-      pie: {
-        allowPointSelect: true,
-        cursor: 'pointer',
-        dataLabels: {
-          enabled: true,
-        },
-      },
-    },
-    series: [
-      {
-        colorByPoint: true,
-        data: [
-          {
-            name: 'Pre-Primary',
-            y: 12,
-          },
-          {
-            name: 'Primary',
-            y: 8,
-          },
-          {
-            name: 'Middler',
-            y: 13,
-          },
-          {
-            name: 'Junior',
-            y: 6,
-          },
-        ],
-      },
-    ],
-  };
+  @ViewChild('vbsPointsDetailModal') vbsPointsDetailModal: VBSPointsModalComponent;
+  @ViewChild('vbsCreatePointsModal') vbsCreatePointsModal: VBSPointsModalComponent;
 
   destroy = new Subject<void>();
   loading = true;
@@ -94,7 +38,6 @@ export class VBSThemeDetailsComponent implements OnInit {
   Access = Access;
 
   constructor(
-    private readonly jwt: JwtService,
     private readonly route: ActivatedRoute,
     private readonly vbsReportsService: VBSReportsService,
     private readonly navigationService: NavigationService,
@@ -103,10 +46,6 @@ export class VBSThemeDetailsComponent implements OnInit {
     private readonly popupService: PopupService,
     private readonly vbsPointsService: VBSPointsService
   ) {}
-
-  // ngAfterViewInit(): void {
-  //   this.createChart(this.chartEl.nativeElement);
-  // }
 
   ngOnInit(): void {
     this.route.data
@@ -134,16 +73,16 @@ export class VBSThemeDetailsComponent implements OnInit {
     this.navigationService.navigate('/vbs/themes');
   }
 
-  onRowClick(event: VBSAttendanceRecord) {
+  onAttendanceRecordRowClick(event: VBSAttendanceRecord) {
     this.navigationService.navigate(`/vbs/themes/${this.vbsThemeId}/attendance/${event.id}`);
   }
 
-  refreshPointsGrid() {
-    this.vbsPointsGrid.loading = true;
-    this.vbsPointsService.getByThemeId(this.vbsThemeId).subscribe((event) => {
-      this.vbsPointsDataloader = () => of(event);
-      this.vbsPointsGrid.loading = false;
-    });
+  onUpdatePoints(event: VBSPoint) {
+    this.onSaveUpdate(this.vbsPointsService.update(event.id, event), this.vbsPointsDetailModal, 'update');
+  }
+
+  onSavePoints(event: VBSPoint) {
+    this.onSaveUpdate(this.vbsPointsService.create(this.vbsThemeId, [event]), this.vbsCreatePointsModal, 'create');
   }
 
   onDeleteTheme() {
@@ -163,16 +102,36 @@ export class VBSThemeDetailsComponent implements OnInit {
     });
   }
 
-  createChart(container) {
-    let opts: any = this.defaultOptions;
+  onPointsDeleted() {
+    this.refreshPointsGrid().subscribe((res) => {
+      this.vbsPointsDataloader = () => of(res);
+      this.vbsPointsGrid.loading = false;
+    });
+  }
 
-    if (this.jwt.getTheme() === ThemeType.DARK) {
-      opts.chart.backgroundColor = '#222b45';
-      opts.title.style = { color: 'white' };
-    }
+  refreshPointsGrid() {
+    this.vbsPointsGrid.loading = true;
+    return this.vbsPointsService.getByThemeId(this.vbsThemeId);
+  }
 
-    container.appendChild(document.createElement('div'));
+  onSaveUpdate(dataObservable: Observable<any>, modal: VBSPointsModalComponent, statusText: string) {
+    const pastTenseText = statusText === 'create' ? 'Created' : 'Updated';
 
-    this.highcharts.chart(container, opts);
+    dataObservable
+      .pipe(
+        tap(() => modal.close()),
+        switchMap(() => this.refreshPointsGrid())
+      )
+      .subscribe({
+        next: (res) => {
+          this.vbsPointsDataloader = () => of(res);
+          this.popupService.success(`Point Value succesfully ${pastTenseText}!`);
+          this.vbsPointsGrid.loading = false;
+        },
+        error: () => {
+          this.popupService.error(`Unable to ${statusText} Point Value at this time. Try again later.`);
+          this.vbsPointsGrid.loading = false;
+        },
+      });
   }
 }

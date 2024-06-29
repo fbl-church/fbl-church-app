@@ -1,5 +1,5 @@
-<ik-modal #vbsThemePointsModal name="vbsThemePointsModal">
-  <ik-modal-header title="Update Points?" type="info"></ik-modal-header>
+<ik-modal #vbsThemePointsModal [name]="name">
+  <ik-modal-header [title]="title" type="info"></ik-modal-header>
   <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
       <form *ngIf="form" [formGroup]="form">
@@ -48,20 +48,26 @@
       </form>
     </ik-modal-body>
     <ik-modal-action-bar>
-      <button class="btn btn-danger btn-left btn-modal" (click)="onDeleteClick()">Delete</button>
+      <button *ngIf="currentVBSPoint?.id" class="btn btn-danger btn-left btn-modal" (click)="onDeleteClick()">
+        Delete
+      </button>
       <button
         class="btn btn-primary btn-right btn-modal"
-        (click)="onUpdateClick()"
+        (click)="onSaveClick()"
         [disabled]="form && (form.invalid || !form.dirty)"
       >
-        Update
+        {{ saveButtonText }}
       </button>
       <button class="btn btn-default btn-right btn-modal" (click)="vbsThemePointsModal.close()">Cancel</button>
     </ik-modal-action-bar>
   </ng-container>
 </ik-modal>
 
-<app-vbs-delete-points-modal #vbsDeletePointsModal (pointsDeleted)="pointsUpdated.emit()"></app-vbs-delete-points-modal>
+<app-vbs-delete-points-modal
+  #vbsDeletePointsModal
+  [name]="name + 'DELETE'"
+  (pointsDeleted)="onPointValueDeleted()"
+></app-vbs-delete-points-modal>
 
 <ng-template #modalLoader>
   <ik-loading></ik-loading>

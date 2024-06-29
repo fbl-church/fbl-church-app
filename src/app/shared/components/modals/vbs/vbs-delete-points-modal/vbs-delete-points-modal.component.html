@@ -1,4 +1,4 @@
-<ik-modal #vbsDeletePointsModal name="vbsDeletePointsModal">
+<ik-modal #vbsDeletePointsModal [name]="name">
   <ik-modal-header title="Delete Point Value?" type="danger"></ik-modal-header>
   <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>

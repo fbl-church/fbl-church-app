@@ -72,7 +72,7 @@
       </ik-card>
     </div>
     <div class="col-lg-6">
-      <ik-grid [dataLoader]="vbsAttendanceDataloader" (rowClick)="onRowClick($event)">
+      <ik-grid [dataLoader]="vbsAttendanceDataloader" (rowClick)="onAttendanceRecordRowClick($event)">
         <ik-card-header title="Attendance Records">
           <ik-icon
             title="Add Record"
@@ -92,14 +92,14 @@
         <ik-grid-pager key="Records" [pagerVisible]="false"></ik-grid-pager>
       </ik-grid>
 
-      <ik-grid #vbsPointsGrid [dataLoader]="vbsPointsDataloader" (rowClick)="vbsPointsModal.open($event)">
+      <ik-grid #vbsPointsGrid [dataLoader]="vbsPointsDataloader" (rowClick)="vbsPointsDetailModal.open($event)">
         <ik-card-header title="Point Structure">
           <ik-icon
             title="Add Points"
             icon="plus"
             class="right pointer"
             *featureAccess="[Application.VBS, FeatureType.THEMES_POINTS, Access.CREATE]"
-            (click)="vbsCreatePointsModal.open()"
+            (click)="vbsCreatePointsModal.open(null)"
           ></ik-icon>
         </ik-card-header>
         <ik-grid-column label="Name" field="displayName"> </ik-grid-column>
@@ -113,22 +113,27 @@
       </ik-grid>
     </div>
   </div>
-  <!-- Worker Distribution Chart -->
-  <!-- <div class="row">
-    <div class="col-md-6">
-      <div #charts class="vbs-stats__worker-chart"></div>
-    </div>
-  </div> -->
+
   <app-vbs-attendance-record-modal #vbsAttendanceModal [theme]="themeData"></app-vbs-attendance-record-modal>
-  <app-vbs-create-points-modal
-    #vbsCreatePointsModal
-    [theme]="themeData"
-    (pointsCreated)="refreshPointsGrid()"
-  ></app-vbs-create-points-modal>
+
   <app-vbs-points-modal
-    #vbsPointsModal
-    [theme]="themeData"
-    (pointsUpdated)="refreshPointsGrid()"
+    #vbsCreatePointsModal
+    name="vbsCreatePointsModal"
+    title="Add Point Value?"
+    saveButtonText="Save"
+    [themeId]="themeData.id"
+    (save)="onSavePoints($event)"
+  ></app-vbs-points-modal>
+
+  <app-vbs-points-modal
+    #vbsPointsDetailModal
+    name="vbsPointsDetailModal"
+    title="Update Points?"
+    saveButtonText="Update"
+    [deleteEnabled]="true"
+    [themeId]="themeData.id"
+    (save)="onUpdatePoints($event)"
+    (pointsUpdated)="onPointsDeleted()"
   ></app-vbs-points-modal>
 </ng-container>
 

@@ -46,8 +46,8 @@ export class VBSPointsService {
    *
    * @param point The point to update
    */
-  update(pointId: any, point: VBSPoint): Observable<VBSPoint[]> {
-    return this.request.put<VBSPoint[]>(`${this.BASE_VBS_PATH}/${pointId}`, point);
+  update(pointId: any, point: VBSPoint): Observable<any> {
+    return this.request.put<any>(`${this.BASE_VBS_PATH}/${pointId}`, point);
   }
 
   /**

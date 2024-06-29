@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { VBSPointsService } from 'src/service/vbs/vbs-points.service';
@@ -8,11 +8,12 @@ import { VBSPointsService } from 'src/service/vbs/vbs-points.service';
   templateUrl: './vbs-delete-points-modal.component.html',
 })
 export class VBSDeletePointsModalComponent {
+  @Input() name: string;
   @ViewChild('vbsDeletePointsModal') modal: ModalComponent;
   @Output() pointsDeleted = new EventEmitter<void>();
 
   modalLoading = false;
-  deletingPointId: any;
+  deletingPointId: any = 111111;
 
   constructor(private readonly vbsPointsService: VBSPointsService, private readonly popupService: PopupService) {}
 

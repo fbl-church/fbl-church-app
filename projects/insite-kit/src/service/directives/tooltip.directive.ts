@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil, tap } from 'rxjs/operators';
+import { Subject, merge } from 'rxjs';
+import { delay, takeUntil, tap } from 'rxjs/operators';
 import { DOMService } from '../dom/dom.service';
 import { CollisionType } from '../dom/geometry.model';
 import { PositionService } from '../dom/position.service';
@@ -46,7 +46,7 @@ export class TooltipDirective implements OnDestroy, OnInit {
 
   listenForShowEvent() {
     this.domService
-      .fromEvent(this.elementRef, 'mousedown,touchstart')
+      .fromEvent(this.elementRef, 'mouseenter')
       .pipe(
         tap(() => this.show()),
         takeUntil(this.destroy)
@@ -55,19 +55,19 @@ export class TooltipDirective implements OnDestroy, OnInit {
   }
 
   listenForHideEvent() {
-    // this.domService
-    //   .fromEvent(this.elementRef, 'mouseleave,touchend')
-    //   .pipe(
-    //     delay(0),
-    //     tap(() => this.hide()),
-    //     takeUntil(merge(this.cancelHide, this.destroy))
-    //   )
-    //   .subscribe();
+    this.domService
+      .fromEvent(this.elementRef, 'mouseleave')
+      .pipe(
+        delay(0),
+        tap(() => this.hide()),
+        takeUntil(merge(this.cancelHide, this.destroy))
+      )
+      .subscribe();
   }
 
   listenForTooltipEvent() {
     this.domService
-      .fromEvent(this.tooltip, 'mouseenter,touchstart')
+      .fromEvent(this.tooltip, 'mouseenter')
       .pipe(
         tap(() => this.cancelHide.next()),
         takeUntil(this.destroy)
@@ -75,7 +75,7 @@ export class TooltipDirective implements OnDestroy, OnInit {
       .subscribe();
 
     this.domService
-      .fromEvent(this.tooltip, 'mouseleave,touchend')
+      .fromEvent(this.tooltip, 'mouseleave')
       .pipe(
         tap(() => this.hide()),
         takeUntil(this.destroy)
