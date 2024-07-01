@@ -21,6 +21,7 @@ import { VBSThemesService } from 'src/service/vbs/vbs-themes.service';
 export class VBSThemeDetailsComponent implements OnInit {
   @ViewChild(ModalComponent) deleteModal: ModalComponent;
   @ViewChild('vbsPointsGrid') vbsPointsGrid: GridComponent;
+  @ViewChild('vbsThemeGroupsGrid') vbsThemeGroupsGrid: GridComponent;
   @ViewChild('vbsPointsDetailModal') vbsPointsDetailModal: VBSPointsModalComponent;
   @ViewChild('vbsCreatePointsModal') vbsCreatePointsModal: VBSPointsModalComponent;
 
@@ -31,6 +32,7 @@ export class VBSThemeDetailsComponent implements OnInit {
   vbsChildrenStats: any;
   vbsAttendanceDataloader: any;
   vbsPointsDataloader: any;
+  vbsThemeGroupsDataloader: any;
   vbsThemeId: any;
 
   FeatureType = FeatureType;
@@ -64,9 +66,11 @@ export class VBSThemeDetailsComponent implements OnInit {
         switchMap(() => this.vbsAttendanceService.getByThemeId(this.vbsThemeId)),
         tap((res) => (this.vbsAttendanceDataloader = () => of(res))),
         switchMap(() => this.vbsPointsService.getByThemeId(this.vbsThemeId)),
+        tap((res) => (this.vbsPointsDataloader = () => of(res))),
+        switchMap(() => this.vbsThemeService.getGroupsByThemeId(this.vbsThemeId)),
         takeUntil(this.destroy)
       )
-      .subscribe((res) => (this.vbsPointsDataloader = () => of(res)));
+      .subscribe((res) => (this.vbsThemeGroupsDataloader = () => of(res)));
   }
 
   onBackClick() {
@@ -112,6 +116,14 @@ export class VBSThemeDetailsComponent implements OnInit {
   refreshPointsGrid() {
     this.vbsPointsGrid.loading = true;
     return this.vbsPointsService.getByThemeId(this.vbsThemeId);
+  }
+
+  refreshVBSThemeGroups() {
+    this.vbsThemeGroupsGrid.loading = true;
+    this.vbsThemeService.getGroupsByThemeId(this.vbsThemeId).subscribe((res) => {
+      this.vbsThemeGroupsDataloader = () => of(res);
+      this.vbsThemeGroupsGrid.loading = false;
+    });
   }
 
   onSaveUpdate(dataObservable: Observable<any>, modal: VBSPointsModalComponent, statusText: string) {

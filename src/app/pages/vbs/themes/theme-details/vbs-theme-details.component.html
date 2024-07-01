@@ -70,8 +70,7 @@
           </div>
         </div>
       </ik-card>
-    </div>
-    <div class="col-lg-6">
+
       <ik-grid [dataLoader]="vbsAttendanceDataloader" (rowClick)="onAttendanceRecordRowClick($event)">
         <ik-card-header title="Attendance Records">
           <ik-icon
@@ -91,7 +90,9 @@
         <ik-grid-column label="Active Date" field="activeDate"></ik-grid-column>
         <ik-grid-pager key="Records" [pagerVisible]="false"></ik-grid-pager>
       </ik-grid>
+    </div>
 
+    <div class="col-lg-6">
       <ik-grid #vbsPointsGrid [dataLoader]="vbsPointsDataloader" (rowClick)="vbsPointsDetailModal.open($event)">
         <ik-card-header title="Point Structure">
           <ik-icon
@@ -102,14 +103,30 @@
             (click)="vbsCreatePointsModal.open(null)"
           ></ik-icon>
         </ik-card-header>
-        <ik-grid-column label="Name" field="displayName"> </ik-grid-column>
+        <ik-grid-column label="Name" field="displayName"></ik-grid-column>
         <ik-grid-column label="Points" field="points"></ik-grid-column>
         <ik-grid-column label="Registration">
           <ng-template let-data>
             <div>{{ data.registrationOnly ? 'Yes' : 'No' }}</div>
           </ng-template>
         </ik-grid-column>
+        <ik-grid-column label="Auto Apply">
+          <ng-template let-data>
+            <div>{{ data.checkInApply ? 'Yes' : 'No' }}</div>
+          </ng-template>
+        </ik-grid-column>
         <ik-grid-pager key="Points" [pagerVisible]="false"></ik-grid-pager>
+      </ik-grid>
+
+      <ik-grid #vbsThemeGroupsGrid [dataLoader]="vbsThemeGroupsDataloader" (rowClick)="themeGroupModal.open($event)">
+        <ik-card-header title="VBS Groups"> </ik-card-header>
+        <ik-grid-column label="Group" field="group">
+          <ng-template let-data>
+            <div>{{ data.group | churchGroupTranslate }}</div>
+          </ng-template>
+        </ik-grid-column>
+        <ik-grid-column label="Name" field="name"></ik-grid-column>
+        <ik-grid-pager key="Groups" [pagerVisible]="false"></ik-grid-pager>
       </ik-grid>
     </div>
   </div>
@@ -135,6 +152,8 @@
     (save)="onUpdatePoints($event)"
     (pointsUpdated)="onPointsDeleted()"
   ></app-vbs-points-modal>
+  <app-vbs-groups-modal #themeGroupModal [themeId]="themeData.id" (groupUpdated)="refreshVBSThemeGroups()">
+  </app-vbs-groups-modal>
 </ng-container>
 
 <ng-template #pageLoader>

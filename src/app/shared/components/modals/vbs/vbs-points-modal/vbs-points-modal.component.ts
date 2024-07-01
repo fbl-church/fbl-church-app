@@ -41,9 +41,14 @@ export class VBSPointsModalComponent implements OnInit {
     this.currentVBSPoint = p;
     if (p) {
       this.currentVBSPoint = p;
-      this.form.patchValue({ name: p.displayName, points: p.points, registrationOnly: !!p.registrationOnly || false });
+      this.form.patchValue({
+        name: p.displayName,
+        points: p.points,
+        registrationOnly: !!p.registrationOnly || false,
+        checkInApply: !!p.checkInApply || false,
+      });
     } else {
-      this.form.patchValue({ registrationOnly: false });
+      this.form.patchValue({ registrationOnly: false, checkInApply: false });
     }
 
     this.modal.open();
@@ -73,6 +78,7 @@ export class VBSPointsModalComponent implements OnInit {
       displayName: this.form.value.name.trim(),
       points: this.form.value.points,
       registrationOnly: this.form.value.registrationOnly,
+      checkInApply: this.form.value.checkInApply,
     };
   }
 
@@ -89,6 +95,7 @@ export class VBSPointsModalComponent implements OnInit {
       ],
       points: [null, Validators.required],
       registrationOnly: [false, Validators.required],
+      checkInApply: [false, Validators.required],
     });
   }
 }

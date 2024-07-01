@@ -12,8 +12,8 @@ import { DeleteUserModalComponent } from './user/delete-user-modal/delete-user-m
 import { ResetPasswordModalComponent } from './user/reset-password-modal/reset-password-modal.component';
 import { VBSAttendanceCheckInModalComponent } from './vbs/vbs-attendance-check-in-modal/vbs-attendance-check-in-modal.component';
 import { VBSAttendanceRecordModalComponent } from './vbs/vbs-attendance-record-modal/vbs-attendance-record-modal.component';
-import { VBSCreatePointsModalComponent } from './vbs/vbs-create-points-modal/vbs-create-points-modal.component';
 import { VBSDeletePointsModalComponent } from './vbs/vbs-delete-points-modal/vbs-delete-points-modal.component';
+import { VBSGroupsModalComponent } from './vbs/vbs-groups-modal/vbs-groups-modal.component';
 import { VBSPointsModalComponent } from './vbs/vbs-points-modal/vbs-points-modal.component';
 
 @NgModule({
@@ -30,10 +30,10 @@ import { VBSPointsModalComponent } from './vbs/vbs-points-modal/vbs-points-modal
     ResetPasswordModalComponent,
     UpdateChildAttendanceModalComponent,
     VBSAttendanceRecordModalComponent,
-    VBSCreatePointsModalComponent,
     VBSPointsModalComponent,
     VBSDeletePointsModalComponent,
     VBSAttendanceCheckInModalComponent,
+    VBSGroupsModalComponent,
   ],
   exports: [
     CloseAttendanceRecordModalComponent,
@@ -47,10 +47,10 @@ import { VBSPointsModalComponent } from './vbs/vbs-points-modal/vbs-points-modal
     ResetPasswordModalComponent,
     UpdateChildAttendanceModalComponent,
     VBSAttendanceRecordModalComponent,
-    VBSCreatePointsModalComponent,
     VBSPointsModalComponent,
     VBSDeletePointsModalComponent,
     VBSAttendanceCheckInModalComponent,
+    VBSGroupsModalComponent,
   ],
 })
 export class SharedModalsModule {}

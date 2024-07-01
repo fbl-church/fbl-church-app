@@ -30,7 +30,7 @@ export class VBSAttendanceCheckInModalComponent implements OnInit {
   ngOnInit() {
     this.modalLoading = true;
     this.vbsPointsService.getByThemeId(this.vbsThemeId).subscribe((res) => {
-      this.vbsPoints = res.body.filter((p) => p.registrationOnly);
+      this.vbsPoints = res.body.filter((p) => p.registrationOnly && !p.checkInApply);
       this.modalLoading = false;
     });
   }
