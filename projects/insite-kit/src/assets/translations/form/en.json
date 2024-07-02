@@ -24,7 +24,8 @@
       "required": "End date is a required field"
     },
     "activeDate": {
-      "required": "Active date is a required field"
+      "required": "Active date is a required field",
+      "vbsThemeInvalidDate": "Active date must be between the start and end date of the VBS Theme."
     },
     "birthday": {
       "required": "Birthday is a required field"

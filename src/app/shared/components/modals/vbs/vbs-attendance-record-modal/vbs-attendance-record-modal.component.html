@@ -7,7 +7,14 @@
           ><input maxlength="26" class="form-input__normal" placeholder="Name" formControlName="name" />
         </ik-form-field>
         <ik-form-field header="Active Date" [padding]="false"
-          ><input type="date" class="form-input__normal" placeholder="Active Date" formControlName="activeDate" />
+          ><input
+            type="date"
+            [min]="theme.startDate"
+            [max]="theme.endDate"
+            class="form-input__normal"
+            placeholder="Active Date"
+            formControlName="activeDate"
+          />
         </ik-form-field>
         <ik-form-field header="Spirit Theme" [padding]="false"
           ><input maxlength="100" class="form-input__normal" placeholder="Spirit Theme" formControlName="spiritTheme" />
@@ -15,7 +22,11 @@
       </form>
     </ik-modal-body>
     <ik-modal-action-bar>
-      <button class="btn btn-primary btn-right btn-modal" (click)="onSaveClick()" [disabled]="form && form.invalid">
+      <button
+        class="btn btn-primary btn-right btn-modal"
+        (click)="onSaveClick()"
+        [disabled]="form && (form.invalid || form.pending)"
+      >
         Save Record
       </button>
       <button class="btn btn-default btn-right btn-modal" (click)="vbsAttendanceModal.close()">Cancel</button>

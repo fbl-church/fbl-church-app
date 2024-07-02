@@ -1,11 +1,15 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { addDays, isAfter, isBefore, parseISO } from 'date-fns';
+import { createUniqueValidator } from 'projects/insite-kit/src/component/form/service/async.validator';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { VBSTheme } from 'projects/insite-kit/src/model/vbs.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
+import { of } from 'rxjs';
 import { VBSAttendanceService } from 'src/service/vbs/vbs-attendance.service';
 
 @Component({
@@ -34,7 +38,7 @@ export class VBSAttendanceRecordModalComponent implements OnInit {
 
   open() {
     this.form.reset();
-    this.form.patchValue({ activeDate: this.commonService.formatDate(new Date(), 'yyyy-MM-dd') });
+    this.form.patchValue({ activeDate: this.theme.startDate });
     this.modal.open();
   }
 
@@ -70,7 +74,29 @@ export class VBSAttendanceRecordModalComponent implements OnInit {
     this.form = this.fb.group({
       name: ['', Validators.required],
       spiritTheme: [''],
-      activeDate: ['', Validators.required],
+      activeDate: [
+        '',
+        {
+          validators: [Validators.required],
+          asyncValidators: createUniqueValidator('vbsThemeInvalidDate', (value) =>
+            of(new HttpResponse({ body: this.isInvalidActiveDate(value) }))
+          ),
+        },
+      ],
     });
+  }
+
+  isEndDateBeforeStartDate(start: any, end: any) {
+    const parsedStartDate = parseISO(start);
+    const parsedEndDate = parseISO(end);
+    return isBefore(parsedEndDate, parsedStartDate);
+  }
+
+  isInvalidActiveDate(res: any) {
+    const parsedActiveDate = parseISO(res);
+
+    return (
+      isBefore(parsedActiveDate, this.theme.startDate) || isAfter(parsedActiveDate, addDays(this.theme.endDate, 1))
+    );
   }
 }
