@@ -14,9 +14,22 @@
       </ik-form-field>
     </div>
 
-    <ik-form-field header="Spirit Theme"
-      ><input maxlength="100" class="form-input__normal" placeholder="Spirit Theme" formControlName="spiritTheme" />
-    </ik-form-field>
+    <div class="row">
+      <ik-form-field header="Spirit Theme" class="col-md-6"
+        ><input maxlength="100" class="form-input__normal" placeholder="Spirit Theme" formControlName="spiritTheme" />
+      </ik-form-field>
+
+      <ik-form-field header="Offering Amount" class="col-md-6"
+        ><input
+          currencyMask
+          min="0.00"
+          class="form-input__normal"
+          placeholder="Offering Amount"
+          formControlName="offeringAmount"
+        />
+      </ik-form-field>
+    </div>
+
     <ik-form-field header="Offering Winners">
       <ik-multi-select formControlName="offeringWinners" [items]="vbsThemeGroups"></ik-multi-select>
     </ik-form-field>

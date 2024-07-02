@@ -60,6 +60,7 @@
     "highcharts": "^11.4.3",
     "jquery": "^3.5.1",
     "lodash-es": "^4.17.21",
+    "ng2-currency-mask": "^13.0.3",
     "ng2-file-upload": "5.0.0",
     "ngx-toastr": "^17.0.2",
     "rxjs": "~7.5.0",

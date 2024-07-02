@@ -9,7 +9,7 @@ export const EXTERNAL_ROUTE: Route = {
   children: [
     {
       path: '',
-      redirectTo: '/login',
+      redirectTo: '/external/vbs/registration',
       pathMatch: 'full',
     },
     {

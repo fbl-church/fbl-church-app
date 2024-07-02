@@ -22,6 +22,8 @@ export class VBSAttendanceDetailComponent implements OnInit, OnDestroy {
   vbsChildrenDataloader: any;
   vbsOfferingWinnersDataloader: any;
 
+  baseRoute: string;
+
   FeatureType = FeatureType;
   Application = App;
   Access = Access;
@@ -40,6 +42,7 @@ export class VBSAttendanceDetailComponent implements OnInit, OnDestroy {
     this.route.data
       .pipe(
         tap((res) => (this.attendanceRecord = res.record.body)),
+        tap((res) => (this.baseRoute = this.buildBaseRoute(res.route))),
         tap(() => (this.vbsThemeId = this.attendanceRecord.vbsThemeId)),
         switchMap(() => this.vbsThemeService.getGroupsByThemeId(this.attendanceRecord.vbsThemeId)),
         takeUntil(this.destroy)
@@ -75,20 +78,26 @@ export class VBSAttendanceDetailComponent implements OnInit, OnDestroy {
   }
 
   onBackClick() {
-    this.navigationService.navigate(`/vbs/themes/${this.vbsThemeId}`);
+    this.navigationService.navigate(this.baseRoute);
   }
 
   onEditClick() {
-    this.navigationService.navigate(
-      `/vbs/themes/${this.attendanceRecord.vbsThemeId}/attendance/${this.attendanceRecord.id}/edit`
-    );
+    this.navigationService.navigate(`${this.baseRoute}/attendance/${this.attendanceRecord.id}/edit`);
   }
 
   onCheckInChildrenClick() {
-    this.navigationService.navigate(`/vbs/themes/${this.vbsThemeId}/attendance/${this.attendanceRecord.id}/children`);
+    this.navigationService.navigate(`${this.baseRoute}/attendance/${this.attendanceRecord.id}/children`);
   }
 
   getFormattedOfferingWinners(winners: ChurchGroup[], themeGroups: VBSThemeGroup[]) {
     return themeGroups.filter((g) => winners.includes(g.group));
+  }
+
+  buildBaseRoute(path: string) {
+    if (path && path.includes('themes')) {
+      return `/vbs/themes/${this.attendanceRecord.vbsThemeId}`;
+    } else {
+      return path;
+    }
   }
 }

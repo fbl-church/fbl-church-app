@@ -33,6 +33,16 @@ export class VBSThemesService {
   }
 
   /**
+   * Get a list of vbs themes
+   *
+   * @param params to filter on
+   * @returns vbs theme object
+   */
+  getLatestActive(): Observable<HttpResponse<VBSTheme>> {
+    return this.request.get<VBSTheme>(`${this.BASE_VBS_PATH}/active`);
+  }
+
+  /**
    * Get a list of vbs theme groups
    *
    * @param id The id of the theme

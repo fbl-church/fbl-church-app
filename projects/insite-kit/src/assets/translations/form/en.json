@@ -57,6 +57,10 @@
     "points": {
       "required": "Points is a required field",
       "min": "Points must be a value greater than 0"
+    },
+    "offeringAmount": {
+      "required": "Offering Amount is a required field",
+      "min": "Offering Amount must be a value greater than 0.00"
     }
   }
 }

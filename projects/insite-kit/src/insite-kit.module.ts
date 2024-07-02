@@ -3,6 +3,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
+import { CURRENCY_MASK_CONFIG, CurrencyMaskConfig, CurrencyMaskModule } from 'ng2-currency-mask';
 import { FileUploadModule } from 'ng2-file-upload';
 import { ToastrModule } from 'ngx-toastr';
 import { BaseInsiteModule } from './base-insite.module';
@@ -73,6 +74,16 @@ import { InisteUserNotificationComponent } from './subscription/insite-user-noti
 export function tokenGetter() {
   return localStorage.getItem('auth-token');
 }
+
+export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
+  align: 'left',
+  allowNegative: false,
+  decimal: '.',
+  precision: 2,
+  prefix: '$',
+  suffix: '',
+  thousands: ',',
+};
 
 @NgModule({
   declarations: [
@@ -151,6 +162,7 @@ export function tokenGetter() {
       positionClass: 'toast-top-right',
     }),
     FileUploadModule,
+    CurrencyMaskModule,
   ],
   exports: [
     IconModule,
@@ -215,8 +227,14 @@ export function tokenGetter() {
     GridDownloadComponent,
     DOMModule,
     TooltipDirective,
+    CurrencyMaskModule,
   ],
-  providers: [UsernamePipe, NotificationMessagePipe, { provide: APP_BASE_HREF, useValue: '/' }],
+  providers: [
+    UsernamePipe,
+    NotificationMessagePipe,
+    { provide: APP_BASE_HREF, useValue: '/' },
+    { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
+  ],
 })
 export class InsiteKitModule {
   static forRoot(environment: any): ModuleWithProviders<InsiteKitModule> {

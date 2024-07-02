@@ -6,13 +6,13 @@
         <ik-card-info header="Name" [text]="record.name"></ik-card-info>
       </div>
       <div class="right-column">
-        <ik-card-info header="Attendance Type" [text]="record.type | churchGroupTranslate"></ik-card-info>
+        <ik-card-info [contentColor]="record.status" header="Status" [text]="record.status"></ik-card-info>
       </div>
     </div>
 
     <div class="flex">
       <div class="left-column">
-        <ik-card-info [contentColor]="record.status" header="Status" [text]="record.status"></ik-card-info>
+        <ik-card-info header="Offering" [text]="record.money | currency"> </ik-card-info>
       </div>
       <div class="right-column">
         <ik-card-info header="Spirit Theme" [text]="record?.spiritTheme ? record.spiritTheme : '-'"> </ik-card-info>

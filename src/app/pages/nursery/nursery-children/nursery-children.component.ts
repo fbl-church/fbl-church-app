@@ -24,7 +24,6 @@ export class NurseryChildrenComponent {
   }
 
   onRowClick(event: Child) {
-    console.log('CLICK CALLED', event, `/nursery/children/${event.id}/details`);
     this.navigationService.navigate(`/nursery/children/${event.id}/details`);
   }
 }

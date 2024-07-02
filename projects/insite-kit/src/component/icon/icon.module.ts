@@ -43,6 +43,7 @@ import {
   faSearch,
   faSeedling,
   faSpinner,
+  faStar,
   faTrashCan,
   faTriangleExclamation,
   faUpload,
@@ -120,7 +121,8 @@ export class IconModule {
       faCircleCheck,
       faPlus,
       faClipboardCheck,
-      faCircleInfo
+      faCircleInfo,
+      faStar
     );
   }
 }

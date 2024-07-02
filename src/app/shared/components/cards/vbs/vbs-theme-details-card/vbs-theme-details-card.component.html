@@ -1,0 +1,43 @@
+<ik-card>
+  <ik-card-header [title]="title">
+    <ng-container *ngIf="editEnabled">
+      <ik-icon
+        title="Edit"
+        icon="pen-to-square"
+        class="right pointer"
+        *featureAccess="[Application.VBS, FeatureType.THEMES, Access.UPDATE]"
+        (click)="editClick.emit(theme)"
+      ></ik-icon>
+    </ng-container>
+  </ik-card-header>
+  <ng-container *ngIf="theme; else cardLoader">
+    <div class="flex">
+      <div class="left-column">
+        <ik-card-info header="Theme" [text]="theme.name"></ik-card-info>
+      </div>
+      <div class="right-column">
+        <ik-card-info header="Donating To" [text]="theme.donation"></ik-card-info>
+      </div>
+    </div>
+    <div class="flex">
+      <div class="right-column">
+        <ik-card-info header="Start Date" [text]="theme.startDate | date : 'MMMM d, y'"></ik-card-info>
+      </div>
+      <div class="right-column">
+        <ik-card-info header="End Date" [text]="theme.endDate | date : 'MMMM d, y'"></ik-card-info>
+      </div>
+    </div>
+    <div class="flex">
+      <div class="right-column">
+        <ik-card-info [contentColor]="theme.status" header="Status" [text]="theme.status"></ik-card-info>
+      </div>
+      <div class="right-column">
+        <ik-card-info header="Created" [text]="theme.insertDate | date : 'MMMM d, y'"></ik-card-info>
+      </div>
+    </div>
+  </ng-container>
+</ik-card>
+
+<ng-template #cardLoader>
+  <ik-loading></ik-loading>
+</ng-template>

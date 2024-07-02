@@ -1,0 +1,51 @@
+<ng-container *ngIf="!loading; else pageLoader">
+  <ik-header [title]="vbsThemeGroup.group | churchGroupTranslate">
+    <button class="btn btn-primary header-button">
+      <ik-icon title="Check In" icon="star" classOverride="btn-icon"></ik-icon>
+      Children Points
+    </button>
+  </ik-header>
+
+  <div class="row">
+    <div class="col-lg-7">
+      <app-vbs-theme-details-card title="Theme Details" [theme]="themeData"></app-vbs-theme-details-card>
+
+      <ik-grid [dataLoader]="vbsAttendanceDataloader" (rowClick)="onAttendanceRecordRowClick($event)">
+        <ik-card-header title="Attendance Records"> </ik-card-header>
+        <ik-grid-column label="Name" field="name"> </ik-grid-column>
+        <ik-grid-column label="Status" field="status">
+          <ng-template let-data>
+            <div [ngClass]="data.status">{{ data.status }}</div>
+          </ng-template>
+        </ik-grid-column>
+        <ik-grid-column label="Active Date" field="activeDate"></ik-grid-column>
+        <ik-grid-pager key="Records" [pagerVisible]="false"></ik-grid-pager>
+      </ik-grid>
+    </div>
+
+    <div class="col-lg-5">
+      <ik-card>
+        <ik-card-header title="Group Details"> </ik-card-header>
+        <div class="flex">
+          <div class="left-column">
+            <ik-card-info header="Group" [text]="vbsThemeGroup.group"></ik-card-info>
+          </div>
+          <div class="right-column">
+            <ik-card-info header="Name" [text]="vbsThemeGroup.name"></ik-card-info>
+          </div>
+        </div>
+      </ik-card>
+      <ik-grid [dataLoader]="vbsGroupWorkersDataloader">
+        <ik-card-header title="Workers"> </ik-card-header>
+        <ik-grid-search></ik-grid-search>
+        <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
+        <ik-grid-column label="Email" field="email"></ik-grid-column>
+        <ik-grid-pager key="Workers" [pageSize]="5"></ik-grid-pager>
+      </ik-grid>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
+</ng-template>

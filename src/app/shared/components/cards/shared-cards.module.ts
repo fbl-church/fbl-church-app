@@ -9,6 +9,7 @@ import { GuardianDetailsCardComponent } from './guardians/guardian-details-card/
 import { UserDetailsCardComponent } from './users/user-details-card/user-details-card.component';
 import { UserRolesCardComponent } from './users/user-roles-card/user-roles-card.component';
 import { VBSAttendanceDetailsCardComponent } from './vbs/vbs-attendance-details-card/vbs-attendance-details-card.component';
+import { VBSThemeDetailsCardComponent } from './vbs/vbs-theme-details-card/vbs-theme-details-card.component';
 
 @NgModule({
   imports: [BaseInitModule, SharedModalsModule],
@@ -21,6 +22,7 @@ import { VBSAttendanceDetailsCardComponent } from './vbs/vbs-attendance-details-
     UserDetailsCardComponent,
     UserRolesCardComponent,
     VBSAttendanceDetailsCardComponent,
+    VBSThemeDetailsCardComponent,
   ],
   exports: [
     AttendanceRecordDetailsCardComponent,
@@ -31,6 +33,7 @@ import { VBSAttendanceDetailsCardComponent } from './vbs/vbs-attendance-details-
     UserDetailsCardComponent,
     UserRolesCardComponent,
     VBSAttendanceDetailsCardComponent,
+    VBSThemeDetailsCardComponent,
   ],
 })
 export class SharedCardsModule {}

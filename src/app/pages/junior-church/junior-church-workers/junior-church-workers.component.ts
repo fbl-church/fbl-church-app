@@ -52,7 +52,7 @@ export class JuniorChurchWorkersComponent implements OnInit {
       },
     ];
     this.buildForm();
-    return this.userService
+    this.userService
       .getUsers(
         new Map().set('notWebRole', ['JUNIOR_CHURCH_DIRECTOR', 'JUNIOR_CHURCH_SUPERVISOR', 'JUNIOR_CHURCH_WORKER'])
       )

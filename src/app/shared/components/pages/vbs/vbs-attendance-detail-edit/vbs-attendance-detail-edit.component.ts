@@ -7,7 +7,7 @@ import { VBSAttendanceRecord, VBSThemeGroup } from 'projects/insite-kit/src/mode
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
-import { Subject, map, switchMap, takeUntil } from 'rxjs';
+import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { VBSAttendanceService } from 'src/service/vbs/vbs-attendance.service';
 import { VBSThemesService } from 'src/service/vbs/vbs-themes.service';
 
@@ -20,6 +20,7 @@ export class VBSAttendanceDetailEditComponent implements OnInit, OnDestroy {
   destroy = new Subject<void>();
   form: FormGroup;
 
+  baseRoute: string;
   loading = true;
   vbsThemeGroups: VBSThemeGroup[] = [];
 
@@ -36,29 +37,20 @@ export class VBSAttendanceDetailEditComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.data
       .pipe(
-        map((res) => res.record.body),
+        tap((res) => (this.record = res.record.body)),
+        tap((res) => (this.baseRoute = this.buildBaseRoute(res.route))),
+        switchMap(() => this.vbsThemeService.getGroupsByThemeId(this.record.vbsThemeId)),
+        tap((res) => (this.vbsThemeGroups = this.buildOfferingWinnerDropdown(res.body))),
         takeUntil(this.destroy)
       )
-      .subscribe((rec) => {
-        if (rec.status === AttendanceStatus.CLOSED) {
+      .subscribe(() => {
+        if (this.record.status === AttendanceStatus.CLOSED) {
           this.popupService.error('VBS Attendance Record is Closed. Cannot update Information!');
-          this.navigationService.navigate(`/vbs/themes/${rec.vbsThemeId}/attendance/${rec.id}`);
+          this.navigationService.navigate(`/vbs/themes/${this.record.vbsThemeId}/attendance/${this.record.id}`);
         }
-        this.record = rec;
+
         this.buildForm();
         this.loading = false;
-      });
-
-    this.route.params
-      .pipe(
-        map((res) => res.id),
-        switchMap((themeId) => this.vbsThemeService.getGroupsByThemeId(themeId)),
-        takeUntil(this.destroy)
-      )
-      .subscribe((res) => {
-        this.vbsThemeGroups = res.body.map((w) => {
-          return { value: w.group, name: this.getFormattedGroupName(w) };
-        });
       });
   }
 
@@ -70,6 +62,7 @@ export class VBSAttendanceDetailEditComponent implements OnInit, OnDestroy {
     this.form = this.fb.group({
       name: [this.record ? this.record.name : '', Validators.required],
       spiritTheme: [this.record?.spiritTheme ? this.record.spiritTheme : ''],
+      offeringAmount: [this.record ? this.record.money : '0.00', Validators.required],
       offeringWinners: [this.record ? this.record.offeringWinners : []],
       activeDate: [
         this.record ? this.record.activeDate : this.commonService.formatDate(new Date(), 'yyyy-MM-dd'),
@@ -79,7 +72,7 @@ export class VBSAttendanceDetailEditComponent implements OnInit, OnDestroy {
   }
 
   onBackClick() {
-    this.navigationService.back(`/vbs/themes/${this.record.vbsThemeId}/attendance/${this.record.id}`);
+    this.navigationService.back(`${this.baseRoute}/attendance/${this.record.id}`);
   }
 
   onUpdateClick() {
@@ -89,6 +82,7 @@ export class VBSAttendanceDetailEditComponent implements OnInit, OnDestroy {
       name: this.form.value.name.trim(),
       spiritTheme: this.form.value.spiritTheme,
       activeDate: this.form.value.activeDate,
+      money: this.form.value.offeringAmount,
     };
 
     if (this.form.value.offeringWinners && this.form.value.offeringWinners.length > 0) {
@@ -110,5 +104,19 @@ export class VBSAttendanceDetailEditComponent implements OnInit, OnDestroy {
   getFormattedGroupName(themeGroup: VBSThemeGroup) {
     const g = this.commonService.translate(themeGroup.group, TranslationKey.CHURCH_GROUP);
     return themeGroup.name ? `${themeGroup.name} - ${g}` : g;
+  }
+
+  buildOfferingWinnerDropdown(groups: VBSThemeGroup[]) {
+    return groups.map((w) => {
+      return { value: w.group, name: this.getFormattedGroupName(w) };
+    });
+  }
+
+  buildBaseRoute(path: string) {
+    if (path && path.includes('themes')) {
+      return `/vbs/themes/${this.record.vbsThemeId}`;
+    } else {
+      return path;
+    }
   }
 }

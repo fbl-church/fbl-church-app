@@ -36,40 +36,7 @@
   </div>
   <div class="row">
     <div class="col-lg-6">
-      <ik-card>
-        <ik-card-header title="Details">
-          <ik-icon
-            title="Edit"
-            icon="pen-to-square"
-            class="right pointer"
-            *featureAccess="[Application.VBS, FeatureType.THEMES, Access.UPDATE]"
-          ></ik-icon>
-        </ik-card-header>
-        <div class="flex">
-          <div class="left-column">
-            <ik-card-info header="Theme" [text]="themeData.name"></ik-card-info>
-          </div>
-          <div class="right-column">
-            <ik-card-info header="Donating To" [text]="themeData.donation"></ik-card-info>
-          </div>
-        </div>
-        <div class="flex">
-          <div class="right-column">
-            <ik-card-info header="Start Date" [text]="themeData.startDate | date : 'MMMM d, y'"></ik-card-info>
-          </div>
-          <div class="right-column">
-            <ik-card-info header="End Date" [text]="themeData.endDate | date : 'MMMM d, y'"></ik-card-info>
-          </div>
-        </div>
-        <div class="flex">
-          <div class="right-column">
-            <ik-card-info [contentColor]="themeData.status" header="Status" [text]="themeData.status"></ik-card-info>
-          </div>
-          <div class="right-column">
-            <ik-card-info header="Created" [text]="themeData.insertDate | date : 'MMMM d, y'"></ik-card-info>
-          </div>
-        </div>
-      </ik-card>
+      <app-vbs-theme-details-card [theme]="themeData" [editEnabled]="true"></app-vbs-theme-details-card>
 
       <ik-grid [dataLoader]="vbsAttendanceDataloader" (rowClick)="onAttendanceRecordRowClick($event)">
         <ik-card-header title="Attendance Records">
