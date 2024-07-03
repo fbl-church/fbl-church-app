@@ -1,6 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { VBSTheme, VBSThemeGroup } from 'projects/insite-kit/src/model/vbs.model';
+import { VBSTheme, VBSThemeGroup, VBSThemeStatus } from 'projects/insite-kit/src/model/vbs.model';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { Observable } from 'rxjs';
 
@@ -50,6 +50,35 @@ export class VBSThemesService {
    */
   getGroupsByThemeId(id: any): Observable<HttpResponse<VBSThemeGroup[]>> {
     return this.request.get<VBSThemeGroup[]>(`${this.BASE_VBS_PATH}/${id}/groups`);
+  }
+
+  /**
+   * Update group by theme id
+   *
+   * @param vbsThemeId The vbs theme id
+   * @param group The vbs theme group
+   */
+  update(vbsThemeId: any, group: VBSThemeGroup): Observable<VBSTheme> {
+    return this.request.put<VBSTheme>(`${this.BASE_VBS_PATH}/${vbsThemeId}`, group);
+  }
+
+  /**
+   * Update theme status
+   *
+   * @param vbsThemeId VBS theme id
+   * @param status  VBS theme status
+   */
+  updateThemeStatus(vbsThemeId: any, status: VBSThemeStatus): Observable<VBSTheme> {
+    return this.request.put<VBSTheme>(`${this.BASE_VBS_PATH}/${vbsThemeId}/status/${status}`);
+  }
+
+  /**
+   * Re-open theme
+   *
+   * @param vbsThemeId The vbs theme id
+   */
+  reopenTheme(vbsThemeId: any): Observable<VBSTheme> {
+    return this.request.put<VBSTheme>(`${this.BASE_VBS_PATH}/${vbsThemeId}/reopen`);
   }
 
   /**

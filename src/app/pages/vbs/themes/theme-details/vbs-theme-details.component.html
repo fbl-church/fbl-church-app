@@ -2,6 +2,37 @@
   <ik-header [title]="themeData.name">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
 
+    <ng-container *featureAccess="[Application.VBS, FeatureType.THEMES, Access.UPDATE]" ngProjectAs="button">
+      <button
+        *ngIf="themeData.status === 'ACTIVE'"
+        class="btn btn-danger header-button"
+        (click)="closeThemeModal.open()"
+      >
+        <ik-icon icon="lock" classOverride="btn-icon"></ik-icon>
+        Close
+      </button>
+    </ng-container>
+
+    <ng-container *webRoleRestrictionAccess="[WebRole.ADMINISTRATOR]" ngProjectAs="button">
+      <button
+        class="btn btn-primary header-button"
+        *ngIf="themeData.status === 'CLOSED'"
+        [disabled]="reopenLoading"
+        (click)="onReopenTheme()"
+      >
+        <ik-icon
+          *ngIf="!reopenLoading; else startCheckInLoader"
+          icon="arrow-rotate-left"
+          classOverride="btn-icon"
+        ></ik-icon>
+        Re-Open
+
+        <ng-template #startCheckInLoader>
+          <ik-icon icon="spinner" classOverride="btn-icon" [spin]="true"></ik-icon>
+        </ng-template>
+      </button>
+    </ng-container>
+
     <button
       class="btn btn-danger header-button"
       (click)="deleteThemeModal.open()"
@@ -38,7 +69,11 @@
     <div class="col-lg-6">
       <app-vbs-theme-details-card [theme]="themeData" [editEnabled]="true"></app-vbs-theme-details-card>
 
-      <ik-grid [dataLoader]="vbsAttendanceDataloader" (rowClick)="onAttendanceRecordRowClick($event)">
+      <ik-grid
+        #vbsAttendanceRecordGrid
+        [dataLoader]="vbsAttendanceDataloader"
+        (rowClick)="onAttendanceRecordRowClick($event)"
+      >
         <ik-card-header title="Attendance Records">
           <ik-icon
             title="Add Record"
@@ -119,8 +154,15 @@
     (save)="onUpdatePoints($event)"
     (pointsUpdated)="onPointsDeleted()"
   ></app-vbs-points-modal>
+
   <app-vbs-groups-modal #themeGroupModal [themeId]="themeData.id" (groupUpdated)="refreshVBSThemeGroups()">
   </app-vbs-groups-modal>
+
+  <app-vbs-close-theme-modal
+    #closeThemeModal
+    [themeId]="themeData.id"
+    (closed)="onThemeClosed($event)"
+  ></app-vbs-close-theme-modal>
 </ng-container>
 
 <ng-template #pageLoader>

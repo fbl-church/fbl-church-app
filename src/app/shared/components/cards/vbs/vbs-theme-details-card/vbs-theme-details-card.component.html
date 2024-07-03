@@ -6,7 +6,7 @@
         icon="pen-to-square"
         class="right pointer"
         *featureAccess="[Application.VBS, FeatureType.THEMES, Access.UPDATE]"
-        (click)="editClick.emit(theme)"
+        (click)="vbsEditThemeModal.open()"
       ></ik-icon>
     </ng-container>
   </ik-card-header>
@@ -41,3 +41,9 @@
 <ng-template #cardLoader>
   <ik-loading></ik-loading>
 </ng-template>
+
+<app-vbs-theme-details-modal
+  #vbsEditThemeModal
+  [theme]="theme"
+  (themeUpdated)="refreshThemeData($event)"
+></app-vbs-theme-details-modal>

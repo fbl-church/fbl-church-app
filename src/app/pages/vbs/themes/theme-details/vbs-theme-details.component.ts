@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
-import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
+import { Access, App, FeatureType, WebRole } from 'projects/insite-kit/src/model/common.model';
 import { VBSAttendanceRecord, VBSPoint, VBSTheme } from 'projects/insite-kit/src/model/vbs.model';
 import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
@@ -22,6 +22,7 @@ export class VBSThemeDetailsComponent implements OnInit {
   @ViewChild(ModalComponent) deleteModal: ModalComponent;
   @ViewChild('vbsPointsGrid') vbsPointsGrid: GridComponent;
   @ViewChild('vbsThemeGroupsGrid') vbsThemeGroupsGrid: GridComponent;
+  @ViewChild('vbsAttendanceRecordGrid') vbsAttendanceRecordGrid: GridComponent;
   @ViewChild('vbsPointsDetailModal') vbsPointsDetailModal: VBSPointsModalComponent;
   @ViewChild('vbsCreatePointsModal') vbsCreatePointsModal: VBSPointsModalComponent;
 
@@ -34,10 +35,12 @@ export class VBSThemeDetailsComponent implements OnInit {
   vbsPointsDataloader: any;
   vbsThemeGroupsDataloader: any;
   vbsThemeId: any;
+  reopenLoading = false;
 
   FeatureType = FeatureType;
   Application = App;
   Access = Access;
+  WebRole = WebRole;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -106,10 +109,35 @@ export class VBSThemeDetailsComponent implements OnInit {
     });
   }
 
+  onReopenTheme() {
+    this.reopenLoading = true;
+    this.vbsThemeService.reopenTheme(this.themeData.id).subscribe({
+      next: (res) => {
+        this.themeData = { ...res };
+        this.popupService.success('VBS Theme successfully Re-Opened!');
+        this.reopenLoading = false;
+      },
+      error: () => {
+        this.popupService.error('Unable to Re-Open VBS Theme at this time. Try again later.');
+        this.reopenLoading = false;
+      },
+    });
+  }
+
   onPointsDeleted() {
     this.refreshPointsGrid().subscribe((res) => {
       this.vbsPointsDataloader = () => of(res);
       this.vbsPointsGrid.loading = false;
+    });
+  }
+
+  onThemeClosed(event: VBSTheme) {
+    console.log('Theme Closed', event);
+    this.vbsAttendanceRecordGrid.loading = true;
+    this.themeData = { ...event };
+    this.vbsAttendanceService.getByThemeId(this.vbsThemeId).subscribe((res) => {
+      this.vbsAttendanceDataloader = () => of(res);
+      this.vbsAttendanceRecordGrid.loading = false;
     });
   }
 

@@ -1,4 +1,3 @@
-import { APP_BASE_HREF } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -232,7 +231,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   providers: [
     UsernamePipe,
     NotificationMessagePipe,
-    { provide: APP_BASE_HREF, useValue: '/' },
     { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
   ],
 })

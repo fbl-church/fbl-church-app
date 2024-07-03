@@ -1,0 +1,30 @@
+<ik-modal #vbsThemeDetailsModal name="vbsThemeDetailsModal">
+  <ik-modal-header title="Update VBS Theme?" type="info"></ik-modal-header>
+  <ng-container *ngIf="!modalLoading; else modalLoader">
+    <ik-modal-body>
+      <form *ngIf="form" [formGroup]="form">
+        <ik-form-field header="Name" [padding]="false"
+          ><input maxlength="100" class="form-input__normal" placeholder="Name" formControlName="name" />
+        </ik-form-field>
+
+        <ik-form-field header="Donating To" [padding]="false"
+          ><input maxlength="150" class="form-input__normal" placeholder="Donating To" formControlName="donation" />
+        </ik-form-field>
+      </form>
+    </ik-modal-body>
+    <ik-modal-action-bar>
+      <button
+        class="btn btn-primary btn-right btn-modal"
+        (click)="onSaveClick()"
+        [disabled]="form && (form.invalid || !form.dirty)"
+      >
+        Update
+      </button>
+      <button class="btn btn-default btn-right btn-modal" (click)="vbsThemeDetailsModal.close()">Cancel</button>
+    </ik-modal-action-bar>
+  </ng-container>
+</ik-modal>
+
+<ng-template #modalLoader>
+  <ik-loading></ik-loading>
+</ng-template>

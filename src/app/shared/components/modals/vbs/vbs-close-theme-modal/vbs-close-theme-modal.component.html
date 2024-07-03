@@ -1,0 +1,19 @@
+<ik-modal #closeThemeModal name="closeThemeModal">
+  <ik-modal-header title="Close VBS Theme?" type="danger"></ik-modal-header>
+  <ng-container *ngIf="!modalLoading; else modalLoader">
+    <ik-modal-body>
+      <div>
+        Closing this vbs theme will result in the current information to be finalized and not editable. Do you want to
+        continue?
+      </div>
+    </ik-modal-body>
+    <ik-modal-action-bar>
+      <button class="btn btn-danger btn-right btn-modal" (click)="onCloseAttendance()">Close Theme</button>
+      <button class="btn btn-default btn-right btn-modal" (click)="closeThemeModal.close()">Cancel</button>
+    </ik-modal-action-bar>
+  </ng-container>
+</ik-modal>
+
+<ng-template #modalLoader>
+  <ik-loading></ik-loading>
+</ng-template>

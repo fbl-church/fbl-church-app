@@ -6,7 +6,6 @@ import { createUniqueValidator } from 'projects/insite-kit/src/component/form/se
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { VBSTheme } from 'projects/insite-kit/src/model/vbs.model';
-import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { of } from 'rxjs';
@@ -26,7 +25,6 @@ export class VBSAttendanceRecordModalComponent implements OnInit {
 
   constructor(
     private readonly vbsAttendanceService: VBSAttendanceService,
-    private readonly commonService: CommonService,
     private readonly popupService: PopupService,
     private readonly navigationService: NavigationService,
     private readonly fb: FormBuilder

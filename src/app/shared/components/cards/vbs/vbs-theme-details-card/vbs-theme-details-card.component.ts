@@ -10,10 +10,16 @@ export class VBSThemeDetailsCardComponent {
   @Input() theme: VBSTheme;
   @Input() title = 'Details';
   @Input() editEnabled = false;
-  @Output() editClick = new EventEmitter<VBSTheme>();
+  @Output() updated = new EventEmitter<VBSTheme>();
 
   WebRole = WebRole;
   FeatureType = FeatureType;
   Application = App;
   Access = Access;
+
+  constructor() {}
+
+  refreshThemeData(event: VBSTheme) {
+    this.theme = { ...event };
+  }
 }
