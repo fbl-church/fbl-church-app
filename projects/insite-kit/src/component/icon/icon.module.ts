@@ -19,6 +19,7 @@ import {
   faCheck,
   faChildren,
   faChurch,
+  faCircleArrowRight,
   faCircleExclamation,
   faCircleInfo,
   faCirclePlus,
@@ -33,9 +34,11 @@ import {
   faLeftLong,
   faList,
   faLock,
+  faMagnifyingGlass,
   faPaperPlane,
   faPenToSquare,
   faPerson,
+  faPhone,
   faPlus,
   faRightFromBracket,
   faRotate,
@@ -122,7 +125,10 @@ export class IconModule {
       faPlus,
       faClipboardCheck,
       faCircleInfo,
-      faStar
+      faStar,
+      faMagnifyingGlass,
+      faCircleArrowRight,
+      faPhone
     );
   }
 }

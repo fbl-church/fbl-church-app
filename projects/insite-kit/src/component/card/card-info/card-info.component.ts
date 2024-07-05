@@ -9,4 +9,5 @@ export class CardInfoComponent {
   @Input() text: string;
   @Input() contentColor: 'DEFAULT' | 'DENIED' | 'ACTIVE' | 'PENDING' | 'INACTIVE' | 'ENABLED' | 'DISABLED' = 'DEFAULT';
   @Input() padding = true;
+  @Input() center = false;
 }

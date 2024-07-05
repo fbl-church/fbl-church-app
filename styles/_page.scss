@@ -21,12 +21,12 @@
 
 @media screen and (max-width: $page-screen-md-max) {
   .app-container {
-    width: 100%;
+    width: 99%;
   }
 }
 
 @media screen and (max-width: $page-screen-sm-max) {
   .app-container {
-    margin: 90px 0 0 0;
+    margin-top: 90px;
   }
 }

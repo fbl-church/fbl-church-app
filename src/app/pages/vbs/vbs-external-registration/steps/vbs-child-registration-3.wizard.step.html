@@ -1,112 +1,26 @@
-<ng-container *ngIf="guardianExists; else newChildProcess">
-  <ik-info-card
-    title="2. Select Children to Register"
-    description="Below is a list of children associated to you. Please select the children you would like to register for VBS. The fields followed by an asterisk(*) are required."
-  >
-  </ik-info-card>
-
-  <ik-grid *ngIf="guardianExists" [dataLoader]="childrenDataloader">
-    <ik-card-header title="Guardian Children"> </ik-card-header>
-    <ik-grid-checklist-column></ik-grid-checklist-column>
-    <ik-grid-selection-column header="Grade Going Into" [values]="churchGroups"></ik-grid-selection-column>
-    <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
-    <ik-grid-pager key="Children" [pageSize]="10"></ik-grid-pager>
-  </ik-grid>
-</ng-container>
-
-<ng-template #newChildProcess>
-  <ik-info-card
-    title="2. Child Information"
-    description="Create a new child record by entering in the childs information. This includes the required fields of childs first name, last name, and birthday. Optional fields such as allergies and any other additional information needed may be included. The fields followed by an asterisk(*) are required."
-  >
-  </ik-info-card>
-</ng-template>
-
-<ik-form [formGroup]="childForm" *ngFor="let childForm of childForms; index as i">
-  <ik-card-header [title]="'Child ' + (i + 1) + ' Information'">
-    <ik-icon
-      *ngIf="childForms.length > 1 || guardianExists"
-      title="Remove Child"
-      icon="user-xmark"
-      class="right pointer"
-      (click)="onRemoveChildClick(i)"
-    ></ik-icon>
-  </ik-card-header>
-  <div class="row">
-    <ik-form-field header="First Name" class="col-md-6"
-      ><input class="form-input__normal" placeholder="First Name" formControlName="firstName" />
-    </ik-form-field>
-
-    <ik-form-field header="Last Name" class="col-md-6"
-      ><input class="form-input__normal" placeholder="Last Name" formControlName="lastName" />
-    </ik-form-field>
-  </div>
-
-  <div class="row">
-    <ik-form-field header="Birthday" class="col-md-6"
-      ><input type="date" class="form-input__normal" placeholder="Birthday" formControlName="birthday" />
-    </ik-form-field>
-    <ik-form-field header="Allergies" class="col-md-6">
-      <div class="form-input__multi-tag">
-        <ik-tag-input-field
-          [uniqueId]="'tagInput-' + i"
-          [tags]="[]"
-          classOverride="multi-input"
-          placeholder="Allergies"
-        ></ik-tag-input-field>
-      </div>
-    </ik-form-field>
-  </div>
-  <ik-form-field header="Grade Going Into">
-    <ik-single-select
-      [searchable]="false"
-      formControlName="group"
-      [items]="churchGroups"
-      placeholder="Grade Going Into"
-    ></ik-single-select>
-  </ik-form-field>
-
-  <ik-form-field header="Additional Information">
-    <textarea formControlName="additionalInfo" rows="4" cols="50" class="form-input__normal"></textarea>
-  </ik-form-field>
-
-  <ik-form-field header="Release of Liability Agreement">
-    <div class="input-inline">
-      <input type="checkbox" class="form-check-input checkbox__default" formControlName="releaseOfLiability" />
-      <span class="text-color"
-        >Yes, Guardian Agrees to the
-        <a href="assets/images/Liability-Agreement.png" target="_blank" class="link">Release of Liability</a></span
-      >
-    </div>
-  </ik-form-field>
-</ik-form>
-
-<button
-  *ngIf="childForms.length < 10; else maxChildren"
-  class="btn btn-warning btn-center btn-full"
-  (click)="addChildForm()"
+<ik-info-card
+  title="Guardian Relationship to Children"
+  description="Fill out the form below to specify how the guardians and any alternate guardians relate to the children being registered for VBS. Only newly registered children will show up in the list below. The fields followed by an asterisk(*) are required."
 >
-  <ik-icon title="Edit" icon="user-plus" classOverride="btn-icon"></ik-icon>
-  Add Child
-</button>
+</ik-info-card>
 
-<ng-template #maxChildren>
-  <ik-banner type="danger">Max Children Reached</ik-banner>
-</ng-template>
+<ik-card *ngFor="let g of guardians">
+  <ik-card-header [title]="g | formatUserName"></ik-card-header>
+  <div class="row" *ngFor="let c of newChildren; index as i">
+    <ik-card-info [header]="'Child ' + (i + 1)" class="col-md-6"
+      ><input class="form-input__normal" [value]="c | formatUserName" placeholder="Child Name" readonly />
+    </ik-card-info>
+    <ik-card-info header="Relationship to Child*" class="col-md-6">
+      <ik-single-select
+        [searchable]="false"
+        [items]="relationshipTypes"
+        placeholder="Relationship to Child"
+        (change)="onGuardianChildRelationshipChange(g, c, $event)"
+      ></ik-single-select>
+    </ik-card-info>
+  </div>
+</ik-card>
 
 <button class="btn btn-default btn-left" (click)="onCancelClick()">Cancel</button>
 <button class="btn btn-primary btn-right" (click)="onNextClick()" [disabled]="disableNext()">Next</button>
 <button wizardStepPrev class="btn btn-default btn-right">Previous</button>
-
-<ik-modal #duplicateChildInformationModal name="duplicateChildInformationModal">
-  <ik-modal-header title="Duplicate Child" type="warning"></ik-modal-header>
-  <ik-modal-body>
-    <div>
-      It looks like you duplicated child information. Please confirm that you only created each child once and that all
-      the information is correct.
-    </div>
-  </ik-modal-body>
-  <ik-modal-action-bar>
-    <button class="btn btn-default btn-right btn-modal" (click)="duplicateChildInformationModal.close()">Okay</button>
-  </ik-modal-action-bar>
-</ik-modal>

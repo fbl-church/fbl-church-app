@@ -1,5 +1,12 @@
-<div class="card-info" [ngClass]="{ 'card-info--padding': padding, 'form-input--has-error': shouldShowError() }">
-  <div class="form-label--container">
+<div
+  class="card-info"
+  [ngClass]="{
+    'card-info--padding': padding,
+    'form-input--has-error': shouldShowError(),
+    'flex-center flex-direction--column justify-content-center': center
+  }"
+>
+  <div class="form-label--container" [ngClass]="{ 'justify-content-center': center }">
     <div class="card-info__label-header">{{ getLabel() }}</div>
     <i *ngIf="getControl()?.pending" class="form-label--loader"></i>
     <ng-content select="ik-icon"></ng-content>
@@ -7,6 +14,7 @@
 
   <ng-content></ng-content>
   <ik-form-field-error
+    [ngClass]="{ 'text-center': center }"
     *ngFor="let error of getControl()?.errors | keyvalue"
     [controlPath]="getControlPath()"
     [type]="error.key"

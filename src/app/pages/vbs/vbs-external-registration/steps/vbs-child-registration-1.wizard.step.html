@@ -1,22 +1,144 @@
 <ik-info-card
-  title="1. Child Registration"
-  description="Pick the section that best applies. If your child attended VBS last year or you are a guardian already in the system, you can click 'Returning Child' and look up by your email or phone number. If your child is new to VBS or you were unable to find them under your email, you can click 'Register New Child'"
+  title="Register or Look up Account"
+  description="To get started, enter your mobile number or email. We'll look up your account or create a new one for you. The fields followed by an asterisk(*) are required."
 >
 </ik-info-card>
 
-<div class="row">
-  <ik-info-card
-    class="col-md-6 pointer info-card__center"
-    title="Returning Child or Guardian"
-    description="Your child has attended VBS before or you already have a guardian account. Look up your account by your email or phone number."
-    (click)="onNextClick(true)"
-  >
-  </ik-info-card>
-  <ik-info-card
-    class="col-md-6 pointer info-card__center"
-    title="Register New Child"
-    description="You and your child/children are new to Vacation Bible School (VBS) and need to be registered as a new child and new guardian."
-    (click)="onNextClick(false)"
-  >
-  </ik-info-card>
-</div>
+<ng-container *ngIf="!collectingGuardianInfo">
+  <div class="d-flex justify-content-center" *ngIf="!initailDetailsCollect">
+    <ik-form [formGroup]="phoneForm" class="col-11 col-sm-10" *ngIf="usePhoneNumber; else useEmailInstead">
+      <ik-form-field header="Enter Your Mobile Number" [center]="true">
+        <div class="col-md-8 col-11">
+          <input
+            phoneMask
+            placeholder="(___) ___-____"
+            inputmode="tel"
+            name="phone"
+            class="form-input__normal text-center"
+            formControlName="phone"
+            maxlength="14"
+          />
+        </div>
+      </ik-form-field>
+
+      <div class="flex-center">
+        <button
+          class="btn btn-primary btn-right"
+          (click)="onSearchClick(phoneForm.value.phone.trim())"
+          [disabled]="phoneForm && phoneForm.invalid"
+        >
+          <ik-icon *ngIf="!searchLoading; else searchLoader" icon="magnifying-glass" classOverride="btn-icon"></ik-icon>
+          Search
+        </button>
+      </div>
+
+      <div class="text-center link--dark" (click)="onToggleFormClick()">Use email address instead</div>
+    </ik-form>
+  </div>
+
+  <ng-template #useEmailInstead>
+    <ik-form [formGroup]="emailForm" class="col-11 col-sm-10">
+      <ik-form-field header="Enter Your Email Address" [center]="true">
+        <div class="col-md-8 col-11">
+          <input
+            placeholder="name@example.com"
+            inputmode="email"
+            name="email"
+            class="form-input__normal text-center"
+            formControlName="email"
+          />
+        </div>
+      </ik-form-field>
+
+      <div class="flex-center">
+        <button
+          class="btn btn-primary btn-right"
+          (click)="onSearchClick(emailForm.value.email.trim())"
+          [disabled]="emailForm && emailForm.invalid"
+        >
+          <ik-icon *ngIf="!searchLoading; else searchLoader" icon="magnifying-glass" classOverride="btn-icon"></ik-icon>
+          Search
+        </button>
+      </div>
+
+      <div class="text-center link--dark" (click)="onToggleFormClick()">Use mobile number instead</div>
+    </ik-form>
+  </ng-template>
+
+  <ng-container *ngIf="initailDetailsCollect">
+    <div class="d-flex justify-content-center" *ngIf="collectEmailContact; else collectPhoneContact">
+      <ik-form [formGroup]="emailForm" class="col-11 col-sm-10">
+        <ik-form-field
+          header="To send you notices about your account, we also need your email address."
+          [center]="true"
+        >
+          <div class="col-md-8 col-11">
+            <input
+              placeholder="name@example.com"
+              inputmode="email"
+              name="email"
+              class="form-input__normal text-center"
+              formControlName="email"
+            />
+          </div>
+        </ik-form-field>
+
+        <div class="flex-center">
+          <button
+            class="btn btn-primary btn-right"
+            (click)="onSecondarySearchClick(emailForm.value.email.trim())"
+            [disabled]="emailForm && emailForm.invalid"
+          >
+            <ik-icon *ngIf="!searchLoading; else searchLoader" icon="envelope" classOverride="btn-icon"></ik-icon>
+            Continue
+          </button>
+        </div>
+      </ik-form>
+    </div>
+  </ng-container>
+
+  <ng-template #collectPhoneContact>
+    <div class="d-flex justify-content-center">
+      <ik-form [formGroup]="phoneForm" class="col-11 col-sm-10">
+        <ik-form-field
+          header="Add a mobile number to your profile and next time you can log in with email or phone."
+          [center]="true"
+        >
+          <div class="col-md-8 col-11">
+            <input
+              phoneMask
+              placeholder="(___) ___-____"
+              inputmode="tel"
+              name="phone"
+              class="form-input__normal text-center"
+              formControlName="phone"
+              maxlength="14"
+            />
+          </div>
+        </ik-form-field>
+
+        <div class="flex-center">
+          <button
+            class="btn btn-primary btn-right"
+            (click)="onSecondarySearchClick(phoneForm.value.phone.trim())"
+            [disabled]="phoneForm && phoneForm.invalid"
+          >
+            <ik-icon *ngIf="!searchLoading; else searchLoader" icon="phone" classOverride="btn-icon"></ik-icon>
+            Continue
+          </button>
+        </div>
+      </ik-form>
+    </div>
+  </ng-template>
+</ng-container>
+
+<app-vbs-new-guardian-form
+  *ngIf="collectingGuardianInfo && newGuardianBaseInfo"
+  [guardian]="newGuardianBaseInfo"
+  [wizard]="wizard"
+  [activeStep]="wizard.activeIndex"
+></app-vbs-new-guardian-form>
+
+<ng-template #searchLoader>
+  <ik-icon icon="spinner" classOverride="btn-icon" [spin]="true"></ik-icon>
+</ng-template>

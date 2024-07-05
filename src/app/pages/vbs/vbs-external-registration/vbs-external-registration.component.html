@@ -10,7 +10,6 @@
       [activeStep]="wizard.activeIndex"
     ></app-vbs-child-registration-wizard-step-two>
   </ik-wizard-step>
-
   <ik-wizard-step>
     <app-vbs-child-registration-wizard-step-three
       [wizard]="wizard"
@@ -19,17 +18,11 @@
   </ik-wizard-step>
   <ik-wizard-step>
     <app-vbs-child-registration-wizard-step-four
-      [wizard]="wizard"
-      [activeStep]="wizard.activeIndex"
-    ></app-vbs-child-registration-wizard-step-four>
-  </ik-wizard-step>
-  <ik-wizard-step>
-    <app-vbs-child-registration-wizard-step-five
       [loading]="loading"
       [wizard]="wizard"
       [activeStep]="wizard.activeIndex"
       (save)="onSaveClick($event)"
-    ></app-vbs-child-registration-wizard-step-five>
+    ></app-vbs-child-registration-wizard-step-four>
   </ik-wizard-step>
 </ik-wizard>
 

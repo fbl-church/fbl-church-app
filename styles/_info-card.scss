@@ -10,13 +10,13 @@
 
 .info-card__title {
   font-size: $font-size-xl;
-  text-align: left;
+  text-align: center;
   color: $primary;
   font-weight: $font-weight-bold;
 }
 
 .info-card__message {
-  text-align: left;
+  text-align: center;
   color: var(--text-color);
   font-size: $font-size-base;
   display: block;

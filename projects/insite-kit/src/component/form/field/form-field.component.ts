@@ -13,6 +13,7 @@ export class FormFieldComponent implements AfterContentInit {
   @Input() header: string;
   @Input() padding = true;
   @Input() errorKey: string;
+  @Input() center = false;
   @ContentChild(FormControlName, { read: ElementRef })
   controlElement: ElementRef;
   @ContentChild(FormControlName) formControl: FormControlName;

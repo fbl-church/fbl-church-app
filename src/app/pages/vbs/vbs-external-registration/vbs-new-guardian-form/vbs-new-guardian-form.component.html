@@ -1,0 +1,88 @@
+<ik-form *ngFor="let guardianForm of guardianForms; index as i" [formGroup]="guardianForm">
+  <ik-card-header [title]="'Guardian ' + (i + 1) + ' Information'">
+    <ik-icon
+      *ngIf="guardianForms.length > 1"
+      title="Remove Guardian"
+      icon="user-xmark"
+      class="right pointer"
+      (click)="onRemoveGuardianClick(i)"
+    ></ik-icon
+  ></ik-card-header>
+  <div class="row">
+    <ik-form-field header="First Name" class="col-md-6"
+      ><input class="form-input__normal" placeholder="First Name" formControlName="firstName" />
+    </ik-form-field>
+
+    <ik-form-field header="Last Name" class="col-md-6"
+      ><input class="form-input__normal" placeholder="Last Name" formControlName="lastName" />
+    </ik-form-field>
+  </div>
+
+  <div class="row">
+    <ik-form-field header="Email" class="col-md-6">
+      <input
+        type="email"
+        inputmode="email"
+        name="email"
+        class="form-input__normal"
+        placeholder="Email"
+        formControlName="email"
+      />
+    </ik-form-field>
+    <ik-form-field header="Phone" class="col-md-6">
+      <input
+        phoneMask
+        placeholder="(___) ___-____"
+        inputmode="tel"
+        name="phone"
+        class="form-input__normal"
+        formControlName="phone"
+        maxlength="14"
+      />
+    </ik-form-field>
+  </div>
+</ik-form>
+
+<button
+  *ngIf="guardianForms.length < 5; else maxGuardians"
+  class="btn btn-warning btn-center btn-full"
+  (click)="addGuardianForm()"
+>
+  <ik-icon title="Edit" icon="user-plus" classOverride="btn-icon"></ik-icon>
+  Add Alternate Guardian
+</button>
+
+<button class="btn btn-default btn-left" (click)="onCancelClick()">Cancel</button>
+<button class="btn btn-primary btn-right" (click)="onNextClick()" [disabled]="disableNext()">Next</button>
+
+<ng-template #maxGuardians>
+  <ik-banner type="danger">Max Guardians Reached</ik-banner>
+</ng-template>
+
+<ik-modal #duplicateGuardianInformationModal name="duplicateGuardianInformationModal">
+  <ik-modal-header title="Duplicate Guardian" type="warning"></ik-modal-header>
+  <ik-modal-body>
+    <div>
+      It looks like you duplicated guardian information. Please confirm that you only created each guardian once and
+      that all the information is correct.
+    </div>
+  </ik-modal-body>
+  <ik-modal-action-bar>
+    <button class="btn btn-default btn-right btn-modal" (click)="duplicateGuardianInformationModal.close()">
+      Okay
+    </button>
+  </ik-modal-action-bar>
+</ik-modal>
+
+<ik-modal #duplicateEmailModal name="duplicateEmailModal">
+  <ik-modal-header title="Duplicate Email" type="warning"></ik-modal-header>
+  <ik-modal-body>
+    <div>
+      It looks like the email was used more the once. The email must be unqiue for each guardian. Please confirm that
+      each guardian has it's own unique email.
+    </div>
+  </ik-modal-body>
+  <ik-modal-action-bar>
+    <button class="btn btn-default btn-right btn-modal" (click)="duplicateEmailModal.close()">Okay</button>
+  </ik-modal-action-bar>
+</ik-modal>

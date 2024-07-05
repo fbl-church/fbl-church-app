@@ -1,5 +1,5 @@
 <div [ngClass]="{ 'card-info--padding': padding }">
-  <div class="card-info__label-header">{{ header }}</div>
+  <div class="card-info__label-header" [ngClass]="{ 'text-center': center }">{{ header }}</div>
   <ng-container *ngIf="!text; else textFieldData">
     <ng-content></ng-content>
   </ng-container>
