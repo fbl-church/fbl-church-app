@@ -39,24 +39,11 @@ export class VBSChildRegistrationWizardStepOneComponent implements OnInit {
       email: [null, [Validators.required, Validators.email]],
     });
 
-    this.wizard.wizardCancelled.subscribe(() => {
-      this.resetForms();
-      this.searchLoading = false;
-      this.collectEmailContact = true;
-      this.usePhoneNumber = true;
-      this.initailDetailsCollect = false;
-      this.collectingGuardianInfo = false;
-    });
+    this.wizard.wizardCancelled.subscribe(() => this.reset());
   }
 
   onCancelClick() {
     this.wizard.resetWizard(this.wizardDataService);
-  }
-
-  onNextClick(exists: boolean) {
-    this.wizardDataService.clearData();
-    this.wizardDataService.updateData({ guardianExists: exists });
-    this.wizard.next();
   }
 
   nextStepGuardianExists(g: Guardian) {
@@ -72,7 +59,7 @@ export class VBSChildRegistrationWizardStepOneComponent implements OnInit {
       next: (res) => {
         if (res.body.length > 0) {
           this.nextStepGuardianExists(res.body[0]);
-          this.resetForms();
+          this.reset();
         } else {
           this.initailDetailsCollect = true;
         }
@@ -93,6 +80,7 @@ export class VBSChildRegistrationWizardStepOneComponent implements OnInit {
       next: (res) => {
         if (res.body.length > 0) {
           this.nextStepGuardianExists(res.body[0]);
+          this.reset();
         } else {
           this.newGuardianBaseInfo = {
             phone: this.phoneForm.value.phone.trim(),
@@ -100,8 +88,6 @@ export class VBSChildRegistrationWizardStepOneComponent implements OnInit {
           };
           this.collectingGuardianInfo = true;
         }
-        this.resetForms();
-        this.searchLoading = false;
       },
       error: () => {
         this.popupService.error('Unable to look up account at this time. Please try again later.');
@@ -119,5 +105,14 @@ export class VBSChildRegistrationWizardStepOneComponent implements OnInit {
   resetForms() {
     this.phoneForm.reset();
     this.emailForm.reset();
+  }
+
+  reset() {
+    this.resetForms();
+    this.searchLoading = false;
+    this.collectEmailContact = true;
+    this.usePhoneNumber = true;
+    this.initailDetailsCollect = false;
+    this.collectingGuardianInfo = false;
   }
 }
