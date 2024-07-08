@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
-import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
+import { Access, App, ChurchGroup, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
+import { VBSAttendanceRecord } from 'projects/insite-kit/src/model/vbs.model';
 import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
@@ -15,7 +16,10 @@ export class VBSAttendanceChildrenCheckInComponent implements OnInit, OnDestroy 
   @ViewChild('childrenCheckInGrid') checkInGrid: GridComponent;
 
   vbsThemeId: number;
-  recordId: number;
+  childGroups: ChurchGroup[];
+  record: VBSAttendanceRecord;
+  baseRoute: string;
+
   destroy = new Subject<void>();
   loading = true;
   FeatureType = FeatureType;
@@ -32,17 +36,22 @@ export class VBSAttendanceChildrenCheckInComponent implements OnInit, OnDestroy 
   ) {}
 
   ngOnInit() {
-    this.route.params
+    this.route.data
       .pipe(
-        tap((p) => {
-          this.recordId = p.attendanceId;
-          this.vbsThemeId = p.id;
+        tap((res) => (this.baseRoute = this.buildBaseRoute(res.route))),
+        tap((data) => {
+          this.record = data.record.body;
+          this.vbsThemeId = this.record.vbsThemeId;
+          this.childGroups = data.group;
         }),
         takeUntil(this.destroy)
       )
       .subscribe(() => {
         this.childrenDataloader = (params) =>
-          this.attendanceRecordService.getAttendanceChildrenById(this.recordId, params.set('present', [false]));
+          this.attendanceRecordService.getAttendanceChildrenById(
+            this.record.id,
+            params.set('present', [false]).set('group', this.childGroups)
+          );
         this.loading = false;
       });
   }
@@ -52,7 +61,7 @@ export class VBSAttendanceChildrenCheckInComponent implements OnInit, OnDestroy 
   }
 
   onBackClick() {
-    this.navigationService.back(`/vbs/themes/${this.vbsThemeId}/attendance/${this.recordId}`);
+    this.navigationService.back(`${this.baseRoute}/attendance/${this.record.id}`);
   }
 
   onCancelClick() {
@@ -64,6 +73,14 @@ export class VBSAttendanceChildrenCheckInComponent implements OnInit, OnDestroy 
   }
 
   onNewChild() {
-    this.navigationService.navigate('/junior-church/registration');
+    this.navigationService.navigate('/vbs/registration');
+  }
+
+  buildBaseRoute(path: string) {
+    if (path && path.includes('themes')) {
+      return `/vbs/themes/${this.record.vbsThemeId}`;
+    } else {
+      return path;
+    }
   }
 }

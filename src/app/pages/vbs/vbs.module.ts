@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BaseInitModule } from 'src/app/common/base-init.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { VBSAttendanceDetailModalComponent } from './groups/detail/modals/vbs-attendance-detail-modal/vbs-attendance-detail-modal.component';
 import { VBSGroupDetailsComponent } from './groups/detail/vbs-group-details.component';
 import { VBSCreateThemeComponent } from './themes/create-theme/vbs-create-theme.component';
 import { VBSThemeDetailsComponent } from './themes/theme-details/vbs-theme-details.component';
@@ -31,6 +32,7 @@ import { VBSNewGuardianFormComponent } from './vbs-external-registration/vbs-new
     VBSCreateThemeComponent,
     VBSThemeDetailsComponent,
     VBSNewGuardianFormComponent,
+    VBSAttendanceDetailModalComponent,
   ],
 })
 export class VBSModule {}

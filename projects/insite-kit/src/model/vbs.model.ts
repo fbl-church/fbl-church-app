@@ -21,6 +21,17 @@ export interface VBSThemeGroup {
   name?: string;
 }
 
+export interface VBSChildPoint {
+  childId?: number;
+  vbsAttendanceId?: number;
+  vbsPointId?: number;
+  type?: number;
+  displayName?: number;
+  points?: string;
+  vbsThemeId?: number;
+  insertDate?: Date;
+}
+
 export interface VBSPoint {
   id?: number;
   type?: string;

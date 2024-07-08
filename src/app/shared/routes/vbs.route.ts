@@ -13,6 +13,7 @@ import { VBSThemesService } from 'src/service/vbs/vbs-themes.service';
 import { AuthenticatedLayoutComponent } from '../components/layouts/authenticated-layout/authenticated-layout.component';
 import { VBSAttendanceDetailEditComponent } from '../components/pages/vbs/vbs-attendance-detail-edit/vbs-attendance-detail-edit.component';
 import { VBSAttendanceChildrenCheckInComponent } from '../components/pages/vbs/vbs-attendance-detail/vbs-attendance-children-check-in/vbs-attendance-children-check-in.component';
+import { VBSAttendanceChildrenPointsComponent } from '../components/pages/vbs/vbs-attendance-detail/vbs-attendance-children-points/vbs-attendance-children-points.component';
 import { VBSAttendanceDetailComponent } from '../components/pages/vbs/vbs-attendance-detail/vbs-attendance-detail.component';
 
 export const VBS_ROUTE: Route = {
@@ -76,12 +77,28 @@ export const VBS_ROUTE: Route = {
               WebRole.VBS_REGISTRATION,
               WebRole.VBS_SNACKS,
             ],
+            group: [
+              ChurchGroup.VBS_PRE_PRIMARY,
+              ChurchGroup.VBS_PRIMARY,
+              ChurchGroup.VBS_MIDDLER,
+              ChurchGroup.VBS_JUNIOR,
+            ],
             route: '/vbs/themes',
           },
         },
         {
           path: ':id/attendance/:attendanceId/children',
           component: VBSAttendanceChildrenCheckInComponent,
+          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
+          data: {
+            group: [
+              ChurchGroup.VBS_PRE_PRIMARY,
+              ChurchGroup.VBS_PRIMARY,
+              ChurchGroup.VBS_MIDDLER,
+              ChurchGroup.VBS_JUNIOR,
+            ],
+            route: '/vbs/themes',
+          },
         },
         {
           path: ':id/attendance/:attendanceId/edit',
@@ -115,6 +132,7 @@ export const VBS_ROUTE: Route = {
           resolve: { theme: RouteDataResolver.for(VBSThemesService, { method: 'getLatestActive', routeParams: [] }) },
           data: {
             group: ChurchGroup.VBS_PRE_PRIMARY,
+            route: '/vbs/groups/pre-primary',
           },
         },
         {
@@ -123,9 +141,44 @@ export const VBS_ROUTE: Route = {
           resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
           data: {
             workerRoles: [WebRole.VBS_PRE_PRIMARY],
+            group: [ChurchGroup.VBS_PRE_PRIMARY],
             route: '/vbs/groups/pre-primary',
           },
         },
+        {
+          path: 'pre-primary/attendance/:attendanceId/children',
+          component: VBSAttendanceChildrenCheckInComponent,
+          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
+          data: {
+            group: [ChurchGroup.VBS_PRE_PRIMARY],
+            route: '/vbs/groups/pre-primary',
+          },
+        },
+        {
+          path: 'pre-primary/attendance/:attendanceId/children/points',
+          component: VBSAttendanceChildrenPointsComponent,
+          data: {
+            group: ChurchGroup.VBS_PRE_PRIMARY,
+            route: '/vbs/groups/pre-primary',
+          },
+        },
+        {
+          path: 'pre-primary/attendance/:attendanceId/edit',
+          component: VBSAttendanceDetailEditComponent,
+          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
+          canActivate: [FEATURE_ACCESS_GUARD],
+          data: {
+            FEATURE_ACCESS_GUARDS: [
+              {
+                app: App.VBS,
+                feature: FeatureType.CHECK_IN_DETAIL,
+                access: Access.UPDATE,
+              },
+            ],
+            route: '/vbs/groups/pre-primary',
+          },
+        },
+
         // VBS PRIMARY
         {
           path: 'primary',
@@ -133,6 +186,7 @@ export const VBS_ROUTE: Route = {
           resolve: { theme: RouteDataResolver.for(VBSThemesService, { method: 'getLatestActive', routeParams: [] }) },
           data: {
             group: ChurchGroup.VBS_PRIMARY,
+            route: '/vbs/groups/primary',
           },
         },
         {
@@ -141,9 +195,44 @@ export const VBS_ROUTE: Route = {
           resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
           data: {
             workerRoles: [WebRole.VBS_PRIMARY],
+            group: [ChurchGroup.VBS_PRIMARY],
             route: '/vbs/groups/primary',
           },
         },
+        {
+          path: 'primary/attendance/:attendanceId/children',
+          component: VBSAttendanceChildrenCheckInComponent,
+          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
+          data: {
+            group: [ChurchGroup.VBS_PRIMARY],
+            route: '/vbs/groups/primary',
+          },
+        },
+        {
+          path: 'primary/attendance/:attendanceId/children/points',
+          component: VBSAttendanceChildrenPointsComponent,
+          data: {
+            group: ChurchGroup.VBS_PRIMARY,
+            route: '/vbs/groups/primary',
+          },
+        },
+        {
+          path: 'primary/attendance/:attendanceId/edit',
+          component: VBSAttendanceDetailEditComponent,
+          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
+          canActivate: [FEATURE_ACCESS_GUARD],
+          data: {
+            FEATURE_ACCESS_GUARDS: [
+              {
+                app: App.VBS,
+                feature: FeatureType.CHECK_IN_DETAIL,
+                access: Access.UPDATE,
+              },
+            ],
+            route: '/vbs/groups/primary',
+          },
+        },
+
         // VBS MIDDLER
         {
           path: 'middler',
@@ -151,6 +240,7 @@ export const VBS_ROUTE: Route = {
           resolve: { theme: RouteDataResolver.for(VBSThemesService, { method: 'getLatestActive', routeParams: [] }) },
           data: {
             group: ChurchGroup.VBS_MIDDLER,
+            route: '/vbs/groups/middler',
           },
         },
         {
@@ -159,9 +249,44 @@ export const VBS_ROUTE: Route = {
           resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
           data: {
             workerRoles: [WebRole.VBS_MIDDLER],
+            group: [ChurchGroup.VBS_MIDDLER],
             route: '/vbs/groups/middler',
           },
         },
+        {
+          path: 'middler/attendance/:attendanceId/children',
+          component: VBSAttendanceChildrenCheckInComponent,
+          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
+          data: {
+            group: [ChurchGroup.VBS_MIDDLER],
+            route: '/vbs/groups/middler',
+          },
+        },
+        {
+          path: 'middler/attendance/:attendanceId/children/points',
+          component: VBSAttendanceChildrenPointsComponent,
+          data: {
+            group: ChurchGroup.VBS_MIDDLER,
+            route: '/vbs/groups/middler',
+          },
+        },
+        {
+          path: 'middler/attendance/:attendanceId/edit',
+          component: VBSAttendanceDetailEditComponent,
+          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
+          canActivate: [FEATURE_ACCESS_GUARD],
+          data: {
+            FEATURE_ACCESS_GUARDS: [
+              {
+                app: App.VBS,
+                feature: FeatureType.CHECK_IN_DETAIL,
+                access: Access.UPDATE,
+              },
+            ],
+            route: '/vbs/groups/middler',
+          },
+        },
+
         // VBS JUNIOR
         {
           path: 'junior',
@@ -169,6 +294,7 @@ export const VBS_ROUTE: Route = {
           resolve: { theme: RouteDataResolver.for(VBSThemesService, { method: 'getLatestActive', routeParams: [] }) },
           data: {
             group: ChurchGroup.VBS_JUNIOR,
+            route: '/vbs/groups/junior',
           },
         },
         {
@@ -177,6 +303,24 @@ export const VBS_ROUTE: Route = {
           resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
           data: {
             workerRoles: [WebRole.VBS_JUNIOR],
+            group: [ChurchGroup.VBS_JUNIOR],
+            route: '/vbs/groups/junior',
+          },
+        },
+        {
+          path: 'junior/attendance/:attendanceId/children',
+          component: VBSAttendanceChildrenCheckInComponent,
+          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
+          data: {
+            group: [ChurchGroup.VBS_JUNIOR],
+            route: '/vbs/groups/junior',
+          },
+        },
+        {
+          path: 'junior/attendance/:attendanceId/children/points',
+          component: VBSAttendanceChildrenPointsComponent,
+          data: {
+            group: ChurchGroup.VBS_JUNIOR,
             route: '/vbs/groups/junior',
           },
         },

@@ -21,6 +21,7 @@ export class VBSAttendanceDetailComponent implements OnInit, OnDestroy {
   vbsWorkersDataloader: any;
   vbsChildrenDataloader: any;
   vbsOfferingWinnersDataloader: any;
+  childGroups: ChurchGroup[];
 
   baseRoute: string;
 
@@ -43,6 +44,7 @@ export class VBSAttendanceDetailComponent implements OnInit, OnDestroy {
       .pipe(
         tap((res) => (this.attendanceRecord = res.record.body)),
         tap((res) => (this.baseRoute = this.buildBaseRoute(res.route))),
+        tap((res) => (this.childGroups = res.group)),
         tap(() => (this.vbsThemeId = this.attendanceRecord.vbsThemeId)),
         switchMap(() => this.vbsThemeService.getGroupsByThemeId(this.attendanceRecord.vbsThemeId)),
         takeUntil(this.destroy)
@@ -53,6 +55,12 @@ export class VBSAttendanceDetailComponent implements OnInit, OnDestroy {
             new HttpResponse({
               body: this.getFormattedOfferingWinners(this.attendanceRecord.offeringWinners, res.body),
             })
+          );
+
+        this.vbsChildrenDataloader = (params) =>
+          this.attendanceRecordService.getAttendanceChildrenById(
+            this.attendanceRecord.id,
+            params.set('present', [true]).set('group', this.childGroups)
           );
         this.loading = false;
       });

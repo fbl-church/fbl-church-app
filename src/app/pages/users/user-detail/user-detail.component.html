@@ -21,6 +21,9 @@
       </button>
     </ng-container>
   </ik-header>
+
+  <!-- Change to use Bootstrap row and column -->
+
   <div class="layout__column-left layout__wide">
     <app-user-details-card [user]="userData" (editClick)="onEditClick()">
       <ng-container *ngIf="canEditUser">

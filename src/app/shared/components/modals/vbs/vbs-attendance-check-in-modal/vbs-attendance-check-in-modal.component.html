@@ -1,6 +1,6 @@
 <ik-modal #vbsAttendanceCheckInModal name="vbsAttendanceCheckInModal">
   <ik-modal-header title="Check In Child?" type="info"></ik-modal-header>
-  <ng-container *ngIf="!modalLoading && vbsPoints; else modalLoader">
+  <ng-container *ngIf="!modalLoading && registrationPoints; else modalLoader">
     <ik-modal-body>
       <div class="row">
         <div class="col-6">
@@ -12,7 +12,7 @@
       </div>
       <div class="row">
         <ik-form-field header="Points" class="col-12">
-          <div *ngFor="let p of vbsPoints" class="flex-center--start">
+          <div *ngFor="let p of registrationPoints" class="flex-center--start">
             <ik-checkbox #fieldRead [checkId]="p.id" (checkboxChange)="onCheckBoxUpdate($event)"></ik-checkbox>
             <div class="card-info__label-text padding-none">{{ p.displayName + ' (' + p.points + ' points)' }}</div>
           </div>

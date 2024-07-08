@@ -128,7 +128,8 @@ export class IconModule {
       faStar,
       faMagnifyingGlass,
       faCircleArrowRight,
-      faPhone
+      faPhone,
+      faXmark
     );
   }
 }

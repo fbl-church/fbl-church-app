@@ -132,7 +132,6 @@ export class VBSThemeDetailsComponent implements OnInit {
   }
 
   onThemeClosed(event: VBSTheme) {
-    console.log('Theme Closed', event);
     this.vbsAttendanceRecordGrid.loading = true;
     this.themeData = { ...event };
     this.vbsAttendanceService.getByThemeId(this.vbsThemeId).subscribe((res) => {

@@ -1,9 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CheckboxComponent } from 'projects/insite-kit/src/component/checkbox/checkbox.component';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { WebRoleFeature } from 'projects/insite-kit/src/model/access.model';
 import { Child } from 'projects/insite-kit/src/model/user.model';
 import { VBSPoint } from 'projects/insite-kit/src/model/vbs.model';
+import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
+import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
+import { VBSChildAttendanceService } from 'src/service/vbs/vbs-child-attendance.service';
 import { VBSPointsService } from 'src/service/vbs/vbs-points.service';
 
 @Component({
@@ -11,38 +14,81 @@ import { VBSPointsService } from 'src/service/vbs/vbs-points.service';
   templateUrl: './vbs-attendance-check-in-modal.component.html',
 })
 export class VBSAttendanceCheckInModalComponent implements OnInit {
+  @ViewChildren(CheckboxComponent) checkBoxes: QueryList<CheckboxComponent>;
   @ViewChild('vbsAttendanceCheckInModal') modal: ModalComponent;
-  @ViewChild('fieldCreate') createField: CheckboxComponent;
-  @ViewChild('fieldRead') readField: CheckboxComponent;
-  @ViewChild('fieldUpdate') updateField: CheckboxComponent;
-  @ViewChild('fieldDelete') deleteField: CheckboxComponent;
-  @Output() childCheckedIn = new EventEmitter<void>();
+
   @Input() vbsThemeId: any;
+  @Input() recordId: number;
+  @Output() childCheckedIn = new EventEmitter<void>();
 
   webRoleFeature: WebRoleFeature;
 
   modalLoading = false;
-  vbsPoints: VBSPoint[] = [];
+  autoApplyPoints: VBSPoint[] = [];
+  registrationPoints: VBSPoint[] = [];
   child: Child;
 
-  constructor(private readonly vbsPointsService: VBSPointsService) {}
+  childPoints: number[] = [];
+
+  constructor(
+    private readonly vbsPointsService: VBSPointsService,
+    private readonly vbsChildAttendanceService: VBSChildAttendanceService,
+    private readonly popupService: PopupService,
+    private readonly commonService: CommonService
+  ) {}
 
   ngOnInit() {
     this.modalLoading = true;
     this.vbsPointsService.getByThemeId(this.vbsThemeId).subscribe((res) => {
-      this.vbsPoints = res.body.filter((p) => p.registrationOnly && !p.checkInApply);
+      this.registrationPoints = res.body.filter((p) => p.registrationOnly && !p.checkInApply);
+      this.autoApplyPoints = res.body.filter((p) => p.checkInApply);
       this.modalLoading = false;
     });
   }
 
   open(c: Child) {
     this.child = c;
+    this.resetCheckBoxes();
+    this.resetChildPoints();
     this.modal.open();
   }
 
   onCheckBoxUpdate(event: any) {
-    console.log(event);
+    if (event.selected) {
+      this.childPoints.push(event.id);
+    } else {
+      this.childPoints.splice(this.childPoints.indexOf(event.id), 1);
+    }
   }
 
-  onCheckIn() {}
+  onCheckIn() {
+    this.modalLoading = true;
+    this.vbsChildAttendanceService.checkIn(this.child.id, this.recordId, this.childPoints).subscribe({
+      next: () => {
+        this.childCheckedIn.emit();
+        this.popupService.success(`${this.commonService.getFormattedName(this.child)} successfully checked in!`);
+        this.modal.close();
+        this.modalLoading = false;
+      },
+      error: () => {
+        this.popupService.error(
+          `Unable to check in '${this.commonService.getFormattedName(this.child)}' at this time!`
+        );
+        this.modal.close();
+        this.modalLoading = false;
+      },
+    });
+  }
+
+  resetCheckBoxes() {
+    this.checkBoxes.forEach((c) => (c.checked = false));
+  }
+
+  resetChildPoints() {
+    this.childPoints = [];
+
+    for (const p of this.autoApplyPoints) {
+      this.childPoints.push(p.id);
+    }
+  }
 }

@@ -1,4 +1,4 @@
-<ng-container *ngIf="!loading; else pageLoader">
+<ng-container *ngIf="record && !loading; else pageLoader">
   <ik-header title="VBS Check In">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
     <button
@@ -21,13 +21,14 @@
     <ik-grid-column label="CUID" field="cuid"></ik-grid-column>
     <ik-grid-pager key="Children" [pageSize]="10"></ik-grid-pager>
   </ik-grid>
-</ng-container>
 
-<app-vbs-attendance-check-in-modal
-  #checkInModal
-  [vbsThemeId]="vbsThemeId"
-  (childCheckedIn)="refreshGrid()"
-></app-vbs-attendance-check-in-modal>
+  <app-vbs-attendance-check-in-modal
+    #checkInModal
+    [vbsThemeId]="vbsThemeId"
+    [recordId]="record.id"
+    (childCheckedIn)="refreshGrid()"
+  ></app-vbs-attendance-check-in-modal>
+</ng-container>
 
 <ng-template #pageLoader>
   <ik-loading type="double"></ik-loading>

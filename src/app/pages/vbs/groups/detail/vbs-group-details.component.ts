@@ -16,6 +16,7 @@ import { VBSThemesService } from 'src/service/vbs/vbs-themes.service';
 export class VBSGroupDetailsComponent implements OnInit, OnDestroy {
   themeData: VBSTheme;
   activeGroup: ChurchGroup;
+  activeRoute: string;
   vbsThemeGroup: VBSThemeGroup;
 
   destroy = new Subject<void>();
@@ -38,6 +39,7 @@ export class VBSGroupDetailsComponent implements OnInit, OnDestroy {
     this.route.data
       .pipe(
         tap((res) => (this.activeGroup = res.group)),
+        tap((res) => (this.activeRoute = res.route)),
         map((res) => res.theme.body),
         tap((res) => (this.themeData = res)),
         switchMap(() => this.vbsAttendanceService.getByThemeId(this.themeData.id)),
@@ -59,7 +61,7 @@ export class VBSGroupDetailsComponent implements OnInit, OnDestroy {
   }
 
   onAttendanceRecordRowClick(event: VBSAttendanceRecord) {
-    this.navigationService.navigate(`/vbs/groups/junior/attendance/${event.id}`);
+    this.navigationService.navigate(`${this.activeRoute}/attendance/${event.id}`);
   }
 
   getVBSGroupWorkers(group: ChurchGroup, params?: Map<string, string[]>) {

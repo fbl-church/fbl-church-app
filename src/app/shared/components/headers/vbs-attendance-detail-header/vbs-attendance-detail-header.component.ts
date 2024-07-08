@@ -43,7 +43,7 @@ export class VBSAttendanceDetailHeaderComponent {
     this.loading = true;
     this.attendanceRecordService.updateStatus(this.record.id, AttendanceStatus.ACTIVE).subscribe({
       next: () => {
-        this.popupService.success('Attendance Record Successfully Activated! Start Check in!');
+        this.popupService.success('VBS Attendance Record Successfully Activated! Start Check in!');
         this.checkInStarted.emit();
         this.loading = false;
       },
@@ -58,7 +58,7 @@ export class VBSAttendanceDetailHeaderComponent {
     this.reopenLoading = true;
     this.attendanceRecordService.reopenAttendance(this.record.id).subscribe({
       next: (res) => {
-        this.popupService.success('Attendance Record successfully Re-Opened!');
+        this.popupService.success('VBS Attendance Record successfully Re-Opened!');
         this.recordChange.emit(res);
         this.reopenLoading = false;
       },

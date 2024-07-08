@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'ik-modal-header',
@@ -7,4 +7,6 @@ import { Component, Input } from '@angular/core';
 export class ModalHeaderComponent {
   @Input() title = '';
   @Input() type: 'warning' | 'info' | 'danger' | 'default' = 'default';
+  @Input() showCloseIcon = false;
+  @Output() close = new EventEmitter<void>();
 }
