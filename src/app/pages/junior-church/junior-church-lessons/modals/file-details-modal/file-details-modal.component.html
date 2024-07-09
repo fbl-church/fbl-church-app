@@ -1,4 +1,4 @@
-<ik-modal #fileDetailsModal name="fileDetailsModal">
+<ik-modal #fileDetailsModal name="fileDetailsModal" class="modal-body__padding-none">
   <ik-modal-header title="File Information" type="info"></ik-modal-header>
   <ik-modal-body>
     <div class="row">
@@ -19,15 +19,18 @@
   </ik-modal-body>
   <ik-modal-action-bar>
     <button
+      actionBarLeft
       *featureAccess="[Application.JUNIOR_CHURCH, FeatureType.LESSONS, Access.DELETE]"
-      class="btn btn-danger btn-left btn-modal"
+      class="btn btn-danger btn-modal"
       (click)="onFileDeleteClick()"
     >
       <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
       Delete
     </button>
+    <button actionBarRight class="btn btn-default btn-modal" (click)="fileDetailsModal.close()">Close</button>
     <button
-      class="btn btn-primary btn-right btn-modal"
+      actionBarRight
+      class="btn btn-primary btn-modal"
       (click)="onFileDownload()"
       *ngIf="selectedFile?.file"
       [disabled]="modalDownloadLoading"
@@ -39,7 +42,6 @@
         <ik-icon icon="spinner" classOverride="btn-icon" [spin]="true"></ik-icon>
       </ng-template>
     </button>
-    <button class="btn btn-default btn-right btn-modal" (click)="fileDetailsModal.close()">Close</button>
   </ik-modal-action-bar>
 </ik-modal>
 

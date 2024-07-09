@@ -6,8 +6,8 @@
       <div class="margin-base">'{{ selectedFile?.name }}'</div>
     </ik-modal-body>
     <ik-modal-action-bar>
-      <button class="btn btn-danger btn-right btn-modal" (click)="onFileDelete()">Delete File</button>
-      <button class="btn btn-default btn-right btn-modal" (click)="deleteFileModal.close()">Cancel</button>
+      <button actionBarLeft class="btn btn-default btn-modal" (click)="deleteFileModal.close()">Cancel</button>
+      <button actionBarRight class="btn btn-danger btn-modal" (click)="onFileDelete()">Delete File</button>
     </ik-modal-action-bar>
   </ng-container>
 </ik-modal>

@@ -7,10 +7,10 @@ import { PopupService } from 'projects/insite-kit/src/service/notification/popup
 import { ChildAttendanceService } from 'src/service/attendance/child-attendance.service';
 
 @Component({
-  selector: 'app-check-in-child-modal',
+  selector: 'app-junior-church-check-in-child-modal',
   templateUrl: './check-in-child-modal.component.html',
 })
-export class CheckInChildModalComponent implements OnInit {
+export class JuniorChurchCheckInChildModalComponent implements OnInit {
   @ViewChild('childCheckInModal') modal: ModalComponent;
   @Input() recordId: number;
   @Output() childCheckedIn = new EventEmitter<void>();

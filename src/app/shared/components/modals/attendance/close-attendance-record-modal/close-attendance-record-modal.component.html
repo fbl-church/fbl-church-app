@@ -8,8 +8,8 @@
       </div>
     </ik-modal-body>
     <ik-modal-action-bar>
-      <button class="btn btn-danger btn-right btn-modal" (click)="onCloseAttendance()">Close Attendance</button>
-      <button class="btn btn-default btn-right btn-modal" (click)="closeRecordModal.close()">Cancel</button>
+      <button actionBarLeft class="btn btn-default btn-modal" (click)="closeRecordModal.close()">Cancel</button>
+      <button actionBarRight class="btn btn-danger btn-modal" (click)="onCloseAttendance()">Close Attendance</button>
     </ik-modal-action-bar>
   </ng-container>
 </ik-modal>

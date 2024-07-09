@@ -1,4 +1,12 @@
 .ik-modal-footer {
   border: none;
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+}
+
+.ik-modal-footer--buttons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
 }

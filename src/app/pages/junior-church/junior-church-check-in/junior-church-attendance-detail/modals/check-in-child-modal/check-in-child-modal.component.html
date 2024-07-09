@@ -1,4 +1,4 @@
-<ik-modal #childCheckInModal name="childCheckInModal">
+<ik-modal #childCheckInModal name="childCheckInModal" class="modal-body__padding-none">
   <ik-modal-header title="Check Child In?" type="info"></ik-modal-header>
   <ng-container *ngIf="!modalLoading; else modalLoader">
     <ik-modal-body>
@@ -21,8 +21,8 @@
       </form>
     </ik-modal-body>
     <ik-modal-action-bar>
-      <button class="btn btn-default btn-left btn-modal" (click)="childCheckInModal.close()">Cancel</button>
-      <button class="btn btn-primary btn-right btn-modal" (click)="onCheckInChild()">Check In</button>
+      <button actionBarLeft class="btn btn-default btn-modal" (click)="childCheckInModal.close()">Cancel</button>
+      <button actionBarRight class="btn btn-primary btn-modal" (click)="onCheckInChild()">Check In</button>
     </ik-modal-action-bar>
   </ng-container>
 </ik-modal>

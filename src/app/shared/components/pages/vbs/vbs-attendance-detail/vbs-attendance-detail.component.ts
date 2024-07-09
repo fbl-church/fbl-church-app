@@ -1,12 +1,13 @@
 import { HttpResponse } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
 import { Access, App, ChurchGroup, FeatureType } from 'projects/insite-kit/src/model/common.model';
 import { VBSAttendanceRecord, VBSThemeGroup } from 'projects/insite-kit/src/model/vbs.model';
 import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { Subject, of, switchMap, takeUntil, tap } from 'rxjs';
-import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
 import { UserService } from 'src/service/users/user.service';
+import { VBSChildAttendanceService } from 'src/service/vbs/vbs-child-attendance.service';
 import { VBSThemesService } from 'src/service/vbs/vbs-themes.service';
 
 @Component({
@@ -14,6 +15,8 @@ import { VBSThemesService } from 'src/service/vbs/vbs-themes.service';
   templateUrl: './vbs-attendance-detail.component.html',
 })
 export class VBSAttendanceDetailComponent implements OnInit, OnDestroy {
+  @ViewChild('vbsChildrenGrid') vbsChildrenGrid: GridComponent;
+
   attendanceRecord: VBSAttendanceRecord;
   vbsThemeId: number;
   loading = true;
@@ -35,7 +38,7 @@ export class VBSAttendanceDetailComponent implements OnInit, OnDestroy {
     private readonly route: ActivatedRoute,
     private readonly navigationService: NavigationService,
     private readonly userService: UserService,
-    private readonly attendanceRecordService: AttendanceRecordService,
+    private readonly vbsChildAttendacneService: VBSChildAttendanceService,
     private readonly vbsThemeService: VBSThemesService
   ) {}
 
@@ -58,7 +61,7 @@ export class VBSAttendanceDetailComponent implements OnInit, OnDestroy {
           );
 
         this.vbsChildrenDataloader = (params) =>
-          this.attendanceRecordService.getAttendanceChildrenById(
+          this.vbsChildAttendacneService.getVBSChildrenByAttendanceId(
             this.attendanceRecord.id,
             params.set('present', [true]).set('group', this.childGroups)
           );
@@ -71,18 +74,14 @@ export class VBSAttendanceDetailComponent implements OnInit, OnDestroy {
         (data) =>
           (this.vbsWorkersDataloader = (params) => this.userService.getUsers(params.set('webRole', data.workerRoles)))
       );
-
-    this.route.params
-      .pipe(takeUntil(this.destroy))
-      .subscribe(
-        (res) =>
-          (this.vbsChildrenDataloader = (params) =>
-            this.attendanceRecordService.getAttendanceChildrenById(res.attendanceId, params.set('present', [true])))
-      );
   }
 
   ngOnDestroy() {
     this.destroy.next();
+  }
+
+  refreshChildrenGrid() {
+    this.vbsChildrenGrid.refresh();
   }
 
   onBackClick() {

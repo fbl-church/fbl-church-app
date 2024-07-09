@@ -1,4 +1,4 @@
-<ik-modal #attendanceScheduleDownloadModal name="attendanceScheduleDownloadModal">
+<ik-modal #attendanceScheduleDownloadModal name="attendanceScheduleDownloadModal" class="modal-body__padding-none">
   <ik-modal-header [title]="title" type="info"></ik-modal-header>
   <ik-modal-body>
     <form *ngIf="downloadForm" [formGroup]="downloadForm">
@@ -17,8 +17,12 @@
     </form>
   </ik-modal-body>
   <ik-modal-action-bar>
+    <button actionBarLeft class="btn btn-default btn-modal" (click)="attendanceScheduleDownloadModal.close()">
+      Cancel
+    </button>
     <button
-      class="btn btn-primary btn-right btn-modal"
+      actionBarRight
+      class="btn btn-primary btn-modal"
       (click)="onAttendanceScheduleDownloadClick()"
       [disabled]="downloadForm?.invalid || downloadLoading"
     >
@@ -33,9 +37,6 @@
       <ng-template #scheduleDownloadLoader>
         <ik-icon icon="spinner" classOverride="btn-icon" [spin]="true"></ik-icon>
       </ng-template>
-    </button>
-    <button class="btn btn-default btn-right btn-modal" (click)="attendanceScheduleDownloadModal.close()">
-      Cancel
     </button>
   </ik-modal-action-bar>
 </ik-modal>

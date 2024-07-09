@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { VBSChildPoint, VBSPoint } from 'projects/insite-kit/src/model/vbs.model';
+import { VBSChildPoint } from 'projects/insite-kit/src/model/vbs.model';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { Observable } from 'rxjs';
 
@@ -18,7 +18,7 @@ export class VBSChildPointsService {
    * @param points  The points to add
    * @returns   A list of points added to the child
    */
-  addPointsToChild(childId: any, points: VBSChildPoint[]): Observable<VBSPoint[]> {
-    return this.request.post<VBSPoint[]>(`${this.BASE_VBS_PATH}/${childId}/points`, points);
+  updateChildPoints(childId: any, points: VBSChildPoint[]): Observable<any> {
+    return this.request.put<any>(`${this.BASE_VBS_PATH}/${childId}/points`, points);
   }
 }

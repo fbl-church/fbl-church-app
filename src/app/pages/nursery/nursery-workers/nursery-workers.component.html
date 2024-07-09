@@ -43,10 +43,15 @@
       </form>
     </ik-modal-body>
     <ik-modal-action-bar>
-      <button class="btn btn-primary btn-right btn-modal" (click)="onAddWorkers()" [disabled]="form && form.invalid">
+      <button actionBarLeft class="btn btn-default btn-modal" (click)="addWorkersModal.close()">Cancel</button>
+      <button
+        actionBarRight
+        class="btn btn-primary btn-modal"
+        (click)="onAddWorkers()"
+        [disabled]="form && form.invalid"
+      >
         Add Workers
       </button>
-      <button class="btn btn-default btn-right btn-modal" (click)="addWorkersModal.close()">Cancel</button>
     </ik-modal-action-bar>
   </ng-container>
 </ik-modal>

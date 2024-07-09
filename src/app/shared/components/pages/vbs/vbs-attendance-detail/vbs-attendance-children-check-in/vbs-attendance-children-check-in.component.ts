@@ -38,12 +38,12 @@ export class VBSAttendanceChildrenCheckInComponent implements OnInit, OnDestroy 
   ngOnInit() {
     this.route.data
       .pipe(
-        tap((res) => (this.baseRoute = this.buildBaseRoute(res.route))),
         tap((data) => {
           this.record = data.record.body;
           this.vbsThemeId = this.record.vbsThemeId;
           this.childGroups = data.group;
         }),
+        tap((res) => (this.baseRoute = this.buildBaseRoute(res.route))),
         takeUntil(this.destroy)
       )
       .subscribe(() => {

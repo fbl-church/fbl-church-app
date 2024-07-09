@@ -6,15 +6,15 @@ import { Child } from 'projects/insite-kit/src/model/user.model';
 import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
-import { CheckInChildModalComponent } from '../../modals/check-in-child-modal/check-in-child-modal.component';
+import { JuniorChurchCheckInChildModalComponent } from '../../modals/check-in-child-modal/check-in-child-modal.component';
 
 @Component({
   selector: 'app-junior-church-children-check-in',
   templateUrl: './junior-church-children-check-in.component.html',
 })
 export class JuniorChurchChildrenCheckInComponent implements OnInit, OnDestroy {
-  @ViewChild(CheckInChildModalComponent)
-  checkInModal: CheckInChildModalComponent;
+  @ViewChild(JuniorChurchCheckInChildModalComponent)
+  checkInModal: JuniorChurchCheckInChildModalComponent;
   @ViewChild('childrenCheckInGrid') checkInGrid: GridComponent;
 
   recordId: number;

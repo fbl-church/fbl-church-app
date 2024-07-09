@@ -1,7 +1,9 @@
+import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { VBSPoint } from 'projects/insite-kit/src/model/vbs.model';
+import { VBSChildAttendance, VBSPoint } from 'projects/insite-kit/src/model/vbs.model';
+import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +11,22 @@ import { Observable } from 'rxjs';
 export class VBSChildAttendanceService {
   readonly BASE_VBS_PATH = 'api/vbs/children';
 
-  constructor(private readonly request: RequestService) {}
+  constructor(private readonly request: RequestService, private readonly commonService: CommonService) {}
+
+  /**
+   *  Get all VBS children by attendance id
+   *
+   * @param attendanceId The attendance id
+   * @returns A list of VBS children
+   */
+  getVBSChildrenByAttendanceId(
+    attendanceId: number,
+    params?: Map<string, string[]>
+  ): Observable<HttpResponse<VBSChildAttendance[]>> {
+    return this.request
+      .get<VBSChildAttendance[]>(`${this.BASE_VBS_PATH}/attendance/${attendanceId}`, params)
+      .pipe(tap((v) => v.body.forEach((c) => (c.formattedName = this.commonService.getFormattedName(c)))));
+  }
 
   /**
    *  Add points to a child by child id

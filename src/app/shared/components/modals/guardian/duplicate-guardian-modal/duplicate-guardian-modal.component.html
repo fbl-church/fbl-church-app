@@ -27,10 +27,10 @@
       </div>
     </ik-modal-body>
     <ik-modal-action-bar>
-      <button class="btn btn-warning btn-right btn-modal" (click)="onDuplicateGuardianAcknowledgement()">
+      <button actionBarLeft class="btn btn-default btn-modal" (click)="duplicateGuardianModal.close()">Cancel</button>
+      <button actionBarRight class="btn btn-warning btn-modal" (click)="onDuplicateGuardianAcknowledgement()">
         Continue
       </button>
-      <button class="btn btn-default btn-right btn-modal" (click)="duplicateGuardianModal.close()">Cancel</button>
     </ik-modal-action-bar>
   </ng-container>
 </ik-modal>

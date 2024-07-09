@@ -1,4 +1,4 @@
-<ik-modal #childCheckInModal name="childCheckInModal">
+<ik-modal #childCheckInModal name="childCheckInModal" class="modal-body__padding-none">
   <ik-modal-header
     [title]="record.status !== 'CLOSED' ? 'Update Child Attendance?' : 'Child Attendance'"
     type="info"
@@ -66,23 +66,24 @@
     </ik-modal-body>
     <ik-modal-action-bar>
       <button
+        actionBarLeft
         *ngIf="record.status !== 'CLOSED' && !child?.checkOutDate"
-        class="btn btn-danger btn-left btn-modal"
+        class="btn btn-danger btn-modal"
         (click)="onChildCheckout()"
       >
         Check Out
       </button>
-
+      <button actionBarRight class="btn btn-default btn-modal" (click)="childCheckInModal.close()">
+        {{ record.status !== 'CLOSED' ? 'Cancel' : 'Close' }}
+      </button>
       <button
+        actionBarRight
         *ngIf="record.status !== 'CLOSED'"
-        class="btn btn-primary btn-right btn-modal"
+        class="btn btn-primary btn-modal"
         (click)="onUpdateChildCheckIn()"
         [disabled]="!form.dirty"
       >
         Update
-      </button>
-      <button class="btn btn-default btn-right btn-modal" (click)="childCheckInModal.close()">
-        {{ record.status !== 'CLOSED' ? 'Cancel' : 'Close' }}
       </button>
     </ik-modal-action-bar>
   </ng-container>

@@ -134,6 +134,9 @@ export enum FeatureType {
   // Theme Features
   THEMES = 'themes',
   THEMES_POINTS = 'themes.points',
+
+  // VBS Features
+  CHECK_IN_POINTS = 'check-in.points',
 }
 
 export enum App {

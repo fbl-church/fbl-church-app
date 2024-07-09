@@ -13,14 +13,15 @@
       </form>
     </ik-modal-body>
     <ik-modal-action-bar>
+      <button actionBarLeft class="btn btn-default btn-modal" (click)="vbsThemeDetailsModal.close()">Cancel</button>
       <button
-        class="btn btn-primary btn-right btn-modal"
+        actionBarRight
+        class="btn btn-primary btn-modal"
         (click)="onSaveClick()"
         [disabled]="form && (form.invalid || !form.dirty)"
       >
         Update
       </button>
-      <button class="btn btn-default btn-right btn-modal" (click)="vbsThemeDetailsModal.close()">Cancel</button>
     </ik-modal-action-bar>
   </ng-container>
 </ik-modal>

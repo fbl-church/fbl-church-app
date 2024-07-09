@@ -1,4 +1,4 @@
-import { AttendanceRecord } from './attendance-record.model';
+import { AttendanceRecord, ChildAttendance } from './attendance-record.model';
 import { ChurchGroup } from './common.model';
 
 export interface VBSTheme {
@@ -19,6 +19,10 @@ export interface VBSThemeGroup {
   vbsThemeId?: number;
   group?: ChurchGroup;
   name?: string;
+}
+
+export interface VBSChildAttendance extends ChildAttendance {
+  points?: VBSChildPoint[];
 }
 
 export interface VBSChildPoint {

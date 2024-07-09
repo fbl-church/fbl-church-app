@@ -4,8 +4,8 @@
     <div>No guardians were selected to be assigned to the child. Do you want to continue?</div>
   </ik-modal-body>
   <ik-modal-action-bar>
-    <button class="btn btn-warning btn-right btn-modal" (click)="onAcknowledged()">Continue</button>
-    <button class="btn btn-default btn-right btn-modal" (click)="guardianWarningModal.close()">Cancel</button>
+    <button actionBarLeft class="btn btn-default btn-modal" (click)="guardianWarningModal.close()">Cancel</button>
+    <button actionBarRight class="btn btn-warning btn-modal" (click)="onAcknowledged()">Continue</button>
   </ik-modal-action-bar>
 </ik-modal>
 

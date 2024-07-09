@@ -1,4 +1,4 @@
-<ik-modal #vbsAttendanceCheckInModal name="vbsAttendanceCheckInModal">
+<ik-modal #vbsAttendanceCheckInModal name="vbsAttendanceCheckInModal" class="modal-body__padding-none">
   <ik-modal-header title="Check In Child?" type="info"></ik-modal-header>
   <ng-container *ngIf="!modalLoading && registrationPoints; else modalLoader">
     <ik-modal-body>
@@ -20,8 +20,10 @@
       </div>
     </ik-modal-body>
     <ik-modal-action-bar>
-      <button class="btn btn-default btn-left btn-modal" (click)="vbsAttendanceCheckInModal.close()">Cancel</button>
-      <button class="btn btn-primary btn-right btn-modal" (click)="onCheckIn()">Check In</button>
+      <button actionBarLeft class="btn btn-default btn-modal" (click)="vbsAttendanceCheckInModal.close()">
+        Cancel
+      </button>
+      <button actionBarRight class="btn btn-primary btn-modal" (click)="onCheckIn()">Check In</button>
     </ik-modal-action-bar>
   </ng-container>
 </ik-modal>

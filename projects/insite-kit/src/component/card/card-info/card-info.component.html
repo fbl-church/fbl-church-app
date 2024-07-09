@@ -1,5 +1,9 @@
 <div [ngClass]="{ 'card-info--padding': padding }">
-  <div class="card-info__label-header" [ngClass]="{ 'text-center': center }">{{ header }}</div>
+  <div class="card-info--container">
+    <div class="card-info__label-header" [ngClass]="{ 'text-center': center }">{{ header }}</div>
+    <ng-content select="ik-icon"></ng-content>
+  </div>
+
   <ng-container *ngIf="!text; else textFieldData">
     <ng-content></ng-content>
   </ng-container>

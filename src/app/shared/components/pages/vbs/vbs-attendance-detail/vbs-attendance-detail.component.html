@@ -25,8 +25,10 @@
       </app-vbs-attendance-details-card>
 
       <app-attendance-record-children-grid
+        #vbsChildrenGrid
         *ngIf="attendanceRecord.status !== 'PENDING'"
         [dataLoader]="vbsChildrenDataloader"
+        (rowClick)="vbsChildAttendanceUpdateModal.open($event)"
       >
         <ik-card-header title="Children">
           <ng-container *ngIf="attendanceRecord.status !== 'CLOSED'">
@@ -73,6 +75,13 @@
       </ik-grid>
     </div>
   </div>
+
+  <app-vbs-child-attendance-modal
+    #vbsChildAttendanceUpdateModal
+    [vbsThemeId]="attendanceRecord.vbsThemeId"
+    [record]="attendanceRecord"
+    (childUpdated)="refreshChildrenGrid()"
+  ></app-vbs-child-attendance-modal>
 </ng-container>
 
 <ng-template #pageLoader>

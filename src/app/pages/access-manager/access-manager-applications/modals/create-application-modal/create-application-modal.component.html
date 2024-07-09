@@ -12,9 +12,10 @@
       </form>
     </ik-modal-body>
     <ik-modal-action-bar>
-      <button class="btn btn-default btn-left btn-modal" (click)="createApplicationModal.close()">Cancel</button>
+      <button actionBarLeft class="btn btn-default btn-modal" (click)="createApplicationModal.close()">Cancel</button>
       <button
-        class="btn btn-primary btn-right btn-modal"
+        actionBarRight
+        class="btn btn-primary btn-modal"
         (click)="onCreateApplication()"
         [disabled]="form && form.invalid"
       >

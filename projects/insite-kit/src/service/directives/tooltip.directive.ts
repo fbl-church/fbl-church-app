@@ -31,6 +31,8 @@ export class TooltipDirective implements OnDestroy, OnInit {
   cancelHide = new Subject<void>();
   destroy = new Subject<void>();
 
+  isShowing = false;
+
   readonly tooltipOffset = 4;
 
   constructor(
@@ -104,6 +106,7 @@ export class TooltipDirective implements OnDestroy, OnInit {
    */
   show() {
     if (!this.tooltip.classList.contains('ik-tooltip--show')) {
+      this.isShowing = true;
       this.tooltip.innerHTML = this.tooltipText;
       this.tooltip.classList.add('ik-tooltip--show');
       this.domService.appendChild(document.body, this.tooltip);
@@ -111,6 +114,7 @@ export class TooltipDirective implements OnDestroy, OnInit {
       this.listenForTooltipEvent();
       this.listenForHideEvent();
     } else {
+      this.isShowing = false;
       this.tooltip.classList.remove('ik-tooltip--show');
     }
   }
@@ -119,7 +123,14 @@ export class TooltipDirective implements OnDestroy, OnInit {
    * Hide the tooltip
    */
   hide() {
+    this.isShowing = false;
     this.tooltip.classList.remove('ik-tooltip--show');
+
+    setTimeout(() => {
+      if (!this.isShowing) {
+        this.domService.remove(this.tooltip);
+      }
+    }, 1000);
   }
 
   /**

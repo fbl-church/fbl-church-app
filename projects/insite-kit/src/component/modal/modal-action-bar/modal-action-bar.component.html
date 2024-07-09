@@ -1,3 +1,9 @@
-<div class="modal-footer ik-modal-footer">
-  <ng-content></ng-content>
+<div class="ik-modal-footer">
+  <div class="ik-modal-footer--buttons">
+    <ng-content select="[actionBarLeft]"></ng-content>
+  </div>
+
+  <div class="ik-modal-footer--buttons">
+    <ng-content select="[actionBarRight]"></ng-content>
+  </div>
 </div>

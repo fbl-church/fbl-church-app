@@ -34,14 +34,15 @@
       </form>
     </ik-modal-body>
     <ik-modal-action-bar>
+      <button actionBarLeft class="btn btn-default btn-modal" (click)="addGuardianModal.close()">Cancel</button>
       <button
-        class="btn btn-primary btn-right btn-modal"
+        actionBarRight
+        class="btn btn-primary btn-modal"
         (click)="onSaveGuardianClick()"
         [disabled]="(form && form.invalid) || disableSave"
       >
         Add Guardian
       </button>
-      <button class="btn btn-default btn-right btn-modal" (click)="addGuardianModal.close()">Cancel</button>
     </ik-modal-action-bar>
   </ng-container>
 </ik-modal>

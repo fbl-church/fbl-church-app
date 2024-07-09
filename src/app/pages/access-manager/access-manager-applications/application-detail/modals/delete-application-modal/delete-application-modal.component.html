@@ -8,8 +8,10 @@
       </div>
     </ik-modal-body>
     <ik-modal-action-bar>
-      <button class="btn btn-danger btn-right btn-modal" (click)="onDeleteApplication()">Delete Application</button>
-      <button class="btn btn-default btn-right btn-modal" (click)="deleteApplicationModal.close()">Cancel</button>
+      <button actionBarLeft class="btn btn-default btn-modal" (click)="deleteApplicationModal.close()">Cancel</button>
+      <button actionBarRight class="btn btn-danger btn-modal" (click)="onDeleteApplication()">
+        Delete Application
+      </button>
     </ik-modal-action-bar>
   </ng-container>
 </ik-modal>

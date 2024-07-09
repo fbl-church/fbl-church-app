@@ -1,0 +1,53 @@
+<ik-modal #vbsChildAttendanceModal name="vbsChildAttendanceModal" class="modal-body__padding-none">
+  <ik-modal-header title="Child Attendance" type="info"></ik-modal-header>
+  <ng-container *ngIf="!modalLoading; else modalLoader">
+    <ik-modal-body>
+      <div class="row">
+        <div class="col-6">
+          <ik-card-info header="Name" [text]="childAttendance | formatUserName"></ik-card-info>
+        </div>
+        <div class="col-6">
+          <ik-card-info header="CUID" [text]="childAttendance?.cuid"></ik-card-info>
+        </div>
+      </div>
+      <ik-card-info *ngIf="record.status !== 'CLOSED'" header="Attendance">
+        <ik-icon
+          icon="circle-info"
+          classOverride="btn-icon"
+          [ikTooltip]="'This will mark the child as absent and will remove any points that have been applied.'"
+          [ikTooltipWrapText]="true"
+          ikTooltipPosition="right top"
+        ></ik-icon>
+        <a class="link card-info__label-text">Mark Absent</a>
+      </ik-card-info>
+      <div class="row">
+        <ik-form-field header="Points" class="col-12">
+          <ng-container *featureAccess="[Application.VBS, FeatureType.CHECK_IN_CHILDREN, Access.UPDATE]">
+            <div *ngFor="let p of registrationPoints" class="flex-center--start">
+              <ik-checkbox [checkId]="p.id" (checkboxChange)="onCheckBoxUpdate($event)"></ik-checkbox>
+              <div class="card-info__label-text padding-none">{{ p.displayName + ' (' + p.points + ' points)' }}</div>
+            </div>
+          </ng-container>
+
+          <ng-container *featureAccess="[Application.VBS, FeatureType.CHECK_IN_POINTS, Access.UPDATE]">
+            <div *ngFor="let p of groupPoints" class="flex-center--start">
+              <ik-checkbox [checkId]="p.id" (checkboxChange)="onCheckBoxUpdate($event)"></ik-checkbox>
+              <div class="card-info__label-text padding-none">{{ p.displayName + ' (' + p.points + ' points)' }}</div>
+            </div>
+          </ng-container>
+        </ik-form-field>
+      </div>
+    </ik-modal-body>
+    <ik-modal-action-bar>
+      <button actionBarLeft class="btn btn-danger btn-modal" (click)="vbsChildAttendanceModal.close()">
+        Check Out
+      </button>
+      <button actionBarRight class="btn btn-default btn-modal" (click)="vbsChildAttendanceModal.close()">Cancel</button>
+      <button actionBarRight class="btn btn-primary btn-modal" (click)="onUpdateClick()">Update</button>
+    </ik-modal-action-bar>
+  </ng-container>
+</ik-modal>
+
+<ng-template #modalLoader>
+  <ik-loading></ik-loading>
+</ng-template>

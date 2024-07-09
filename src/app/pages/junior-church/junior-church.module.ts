@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BaseInitModule } from 'src/app/common/base-init.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { JuniorChurchAttendanceDetailComponent } from './junior-church-check-in/junior-church-attendance-detail/junior-church-attendance-detail.component';
-import { CheckInChildModalComponent } from './junior-church-check-in/junior-church-attendance-detail/modals/check-in-child-modal/check-in-child-modal.component';
+import { JuniorChurchCheckInChildModalComponent } from './junior-church-check-in/junior-church-attendance-detail/modals/check-in-child-modal/check-in-child-modal.component';
 import { EditJuniorChurchRecordComponent } from './junior-church-check-in/junior-church-attendance-detail/pages/edit-junior-church-attendance-record/edit-junior-church-attendance-record.component';
 import { JuniorChurchChildrenCheckInComponent } from './junior-church-check-in/junior-church-attendance-detail/pages/junior-church-children-check-in/junior-church-children-check-in.component';
 import { JuniorChurchCheckInComponent } from './junior-church-check-in/junior-church-check-in.component';
@@ -25,7 +25,7 @@ import { JuniorChurchWorkersComponent } from './junior-church-workers/junior-chu
     EditJuniorChurchRecordComponent,
     JuniorChurchChildrenComponent,
     JuniorChurchChildrenCheckInComponent,
-    CheckInChildModalComponent,
+    JuniorChurchCheckInChildModalComponent,
     JuniorChurchChildDetailComponent,
     JuniorChurchLessonsComponent,
     LessonsUploadComponent,

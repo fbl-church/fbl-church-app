@@ -1,39 +1,45 @@
 import { Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CheckboxComponent } from 'projects/insite-kit/src/component/checkbox/checkbox.component';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
-import { WebRoleFeature } from 'projects/insite-kit/src/model/access.model';
-import { Child } from 'projects/insite-kit/src/model/user.model';
-import { VBSPoint } from 'projects/insite-kit/src/model/vbs.model';
+import { Access, App, FeatureType, WebRole } from 'projects/insite-kit/src/model/common.model';
+import {
+  VBSAttendanceRecord,
+  VBSChildAttendance,
+  VBSChildPoint,
+  VBSPoint,
+} from 'projects/insite-kit/src/model/vbs.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
-import { VBSChildAttendanceService } from 'src/service/vbs/vbs-child-attendance.service';
+import { VBSChildPointsService } from 'src/service/vbs/vbs-child-points.service';
 import { VBSPointsService } from 'src/service/vbs/vbs-points.service';
 
 @Component({
-  selector: 'app-vbs-attendance-check-in-modal',
-  templateUrl: './vbs-attendance-check-in-modal.component.html',
+  selector: 'app-vbs-child-attendance-modal',
+  templateUrl: './vbs-child-attendance-modal.component.html',
 })
-export class VBSAttendanceCheckInModalComponent implements OnInit {
+export class VBSChildAttendanceModalComponent implements OnInit {
   @ViewChildren(CheckboxComponent) checkBoxes: QueryList<CheckboxComponent>;
-  @ViewChild('vbsAttendanceCheckInModal') modal: ModalComponent;
+  @ViewChild('vbsChildAttendanceModal') modal: ModalComponent;
 
   @Input() vbsThemeId: any;
-  @Input() recordId: number;
-  @Output() childCheckedIn = new EventEmitter<void>();
+  @Input() record: VBSAttendanceRecord;
+  @Output() childUpdated = new EventEmitter<void>();
 
-  webRoleFeature: WebRoleFeature;
+  FeatureType = FeatureType;
+  Application = App;
+  Access = Access;
+  WebRole = WebRole;
+
+  childAttendance: VBSChildAttendance;
 
   modalLoading = false;
-  autoApplyPoints: VBSPoint[] = [];
   registrationPoints: VBSPoint[] = [];
   groupPoints: VBSPoint[] = [];
-  child: Child;
-
-  childPoints: number[] = [];
+  childPoints: any[] = [];
 
   constructor(
     private readonly vbsPointsService: VBSPointsService,
-    private readonly vbsChildAttendanceService: VBSChildAttendanceService,
+    private readonly vbsChildPointsService: VBSChildPointsService,
     private readonly popupService: PopupService,
     private readonly commonService: CommonService
   ) {}
@@ -42,16 +48,16 @@ export class VBSAttendanceCheckInModalComponent implements OnInit {
     this.modalLoading = true;
     this.vbsPointsService.getByThemeId(this.vbsThemeId).subscribe((res) => {
       this.registrationPoints = res.body.filter((p) => p.registrationOnly && !p.checkInApply);
-      this.autoApplyPoints = res.body.filter((p) => p.checkInApply);
       this.groupPoints = res.body.filter((p) => !p.registrationOnly && !p.checkInApply);
       this.modalLoading = false;
     });
   }
 
-  open(c: Child) {
-    this.child = c;
-    this.resetCheckBoxes();
+  open(c: VBSChildAttendance) {
+    this.childAttendance = c;
     this.resetChildPoints();
+    this.resetCheckBoxes();
+
     this.modal.open();
   }
 
@@ -63,18 +69,28 @@ export class VBSAttendanceCheckInModalComponent implements OnInit {
     }
   }
 
-  onCheckIn() {
+  resetChildPoints() {
+    this.childPoints = this.childAttendance.points.map((p) => p.vbsPointId);
+  }
+
+  resetCheckBoxes() {
+    this.checkBoxes.forEach((c) => (c.checked = this.childPoints.includes(c.checkId)));
+  }
+
+  onUpdateClick() {
     this.modalLoading = true;
-    this.vbsChildAttendanceService.checkIn(this.child.id, this.recordId, this.childPoints).subscribe({
+    this.vbsChildPointsService.updateChildPoints(this.childAttendance.id, this.buildVBSPoints()).subscribe({
       next: () => {
-        this.childCheckedIn.emit();
-        this.popupService.success(`${this.commonService.getFormattedName(this.child)} successfully checked in!`);
+        this.childUpdated.emit();
+        this.popupService.success(
+          `Successfully updated points for '${this.commonService.getFormattedName(this.childAttendance)}'`
+        );
         this.modal.close();
         this.modalLoading = false;
       },
       error: () => {
         this.popupService.error(
-          `Unable to check in '${this.commonService.getFormattedName(this.child)}' at this time!`
+          `Unable to update points for '${this.commonService.getFormattedName(this.childAttendance)}' at this time.`
         );
         this.modal.close();
         this.modalLoading = false;
@@ -82,15 +98,7 @@ export class VBSAttendanceCheckInModalComponent implements OnInit {
     });
   }
 
-  resetCheckBoxes() {
-    this.checkBoxes.forEach((c) => (c.checked = false));
-  }
-
-  resetChildPoints() {
-    this.childPoints = [];
-
-    for (const p of this.autoApplyPoints) {
-      this.childPoints.push(p.id);
-    }
+  buildVBSPoints(): VBSChildPoint[] {
+    return this.childPoints.map((p) => ({ vbsPointId: p, vbsAttendanceId: this.childAttendance.attendanceRecordId }));
   }
 }
