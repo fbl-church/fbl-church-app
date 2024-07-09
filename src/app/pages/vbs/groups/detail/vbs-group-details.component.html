@@ -10,7 +10,7 @@
     <div class="col-lg-7">
       <app-vbs-theme-details-card title="Theme Details" [theme]="themeData"></app-vbs-theme-details-card>
 
-      <ik-grid [dataLoader]="vbsAttendanceDataloader" (rowClick)="vbsAttendanceRecordDetailModal.open($event)">
+      <ik-grid [dataLoader]="vbsAttendanceDataloader" (rowClick)="onAttendanceRecordRowClick($event)">
         <ik-card-header title="Attendance Records"> </ik-card-header>
         <ik-grid-column label="Name" field="name"> </ik-grid-column>
         <ik-grid-column label="Status" field="status">
@@ -45,11 +45,6 @@
     </div>
   </div>
 </ng-container>
-
-<app-vbs-attendance-detail-modal
-  #vbsAttendanceRecordDetailModal
-  [route]="activeRoute"
-></app-vbs-attendance-detail-modal>
 
 <ng-template #modalLoader>
   <ik-loading></ik-loading>

@@ -13,7 +13,6 @@ import { VBSThemesService } from 'src/service/vbs/vbs-themes.service';
 import { AuthenticatedLayoutComponent } from '../components/layouts/authenticated-layout/authenticated-layout.component';
 import { VBSAttendanceDetailEditComponent } from '../components/pages/vbs/vbs-attendance-detail-edit/vbs-attendance-detail-edit.component';
 import { VBSAttendanceChildrenCheckInComponent } from '../components/pages/vbs/vbs-attendance-detail/vbs-attendance-children-check-in/vbs-attendance-children-check-in.component';
-import { VBSAttendanceChildrenPointsComponent } from '../components/pages/vbs/vbs-attendance-detail/vbs-attendance-children-points/vbs-attendance-children-points.component';
 import { VBSAttendanceDetailComponent } from '../components/pages/vbs/vbs-attendance-detail/vbs-attendance-detail.component';
 
 export const VBS_ROUTE: Route = {
@@ -155,14 +154,6 @@ export const VBS_ROUTE: Route = {
           },
         },
         {
-          path: 'pre-primary/attendance/:attendanceId/children/points',
-          component: VBSAttendanceChildrenPointsComponent,
-          data: {
-            group: ChurchGroup.VBS_PRE_PRIMARY,
-            route: '/vbs/groups/pre-primary',
-          },
-        },
-        {
           path: 'pre-primary/attendance/:attendanceId/edit',
           component: VBSAttendanceDetailEditComponent,
           resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
@@ -205,14 +196,6 @@ export const VBS_ROUTE: Route = {
           resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
           data: {
             group: [ChurchGroup.VBS_PRIMARY],
-            route: '/vbs/groups/primary',
-          },
-        },
-        {
-          path: 'primary/attendance/:attendanceId/children/points',
-          component: VBSAttendanceChildrenPointsComponent,
-          data: {
-            group: ChurchGroup.VBS_PRIMARY,
             route: '/vbs/groups/primary',
           },
         },
@@ -263,14 +246,6 @@ export const VBS_ROUTE: Route = {
           },
         },
         {
-          path: 'middler/attendance/:attendanceId/children/points',
-          component: VBSAttendanceChildrenPointsComponent,
-          data: {
-            group: ChurchGroup.VBS_MIDDLER,
-            route: '/vbs/groups/middler',
-          },
-        },
-        {
           path: 'middler/attendance/:attendanceId/edit',
           component: VBSAttendanceDetailEditComponent,
           resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
@@ -313,14 +288,6 @@ export const VBS_ROUTE: Route = {
           resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
           data: {
             group: [ChurchGroup.VBS_JUNIOR],
-            route: '/vbs/groups/junior',
-          },
-        },
-        {
-          path: 'junior/attendance/:attendanceId/children/points',
-          component: VBSAttendanceChildrenPointsComponent,
-          data: {
-            group: ChurchGroup.VBS_JUNIOR,
             route: '/vbs/groups/junior',
           },
         },
