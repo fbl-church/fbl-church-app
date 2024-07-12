@@ -55,7 +55,7 @@
         <ng-template let-data>
           <ik-icon
             [icon]="data.create ? 'check' : 'xmark'"
-            [classOverride]="data.create ? 'icon__success' : 'icon__danger'"
+            [classOverride]="'grid-icon ' + (data.create ? 'icon--success' : 'icon--danger')"
           ></ik-icon>
         </ng-template>
       </ik-grid-column>
@@ -63,7 +63,7 @@
         <ng-template let-data>
           <ik-icon
             [icon]="data.read ? 'check' : 'xmark'"
-            [classOverride]="data.read ? 'icon__success' : 'icon__danger'"
+            [classOverride]="'grid-icon ' + (data.read ? 'icon--success' : 'icon--danger')"
           ></ik-icon>
         </ng-template>
       </ik-grid-column>
@@ -71,7 +71,7 @@
         <ng-template let-data>
           <ik-icon
             [icon]="data.update ? 'check' : 'xmark'"
-            [classOverride]="data.update ? 'icon__success' : 'icon__danger'"
+            [classOverride]="'grid-icon ' + (data.update ? 'icon--success' : 'icon--danger')"
           ></ik-icon>
         </ng-template>
       </ik-grid-column>
@@ -79,7 +79,7 @@
         <ng-template let-data>
           <ik-icon
             [icon]="data.delete ? 'check' : 'xmark'"
-            [classOverride]="data.delete ? 'icon__success' : 'icon__danger'"
+            [classOverride]="'grid-icon ' + (data.delete ? 'icon--success' : 'icon--danger')"
           ></ik-icon>
         </ng-template>
       </ik-grid-column>

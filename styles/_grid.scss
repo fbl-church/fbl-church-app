@@ -75,7 +75,8 @@ table {
 }
 
 .grid-icon {
-  font-size: $font-size-lg;
+  margin-left: 20px;
+  font-size: $font-size-base;
 }
 
 @media screen and (max-width: $grid-screen-md-max) {
@@ -105,5 +106,9 @@ table {
   .grid__column-header {
     font-size: $font-size-caption;
     padding-left: 5px;
+  }
+
+  .grid-icon {
+    margin-left: 12px;
   }
 }

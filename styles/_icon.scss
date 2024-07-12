@@ -1,24 +1,17 @@
-.icon__default {
+.icon {
   font-size: $font-size-xl;
-  color: var(--icon-color);
-}
 
-.icon__danger {
-  margin-left: 20px;
-  color: $red-400;
+  &--default {
+    color: var(--icon-color);
+  }
 
-  &--margin-none {
+  &--danger {
     color: $red-400;
   }
-}
 
-.icon__success {
-  margin-left: 20px;
-  color: $green-400;
-}
-
-.icon__base {
-  margin-left: 20px;
+  &--success {
+    color: $green-400;
+  }
 }
 
 .fa-spin {
@@ -31,13 +24,7 @@
 }
 
 @media screen and (max-width: $screen-sm-max) {
-  .icon__default {
+  .icon {
     font-size: $font-size-lg;
-  }
-
-  .icon__danger,
-  .icon__success,
-  .icon__default {
-    margin-left: 12px;
   }
 }

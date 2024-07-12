@@ -17,7 +17,6 @@ export class VBSChildAttendanceService {
    *  Get all VBS children by attendance id
    *
    * @param attendanceId The attendance id
-   * @returns A list of VBS children
    */
   getVBSChildrenByAttendanceId(
     attendanceId: number,
@@ -33,9 +32,18 @@ export class VBSChildAttendanceService {
    *
    * @param childId  The child id
    * @param points  The points to add
-   * @returns   A list of points added to the child
    */
   checkIn(childId: any, recordId: any, pointIds?: number[]): Observable<VBSPoint[]> {
     return this.request.post<VBSPoint[]>(`${this.BASE_VBS_PATH}/${childId}/attendance/${recordId}`, pointIds);
+  }
+
+  /**
+   * Mark a child as absent
+   *
+   * @param childId Child id
+   * @param recordId  Record id
+   */
+  markAbsent(childId: any, recordId: any): Observable<any> {
+    return this.request.delete<any>(`${this.BASE_VBS_PATH}/${childId}/attendance/${recordId}`);
   }
 }

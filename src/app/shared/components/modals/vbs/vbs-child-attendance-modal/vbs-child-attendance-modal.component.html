@@ -14,11 +14,13 @@
         <ik-icon
           icon="circle-info"
           classOverride="btn-icon"
-          [ikTooltip]="'This will mark the child as absent and will remove any points that have been applied.'"
+          [ikTooltip]="
+            'This will mark the child as absent and will remove any points that have been applied for this record.'
+          "
           [ikTooltipWrapText]="true"
           ikTooltipPosition="right top"
         ></ik-icon>
-        <a class="link card-info__label-text">Mark Absent</a>
+        <a class="link card-info__label-text" (click)="onMarkChildAbsent()">Mark Absent</a>
       </ik-card-info>
       <div class="row">
         <ik-form-field header="Points" class="col-12">

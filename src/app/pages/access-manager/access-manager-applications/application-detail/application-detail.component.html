@@ -52,7 +52,7 @@
         <ng-template let-data>
           <ik-icon
             [icon]="data.access ? 'check' : 'xmark'"
-            [classOverride]="data.access ? 'icon__success' : 'icon__danger'"
+            [classOverride]="'grid-icon ' + (data.access ? 'icon--success' : 'icon--danger')"
           ></ik-icon>
         </ng-template>
       </ik-grid-column>

@@ -52,6 +52,10 @@
   margin: 15px 18px;
 }
 
+.grid-pager__icon {
+  font-size: $font-size-lg;
+}
+
 @media screen and (max-width: $grid-screen-sm-max) {
   .grid-pager__page-number {
     width: 30px;

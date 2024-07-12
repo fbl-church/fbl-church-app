@@ -10,6 +10,7 @@ import {
 } from 'projects/insite-kit/src/model/vbs.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
+import { VBSChildAttendanceService } from 'src/service/vbs/vbs-child-attendance.service';
 import { VBSChildPointsService } from 'src/service/vbs/vbs-child-points.service';
 import { VBSPointsService } from 'src/service/vbs/vbs-points.service';
 
@@ -39,6 +40,7 @@ export class VBSChildAttendanceModalComponent implements OnInit {
 
   constructor(
     private readonly vbsPointsService: VBSPointsService,
+    private readonly vbsChildAttendanceService: VBSChildAttendanceService,
     private readonly vbsChildPointsService: VBSChildPointsService,
     private readonly popupService: PopupService,
     private readonly commonService: CommonService
@@ -93,6 +95,28 @@ export class VBSChildAttendanceModalComponent implements OnInit {
           `Unable to update points for '${this.commonService.getFormattedName(this.childAttendance)}' at this time.`
         );
         this.modal.close();
+        this.modalLoading = false;
+      },
+    });
+  }
+
+  onMarkChildAbsent() {
+    this.modalLoading = true;
+    this.vbsChildAttendanceService.markAbsent(this.childAttendance.id, this.record.id).subscribe({
+      next: () => {
+        this.childUpdated.emit();
+        this.popupService.success(
+          `${this.commonService.getFormattedName(this.childAttendance)} successfully removed from Attendance!`
+        );
+        this.modal.close();
+        this.modalLoading = false;
+      },
+      error: () => {
+        this.popupService.error(
+          `Unable to remove '${this.commonService.getFormattedName(
+            this.childAttendance
+          )}' from attendance at this time!`
+        );
         this.modalLoading = false;
       },
     });
