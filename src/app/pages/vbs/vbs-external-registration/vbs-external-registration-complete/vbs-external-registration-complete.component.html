@@ -1,8 +1,16 @@
 <div class="vbs-external">
   <ik-icon classOverride="vbs-external__complete-icon" icon="circle-check" iconPrefix="far"></ik-icon>
   <div class="vbs-external__complete-header">Thank you!</div>
-  <div class="vbs-external__complete-body">
+  <div class="vbs-external__complete-body" *ngIf="isExternal; else internalComplete">
     Your VBS registration form has been successfully completed! We look forward to seeing you! You can now safely close
     this page.
   </div>
 </div>
+
+<ng-template #internalComplete>
+  <div class="vbs-external__complete-body">
+    VBS registration form has been completed! Children have successfully been registered for VBS! You can now safely
+    close this page.
+  </div>
+  <button class="btn btn-primary btn-right margin__top--base" (click)="onReturnClick()">Return to Registration</button>
+</ng-template>

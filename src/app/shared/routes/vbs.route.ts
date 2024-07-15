@@ -4,10 +4,13 @@ import { APP_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/app-acc
 import { AUTH_GUARD } from 'projects/insite-kit/src/service/guards/auth.guard';
 import { FEATURE_ACCESS_GUARD } from 'projects/insite-kit/src/service/guards/feature-access.guard';
 import { RouteDataResolver } from 'projects/insite-kit/src/service/request/route-data.resolver';
+import { VBSChildrenComponent } from 'src/app/pages/vbs/children/vbs-children.component';
 import { VBSGroupDetailsComponent } from 'src/app/pages/vbs/groups/detail/vbs-group-details.component';
 import { VBSCreateThemeComponent } from 'src/app/pages/vbs/themes/create-theme/vbs-create-theme.component';
 import { VBSThemeDetailsComponent } from 'src/app/pages/vbs/themes/theme-details/vbs-theme-details.component';
 import { VBSThemesComponent } from 'src/app/pages/vbs/themes/vbs-themes.component';
+import { VBSExternalRegistrationCompleteComponent } from 'src/app/pages/vbs/vbs-external-registration/vbs-external-registration-complete/vbs-external-registration-complete.component';
+import { VBSExternalRegistrationComponent } from 'src/app/pages/vbs/vbs-external-registration/vbs-external-registration.component';
 import { VBSAttendanceService } from 'src/service/vbs/vbs-attendance.service';
 import { VBSThemesService } from 'src/service/vbs/vbs-themes.service';
 import { AuthenticatedLayoutComponent } from '../components/layouts/authenticated-layout/authenticated-layout.component';
@@ -22,7 +25,7 @@ export const VBS_ROUTE: Route = {
   children: [
     {
       path: '',
-      redirectTo: 'dashboard',
+      redirectTo: 'themes',
       pathMatch: 'full',
     },
     {
@@ -119,7 +122,17 @@ export const VBS_ROUTE: Route = {
     },
     {
       path: 'registration',
-      component: VBSThemesComponent,
+      component: VBSExternalRegistrationComponent,
+      data: {
+        wizardData: {
+          baseRoute: '/external/vbs/registration',
+          translation: 'VBS Registration',
+        },
+      },
+    },
+    {
+      path: 'registration/complete',
+      component: VBSExternalRegistrationCompleteComponent,
     },
     {
       path: 'groups',
@@ -308,6 +321,10 @@ export const VBS_ROUTE: Route = {
           },
         },
       ],
+    },
+    {
+      path: 'children',
+      component: VBSChildrenComponent,
     },
   ],
 };

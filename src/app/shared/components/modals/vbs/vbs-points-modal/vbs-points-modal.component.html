@@ -76,7 +76,12 @@
       </form>
     </ik-modal-body>
     <ik-modal-action-bar>
-      <button actionBarLeft *ngIf="currentVBSPoint?.id" class="btn btn-danger btn-modal" (click)="onDeleteClick()">
+      <button
+        actionBarLeft
+        *ngIf="currentVBSPoint?.id || deleteEnabled"
+        class="btn btn-danger btn-modal"
+        (click)="onDeleteClick()"
+      >
         Delete
       </button>
       <button actionBarRight class="btn btn-default btn-modal" (click)="vbsThemePointsModal.close()">Cancel</button>

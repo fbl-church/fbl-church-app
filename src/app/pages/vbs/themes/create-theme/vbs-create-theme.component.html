@@ -51,62 +51,50 @@
     </form>
   </ik-card>
 
-  <ik-card>
+  <ik-grid #themePointsGrid [dataLoader]="pointsDataloader" (rowClick)="themeEditPointsModal.open($event)">
     <ik-card-header title="Point Structure">
       <ik-icon
-        [disabled]="pointsFormGroupArray.length >= 8"
+        [disabled]="vbsPointsArray.length >= 8"
         title="Add Points"
         icon="plus"
         class="right pointer"
-        (click)="pushNewPointConfig()"
+        (click)="themeCreatePointsModal.open()"
       ></ik-icon>
     </ik-card-header>
-
-    <ng-container *ngIf="pointsFormGroupArray && pointsFormGroupArray.length === 0">
-      <div class="info-card__message margin-base">
-        Add a points structure for VBS. You can do this by hitting the plus (+) icon in the top right hand corner of
-        this card.
-      </div>
-    </ng-container>
-
-    <form [formGroup]="pointGroup" *ngFor="let pointGroup of pointsFormGroupArray; index as i">
-      <div class="row">
-        <ik-icon
-          title="trash-can"
-          icon="trash-can"
-          class="right pointer flex-center margin__top--large col-1"
-          classOverride="icon icon--danger"
-          (click)="onRemovePointGroup(i)"
-        ></ik-icon>
-        <div class="row col-11">
-          <ik-form-field header="Name" class="col-sm-6"
-            ><input class="form-input__normal" placeholder="Name" formControlName="name" />
-          </ik-form-field>
-
-          <ik-form-field header="Points" class="col-sm-6"
-            ><input
-              type="number"
-              inputmode="numeric"
-              min="0"
-              class="form-input__normal"
-              placeholder="Points"
-              formControlName="points"
-            />
-          </ik-form-field>
-        </div>
-      </div>
-    </form>
-  </ik-card>
+    <ik-grid-column label="Name" field="displayName"></ik-grid-column>
+    <ik-grid-column label="Points" field="points"></ik-grid-column>
+    <ik-grid-column label="Registration">
+      <ng-template let-data>
+        <div>{{ data.registrationOnly ? 'Yes' : 'No' }}</div>
+      </ng-template>
+    </ik-grid-column>
+    <ik-grid-column label="Auto Apply">
+      <ng-template let-data>
+        <div>{{ data.checkInApply ? 'Yes' : 'No' }}</div>
+      </ng-template>
+    </ik-grid-column>
+    <ik-grid-pager key="Points"></ik-grid-pager>
+  </ik-grid>
 
   <button class="btn btn-default btn-left" (click)="onCancelClick()">Cancel</button>
-  <button
-    class="btn btn-primary btn-right"
-    (click)="onSaveClick()"
-    [disabled]="(form && form.invalid) || isInvalidPointStructure()"
-  >
-    Save
-  </button>
+  <button class="btn btn-primary btn-right" (click)="onSaveClick()" [disabled]="form && form.invalid">Save</button>
 </ng-container>
+
+<app-vbs-points-modal
+  #themeCreatePointsModal
+  name="themePointsModal"
+  (save)="onPointsSave($event)"
+></app-vbs-points-modal>
+
+<app-vbs-points-modal
+  #themeEditPointsModal
+  name="themeEditPointsModal"
+  saveButtonText="Update"
+  [deleteEnabled]="true"
+  [showConfirmDeleteModal]="false"
+  (save)="onPointsEdit($event)"
+  (pointDeleted)="onRemovePointGroup($event.id)"
+></app-vbs-points-modal>
 
 <ng-template #pageLoader>
   <ik-loading type="double"></ik-loading>

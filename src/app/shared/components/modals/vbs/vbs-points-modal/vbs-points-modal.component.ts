@@ -19,7 +19,8 @@ export class VBSPointsModalComponent implements OnInit {
   @Input() title = 'Add Point Value?';
   @Input() saveButtonText = 'Save';
   @Input() deleteEnabled = false;
-  @Output() pointsUpdated = new EventEmitter<void>();
+  @Input() showConfirmDeleteModal = true;
+  @Output() pointDeleted = new EventEmitter<VBSPoint>();
   @Output() save = new EventEmitter<VBSPoint>();
 
   modalLoading = false;
@@ -47,6 +48,14 @@ export class VBSPointsModalComponent implements OnInit {
         registrationOnly: !!p.registrationOnly || false,
         checkInApply: !!p.checkInApply || false,
       });
+
+      if (this.themeId) {
+        this.form.addAsyncValidators(
+          createUniqueValidator('duplicate', (value) =>
+            this.vbsPointService.doesPointNameExistForThemeId(this.themeId, value)
+          )
+        );
+      }
     } else {
       this.form.patchValue({ registrationOnly: false, checkInApply: false });
     }
@@ -60,11 +69,15 @@ export class VBSPointsModalComponent implements OnInit {
 
   onDeleteClick() {
     this.modal.close();
-    this.deleteModal.open(this.currentVBSPoint.id);
+    if (this.showConfirmDeleteModal) {
+      this.deleteModal.open(this.currentVBSPoint.id);
+    } else {
+      this.onPointValueDeleted();
+    }
   }
 
   onPointValueDeleted() {
-    this.pointsUpdated.emit();
+    this.pointDeleted.emit(this.currentVBSPoint);
   }
 
   onSaveClick() {
@@ -88,9 +101,6 @@ export class VBSPointsModalComponent implements OnInit {
         null,
         {
           validators: [Validators.required],
-          asyncValidators: createUniqueValidator('duplicate', (value) =>
-            this.vbsPointService.doesPointNameExistForThemeId(this.themeId, value)
-          ),
         },
       ],
       points: [null, Validators.required],

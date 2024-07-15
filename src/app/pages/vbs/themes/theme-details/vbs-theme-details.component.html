@@ -152,7 +152,7 @@
     [deleteEnabled]="true"
     [themeId]="themeData.id"
     (save)="onUpdatePoints($event)"
-    (pointsUpdated)="onPointsDeleted()"
+    (pointDeleted)="onPointsDeleted()"
   ></app-vbs-points-modal>
 
   <app-vbs-groups-modal #themeGroupModal [themeId]="themeData.id" (groupUpdated)="refreshVBSThemeGroups()">

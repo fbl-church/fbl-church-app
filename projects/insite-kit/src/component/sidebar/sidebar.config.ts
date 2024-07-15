@@ -305,10 +305,15 @@ export const NAVIGATION_ROUTES: NavItem[] = [
             ],
           },
         },
+        // {
+        //   id: 'workers',
+        //   name: 'Workers',
+        //   route: '/workers',
+        // },
         {
-          id: 'workers',
-          name: 'Workers',
-          route: '/workers',
+          id: 'children',
+          name: 'Children',
+          route: '/children',
         },
       ],
     },

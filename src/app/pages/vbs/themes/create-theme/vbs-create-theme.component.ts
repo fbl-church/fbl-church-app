@@ -1,23 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpResponse } from '@angular/common/http';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { addDays, isBefore, parseISO } from 'date-fns';
+import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
+import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
 import { VBSPoint, VBSTheme, VBSThemeGroup } from 'projects/insite-kit/src/model/vbs.model';
 import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
+import { of } from 'rxjs';
 import { VBSThemesService } from 'src/service/vbs/vbs-themes.service';
 @Component({
   selector: 'app-vbs-create-theme',
   templateUrl: './vbs-create-theme.component.html',
 })
 export class VBSCreateThemeComponent implements OnInit {
+  @ViewChild('themePointsGrid') themePointsGrid: GridComponent;
+  @ViewChild('themeCreatePointsModal') themeCreatePointsModal: ModalComponent;
+  @ViewChild('themeEditPointsModal') themeEditPointsModal: ModalComponent;
+
   form: FormGroup;
   pointsFormGroupArray: FormGroup[] = [];
   loading = false;
 
   vbsGroups = [ChurchGroup.VBS_PRE_PRIMARY, ChurchGroup.VBS_PRIMARY, ChurchGroup.VBS_MIDDLER, ChurchGroup.VBS_JUNIOR];
   vbsFormGroupsArray: FormGroup[] = [];
+  pointsDataloader: any;
+  vbsPointsArray: VBSPoint[] = [];
+  tempPointIdCounter = 1;
 
   constructor(
     private readonly navigationService: NavigationService,
@@ -29,6 +40,7 @@ export class VBSCreateThemeComponent implements OnInit {
 
   ngOnInit() {
     this.buildForms();
+    this.pointsDataloader = () => of(new HttpResponse({ body: this.vbsPointsArray }));
   }
 
   buildForms() {
@@ -58,21 +70,34 @@ export class VBSCreateThemeComponent implements OnInit {
     this.vbsFormGroupsArray[0];
   }
 
-  pushNewPointConfig() {
-    const newGroup = this.fb.group({
-      name: [null, Validators.required],
-      points: [null, Validators.required],
-    });
-
-    if (this.pointsFormGroupArray) {
-      this.pointsFormGroupArray.push(newGroup);
+  onPointsSave(event: VBSPoint) {
+    const existingPoint = this.vbsPointsArray.find((p) => p.displayName === event.displayName);
+    if (existingPoint) {
+      existingPoint.points = event.points;
     } else {
-      this.pointsFormGroupArray = [newGroup];
+      event.id = this.tempPointIdCounter++;
+      this.vbsPointsArray.push(event);
     }
+
+    this.pointsDataloader = () => of(new HttpResponse({ body: this.vbsPointsArray }));
+    this.themeCreatePointsModal.close();
   }
 
-  onRemovePointGroup(index: any) {
-    this.pointsFormGroupArray.splice(index, 1);
+  onPointsEdit(event: VBSPoint) {
+    const existingPoint = this.vbsPointsArray.find((p) => p.id === event.id);
+    existingPoint.points = event.points;
+    existingPoint.displayName = event.displayName;
+    existingPoint.registrationOnly = event.registrationOnly;
+    existingPoint.checkInApply = event.checkInApply;
+
+    this.pointsDataloader = () => of(new HttpResponse({ body: this.vbsPointsArray }));
+    this.themeEditPointsModal.close();
+  }
+
+  onRemovePointGroup(id: any) {
+    this.vbsPointsArray = this.vbsPointsArray.filter((p) => p.id !== id);
+    this.pointsDataloader = () => of(new HttpResponse({ body: this.vbsPointsArray }));
+    this.themeEditPointsModal.close();
   }
 
   isEndDateBeforeStartDate(start: any, end: any) {
@@ -83,14 +108,6 @@ export class VBSCreateThemeComponent implements OnInit {
     const parsedStartDate = parseISO(start);
     const parsedEndDate = parseISO(end);
     return isBefore(parsedEndDate, parsedStartDate);
-  }
-
-  isInvalidPointStructure() {
-    if (this.pointsFormGroupArray && this.pointsFormGroupArray.length > 0) {
-      return !this.pointsFormGroupArray.every((f) => f.valid);
-    } else {
-      return false;
-    }
   }
 
   onCancelClick() {
@@ -106,8 +123,9 @@ export class VBSCreateThemeComponent implements OnInit {
       startDate: this.form.value.startDate,
       endDate: this.form.value.endDate,
     };
+
     newVBSTheme.groups = this.mapVBSThemeGroups();
-    newVBSTheme.points = this.mapVBSPointStructure();
+    newVBSTheme.points = this.vbsPointsArray;
 
     this.vbsThemeService.create(newVBSTheme).subscribe({
       next: (res) => {
@@ -128,16 +146,6 @@ export class VBSCreateThemeComponent implements OnInit {
         name: fg.value.name.trim(),
       };
       return themedGroup;
-    });
-  }
-
-  mapVBSPointStructure() {
-    return this.pointsFormGroupArray.map((fg) => {
-      const point: VBSPoint = {
-        displayName: fg.value.name.trim(),
-        points: fg.value.points,
-      };
-      return point;
     });
   }
 }

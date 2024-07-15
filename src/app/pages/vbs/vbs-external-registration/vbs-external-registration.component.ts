@@ -32,15 +32,20 @@ export class VBSExternalRegistrationComponent {
     wizard.next();
   }
 
-  onSaveClick(event?: VBSRegistration) {
+  onSaveClick(event: VBSRegistration) {
     this.loading = true;
 
     this.vbsService.registerChildren(event).subscribe({
       next: () => {
-        this.navigationService.navigate('/external/vbs/registration/complete');
+        if (this.navigationService.routerUrl().includes('external')) {
+          this.navigationService.navigate('/external/vbs/registration/complete', false);
+        } else {
+          this.navigationService.navigate('/vbs/registration/complete', false);
+        }
+
         this.loading = false;
       },
-      error: (res) => {
+      error: () => {
         this.popupService.error('Unable to register children at this time. Please try again later.');
         this.loading = false;
       },
