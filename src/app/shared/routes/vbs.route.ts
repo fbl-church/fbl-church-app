@@ -18,6 +18,84 @@ import { VBSAttendanceDetailEditComponent } from '../components/pages/vbs/vbs-at
 import { VBSAttendanceChildrenCheckInComponent } from '../components/pages/vbs/vbs-attendance-detail/vbs-attendance-children-check-in/vbs-attendance-children-check-in.component';
 import { VBSAttendanceDetailComponent } from '../components/pages/vbs/vbs-attendance-detail/vbs-attendance-detail.component';
 
+function buildVBSGroupRoutes(basePath: string, group: ChurchGroup, workerRole: WebRole): Route[] {
+  return [
+    {
+      path: basePath,
+      component: VBSGroupDetailsComponent,
+      canActivate: [FEATURE_ACCESS_GUARD],
+      resolve: { theme: RouteDataResolver.for(VBSThemesService, { method: 'getLatestActive', routeParams: [] }) },
+      data: {
+        FEATURE_ACCESS_GUARDS: [
+          {
+            app: App.VBS,
+            feature: 'groups.' + group,
+            access: Access.READ,
+          },
+        ],
+        group: group,
+        route: '/vbs/groups/' + basePath,
+      },
+    },
+    {
+      path: basePath + '/attendance/:attendanceId',
+      component: VBSAttendanceDetailComponent,
+      canActivate: [FEATURE_ACCESS_GUARD],
+      resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
+      data: {
+        FEATURE_ACCESS_GUARDS: [
+          {
+            app: App.VBS,
+            feature: 'groups.' + group,
+            access: Access.READ,
+          },
+        ],
+        workerRoles: [workerRole],
+        group: [group],
+        route: '/vbs/groups/' + basePath,
+      },
+    },
+    {
+      path: basePath + '/attendance/:attendanceId/children',
+      component: VBSAttendanceChildrenCheckInComponent,
+      canActivate: [FEATURE_ACCESS_GUARD],
+      resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
+      data: {
+        FEATURE_ACCESS_GUARDS: [
+          {
+            app: App.VBS,
+            feature: 'groups.' + group,
+            access: Access.READ,
+          },
+        ],
+        group: [group],
+        route: '/vbs/groups/' + basePath,
+      },
+    },
+    {
+      path: basePath + '/attendance/:attendanceId/edit',
+      component: VBSAttendanceDetailEditComponent,
+      resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
+      canActivate: [FEATURE_ACCESS_GUARD],
+      data: {
+        FEATURE_ACCESS_GUARDS: [
+          {
+            app: App.VBS,
+            feature: 'groups.' + group,
+            access: Access.READ,
+          },
+          {
+            app: App.VBS,
+            feature: FeatureType.CHECK_IN_DETAIL,
+            access: Access.UPDATE,
+          },
+        ],
+        route: '/vbs/groups/' + basePath,
+      },
+    },
+  ];
+}
+
 export const VBS_ROUTE: Route = {
   path: 'vbs',
   component: AuthenticatedLayoutComponent,
@@ -137,189 +215,10 @@ export const VBS_ROUTE: Route = {
     {
       path: 'groups',
       children: [
-        // VBS PRE-PRIMARY
-        {
-          path: 'pre-primary',
-          component: VBSGroupDetailsComponent,
-          resolve: { theme: RouteDataResolver.for(VBSThemesService, { method: 'getLatestActive', routeParams: [] }) },
-          data: {
-            group: ChurchGroup.VBS_PRE_PRIMARY,
-            route: '/vbs/groups/pre-primary',
-          },
-        },
-        {
-          path: 'pre-primary/attendance/:attendanceId',
-          component: VBSAttendanceDetailComponent,
-          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
-          data: {
-            workerRoles: [WebRole.VBS_PRE_PRIMARY],
-            group: [ChurchGroup.VBS_PRE_PRIMARY],
-            route: '/vbs/groups/pre-primary',
-          },
-        },
-        {
-          path: 'pre-primary/attendance/:attendanceId/children',
-          component: VBSAttendanceChildrenCheckInComponent,
-          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
-          data: {
-            group: [ChurchGroup.VBS_PRE_PRIMARY],
-            route: '/vbs/groups/pre-primary',
-          },
-        },
-        {
-          path: 'pre-primary/attendance/:attendanceId/edit',
-          component: VBSAttendanceDetailEditComponent,
-          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
-          canActivate: [FEATURE_ACCESS_GUARD],
-          data: {
-            FEATURE_ACCESS_GUARDS: [
-              {
-                app: App.VBS,
-                feature: FeatureType.CHECK_IN_DETAIL,
-                access: Access.UPDATE,
-              },
-            ],
-            route: '/vbs/groups/pre-primary',
-          },
-        },
-
-        // VBS PRIMARY
-        {
-          path: 'primary',
-          component: VBSGroupDetailsComponent,
-          resolve: { theme: RouteDataResolver.for(VBSThemesService, { method: 'getLatestActive', routeParams: [] }) },
-          data: {
-            group: ChurchGroup.VBS_PRIMARY,
-            route: '/vbs/groups/primary',
-          },
-        },
-        {
-          path: 'primary/attendance/:attendanceId',
-          component: VBSAttendanceDetailComponent,
-          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
-          data: {
-            workerRoles: [WebRole.VBS_PRIMARY],
-            group: [ChurchGroup.VBS_PRIMARY],
-            route: '/vbs/groups/primary',
-          },
-        },
-        {
-          path: 'primary/attendance/:attendanceId/children',
-          component: VBSAttendanceChildrenCheckInComponent,
-          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
-          data: {
-            group: [ChurchGroup.VBS_PRIMARY],
-            route: '/vbs/groups/primary',
-          },
-        },
-        {
-          path: 'primary/attendance/:attendanceId/edit',
-          component: VBSAttendanceDetailEditComponent,
-          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
-          canActivate: [FEATURE_ACCESS_GUARD],
-          data: {
-            FEATURE_ACCESS_GUARDS: [
-              {
-                app: App.VBS,
-                feature: FeatureType.CHECK_IN_DETAIL,
-                access: Access.UPDATE,
-              },
-            ],
-            route: '/vbs/groups/primary',
-          },
-        },
-
-        // VBS MIDDLER
-        {
-          path: 'middler',
-          component: VBSGroupDetailsComponent,
-          resolve: { theme: RouteDataResolver.for(VBSThemesService, { method: 'getLatestActive', routeParams: [] }) },
-          data: {
-            group: ChurchGroup.VBS_MIDDLER,
-            route: '/vbs/groups/middler',
-          },
-        },
-        {
-          path: 'middler/attendance/:attendanceId',
-          component: VBSAttendanceDetailComponent,
-          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
-          data: {
-            workerRoles: [WebRole.VBS_MIDDLER],
-            group: [ChurchGroup.VBS_MIDDLER],
-            route: '/vbs/groups/middler',
-          },
-        },
-        {
-          path: 'middler/attendance/:attendanceId/children',
-          component: VBSAttendanceChildrenCheckInComponent,
-          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
-          data: {
-            group: [ChurchGroup.VBS_MIDDLER],
-            route: '/vbs/groups/middler',
-          },
-        },
-        {
-          path: 'middler/attendance/:attendanceId/edit',
-          component: VBSAttendanceDetailEditComponent,
-          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
-          canActivate: [FEATURE_ACCESS_GUARD],
-          data: {
-            FEATURE_ACCESS_GUARDS: [
-              {
-                app: App.VBS,
-                feature: FeatureType.CHECK_IN_DETAIL,
-                access: Access.UPDATE,
-              },
-            ],
-            route: '/vbs/groups/middler',
-          },
-        },
-
-        // VBS JUNIOR
-        {
-          path: 'junior',
-          component: VBSGroupDetailsComponent,
-          resolve: { theme: RouteDataResolver.for(VBSThemesService, { method: 'getLatestActive', routeParams: [] }) },
-          data: {
-            group: ChurchGroup.VBS_JUNIOR,
-            route: '/vbs/groups/junior',
-          },
-        },
-        {
-          path: 'junior/attendance/:attendanceId',
-          component: VBSAttendanceDetailComponent,
-          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
-          data: {
-            workerRoles: [WebRole.VBS_JUNIOR],
-            group: [ChurchGroup.VBS_JUNIOR],
-            route: '/vbs/groups/junior',
-          },
-        },
-        {
-          path: 'junior/attendance/:attendanceId/children',
-          component: VBSAttendanceChildrenCheckInComponent,
-          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
-          data: {
-            group: [ChurchGroup.VBS_JUNIOR],
-            route: '/vbs/groups/junior',
-          },
-        },
-        {
-          path: 'junior/attendance/:attendanceId/edit',
-          component: VBSAttendanceDetailEditComponent,
-          resolve: { record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }) },
-          canActivate: [FEATURE_ACCESS_GUARD],
-          data: {
-            FEATURE_ACCESS_GUARDS: [
-              {
-                app: App.VBS,
-                feature: FeatureType.CHECK_IN_DETAIL,
-                access: Access.UPDATE,
-              },
-            ],
-            route: '/vbs/groups/junior',
-          },
-        },
+        ...buildVBSGroupRoutes('pre-primary', ChurchGroup.VBS_PRE_PRIMARY, WebRole.VBS_PRE_PRIMARY),
+        ...buildVBSGroupRoutes('primary', ChurchGroup.VBS_PRIMARY, WebRole.VBS_PRIMARY),
+        ...buildVBSGroupRoutes('middler', ChurchGroup.VBS_MIDDLER, WebRole.VBS_MIDDLER),
+        ...buildVBSGroupRoutes('junior', ChurchGroup.VBS_JUNIOR, WebRole.VBS_JUNIOR),
       ],
     },
     {

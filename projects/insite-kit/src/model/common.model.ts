@@ -123,6 +123,7 @@ export enum FeatureType {
   DETAIL = 'detail',
   PROFILE = 'profile',
   REGISTRATION = 'registration',
+
   // Check In Features
   CHECK_IN_OVERVIEW = 'check-in.overview',
   CHECK_IN_DETAIL = 'check-in.detail',
@@ -131,12 +132,20 @@ export enum FeatureType {
   NOTIFICATION = 'notification',
   LESSONS = 'lessons',
   GRAND_PRIX = 'grand-prix',
+
   // Theme Features
   THEMES = 'themes',
   THEMES_POINTS = 'themes.points',
 
   // VBS Features
   CHECK_IN_POINTS = 'check-in.points',
+
+  // VBS Groups
+  GROUPS = 'groups',
+  GROUPS_VBS_PRE_PRIMARY = 'groups.VBS_PRE_PRIMARY',
+  GROUPS_VBS_PRIMARY = 'groups.VBS_PRIMARY',
+  GROUPS_VBS_MIDDLER = 'groups.VBS_MIDDLER',
+  GROUPS_VBS_JUNIOR = 'groups.VBS_JUNIOR',
 }
 
 export enum App {

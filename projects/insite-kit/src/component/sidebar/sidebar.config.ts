@@ -279,6 +279,11 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           id: 'groups',
           name: 'Groups',
           route: '/groups',
+          restriction: {
+            app: App.VBS,
+            feature: FeatureType.GROUPS,
+            access: Access.READ,
+          },
           submenu: {
             id: 'vbsGroupsDropdown',
             items: [
@@ -286,30 +291,45 @@ export const NAVIGATION_ROUTES: NavItem[] = [
                 id: 'pre-primary',
                 name: 'Pre-Primary',
                 route: '/pre-primary',
+                restriction: {
+                  app: App.VBS,
+                  feature: FeatureType.GROUPS_VBS_PRE_PRIMARY,
+                  access: Access.READ,
+                },
               },
               {
                 id: 'primary',
                 name: 'Primary',
                 route: '/primary',
+                restriction: {
+                  app: App.VBS,
+                  feature: FeatureType.GROUPS_VBS_PRIMARY,
+                  access: Access.READ,
+                },
               },
               {
                 id: 'middler',
                 name: 'Middler',
                 route: '/middler',
+                restriction: {
+                  app: App.VBS,
+                  feature: FeatureType.GROUPS_VBS_MIDDLER,
+                  access: Access.READ,
+                },
               },
               {
                 id: 'junior',
                 name: 'Junior',
                 route: '/junior',
+                restriction: {
+                  app: App.VBS,
+                  feature: FeatureType.GROUPS_VBS_JUNIOR,
+                  access: Access.READ,
+                },
               },
             ],
           },
         },
-        // {
-        //   id: 'workers',
-        //   name: 'Workers',
-        //   route: '/workers',
-        // },
         {
           id: 'children',
           name: 'Children',
