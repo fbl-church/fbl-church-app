@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class ChildAttendanceRecordsGridComponent {
   @Input() dataloader: (params) => Observable<HttpResponse<ChildAttendance[]>>;
+  @Input() title = 'Attendance Records';
+  @Input() pagerVisible = true;
   @Output() rowClick = new EventEmitter<ChildAttendance>();
 
   constructor() {}

@@ -47,11 +47,7 @@ export class VBSAttendanceChildrenCheckInComponent implements OnInit, OnDestroy 
         takeUntil(this.destroy)
       )
       .subscribe(() => {
-        this.childrenDataloader = (params) =>
-          this.attendanceRecordService.getAttendanceChildrenById(
-            this.record.id,
-            params.set('present', [false]).set('group', this.childGroups)
-          );
+        this.childrenDataloader = this.getChildAttendanceDataloader();
         this.loading = false;
       });
   }
@@ -74,6 +70,14 @@ export class VBSAttendanceChildrenCheckInComponent implements OnInit, OnDestroy 
 
   onNewChild() {
     this.navigationService.navigate('/vbs/registration');
+  }
+
+  getChildAttendanceDataloader() {
+    return (params) =>
+      this.attendanceRecordService.getAttendanceChildrenById(
+        this.record.id,
+        params.set('present', [false]).set('group', this.childGroups)
+      );
   }
 
   buildBaseRoute(path: string) {

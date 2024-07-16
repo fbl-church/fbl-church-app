@@ -29,9 +29,9 @@ export interface VBSChildPoint {
   childId?: number;
   vbsAttendanceId?: number;
   vbsPointId?: number;
-  type?: number;
-  displayName?: number;
-  points?: string;
+  type?: string;
+  displayName?: string;
+  points?: number;
   vbsThemeId?: number;
   insertDate?: Date;
 }

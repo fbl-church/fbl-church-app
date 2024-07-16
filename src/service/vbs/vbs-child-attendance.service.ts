@@ -14,6 +14,24 @@ export class VBSChildAttendanceService {
   constructor(private readonly request: RequestService, private readonly commonService: CommonService) {}
 
   /**
+   *  Get VBS Child Attendance
+   *
+   * @param id      The id of the child
+   * @param themeId The theme id
+   * @param request The page request
+   */
+  getVBSChildAttendance(
+    childId: number,
+    themeId: number,
+    params?: Map<string, string[]>
+  ): Observable<HttpResponse<VBSChildAttendance[]>> {
+    return this.request.get<VBSChildAttendance[]>(
+      `${this.BASE_VBS_PATH}/${childId}/theme/${themeId}/attendance`,
+      params
+    );
+  }
+
+  /**
    *  Get all VBS children by attendance id
    *
    * @param attendanceId The attendance id

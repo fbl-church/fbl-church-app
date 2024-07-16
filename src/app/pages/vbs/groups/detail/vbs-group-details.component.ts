@@ -64,6 +64,10 @@ export class VBSGroupDetailsComponent implements OnInit, OnDestroy {
     this.navigationService.navigate(`${this.activeRoute}/attendance/${event.id}`);
   }
 
+  onChildrenClick() {
+    this.navigationService.navigate(`${this.activeRoute}/children`);
+  }
+
   getVBSGroupWorkers(group: ChurchGroup, params?: Map<string, string[]>) {
     return this.userService.getUsers(params.set('webRole', [group]));
   }

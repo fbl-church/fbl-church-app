@@ -1,6 +1,6 @@
 <ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
-  <ik-card-header title="Attendance Records"></ik-card-header>
+  <ik-card-header [title]="title"></ik-card-header>
   <ik-grid-column label="Name" field="recordName"></ik-grid-column>
   <ik-grid-column label="Active Date" field="recordDate"></ik-grid-column>
-  <ik-grid-pager key="Records" [pageSize]="5"></ik-grid-pager>
+  <ik-grid-pager key="Records" [pagerVisible]="pagerVisible" [pageSize]="5"></ik-grid-pager>
 </ik-grid>

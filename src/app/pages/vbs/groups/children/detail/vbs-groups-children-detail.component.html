@@ -1,0 +1,30 @@
+<ng-container *ngIf="!loading; else pageLoader">
+  <ik-header [title]="(childData | formatUserName) + ' (' + latestTheme.name + ')'">
+    <ik-header-back (back)="onBackClick()"></ik-header-back>
+  </ik-header>
+
+  <div class="row">
+    <div class="col-lg-7">
+      <app-child-details-card [child]="childData" [showEdit]="false"></app-child-details-card>
+    </div>
+    <div class="col-lg-5">
+      <app-child-attendance-records-grid
+        [dataloader]="childAttendanceDataloader"
+        [pagerVisible]="false"
+      ></app-child-attendance-records-grid>
+      <ik-card>
+        <ik-card-header title="Child Points"></ik-card-header>
+        <ik-loading *ngIf="chartLoading" type="double"></ik-loading>
+        <div #charts></div>
+      </ik-card>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
+</ng-template>
+
+<ng-template #cardLoader>
+  <ik-loading></ik-loading>
+</ng-template>

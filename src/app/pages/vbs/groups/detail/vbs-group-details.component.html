@@ -1,6 +1,6 @@
 <ng-container *ngIf="!loading; else pageLoader">
   <ik-header [title]="vbsThemeGroup.group | churchGroupTranslate">
-    <button class="btn btn-primary header-button">
+    <button class="btn btn-primary header-button" (click)="onChildrenClick()">
       <ik-icon title="Check In" icon="children" classOverride="btn-icon"></ik-icon>
       Children
     </button>
