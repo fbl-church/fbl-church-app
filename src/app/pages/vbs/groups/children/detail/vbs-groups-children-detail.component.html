@@ -11,6 +11,7 @@
       <app-child-attendance-records-grid
         [dataloader]="childAttendanceDataloader"
         [pagerVisible]="false"
+        (rowClick)="childAttendancePointsModal.open($event)"
       ></app-child-attendance-records-grid>
       <ik-card>
         <ik-card-header title="Child Points"></ik-card-header>
@@ -19,6 +20,12 @@
       </ik-card>
     </div>
   </div>
+
+  <app-vbs-attendance-points-modal
+    #childAttendancePointsModal
+    [vbsThemeId]="latestTheme.id"
+    (pointsUpdated)="onUpdateChart()"
+  ></app-vbs-attendance-points-modal>
 </ng-container>
 
 <ng-template #pageLoader>

@@ -11,6 +11,7 @@ import { GuardianWarningModalComponent } from './guardian/guardian-warning-modal
 import { DeleteUserModalComponent } from './user/delete-user-modal/delete-user-modal.component';
 import { ResetPasswordModalComponent } from './user/reset-password-modal/reset-password-modal.component';
 import { VBSAttendanceCheckInModalComponent } from './vbs/vbs-attendance-check-in-modal/vbs-attendance-check-in-modal.component';
+import { VBSAttendancePointsModalComponent } from './vbs/vbs-attendance-points-modal/vbs-attendance-points-modal.component';
 import { VBSAttendanceRecordModalComponent } from './vbs/vbs-attendance-record-modal/vbs-attendance-record-modal.component';
 import { VBSChildAttendanceModalComponent } from './vbs/vbs-child-attendance-modal/vbs-child-attendance-modal.component';
 import { VBSCloseThemeModalComponent } from './vbs/vbs-close-theme-modal/vbs-close-theme-modal.component';
@@ -40,6 +41,7 @@ import { VBSThemeDetailsModalComponent } from './vbs/vbs-theme-details-modal/vbs
     VBSThemeDetailsModalComponent,
     VBSCloseThemeModalComponent,
     VBSChildAttendanceModalComponent,
+    VBSAttendancePointsModalComponent,
   ],
   exports: [
     CloseAttendanceRecordModalComponent,
@@ -60,6 +62,7 @@ import { VBSThemeDetailsModalComponent } from './vbs/vbs-theme-details-modal/vbs
     VBSThemeDetailsModalComponent,
     VBSCloseThemeModalComponent,
     VBSChildAttendanceModalComponent,
+    VBSAttendancePointsModalComponent,
   ],
 })
 export class SharedModalsModule {}

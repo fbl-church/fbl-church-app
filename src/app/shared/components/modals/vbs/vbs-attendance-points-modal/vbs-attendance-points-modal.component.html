@@ -1,0 +1,62 @@
+<ik-modal #vbsChildAttendancePointsModal name="vbsChildAttendancePointsModal" class="modal-body__padding-none">
+  <ik-modal-header title="Child Attendance Points" type="info"></ik-modal-header>
+  <ng-container *ngIf="!modalLoading; else modalLoader">
+    <ik-modal-body>
+      <div class="row">
+        <div class="col-6">
+          <ik-card-info header="Record" [text]="currentChildAttendance?.recordName"></ik-card-info>
+        </div>
+        <div class="col-6">
+          <ik-card-info
+            header="Active"
+            [text]="currentChildAttendance?.recordDate ? (currentChildAttendance.recordDate | date : 'MMMM d, y') : '-'"
+          ></ik-card-info>
+        </div>
+      </div>
+      <div class="row">
+        <ik-form-field header="Points" class="col-12">
+          <div *ngFor="let p of groupPoints" class="flex-center--start">
+            <ik-checkbox
+              [readDisableOnly]="currentChildAttendance?.status !== 'ACTIVE'"
+              [checkId]="p.id"
+              (checkboxChange)="onCheckBoxUpdate($event)"
+            ></ik-checkbox>
+            <div class="card-info__label-text padding-none">{{ p.displayName + ' (' + p.points + ' points)' }}</div>
+          </div>
+        </ik-form-field>
+      </div>
+    </ik-modal-body>
+    <ik-modal-action-bar>
+      <button
+        actionBarRight
+        *ngIf="currentChildAttendance?.status !== 'ACTIVE'"
+        class="btn btn-default btn-modal"
+        (click)="vbsChildAttendancePointsModal.close()"
+      >
+        Close
+      </button>
+
+      <button
+        actionBarLeft
+        *ngIf="currentChildAttendance?.status === 'ACTIVE'"
+        class="btn btn-default btn-modal"
+        (click)="vbsChildAttendancePointsModal.close()"
+      >
+        Cancel
+      </button>
+      <button
+        actionBarRight
+        *ngIf="currentChildAttendance?.status === 'ACTIVE'"
+        class="btn btn-primary btn-modal"
+        (click)="onUpdatePointsClick()"
+        [disabled]="!modalDirty"
+      >
+        Update
+      </button>
+    </ik-modal-action-bar>
+  </ng-container>
+</ik-modal>
+
+<ng-template #modalLoader>
+  <ik-loading></ik-loading>
+</ng-template>

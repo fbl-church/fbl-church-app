@@ -7,6 +7,7 @@ import { VBSChildAttendance, VBSTheme } from 'projects/insite-kit/src/model/vbs.
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { Subject, takeUntil, tap } from 'rxjs';
+import { ChildAttendanceRecordsGridComponent } from 'src/app/shared/components/grids/attendance/child-attendance-records-grid/child-attendance-records-grid.component';
 import { VBSChildAttendanceService } from 'src/service/vbs/vbs-child-attendance.service';
 
 @Component({
@@ -15,6 +16,7 @@ import { VBSChildAttendanceService } from 'src/service/vbs/vbs-child-attendance.
 })
 export class VBSGroupsChildrenDetailComponent implements OnInit, OnDestroy {
   @ViewChild('charts') public chartEl: ElementRef;
+  @ViewChild(ChildAttendanceRecordsGridComponent) recordsGrid: ChildAttendanceRecordsGridComponent;
 
   highcharts = Highcharts;
   charts = [];
@@ -41,6 +43,7 @@ export class VBSGroupsChildrenDetailComponent implements OnInit, OnDestroy {
           enabled: true,
           style: {
             textOutline: 'none',
+            fontSize: '12px',
           },
         },
       },
@@ -52,6 +55,7 @@ export class VBSGroupsChildrenDetailComponent implements OnInit, OnDestroy {
           fontSize: 20,
         },
         borderWidth: 2,
+        borderColor: 'white',
       },
     },
   };
@@ -68,6 +72,8 @@ export class VBSGroupsChildrenDetailComponent implements OnInit, OnDestroy {
   destroy = new Subject<void>();
   loading = true;
   chartLoading = true;
+  overallOptions: any;
+  pointChart: Highcharts.Chart;
 
   constructor(
     private readonly jwt: JwtService,
@@ -121,28 +127,44 @@ export class VBSGroupsChildrenDetailComponent implements OnInit, OnDestroy {
 
   createChart(container, series?: Map<string, number>, totalPoints: number = 0) {
     let opts: any = this.defaultOptions;
-    opts.title = {
+    opts.title = this.getTitleData(totalPoints);
+    opts.series = [this.getSeriesData(series)];
+
+    if (this.jwt.getTheme() === ThemeType.DARK) {
+      opts.title.style = { color: 'white', borderColor: 'white', fontSize: '24px' };
+      opts.plotOptions.series.dataLabels.style = { color: 'white', fontSize: '12px' };
+      opts.plotOptions.pie.borderColor = '#222B45';
+    }
+
+    this.overallOptions = opts;
+
+    container.appendChild(document.createElement('div'));
+    this.pointChart = this.highcharts.chart(container, opts);
+    this.highcharts.getOptions();
+
+    this.chartLoading = false;
+  }
+
+  getTitleData(totalPoints: number): Highcharts.TitleOptions {
+    return {
       text: `${Number(totalPoints).toLocaleString('en-US')} points`,
       verticalAlign: 'middle',
       margin: 500,
       y: 10,
     };
-    opts.series = [
-      {
-        type: 'pie',
-        innerSize: '75%',
-        colorByPoint: true,
-        data: [...Array.from(series, ([key, value]) => ({ name: key, y: value }))],
-      },
-    ];
+  }
 
-    if (this.jwt.getTheme() === ThemeType.DARK) {
-      opts.title.style = { color: 'white', borderColor: 'white', fontSize: '24px' };
-      opts.plotOptions.series.dataLabels.style = { color: 'white', fontSize: '18px' };
-    }
+  getSeriesData(series?: Map<string, number>): any {
+    return {
+      type: 'pie',
+      innerSize: '75%',
+      data: [...Array.from(series, ([key, value]) => ({ name: key, y: value }))],
+    };
+  }
 
-    container.appendChild(document.createElement('div'));
-    this.highcharts.chart(container, opts);
-    this.chartLoading = false;
+  onUpdateChart() {
+    this.chartLoading = true;
+    this.pointChart.destroy();
+    this.recordsGrid.grid.refresh();
   }
 }

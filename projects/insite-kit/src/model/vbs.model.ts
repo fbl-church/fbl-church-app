@@ -32,6 +32,8 @@ export interface VBSChildPoint {
   type?: string;
   displayName?: string;
   points?: number;
+  registrationOnly?: boolean;
+  checkInApply?: boolean;
   vbsThemeId?: number;
   insertDate?: Date;
 }

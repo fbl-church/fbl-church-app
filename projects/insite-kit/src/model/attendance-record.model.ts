@@ -30,6 +30,7 @@ export interface ChildAttendance {
   checkOutDate?: Date;
   recordName?: string;
   recordType?: ChurchGroup;
+  status?: AttendanceStatus;
   recordDate?: Date;
   [key: string]: any;
 }
