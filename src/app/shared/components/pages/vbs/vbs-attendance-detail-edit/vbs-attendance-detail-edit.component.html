@@ -30,9 +30,21 @@
       </ik-form-field>
     </div>
 
-    <ik-form-field header="Offering Winners">
-      <ik-multi-select formControlName="offeringWinners" [items]="vbsThemeGroups"></ik-multi-select>
-    </ik-form-field>
+    <div class="row">
+      <ik-form-field header="Offering Winners" class="col-md-6">
+        <ik-multi-select formControlName="offeringWinners" [items]="vbsThemeGroups"></ik-multi-select>
+      </ik-form-field>
+      <ik-form-field header="Offering Winner Points" class="col-md-6"
+        ><input
+          type="number"
+          inputmode="numeric"
+          min="0"
+          class="form-input__normal"
+          placeholder="Offering Winner Points"
+          formControlName="points"
+        />
+      </ik-form-field>
+    </div>
   </ik-form>
 
   <button class="btn btn-default btn-left" (click)="onBackClick()">Cancel</button>

@@ -58,7 +58,7 @@ export class VBSThemesService {
    * @param vbsThemeId The vbs theme id
    * @param group The vbs theme group
    */
-  update(vbsThemeId: any, group: VBSThemeGroup): Observable<VBSTheme> {
+  update(vbsThemeId: any, group: VBSTheme): Observable<VBSTheme> {
     return this.request.put<VBSTheme>(`${this.BASE_VBS_PATH}/${vbsThemeId}`, group);
   }
 

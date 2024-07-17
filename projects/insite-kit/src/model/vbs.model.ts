@@ -19,6 +19,7 @@ export interface VBSThemeGroup {
   vbsThemeId?: number;
   group?: ChurchGroup;
   name?: string;
+  points?: number;
 }
 
 export interface VBSChildAttendance extends ChildAttendance {
@@ -57,6 +58,7 @@ export interface VBSAttendanceRecord extends AttendanceRecord {
   money?: number;
   spiritTheme?: string;
   offeringWinners?: ChurchGroup[];
+  offeringWinnerPoints?: number;
 }
 
 export enum VBSThemeStatus {

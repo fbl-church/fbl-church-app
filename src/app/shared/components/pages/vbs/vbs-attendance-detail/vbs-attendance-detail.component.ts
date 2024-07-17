@@ -56,7 +56,7 @@ export class VBSAttendanceDetailComponent implements OnInit, OnDestroy {
         this.vbsOfferingWinnersDataloader = () =>
           of(
             new HttpResponse({
-              body: this.getFormattedOfferingWinners(this.attendanceRecord.offeringWinners, res.body),
+              body: this.getFormattedOfferingWinners(res.body),
             })
           );
 
@@ -96,8 +96,10 @@ export class VBSAttendanceDetailComponent implements OnInit, OnDestroy {
     this.navigationService.navigate(`${this.baseRoute}/attendance/${this.attendanceRecord.id}/children`);
   }
 
-  getFormattedOfferingWinners(winners: ChurchGroup[], themeGroups: VBSThemeGroup[]) {
-    return themeGroups.filter((g) => winners.includes(g.group));
+  getFormattedOfferingWinners(themeGroups: VBSThemeGroup[]) {
+    const groups = themeGroups.filter((g) => this.attendanceRecord.offeringWinners.includes(g.group));
+    groups.forEach((g) => (g.points = this.attendanceRecord.offeringWinnerPoints));
+    return groups;
   }
 
   buildBaseRoute(path: string) {

@@ -64,6 +64,7 @@ export class VBSAttendanceDetailEditComponent implements OnInit, OnDestroy {
       spiritTheme: [this.record?.spiritTheme ? this.record.spiritTheme : ''],
       offeringAmount: [this.record ? this.record.money : '0.00', Validators.required],
       offeringWinners: [this.record ? this.record.offeringWinners : []],
+      points: [this.record ? this.record.offeringWinnerPoints : null],
       activeDate: [
         this.record ? this.record.activeDate : this.commonService.formatDate(new Date(), 'yyyy-MM-dd'),
         Validators.required,
@@ -87,6 +88,10 @@ export class VBSAttendanceDetailEditComponent implements OnInit, OnDestroy {
 
     if (this.form.value.offeringWinners && this.form.value.offeringWinners.length > 0) {
       newRecord.offeringWinners = this.form.value.offeringWinners;
+    }
+
+    if (this.form.value.points) {
+      newRecord.offeringWinnerPoints = this.form.value.points;
     }
 
     this.vbsAttendanceService.update(this.record.id, newRecord).subscribe({

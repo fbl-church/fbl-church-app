@@ -59,10 +59,11 @@
         </ik-card-header>
         <ik-grid-column label="Group" field="group">
           <ng-template let-data>
-            {{ data.group | churchGroupTranslate }}
+            {{ data.group + '_SHORT' | churchGroupTranslate }}
           </ng-template>
         </ik-grid-column>
         <ik-grid-column label="Name" field="name"></ik-grid-column>
+        <ik-grid-column label="Points" field="points"></ik-grid-column>
         <ik-grid-pager key="Offering Winners" [pagerVisible]="false" [pageSize]="5"></ik-grid-pager>
       </ik-grid>
 
