@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { createUniqueValidator } from 'projects/insite-kit/src/component/form/service/async.validator';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { User } from 'projects/insite-kit/src/model/user.model';
-import { VBSPoint } from 'projects/insite-kit/src/model/vbs.model';
+import { VBSPoint, VBSTheme } from 'projects/insite-kit/src/model/vbs.model';
 import { VBSPointsService } from 'src/service/vbs/vbs-points.service';
 import { VBSDeletePointsModalComponent } from '../vbs-delete-points-modal/vbs-delete-points-modal.component';
 
@@ -15,7 +15,7 @@ export class VBSPointsModalComponent implements OnInit {
   @ViewChild('vbsThemePointsModal') modal: ModalComponent;
   @ViewChild(VBSDeletePointsModalComponent) deleteModal: VBSDeletePointsModalComponent;
   @Input() name: string;
-  @Input() themeId: number;
+  @Input() theme: VBSTheme;
   @Input() title = 'Add Point Value?';
   @Input() saveButtonText = 'Save';
   @Input() deleteEnabled = false;
@@ -49,10 +49,10 @@ export class VBSPointsModalComponent implements OnInit {
         checkInApply: !!p.checkInApply || false,
       });
 
-      if (this.themeId) {
+      if (this.theme) {
         this.form.addAsyncValidators(
           createUniqueValidator('duplicate', (value) =>
-            this.vbsPointService.doesPointNameExistForThemeId(this.themeId, value)
+            this.vbsPointService.doesPointNameExistForThemeId(this.theme.id, value)
           )
         );
       }

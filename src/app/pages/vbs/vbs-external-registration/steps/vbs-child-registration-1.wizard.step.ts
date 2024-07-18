@@ -96,6 +96,14 @@ export class VBSChildRegistrationWizardStepOneComponent implements OnInit {
     });
   }
 
+  onContinueWithoutEmail() {
+    this.newGuardianBaseInfo = {
+      phone: this.phoneForm.value.phone.trim(),
+      email: null,
+    };
+    this.collectingGuardianInfo = true;
+  }
+
   onToggleFormClick() {
     this.resetForms();
     this.usePhoneNumber = !this.usePhoneNumber;

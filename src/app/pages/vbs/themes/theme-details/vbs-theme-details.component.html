@@ -67,7 +67,10 @@
   </div>
   <div class="row">
     <div class="col-lg-6">
-      <app-vbs-theme-details-card [theme]="themeData" [editEnabled]="true"></app-vbs-theme-details-card>
+      <app-vbs-theme-details-card
+        [theme]="themeData"
+        [editEnabled]="themeData.status !== 'CLOSED'"
+      ></app-vbs-theme-details-card>
 
       <ik-grid
         #vbsAttendanceRecordGrid
@@ -75,13 +78,15 @@
         (rowClick)="onAttendanceRecordRowClick($event)"
       >
         <ik-card-header title="Attendance Records">
-          <ik-icon
-            title="Add Record"
-            icon="plus"
-            class="right pointer"
-            *featureAccess="[Application.VBS, FeatureType.CHECK_IN_DETAIL, Access.CREATE]"
-            (click)="vbsAttendanceModal.open()"
-          ></ik-icon>
+          <ng-container *ngIf="themeData.status !== 'CLOSED'">
+            <ik-icon
+              title="Add Record"
+              icon="plus"
+              class="right pointer"
+              *featureAccess="[Application.VBS, FeatureType.CHECK_IN_DETAIL, Access.CREATE]"
+              (click)="vbsAttendanceModal.open()"
+            ></ik-icon>
+          </ng-container>
         </ik-card-header>
         <ik-grid-column label="Name" field="name"> </ik-grid-column>
         <ik-grid-column label="Status" field="status">
@@ -97,13 +102,15 @@
     <div class="col-lg-6">
       <ik-grid #vbsPointsGrid [dataLoader]="vbsPointsDataloader" (rowClick)="vbsPointsDetailModal.open($event)">
         <ik-card-header title="Point Structure">
-          <ik-icon
-            title="Add Points"
-            icon="plus"
-            class="right pointer"
-            *featureAccess="[Application.VBS, FeatureType.THEMES_POINTS, Access.CREATE]"
-            (click)="vbsCreatePointsModal.open(null)"
-          ></ik-icon>
+          <ng-container *ngIf="themeData.status !== 'CLOSED'">
+            <ik-icon
+              title="Add Points"
+              icon="plus"
+              class="right pointer"
+              *featureAccess="[Application.VBS, FeatureType.THEMES_POINTS, Access.CREATE]"
+              (click)="vbsCreatePointsModal.open(null)"
+            ></ik-icon>
+          </ng-container>
         </ik-card-header>
         <ik-grid-column label="Name" field="displayName"></ik-grid-column>
         <ik-grid-column label="Points" field="points"></ik-grid-column>
@@ -140,7 +147,7 @@
     name="vbsCreatePointsModal"
     title="Add Point Value?"
     saveButtonText="Save"
-    [themeId]="themeData.id"
+    [theme]="themeData"
     (save)="onSavePoints($event)"
   ></app-vbs-points-modal>
 
@@ -150,7 +157,7 @@
     title="Update Points?"
     saveButtonText="Update"
     [deleteEnabled]="true"
-    [themeId]="themeData.id"
+    [theme]="themeData"
     (save)="onUpdatePoints($event)"
     (pointDeleted)="onPointsDeleted()"
   ></app-vbs-points-modal>

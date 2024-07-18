@@ -1,5 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AttendanceStatus } from 'projects/insite-kit/src/model/attendance-record.model';
 import { VBSAttendanceRecord } from 'projects/insite-kit/src/model/vbs.model';
 import { RequestService } from 'projects/insite-kit/src/service/request/request.service';
 import { Observable } from 'rxjs';
@@ -38,6 +39,26 @@ export class VBSAttendanceService {
    */
   update(id: any, record: VBSAttendanceRecord): Observable<HttpResponse<any>> {
     return this.request.put<any>(`${this.BASE_VBS_PATH}/${id}`, record);
+  }
+
+  /**
+   * Update attendance status
+   *
+   * @param attendanceId VBS attendance id
+   * @param status  VBS attendance status
+   */
+  updateStatus(attendanceId: any, status: AttendanceStatus): Observable<any> {
+    return this.request.put<any>(`${this.BASE_VBS_PATH}/${attendanceId}/status/${status}`);
+  }
+
+  /**
+   * Reopens a vbs attendance record by id
+   *
+   * @param id The id of the record to update
+   * @returns The repoened Attendance Record object
+   */
+  reopenAttendance(id: any): Observable<any> {
+    return this.request.put<any>(`${this.BASE_VBS_PATH}/${id}/reopen`);
   }
 
   /**

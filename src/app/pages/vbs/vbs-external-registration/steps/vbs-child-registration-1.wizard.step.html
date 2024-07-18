@@ -93,6 +93,7 @@
             Continue
           </button>
         </div>
+        <div class="text-center link--dark" (click)="onContinueWithoutEmail()">Continue without Email</div>
       </ik-form>
     </div>
   </ng-container>
@@ -134,6 +135,7 @@
 
 <app-vbs-new-guardian-form
   *ngIf="collectingGuardianInfo && newGuardianBaseInfo"
+  [requireEmail]="false"
   [guardian]="newGuardianBaseInfo"
   [wizard]="wizard"
   [activeStep]="wizard.activeIndex"

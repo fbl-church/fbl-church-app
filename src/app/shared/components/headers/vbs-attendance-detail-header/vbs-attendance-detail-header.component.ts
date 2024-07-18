@@ -5,6 +5,7 @@ import { Access, App, FeatureType, WebRole } from 'projects/insite-kit/src/model
 import { VBSAttendanceRecord } from 'projects/insite-kit/src/model/vbs.model';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { AttendanceRecordService } from 'src/service/attendance/attendance-records.service';
+import { VBSAttendanceService } from 'src/service/vbs/vbs-attendance.service';
 
 @Component({
   selector: 'app-vbs-attendance-detail-header',
@@ -28,6 +29,7 @@ export class VBSAttendanceDetailHeaderComponent {
 
   constructor(
     private readonly attendanceRecordService: AttendanceRecordService,
+    private readonly vbsAttendanceService: VBSAttendanceService,
     private readonly popupService: PopupService
   ) {}
 
@@ -41,7 +43,7 @@ export class VBSAttendanceDetailHeaderComponent {
 
   onStartCheckIn() {
     this.loading = true;
-    this.attendanceRecordService.updateStatus(this.record.id, AttendanceStatus.ACTIVE).subscribe({
+    this.vbsAttendanceService.updateStatus(this.record.id, AttendanceStatus.ACTIVE).subscribe({
       next: () => {
         this.popupService.success('VBS Attendance Record Successfully Activated! Start Check in!');
         this.checkInStarted.emit();
@@ -56,7 +58,7 @@ export class VBSAttendanceDetailHeaderComponent {
 
   onReopenAttendance() {
     this.reopenLoading = true;
-    this.attendanceRecordService.reopenAttendance(this.record.id).subscribe({
+    this.vbsAttendanceService.reopenAttendance(this.record.id).subscribe({
       next: (res) => {
         this.popupService.success('VBS Attendance Record successfully Re-Opened!');
         this.recordChange.emit(res);

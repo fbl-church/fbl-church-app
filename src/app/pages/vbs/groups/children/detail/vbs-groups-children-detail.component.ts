@@ -21,6 +21,9 @@ export class VBSGroupsChildrenDetailComponent implements OnInit, OnDestroy {
   highcharts = Highcharts;
   charts = [];
   defaultOptions = {
+    lang: {
+      thousandsSep: ',',
+    },
     credits: {
       enabled: false,
     },
@@ -33,14 +36,16 @@ export class VBSGroupsChildrenDetailComponent implements OnInit, OnDestroy {
       plotShadow: false,
       type: 'pie',
     },
-
     tooltip: {
       pointFormat: 'Points: <b>{point.y}</b>',
+    },
+    legend: {
+      enabled: true,
     },
     plotOptions: {
       series: {
         dataLabels: {
-          enabled: true,
+          enabled: false,
           style: {
             textOutline: 'none',
             fontSize: '12px',
@@ -51,11 +56,17 @@ export class VBSGroupsChildrenDetailComponent implements OnInit, OnDestroy {
         allowPointSelect: true,
         cursor: 'pointer',
         dataLabels: {
-          enabled: true,
+          enabled: false,
           fontSize: 20,
         },
         borderWidth: 2,
         borderColor: 'white',
+        showInLegend: true,
+        point: {
+          events: {
+            legendItemClick: (series: any) => this.lengendClick(series),
+          },
+        },
       },
     },
   };
@@ -72,8 +83,10 @@ export class VBSGroupsChildrenDetailComponent implements OnInit, OnDestroy {
   destroy = new Subject<void>();
   loading = true;
   chartLoading = true;
-  overallOptions: any;
   pointChart: Highcharts.Chart;
+
+  allPointsMap: Map<string, number>;
+  chartTitlePointsMap: Map<string, number>;
 
   constructor(
     private readonly jwt: JwtService,
@@ -108,39 +121,35 @@ export class VBSGroupsChildrenDetailComponent implements OnInit, OnDestroy {
   }
 
   calculateTotalPoints(childAttendance: VBSChildAttendance[]) {
-    const childPointMap = new Map<string, number>();
+    this.allPointsMap = new Map<string, number>();
     let totalPoints = 0;
 
     for (const att of childAttendance) {
       att.points.forEach((p) => {
-        if (childPointMap.has(p.displayName)) {
-          childPointMap.set(p.displayName, childPointMap.get(p.displayName) + p.points);
+        if (this.allPointsMap.has(p.displayName)) {
+          this.allPointsMap.set(p.displayName, this.allPointsMap.get(p.displayName) + p.points);
         } else {
-          childPointMap.set(p.displayName, p.points);
+          this.allPointsMap.set(p.displayName, p.points);
         }
         totalPoints += p.points;
       });
     }
-
-    this.createChart(this.chartEl.nativeElement, childPointMap, totalPoints);
+    this.chartTitlePointsMap = this.allPointsMap;
+    this.createChart(this.chartEl.nativeElement, totalPoints);
   }
 
-  createChart(container, series?: Map<string, number>, totalPoints: number = 0) {
-    let opts: any = this.defaultOptions;
-    opts.title = this.getTitleData(totalPoints);
-    opts.series = [this.getSeriesData(series)];
+  createChart(container, totalPoints: number = 0) {
+    let opts: any = {
+      title: this.getTitleData(totalPoints),
+      series: [this.getSeriesData(this.allPointsMap)],
+      ...this.defaultOptions,
+    };
 
-    if (this.jwt.getTheme() === ThemeType.DARK) {
-      opts.title.style = { color: 'white', borderColor: 'white', fontSize: '24px' };
-      opts.plotOptions.series.dataLabels.style = { color: 'white', fontSize: '12px' };
-      opts.plotOptions.pie.borderColor = '#222B45';
-    }
-
-    this.overallOptions = opts;
+    this.checkUserTheme(opts);
 
     container.appendChild(document.createElement('div'));
     this.pointChart = this.highcharts.chart(container, opts);
-    this.highcharts.getOptions();
+    this.highcharts.setOptions({ lang: { thousandsSep: ',' } });
 
     this.chartLoading = false;
   }
@@ -149,8 +158,8 @@ export class VBSGroupsChildrenDetailComponent implements OnInit, OnDestroy {
     return {
       text: `${Number(totalPoints).toLocaleString('en-US')} points`,
       verticalAlign: 'middle',
-      margin: 500,
-      y: 10,
+      align: 'center',
+      y: -10,
     };
   }
 
@@ -162,9 +171,35 @@ export class VBSGroupsChildrenDetailComponent implements OnInit, OnDestroy {
     };
   }
 
+  checkUserTheme(options: any) {
+    if (this.jwt.getTheme() === ThemeType.DARK) {
+      options.title.style = { color: 'white', borderColor: 'white', fontSize: '24px' };
+      options.plotOptions.series.dataLabels.style = { color: 'white', fontSize: '12px' };
+      options.plotOptions.pie.borderColor = '#222B45';
+      options.legend.itemStyle = { color: 'white' };
+    }
+  }
+
   onUpdateChart() {
     this.chartLoading = true;
     this.pointChart.destroy();
     this.recordsGrid.grid.refresh();
+  }
+
+  lengendClick(series: any) {
+    if (this.chartTitlePointsMap.has(series.target.name)) {
+      this.chartTitlePointsMap.delete(series.target.name);
+    } else {
+      this.chartTitlePointsMap.set(series.target.name, series.target.y);
+    }
+
+    this.pointChart.setTitle(this.getTitleData(this.calculateTitlePoints()));
+  }
+
+  calculateTitlePoints() {
+    return Array.from(this.chartTitlePointsMap, ([key, value]) => ({ name: key, y: value })).reduce(
+      (acc, val) => acc + val.y,
+      0
+    );
   }
 }

@@ -25,27 +25,59 @@
       <div class="row">
         <ik-form-field header="Points" class="col-12">
           <ng-container *featureAccess="[Application.VBS, FeatureType.CHECK_IN_CHILDREN, Access.UPDATE]">
-            <div *ngFor="let p of registrationPoints" class="flex-center--start">
-              <ik-checkbox [checkId]="p.id" (checkboxChange)="onCheckBoxUpdate($event)"></ik-checkbox>
-              <div class="card-info__label-text padding-none">{{ p.displayName + ' (' + p.points + ' points)' }}</div>
+            <div *ngFor="let p of registrationPoints" class="flex-center--start card-info__label-text">
+              <ik-checkbox
+                [readDisableOnly]="childAttendance?.status !== 'ACTIVE'"
+                [checkId]="p.id"
+                (checkboxChange)="onCheckBoxUpdate($event)"
+              ></ik-checkbox>
+              <div
+                [ngClass]="{ 'force-disable': childAttendance?.status !== 'ACTIVE' }"
+                class="card-info__label-text padding-none"
+              >
+                {{ p.displayName + ' (' + p.points + ' points)' }}
+              </div>
             </div>
           </ng-container>
 
           <ng-container *featureAccess="[Application.VBS, FeatureType.CHECK_IN_POINTS, Access.UPDATE]">
-            <div *ngFor="let p of groupPoints" class="flex-center--start">
-              <ik-checkbox [checkId]="p.id" (checkboxChange)="onCheckBoxUpdate($event)"></ik-checkbox>
-              <div class="card-info__label-text padding-none">{{ p.displayName + ' (' + p.points + ' points)' }}</div>
+            <div *ngFor="let p of groupPoints" class="flex-center--start card-info__label-text">
+              <ik-checkbox
+                [readDisableOnly]="childAttendance?.status !== 'ACTIVE'"
+                [checkId]="p.id"
+                (checkboxChange)="onCheckBoxUpdate($event)"
+              ></ik-checkbox>
+              <div
+                [ngClass]="{ 'force-disable': childAttendance?.status !== 'ACTIVE' }"
+                class="card-info__label-text padding-none"
+              >
+                {{ p.displayName + ' (' + p.points + ' points)' }}
+              </div>
             </div>
           </ng-container>
         </ik-form-field>
       </div>
     </ik-modal-body>
     <ik-modal-action-bar>
-      <button actionBarLeft class="btn btn-danger btn-modal" (click)="vbsChildAttendanceModal.close()">
+      <button
+        *ngIf="!childAttendance?.checkOutDate"
+        actionBarLeft
+        class="btn btn-danger btn-modal"
+        (click)="vbsChildAttendanceModal.close()"
+      >
         Check Out
       </button>
-      <button actionBarRight class="btn btn-default btn-modal" (click)="vbsChildAttendanceModal.close()">Cancel</button>
-      <button actionBarRight class="btn btn-primary btn-modal" (click)="onUpdateClick()">Update</button>
+      <button actionBarRight class="btn btn-default btn-modal" (click)="vbsChildAttendanceModal.close()">
+        {{ childAttendance?.status === 'ACTIVE' ? 'Cancel' : 'Close' }}
+      </button>
+      <button
+        *ngIf="childAttendance?.status === 'ACTIVE'"
+        actionBarRight
+        class="btn btn-primary btn-modal"
+        (click)="onUpdateClick()"
+      >
+        Update
+      </button>
     </ik-modal-action-bar>
   </ng-container>
 </ik-modal>

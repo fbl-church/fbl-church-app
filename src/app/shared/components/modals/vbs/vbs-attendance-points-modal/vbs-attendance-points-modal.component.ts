@@ -96,9 +96,11 @@ export class VBSAttendancePointsModalComponent implements OnInit {
   }
 
   buildVBSPoints(): VBSChildPoint[] {
-    return this.childPoints.map((p) => ({
-      vbsPointId: p,
-      vbsAttendanceId: this.currentChildAttendance.attendanceRecordId,
-    }));
+    return this.childPoints
+      .filter((pv) => pv)
+      .map((p) => ({
+        vbsPointId: p,
+        vbsAttendanceId: this.currentChildAttendance.attendanceRecordId,
+      }));
   }
 }

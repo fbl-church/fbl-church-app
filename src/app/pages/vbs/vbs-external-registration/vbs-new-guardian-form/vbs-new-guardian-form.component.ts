@@ -18,6 +18,7 @@ export class VBSNewGuardianFormComponent implements OnInit, OnChanges {
 
   @Input() guardian: Guardian;
   @Input() wizard: WizardComponent;
+  @Input() requireEmail = true;
   @Input() activeStep: number = 0;
 
   guardianForms: FormGroup[] = [];
@@ -82,7 +83,7 @@ export class VBSNewGuardianFormComponent implements OnInit, OnChanges {
       email: [
         g?.email || '',
         {
-          validators: [Validators.email, Validators.required],
+          validators: [Validators.email],
           asyncValidators: createUniqueValidator('duplicate', (value) => this.userService.doesEmailExist(value)),
         },
       ],
@@ -96,6 +97,11 @@ export class VBSNewGuardianFormComponent implements OnInit, OnChanges {
         },
       ],
     });
+
+    if (this.requireEmail) {
+      newGuardianForm.addValidators(Validators.required);
+    }
+
     this.guardianForms.push(newGuardianForm);
   }
 

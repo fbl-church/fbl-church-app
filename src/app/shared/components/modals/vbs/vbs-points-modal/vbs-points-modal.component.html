@@ -78,20 +78,36 @@
     <ik-modal-action-bar>
       <button
         actionBarLeft
-        *ngIf="currentVBSPoint?.id || deleteEnabled"
+        *ngIf="(currentVBSPoint?.id || deleteEnabled) && theme.status !== 'CLOSED'"
         class="btn btn-danger btn-modal"
         (click)="onDeleteClick()"
       >
         Delete
       </button>
-      <button actionBarRight class="btn btn-default btn-modal" (click)="vbsThemePointsModal.close()">Cancel</button>
       <button
+        *ngIf="theme.status !== 'CLOSED'"
+        actionBarRight
+        class="btn btn-default btn-modal"
+        (click)="vbsThemePointsModal.close()"
+      >
+        Cancel
+      </button>
+      <button
+        *ngIf="theme.status !== 'CLOSED'"
         actionBarRight
         class="btn btn-primary btn-modal"
         (click)="onSaveClick()"
         [disabled]="form && (form.invalid || !form.dirty)"
       >
         {{ saveButtonText }}
+      </button>
+      <button
+        *ngIf="theme.status === 'CLOSED'"
+        actionBarRight
+        class="btn btn-default btn-modal"
+        (click)="vbsThemePointsModal.close()"
+      >
+        Close
       </button>
     </ik-modal-action-bar>
   </ng-container>

@@ -1,11 +1,12 @@
 <ng-container *ngIf="!loading; else pageLoader">
-  <app-attendance-record-detail-header
+  <app-vbs-attendance-detail-header
     [(record)]="attendanceRecord"
     [route]="baseRoute"
     [app]="Application.VBS"
     (backClick)="onBackClick()"
     (checkInStarted)="onCheckInChildrenClick()"
-  ></app-attendance-record-detail-header>
+    (recordChange)="refreshChildrenGrid()"
+  ></app-vbs-attendance-detail-header>
 
   <div class="row">
     <div class="col-lg-7">
