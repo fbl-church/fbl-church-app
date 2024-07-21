@@ -30,5 +30,7 @@ export class VBSChildrenComponent {
     );
   }
 
-  onRowClick(event: Child) {}
+  onRowClick(event: Child) {
+    this.navigationService.navigate(`/children/${event.id}/details`);
+  }
 }
