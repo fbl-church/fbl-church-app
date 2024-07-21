@@ -7,8 +7,8 @@
           ><input maxlength="100" class="form-input__normal" placeholder="Name" formControlName="name" />
         </ik-form-field>
 
-        <ik-form-field header="Donating To" [padding]="false"
-          ><input maxlength="150" class="form-input__normal" placeholder="Donating To" formControlName="donation" />
+        <ik-form-field header="Donating To" [padding]="false">
+          <textarea formControlName="donation" rows="4" cols="50" maxlength="150" class="form-input__normal"></textarea>
         </ik-form-field>
       </form>
     </ik-modal-body>
