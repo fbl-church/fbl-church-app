@@ -1,0 +1,77 @@
+<ng-container *ngIf="!loading; else pageLoader">
+  <ik-header [title]="'Snacks - ' + themeData.name"> </ik-header>
+  <div class="row">
+    <div class="col-md-6">
+      <ik-grid #vbsThemeGroupsGrid [dataLoader]="vbsThemeGroupsDataloader">
+        <ik-card-header title="VBS Groups"> </ik-card-header>
+        <ik-grid-column label="Group" field="group">
+          <ng-template let-data>
+            <div>{{ data.group | churchGroupTranslate }}</div>
+          </ng-template>
+        </ik-grid-column>
+        <ik-grid-column label="Name" field="name"></ik-grid-column>
+        <ik-grid-pager key="Groups" [pagerVisible]="false"></ik-grid-pager>
+      </ik-grid>
+    </div>
+
+    <div class="col-md-6">
+      <ik-grid
+        #vbsAttendanceRecordGrid
+        [dataLoader]="vbsAttendanceDataloader"
+        (rowClick)="onAttendanceRecordRowClick($event)"
+      >
+        <ik-card-header title="Attendance Records"> </ik-card-header>
+        <ik-grid-column label="Name" field="name"> </ik-grid-column>
+        <ik-grid-column label="Status" field="status">
+          <ng-template let-data>
+            <div [ngClass]="data.status">{{ data.status }}</div>
+          </ng-template>
+        </ik-grid-column>
+        <ik-grid-column label="Active Date" field="activeDate"></ik-grid-column>
+        <ik-grid-pager key="Records" [pagerVisible]="false"></ik-grid-pager>
+      </ik-grid>
+    </div>
+  </div>
+
+  <ik-modal #attendanceDetailsModal name="attendanceDetailsModal">
+    <ik-modal-header title="Attendance Record Details" type="info"></ik-modal-header>
+    <ng-container *ngIf="!modalLoading; else modalLoader">
+      <div class="row">
+        <div class="col-6">
+          <ik-card-info header="Name" [text]="activeRecord?.name"></ik-card-info>
+        </div>
+        <div class="col-6">
+          <ik-card-info header="CUID" [text]="activeRecord?.activeDate | date : 'MMMM d, y'"></ik-card-info>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <ik-card-info
+            header="Total Children"
+            [text]="!!totalRecordChildren ? totalRecordChildren : '0'"
+          ></ik-card-info>
+        </div>
+      </div>
+      <ik-modal-action-bar>
+        <button actionBarRight class="btn btn-primary btn-modal" (click)="attendanceDetailsModal.close()">Okay</button>
+      </ik-modal-action-bar>
+    </ng-container>
+  </ik-modal>
+</ng-container>
+
+<!-- <ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
+  <ik-grid-search></ik-grid-search>
+  <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
+  <ik-grid-column label="CUID" field="cuid"></ik-grid-column>
+  <ik-grid-column label="Birthday" field="birthday"></ik-grid-column>
+  <ik-grid-column label="Created" field="insertDate"></ik-grid-column>
+  <ik-grid-pager key="Children"></ik-grid-pager>
+</ik-grid> -->
+
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
+</ng-template>
+
+<ng-template #modalLoader>
+  <ik-loading></ik-loading>
+</ng-template>

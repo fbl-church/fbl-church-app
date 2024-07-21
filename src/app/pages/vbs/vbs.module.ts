@@ -5,6 +5,8 @@ import { VBSChildrenComponent } from './children/vbs-children.component';
 import { VBSGroupsChildrenDetailComponent } from './groups/children/detail/vbs-groups-children-detail.component';
 import { VBSGroupsChildrenComponent } from './groups/children/vbs-groups-children.component';
 import { VBSGroupDetailsComponent } from './groups/detail/vbs-group-details.component';
+import { VBSSnacksDetailsComponent } from './snacks/details/vbs-snacks-details.component';
+import { VBSSnacksComponent } from './snacks/vbs-snacks.component';
 import { VBSCreateThemeComponent } from './themes/create-theme/vbs-create-theme.component';
 import { VBSThemeDetailsComponent } from './themes/theme-details/vbs-theme-details.component';
 import { VBSThemesComponent } from './themes/vbs-themes.component';
@@ -37,6 +39,8 @@ import { VBSNewGuardianFormComponent } from './vbs-external-registration/vbs-new
     VBSChildrenComponent,
     VBSGroupsChildrenComponent,
     VBSGroupsChildrenDetailComponent,
+    VBSSnacksComponent,
+    VBSSnacksDetailsComponent,
   ],
 })
 export class VBSModule {}

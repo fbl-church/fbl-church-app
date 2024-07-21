@@ -10,18 +10,22 @@
           <ik-card-info header="CUID" [text]="childAttendance?.cuid"></ik-card-info>
         </div>
       </div>
-      <ik-card-info *ngIf="record.status !== 'CLOSED'" header="Attendance">
-        <ik-icon
-          icon="circle-info"
-          classOverride="btn-icon"
-          [ikTooltip]="
-            'This will mark the child as absent and will remove any points that have been applied for this record.'
-          "
-          [ikTooltipWrapText]="true"
-          ikTooltipPosition="right top"
-        ></ik-icon>
-        <a class="link card-info__label-text" (click)="onMarkChildAbsent()">Mark Absent</a>
-      </ik-card-info>
+
+      <ng-container *featureAccess="[Application.VBS, FeatureType.CHECK_IN_CHILDREN, Access.UPDATE]">
+        <ik-card-info *ngIf="record.status !== 'CLOSED'" header="Attendance">
+          <ik-icon
+            icon="circle-info"
+            classOverride="btn-icon"
+            [ikTooltip]="
+              'This will mark the child as absent and will remove any points that have been applied for this record.'
+            "
+            [ikTooltipWrapText]="true"
+            ikTooltipPosition="right top"
+          ></ik-icon>
+          <a class="link card-info__label-text" (click)="onMarkChildAbsent()">Mark Absent</a>
+        </ik-card-info>
+      </ng-container>
+
       <div class="row">
         <ik-form-field header="Points" class="col-12">
           <ng-container *featureAccess="[Application.VBS, FeatureType.CHECK_IN_CHILDREN, Access.UPDATE]">
@@ -59,14 +63,19 @@
       </div>
     </ik-modal-body>
     <ik-modal-action-bar>
-      <button
-        *ngIf="!childAttendance?.checkOutDate"
-        actionBarLeft
-        class="btn btn-danger btn-modal"
-        (click)="vbsChildAttendanceModal.close()"
+      <ng-container
+        *featureAccess="[Application.VBS, FeatureType.CHECK_IN_CHILDREN, Access.UPDATE]"
+        ngProjectAs="[actionBarLeft]"
       >
-        Check Out
-      </button>
+        <button
+          *ngIf="!childAttendance?.checkOutDate"
+          class="btn btn-danger btn-modal"
+          (click)="vbsChildAttendanceModal.close()"
+        >
+          Check Out
+        </button>
+      </ng-container>
+
       <button actionBarRight class="btn btn-default btn-modal" (click)="vbsChildAttendanceModal.close()">
         {{ childAttendance?.status === 'ACTIVE' ? 'Cancel' : 'Close' }}
       </button>
