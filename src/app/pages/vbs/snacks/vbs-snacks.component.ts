@@ -88,7 +88,10 @@ export class VBSSnacksComponent implements OnInit, OnDestroy {
 
   getGroupAttendanceCount(attendanceId: any, group: ChurchGroup) {
     return this.vbsChildAttendanceService
-      .getVBSChildrenByAttendanceId(attendanceId, new Map().set('present', [true]).set('group', group))
+      .getVBSChildrenByAttendanceId(
+        attendanceId,
+        new Map().set('present', [true]).set('group', group).set('pageSize', ['1']).set('rowOffset', ['0'])
+      )
       .pipe(map((res) => (res.headers.get('total-count') ? Number(res.headers.get('total-count')) : 0)));
   }
 }
