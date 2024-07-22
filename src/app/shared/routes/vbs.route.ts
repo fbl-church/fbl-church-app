@@ -53,6 +53,7 @@ function buildVBSGroupRoutes(basePath: string, group: ChurchGroup, workerRole: W
         {
           path: 'children',
           component: VBSGroupsChildrenComponent,
+          resolve: { theme: RouteDataResolver.for(VBSThemesService, { method: 'getLatestActive', routeParams: [] }) },
           data: {
             group: group,
             route: routePath,
