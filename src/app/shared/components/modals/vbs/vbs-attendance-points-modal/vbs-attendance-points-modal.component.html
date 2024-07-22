@@ -14,6 +14,15 @@
         </div>
       </div>
       <div class="row">
+        <div class="col-12">
+          <ik-card-info
+            [contentColor]="currentChildAttendance.status"
+            header="Status"
+            [text]="currentChildAttendance.status"
+          ></ik-card-info>
+        </div>
+      </div>
+      <div class="row">
         <ik-form-field header="Points" class="col-12">
           <div *ngFor="let p of groupPoints" class="flex-center--start card-info__label-text">
             <ik-checkbox
