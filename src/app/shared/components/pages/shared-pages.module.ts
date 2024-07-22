@@ -8,6 +8,7 @@ import { VBSAttendanceDetailEditComponent } from './vbs/vbs-attendance-detail-ed
 import { VBSAttendanceChildrenCheckInComponent } from './vbs/vbs-attendance-detail/vbs-attendance-children-check-in/vbs-attendance-children-check-in.component';
 import { VBSAttendanceChildrenPointsComponent } from './vbs/vbs-attendance-detail/vbs-attendance-children-points/vbs-attendance-children-points.component';
 import { VBSAttendanceDetailComponent } from './vbs/vbs-attendance-detail/vbs-attendance-detail.component';
+import { VBSSnacksChildrenAllergiesComponent } from './vbs/vbs-snacks-children-allergies/vbs-snacks-children-allergies.component';
 
 @NgModule({
   imports: [BaseInitModule, SharedModalsModule, SharedHeadersModule, SharedCardsModule, SharedGridsModule],
@@ -16,12 +17,14 @@ import { VBSAttendanceDetailComponent } from './vbs/vbs-attendance-detail/vbs-at
     VBSAttendanceDetailEditComponent,
     VBSAttendanceChildrenCheckInComponent,
     VBSAttendanceChildrenPointsComponent,
+    VBSSnacksChildrenAllergiesComponent,
   ],
   exports: [
     VBSAttendanceDetailComponent,
     VBSAttendanceDetailEditComponent,
     VBSAttendanceChildrenCheckInComponent,
     VBSAttendanceChildrenPointsComponent,
+    VBSSnacksChildrenAllergiesComponent,
   ],
 })
 export class SharedPagesModule {}

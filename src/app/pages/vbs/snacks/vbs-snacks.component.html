@@ -2,8 +2,8 @@
   <ik-header [title]="'Snacks - ' + themeData.name"> </ik-header>
   <div class="row">
     <div class="col-md-6">
-      <ik-grid #vbsThemeGroupsGrid [dataLoader]="vbsThemeGroupsDataloader">
-        <ik-card-header title="VBS Groups"> </ik-card-header>
+      <ik-grid #vbsThemeGroupsGrid [dataLoader]="vbsThemeGroupsDataloader" (rowClick)="onGroupRowClick($event)">
+        <ik-card-header title="VBS Groups - Allergies"> </ik-card-header>
         <ik-grid-column label="Group" field="group">
           <ng-template let-data>
             <div>{{ data.group | churchGroupTranslate }}</div>
@@ -41,16 +41,35 @@
           <ik-card-info header="Name" [text]="activeRecord?.name"></ik-card-info>
         </div>
         <div class="col-6">
-          <ik-card-info header="CUID" [text]="activeRecord?.activeDate | date : 'MMMM d, y'"></ik-card-info>
+          <ik-card-info header="Active Date" [text]="activeRecord?.activeDate | date : 'MMMM d, y'"></ik-card-info>
         </div>
       </div>
       <div class="row">
-        <div class="col-12">
+        <div class="col-6">
+          <ik-card-info header="Spirit Theme" [text]="activeRecord?.spiritTheme"></ik-card-info>
+        </div>
+        <div class="col-6">
           <ik-card-info
             header="Total Children"
             [text]="!!totalRecordChildren ? totalRecordChildren : '0'"
           ></ik-card-info>
         </div>
+      </div>
+      <div class="row">
+        <ik-form-field header="Group Counts" class="col-12">
+          <div class="card-info__label-text">
+            {{ 'VBS Pre-Primary: ' + (!!prePrimaryCount ? prePrimaryCount : '0') }}
+          </div>
+          <div class="card-info__label-text">
+            {{ 'VBS Primary: ' + (!!primaryCount ? primaryCount : '0') }}
+          </div>
+          <div class="card-info__label-text">
+            {{ 'VBS Middler: ' + (!!middlerCount ? middlerCount : '0') }}
+          </div>
+          <div class="card-info__label-text">
+            {{ 'VBS Junior: ' + (!!juniorCount ? juniorCount : '0') }}
+          </div>
+        </ik-form-field>
       </div>
       <ik-modal-action-bar>
         <button actionBarRight class="btn btn-primary btn-modal" (click)="attendanceDetailsModal.close()">Okay</button>
@@ -58,15 +77,6 @@
     </ng-container>
   </ik-modal>
 </ng-container>
-
-<!-- <ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
-  <ik-grid-search></ik-grid-search>
-  <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
-  <ik-grid-column label="CUID" field="cuid"></ik-grid-column>
-  <ik-grid-column label="Birthday" field="birthday"></ik-grid-column>
-  <ik-grid-column label="Created" field="insertDate"></ik-grid-column>
-  <ik-grid-pager key="Children"></ik-grid-pager>
-</ik-grid> -->
 
 <ng-template #pageLoader>
   <ik-loading type="double"></ik-loading>

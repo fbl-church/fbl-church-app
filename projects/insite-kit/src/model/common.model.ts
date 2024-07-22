@@ -139,6 +139,7 @@ export enum FeatureType {
 
   // VBS Features
   CHECK_IN_POINTS = 'check-in.points',
+  SNACKS = 'snacks',
 
   // VBS Groups
   GROUPS = 'groups',

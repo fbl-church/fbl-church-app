@@ -1,0 +1,16 @@
+<ng-container *ngIf="!loading">
+  <ik-header [title]="(activeGroup + '_SHORT' | churchGroupTranslate) + ' - Children Allergies'">
+    <ik-header-back (back)="onBackClick()"></ik-header-back>
+  </ik-header>
+  <ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
+    <ik-grid-search></ik-grid-search>
+    <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
+    <ik-grid-column label="CUID" field="cuid"></ik-grid-column>
+    <ik-grid-column label="Birthday" field="birthday"></ik-grid-column>
+    <ik-grid-column label="Created" field="insertDate"></ik-grid-column>
+    <ik-grid-pager key="Children"></ik-grid-pager>
+  </ik-grid>
+</ng-container>
+<ng-template #pageLoader>
+  <ik-loading type="double"></ik-loading>
+</ng-template>

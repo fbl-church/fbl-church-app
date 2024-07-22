@@ -334,6 +334,11 @@ export const NAVIGATION_ROUTES: NavItem[] = [
           id: 'snacks',
           name: 'Snacks',
           route: '/snacks',
+          restriction: {
+            app: App.VBS,
+            feature: FeatureType.SNACKS,
+            access: Access.READ,
+          },
         },
         {
           id: 'children',

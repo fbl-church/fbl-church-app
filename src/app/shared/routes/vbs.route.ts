@@ -22,6 +22,7 @@ import { AuthenticatedLayoutComponent } from '../components/layouts/authenticate
 import { VBSAttendanceDetailEditComponent } from '../components/pages/vbs/vbs-attendance-detail-edit/vbs-attendance-detail-edit.component';
 import { VBSAttendanceChildrenCheckInComponent } from '../components/pages/vbs/vbs-attendance-detail/vbs-attendance-children-check-in/vbs-attendance-children-check-in.component';
 import { VBSAttendanceDetailComponent } from '../components/pages/vbs/vbs-attendance-detail/vbs-attendance-detail.component';
+import { VBSSnacksChildrenAllergiesComponent } from '../components/pages/vbs/vbs-snacks-children-allergies/vbs-snacks-children-allergies.component';
 
 function buildVBSGroupRoutes(basePath: string, group: ChurchGroup, workerRole: WebRole): Route[] {
   const routePath = `/vbs/groups/${basePath}`;
@@ -251,6 +252,13 @@ export const VBS_ROUTE: Route = {
       component: VBSSnacksDetailsComponent,
       resolve: {
         record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }),
+      },
+    },
+    {
+      path: 'snacks/children/:group/allergies',
+      component: VBSSnacksChildrenAllergiesComponent,
+      data: {
+        group: ChurchGroup.VBS_JUNIOR,
       },
     },
     {
