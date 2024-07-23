@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AsyncValidatorFn, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { createUniqueValidator } from 'projects/insite-kit/src/component/form/service/async.validator';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { User } from 'projects/insite-kit/src/model/user.model';
@@ -28,11 +28,15 @@ export class VBSPointsModalComponent implements OnInit {
   form: FormGroup;
 
   currentVBSPoint: VBSPoint;
+  pointNameAsyncValidatorCheck: AsyncValidatorFn;
 
   constructor(private readonly vbsPointService: VBSPointsService, private readonly fb: FormBuilder) {}
 
   ngOnInit() {
     this.buildForm();
+    this.pointNameAsyncValidatorCheck = createUniqueValidator('duplicate', (value) =>
+      this.vbsPointService.doesPointNameExistForThemeId(this.theme.id, value)
+    );
   }
 
   open(p?: VBSPoint) {
@@ -49,17 +53,13 @@ export class VBSPointsModalComponent implements OnInit {
         checkInApply: !!p.checkInApply || false,
         enabled: !!p.enabled,
       });
-
-      if (this.theme) {
-        this.form.controls.name.addAsyncValidators(
-          createUniqueValidator('duplicate', (value) =>
-            this.vbsPointService.doesPointNameExistForThemeId(this.theme.id, value)
-          )
-        );
-        this.form.controls.name.updateValueAndValidity();
-      }
     } else {
       this.form.patchValue({ registrationOnly: false, checkInApply: false, enabled: true });
+    }
+
+    if (this.theme && !this.form.controls.name.hasAsyncValidator(this.pointNameAsyncValidatorCheck)) {
+      this.form.controls.name.addAsyncValidators(this.pointNameAsyncValidatorCheck);
+      this.form.controls.name.updateValueAndValidity();
     }
 
     this.modal.open();
