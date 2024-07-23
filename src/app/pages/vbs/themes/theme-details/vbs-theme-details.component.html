@@ -112,7 +112,7 @@
             ></ik-icon>
           </ng-container>
         </ik-card-header>
-        <ik-grid-column label="Name" field="displayName"></ik-grid-column>
+        <ik-grid-column label="Name" field="displayName"> </ik-grid-column>
         <ik-grid-column label="Points" field="points"></ik-grid-column>
         <ik-grid-column label="Registration">
           <ng-template let-data>
@@ -122,6 +122,11 @@
         <ik-grid-column label="Auto Apply">
           <ng-template let-data>
             <div>{{ data.checkInApply ? 'Yes' : 'No' }}</div>
+          </ng-template>
+        </ik-grid-column>
+        <ik-grid-column label="Enabled">
+          <ng-template let-data>
+            <div>{{ data.enabled ? 'Yes' : 'No' }}</div>
           </ng-template>
         </ik-grid-column>
         <ik-grid-pager key="Points" [pagerVisible]="false"></ik-grid-pager>

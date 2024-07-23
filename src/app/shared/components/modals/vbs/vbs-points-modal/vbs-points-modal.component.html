@@ -59,6 +59,24 @@
           </label>
         </ik-form-field>
 
+        <ik-form-field header="Enabled" [padding]="false">
+          <ik-icon
+            icon="circle-info"
+            classOverride="btn-icon"
+            ikTooltip="This determines if the points are able to be applied."
+            [ikTooltipWrapText]="true"
+            ikTooltipPosition="right top"
+          ></ik-icon>
+          <label class="input-inline">
+            <input type="radio" formControlName="enabled" class="form-check-input checkbox__default" [value]="true" />
+            <span>Yes</span>
+          </label>
+          <label class="input-inline">
+            <input type="radio" formControlName="enabled" class="form-check-input checkbox__default" [value]="false" />
+            <span>No</span>
+          </label>
+        </ik-form-field>
+
         <ik-form-field header="Name" [padding]="false"
           ><input maxlength="26" class="form-input__normal" placeholder="Name" formControlName="name" />
         </ik-form-field>

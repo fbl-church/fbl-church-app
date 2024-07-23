@@ -35,7 +35,7 @@ export class VBSAttendancePointsModalComponent implements OnInit {
   ngOnInit() {
     this.modalLoading = true;
     this.vbsPointsService.getByThemeId(this.vbsThemeId).subscribe((res) => {
-      this.groupPoints = res.body.filter((p) => !p.registrationOnly && !p.checkInApply);
+      this.groupPoints = res.body.filter((p) => !p.registrationOnly && !p.checkInApply && p.enabled);
       this.modalLoading = false;
     });
   }

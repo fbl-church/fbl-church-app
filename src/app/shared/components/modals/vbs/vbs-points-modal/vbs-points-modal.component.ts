@@ -47,17 +47,19 @@ export class VBSPointsModalComponent implements OnInit {
         points: p.points,
         registrationOnly: !!p.registrationOnly || false,
         checkInApply: !!p.checkInApply || false,
+        enabled: !!p.enabled,
       });
 
       if (this.theme) {
-        this.form.addAsyncValidators(
+        this.form.controls.name.addAsyncValidators(
           createUniqueValidator('duplicate', (value) =>
             this.vbsPointService.doesPointNameExistForThemeId(this.theme.id, value)
           )
         );
+        this.form.controls.name.updateValueAndValidity();
       }
     } else {
-      this.form.patchValue({ registrationOnly: false, checkInApply: false });
+      this.form.patchValue({ registrationOnly: false, checkInApply: false, enabled: true });
     }
 
     this.modal.open();
@@ -86,26 +88,24 @@ export class VBSPointsModalComponent implements OnInit {
   }
 
   buildVBSPointData(): VBSPoint {
+    console.log('TEMP', this.form.value.enabled);
     return {
       id: this.currentVBSPoint?.id,
       displayName: this.form.value.name.trim(),
       points: this.form.value.points,
       registrationOnly: this.form.value.registrationOnly,
       checkInApply: this.form.value.checkInApply,
+      enabled: this.form.value.enabled,
     };
   }
 
   buildForm() {
     this.form = this.fb.group({
-      name: [
-        null,
-        {
-          validators: [Validators.required],
-        },
-      ],
+      name: [null, Validators.required],
       points: [null, Validators.required],
       registrationOnly: [false, Validators.required],
       checkInApply: [false, Validators.required],
+      enabled: [true, Validators.required],
     });
   }
 }

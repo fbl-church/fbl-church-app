@@ -49,8 +49,9 @@ export class VBSChildAttendanceModalComponent implements OnInit {
   ngOnInit() {
     this.modalLoading = true;
     this.vbsPointsService.getByThemeId(this.vbsThemeId).subscribe((res) => {
-      this.registrationPoints = res.body.filter((p) => p.registrationOnly && !p.checkInApply);
-      this.groupPoints = res.body.filter((p) => !p.registrationOnly && !p.checkInApply);
+      const enabledPoints = res.body.filter((p) => p.enabled);
+      this.registrationPoints = enabledPoints.filter((p) => p.registrationOnly && !p.checkInApply);
+      this.groupPoints = enabledPoints.filter((p) => !p.registrationOnly && !p.checkInApply);
       this.modalLoading = false;
     });
   }
