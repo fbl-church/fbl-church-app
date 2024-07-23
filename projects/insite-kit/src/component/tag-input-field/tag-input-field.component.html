@@ -7,10 +7,11 @@
     (remove)="removeTagByIndex($event)"
   ></ik-input-tag>
 </div>
-<form [formGroup]="tagForm" class="grid-search__multiselect-form">
+<form action="." [formGroup]="tagForm" class="grid-search__multiselect-form">
   <input
     #multiselectInput
     formControlName="searchInput"
+    type="search"
     [class]="classOverride"
     [ngClass]="{
       'input-tag__field--margin-left': tags.length > 0

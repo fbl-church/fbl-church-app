@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WizardComponent } from 'projects/insite-kit/src/component/wizard/wizard.component';
 import { Guardian } from 'projects/insite-kit/src/model/user.model';
+import { CommonService } from 'projects/insite-kit/src/service/common/common.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { VBSService } from 'src/service/vbs/vbs.service';
 import { VBSExternalRegistrationWizardDataService } from '../vbs-external-registration-wizard-data.service';
@@ -27,12 +28,13 @@ export class VBSChildRegistrationWizardStepOneComponent implements OnInit {
     private readonly wizardDataService: VBSExternalRegistrationWizardDataService,
     private readonly fb: FormBuilder,
     private readonly vbsService: VBSService,
-    private readonly popupService: PopupService
+    private readonly popupService: PopupService,
+    private readonly commonService: CommonService
   ) {}
 
   ngOnInit(): void {
     this.phoneForm = this.fb.group({
-      phone: [null, [Validators.required, Validators.minLength(14)]],
+      phone: [null, [Validators.required, Validators.pattern('^(?:\\D*\\d){10}\\D*$')]],
     });
 
     this.emailForm = this.fb.group({
@@ -54,6 +56,9 @@ export class VBSChildRegistrationWizardStepOneComponent implements OnInit {
 
   onSearchClick(searchValue: any) {
     this.searchLoading = true;
+    if (this.usePhoneNumber) {
+      this.phoneForm.patchValue({ phone: this.commonService.formatPhoneNumber(this.phoneForm.value.phone.trim()) });
+    }
 
     this.vbsService.getVBSGuardians(new Map().set('search', [searchValue])).subscribe({
       next: (res) => {
@@ -61,6 +66,12 @@ export class VBSChildRegistrationWizardStepOneComponent implements OnInit {
           this.nextStepGuardianExists(res.body[0]);
           this.reset();
         } else {
+          if (this.usePhoneNumber) {
+            this.emailForm.reset();
+          } else {
+            this.phoneForm.reset();
+          }
+
           this.initailDetailsCollect = true;
         }
 
@@ -75,6 +86,9 @@ export class VBSChildRegistrationWizardStepOneComponent implements OnInit {
 
   onSecondarySearchClick(searchValue: any) {
     this.searchLoading = true;
+    if (!this.usePhoneNumber) {
+      this.phoneForm.patchValue({ phone: this.commonService.formatPhoneNumber(this.phoneForm.value.phone.trim()) });
+    }
 
     this.vbsService.getVBSGuardians(new Map().set('search', [searchValue])).subscribe({
       next: (res) => {

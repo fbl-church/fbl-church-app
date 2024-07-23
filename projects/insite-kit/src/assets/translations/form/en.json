@@ -15,7 +15,8 @@
       "required": "Phone Number is a required field",
       "email": "Phone Number is invalid",
       "duplicate": "Phone Number already exists",
-      "minlength": "Phone Number is required and must have at least 10 digits"
+      "minlength": "Phone Number is required and must have at least 10 digits",
+      "pattern": "Phone Number is required and must have at least 10 digits"
     },
     "startDate": {
       "required": "Start date is a required field"

@@ -14,7 +14,8 @@
 }
 
 .form-input--has-error {
-  > input {
+  > input,
+  > div > input {
     border-color: #ff2020 !important;
     box-shadow: none !important;
   }
