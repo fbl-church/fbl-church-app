@@ -15,6 +15,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   isGuardianOnly = false;
   destroy = new Subject<void>();
 
+  leftColor: any;
+
   constructor(private readonly route: ActivatedRoute, private readonly navigationService: NavigationService) {}
 
   ngOnInit() {
@@ -36,7 +38,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   onResetPassword() {
-    this.navigationService.navigate('/profile/reset-password');
+    console.log(this.leftColor);
+    // this.navigationService.navigate('/profile/reset-password');
   }
 
   onChildRowClick(child: Child) {

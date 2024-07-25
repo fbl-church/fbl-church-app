@@ -6,7 +6,6 @@ import { ProfileChildEditComponent } from './profile-child-details/profile-child
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { ProfileComponent } from './profile.component';
 import { UpdatePasswordComponent } from './update-password/update-password.component';
-
 @NgModule({
   imports: [BaseInitModule, SharedModule],
   declarations: [

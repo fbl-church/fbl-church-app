@@ -62,6 +62,18 @@ export interface VBSAttendanceRecord extends AttendanceRecord {
   offeringWinnerPoints?: number;
 }
 
+export interface VBSPointDivision {
+  id?: number;
+  min?: number;
+  max?: number;
+  color?: string;
+  vbsThemeId?: number;
+  updatedUserId?: number;
+  updatedDate?: Date;
+  insertUserId?: number;
+  insertDate?: Date;
+}
+
 export enum VBSThemeStatus {
   PENDING = 'PENDING',
   ACTIVE = 'ACTIVE',

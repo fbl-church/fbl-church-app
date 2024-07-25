@@ -63,6 +63,21 @@
     "offeringAmount": {
       "required": "Offering Amount is a required field",
       "min": "Offering Amount must be a value greater than 0.00"
+    },
+    "pickerInput": {
+      "invalidColor": "The color is invalid",
+      "required": "Color is a required field",
+      "min": "Range must be a value greater than 0"
+    },
+    "minRange": {
+      "required": "Min Range is a required field",
+      "min": "Min Range must be a value greater than 0",
+      "duplicate": "Value is already covered by existing range"
+    },
+    "maxRange": {
+      "required": "Max Range is a required field",
+      "min": "Max Range must be a value greater than 0",
+      "duplicate": "Value is already covered by existing range"
     }
   }
 }

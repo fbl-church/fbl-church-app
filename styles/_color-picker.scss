@@ -1,0 +1,11 @@
+.color-picker--icon {
+  position: absolute;
+  padding: 14px 12px;
+  right: 12px;
+}
+
+@media screen and (max-width: $screen-sm-max) {
+  .color-picker--icon {
+    padding: 12px;
+  }
+}

@@ -5,9 +5,10 @@
   box-shadow: 1px 1px 6px white;
   display: inline-flex;
   justify-content: center;
-  min-height: 20px;
-  min-width: 20px;
+  min-height: 24px;
+  min-width: 24px;
   padding: 5px;
+  margin-left: 10px;
 }
 
 .light--success {
@@ -20,4 +21,10 @@
 
 .light--danger {
   background: #e32323;
+}
+
+@media screen and (max-width: $screen-sm-max) {
+  .indicator-light {
+    margin-left: 6px;
+  }
 }

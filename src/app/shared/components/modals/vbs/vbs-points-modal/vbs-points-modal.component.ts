@@ -45,7 +45,6 @@ export class VBSPointsModalComponent implements OnInit {
 
     this.currentVBSPoint = p;
     if (p) {
-      this.currentVBSPoint = p;
       this.form.patchValue({
         name: p.displayName,
         points: p.points,
@@ -88,7 +87,6 @@ export class VBSPointsModalComponent implements OnInit {
   }
 
   buildVBSPointData(): VBSPoint {
-    console.log('TEMP', this.form.value.enabled);
     return {
       id: this.currentVBSPoint?.id,
       displayName: this.form.value.name.trim(),

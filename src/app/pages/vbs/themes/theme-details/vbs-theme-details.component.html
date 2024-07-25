@@ -132,6 +132,42 @@
         <ik-grid-pager key="Points" [pagerVisible]="false"></ik-grid-pager>
       </ik-grid>
 
+      <ik-grid
+        #vbsPointDivisionGrid
+        [dataLoader]="vbsPointDivisionDataloader"
+        (rowClick)="vbsPointDivisionDetailModal.open($event)"
+      >
+        <ik-card-header title="Point Division">
+          <ng-container *ngIf="themeData.status !== 'CLOSED'">
+            <ik-icon
+              title="Add Point Division"
+              icon="plus"
+              class="right pointer"
+              *featureAccess="[Application.VBS, FeatureType.THEMES_POINTS, Access.CREATE]"
+              (click)="vbsCreatePointDivisionModal.open(null)"
+            ></ik-icon>
+          </ng-container>
+        </ik-card-header>
+        <ik-grid-column label="Min" field="min">
+          <ng-template let-data>
+            <div>{{ data.min }}</div>
+          </ng-template>
+        </ik-grid-column>
+        <ik-grid-column label="Max" field="max">
+          <ng-template let-data>
+            <div>{{ data.max }}</div>
+          </ng-template>
+        </ik-grid-column>
+        <ik-grid-column label="Color" field="color">
+          <ng-template let-data>
+            <div class="indicator-light" [style.background-color]="data.color"></div>
+
+            <!-- <div class="color-picker--input" ></div> -->
+          </ng-template>
+        </ik-grid-column>
+        <ik-grid-pager key="Point Divisions" [pagerVisible]="false"></ik-grid-pager>
+      </ik-grid>
+
       <ik-grid #vbsThemeGroupsGrid [dataLoader]="vbsThemeGroupsDataloader" (rowClick)="themeGroupModal.open($event)">
         <ik-card-header title="VBS Groups"> </ik-card-header>
         <ik-grid-column label="Group" field="group">
@@ -166,6 +202,24 @@
     (save)="onUpdatePoints($event)"
     (pointDeleted)="onPointsDeleted()"
   ></app-vbs-points-modal>
+
+  <app-vbs-point-division-modal
+    #vbsCreatePointDivisionModal
+    name="vbsCreatePointDivisionModal"
+    [theme]="themeData"
+    (save)="onSavePointDivision($event)"
+  ></app-vbs-point-division-modal>
+
+  <app-vbs-point-division-modal
+    #vbsPointDivisionDetailModal
+    name="vbsPointDivisionDetailModal"
+    title="Update Point Division?"
+    saveButtonText="Update"
+    [deleteEnabled]="true"
+    [theme]="themeData"
+    (save)="onUpdatePointDivision($event)"
+    (deleted)="onPointDivisionDeleted()"
+  ></app-vbs-point-division-modal>
 
   <app-vbs-groups-modal #themeGroupModal [themeId]="themeData.id" (groupUpdated)="refreshVBSThemeGroups()">
   </app-vbs-groups-modal>

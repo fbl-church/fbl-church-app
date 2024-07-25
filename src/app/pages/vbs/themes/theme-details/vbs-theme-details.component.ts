@@ -3,12 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { Access, App, FeatureType, WebRole } from 'projects/insite-kit/src/model/common.model';
-import { VBSAttendanceRecord, VBSPoint, VBSTheme } from 'projects/insite-kit/src/model/vbs.model';
+import { VBSAttendanceRecord, VBSPoint, VBSPointDivision, VBSTheme } from 'projects/insite-kit/src/model/vbs.model';
 import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Observable, Subject, map, of, switchMap, takeUntil, tap } from 'rxjs';
+import { VBSPointDivisionModalComponent } from 'src/app/shared/components/modals/vbs/vbs-point-division-modal/vbs-point-division-modal.component';
 import { VBSPointsModalComponent } from 'src/app/shared/components/modals/vbs/vbs-points-modal/vbs-points-modal.component';
 import { VBSAttendanceService } from 'src/service/vbs/vbs-attendance.service';
+import { VBSPointDivisionService } from 'src/service/vbs/vbs-point-division.service';
 import { VBSPointsService } from 'src/service/vbs/vbs-points.service';
 import { VBSReportsService } from 'src/service/vbs/vbs-report.service';
 import { VBSThemesService } from 'src/service/vbs/vbs-themes.service';
@@ -21,10 +23,14 @@ import { VBSThemesService } from 'src/service/vbs/vbs-themes.service';
 export class VBSThemeDetailsComponent implements OnInit {
   @ViewChild(ModalComponent) deleteModal: ModalComponent;
   @ViewChild('vbsPointsGrid') vbsPointsGrid: GridComponent;
+  @ViewChild('vbsPointDivisionGrid') vbsPointDivisionGrid: GridComponent;
   @ViewChild('vbsThemeGroupsGrid') vbsThemeGroupsGrid: GridComponent;
   @ViewChild('vbsAttendanceRecordGrid') vbsAttendanceRecordGrid: GridComponent;
+
   @ViewChild('vbsPointsDetailModal') vbsPointsDetailModal: VBSPointsModalComponent;
   @ViewChild('vbsCreatePointsModal') vbsCreatePointsModal: VBSPointsModalComponent;
+  @ViewChild('vbsPointDivisionDetailModal') vbsPointDivisionDetailModal: VBSPointDivisionModalComponent;
+  @ViewChild('vbsCreatePointDivisionModal') vbsCreatePointDivisionModal: VBSPointDivisionModalComponent;
 
   destroy = new Subject<void>();
   loading = true;
@@ -33,6 +39,7 @@ export class VBSThemeDetailsComponent implements OnInit {
   vbsChildrenStats: any;
   vbsAttendanceDataloader: any;
   vbsPointsDataloader: any;
+  vbsPointDivisionDataloader: any;
   vbsThemeGroupsDataloader: any;
   vbsThemeId: any;
   reopenLoading = false;
@@ -49,7 +56,8 @@ export class VBSThemeDetailsComponent implements OnInit {
     private readonly vbsAttendanceService: VBSAttendanceService,
     private readonly vbsThemeService: VBSThemesService,
     private readonly popupService: PopupService,
-    private readonly vbsPointsService: VBSPointsService
+    private readonly vbsPointsService: VBSPointsService,
+    private readonly vbsPointDivisionService: VBSPointDivisionService
   ) {}
 
   ngOnInit(): void {
@@ -70,6 +78,8 @@ export class VBSThemeDetailsComponent implements OnInit {
         tap((res) => (this.vbsAttendanceDataloader = () => of(res))),
         switchMap(() => this.vbsPointsService.getByThemeId(this.vbsThemeId)),
         tap((res) => (this.vbsPointsDataloader = () => of(res))),
+        switchMap(() => this.vbsPointDivisionService.getByThemeId(this.vbsThemeId)),
+        tap((res) => (this.vbsPointDivisionDataloader = () => of(res))),
         switchMap(() => this.vbsThemeService.getGroupsByThemeId(this.vbsThemeId)),
         takeUntil(this.destroy)
       )
@@ -85,11 +95,31 @@ export class VBSThemeDetailsComponent implements OnInit {
   }
 
   onUpdatePoints(event: VBSPoint) {
-    this.onSaveUpdate(this.vbsPointsService.update(event.id, event), this.vbsPointsDetailModal, 'update');
+    this.onSaveUpdatePoints(this.vbsPointsService.update(event.id, event), this.vbsPointsDetailModal, 'update');
   }
 
   onSavePoints(event: VBSPoint) {
-    this.onSaveUpdate(this.vbsPointsService.create(this.vbsThemeId, [event]), this.vbsCreatePointsModal, 'create');
+    this.onSaveUpdatePoints(
+      this.vbsPointsService.create(this.vbsThemeId, [event]),
+      this.vbsCreatePointsModal,
+      'create'
+    );
+  }
+
+  onUpdatePointDivision(event: VBSPointDivision) {
+    this.onSaveUpdatePointDivision(
+      this.vbsPointDivisionService.update(event.id, event),
+      this.vbsPointDivisionDetailModal,
+      'update'
+    );
+  }
+
+  onSavePointDivision(event: VBSPointDivision) {
+    this.onSaveUpdatePointDivision(
+      this.vbsPointDivisionService.create(this.vbsThemeId, [event]),
+      this.vbsCreatePointDivisionModal,
+      'create'
+    );
   }
 
   onDeleteTheme() {
@@ -131,6 +161,13 @@ export class VBSThemeDetailsComponent implements OnInit {
     });
   }
 
+  onPointDivisionDeleted() {
+    this.refreshPointDivisionGrid().subscribe((res) => {
+      this.vbsPointDivisionDataloader = () => of(res);
+      this.vbsPointDivisionGrid.loading = false;
+    });
+  }
+
   onThemeClosed(event: VBSTheme) {
     this.vbsAttendanceRecordGrid.loading = true;
     this.themeData = { ...event };
@@ -145,6 +182,11 @@ export class VBSThemeDetailsComponent implements OnInit {
     return this.vbsPointsService.getByThemeId(this.vbsThemeId);
   }
 
+  refreshPointDivisionGrid() {
+    this.vbsPointDivisionGrid.loading = true;
+    return this.vbsPointDivisionService.getByThemeId(this.vbsThemeId);
+  }
+
   refreshVBSThemeGroups() {
     this.vbsThemeGroupsGrid.loading = true;
     this.vbsThemeService.getGroupsByThemeId(this.vbsThemeId).subscribe((res) => {
@@ -153,7 +195,7 @@ export class VBSThemeDetailsComponent implements OnInit {
     });
   }
 
-  onSaveUpdate(dataObservable: Observable<any>, modal: VBSPointsModalComponent, statusText: string) {
+  onSaveUpdatePoints(dataObservable: Observable<any>, modal: VBSPointsModalComponent, statusText: string) {
     const pastTenseText = statusText === 'create' ? 'Created' : 'Updated';
 
     dataObservable
@@ -169,6 +211,31 @@ export class VBSThemeDetailsComponent implements OnInit {
         },
         error: () => {
           this.popupService.error(`Unable to ${statusText} Point Value at this time. Try again later.`);
+          this.vbsPointsGrid.loading = false;
+        },
+      });
+  }
+
+  onSaveUpdatePointDivision(
+    dataObservable: Observable<any>,
+    modal: VBSPointDivisionModalComponent,
+    statusText: string
+  ) {
+    const pastTenseText = statusText === 'create' ? 'Created' : 'Updated';
+
+    dataObservable
+      .pipe(
+        tap(() => modal.close()),
+        switchMap(() => this.refreshPointDivisionGrid())
+      )
+      .subscribe({
+        next: (res) => {
+          this.vbsPointDivisionDataloader = () => of(res);
+          this.popupService.success(`Point Division succesfully ${pastTenseText}!`);
+          this.vbsPointsGrid.loading = false;
+        },
+        error: () => {
+          this.popupService.error(`Unable to ${statusText} Point Division at this time. Try again later.`);
           this.vbsPointsGrid.loading = false;
         },
       });

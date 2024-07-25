@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { NgxColorsModule } from 'ngx-colors';
 import { InsiteKitModule } from 'projects/insite-kit/src/insite-kit.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 /**
@@ -28,6 +29,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     FontAwesomeModule,
     InsiteKitModule,
     NgSelectModule,
+    NgxColorsModule,
   ],
 })
 export class BaseInitModule {}
