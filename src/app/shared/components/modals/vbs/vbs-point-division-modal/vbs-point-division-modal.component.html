@@ -75,14 +75,16 @@
       >
         Delete
       </button>
+
       <button
         *ngIf="theme?.status !== 'CLOSED'"
         actionBarRight
         class="btn btn-default btn-modal"
         (click)="vbsPointDivisionModal.close()"
       >
-        Cancel
+        {{ theme?.status !== 'CLOSED' ? 'Cancel' : 'Close' }}
       </button>
+
       <button
         *ngIf="theme?.status !== 'CLOSED'"
         actionBarRight
@@ -91,14 +93,6 @@
         [disabled]="form && (form.invalid || !form.dirty || form.pending)"
       >
         {{ saveButtonText }}
-      </button>
-      <button
-        *ngIf="theme?.status === 'CLOSED'"
-        actionBarRight
-        class="btn btn-default btn-modal"
-        (click)="vbsPointDivisionModal.close()"
-      >
-        Close
       </button>
     </ik-modal-action-bar>
   </ng-container>

@@ -139,13 +139,15 @@
       >
         <ik-card-header title="Point Division">
           <ng-container *ngIf="themeData.status !== 'CLOSED'">
-            <ik-icon
-              title="Add Point Division"
-              icon="plus"
-              class="right pointer"
-              *featureAccess="[Application.VBS, FeatureType.THEMES_POINTS, Access.CREATE]"
-              (click)="vbsCreatePointDivisionModal.open(null)"
-            ></ik-icon>
+            <ng-container *webRoleRestrictionAccess="[WebRole.VBS_DIRECTOR]" ngProjectAs="ik-icon">
+              <ik-icon
+                title="Add Point Division"
+                icon="plus"
+                class="right pointer"
+                *featureAccess="[Application.VBS, FeatureType.THEMES_POINTS, Access.CREATE]"
+                (click)="vbsCreatePointDivisionModal.open(null)"
+              ></ik-icon>
+            </ng-container>
           </ng-container>
         </ik-card-header>
         <ik-grid-column label="Min" field="min">
@@ -161,8 +163,6 @@
         <ik-grid-column label="Color" field="color">
           <ng-template let-data>
             <div class="indicator-light" [style.background-color]="data.color"></div>
-
-            <!-- <div class="color-picker--input" ></div> -->
           </ng-template>
         </ik-grid-column>
         <ik-grid-pager key="Point Divisions" [pagerVisible]="false"></ik-grid-pager>

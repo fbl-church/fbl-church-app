@@ -2,8 +2,10 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { AsyncValidatorFn, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { createUniqueValidator } from 'projects/insite-kit/src/component/form/service/async.validator';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
+import { RankedWebRole, WebRole } from 'projects/insite-kit/src/model/common.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { VBSPoint, VBSTheme } from 'projects/insite-kit/src/model/vbs.model';
+import { UserAccessService } from 'projects/insite-kit/src/service/auth/user-access.service';
 import { VBSPointsService } from 'src/service/vbs/vbs-points.service';
 import { VBSDeletePointsModalComponent } from '../vbs-delete-points-modal/vbs-delete-points-modal.component';
 
@@ -30,9 +32,21 @@ export class VBSPointsModalComponent implements OnInit {
   currentVBSPoint: VBSPoint;
   pointNameAsyncValidatorCheck: AsyncValidatorFn;
 
-  constructor(private readonly vbsPointService: VBSPointsService, private readonly fb: FormBuilder) {}
+  canEditPoints = false;
+
+  constructor(
+    private readonly vbsPointService: VBSPointsService,
+    private readonly fb: FormBuilder,
+    private readonly userAccessService: UserAccessService
+  ) {}
 
   ngOnInit() {
+    this.userAccessService.user$.subscribe(
+      (ua) =>
+        (this.canEditPoints =
+          Math.max(...ua.rankedRoles.map((r) => Number(RankedWebRole[r]))) >= RankedWebRole[WebRole.VBS_DIRECTOR])
+    );
+
     this.buildForm();
     this.pointNameAsyncValidatorCheck = createUniqueValidator('duplicate', (value) =>
       this.vbsPointService.doesPointNameExistForThemeId(this.theme.id, value)
@@ -40,28 +54,30 @@ export class VBSPointsModalComponent implements OnInit {
   }
 
   open(p?: VBSPoint) {
-    this.modalLoading = false;
-    this.form.reset();
+    if (this.canEditPoints) {
+      this.modalLoading = false;
+      this.form.reset();
 
-    this.currentVBSPoint = p;
-    if (p) {
-      this.form.patchValue({
-        name: p.displayName,
-        points: p.points,
-        registrationOnly: !!p.registrationOnly || false,
-        checkInApply: !!p.checkInApply || false,
-        enabled: !!p.enabled,
-      });
-    } else {
-      this.form.patchValue({ registrationOnly: false, checkInApply: false, enabled: true });
+      this.currentVBSPoint = p;
+      if (p) {
+        this.form.patchValue({
+          name: p.displayName,
+          points: p.points,
+          registrationOnly: !!p.registrationOnly || false,
+          checkInApply: !!p.checkInApply || false,
+          enabled: !!p.enabled,
+        });
+      } else {
+        this.form.patchValue({ registrationOnly: false, checkInApply: false, enabled: true });
+      }
+
+      if (this.theme && !this.form.controls.name.hasAsyncValidator(this.pointNameAsyncValidatorCheck)) {
+        this.form.controls.name.addAsyncValidators(this.pointNameAsyncValidatorCheck);
+        this.form.controls.name.updateValueAndValidity();
+      }
+
+      this.modal.open();
     }
-
-    if (this.theme && !this.form.controls.name.hasAsyncValidator(this.pointNameAsyncValidatorCheck)) {
-      this.form.controls.name.addAsyncValidators(this.pointNameAsyncValidatorCheck);
-      this.form.controls.name.updateValueAndValidity();
-    }
-
-    this.modal.open();
   }
 
   close() {

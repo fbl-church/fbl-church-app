@@ -3,12 +3,13 @@ import { AsyncValidatorFn, FormBuilder, FormGroup, Validators } from '@angular/f
 import { validColorValidator } from 'ngx-colors';
 import { createUniqueValidator } from 'projects/insite-kit/src/component/form/service/async.validator';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
+import { RankedWebRole, WebRole } from 'projects/insite-kit/src/model/common.model';
 import { User } from 'projects/insite-kit/src/model/user.model';
 import { VBSPointDivision, VBSTheme } from 'projects/insite-kit/src/model/vbs.model';
+import { UserAccessService } from 'projects/insite-kit/src/service/auth/user-access.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { debounceTime } from 'rxjs';
 import { VBSPointDivisionService } from 'src/service/vbs/vbs-point-division.service';
-import { VBSPointsService } from 'src/service/vbs/vbs-points.service';
 import { VBSDeletePointsModalComponent } from '../vbs-delete-points-modal/vbs-delete-points-modal.component';
 
 @Component({
@@ -35,14 +36,23 @@ export class VBSPointDivisionModalComponent implements OnInit {
   rangeValidatorMin: AsyncValidatorFn;
   rangeValidatorMax: AsyncValidatorFn;
 
+  WebRole = WebRole;
+  canEditPointDivision = false;
+
   constructor(
-    private readonly vbsPointService: VBSPointsService,
     private readonly fb: FormBuilder,
     private readonly popupService: PopupService,
-    private readonly vbsPointDivisionService: VBSPointDivisionService
+    private readonly vbsPointDivisionService: VBSPointDivisionService,
+    private readonly userAccessService: UserAccessService
   ) {}
 
   ngOnInit() {
+    this.userAccessService.user$.subscribe(
+      (ua) =>
+        (this.canEditPointDivision =
+          Math.max(...ua.rankedRoles.map((r) => Number(RankedWebRole[r]))) >= RankedWebRole[WebRole.VBS_DIRECTOR])
+    );
+
     this.buildForm();
     this.rangeValidatorMin = createUniqueValidator('duplicate', (value) =>
       this.vbsPointDivisionService.isRangeValueWithinExistingRangeForThemeId(this.theme.id, value)
@@ -53,31 +63,33 @@ export class VBSPointDivisionModalComponent implements OnInit {
   }
 
   open(pd?: VBSPointDivision) {
-    this.modalLoading = false;
-    this.form.reset();
+    if (this.canEditPointDivision) {
+      this.modalLoading = false;
+      this.form.reset();
 
-    this.currentVBSPointDivision = pd;
-    if (pd) {
       this.currentVBSPointDivision = pd;
-      this.form.patchValue({
-        minRange: pd.min,
-        maxRange: pd.max,
-        pickerInput: pd.color,
-        pickerColor: pd.color,
-      });
-    }
+      if (pd) {
+        this.currentVBSPointDivision = pd;
+        this.form.patchValue({
+          minRange: pd.min,
+          maxRange: pd.max,
+          pickerInput: pd.color,
+          pickerColor: pd.color,
+        });
+      }
 
-    if (this.theme && !this.form.controls.minRange.hasAsyncValidator(this.rangeValidatorMin)) {
-      this.form.controls.minRange.addAsyncValidators(this.rangeValidatorMin);
-      this.form.controls.minRange.updateValueAndValidity();
-    }
+      if (this.theme && !this.form.controls.minRange.hasAsyncValidator(this.rangeValidatorMin)) {
+        this.form.controls.minRange.addAsyncValidators(this.rangeValidatorMin);
+        this.form.controls.minRange.updateValueAndValidity();
+      }
 
-    if (this.theme && !this.form.controls.maxRange.hasAsyncValidator(this.rangeValidatorMax)) {
-      this.form.controls.maxRange.addAsyncValidators(this.rangeValidatorMax);
-      this.form.controls.maxRange.updateValueAndValidity();
-    }
+      if (this.theme && !this.form.controls.maxRange.hasAsyncValidator(this.rangeValidatorMax)) {
+        this.form.controls.maxRange.addAsyncValidators(this.rangeValidatorMax);
+        this.form.controls.maxRange.updateValueAndValidity();
+      }
 
-    this.modal.open();
+      this.modal.open();
+    }
   }
 
   close() {
