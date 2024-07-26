@@ -75,7 +75,7 @@
   max-height: 0;
   overflow: hidden;
   background-color: var(--sidebar-background);
-  padding-left: calc($padding-xs / 2);
+  padding-left: 32px;
 
   &--open {
     transition: max-height 1.25s ease-out 0ms;
