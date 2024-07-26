@@ -17,7 +17,6 @@ import { VBSChildAttendanceModalComponent } from './vbs/vbs-child-attendance-mod
 import { VBSCloseThemeModalComponent } from './vbs/vbs-close-theme-modal/vbs-close-theme-modal.component';
 import { VBSDeletePointsModalComponent } from './vbs/vbs-delete-points-modal/vbs-delete-points-modal.component';
 import { VBSGroupsModalComponent } from './vbs/vbs-groups-modal/vbs-groups-modal.component';
-import { VBSPointDivisionModalComponent } from './vbs/vbs-point-division-modal/vbs-point-division-modal.component';
 import { VBSPointsModalComponent } from './vbs/vbs-points-modal/vbs-points-modal.component';
 import { VBSThemeDetailsModalComponent } from './vbs/vbs-theme-details-modal/vbs-theme-details-modal.component';
 
@@ -43,7 +42,6 @@ import { VBSThemeDetailsModalComponent } from './vbs/vbs-theme-details-modal/vbs
     VBSCloseThemeModalComponent,
     VBSChildAttendanceModalComponent,
     VBSAttendancePointsModalComponent,
-    VBSPointDivisionModalComponent,
   ],
   exports: [
     CloseAttendanceRecordModalComponent,
@@ -65,7 +63,6 @@ import { VBSThemeDetailsModalComponent } from './vbs/vbs-theme-details-modal/vbs
     VBSCloseThemeModalComponent,
     VBSChildAttendanceModalComponent,
     VBSAttendancePointsModalComponent,
-    VBSPointDivisionModalComponent,
   ],
 })
 export class SharedModalsModule {}
