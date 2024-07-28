@@ -1,6 +1,5 @@
 .sidebar::-webkit-scrollbar {
-  width: 5px;
-  background: var(--sidebar-scroll-background);
+  display: none;
 }
 
 .sidebar::-webkit-scrollbar-thumb {
@@ -8,59 +7,80 @@
   border-radius: 10px;
 }
 
-.sidebar {
-  height: $sidebar-height;
-  width: 0;
-  position: fixed;
-  z-index: 10;
-  bottom: 0;
-  left: 0;
+.sidebar-container {
+  overflow: hidden;
+  max-width: 250px;
+  height: 100%;
   background-color: var(--sidebar-background);
-
-  box-shadow: $sidebar-shadow;
-  overflow-x: hidden;
-  transition: 0.5s;
+  position: fixed;
+  transition: 0.3s;
+  z-index: 1;
+  top: 0;
+  left: 0;
 
   &--open {
-    width: $sidebar-width;
+    opacity: 1;
+    width: 250px;
   }
 
   &--closed {
-    .menu-item {
-      opacity: 0;
-    }
+    opacity: 0;
     width: 0;
   }
 }
 
-.sidebar .menu-item {
-  cursor: pointer;
-  padding: $padding-md $padding-xs;
-  text-decoration: none;
-  display: block;
-  transition: opacity 225ms cubic-bezier(0.4, 0, 1, 1) 175ms;
-  border-bottom: 1px solid var(--sidebar-item-border);
-  line-height: $line-height-md;
-  color: var(--sidebar-text-color);
+.sidebar-content {
+  width: 100%;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  position: absolute;
   display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  justify-content: flex-start;
+  align-items: flex-start;
+  top: 0;
+  bottom: 0;
+  padding: 12px 12px;
+  gap: 12px;
+  overflow-x: hidden;
+
+  &__item {
+    cursor: pointer;
+    border-radius: 6px;
+    width: 100%;
+    padding: 8px;
+    text-decoration: none;
+    display: block;
+    transition: opacity 225ms cubic-bezier(0.4, 0, 1, 1) 175ms;
+    line-height: $line-height-md;
+    color: var(--sidebar-text-color);
+    display: flex;
+    gap: 8px;
+  }
+
+  &__icon {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+
+    .fa-icon {
+      font-size: 18px;
+    }
+  }
 }
 
-.sidebar div:hover {
-  color: $sidebar-active;
-}
-
-.sidebar-icon {
-  margin-right: $margin-xs;
-  font-size: $font-size-md;
+.sidebar-content__pages > .sidebar-content__item:hover {
+  background-color: #4682fa80;
 }
 
 .sidebar-category {
-  font-size: $font-size-lg;
+  font-size: 18px;
 }
 
 .sidebar-category__active {
-  color: $sidebar-active !important;
-  border-left: 5px solid $sidebar-active !important;
+  background-color: #4682fa;
 }
 
 .sidebar-category--nested__active {
@@ -71,11 +91,20 @@
   color: $sidebar-active !important;
 }
 
-.sidebar .dropdown {
+.sidebar-content__pages {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.sidebar-content .dropdown {
   max-height: 0;
   overflow: hidden;
   background-color: var(--sidebar-background);
-  padding-left: calc($padding-xs / 2);
+  padding-left: 32px;
 
   &--open {
     transition: max-height 1.25s ease-out 0ms;
@@ -88,19 +117,18 @@
   }
 }
 
-.sidebar .dropdown .menu-item {
+.sidebar-content .dropdown .sidebar__item {
   cursor: pointer;
-  padding: 1.5rem 1rem;
+  width: 100%;
   text-decoration: none;
   background-color: var(--sidebar-background);
-  border-bottom: 1px solid var(--sidebar-item-border);
   color: var(--sidebar-text-color);
   line-height: 1.5rem;
   color: var(--sidebar-text-color);
   display: flex;
 }
 
-.sidebar .dropdown a:hover {
+.sidebar-content .dropdown a:hover {
   color: $sidebar-active;
 }
 
@@ -141,12 +169,34 @@
   }
 }
 
+.sidebar-church-logo--container {
+  background-color: white;
+  border-radius: 8px;
+  padding: 12px;
+  align-self: center;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.sidebar-church-logo {
+  width: 150px;
+  height: 100px;
+  background: url(../projects/insite-kit/src/assets/images/fbl-church-logo.png);
+  background-blend-mode: multiply;
+  background-size: cover;
+  background-position: center center;
+  text-align: center;
+}
+
 @media screen and (max-width: $sidebar-screen-sm-max) {
-  .sidebar {
+  .sidebar-content {
     height: $sidebar-height-small;
   }
 
-  .sidebar div {
+  .sidebar-content div {
     font-size: $font-size-base;
   }
 }

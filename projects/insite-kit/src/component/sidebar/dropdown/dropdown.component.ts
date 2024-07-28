@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavItem } from '../sidebar.config';
 
@@ -7,20 +7,16 @@ import { NavItem } from '../sidebar.config';
   templateUrl: 'dropdown.component.html',
 })
 export class DropdownComponent {
+  @HostBinding('class.width--full') hostClass = true;
   @Input() navItem: NavItem;
   @Input() isNested = false;
   @Input() baseRoute = '';
-  @Output() closeSidebar = new EventEmitter<void>();
 
   isOpen = false;
   dropdownCloseIcon = 'caret-left';
   dropdownOpenIcon = 'caret-down';
 
   constructor(private readonly router: Router) {}
-
-  close() {
-    this.closeSidebar.emit();
-  }
 
   toggleDropdown() {
     if (this.isOpen) {

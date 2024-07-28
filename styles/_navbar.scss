@@ -8,7 +8,7 @@
   border: 1px solid transparent;
   background: var(--navbar-background);
   position: fixed;
-  width: 100%;
+  // width: 100%;
   overflow: hidden;
   z-index: 1000;
   padding: 0 10px 0 10px;
@@ -28,12 +28,16 @@
 }
 
 .app-navbar__icons {
-  font-size: $font-size-header-xs;
-  width: 30px;
+  font-size: 25px;
+  width: 50px;
+  text-align: center;
+  padding: 8px 0px;
+  height: 50px;
   float: left;
   cursor: pointer;
-  transition: all 0.5s ease-in-out;
-  color: var(--navbar-icons);
+  transition: all 0.2s ease-in-out;
+  border-radius: 50%;
+  color: #64748b;
 
   &__left {
     @extend .app-navbar__icons;
@@ -44,6 +48,30 @@
     @extend .app-navbar__icons;
     float: right;
   }
+
+  &:hover {
+    background-color: #e9e7e7;
+  }
+
+  &:active {
+    background-color: #b6b6b6;
+  }
+}
+
+.app-header {
+  height: 64px;
+  width: 100%;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1) !important;
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color) !important;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)),
+    var(--tw-shadow) !important;
 }
 
 /**

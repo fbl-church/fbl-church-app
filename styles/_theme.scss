@@ -1,6 +1,6 @@
 // App Theme Colors
 [data-theme='LIGHT'] {
-  --base-color: #edf1f7;
+  --base-color: #f1f5f9;
   --base-background: white;
   --text-color: #222b45;
 
@@ -27,8 +27,10 @@
   --footer-border: #edf1f7;
 
   // Sidebar
-  --sidebar-background: white;
-  --sidebar-text-color: #656e7e;
+  // --sidebar-background: white;
+  --sidebar-background: #0f172a;
+  // --sidebar-text-color: #656e7e;
+  --sidebar-text-color: white;
   --sidebar-item-border: #edf1f7;
   --sidebar-scroll-background: #f7f9fc;
   --sidebar-scroll-pill: #d1d6df;

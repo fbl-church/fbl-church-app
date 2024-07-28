@@ -1,10 +1,28 @@
 .app-container {
-  margin: 125px auto 0;
-  height: auto;
+  height: 100%;
+  flex: 1;
+  min-height: 100vh;
   width: 90%;
   position: relative;
   text-align: left;
-  padding-bottom: 50px;
+  padding-bottom: 100px; // footer height
+  transition: 0.3s;
+
+  .app-content {
+    width: 98%;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    text-align: left;
+  }
+
+  &--open {
+    margin-left: 250px;
+  }
+
+  &--closed {
+    margin-left: 0;
+  }
 }
 
 @media screen and (max-width: $page-screen-xl-max) {

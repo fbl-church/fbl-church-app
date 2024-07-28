@@ -1,12 +1,17 @@
 <div
-  class="menu-item"
+  class="sidebar-content__item"
   [ngClass]="{
     'sidebar-category__active': isRouteActive(navItem.route) && !isNested,
     'sidebar-category--nested__active': isRouteActive(navItem.route) && isNested
   }"
   (click)="toggleDropdown()"
 >
-  <ik-icon classOverride="sidebar-icon" [icon]="navItem.icon"></ik-icon>
+  <ik-icon
+    *ngIf="navItem.icon"
+    class="sidebar-content__icon"
+    classOverride="sidebar-content__icon fa-icon"
+    [icon]="navItem.icon"
+  ></ik-icon>
   <span [ngClass]="{ 'sidebar-category': !isNested }" class="sidebar-category">{{ navItem.name }}</span>
 
   <ik-icon
@@ -24,26 +29,20 @@
     </ng-container>
     <ng-template #dropdownContent>
       <ng-container *ngIf="submenu.submenu; else submenuRouteItem">
-        <ik-dropdown
-          [navItem]="submenu"
-          [isNested]="true"
-          [baseRoute]="navItem.route"
-          (closeSidebar)="close()"
-        ></ik-dropdown>
+        <ik-dropdown [navItem]="submenu" [isNested]="true" [baseRoute]="navItem.route"></ik-dropdown>
       </ng-container>
       <ng-template #submenuRouteItem>
         <ng-container *ngIf="submenu.route">
           <a
-            class="menu-item"
+            class="sidebar-content__item"
             [routerLink]="baseRoute + navItem.route + submenu.route"
             routerLinkActive="dropdown-item__active"
-            (click)="close()"
           >
             {{ submenu.name }}
           </a>
         </ng-container>
         <ng-container *ngIf="submenu.href">
-          <a class="menu-item" [href]="submenu.href" (click)="close()">
+          <a class="sidebar-content__item" [href]="submenu.href">
             {{ submenu.name }}
           </a>
         </ng-container>
