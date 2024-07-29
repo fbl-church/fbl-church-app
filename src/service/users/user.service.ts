@@ -25,7 +25,7 @@ export class UserService {
    * Get a list of users based on the given request
    *
    * @param params to filter on
-   * @returns User object
+   * @returns User objects
    */
   getUsers(params?: Map<string, string[]>): Observable<HttpResponse<User[]>> {
     params = params ? params.set('status', [AccountStatus.ACTIVE]) : new Map().set('status', AccountStatus.ACTIVE);
