@@ -22,6 +22,7 @@
     "test:headless": "ng test --watch=false --code-coverage --source-map=true --browsers=ChromeHeadlessNoSandbox",
     "package:refresh": "rm package-lock.json && npm i",
     "build:production": "ng build --configuration production",
+    "build:azure": "ng build --configuration production",
     "heroku-postbuild": "ng build --aot --configuration production",
     "pipeline:format": "npm run format -- --check",
     "pipeline:lint": "npm run lint",
