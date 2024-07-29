@@ -27,47 +27,35 @@
   cursor: pointer;
 }
 
-.app-navbar__icons {
-  font-size: 25px;
-  width: 50px;
-  text-align: center;
-  padding: 8px 0px;
-  height: 50px;
-  float: left;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  border-radius: 50%;
-  color: #64748b;
+.app-header-button-icon {
+  height: auto !important;
+  width: auto !important;
 
-  &__left {
-    @extend .app-navbar__icons;
+  .mat-icon {
+    height: 36px !important;
+    width: 36px !important;
+    font-size: 36px !important;
+    cursor: pointer;
+    color: #64748b;
+  }
+
+  &--left {
     float: left;
   }
 
-  &__right {
-    @extend .app-navbar__icons;
+  &--right {
     float: right;
-  }
-
-  &:hover {
-    background-color: #e9e7e7;
-  }
-
-  &:active {
-    background-color: #b6b6b6;
   }
 }
 
 .app-header {
   height: 64px;
   width: 100%;
-  margin-bottom: 12px;
+  margin-bottom: 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  padding-left: 1rem !important;
-  padding-right: 1rem !important;
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1) !important;
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color) !important;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0, 0, 0, 0)), var(--tw-ring-shadow, 0 0 rgba(0, 0, 0, 0)),

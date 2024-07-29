@@ -13,6 +13,7 @@
   flex-wrap: wrap;
   align-content: center;
   align-items: center;
+  margin-bottom: 12px;
 }
 
 .header {
@@ -38,10 +39,6 @@
   .header-title {
     font-size: $font-size-header-xs;
   }
-
-  .header-container {
-    margin-bottom: 6px;
-  }
 }
 
 @media screen and (max-width: $button-screen-md-max) {
@@ -53,9 +50,5 @@
 @media screen and (max-width: $header-screen-sm-max) {
   .header-title {
     font-size: $font-size-xl;
-  }
-
-  .header-container {
-    padding-top: 10px;
   }
 }

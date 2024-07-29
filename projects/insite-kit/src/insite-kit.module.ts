@@ -1,5 +1,7 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { CURRENCY_MASK_CONFIG, CurrencyMaskConfig, CurrencyMaskModule } from 'ng2-currency-mask';
@@ -69,7 +71,6 @@ import { RelationshipTranslationPipe } from './service/pipe/relationship-transla
 import { WebRoleTranslationPipe } from './service/pipe/web-role-translation.pipe';
 import { InisteGeneralNotificationComponent } from './subscription/insite-general-notification/insite-general-notification.component';
 import { InisteUserNotificationComponent } from './subscription/insite-user-notification/insite-user-notification.component';
-
 export function tokenGetter() {
   return localStorage.getItem('auth-token');
 }
@@ -162,6 +163,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     }),
     FileUploadModule,
     CurrencyMaskModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   exports: [
     IconModule,

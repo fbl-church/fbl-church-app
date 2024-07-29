@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import { Access, App, FeatureType } from 'projects/insite-kit/src/model/common.model';
+import { Access, App, FeatureType, WebRole } from 'projects/insite-kit/src/model/common.model';
 import { AccountStatus, User } from 'projects/insite-kit/src/model/user.model';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { UserAccessService } from 'projects/insite-kit/src/service/auth/user-access.service';
@@ -20,6 +20,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   FeatureType = FeatureType;
   Application = App;
   Access = Access;
+  WebRole = WebRole;
   editIcon = faPenToSquare;
   canEditRoles = false;
   canEditUser = false;

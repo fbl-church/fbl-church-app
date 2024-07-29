@@ -1,28 +1,7 @@
 .card {
-  width: 100%;
-  display: inline-block;
-  height: auto;
-  border-radius: 8px;
-  border: 0.5px solid var(--card-border);
-  background: var(--card-background);
-  margin-bottom: 24px;
+  border-radius: 8px !important;
+}
 
-  &__content {
-    display: block;
-
-    &--collapsible {
-      max-height: 1000px;
-      overflow: hidden;
-      transition: max-height 1s ease-in-out 100ms;
-
-      &--closed {
-        transition: max-height 2s ease-in-out -1.2s;
-        max-height: 0;
-      }
-    }
-
-    &--padding {
-      padding: 12px 4px;
-    }
-  }
+.card__content {
+  margin-top: 1rem;
 }

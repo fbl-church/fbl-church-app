@@ -1,13 +1,5 @@
 .card-header {
-  transition-delay: 150ms;
-  transition-property: border-radius, border-bottom;
-  display: inline-block;
-  height: auto;
-  width: 100%;
-  border-radius: 8px 8px 0 0 !important;
-  background: var(--card-header-background);
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--card-header-border);
+  font-size: 20px;
 
   &--closed {
     transition-delay: 350ms;
@@ -18,10 +10,7 @@
 
   &__title {
     color: var(--text-color);
-    font-size: $font-size-xl;
-    font-weight: $font-weight-bold;
-    font-family: Verdana;
-    display: inline-block;
+    font-size: 22px !important;
   }
 
   &__toggle-icon {

@@ -1,6 +1,5 @@
 .card-info {
-  padding-bottom: 24px;
-  display: block;
+  margin-bottom: 20px;
 
   &--container {
     display: flex;
@@ -10,7 +9,8 @@
 
   &__label-header {
     color: var(--text-color);
-    font-size: $font-size-lg;
+    margin-bottom: 8px;
+    font-size: $font-size-md;
     font-weight: $font-weight-semi-bold;
     font-family: emoji, sans-serif;
     text-align: left;
@@ -18,9 +18,9 @@
 
   &__label-text {
     color: var(--text-color);
+    padding-left: 4px;
     font-size: $font-size-base;
     font-weight: $font-weight-normal;
-    padding-left: 10px;
     overflow-wrap: break-word;
   }
 
@@ -35,6 +35,10 @@
   &--padding {
     padding: 24px 16px;
   }
+}
+
+ik-card-new > .row {
+  margin-bottom: 0;
 }
 
 @media screen and (max-width: $card-screen-sm-max) {

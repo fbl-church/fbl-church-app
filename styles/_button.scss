@@ -1,3 +1,22 @@
+.btn-mat {
+  &:disabled {
+    opacity: 0.6;
+  }
+
+  background-color: #78909c !important;
+  color: white !important;
+  font-size: 20px !important;
+  padding: 16px !important;
+  height: 44px !important;
+
+  .mat-icon {
+    font-size: 24px !important;
+    height: 24px !important;
+    width: 24px !important;
+    font-weight: 600;
+  }
+}
+
 .btn {
   display: inline-block;
   margin-bottom: 0;

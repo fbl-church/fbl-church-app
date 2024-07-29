@@ -1,4 +1,4 @@
 <div class="modal-header ik-modal-header" [ngClass]="type">
-  <h5 class="modal-title ik-title" [ngClass]="type">{{ title }}</h5>
+  <div class="modal-title ik-title" [ngClass]="type">{{ title }}</div>
   <ik-icon *ngIf="showCloseIcon" icon="xmark" class="ik-modal-header-close-icon" (click)="close.emit()"></ik-icon>
 </div>

@@ -1,8 +1,12 @@
 <ik-sidebar #sideBar></ik-sidebar>
 <div class="app-container" [ngClass]="'app-container--' + (sideBar.isOpen ? 'open' : 'closed')">
   <div class="app-header">
-    <ik-icon classOverride="app-navbar__icons__left" icon="bars" (click)="sideBar.toggle()"></ik-icon>
-    <ik-icon classOverride="app-navbar__icons__right" icon="calendar-days"></ik-icon>
+    <button class="app-header-button-icon" mat-icon-button (click)="sideBar.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <button class="app-header-button-icon" mat-icon-button>
+      <mat-icon>calendar_month</mat-icon>
+    </button>
   </div>
   <div class="app-content">
     <ng-content></ng-content>
