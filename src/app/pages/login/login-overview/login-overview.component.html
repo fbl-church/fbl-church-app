@@ -4,7 +4,7 @@
 
 <div class="login-card">
   <div class="login__logo">
-    <img src="fbl-church-logo.png" alt="FBL Logo" />
+    <img src="../../../../assets/images/fbl-church-logo.png" alt="FBL Logo" />
   </div>
   <form id="loginForm" [formGroup]="form" class="width--full">
     <div class="row">
@@ -31,6 +31,7 @@
     mat-flat-button
     class="btn-mat btn-mat--primary btn-mat--round btn-mat--large width--full"
     (click)="onLoginClick()"
+    [disabled]="loading"
   >
     <div *ngIf="!loading; else loginLoader">Sign in</div>
   </button>

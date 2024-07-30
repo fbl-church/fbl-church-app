@@ -1,0 +1,44 @@
+<div class="sidenav-drawer">
+  <div class="sidenav-drawer__logo">
+    <img src="../../assets/images/fbl-church-logo.png" alt="FBL Logo" />
+  </div>
+
+  <ik-sidenav-drawer-header [user]="userData"></ik-sidenav-drawer-header>
+
+  <div class="sidenav-drawer__pages">
+    <ng-container *ngFor="let navItem of navigationConfig">
+      <ng-container *ngIf="navItem?.restriction; else navContent">
+        <ng-container
+          *featureAccess="[navItem.restriction.app, navItem.restriction.feature, navItem.restriction.access]"
+        >
+          <ng-container *ngTemplateOutlet="navContent"></ng-container>
+        </ng-container>
+      </ng-container>
+
+      <ng-template #navContent>
+        <ng-container *ngIf="navItem.submenu; else routeMenuItem">
+          <ik-sidenav-drawer-dropdown
+            [navItem]="navItem"
+            (nestedRouted)="routed.emit($event)"
+          ></ik-sidenav-drawer-dropdown>
+        </ng-container>
+
+        <ng-template #routeMenuItem>
+          <div
+            class="sidenav-drawer__category"
+            [routerLink]="navItem.route"
+            routerLinkActive="sidenav-drawer__category--active"
+            (click)="onRoute(navItem.route)"
+          >
+            <ik-icon
+              class="sidenav-drawer__category__icon"
+              classOverride="sidenav-drawer__category__icon fa-icon"
+              [icon]="navItem.icon"
+            ></ik-icon>
+            <span class="sidenav-drawer__category__title">{{ navItem.name }}</span>
+          </div>
+        </ng-template>
+      </ng-template>
+    </ng-container>
+  </div>
+</div>

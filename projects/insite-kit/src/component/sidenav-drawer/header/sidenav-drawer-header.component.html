@@ -1,0 +1,10 @@
+<div class="sidenav-drawer__header" *ngIf="user">
+  <div class="chip" (click)="onProfileClick()">{{ user.firstName[0] + user.lastName[0] }}</div>
+  <div class="sidenav-drawer__header__content">
+    <div class="name" (click)="onProfileClick()">{{ user.firstName + ' ' + user.lastName[0] + '.' }}</div>
+    <span class="email" (click)="onProfileClick()">{{ user.email }} </span>
+    <a class="logout" (click)="onLogOutClick()">Logout</a>
+  </div>
+</div>
+<!-- <ik-insite-user-notification></ik-insite-user-notification>
+<ik-insite-general-notification></ik-insite-general-notification> -->

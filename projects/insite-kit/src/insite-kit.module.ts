@@ -35,20 +35,18 @@ import { IconModule } from './component/icon/icon.module';
 import { IndicatorLightComponent } from './component/indicator-light/indicator-light.component';
 import { InfoCardComponent } from './component/info-card/info-card.component';
 import { InputTagComponent } from './component/input-tag/input-tag.component';
-import { InsitePageComponent } from './component/insite-page/insite-page.component';
 import { LoadingComponent } from './component/loading/loading.component';
 import { ModalActionBarComponent } from './component/modal/modal-action-bar/modal-action-bar.component';
 import { ModalBodyComponent } from './component/modal/modal-body/modal-body.component';
 import { ModalHeaderComponent } from './component/modal/modal-header/modal-header.component';
 import { ModalComponent } from './component/modal/modal.component';
 import { MultiSelectInputComponent } from './component/multiselect/multi-select-input.component';
-import { NavbarProfileContentComponent } from './component/navbar/navbar-profile-content/navbar-profile-content.component';
-import { NavbarComponent } from './component/navbar/navbar.component';
 import { NotificationPopupComponent } from './component/notification-popup/notification-popup.component';
 import { ProgressComponent } from './component/progress/progress.component';
 import { SingleSelectInputComponent } from './component/select/select.component';
-import { DropdownComponent } from './component/sidebar/dropdown/dropdown.component';
-import { SidebarComponent } from './component/sidebar/sidebar.component';
+import { SidenavDrawerDropdownComponent } from './component/sidenav-drawer/dropdown/sidenav-drawer-dropdown.component';
+import { SidenavDrawerHeaderComponent } from './component/sidenav-drawer/header/sidenav-drawer-header.component';
+import { SidenavDrawerComponent } from './component/sidenav-drawer/sidenav-drawer.component';
 import { TagInputFieldComponent } from './component/tag-input-field/tag-input-field.component';
 import { UploadComponent } from './component/upload/upload.component';
 import { WizardStepComponent } from './component/wizard/wizard-step/wizard-step.component';
@@ -90,9 +88,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     UsernamePipe,
     NotificationMessagePipe,
     WebRoleTranslationPipe,
-    NavbarComponent,
-    SidebarComponent,
-    InsitePageComponent,
     ContactAdminModalComponent,
     PrivacyPolicyModalComponent,
     ProjectModalComponent,
@@ -136,17 +131,18 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     FormFieldErrorComponent,
     FormComponent,
     MultiSelectInputComponent,
-    DropdownComponent,
     RelationshipTranslationPipe,
     AttendanceRecordActivationDirective,
     CardHeaderCollapsibleComponent,
     UploadComponent,
     ProgressComponent,
-    NavbarProfileContentComponent,
     InputTagComponent,
     TagInputFieldComponent,
     GridDownloadComponent,
     TooltipDirective,
+    SidenavDrawerComponent,
+    SidenavDrawerHeaderComponent,
+    SidenavDrawerDropdownComponent,
   ],
   imports: [
     BaseInsiteModule,
@@ -171,9 +167,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     UsernamePipe,
     NotificationMessagePipe,
     WebRoleTranslationPipe,
-    NavbarComponent,
-    SidebarComponent,
-    InsitePageComponent,
     ContactAdminModalComponent,
     PrivacyPolicyModalComponent,
     ProjectModalComponent,
@@ -217,19 +210,20 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     FormFieldErrorComponent,
     FormComponent,
     MultiSelectInputComponent,
-    DropdownComponent,
     RelationshipTranslationPipe,
     AttendanceRecordActivationDirective,
     CardHeaderCollapsibleComponent,
     UploadComponent,
     ProgressComponent,
-    NavbarProfileContentComponent,
     InputTagComponent,
     TagInputFieldComponent,
     GridDownloadComponent,
     DOMModule,
     TooltipDirective,
     CurrencyMaskModule,
+    SidenavDrawerComponent,
+    SidenavDrawerHeaderComponent,
+    SidenavDrawerDropdownComponent,
   ],
   providers: [
     UsernamePipe,

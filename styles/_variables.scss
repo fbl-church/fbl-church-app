@@ -161,18 +161,11 @@ $login-screen-sm-max: $screen-sm-max;
 $login-screen-md-max: $screen-md-max;
 $login-screen-lg-max: $screen-xl-max;
 
-// Navbar
-$navbar-screen-sm-max: $screen-sm-max;
-$navbar-screen-md-max: 675px;
-
 // Page
 $page-screen-sm-max: $screen-sm-max;
 $page-screen-md-max: 600px;
 $page-screen-lg-max: $screen-lg-max;
 $page-screen-xl-max: 1800px;
-
-// Side Bar
-$sidebar-screen-sm-max: $screen-sm-max;
 
 //**************************************************//
 // Footer
@@ -180,17 +173,7 @@ $sidebar-screen-sm-max: $screen-sm-max;
 $footer-height: 100px;
 
 //**************************************************//
-// Navbar
+// Sidenav
 //**************************************************//
-$navbar-height: 80px;
-$navbar-height-small: $navbar-height - 15px;
-
-//**************************************************//
-// Sidebar
-//**************************************************//
-$sidebar-width: 280px;
-$sidebar-height: calc(100% - $navbar-height);
-$sidebar-height-small: calc(100% - $navbar-height-small);
-$sidebar-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, 0.1);
-$sidebar-active: #3366ff;
-$sidebar-overlay: rgba(0, 0, 0, 0.5);
+$sidenav-width: 280px;
+$sidenav-active: #3366ff;

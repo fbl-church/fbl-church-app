@@ -1,16 +1,17 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavItem } from '../sidebar.config';
+import { NavItem } from '../sidenav-drawer.config';
 
 @Component({
-  selector: 'ik-dropdown',
-  templateUrl: 'dropdown.component.html',
+  selector: 'ik-sidenav-drawer-dropdown',
+  templateUrl: 'sidenav-drawer-dropdown.component.html',
 })
-export class DropdownComponent {
+export class SidenavDrawerDropdownComponent {
   @HostBinding('class.width--full') hostClass = true;
   @Input() navItem: NavItem;
   @Input() isNested = false;
   @Input() baseRoute = '';
+  @Output() nestedRouted = new EventEmitter<string>();
 
   isOpen = false;
   dropdownCloseIcon = 'caret-left';
@@ -24,6 +25,10 @@ export class DropdownComponent {
     } else {
       this.isOpen = true;
     }
+  }
+
+  onRoute(path: string) {
+    this.nestedRouted.emit(path);
   }
 
   isRouteActive(route: any) {

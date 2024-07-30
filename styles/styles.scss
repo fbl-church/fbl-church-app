@@ -40,7 +40,6 @@ $fbl-church-app-theme: mat.define-light-theme(
 @import 'variables';
 @import 'theme';
 @import 'footer';
-@import 'navbar';
 @import 'page';
 @import 'banner';
 @import 'button';
@@ -62,7 +61,7 @@ $fbl-church-app-theme: mat.define-light-theme(
 @import 'notification-popup';
 @import 'privacy-policy-modal';
 @import 'project-modal';
-@import 'sidebar';
+@import 'sidenav';
 @import 'utility';
 @import 'indicator-light';
 @import 'layout';
@@ -74,7 +73,6 @@ $fbl-church-app-theme: mat.define-light-theme(
 @import 'multi-select';
 @import 'radio';
 @import 'ng-select';
-@import 'navbar-profile-content';
 @import 'input-tag';
 @import 'schedule';
 @import 'status';

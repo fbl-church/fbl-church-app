@@ -26,14 +26,9 @@
   --footer-background: white;
   --footer-border: #edf1f7;
 
-  // Sidebar
-  // --sidebar-background: white;
-  --sidebar-background: #0f172a;
-  // --sidebar-text-color: #656e7e;
-  --sidebar-text-color: white;
-  --sidebar-item-border: #edf1f7;
-  --sidebar-scroll-background: #f7f9fc;
-  --sidebar-scroll-pill: #d1d6df;
+  // Sidenav
+  --sidenav-background: #0f172a;
+  --sidenav-text-color: white;
 
   // Grand Prix
   --grand-prix-match-border: #d9d9d9;
@@ -51,16 +46,6 @@
   --modal-header-background: #f3f3f3;
   --modal-header-border: #d9dce2;
   --modal-background: white;
-
-  // Navbar
-  --navbar-background: #0095ff;
-  --navbar-icons: white;
-  --navbar-profile-background: #f9f9f9;
-  --navbar-profile-border: #c7c7c7;
-  --navbar-profile-item-border: #edf1f7;
-  --navbar-profile-text-color: #656e7e;
-  --navbar-profile-item-hover: #f1f1f1;
-  --navbar-profile-shadow: rgba(89, 105, 129, 0.3);
 
   // Radio
   --radio-background: white;
@@ -126,12 +111,9 @@
   --footer-background: var(--dark-300);
   --footer-border: var(--dark-600);
 
-  // Sidebar
-  --sidebar-background: var(--dark-300);
-  --sidebar-text-color: var(--dark-000);
-  --sidebar-item-border: var(--dark-600);
-  --sidebar-scroll-background: var(--dark-300);
-  --sidebar-scroll-pill: var(--dark-500);
+  // Sidenav
+  --sidenav-background: var(--dark-300);
+  --sidenav-text-color: var(--dark-000);
 
   // Grand Prix
   --grand-prix-match-border: var(--dark-050);
@@ -149,16 +131,6 @@
   --modal-header-background: var(--dark-200);
   --modal-header-border: var(--dark-600);
   --modal-background: var(--dark-300);
-
-  // Navbar
-  --navbar-background: var(--dark-300);
-  --navbar-icons: var(--dark-050);
-  --navbar-profile-background: var(--dark-300);
-  --navbar-profile-border: var(--dark-600);
-  --navbar-profile-item-border: var(--dark-600);
-  --navbar-profile-text-color: var(--text-color);
-  --navbar-profile-item-hover: var(--dark-100);
-  --navbar-profile-shadow: rgb(0 0 0 / 30%);
 
   // Radio
   --radio-background: var(--dark-100);

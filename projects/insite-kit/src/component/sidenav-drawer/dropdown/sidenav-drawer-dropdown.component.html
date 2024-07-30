@@ -1,26 +1,30 @@
 <div
-  class="sidebar-content__item"
+  class="sidenav-drawer__category"
   [ngClass]="{
-    'sidebar-category__active': isRouteActive(navItem.route) && !isNested,
-    'sidebar-category--nested__active': isRouteActive(navItem.route) && isNested
+    'sidenav-drawer__category--active': isRouteActive(navItem.route) && !isNested,
+    'sidenav-drawer__category__nested--active': isRouteActive(navItem.route) && isNested
   }"
   (click)="toggleDropdown()"
 >
   <ik-icon
     *ngIf="navItem.icon"
-    class="sidebar-content__icon"
-    classOverride="sidebar-content__icon fa-icon"
+    class="sidenav-drawer__category__icon"
+    classOverride="sidenav-drawer__category__icon fa-icon"
     [icon]="navItem.icon"
   ></ik-icon>
-  <span [ngClass]="{ 'sidebar-category': !isNested }" class="sidebar-category">{{ navItem.name }}</span>
+  <span [ngClass]="{ 'sidenav-drawer__category__title': !isNested }">{{ navItem.name }}</span>
 
   <ik-icon
     class="flex-one"
-    [classOverride]="this.isOpen ? 'dropdown-icon--open' : 'dropdown-icon--closed'"
+    [classOverride]="'sidenav-drawer__dropdown-icon--' + (this.isOpen ? 'open' : 'closed')"
     icon="caret-left"
   ></ik-icon>
 </div>
-<div [id]="navItem.submenu.id" class="dropdown" [ngClass]="{ 'dropdown--open': isOpen, 'dropdown--closed': !isOpen }">
+<div
+  [id]="navItem.submenu.id"
+  class="sidenav-drawer__dropdown"
+  [ngClass]="{ 'sidenav-drawer__dropdown--open': isOpen, 'sidenav-drawer__dropdown--closed': !isOpen }"
+>
   <ng-container *ngFor="let submenu of navItem.submenu.items">
     <ng-container *ngIf="submenu?.restriction; else dropdownContent">
       <ng-container *featureAccess="[submenu.restriction.app, submenu.restriction.feature, submenu.restriction.access]">
@@ -29,20 +33,25 @@
     </ng-container>
     <ng-template #dropdownContent>
       <ng-container *ngIf="submenu.submenu; else submenuRouteItem">
-        <ik-dropdown [navItem]="submenu" [isNested]="true" [baseRoute]="navItem.route"></ik-dropdown>
+        <ik-sidenav-drawer-dropdown
+          [navItem]="submenu"
+          [isNested]="true"
+          [baseRoute]="navItem.route"
+        ></ik-sidenav-drawer-dropdown>
       </ng-container>
       <ng-template #submenuRouteItem>
         <ng-container *ngIf="submenu.route">
           <a
-            class="sidebar-content__item"
+            class="sidenav-drawer__category"
             [routerLink]="baseRoute + navItem.route + submenu.route"
-            routerLinkActive="dropdown-item__active"
+            (click)="onRoute(baseRoute + navItem.route + submenu.route)"
+            routerLinkActive="sidenav-drawer__category__nested--active"
           >
             {{ submenu.name }}
           </a>
         </ng-container>
         <ng-container *ngIf="submenu.href">
-          <a class="sidebar-content__item" [href]="submenu.href">
+          <a class="sidenav-drawer__category" [href]="submenu.href">
             {{ submenu.name }}
           </a>
         </ng-container>

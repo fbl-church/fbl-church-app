@@ -1,3 +1,24 @@
-<ik-insite-page appName="First Baptist Church of LaGrange">
-  <router-outlet></router-outlet>
-</ik-insite-page>
+<mat-sidenav-container>
+  <mat-sidenav
+    #sidenav
+    [mode]="innerWidth <= IPAD_SIZE ? 'over' : 'side'"
+    [opened]="innerWidth > IPAD_SIZE"
+    class="sidenav"
+  >
+    <ik-sidenav-drawer (routed)="closeSidenav(sidenav)"></ik-sidenav-drawer>
+  </mat-sidenav>
+  <mat-sidenav-content class="sidenav__content">
+    <div class="app-header">
+      <button class="app-header__button-icon" mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <button class="app-header__button-icon" mat-icon-button>
+        <mat-icon>calendar_month</mat-icon>
+      </button>
+    </div>
+    <div class="app-container">
+      <router-outlet></router-outlet>
+    </div>
+    <ik-footer></ik-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

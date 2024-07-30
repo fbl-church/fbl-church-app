@@ -1,22 +1,19 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Access, App, FeatureType } from '../../model/common.model';
 import { User } from '../../model/user.model';
 import { JwtService } from '../../service/auth/jwt.service';
 import { UserAccessService } from '../../service/auth/user-access.service';
 import { NavigationService } from '../../service/navigation/navigation.service';
 import { SubscriptionService } from '../../subscription/subscription.service';
-import { NAVIGATION_ROUTES } from './sidebar.config';
+import { NAVIGATION_ROUTES } from './sidenav-drawer.config';
 
 @Component({
-  selector: 'ik-sidebar',
-  templateUrl: 'sidebar.component.html',
+  selector: 'ik-sidenav-drawer',
+  templateUrl: 'sidenav-drawer.component.html',
 })
-export class SidebarComponent implements OnInit {
-  @HostBinding('class.sidebar-container') hostClass = true;
-  @HostBinding('class.sidebar-container--open') sidebarOpenClass = true;
-  @HostBinding('class.sidebar-container--closed') sidebarClosedClass = false;
+export class SidenavDrawerComponent implements OnInit {
+  @Output() routed = new EventEmitter<string>();
 
-  isOpen = true;
   navigationConfig = NAVIGATION_ROUTES;
   userData: User;
   initials: string;
@@ -27,7 +24,7 @@ export class SidebarComponent implements OnInit {
 
   constructor(
     private readonly userAccessService: UserAccessService,
-    private navigationService: NavigationService,
+    private readonly navigationService: NavigationService,
     private readonly jwt: JwtService,
     private readonly subscriptionService: SubscriptionService
   ) {}
@@ -41,28 +38,8 @@ export class SidebarComponent implements OnInit {
   }
 
   onRoute(path: string) {
+    this.routed.emit(path);
     this.navigationService.navigate(path);
-    this.close();
-  }
-
-  open() {
-    this.isOpen = true;
-    this.sidebarOpenClass = true;
-    this.sidebarClosedClass = false;
-  }
-
-  close() {
-    this.isOpen = false;
-    this.sidebarOpenClass = false;
-    this.sidebarClosedClass = true;
-  }
-
-  toggle() {
-    if (this.isOpen) {
-      this.close();
-    } else {
-      this.open();
-    }
   }
 
   onProfileClick() {

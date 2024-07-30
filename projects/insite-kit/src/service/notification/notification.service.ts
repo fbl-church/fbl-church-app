@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Notification } from '../../model/notification.model';
@@ -18,7 +19,7 @@ export class NotificationService {
    * @param params to filter request on
    * @returns observable of the returned request
    */
-  getNotifications(params?: Map<string, string[]>): Observable<Notification[]> {
+  getNotifications(params?: Map<string, string[]>): Observable<HttpResponse<Notification[]>> {
     return this.requestService.get<Notification[]>(this.BASE_PATH, params);
   }
 
@@ -62,7 +63,7 @@ export class NotificationService {
   }
 
   /**
-   * Trigger an update for the notifications in the navbar
+   * Trigger an update for the notifications in the app header
    */
   triggerNotificationUpdate() {
     this.notificationListener.next();
