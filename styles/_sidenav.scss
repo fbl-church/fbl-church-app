@@ -172,6 +172,10 @@
     transition: max-height 525ms ease-out -250ms;
     max-height: 0;
   }
+
+  &__item {
+    font-size: 16px;
+  }
 }
 
 .sidenav-drawer__dropdown-icon {

@@ -42,7 +42,7 @@
       <ng-template #submenuRouteItem>
         <ng-container *ngIf="submenu.route">
           <a
-            class="sidenav-drawer__category"
+            class="sidenav-drawer__category sidenav-drawer__dropdown__item"
             [routerLink]="baseRoute + navItem.route + submenu.route"
             (click)="onRoute(baseRoute + navItem.route + submenu.route)"
             routerLinkActive="sidenav-drawer__category__nested--active"
@@ -51,7 +51,7 @@
           </a>
         </ng-container>
         <ng-container *ngIf="submenu.href">
-          <a class="sidenav-drawer__category" [href]="submenu.href">
+          <a class="sidenav-drawer__category sidenav-drawer__dropdown__item" [href]="submenu.href">
             {{ submenu.name }}
           </a>
         </ng-container>
