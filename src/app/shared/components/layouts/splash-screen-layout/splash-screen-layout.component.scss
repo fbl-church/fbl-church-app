@@ -1,0 +1,48 @@
+@import '/styles/variables';
+
+.loading-layout-container {
+  object-fit: cover;
+  width: 100%;
+  height: 100vh;
+  // background: linear-gradient(#e9e9e9, #6d6d6d), url(../../../assets/images/login-screen-background.jpg.webp);
+  background-color: #0f172a;
+  background-blend-mode: multiply;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  text-align: center;
+  position: absolute;
+  overflow-x: hidden;
+}
+
+.loading-layout-container__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  gap: 10px;
+  border-radius: 8px;
+  width: 350px;
+  margin: 15em auto;
+  background-color: transparent;
+  font-size: 20px;
+}
+
+.loading-layout-container__logo {
+  background-color: white;
+  border-radius: 8px;
+  padding: 25px;
+  align-self: center;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: $login-screen-sm-max) {
+  .loading-layout-container__card {
+    margin: 10em auto;
+  }
+}

@@ -1,5 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, filter, takeUntil } from 'rxjs';
+import { SplashScreenService } from 'src/app/shared/components/layouts/splash-screen-layout/splash-screen.service';
 import { UserAccess } from '../../model/user-access.model';
 import { AuthService } from './auth.service';
 import { JwtService } from './jwt.service';
@@ -13,7 +14,11 @@ export class UserAccessService implements OnDestroy {
   private readonly _user: BehaviorSubject<UserAccess | null> = new BehaviorSubject(null);
   readonly user$: Observable<UserAccess | null> = this._user.asObservable().pipe(filter(() => !this.userInitializing));
 
-  constructor(private readonly jwt: JwtService, private readonly authService: AuthService) {
+  constructor(
+    private readonly jwt: JwtService,
+    private readonly authService: AuthService,
+    private readonly splashScreenService: SplashScreenService
+  ) {
     if (this.jwt.isAuthenticated()) {
       this.authService
         .userAccess()
@@ -21,6 +26,7 @@ export class UserAccessService implements OnDestroy {
         .subscribe((user: UserAccess) => {
           this.userInitializing = false;
           this._user.next(user ? new UserAccess(user) : null);
+          this.splashScreenService.setLoading(false);
         });
     }
   }

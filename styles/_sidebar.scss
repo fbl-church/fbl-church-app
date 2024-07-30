@@ -9,7 +9,7 @@
 
 .sidebar-container {
   overflow: hidden;
-  max-width: 250px;
+  max-width: 280px;
   height: 100%;
   background-color: var(--sidebar-background);
   position: fixed;
@@ -20,7 +20,7 @@
 
   &--open {
     opacity: 1;
-    width: 250px;
+    width: 280px;
   }
 
   &--closed {
@@ -43,7 +43,7 @@
   top: 0;
   bottom: 0;
   padding: 12px 12px;
-  gap: 12px;
+  gap: 20px;
   overflow-x: hidden;
 
   &__item {
@@ -177,7 +177,7 @@
 
   img {
     width: 100%;
-    height: auto;
+    height: 80px;
   }
 }
 

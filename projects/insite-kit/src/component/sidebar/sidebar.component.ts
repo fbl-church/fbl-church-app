@@ -36,7 +36,6 @@ export class SidebarComponent implements OnInit {
     this.userAccessService.user$.subscribe((ua) => {
       this.userData = ua.user;
       this.initials = `${this.userData.firstName[0]}${this.userData.lastName[0]}`;
-      console.log(this.initials);
       this.navigationConfig = NAVIGATION_ROUTES.filter((n) => ua.apps.includes(n.id));
     });
   }

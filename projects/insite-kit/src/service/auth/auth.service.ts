@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, switchMap, take, tap } from 'rxjs/operators';
+import { SplashScreenService } from 'src/app/shared/components/layouts/splash-screen-layout/splash-screen.service';
 import { AuthToken } from '../../model/auth-token.model';
 import { UserAccess } from '../../model/user-access.model';
 import { RequestService } from '../request/request.service';
@@ -13,7 +14,12 @@ import { JwtService } from './jwt.service';
 export class AuthService {
   readonly BASE_AUTH_PATH = 'api';
 
-  constructor(private request: RequestService, private jwt: JwtService, private readonly route: ActivatedRoute) {}
+  constructor(
+    private readonly request: RequestService,
+    private readonly jwt: JwtService,
+    private readonly route: ActivatedRoute,
+    private readonly splashScreenService: SplashScreenService
+  ) {}
 
   /**
    * Authenticate a user and get a token for the user
@@ -32,6 +38,7 @@ export class AuthService {
         tap((u) => this.jwt.setToken(u.token)),
         switchMap(() => this.route.queryParams),
         map((qp) => qp.redirect),
+        tap(() => this.splashScreenService.setLoading(true)),
         take(1)
       );
   }

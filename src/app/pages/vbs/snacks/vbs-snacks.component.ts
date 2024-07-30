@@ -62,7 +62,6 @@ export class VBSSnacksComponent implements OnInit, OnDestroy {
   }
 
   onGroupRowClick(event: VBSThemeGroup) {
-    console.log(`/vbs/snacks/children/${event.group}/allergies`);
     this.navigationService.navigate(`/vbs/snacks/children/${event.group}/allergies`);
   }
 

@@ -1,101 +1,73 @@
 @import '/styles/variables';
 
-.login__container {
-  width: 35%;
-  margin: 15em auto;
-  padding: 10px;
+.login-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  gap: 40px;
+  border-radius: 8px;
+  width: 450px;
+  margin: 6em auto;
   background-color: transparent;
+  background-color: white;
+  font-size: 20px;
+  box-shadow: 0 0 #0000, 0 0 #0000, 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1) !important;
 }
 
-.login__input {
-  padding: 12px 12px 12px 35px;
-  height: 50px;
-  width: 95%;
-  font-size: $font-size-md;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid transparent;
-  border-radius: 40px;
-  margin: 10px 0px;
-  color: white;
-  font-weight: $font-weight-semi-bold;
-  transition: border 0.5s ease;
+.login__logo {
+  padding: 12px;
 
-  &--password {
-    @extend .login__input;
-    padding: 12px 46px 12px 35px;
-  }
-}
-
-.login__title {
-  color: #fff;
-  font-size: $font-size-xl;
-  font-weight: $font-weight-semi-bold;
-  margin-bottom: 15px;
-}
-
-.login__input:focus {
-  border: 1px solid $white;
-}
-
-.login__input::placeholder {
-  color: white;
-  opacity: 1;
-}
-
-.login__button {
-  width: 50%;
-  margin: 15px auto;
-}
-
-.login__icon {
-  position: absolute;
-  min-width: 40px;
-  color: white;
-  z-index: 100;
-
-  &--email {
-    @extend .login__icon;
-    margin: 24px 0;
-  }
-
-  &--password {
-    @extend .login__icon;
-    margin: 22px 0;
-  }
-
-  &--eye {
-    @extend .login__icon;
-    color: black;
-    cursor: pointer;
-    font-size: 18px;
-    text-align: center;
-    margin: 24px 0 0 -50px;
+  img {
+    width: 80%;
+    height: auto;
   }
 }
 
 .login__forgot-password {
-  color: $white;
-  margin-left: 24px;
-  font-size: $font-size-caption;
-  font-weight: $font-weight-semi-bold;
-}
+  font-size: 16px;
+  font-weight: 500;
+  text-align: right;
+  color: #0095ff;
+  cursor: pointer;
 
-@media screen and (max-width: $login-screen-lg-max) {
-  .login__container {
-    width: 50%;
+  &:hover {
+    text-decoration: underline;
   }
 }
 
-@media screen and (max-width: $login-screen-md-max) {
-  .login__container {
-    width: 75%;
-    margin: 15em auto;
-  }
+.login__input {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.login__label {
+  font-size: 20px;
+}
+
+:host ::ng-deep .mdc-text-field--outlined {
+  --mdc-outlined-text-field-container-shape: 8px;
+}
+
+:host ::ng-deep .mat-mdc-form-field-error-wrapper {
+  padding: 0 !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #222b45;
+  transition: background-color 5000s ease-in-out 0s;
+  box-shadow: inset 0 0 20px 20px white;
 }
 
 @media screen and (max-width: $login-screen-sm-max) {
-  .login__container {
+  .login {
     width: 95%;
-    margin: 10em auto;
+    padding: 1rem;
+    margin: 3em auto;
   }
 }

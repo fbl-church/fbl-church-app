@@ -1,52 +1,39 @@
-<div class="login__container">
-  <form id="loginForm" [formGroup]="form">
+<div class="login__background">
+  <router-outlet></router-outlet>
+</div>
+
+<div class="login-card">
+  <div class="login__logo">
+    <img src="fbl-church-logo.png" alt="FBL Logo" />
+  </div>
+  <form id="loginForm" [formGroup]="form" class="width--full">
     <div class="row">
-      <div class="login__title">First Baptist Church of LaGrange</div>
+      <mat-form-field appearance="outline" class="col-12 login__input">
+        <mat-label class="login__label">Email Address</mat-label>
+        <mat-icon matPrefix>mail</mat-icon>
+        <input matInput formControlName="email" />
+        <mat-error *ngIf="form.controls.email.invalid">{{ getEmailErrorMessage() }}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-12 login__input">
+        <mat-label class="login__label">Password</mat-label>
+        <mat-icon matPrefix>lock</mat-icon>
+        <input matInput [type]="passwordField" formControlName="password" />
+        <mat-icon class="pointer" matSuffix (click)="toggleShowPassword()">{{
+          showPassword ? 'visibility' : 'visibility_off'
+        }}</mat-icon>
+        <mat-error *ngIf="form.controls.password.invalid">{{ getPasswordErrorMessage() }}</mat-error>
+      </mat-form-field>
     </div>
-    <div class="row">
-      <div class="col-12">
-        <fa-icon icon="envelope" class="login__icon--email"></fa-icon>
-        <input
-          type="email"
-          inputmode="email"
-          id="username"
-          formControlName="username"
-          class="login__input"
-          placeholder="Email"
-        />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <fa-icon icon="lock" class="login__icon--password"></fa-icon>
-        <input
-          [type]="passwordField"
-          id="password"
-          formControlName="password"
-          class="login__input--password"
-          placeholder="Password"
-        />
-        <fa-icon (click)="toggleShowPassword()" [icon]="passwordShowIcon" class="login__icon--eye"></fa-icon>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <a routerLink="/forgot-password" class="left login__forgot-password">Forgot Password?</a>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <button
-          id="loginButton"
-          class="btn btn-primary--round login__button"
-          (click)="onLoginClick()"
-          *ngIf="!loading; else loginLoader"
-        >
-          Sign In
-        </button>
-      </div>
-    </div>
+    <div class="login__forgot-password">Forgot Password?</div>
   </form>
+
+  <button
+    mat-flat-button
+    class="btn-mat btn-mat--primary btn-mat--round btn-mat--large width--full"
+    (click)="onLoginClick()"
+  >
+    <div *ngIf="!loading; else loginLoader">Sign in</div>
+  </button>
 </div>
 
 <ng-template #loginLoader>

@@ -32,14 +32,19 @@ export class LoginOverviewComponent implements OnInit {
 
   buildForm() {
     this.form = this.fb.group({
-      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
   }
 
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+    this.passwordField = this.showPassword ? 'text' : 'password';
+  }
+
   onLoginClick() {
     this.loading = true;
-    this.authService.authenticate(this.form.value.username, this.form.value.password).subscribe({
+    this.authService.authenticate(this.form.value.email, this.form.value.password).subscribe({
       next: (redirect) => {
         this.themeService.setThemeToLoggedInUser();
         this.navigationService.navigate(redirect ? redirect : '/profile');
@@ -51,9 +56,19 @@ export class LoginOverviewComponent implements OnInit {
     });
   }
 
-  toggleShowPassword() {
-    this.showPassword = !this.showPassword;
-    this.passwordField = this.showPassword ? 'text' : 'password';
-    this.passwordShowIcon = this.showPassword ? 'eye-slash' : 'eye';
+  getEmailErrorMessage() {
+    if (this.form.controls.email.hasError('required')) {
+      return 'Email Address is required';
+    }
+
+    return this.form.controls.email.hasError('email') ? 'Email Address is invalid' : '';
+  }
+
+  getPasswordErrorMessage() {
+    if (this.form.controls.password.hasError('required')) {
+      return 'Password is required';
+    } else {
+      return '';
+    }
   }
 }

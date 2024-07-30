@@ -38,7 +38,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   onResetPassword() {
-    console.log(this.leftColor);
     // this.navigationService.navigate('/profile/reset-password');
   }
 
