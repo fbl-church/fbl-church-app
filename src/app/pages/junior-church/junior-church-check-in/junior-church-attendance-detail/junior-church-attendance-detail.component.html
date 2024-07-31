@@ -26,10 +26,11 @@
 
     <app-attendance-record-children-grid
       *ngIf="record.status !== 'PENDING'"
+      preferenceKey="juniorChurchAttendanceRecordChildren"
       [dataLoader]="childrenDataloader"
       (rowClick)="updateChildAttendanceModal.open($event)"
     >
-      <ik-card-header title="Children">
+      <ik-card-header-new title="Children">
         <ng-container *ngIf="record.status !== 'CLOSED'">
           <ik-icon
             *featureAccess="[Application.JUNIOR_CHURCH, FeatureType.CHECK_IN_CHILDREN, Access.UPDATE]"
@@ -38,13 +39,14 @@
             classOverride="icon icon--default"
             (click)="onChildrenCheckInEditClick()"
           ></ik-icon>
-        </ng-container> </ik-card-header
-    ></app-attendance-record-children-grid>
+        </ng-container>
+      </ik-card-header-new>
+    </app-attendance-record-children-grid>
   </div>
 
   <div class="layout__column-right layout__narrow">
     <app-attendance-record-workers-grid [dataloader]="workerDataloader">
-      <ik-card-header title="Workers">
+      <ik-card-header-new title="Workers">
         <ng-container *ngIf="record.status !== 'CLOSED'">
           <ik-icon
             *featureAccess="[Application.JUNIOR_CHURCH, FeatureType.CHECK_IN_DETAIL, Access.UPDATE]"
@@ -55,7 +57,7 @@
             (click)="onEditClick()"
           ></ik-icon>
         </ng-container>
-      </ik-card-header>
+      </ik-card-header-new>
     </app-attendance-record-workers-grid>
   </div>
 </ng-container>

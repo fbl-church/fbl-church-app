@@ -4,7 +4,8 @@
     Create Application
   </button>
 </ik-header>
-<ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)" preferenceKey="applicationsGrid">
+
+<ik-grid preferenceKey="applicationsGrid" [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="Name" field="displayName"></ik-grid-column>
   <ik-grid-column label="Key" field="key"></ik-grid-column>
@@ -15,7 +16,7 @@
       </div>
     </ng-template>
   </ik-grid-column>
-  <ik-grid-pager key="Applications" [pageSize]="10"></ik-grid-pager>
+  <ik-grid-pager pageSize="15" key="Applications"></ik-grid-pager>
 </ik-grid>
 
 <app-create-application-modal #applicationCreateModal></app-create-application-modal>

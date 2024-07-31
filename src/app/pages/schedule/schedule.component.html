@@ -28,9 +28,9 @@
   </ik-header>
 
   <ik-grid
+    preferenceKey="userScheduleGrid"
     [dataLoader]="listDataloader"
     (rowClick)="routeToEvent($event.type, $event.recordId)"
-    preferenceKey="userScheduleGrid"
   >
     <ik-grid-search></ik-grid-search>
     <ik-grid-column label="Name" field="recordName"> </ik-grid-column>
@@ -41,7 +41,7 @@
     </ik-grid-column>
     <ik-grid-column label="Type" field="type"></ik-grid-column>
     <ik-grid-column label="Active Date" field="activeDate"></ik-grid-column>
-    <ik-grid-pager key="Records" [pageSize]="25"></ik-grid-pager>
+    <ik-grid-pager pageSize="15" key="Users"></ik-grid-pager>
   </ik-grid>
 </ng-template>
 

@@ -28,10 +28,11 @@
       <app-attendance-record-children-grid
         #vbsChildrenGrid
         *ngIf="attendanceRecord.status !== 'PENDING'"
+        preferenceKey="vbsAttendanceRecordChildren"
         [dataLoader]="vbsChildrenDataloader"
         (rowClick)="vbsChildAttendanceUpdateModal.open($event)"
       >
-        <ik-card-header title="Children">
+        <ik-card-header-new title="Children">
           <ng-container *ngIf="attendanceRecord.status !== 'CLOSED'">
             <ik-icon
               *featureAccess="[Application.VBS, FeatureType.CHECK_IN_CHILDREN, Access.UPDATE]"
@@ -40,13 +41,14 @@
               classOverride="icon icon--default"
               (click)="onCheckInChildrenClick()"
             ></ik-icon>
-          </ng-container> </ik-card-header
-      ></app-attendance-record-children-grid>
+          </ng-container>
+        </ik-card-header-new>
+      </app-attendance-record-children-grid>
     </div>
 
-    <div class="col-lg-5">
-      <ik-grid [dataLoader]="vbsOfferingWinnersDataloader">
-        <ik-card-header title="Offering Winners">
+    <div class="col-xl-5">
+      <ik-grid resultKey="Offering Winners" [dataLoader]="vbsOfferingWinnersDataloader">
+        <ik-card-header-new title="Offering Winners">
           <ng-container *ngIf="attendanceRecord.status !== 'CLOSED'">
             <ik-icon
               *featureAccess="[Application.VBS, FeatureType.CHECK_IN_DETAIL, Access.UPDATE]"
@@ -57,7 +59,7 @@
               (click)="onEditClick()"
             ></ik-icon>
           </ng-container>
-        </ik-card-header>
+        </ik-card-header-new>
         <ik-grid-column label="Group" field="group">
           <ng-template let-data>
             {{ data.group + '_SHORT' | churchGroupTranslate }}
@@ -65,15 +67,14 @@
         </ik-grid-column>
         <ik-grid-column label="Name" field="name"></ik-grid-column>
         <ik-grid-column label="Points" field="points"></ik-grid-column>
-        <ik-grid-pager key="Offering Winners" [pagerVisible]="false" [pageSize]="5"></ik-grid-pager>
       </ik-grid>
 
       <ik-grid [dataLoader]="vbsWorkersDataloader">
-        <ik-card-header title="Workers"> </ik-card-header>
+        <ik-card-header-new title="Workers"> </ik-card-header-new>
         <ik-grid-search></ik-grid-search>
         <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
         <ik-grid-column label="Email" field="email"></ik-grid-column>
-        <ik-grid-pager key="Workers" [pageSize]="5"></ik-grid-pager>
+        <ik-grid-pager pageSize="5" [hidePageSize]="true" key="Workers"></ik-grid-pager>
       </ik-grid>
     </div>
   </div>

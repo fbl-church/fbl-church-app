@@ -7,7 +7,10 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxColorsModule } from 'ngx-colors';
-import { GridMatComponent } from 'projects/insite-kit/src/component/grid/new-grid/grid-mat.component';
+import { CardHeaderNewComponent } from 'projects/insite-kit/src/component/card/card-header/card-header-new.component';
+import { CardNewComponent } from 'projects/insite-kit/src/component/card/card-new.component';
+import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
+import { GridModule } from 'projects/insite-kit/src/component/grid/grid.module';
 import { InsiteKitModule } from 'projects/insite-kit/src/insite-kit.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 /**
@@ -19,7 +22,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
  * @since August 18, 2022
  */
 @NgModule({
-  imports: [GridMatComponent],
+  imports: [GridComponent, CardHeaderNewComponent, CardNewComponent],
   exports: [
     BrowserModule,
     RouterModule,
@@ -32,7 +35,9 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     InsiteKitModule,
     NgSelectModule,
     NgxColorsModule,
-    GridMatComponent,
+    GridModule,
+    CardHeaderNewComponent,
+    CardNewComponent,
   ],
 })
 export class BaseInitModule {}

@@ -10,16 +10,24 @@
     <div class="col-lg-7">
       <app-vbs-theme-details-card title="Theme Details" [theme]="themeData"></app-vbs-theme-details-card>
 
-      <ik-grid [dataLoader]="vbsAttendanceDataloader" (rowClick)="onAttendanceRecordRowClick($event)">
-        <ik-card-header title="Attendance Records"> </ik-card-header>
+      <ik-grid
+        *ngIf="vbsAttendanceDataloader"
+        preferenceKey="usersGrid"
+        [dataLoader]="vbsAttendanceDataloader"
+        (rowClick)="onAttendanceRecordRowClick($event)"
+      >
+        <ik-card-header-new title="Attendance Records"> </ik-card-header-new>
         <ik-grid-column label="Name" field="name"> </ik-grid-column>
-        <ik-grid-column label="Status" field="status">
+        <ik-grid-column label="Status">
           <ng-template let-data>
             <div [ngClass]="data.status">{{ data.status }}</div>
           </ng-template>
         </ik-grid-column>
-        <ik-grid-column label="Active Date" field="activeDate"></ik-grid-column>
-        <ik-grid-pager key="Records" [pagerVisible]="false"></ik-grid-pager>
+        <ik-grid-column label="Active Date">
+          <ng-template let-data>
+            {{ data.activeDate | date : 'longDate' }}
+          </ng-template>
+        </ik-grid-column>
       </ik-grid>
     </div>
 
@@ -35,12 +43,12 @@
           </div>
         </div>
       </ik-card>
-      <ik-grid [dataLoader]="vbsGroupWorkersDataloader">
-        <ik-card-header title="Workers"> </ik-card-header>
+      <ik-grid preferenceKey="usersGrid" [dataLoader]="vbsGroupWorkersDataloader">
+        <ik-card-header-new title="Workers"> </ik-card-header-new>
         <ik-grid-search></ik-grid-search>
         <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
         <ik-grid-column label="Email" field="email"></ik-grid-column>
-        <ik-grid-pager key="Workers" [pageSize]="5"></ik-grid-pager>
+        <ik-grid-pager pageSize="5" key="Workers"></ik-grid-pager>
       </ik-grid>
     </div>
   </div>

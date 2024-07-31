@@ -1,5 +1,5 @@
-<ik-grid *ngIf="dataloader" [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
-  <ik-card-header title="Guardians">
+<ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
+  <ik-card-header-new title="Guardians">
     <ng-container *featureAccess="[Application.CHILDREN, FeatureType.DETAIL, Access.UPDATE]">
       <ik-icon
         *ngIf="editVisible"
@@ -10,7 +10,7 @@
         (click)="onEditIconClick()"
       ></ik-icon>
     </ng-container>
-  </ik-card-header>
+  </ik-card-header-new>
   <ik-grid-column label="Name" field="name">
     <ng-template let-data>
       {{ data | formatUserName }}
@@ -22,5 +22,4 @@
       {{ data.relationship | relationshipTranslate }}
     </ng-template></ik-grid-column
   >
-  <ik-grid-pager key="Guardians" [pagerVisible]="false"></ik-grid-pager>
 </ik-grid>

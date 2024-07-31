@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 export class AttendanceRecordChildrenGridComponent {
   @ViewChild(GridComponent) grid: GridComponent;
   @Input() dataLoader: (params) => Observable<HttpResponse<Child[]>>;
+  @Input() preferenceKey = 'attendanceRecordChildren';
   @Output() rowClick = new EventEmitter<Child>();
 
   constructor() {}

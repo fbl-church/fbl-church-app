@@ -8,4 +8,8 @@
     New Attendance
   </button>
 </ik-header>
-<app-attendance-record-grid [dataloader]="dataloader" (rowClick)="onRowClick($event)"></app-attendance-record-grid>
+<app-attendance-record-grid
+  preferenceKey="awanaAttendanceRecordGrid"
+  [dataloader]="dataloader"
+  (rowClick)="onRowClick($event)"
+></app-attendance-record-grid>

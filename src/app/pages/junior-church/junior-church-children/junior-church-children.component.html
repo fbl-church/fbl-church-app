@@ -1,9 +1,9 @@
 <ik-header title="Junior Church Children"> </ik-header>
-<ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
+<ik-grid preferenceKey="juniorChurchChildren" [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
   <ik-grid-column label="CUID" field="cuid"></ik-grid-column>
   <ik-grid-column label="Birthday" field="birthday"></ik-grid-column>
   <ik-grid-column label="Created" field="insertDate"></ik-grid-column>
-  <ik-grid-pager key="Children"></ik-grid-pager>
+  <ik-grid-pager pageSize="15" key="Children"></ik-grid-pager>
 </ik-grid>

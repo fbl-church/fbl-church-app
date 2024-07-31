@@ -49,6 +49,7 @@ export class RouteDataResolver {
 
           // Only execute method if the parameters specified in the options are in the route
           const isArgCountCorrect = serviceResolver.options.routeParams.length === routeParams.length;
+
           if (isArgCountCorrect) {
             const service = injector.get(serviceResolver.service);
             const method = service[serviceResolver.options.method];

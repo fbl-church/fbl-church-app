@@ -1,7 +1,6 @@
-<ik-grid *ngIf="dataloader" [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
-  <ik-card-header title="Children"> </ik-card-header>
+<ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
+  <ik-card-header-new title="Children"> </ik-card-header-new>
   <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
   <ik-grid-column label="CUID" field="cuid"></ik-grid-column>
   <ik-grid-column label="Created" field="insertDate"></ik-grid-column>
-  <ik-grid-pager key="Children" [pagerVisible]="false"></ik-grid-pager>
 </ik-grid>

@@ -1,16 +1,20 @@
-<ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
+<ik-grid [preferenceKey]="preferenceKey" [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
   <ik-grid-search></ik-grid-search>
-  <ik-grid-download *ngIf="downloadEnabled" (download)="onDownloadClick()"></ik-grid-download>
-  <ik-grid-column label="Name" field="name">
+  <!-- <ik-grid-download *ngIf="downloadEnabled" (download)="onDownloadClick()"></ik-grid-download> -->
+  <ik-grid-column label="Name">
     <ng-template let-data>
       {{ data.name + ' - ' + (data.activeDate | date : 'MM/dd/yyyy') }}
     </ng-template>
   </ik-grid-column>
-  <ik-grid-column label="Status" field="status">
+  <ik-grid-column label="Status">
     <ng-template let-data>
       <div [ngClass]="data.status">{{ data.status }}</div>
     </ng-template>
   </ik-grid-column>
-  <ik-grid-column label="Created Date" field="insertDate"></ik-grid-column>
-  <ik-grid-pager key="Records" [pageSize]="25"></ik-grid-pager>
+  <ik-grid-column label="Created Date">
+    <ng-template let-data>
+      {{ data.insertDate | date : 'longDate' }}
+    </ng-template>
+  </ik-grid-column>
+  <ik-grid-pager pageSize="15" key="Users"></ik-grid-pager>
 </ik-grid>

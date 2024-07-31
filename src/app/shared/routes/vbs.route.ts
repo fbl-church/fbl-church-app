@@ -8,7 +8,6 @@ import { VBSChildrenComponent } from 'src/app/pages/vbs/children/vbs-children.co
 import { VBSGroupsChildrenDetailComponent } from 'src/app/pages/vbs/groups/children/detail/vbs-groups-children-detail.component';
 import { VBSGroupsChildrenComponent } from 'src/app/pages/vbs/groups/children/vbs-groups-children.component';
 import { VBSGroupDetailsComponent } from 'src/app/pages/vbs/groups/detail/vbs-group-details.component';
-import { VBSSnacksDetailsComponent } from 'src/app/pages/vbs/snacks/details/vbs-snacks-details.component';
 import { VBSSnacksComponent } from 'src/app/pages/vbs/snacks/vbs-snacks.component';
 import { VBSCreateThemeComponent } from 'src/app/pages/vbs/themes/create-theme/vbs-create-theme.component';
 import { VBSThemeDetailsComponent } from 'src/app/pages/vbs/themes/theme-details/vbs-theme-details.component';
@@ -246,13 +245,6 @@ export const VBS_ROUTE: Route = {
       component: VBSSnacksComponent,
       resolve: {
         theme: RouteDataResolver.for(VBSThemesService, { method: 'getLatestActive', routeParams: [] }),
-      },
-    },
-    {
-      path: 'snacks/attendance/:attendanceId',
-      component: VBSSnacksDetailsComponent,
-      resolve: {
-        record: RouteDataResolver.for(VBSAttendanceService, { routeParams: ['attendanceId'] }),
       },
     },
     {

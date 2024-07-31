@@ -1,36 +1,30 @@
 <ng-container *ngIf="!loading; else pageLoader">
   <ik-header [title]="'Snacks - ' + themeData.name"> </ik-header>
   <div class="row">
-    <div class="col-md-6">
-      <ik-grid #vbsThemeGroupsGrid [dataLoader]="vbsThemeGroupsDataloader" (rowClick)="onGroupRowClick($event)">
-        <ik-card-header title="VBS Groups - Allergies"> </ik-card-header>
-        <ik-grid-column label="Group" field="group">
-          <ng-template let-data>
-            <div>{{ data.group | churchGroupTranslate }}</div>
-          </ng-template>
-        </ik-grid-column>
-        <ik-grid-column label="Name" field="name"></ik-grid-column>
-        <ik-grid-pager key="Groups" [pagerVisible]="false"></ik-grid-pager>
-      </ik-grid>
-    </div>
+    <ik-grid class="col-xl-6" [dataLoader]="vbsThemeGroupsDataloader" (rowClick)="onGroupRowClick($event)">
+      <ik-card-header-new title="VBS Groups - Allergies"> </ik-card-header-new>
+      <ik-grid-column label="Group" field="group">
+        <ng-template let-data>
+          <div>{{ data.group | churchGroupTranslate }}</div>
+        </ng-template>
+      </ik-grid-column>
+      <ik-grid-column label="Name" field="name"></ik-grid-column>
+    </ik-grid>
 
-    <div class="col-md-6">
-      <ik-grid
-        #vbsAttendanceRecordGrid
-        [dataLoader]="vbsAttendanceDataloader"
-        (rowClick)="onAttendanceRecordRowClick($event)"
-      >
-        <ik-card-header title="Attendance Records"> </ik-card-header>
-        <ik-grid-column label="Name" field="name"> </ik-grid-column>
-        <ik-grid-column label="Status" field="status">
-          <ng-template let-data>
-            <div [ngClass]="data.status">{{ data.status }}</div>
-          </ng-template>
-        </ik-grid-column>
-        <ik-grid-column label="Active Date" field="activeDate"></ik-grid-column>
-        <ik-grid-pager key="Records" [pagerVisible]="false"></ik-grid-pager>
-      </ik-grid>
-    </div>
+    <ik-grid class="col-xl-6" [dataLoader]="vbsAttendanceDataloader" (rowClick)="onAttendanceRecordRowClick($event)">
+      <ik-card-header-new title="Attendance Records"> </ik-card-header-new>
+      <ik-grid-column label="Name" field="name"> </ik-grid-column>
+      <ik-grid-column label="Status">
+        <ng-template let-data>
+          <div [ngClass]="data.status">{{ data.status }}</div>
+        </ng-template>
+      </ik-grid-column>
+      <ik-grid-column label="Active Date">
+        <ng-template let-data>
+          {{ data.activeDate | date : 'longDate' }}
+        </ng-template>
+      </ik-grid-column>
+    </ik-grid>
   </div>
 
   <ik-modal #attendanceDetailsModal name="attendanceDetailsModal">

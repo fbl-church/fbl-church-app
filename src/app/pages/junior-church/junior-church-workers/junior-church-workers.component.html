@@ -21,12 +21,12 @@
     </ng-template>
   </button>
 </ik-header>
-<ik-grid [dataLoader]="dataloader">
+<ik-grid preferenceKey="juniorChurchWorkers" [dataLoader]="dataloader">
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
   <ik-grid-column label="Email" field="email"></ik-grid-column>
   <ik-grid-column label="Created" field="insertDate"></ik-grid-column>
-  <ik-grid-pager key="Workers" [pageSize]="10"></ik-grid-pager>
+  <ik-grid-pager pageSize="15" key="Workers"></ik-grid-pager>
 </ik-grid>
 
 <ik-modal #addWorkersModal name="userToGuardianModal">

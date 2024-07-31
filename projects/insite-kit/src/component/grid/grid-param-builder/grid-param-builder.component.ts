@@ -17,7 +17,7 @@ export class GridParamBuilder {
    * @returns The current Grid param builder instance.
    */
   withPaging(page: number, size: number): GridParamBuilder {
-    const rowOffsetSize = (page - 1) * size;
+    const rowOffsetSize = Math.floor(page) * size;
 
     this.params.set('pageSize', [size.toString()]);
     this.params.set('rowOffset', [rowOffsetSize.toString()]);

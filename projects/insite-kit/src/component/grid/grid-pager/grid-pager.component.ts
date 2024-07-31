@@ -1,63 +1,27 @@
-import { Component, Input } from '@angular/core';
-import { faBackwardStep, faForwardStep } from '@fortawesome/free-solid-svg-icons';
-import { Subject } from 'rxjs';
+import { NgClass } from '@angular/common';
+import { ChangeDetectorRef, Component, Input, ViewChild } from '@angular/core';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'ik-grid-pager',
   templateUrl: './grid-pager.component.html',
+  standalone: true,
+  imports: [MatPaginatorModule, NgClass],
 })
 export class GridPagerComponent {
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @Input() pageSize = 15;
+  @Input() hidePageSize = false;
   @Input() key = '';
-  @Input() pagerVisible = true;
+  @Input() disabled = false;
+  @Input() pageSizeOptions = [5, 10, 15, 25];
 
-  backwardStepIcon = faBackwardStep;
-  forwardStepIcon = faForwardStep;
+  constructor(private cdr: ChangeDetectorRef) {}
 
-  dataLength = 0;
-  totalPages = 0;
-  activePage = 1;
-  pages: any[];
-
-  pageChange = new Subject<number>();
-
-  update(dataSize: number, page: number) {
-    this.dataLength = dataSize;
-    this.activePage = page;
-    this.totalPages = Math.ceil(dataSize / this.pageSize);
-    this.updatePageFooter(this.activePage);
-  }
-
-  triggerPageChange(page: number) {
-    this.pageChange.next(page);
-  }
-
-  pageClick(page: number) {
-    this.activePage = page;
-    this.triggerPageChange(this.activePage);
-  }
-
-  onNextPageClick() {
-    if (this.activePage < this.totalPages) {
-      this.triggerPageChange(++this.activePage);
-    }
-  }
-
-  onPreviousPageClick() {
-    if (this.activePage > 1) {
-      this.triggerPageChange(--this.activePage);
-    }
-  }
-
-  updatePageFooter(page: number) {
-    this.activePage = page;
-
-    if (page === 1) {
-      this.pages = [page, page + 1, page + 2];
-    } else if (page === this.totalPages) {
-      this.pages = [page - 2, page - 1, page];
-    } else {
-      this.pages = [page - 1, page, page + 1];
-    }
+  updatePageSize(pageSize: number, index: number) {
+    this.pageSize = pageSize;
+    this.paginator.pageSize = pageSize;
+    this.paginator.pageIndex = Math.floor(index);
+    this.cdr.detectChanges();
   }
 }

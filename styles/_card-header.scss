@@ -19,6 +19,11 @@
   }
 }
 
+.card-header-mat {
+  padding: 12px 16px !important;
+  border-bottom: 1px solid #d9dce2 !important;
+}
+
 @media screen and (max-width: $card-screen-sm-max) {
   .card-header {
     &__title {

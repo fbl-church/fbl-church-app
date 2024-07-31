@@ -11,7 +11,11 @@
     </button>
   </ik-header>
 
-  <ik-grid #childrenCheckInGrid [dataLoader]="childrenDataloader" (rowClick)="onRowClick($event)">
+  <ik-grid
+    preferenceKey="juniorChurchChildrenCheckIn"
+    [dataLoader]="childrenDataloader"
+    (rowClick)="onRowClick($event)"
+  >
     <ik-grid-search></ik-grid-search>
     <ik-grid-column label="Name" field="name">
       <ng-template let-data>
@@ -19,7 +23,7 @@
       </ng-template>
     </ik-grid-column>
     <ik-grid-column label="CUID" field="cuid"></ik-grid-column>
-    <ik-grid-pager key="Children" [pageSize]="10"></ik-grid-pager>
+    <ik-grid-pager pageSize="10" key="Children"></ik-grid-pager>
   </ik-grid>
 </ng-container>
 

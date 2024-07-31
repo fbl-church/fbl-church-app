@@ -62,6 +62,10 @@ textarea {
   flex-wrap: wrap;
 }
 
+.display-none {
+  display: none !important;
+}
+
 .flex-direction {
   &--column {
     flex-direction: column;
@@ -128,6 +132,10 @@ textarea {
 
 .padding-none {
   padding: 0 !important;
+}
+
+.border-none {
+  border: none !important;
 }
 
 .padding {

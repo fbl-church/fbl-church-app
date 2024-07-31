@@ -51,8 +51,8 @@
     </form>
   </ik-card>
 
-  <ik-grid #themePointsGrid [dataLoader]="pointsDataloader" (rowClick)="themeEditPointsModal.open($event)">
-    <ik-card-header title="Point Structure">
+  <ik-grid preferenceKey="usersGrid" [dataLoader]="pointsDataloader" (rowClick)="themeEditPointsModal.open($event)">
+    <ik-card-header-new title="Point Structure">
       <ik-icon
         [disabled]="vbsPointsArray.length >= 8"
         title="Add Points"
@@ -60,7 +60,7 @@
         class="right pointer"
         (click)="themeCreatePointsModal.open()"
       ></ik-icon>
-    </ik-card-header>
+    </ik-card-header-new>
     <ik-grid-column label="Name" field="displayName"></ik-grid-column>
     <ik-grid-column label="Points" field="points"></ik-grid-column>
     <ik-grid-column label="Registration">
@@ -73,7 +73,7 @@
         <div>{{ data.checkInApply ? 'Yes' : 'No' }}</div>
       </ng-template>
     </ik-grid-column>
-    <ik-grid-pager key="Points"></ik-grid-pager>
+    <ik-grid-pager pageSize="5" [hidePageSize]="true" key="Points"></ik-grid-pager>
   </ik-grid>
 
   <button class="btn btn-default btn-left" (click)="onCancelClick()">Cancel</button>

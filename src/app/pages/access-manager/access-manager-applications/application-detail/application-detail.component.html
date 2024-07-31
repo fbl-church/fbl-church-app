@@ -15,37 +15,27 @@
     </button>
   </ik-header>
 
-  <div class="layout__column-left layout__narrow">
-    <ik-card>
-      <ik-card-header title="Details"> </ik-card-header>
-      <div class="flex">
-        <div class="left-column">
-          <ik-card-info header="Name" [text]="application.displayName"></ik-card-info>
-        </div>
-        <div class="right-column">
-          <ik-card-info header="Key" [text]="application.key"></ik-card-info>
-        </div>
-      </div>
+  <div class="row">
+    <ik-card-new class="col-xl-5">
+      <ik-card-header-new title="Details"></ik-card-header-new>
+      <div class="row">
+        <ik-card-info class="col-md-6" header="Name" [text]="application.displayName" [padding]="false"></ik-card-info>
 
-      <div class="flex">
-        <div class="left-column">
-          <ik-card-info
-            [contentColor]="application.enabled ? 'ENABLED' : 'DISABLED'"
-            header="Status"
-            [text]="application.enabled ? 'Enabled' : 'Disabled'"
-          ></ik-card-info>
-        </div>
+        <ik-card-info class="col-md-6" header="Key" [text]="application.key" [padding]="false"></ik-card-info>
       </div>
-    </ik-card>
-  </div>
-  <div class="layout__column-right layout__wide">
-    <ik-grid
-      #webRoleFeaturesGrid
-      [dataLoader]="webRoleAppDataloader"
-      [overflowEnabled]="true"
-      (rowClick)="onRowClick($event)"
-    >
-      <ik-card-header title="Web Role Apps"></ik-card-header>
+      <div class="row">
+        <ik-card-info
+          class="col-md-12"
+          [contentColor]="application.enabled ? 'ENABLED' : 'DISABLED'"
+          header="Status"
+          [text]="application.enabled ? 'Enabled' : 'Disabled'"
+          [padding]="false"
+        ></ik-card-info>
+      </div>
+    </ik-card-new>
+
+    <ik-grid class="col-xl-7" [dataLoader]="webRoleAppDataloader" (rowClick)="onRowClick($event)">
+      <ik-card-header-new title="Web Role Apps"> </ik-card-header-new>
       <ik-grid-search></ik-grid-search>
       <ik-grid-column label="Role" field="formattedWebRole"> </ik-grid-column>
       <ik-grid-column label="Access" field="create">
@@ -56,7 +46,7 @@
           ></ik-icon>
         </ng-template>
       </ik-grid-column>
-      <ik-grid-pager key="Roles" [pageSize]="5"></ik-grid-pager>
+      <ik-grid-pager pageSize="5" [hidePageSize]="true" key="Roles"></ik-grid-pager>
     </ik-grid>
   </div>
 </ng-container>

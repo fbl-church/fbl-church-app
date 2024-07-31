@@ -162,6 +162,7 @@
   overflow: hidden;
   background-color: var(--sidenav-background);
   padding-left: 32px;
+  font-size: 16px;
 
   &--open {
     transition: max-height 1.25s ease-out 0ms;

@@ -2,7 +2,6 @@ import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { addDays, isBefore, parseISO } from 'date-fns';
-import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
 import { ModalComponent } from 'projects/insite-kit/src/component/modal/modal.component';
 import { ChurchGroup } from 'projects/insite-kit/src/model/common.model';
 import { VBSPoint, VBSTheme, VBSThemeGroup } from 'projects/insite-kit/src/model/vbs.model';
@@ -16,7 +15,6 @@ import { VBSThemesService } from 'src/service/vbs/vbs-themes.service';
   templateUrl: './vbs-create-theme.component.html',
 })
 export class VBSCreateThemeComponent implements OnInit {
-  @ViewChild('themePointsGrid') themePointsGrid: GridComponent;
   @ViewChild('themeCreatePointsModal') themeCreatePointsModal: ModalComponent;
   @ViewChild('themeEditPointsModal') themeEditPointsModal: ModalComponent;
 

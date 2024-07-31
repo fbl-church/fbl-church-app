@@ -1,57 +1,23 @@
 .grid-search {
-  color: var(--text-color);
-  border-radius: 10px;
-  background: var(--grid-search-background);
-  border: 1px solid var(--grid-search-border);
-  padding: 10px;
-  font-size: $font-size-lg;
   width: 100%;
+  display: block;
+  padding: 8px 16px 0 16px;
+  cursor: text;
+
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: transparent;
+  }
+
+  .mat-mdc-form-field-focus-overlay {
+    background-color: transparent;
+  }
+
+  > .mat-mdc-text-field-wrapper {
+    background-color: white !important;
+  }
 }
 
 .grid-search__multiselect-form {
   display: flex;
   flex-grow: 2;
-}
-
-.grid-search__icon {
-  color: var(--text-color);
-  font-size: $font-size-header-xs;
-  cursor: pointer;
-}
-
-.grid-search__icon-align {
-  position: absolute;
-  top: 4px;
-  right: 12px;
-}
-
-.grid-search__container {
-  display: flex;
-  align-items: center;
-  position: relative;
-  flex: 1;
-}
-
-@media screen and (max-width: $grid-screen-sm-max) {
-  .grid-search {
-    font-size: $font-size-caption;
-    padding: 8px;
-  }
-
-  @supports (-webkit-touch-callout: none) {
-    .grid-search__icon-align {
-      right: 10px;
-    }
-  }
-
-  @supports not (-webkit-touch-callout: none) {
-    .grid-search__icon-align {
-      top: 2px !important;
-      right: 10px;
-    }
-  }
-
-  .grid-search__icon {
-    font-size: 28px;
-  }
 }

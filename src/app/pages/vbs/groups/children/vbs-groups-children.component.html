@@ -2,7 +2,7 @@
   <ik-header [title]="(activeGroup + '_SHORT' | churchGroupTranslate) + ' Children'">
     <ik-header-back (back)="onBackClick()"></ik-header-back>
   </ik-header>
-  <ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
+  <!-- <DEPik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
     <ik-grid-search></ik-grid-search>
     <ik-grid-download [loading]="downloadLoading" (download)="onDownloadClick()"></ik-grid-download>
     <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
@@ -10,6 +10,14 @@
     <ik-grid-column label="Birthday" field="birthday"></ik-grid-column>
     <ik-grid-column label="Created" field="insertDate"></ik-grid-column>
     <ik-grid-pager key="Children"></ik-grid-pager>
+  </DEPik-grid> -->
+  <ik-grid preferenceKey="vbsGroupChildren" [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
+    <ik-grid-search></ik-grid-search>
+    <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
+    <ik-grid-column label="CUID" field="cuid"></ik-grid-column>
+    <ik-grid-column label="Birthday" field="birthday"></ik-grid-column>
+    <ik-grid-column label="Created" field="insertDate"></ik-grid-column>
+    <ik-grid-pager pageSize="15" key="Children"></ik-grid-pager>
   </ik-grid>
 </ng-container>
 

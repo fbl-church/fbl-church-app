@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class AttendanceRecordGridComponent {
   @Input() dataloader: (params) => Observable<HttpResponse<AttendanceRecord[]>>;
   @Input() downloadEnabled = false;
+  @Input() preferenceKey = 'attendanceRecordGrid';
   @Output() rowClick = new EventEmitter<AttendanceRecord>();
   @Output() downloadClick = new EventEmitter<void>();
 

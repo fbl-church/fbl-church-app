@@ -20,7 +20,7 @@
       {{ data.timestampInstant | date : 'MMMM d, y' }}
     </ng-template>
   </ik-grid-column>
-  <ik-grid-pager key="Files"></ik-grid-pager>
+  <ik-grid-pager pageSize="15" key="Files"></ik-grid-pager>
 </ik-grid>
 
 <app-file-details-modal #fileDetailsModal [basePath]="readPath" (fileDeleted)="refreshGrid()"></app-file-details-modal>

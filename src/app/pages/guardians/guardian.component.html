@@ -8,10 +8,11 @@
     Add Guardian
   </button>
 </ik-header>
-<ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)" preferenceKey="guardiansGrid">
+
+<ik-grid preferenceKey="guardiansGrid" [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
   <ik-grid-column label="Phone" field="phone"></ik-grid-column>
   <ik-grid-column label="Email" field="email"></ik-grid-column>
-  <ik-grid-pager key="Guardians"></ik-grid-pager>
+  <ik-grid-pager pageSize="15" key="Guardians"></ik-grid-pager>
 </ik-grid>

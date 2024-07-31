@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,5 +13,15 @@ export class SplashScreenService {
 
   setLoading(loading: boolean) {
     this._loading.next(loading);
+  }
+
+  showSpashScreen() {
+    this.setLoading(true);
+    return of(true);
+  }
+
+  hideSpashScreen() {
+    this.setLoading(false);
+    return of(false);
   }
 }

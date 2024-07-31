@@ -10,4 +10,5 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class CardHeaderNewComponent {
   @Input() title: string;
+  @Input() border = true;
 }

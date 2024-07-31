@@ -22,13 +22,8 @@ import { FormFieldErrorComponent } from './component/form/field-error/form-field
 import { FormFieldComponent } from './component/form/field/form-field.component';
 import { FormComponent } from './component/form/form.component';
 import { GridChecklistColumnComponent } from './component/grid/grid-checklist-column/grid-checklist-column.component';
-import { GridColumnComponent } from './component/grid/grid-column/grid-column.component';
 import { GridDownloadComponent } from './component/grid/grid-download/grid-download.component';
-import { GridPagerComponent } from './component/grid/grid-pager/grid-pager.component';
-import { GridSearchComponent } from './component/grid/grid-search/grid-search.component';
 import { GridSelectionColumnComponent } from './component/grid/grid-selection-column/grid-selection-column.component';
-import { GridShowAllComponent } from './component/grid/grid-show-all/grid-show-all.component';
-import { GridComponent } from './component/grid/grid.component';
 import { HeaderBackComponent } from './component/header/header-back/header-back.component';
 import { HeaderComponent } from './component/header/header.component';
 import { IconModule } from './component/icon/icon.module';
@@ -102,11 +97,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     CardInfoComponent,
     CardComponent,
     CheckboxComponent,
-    GridColumnComponent,
-    GridPagerComponent,
-    GridSearchComponent,
-    GridShowAllComponent,
-    GridComponent,
     GridChecklistColumnComponent,
     GridSelectionColumnComponent,
     HeaderBackComponent,
@@ -181,11 +171,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     CardInfoComponent,
     CardComponent,
     CheckboxComponent,
-    GridColumnComponent,
-    GridPagerComponent,
-    GridSearchComponent,
-    GridShowAllComponent,
-    GridComponent,
     GridChecklistColumnComponent,
     GridSelectionColumnComponent,
     HeaderBackComponent,

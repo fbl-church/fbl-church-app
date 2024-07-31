@@ -66,18 +66,14 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-xl-6">
       <app-vbs-theme-details-card
         [theme]="themeData"
         [editEnabled]="themeData.status !== 'CLOSED'"
       ></app-vbs-theme-details-card>
 
-      <ik-grid
-        #vbsAttendanceRecordGrid
-        [dataLoader]="vbsAttendanceDataloader"
-        (rowClick)="onAttendanceRecordRowClick($event)"
-      >
-        <ik-card-header title="Attendance Records">
+      <ik-grid [dataLoader]="vbsAttendanceDataloader" (rowClick)="onAttendanceRecordRowClick($event)">
+        <ik-card-header-new title="Attendance Records">
           <ng-container *ngIf="themeData.status !== 'CLOSED'">
             <ik-icon
               title="Add Record"
@@ -87,7 +83,7 @@
               (click)="vbsAttendanceModal.open()"
             ></ik-icon>
           </ng-container>
-        </ik-card-header>
+        </ik-card-header-new>
         <ik-grid-column label="Name" field="name"> </ik-grid-column>
         <ik-grid-column label="Status" field="status">
           <ng-template let-data>
@@ -95,13 +91,12 @@
           </ng-template>
         </ik-grid-column>
         <ik-grid-column label="Active Date" field="activeDate"></ik-grid-column>
-        <ik-grid-pager key="Records" [pagerVisible]="false"></ik-grid-pager>
       </ik-grid>
     </div>
 
-    <div class="col-lg-6">
+    <div class="col-xl-6">
       <ik-grid #vbsPointsGrid [dataLoader]="vbsPointsDataloader" (rowClick)="vbsPointsDetailModal.open($event)">
-        <ik-card-header title="Point Structure">
+        <ik-card-header-new title="Point Structure">
           <ng-container *ngIf="themeData.status !== 'CLOSED'">
             <ik-icon
               title="Add Points"
@@ -111,7 +106,7 @@
               (click)="vbsCreatePointsModal.open(null)"
             ></ik-icon>
           </ng-container>
-        </ik-card-header>
+        </ik-card-header-new>
         <ik-grid-column label="Name" field="displayName"> </ik-grid-column>
         <ik-grid-column label="Points" field="points"></ik-grid-column>
         <ik-grid-column label="Registration">
@@ -129,18 +124,21 @@
             <div>{{ data.enabled ? 'Yes' : 'No' }}</div>
           </ng-template>
         </ik-grid-column>
-        <ik-grid-pager key="Points" [pagerVisible]="false"></ik-grid-pager>
       </ik-grid>
 
-      <ik-grid #vbsThemeGroupsGrid [dataLoader]="vbsThemeGroupsDataloader" (rowClick)="themeGroupModal.open($event)">
-        <ik-card-header title="VBS Groups"> </ik-card-header>
+      <ik-grid
+        #vbsThemeGroupsGrid
+        preferenceKey="usersGrid"
+        [dataLoader]="vbsThemeGroupsDataloader"
+        (rowClick)="themeGroupModal.open($event)"
+      >
+        <ik-card-header-new title="VBS Groups"> </ik-card-header-new>
         <ik-grid-column label="Group" field="group">
           <ng-template let-data>
             <div>{{ data.group | churchGroupTranslate }}</div>
           </ng-template>
         </ik-grid-column>
         <ik-grid-column label="Name" field="name"></ik-grid-column>
-        <ik-grid-pager key="Groups" [pagerVisible]="false"></ik-grid-pager>
       </ik-grid>
     </div>
   </div>

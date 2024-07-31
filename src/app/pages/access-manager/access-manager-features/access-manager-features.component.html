@@ -4,7 +4,8 @@
     Create Feature
   </button>
 </ik-header>
-<ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)" preferenceKey="featuresGrid">
+
+<ik-grid preferenceKey="featuresGrid" [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="App" field="app"> </ik-grid-column>
   <ik-grid-column label="Name" field="feature"> </ik-grid-column>
@@ -16,7 +17,6 @@
     </ng-template>
   </ik-grid-column>
   <ik-grid-column label="Insert Date" field="insertDate"> </ik-grid-column>
-  <ik-grid-pager key="Features" [pageSize]="10"></ik-grid-pager>
+  <ik-grid-pager pageSize="15" key="Users"></ik-grid-pager>
 </ik-grid>
-
 <app-create-feature-modal #featureCreateModal [mappedApplications]="mappedApplications"></app-create-feature-modal>

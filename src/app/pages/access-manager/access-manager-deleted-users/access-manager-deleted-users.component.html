@@ -1,8 +1,8 @@
 <ik-header title="Deleted Users"> </ik-header>
-<ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)" preferenceKey="deletedUsersGrid">
+<ik-grid preferenceKey="deletedUsersGrid" [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="Name" field="formattedName"> </ik-grid-column>
   <ik-grid-column label="Email" field="email"></ik-grid-column>
   <ik-grid-column label="Created" field="insertDate"></ik-grid-column>
-  <ik-grid-pager key="Users"></ik-grid-pager>
+  <ik-grid-pager pageSize="15" key="Users"></ik-grid-pager>
 </ik-grid>

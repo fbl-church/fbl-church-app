@@ -1,10 +1,19 @@
-<ik-icon title="Search" icon="search" classOverride="grid-search__icon" class="grid-search__icon-align"></ik-icon>
-<div class="grid-search">
-  <ik-tag-input-field
-    class="input-tag__margin"
-    placeholder="Search"
-    [tags]="searchTags"
-    [maxInputs]="maxSearchInputs"
-    (tagsUpdated)="onSearch($event)"
-  ></ik-tag-input-field>
-</div>
+<mat-form-field class="width--full" subscriptSizing="dynamic">
+  <mat-label>Search</mat-label>
+  <mat-chip-grid #chipGrid aria-label="Enter fruits">
+    <mat-chip-row *ngFor="let search of searchTags" (removed)="remove(search)" [editable]="true">
+      {{ search }}
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip-row>
+    <input
+      placeholder="New Search..."
+      [matChipInputFor]="chipGrid"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="true"
+      (matChipInputTokenEnd)="add($event)"
+    />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-chip-grid>
+</mat-form-field>

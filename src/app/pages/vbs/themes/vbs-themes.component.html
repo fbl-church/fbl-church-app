@@ -5,17 +5,14 @@
   </button>
 </ik-header>
 
-<!-- <app-vbs-stat-cards></app-vbs-stat-cards> -->
-
-<ik-grid [dataLoader]="dataloader" preferenceKey="vbsThemeGrid" (rowClick)="onRowClick($event)">
+<ik-grid preferenceKey="vbsThemeGrid" [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="Name" field="name"> </ik-grid-column>
-
-  <ik-grid-column label="Status" field="status">
+  <ik-grid-column label="Status">
     <ng-template let-data>
       <div [ngClass]="data.status">{{ data.status }}</div>
     </ng-template>
   </ik-grid-column>
   <ik-grid-column label="Start Date" field="startDate"></ik-grid-column>
-  <ik-grid-pager key="VBS Themes"></ik-grid-pager>
+  <ik-grid-pager pageSize="15" key="VBS Themes"></ik-grid-pager>
 </ik-grid>

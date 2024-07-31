@@ -1,6 +1,10 @@
 <ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
-  <ik-card-header [title]="title"></ik-card-header>
+  <ik-card-header-new [title]="title"></ik-card-header-new>
   <ik-grid-column label="Name" field="recordName"></ik-grid-column>
-  <ik-grid-column label="Active Date" field="recordDate"></ik-grid-column>
-  <ik-grid-pager key="Records" [pagerVisible]="pagerVisible" [pageSize]="5"></ik-grid-pager>
+  <ik-grid-column label="Active Date">
+    <ng-template let-data>
+      {{ data.recordDate | date : 'longDate' }}
+    </ng-template>
+  </ik-grid-column>
+  <ik-grid-pager pageSize="5" [hidePageSize]="true" key="Records"></ik-grid-pager>
 </ik-grid>
