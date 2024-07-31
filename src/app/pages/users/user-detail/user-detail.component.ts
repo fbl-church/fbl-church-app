@@ -8,6 +8,7 @@ import { UserAccessService } from 'projects/insite-kit/src/service/auth/user-acc
 import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 import { PopupService } from 'projects/insite-kit/src/service/notification/popup.service';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { UserService } from 'src/service/users/user.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -27,14 +28,22 @@ export class UserDetailComponent implements OnInit, OnDestroy {
 
   destroy = new Subject<void>();
   qrCodeUrl = '';
+  dataloader: any;
 
   constructor(
     private readonly route: ActivatedRoute,
     private readonly popupService: PopupService,
     private readonly navigationService: NavigationService,
     private readonly jwt: JwtService,
-    private readonly userAccessService: UserAccessService
-  ) {}
+    private readonly userAccessService: UserAccessService,
+    private readonly userService: UserService
+  ) {
+    this.dataloader = (params: any) => this.getUserDataLoader(params);
+  }
+
+  getUserDataLoader(params?: Map<string, string[]>) {
+    return this.userService.getUsers(params);
+  }
 
   ngOnInit() {
     this.route.data

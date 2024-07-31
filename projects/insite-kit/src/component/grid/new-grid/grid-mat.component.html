@@ -1,0 +1,52 @@
+<div class="grid-card">
+  <div class="grid-content">
+    <table mat-table [dataSource]="dataSource" class="grid-table">
+      <!-- Position Column -->
+      <!-- <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <td mat-cell *matCellDef="let element" class="grid-cell">
+          <mat-form-field appearance="outline" subscriptSizing="dynamic">
+            <mat-label>Cars</mat-label>
+            <select matNativeControl required>
+              <option value="volvo">Volvo</option>
+              <option value="saab">Saab</option>
+              <option value="mercedes">Mercedes</option>
+              <option value="audi">Audi</option>
+            </select>
+          </mat-form-field>
+        </td>
+      </ng-container> -->
+
+      <ng-container *ngFor="let col of columns.toArray()">
+        <ng-container [matColumnDef]="col.label">
+          <th mat-header-cell class="grid-column__header" *matHeaderCellDef>{{ col.label }}</th>
+          <td mat-cell class="grid-cell" *matCellDef="let element">{{ element[col.field] }}</td>
+        </ng-container>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns" class="grid-row" (click)="onRowClick(row)"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <ng-container *ngIf="loading; else noData">
+          <td [attr.colspan]="columns.length">
+            <div class="grid-loading-overlay">
+              <mat-spinner *ngIf="loading" strokeWidth="4"></mat-spinner>
+            </div>
+          </td>
+        </ng-container>
+        <ng-template #noData>
+          <td class="grid-content--no-data" [attr.colspan]="columns.length">No Data</td>
+        </ng-template>
+      </tr>
+    </table>
+  </div>
+
+  <mat-paginator
+    [disabled]="loading"
+    [pageSizeOptions]="[5, 10, 15, 25]"
+    [pageSize]="pageSize"
+    showFirstLastButtons="true"
+    class="grid-pager"
+  ></mat-paginator>
+</div>

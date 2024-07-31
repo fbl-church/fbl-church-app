@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxColorsModule } from 'ngx-colors';
+import { GridMatComponent } from 'projects/insite-kit/src/component/grid/new-grid/grid-mat.component';
 import { InsiteKitModule } from 'projects/insite-kit/src/insite-kit.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 /**
@@ -18,6 +19,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
  * @since August 18, 2022
  */
 @NgModule({
+  imports: [GridMatComponent],
   exports: [
     BrowserModule,
     RouterModule,
@@ -30,6 +32,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     InsiteKitModule,
     NgSelectModule,
     NgxColorsModule,
+    GridMatComponent,
   ],
 })
 export class BaseInitModule {}
