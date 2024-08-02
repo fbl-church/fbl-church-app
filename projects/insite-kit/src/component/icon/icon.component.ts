@@ -1,4 +1,6 @@
+import { NgClass, NgIf } from '@angular/common';
 import { Component, HostBinding, Input } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconName, IconPrefix } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -7,6 +9,8 @@ import { IconName, IconPrefix } from '@fortawesome/free-solid-svg-icons';
   host: {
     '[attr.disabled]': 'disabled || null',
   },
+  standalone: true,
+  imports: [NgClass, NgIf, FontAwesomeModule],
 })
 export class IconComponent {
   @Input() @HostBinding('class.icon--disabled') disabled: boolean;

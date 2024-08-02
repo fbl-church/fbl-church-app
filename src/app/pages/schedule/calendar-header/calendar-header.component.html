@@ -1,11 +1,5 @@
-<div class="btn-group header-flex">
-  <div class="text-center">
-    <h3 class="month-title">
-      {{ viewDate | calendarDate : CalendarView.Month + 'ViewTitle' : 'en' }}
-    </h3>
-  </div>
-
-  <div class="calendar-navigation">
+<ik-header [title]="viewDate | calendarDate : CalendarView.Month + 'ViewTitle' : 'en'">
+  <div class="calendar-navigation" ngProjectAs="button">
     <ik-icon icon="list" (click)="onCalendarViewChangeClick()" classOverride="calendar-navigation--view"></ik-icon>
     <ik-icon
       icon="angle-left"
@@ -27,4 +21,4 @@
       [(viewDate)]="viewDate"
     ></ik-icon>
   </div>
-</div>
+</ik-header>

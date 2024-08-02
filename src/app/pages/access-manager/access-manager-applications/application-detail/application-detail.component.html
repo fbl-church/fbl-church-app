@@ -16,12 +16,11 @@
   </ik-header>
 
   <div class="row">
-    <ik-card-new class="col-xl-5">
-      <ik-card-header-new title="Details"></ik-card-header-new>
+    <ik-card class="col-xl-5">
+      <ik-card-header title="Details"></ik-card-header>
       <div class="row">
-        <ik-card-info class="col-md-6" header="Name" [text]="application.displayName" [padding]="false"></ik-card-info>
-
-        <ik-card-info class="col-md-6" header="Key" [text]="application.key" [padding]="false"></ik-card-info>
+        <ik-card-info class="col-md-6" header="Name" [text]="application.displayName"></ik-card-info>
+        <ik-card-info class="col-md-6" header="Key" [text]="application.key"></ik-card-info>
       </div>
       <div class="row">
         <ik-card-info
@@ -29,13 +28,12 @@
           [contentColor]="application.enabled ? 'ENABLED' : 'DISABLED'"
           header="Status"
           [text]="application.enabled ? 'Enabled' : 'Disabled'"
-          [padding]="false"
         ></ik-card-info>
       </div>
-    </ik-card-new>
+    </ik-card>
 
     <ik-grid class="col-xl-7" [dataLoader]="webRoleAppDataloader" (rowClick)="onRowClick($event)">
-      <ik-card-header-new title="Web Role Apps"> </ik-card-header-new>
+      <ik-card-header title="Web Role Apps"> </ik-card-header>
       <ik-grid-search></ik-grid-search>
       <ik-grid-column label="Role" field="formattedWebRole"> </ik-grid-column>
       <ik-grid-column label="Access" field="create">

@@ -1,6 +1,10 @@
-.card-info {
-  margin-bottom: 20px;
+.card__content > .row:not(:last-child) {
+  .card-info {
+    margin-bottom: 20px;
+  }
+}
 
+.card-info {
   &--container {
     display: flex;
     align-items: center;
@@ -37,11 +41,17 @@
   }
 }
 
-ik-card-new > .row {
+ik-card > .row {
   margin-bottom: 0;
 }
 
 @media screen and (max-width: $card-screen-sm-max) {
+  .card__content > .row:last-child {
+    ik-card-info:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+
   .card-info {
     &__label-header {
       font-size: $font-size-base !important;

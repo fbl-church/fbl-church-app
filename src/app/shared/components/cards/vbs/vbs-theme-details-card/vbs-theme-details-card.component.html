@@ -11,29 +11,19 @@
     </ng-container>
   </ik-card-header>
   <ng-container *ngIf="theme; else cardLoader">
-    <div class="flex">
-      <div class="left-column">
-        <ik-card-info header="Theme" [text]="theme.name"></ik-card-info>
-      </div>
-      <div class="right-column">
-        <ik-card-info header="Donating To" [text]="theme.donation"></ik-card-info>
-      </div>
+    <div class="row">
+      <ik-card-info class="col-md-6" header="Theme" [text]="theme.name"></ik-card-info>
+      <ik-card-info class="col-md-6" header="Donating To" [text]="theme.donation"></ik-card-info>
     </div>
-    <div class="flex">
-      <div class="right-column">
-        <ik-card-info header="Start Date" [text]="theme.startDate | date : 'MMMM d, y'"></ik-card-info>
-      </div>
-      <div class="right-column">
-        <ik-card-info header="End Date" [text]="theme.endDate | date : 'MMMM d, y'"></ik-card-info>
-      </div>
+    <div class="row">
+      <ik-card-info class="col-md-6" header="Start Date" [text]="theme.startDate | date : 'MMMM d, y'"></ik-card-info>
+
+      <ik-card-info class="col-md-6" header="End Date" [text]="theme.endDate | date : 'MMMM d, y'"></ik-card-info>
     </div>
-    <div class="flex">
-      <div class="right-column">
-        <ik-card-info [contentColor]="theme.status" header="Status" [text]="theme.status"></ik-card-info>
-      </div>
-      <div class="right-column">
-        <ik-card-info header="Created" [text]="theme.insertDate | date : 'MMMM d, y'"></ik-card-info>
-      </div>
+    <div class="row">
+      <ik-card-info class="col-md-6" [contentColor]="theme.status" header="Status" [text]="theme.status"></ik-card-info>
+
+      <ik-card-info class="col-md-6" header="Created" [text]="theme.insertDate | date : 'MMMM d, y'"></ik-card-info>
     </div>
   </ng-container>
 </ik-card>

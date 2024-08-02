@@ -30,7 +30,7 @@
       [dataLoader]="childrenDataloader"
       (rowClick)="updateChildAttendanceModal.open($event)"
     >
-      <ik-card-header-new title="Children">
+      <ik-card-header title="Children">
         <ng-container *ngIf="record.status !== 'CLOSED'">
           <ik-icon
             *featureAccess="[Application.NURSERY, FeatureType.CHECK_IN_CHILDREN, Access.UPDATE]"
@@ -40,13 +40,13 @@
             (click)="onChildrenCheckInEditClick()"
           ></ik-icon>
         </ng-container>
-      </ik-card-header-new>
+      </ik-card-header>
     </app-attendance-record-children-grid>
   </div>
 
   <div class="layout__column-right layout__narrow">
     <app-attendance-record-workers-grid [dataloader]="workerDataloader">
-      <ik-card-header-new title="Workers">
+      <ik-card-header title="Workers">
         <ng-container *ngIf="record.status !== 'CLOSED'">
           <ik-icon
             *featureAccess="[Application.NURSERY, FeatureType.CHECK_IN_DETAIL, Access.UPDATE]"
@@ -57,7 +57,7 @@
             (click)="onEditClick()"
           ></ik-icon>
         </ng-container>
-      </ik-card-header-new>
+      </ik-card-header>
     </app-attendance-record-workers-grid>
   </div>
 </ng-container>

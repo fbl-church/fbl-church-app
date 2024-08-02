@@ -1,13 +1,19 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 
-import { FileItem, FileUploaderOptions } from 'ng2-file-upload';
+import { FileItem, FileUploaderOptions, FileUploadModule } from 'ng2-file-upload';
 
-import { Observable, Subject, concat, concatMap, takeUntil, tap, toArray } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { concat, concatMap, Observable, Subject, takeUntil, tap, toArray } from 'rxjs';
+import { CardModule } from '../card/card.module';
+import { IconModule } from '../icon/icon.module';
+import { ProgressComponent } from '../progress/progress.component';
 import { InsiteFileUploader } from './file-uploader.model';
 
 @Component({
   selector: 'ik-upload',
   templateUrl: './upload.component.html',
+  standalone: true,
+  imports: [CardModule, FileUploadModule, ProgressComponent, IconModule, CommonModule],
 })
 export class UploadComponent implements OnInit, OnDestroy {
   @Input() options: FileUploaderOptions;

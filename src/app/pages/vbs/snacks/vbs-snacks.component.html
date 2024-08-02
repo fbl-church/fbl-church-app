@@ -2,7 +2,7 @@
   <ik-header [title]="'Snacks - ' + themeData.name"> </ik-header>
   <div class="row">
     <ik-grid class="col-xl-6" [dataLoader]="vbsThemeGroupsDataloader" (rowClick)="onGroupRowClick($event)">
-      <ik-card-header-new title="VBS Groups - Allergies"> </ik-card-header-new>
+      <ik-card-header title="VBS Groups - Allergies"> </ik-card-header>
       <ik-grid-column label="Group" field="group">
         <ng-template let-data>
           <div>{{ data.group | churchGroupTranslate }}</div>
@@ -12,7 +12,7 @@
     </ik-grid>
 
     <ik-grid class="col-xl-6" [dataLoader]="vbsAttendanceDataloader" (rowClick)="onAttendanceRecordRowClick($event)">
-      <ik-card-header-new title="Attendance Records"> </ik-card-header-new>
+      <ik-card-header title="Attendance Records"> </ik-card-header>
       <ik-grid-column label="Name" field="name"> </ik-grid-column>
       <ik-grid-column label="Status">
         <ng-template let-data>

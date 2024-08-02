@@ -1,2 +1,6 @@
-<div class="card-header__title" *ngIf="title">{{ title }}</div>
-<ng-content></ng-content>
+<mat-card-header class="card-header-mat" [ngClass]="{ 'border-none': !border }">
+  <mat-card-title-group>
+    <mat-card-title class="card-header__title" *ngIf="title">{{ title }}</mat-card-title>
+    <ng-content></ng-content>
+  </mat-card-title-group>
+</mat-card-header>

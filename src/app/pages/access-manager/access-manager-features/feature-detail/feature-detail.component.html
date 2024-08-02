@@ -16,12 +16,12 @@
   </ik-header>
 
   <div class="row">
-    <ik-card-new class="col-xl-5">
-      <ik-card-header-new title="Details"></ik-card-header-new>
+    <ik-card class="col-xl-5">
+      <ik-card-header title="Details"></ik-card-header>
       <div class="row">
-        <ik-card-info class="col-md-6" header="App" [text]="feature.app" [padding]="false"></ik-card-info>
+        <ik-card-info class="col-md-6" header="App" [text]="feature.app"></ik-card-info>
 
-        <ik-card-info class="col-md-6" header="Feature" [text]="feature.feature" [padding]="false"></ik-card-info>
+        <ik-card-info class="col-md-6" header="Feature" [text]="feature.feature"></ik-card-info>
       </div>
       <div class="row">
         <ik-card-info
@@ -29,19 +29,17 @@
           [contentColor]="feature.enabled ? 'ENABLED' : 'DISABLED'"
           header="Status"
           [text]="feature.enabled ? 'Enabled' : 'Disabled'"
-          [padding]="false"
         ></ik-card-info>
         <ik-card-info
           class="col-md-6"
           header="Insert Date"
           [text]="feature.insertDate | date : 'MMMM d, y'"
-          [padding]="false"
         ></ik-card-info>
       </div>
-    </ik-card-new>
+    </ik-card>
 
     <ik-grid class="col-xl-7" [dataLoader]="webRoleFeaturesDataloader" (rowClick)="onRowClick($event)">
-      <ik-card-header-new title="Web Role Apps"> </ik-card-header-new>
+      <ik-card-header title="Web Role Apps"> </ik-card-header>
       <ik-grid-search></ik-grid-search>
       <ik-grid-column label="Role" field="formattedWebRole"> </ik-grid-column>
       <ik-grid-column label="Create" field="create">

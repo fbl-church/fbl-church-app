@@ -32,7 +32,7 @@
         [dataLoader]="vbsChildrenDataloader"
         (rowClick)="vbsChildAttendanceUpdateModal.open($event)"
       >
-        <ik-card-header-new title="Children">
+        <ik-card-header title="Children">
           <ng-container *ngIf="attendanceRecord.status !== 'CLOSED'">
             <ik-icon
               *featureAccess="[Application.VBS, FeatureType.CHECK_IN_CHILDREN, Access.UPDATE]"
@@ -42,13 +42,13 @@
               (click)="onCheckInChildrenClick()"
             ></ik-icon>
           </ng-container>
-        </ik-card-header-new>
+        </ik-card-header>
       </app-attendance-record-children-grid>
     </div>
 
     <div class="col-xl-5">
       <ik-grid resultKey="Offering Winners" [dataLoader]="vbsOfferingWinnersDataloader">
-        <ik-card-header-new title="Offering Winners">
+        <ik-card-header title="Offering Winners">
           <ng-container *ngIf="attendanceRecord.status !== 'CLOSED'">
             <ik-icon
               *featureAccess="[Application.VBS, FeatureType.CHECK_IN_DETAIL, Access.UPDATE]"
@@ -59,7 +59,7 @@
               (click)="onEditClick()"
             ></ik-icon>
           </ng-container>
-        </ik-card-header-new>
+        </ik-card-header>
         <ik-grid-column label="Group" field="group">
           <ng-template let-data>
             {{ data.group + '_SHORT' | churchGroupTranslate }}
@@ -70,7 +70,7 @@
       </ik-grid>
 
       <ik-grid [dataLoader]="vbsWorkersDataloader">
-        <ik-card-header-new title="Workers"> </ik-card-header-new>
+        <ik-card-header title="Workers"> </ik-card-header>
         <ik-grid-search></ik-grid-search>
         <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
         <ik-grid-column label="Email" field="email"></ik-grid-column>

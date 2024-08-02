@@ -1,5 +1,5 @@
 <ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
-  <ng-content select="ik-card-header-new" ngProjectAs="ik-card-header-new"></ng-content>
+  <ng-content select="ik-card-header" ngProjectAs="ik-card-header"></ng-content>
   <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
   <ik-grid-column label="Email" field="email"></ik-grid-column>
 </ik-grid>

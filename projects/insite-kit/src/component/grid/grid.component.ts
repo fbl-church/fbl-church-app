@@ -23,8 +23,7 @@ import { MatTableModule } from '@angular/material/table';
 import { GridDataloader } from 'projects/insite-kit/src/model/grid.model';
 import { JwtService } from 'projects/insite-kit/src/service/auth/jwt.service';
 import { Subject, takeUntil, tap } from 'rxjs';
-import { CardHeaderNewComponent } from '../card/card-header/card-header-new.component';
-import { CardNewComponent } from '../card/card-new.component';
+import { CardModule } from '../card/card.module';
 import { GridColumnComponent } from './grid-column/grid-column.component';
 import { GridPagerComponent } from './grid-pager/grid-pager.component';
 import { GridParamBuilder } from './grid-param-builder/grid-param-builder.component';
@@ -43,8 +42,7 @@ import { GridSearchComponent } from './grid-search/grid-searchcomponent';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    CardNewComponent,
-    CardHeaderNewComponent,
+    CardModule,
     MatChipsModule,
     CommonModule,
   ],

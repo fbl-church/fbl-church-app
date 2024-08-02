@@ -1,5 +1,5 @@
 <ik-grid [preferenceKey]="preferenceKey" [dataLoader]="dataLoader" (rowClick)="onRowClick($event)">
-  <ng-content select="ik-card-header-new" ngProjectAs="ik-card-header-new"></ng-content>
+  <ng-content select="ik-card-header" ngProjectAs="ik-card-header"></ng-content>
   <ik-grid-search></ik-grid-search>
   <ik-grid-column label="Name" field="formattedName"> </ik-grid-column>
   <ik-grid-column label="CUID" field="cuid"></ik-grid-column>

@@ -5,28 +5,32 @@
       Reset Password
     </button>
   </ik-header>
-  <div class="layout__column-left layout__wide">
-    <app-user-details-card
-      *ngIf="!currentUser.phone; else guardianDetails"
-      [user]="currentUser"
-      (editClick)="onEditClick()"
-    >
-      <ik-icon title="Edit" icon="pen-to-square" class="right pointer" (click)="onEditClick()"></ik-icon
-    ></app-user-details-card>
-    <ng-template #guardianDetails>
-      <app-guardian-details-card [guardian]="currentUser">
-        <ik-icon title="Edit" icon="pen-to-square" class="right pointer" (click)="onEditClick()"></ik-icon
-      ></app-guardian-details-card>
-    </ng-template>
-  </div>
 
-  <div class="layout__column-right layout__narrow">
-    <app-guardian-children-details-grid
-      *ngIf="currentUser.phone"
-      [guardianId]="currentUser.id"
-      (rowClick)="onChildRowClick($event)"
-    ></app-guardian-children-details-grid>
-    <app-user-roles-card *ngIf="!isGuardianOnly" [user]="currentUser"></app-user-roles-card>
+  <div class="row">
+    <div class="col-lg-7">
+      <app-user-details-card
+        *ngIf="!currentUser.phone; else guardianDetails"
+        [user]="currentUser"
+        (editClick)="onEditClick()"
+      >
+        <ik-icon title="Edit" icon="pen-to-square" class="right pointer" (click)="onEditClick()"></ik-icon
+      ></app-user-details-card>
+
+      <ng-template #guardianDetails>
+        <app-guardian-details-card [guardian]="currentUser">
+          <ik-icon title="Edit" icon="pen-to-square" class="right pointer" (click)="onEditClick()"></ik-icon
+        ></app-guardian-details-card>
+      </ng-template>
+    </div>
+
+    <div class="col-lg-5">
+      <app-guardian-children-details-grid
+        *ngIf="currentUser.phone"
+        [guardianId]="currentUser.id"
+        (rowClick)="onChildRowClick($event)"
+      ></app-guardian-children-details-grid>
+      <app-user-roles-card *ngIf="!isGuardianOnly" [user]="currentUser"></app-user-roles-card>
+    </div>
   </div>
 </ng-container>
 

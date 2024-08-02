@@ -14,6 +14,10 @@
   <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
   <ik-grid-column label="CUID" field="cuid"></ik-grid-column>
   <ik-grid-column label="Birthday" field="birthday"></ik-grid-column>
-  <ik-grid-column label="Created" field="insertDate"></ik-grid-column>
+  <ik-grid-column label="Created">
+    <ng-template let-data>
+      {{ data.insertDate | date : 'longDate' }}
+    </ng-template>
+  </ik-grid-column>
   <ik-grid-pager pageSize="15" key="Children"></ik-grid-pager>
 </ik-grid>

@@ -62,8 +62,7 @@ import { BaseInsiteModule } from '../../base-insite.module';
 import { IconComponent } from './icon.component';
 
 @NgModule({
-  declarations: [IconComponent],
-  imports: [BaseInsiteModule],
+  imports: [BaseInsiteModule, IconComponent],
   exports: [IconComponent],
 })
 export class IconModule {

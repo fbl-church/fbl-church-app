@@ -1,5 +1,5 @@
 <ik-grid [dataLoader]="dataloader">
-  <ik-card-header-new title="Church Groups">
+  <ik-card-header title="Church Groups">
     <ng-container *featureAccess="[Application.CHILDREN, FeatureType.DETAIL, Access.UPDATE]">
       <ik-icon
         *ngIf="editIconVisible"
@@ -10,7 +10,7 @@
         (click)="onEditIconClick()"
       ></ik-icon>
     </ng-container>
-  </ik-card-header-new>
+  </ik-card-header>
   <ik-grid-column label="Group" field="name"></ik-grid-column>
   <ik-grid-column label="ID" field="id"></ik-grid-column>
 </ik-grid>

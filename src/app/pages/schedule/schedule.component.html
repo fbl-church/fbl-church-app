@@ -5,7 +5,7 @@
     (showListView)="onToggleCalendarView()"
   ></app-calendar-header>
 
-  <ik-card>
+  <ik-card [padding]="false">
     <mwl-calendar-month-view
       *ngIf="!loading; else calLoader"
       [viewDate]="viewDate"

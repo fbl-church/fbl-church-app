@@ -44,26 +44,19 @@
   </ik-header>
 
   <div class="row">
-    <div class="col-sm-4">
-      <ik-card class="vbs-stats__card">
-        <div class="vbs-stats__header">Children Registered</div>
-        <div class="vbs-stats__body">{{ vbsChildrenStats ? vbsChildrenStats.registeredChildren : '-' }}</div>
-      </ik-card>
-    </div>
+    <ik-card-chip
+      class="col-sm-4"
+      title="Children Registered"
+      [value]="vbsChildrenStats ? vbsChildrenStats.registeredChildren : '-'"
+    ></ik-card-chip>
 
-    <div class="col-sm-4">
-      <ik-card class="vbs-stats__card">
-        <div class="vbs-stats__header">Children Attended</div>
-        <div class="vbs-stats__body">{{ themeData.childrenAttended }}</div>
-      </ik-card>
-    </div>
+    <ik-card-chip
+      class="col-sm-4"
+      title="Children Attended"
+      [value]="vbsChildrenStats ? themeData.childrenAttended : '-'"
+    ></ik-card-chip>
 
-    <div class="col-sm-4">
-      <ik-card class="vbs-stats__card">
-        <div class="vbs-stats__header">Offering Total</div>
-        <div class="vbs-stats__body">{{ themeData.money | currency }}</div>
-      </ik-card>
-    </div>
+    <ik-card-chip class="col-sm-4" title="Offering Total" [value]="themeData.money | currency"></ik-card-chip>
   </div>
   <div class="row">
     <div class="col-xl-6">
@@ -73,7 +66,7 @@
       ></app-vbs-theme-details-card>
 
       <ik-grid [dataLoader]="vbsAttendanceDataloader" (rowClick)="onAttendanceRecordRowClick($event)">
-        <ik-card-header-new title="Attendance Records">
+        <ik-card-header title="Attendance Records">
           <ng-container *ngIf="themeData.status !== 'CLOSED'">
             <ik-icon
               title="Add Record"
@@ -83,7 +76,7 @@
               (click)="vbsAttendanceModal.open()"
             ></ik-icon>
           </ng-container>
-        </ik-card-header-new>
+        </ik-card-header>
         <ik-grid-column label="Name" field="name"> </ik-grid-column>
         <ik-grid-column label="Status" field="status">
           <ng-template let-data>
@@ -96,7 +89,7 @@
 
     <div class="col-xl-6">
       <ik-grid #vbsPointsGrid [dataLoader]="vbsPointsDataloader" (rowClick)="vbsPointsDetailModal.open($event)">
-        <ik-card-header-new title="Point Structure">
+        <ik-card-header title="Point Structure">
           <ng-container *ngIf="themeData.status !== 'CLOSED'">
             <ik-icon
               title="Add Points"
@@ -106,7 +99,7 @@
               (click)="vbsCreatePointsModal.open(null)"
             ></ik-icon>
           </ng-container>
-        </ik-card-header-new>
+        </ik-card-header>
         <ik-grid-column label="Name" field="displayName"> </ik-grid-column>
         <ik-grid-column label="Points" field="points"></ik-grid-column>
         <ik-grid-column label="Registration">
@@ -132,7 +125,7 @@
         [dataLoader]="vbsThemeGroupsDataloader"
         (rowClick)="themeGroupModal.open($event)"
       >
-        <ik-card-header-new title="VBS Groups"> </ik-card-header-new>
+        <ik-card-header title="VBS Groups"> </ik-card-header>
         <ik-grid-column label="Group" field="group">
           <ng-template let-data>
             <div>{{ data.group | churchGroupTranslate }}</div>

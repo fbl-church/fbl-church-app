@@ -1,6 +1,7 @@
 .header-title {
   display: inline-block;
   text-align: center;
+  line-height: $font-size-header-lg;
   font-size: $font-size-header-lg;
   font-family: emoji, sans-serif;
   font-weight: $font-weight-semi-bold;
@@ -37,6 +38,7 @@
 
 @media screen and (max-width: $header-screen-lg-max) {
   .header-title {
+    line-height: $font-size-header-xs;
     font-size: $font-size-header-xs;
   }
 }
@@ -49,6 +51,7 @@
 
 @media screen and (max-width: $header-screen-sm-max) {
   .header-title {
+    line-height: $font-size-xl;
     font-size: $font-size-xl;
   }
 }

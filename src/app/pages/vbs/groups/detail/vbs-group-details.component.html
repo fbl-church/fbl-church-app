@@ -16,7 +16,7 @@
         [dataLoader]="vbsAttendanceDataloader"
         (rowClick)="onAttendanceRecordRowClick($event)"
       >
-        <ik-card-header-new title="Attendance Records"> </ik-card-header-new>
+        <ik-card-header title="Attendance Records"> </ik-card-header>
         <ik-grid-column label="Name" field="name"> </ik-grid-column>
         <ik-grid-column label="Status">
           <ng-template let-data>
@@ -34,17 +34,17 @@
     <div class="col-lg-5">
       <ik-card>
         <ik-card-header title="Group Details"> </ik-card-header>
-        <div class="flex">
-          <div class="left-column">
-            <ik-card-info header="Group" [text]="vbsThemeGroup.group"></ik-card-info>
-          </div>
-          <div class="right-column">
-            <ik-card-info header="Name" [text]="vbsThemeGroup?.name ? vbsThemeGroup.name : '-'"></ik-card-info>
-          </div>
+        <div class="row">
+          <ik-card-info class="col-md-6" header="Group" [text]="vbsThemeGroup.group"></ik-card-info>
+          <ik-card-info
+            class="col-md-6"
+            header="Name"
+            [text]="vbsThemeGroup?.name ? vbsThemeGroup.name : '-'"
+          ></ik-card-info>
         </div>
       </ik-card>
       <ik-grid preferenceKey="usersGrid" [dataLoader]="vbsGroupWorkersDataloader">
-        <ik-card-header-new title="Workers"> </ik-card-header-new>
+        <ik-card-header title="Workers"> </ik-card-header>
         <ik-grid-search></ik-grid-search>
         <ik-grid-column label="Name" field="formattedName"></ik-grid-column>
         <ik-grid-column label="Email" field="email"></ik-grid-column>

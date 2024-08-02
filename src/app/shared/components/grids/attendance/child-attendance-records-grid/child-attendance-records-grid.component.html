@@ -1,5 +1,5 @@
 <ik-grid [dataLoader]="dataloader" (rowClick)="onRowClick($event)">
-  <ik-card-header-new [title]="title"></ik-card-header-new>
+  <ik-card-header [title]="title"></ik-card-header>
   <ik-grid-column label="Name" field="recordName"></ik-grid-column>
   <ik-grid-column label="Active Date">
     <ng-template let-data>

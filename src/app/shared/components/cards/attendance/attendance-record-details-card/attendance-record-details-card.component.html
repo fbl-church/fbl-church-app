@@ -1,45 +1,55 @@
 <ik-card>
   <ng-content select="ik-card-header" ngProjectAs="ik-card-header"></ng-content>
   <ng-container *ngIf="!loading; else cardLoader">
-    <div class="flex">
-      <div class="left-column">
-        <ik-card-info header="Name" [text]="record.name"></ik-card-info>
-      </div>
-      <div class="right-column">
-        <ik-card-info header="Attendance Type" [text]="record.type | churchGroupTranslate"></ik-card-info>
-      </div>
+    <div class="row">
+      <ik-card-info class="col-md-6" header="Name" [text]="record.name"></ik-card-info>
+      <ik-card-info
+        class="col-md-6"
+        header="Attendance Type"
+        [text]="record.type | churchGroupTranslate"
+      ></ik-card-info>
     </div>
 
-    <div class="flex">
-      <div class="left-column">
-        <ik-card-info [contentColor]="record.status" header="Status" [text]="record.status"></ik-card-info>
-      </div>
-      <div class="right-column">
-        <ik-card-info header="Unit/Session" [text]="record?.unitSession ? record.unitSession : '-'"> </ik-card-info>
-      </div>
+    <div class="row">
+      <ik-card-info
+        class="col-md-6"
+        [contentColor]="record.status"
+        header="Status"
+        [text]="record.status"
+      ></ik-card-info>
+      <ik-card-info class="col-md-6" header="Unit/Session" [text]="record?.unitSession ? record.unitSession : '-'">
+      </ik-card-info>
     </div>
 
-    <div class="flex">
-      <div class="left-column">
-        <ik-card-info header="Active Date" [text]="record.activeDate | date : 'MMMM d, y'"> </ik-card-info>
-      </div>
-
+    <div class="row">
+      <ik-card-info class="col-md-6" header="Active Date" [text]="record.activeDate | date : 'MMMM d, y'">
+      </ik-card-info>
       <ng-container *webRoleRestrictionAccess="WebRole.ADMINISTRATOR">
-        <div class="right-column" *ngIf="startedByUser && record.status !== 'PENDING'">
-          <ik-card-info header="Started By" [text]="startedByUser | formatUserName"></ik-card-info>
-        </div>
+        <ik-card-info
+          *ngIf="startedByUser && record.status !== 'PENDING'"
+          class="col-md-6"
+          header="Started By"
+          [text]="startedByUser | formatUserName"
+        ></ik-card-info>
       </ng-container>
     </div>
 
     <ng-container *webRoleRestrictionAccess="WebRole.ADMINISTRATOR">
-      <div class="flex" *ngIf="startedByUser && record.status !== 'PENDING'">
-        <div class="left-column" *ngIf="closedByUser">
-          <ik-card-info header="Closed By" [text]="closedByUser | formatUserName"></ik-card-info>
-        </div>
+      <div class="row" *ngIf="startedByUser && record.status !== 'PENDING'">
+        <ik-card-info
+          *ngIf="closedByUser"
+          class="col-md-6"
+          header="Closed By"
+          [text]="closedByUser | formatUserName"
+        ></ik-card-info>
 
-        <div class="right-column" *ngIf="record.closedDate">
-          <ik-card-info header="Closed Date" [text]="record.closedDate | date : 'MMMM d, y, h:mm a'"> </ik-card-info>
-        </div>
+        <ik-card-info
+          *ngIf="record.closedDate"
+          class="col-md-6"
+          header="Closed Date"
+          [text]="record.closedDate | date : 'MMMM d, y, h:mm a'"
+        >
+        </ik-card-info>
       </div>
     </ng-container>
   </ng-container>

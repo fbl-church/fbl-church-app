@@ -7,10 +7,11 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxColorsModule } from 'ngx-colors';
-import { CardHeaderNewComponent } from 'projects/insite-kit/src/component/card/card-header/card-header-new.component';
-import { CardNewComponent } from 'projects/insite-kit/src/component/card/card-new.component';
+import { CardModule } from 'projects/insite-kit/src/component/card/card.module';
+import { FormComponent } from 'projects/insite-kit/src/component/form/form.component';
 import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
 import { GridModule } from 'projects/insite-kit/src/component/grid/grid.module';
+import { UploadComponent } from 'projects/insite-kit/src/component/upload/upload.component';
 import { InsiteKitModule } from 'projects/insite-kit/src/insite-kit.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 /**
@@ -22,7 +23,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
  * @since August 18, 2022
  */
 @NgModule({
-  imports: [GridComponent, CardHeaderNewComponent, CardNewComponent],
+  imports: [GridComponent, UploadComponent, FormComponent],
   exports: [
     BrowserModule,
     RouterModule,
@@ -36,8 +37,9 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     NgSelectModule,
     NgxColorsModule,
     GridModule,
-    CardHeaderNewComponent,
-    CardNewComponent,
+    CardModule,
+    UploadComponent,
+    FormComponent,
   ],
 })
 export class BaseInitModule {}

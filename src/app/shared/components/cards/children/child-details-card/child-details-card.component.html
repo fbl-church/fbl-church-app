@@ -11,38 +11,29 @@
       ></ik-icon>
     </ng-container>
   </ik-card-header>
-  <div class="flex">
-    <div class="left-column">
-      <ik-card-info header="Name" text="{{ child | formatUserName }}"></ik-card-info>
-    </div>
-    <div class="right-column">
-      <ik-card-info header="CUID" text="{{ child.cuid ? child.cuid : '-' }}"> </ik-card-info>
-    </div>
+  <div class="row">
+    <ik-card-info class="col-md-6" header="Name" text="{{ child | formatUserName }}"></ik-card-info>
+    <ik-card-info class="col-md-6" header="CUID" text="{{ child.cuid ? child.cuid : '-' }}"></ik-card-info>
   </div>
 
-  <div class="flex">
-    <div class="left-column">
-      <ik-card-info
-        header="Birthday"
-        text="{{ child?.birthday ? (child.birthday | date : 'MMMM d, y') : '-' }}"
-      ></ik-card-info>
-    </div>
-    <div class="right-column">
-      <ik-card-info header="Age" text="{{ child.birthday | age }}"> </ik-card-info>
-    </div>
+  <div class="row">
+    <ik-card-info
+      class="col-md-6"
+      header="Birthday"
+      text="{{ child?.birthday ? (child.birthday | date : 'MMMM d, y') : '-' }}"
+    ></ik-card-info>
+    <ik-card-info class="col-md-6" header="Age" text="{{ child.birthday | age }}"> </ik-card-info>
   </div>
 
-  <div class="flex" *ngIf="child.insertDate">
-    <div class="left-column">
-      <ik-card-info
-        header="Liability Release"
-        [contentColor]="child.releaseOfLiability ? 'ENABLED' : 'DISABLED'"
-        text="{{ child.releaseOfLiability ? 'Agreed' : 'Denied' }}"
-      >
-      </ik-card-info>
-    </div>
-    <div class="right-column">
-      <ik-card-info header="Created Date" text="{{ child.insertDate | date : 'MMMM d, y' }}"> </ik-card-info>
-    </div>
+  <div class="row">
+    <ik-card-info
+      class="col-md-6"
+      header="Liability Release"
+      [contentColor]="child.releaseOfLiability ? 'ENABLED' : 'DISABLED'"
+      text="{{ child.releaseOfLiability ? 'Agreed' : 'Denied' }}"
+    >
+    </ik-card-info>
+    <ik-card-info class="col-md-6" header="Created Date" text="{{ child.insertDate | date : 'MMMM d, y' }}">
+    </ik-card-info>
   </div>
 </ik-card>

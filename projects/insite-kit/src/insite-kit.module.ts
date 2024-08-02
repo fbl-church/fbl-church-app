@@ -9,10 +9,6 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { ToastrModule } from 'ngx-toastr';
 import { BaseInsiteModule } from './base-insite.module';
 import { BannerComponent } from './component/banner/banner.component';
-import { CardHeaderCollapsibleComponent } from './component/card/card-header-collapsible/card-header-collapsible.component';
-import { CardHeaderComponent } from './component/card/card-header/card-header.component';
-import { CardInfoComponent } from './component/card/card-info/card-info.component';
-import { CardComponent } from './component/card/card.component';
 import { CheckboxComponent } from './component/checkbox/checkbox.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { ContactAdminModalComponent } from './component/footer/modals/contact-admin-modal/contact-admin-modal.component';
@@ -20,7 +16,6 @@ import { PrivacyPolicyModalComponent } from './component/footer/modals/privacy-p
 import { ProjectModalComponent } from './component/footer/modals/project-modal/project-modal.component';
 import { FormFieldErrorComponent } from './component/form/field-error/form-field-error.component';
 import { FormFieldComponent } from './component/form/field/form-field.component';
-import { FormComponent } from './component/form/form.component';
 import { GridChecklistColumnComponent } from './component/grid/grid-checklist-column/grid-checklist-column.component';
 import { GridDownloadComponent } from './component/grid/grid-download/grid-download.component';
 import { GridSelectionColumnComponent } from './component/grid/grid-selection-column/grid-selection-column.component';
@@ -37,13 +32,11 @@ import { ModalHeaderComponent } from './component/modal/modal-header/modal-heade
 import { ModalComponent } from './component/modal/modal.component';
 import { MultiSelectInputComponent } from './component/multiselect/multi-select-input.component';
 import { NotificationPopupComponent } from './component/notification-popup/notification-popup.component';
-import { ProgressComponent } from './component/progress/progress.component';
 import { SingleSelectInputComponent } from './component/select/select.component';
 import { SidenavDrawerDropdownComponent } from './component/sidenav-drawer/dropdown/sidenav-drawer-dropdown.component';
 import { SidenavDrawerHeaderComponent } from './component/sidenav-drawer/header/sidenav-drawer-header.component';
 import { SidenavDrawerComponent } from './component/sidenav-drawer/sidenav-drawer.component';
 import { TagInputFieldComponent } from './component/tag-input-field/tag-input-field.component';
-import { UploadComponent } from './component/upload/upload.component';
 import { WizardStepComponent } from './component/wizard/wizard-step/wizard-step.component';
 import { WizardStepDirective } from './component/wizard/wizard-step/wizard-step.directive';
 import { WizardComponent } from './component/wizard/wizard.component';
@@ -93,9 +86,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     FooterComponent,
     LoadingComponent,
     BannerComponent,
-    CardHeaderComponent,
-    CardInfoComponent,
-    CardComponent,
     CheckboxComponent,
     GridChecklistColumnComponent,
     GridSelectionColumnComponent,
@@ -119,13 +109,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     InfoCardComponent,
     FormFieldComponent,
     FormFieldErrorComponent,
-    FormComponent,
     MultiSelectInputComponent,
     RelationshipTranslationPipe,
     AttendanceRecordActivationDirective,
-    CardHeaderCollapsibleComponent,
-    UploadComponent,
-    ProgressComponent,
     InputTagComponent,
     TagInputFieldComponent,
     GridDownloadComponent,
@@ -167,9 +153,6 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     FooterComponent,
     LoadingComponent,
     BannerComponent,
-    CardHeaderComponent,
-    CardInfoComponent,
-    CardComponent,
     CheckboxComponent,
     GridChecklistColumnComponent,
     GridSelectionColumnComponent,
@@ -193,13 +176,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     InfoCardComponent,
     FormFieldComponent,
     FormFieldErrorComponent,
-    FormComponent,
     MultiSelectInputComponent,
     RelationshipTranslationPipe,
     AttendanceRecordActivationDirective,
-    CardHeaderCollapsibleComponent,
-    UploadComponent,
-    ProgressComponent,
     InputTagComponent,
     TagInputFieldComponent,
     GridDownloadComponent,

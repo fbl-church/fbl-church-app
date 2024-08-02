@@ -5,20 +5,20 @@
 <ng-container *ngIf="!loading; else pageLoader">
   <ik-form *ngIf="form" [formGroup]="form">
     <div class="row">
-      <ik-form-field header="Theme Name" class="col-md-6"
-        ><input class="form-input__normal" placeholder="Theme Name" formControlName="themeName" />
+      <ik-form-field header="Theme Name" class="col-md-6" [padding]="false">
+        <input class="form-input__normal" placeholder="Theme Name" formControlName="themeName" />
       </ik-form-field>
 
-      <ik-form-field header="Dontating To" class="col-md-6"
-        ><input class="form-input__normal" placeholder="Dontating To" formControlName="donation" />
+      <ik-form-field header="Dontating To" class="col-md-6" [padding]="false">
+        <input class="form-input__normal" placeholder="Dontating To" formControlName="donation" />
       </ik-form-field>
     </div>
     <div class="row">
-      <ik-form-field header="Start Date" class="col-md-6"
-        ><input type="date" class="form-input__normal" placeholder="Start Date" formControlName="startDate" />
+      <ik-form-field header="Start Date" class="col-md-6" [padding]="false">
+        <input type="date" class="form-input__normal" placeholder="Start Date" formControlName="startDate" />
       </ik-form-field>
-      <ik-form-field header="End Date" class="col-md-6"
-        ><input
+      <ik-form-field header="End Date" class="col-md-6" [padding]="false">
+        <input
           type="date"
           class="form-input__normal"
           placeholder="End Date"
@@ -33,8 +33,8 @@
     <ik-card-header title="Group Names"> </ik-card-header>
     <form [formGroup]="g" *ngFor="let g of vbsFormGroupsArray; index as i">
       <div class="row">
-        <ik-form-field header="Group" class="col-sm-6"
-          ><input
+        <ik-form-field header="Group" class="col-md-6" [padding]="false">
+          <input
             maxlength="50"
             class="form-input__normal"
             placeholder="Group"
@@ -44,15 +44,15 @@
           />
         </ik-form-field>
 
-        <ik-form-field header="Themed Group Name" class="col-sm-6"
-          ><input class="form-input__normal" placeholder="Themed Group Name" formControlName="name" maxlength="50" />
+        <ik-form-field header="Themed Group Name" class="col-md-6" [padding]="false">
+          <input class="form-input__normal" placeholder="Themed Group Name" formControlName="name" maxlength="50" />
         </ik-form-field>
       </div>
     </form>
   </ik-card>
 
   <ik-grid preferenceKey="usersGrid" [dataLoader]="pointsDataloader" (rowClick)="themeEditPointsModal.open($event)">
-    <ik-card-header-new title="Point Structure">
+    <ik-card-header title="Point Structure">
       <ik-icon
         [disabled]="vbsPointsArray.length >= 8"
         title="Add Points"
@@ -60,7 +60,7 @@
         class="right pointer"
         (click)="themeCreatePointsModal.open()"
       ></ik-icon>
-    </ik-card-header-new>
+    </ik-card-header>
     <ik-grid-column label="Name" field="displayName"></ik-grid-column>
     <ik-grid-column label="Points" field="points"></ik-grid-column>
     <ik-grid-column label="Registration">

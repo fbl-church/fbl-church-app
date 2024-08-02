@@ -2,34 +2,36 @@
   <ik-card-header [title]="title">
     <ng-content></ng-content>
   </ik-card-header>
-  <div class="flex">
-    <div class="left-column">
-      <ik-card-info header="Name" text="{{ user | formatUserName }}"></ik-card-info>
-    </div>
-    <div class="right-column">
-      <ik-card-info header="Email" [text]="user?.email ? user.email : '-'"></ik-card-info>
-    </div>
+  <div class="row">
+    <ik-card-info class="col-md-6" header="Name" text="{{ user | formatUserName }}"></ik-card-info>
+    <ik-card-info class="col-md-6" header="Email" [text]="user?.email ? user.email : '-'"></ik-card-info>
   </div>
 
-  <div class="flex">
-    <div class="left-column">
-      <ik-card-info [contentColor]="user?.accountStatus" header="Account" [text]="user?.accountStatus"></ik-card-info>
-    </div>
-    <div class="right-column">
+  <div class="row">
+    <ik-card-info
+      class="col-md-6"
+      [contentColor]="user?.accountStatus"
+      header="Account"
+      [text]="user?.accountStatus"
+    ></ik-card-info>
+
+    <ik-card-info
+      class="col-md-6"
+      [contentColor]="user?.appAccess ? 'ACTIVE' : 'INACTIVE'"
+      header="Access"
+      [text]="user?.appAccess ? 'GRANTED' : 'DENIED'"
+    ></ik-card-info>
+  </div>
+
+  <div class="row">
+    <ik-card-info class="col-md-6" header="Created Date" [text]="user?.insertDate | date : 'MMMM d, y'"> </ik-card-info>
+
+    <ng-container *webRoleRestrictionAccess="WebRole.ADMINISTRATOR">
       <ik-card-info
-        [contentColor]="user?.appAccess ? 'ACTIVE' : 'INACTIVE'"
-        header="Access"
-        [text]="user?.appAccess ? 'GRANTED' : 'DENIED'"
+        class="col-md-6"
+        header="Last Login"
+        [text]="user?.lastLoginDate | date : 'MMMM d, y, h:mm a'"
       ></ik-card-info>
-    </div>
-  </div>
-
-  <div class="flex">
-    <div class="left-column">
-      <ik-card-info header="Created Date" [text]="user?.insertDate | date : 'MMMM d, y'"> </ik-card-info>
-    </div>
-    <div *webRoleRestrictionAccess="WebRole.ADMINISTRATOR" class="right-column">
-      <ik-card-info header="Last Login" [text]="user?.lastLoginDate | date : 'MMMM d, y, h:mm a'"></ik-card-info>
-    </div>
+    </ng-container>
   </div>
 </ik-card>

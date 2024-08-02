@@ -11,11 +11,11 @@
 
 // NEW GRID
 
-// td {
-//   white-space: nowrap;
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-// }
+td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 .grid-content {
   position: relative;
@@ -25,6 +25,7 @@
   width: 100% !important;
   table-layout: fixed !important;
   border-radius: 8px !important;
+  overflow: hidden !important;
 }
 
 .grid-column__header {
@@ -42,11 +43,18 @@
 
 .grid-row:hover {
   background-color: var(--grid-item-background-hover) !important;
+  border-radius: 8px !important;
 }
 
 .grid-cell {
   padding: 8px 16px 8px 16px !important;
   font-size: 16px !important;
+}
+
+.grid-row:not(:last-child) {
+  .grid-cell {
+    border-bottom: 1px solid #d9dce2 !important;
+  }
 }
 
 .grid-loading-overlay {
@@ -71,7 +79,23 @@
 }
 
 @media screen and (max-width: $grid-screen-sm-max) {
+  thead {
+    tr {
+      height: 40px !important;
+    }
+  }
+
   .grid-icon {
     margin-left: 12px;
+  }
+
+  .grid-column__header {
+    font-size: 14px;
+    padding: 0 12px 0 12px !important;
+  }
+
+  .grid-cell {
+    padding: 8px 12px 8px 12px !important;
+    font-size: 14px !important;
   }
 }

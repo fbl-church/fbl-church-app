@@ -1,10 +1,6 @@
-<ng-content select="ik-card-header,ik-card-header-collapsible"></ng-content>
-<div
-  [ngClass]="{
-    card__content: !isCollapsibleContent,
-    'card__content--collapsible': isCollapsibleContent,
-    'card__content--collapsible--closed': contentClosed
-  }"
->
-  <ng-content></ng-content>
-</div>
+<mat-card class="card" appearance="outlined">
+  <ng-content select="ik-card-header"></ng-content>
+  <mat-card-content class="card__content" [ngClass]="{ 'padding-none': !padding, 'margin-none': !margin }">
+    <ng-content></ng-content>
+  </mat-card-content>
+</mat-card>

@@ -4,5 +4,32 @@
 }
 
 .card__content {
-  margin-top: 1rem;
+  padding: 16px !important;
+}
+
+.card-chip {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+
+  &__header {
+    font-weight: bold;
+    font-size: 20px;
+    color: var(--text-color);
+  }
+
+  &__body {
+    display: inline-block;
+    font-size: 24px;
+    text-align: center;
+    color: var(--text-color);
+  }
+}
+
+@media screen and (max-width: $card-screen-sm-max) {
+  .card__content {
+    padding: 16px 12px !important;
+  }
 }

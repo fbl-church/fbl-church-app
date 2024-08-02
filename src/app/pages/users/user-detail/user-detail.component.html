@@ -22,69 +22,20 @@
     </ng-container>
   </ik-header>
 
-  <!-- Change to use Bootstrap row and column -->
-
   <div class="row">
-    <ik-card-new class="col-lg-6">
-      <ik-card-header-new title="Details"></ik-card-header-new>
-      <div class="row">
-        <ik-card-info
-          class="col-md-6"
-          header="Name"
-          text="{{ userData | formatUserName }}"
-          [padding]="false"
-        ></ik-card-info>
+    <app-user-details-card class="col-lg-7" [user]="userData" (editClick)="onEditClick()">
+      <ng-container *ngIf="canEditUser">
+        <ik-icon
+          title="Edit"
+          icon="pen-to-square"
+          class="right pointer"
+          (click)="onEditClick()"
+          *featureAccess="[Application.USERS, FeatureType.DETAIL, Access.UPDATE]"
+        ></ik-icon>
+      </ng-container>
+    </app-user-details-card>
 
-        <ik-card-info
-          class="col-md-6"
-          header="Email"
-          [text]="userData?.email ? userData.email : '-'"
-          [padding]="false"
-        ></ik-card-info>
-      </div>
-      <div class="row">
-        <ik-card-info
-          class="col-md-6"
-          [contentColor]="userData?.accountStatus"
-          header="Account"
-          [text]="userData?.accountStatus"
-          [padding]="false"
-        ></ik-card-info>
-
-        <ik-card-info
-          class="col-md-6"
-          [contentColor]="userData?.appAccess ? 'ACTIVE' : 'INACTIVE'"
-          header="Access"
-          [text]="userData?.appAccess ? 'GRANTED' : 'DENIED'"
-          [padding]="false"
-        ></ik-card-info>
-      </div>
-      <div class="row">
-        <ik-card-info
-          class="col-md-6"
-          header="Created Date"
-          [text]="userData?.insertDate | date : 'MMMM d, y'"
-          [padding]="false"
-        >
-        </ik-card-info>
-        <ik-card-info
-          *webRoleRestrictionAccess="WebRole.ADMINISTRATOR"
-          class="col-md-6"
-          header="Last Login"
-          [text]="userData?.lastLoginDate | date : 'MMMM d, y, h:mm a'"
-          [padding]="false"
-        ></ik-card-info>
-      </div>
-    </ik-card-new>
-  </div>
-
-  <!-- <button mat-flat-button class="btn-mat" disabled>
-    <mat-icon>cached</mat-icon>
-    Reset Password
-  </button> -->
-  <!-- <div class="layout__column-left layout__wide"></div>
-  <div class="layout__column-right layout__narrow">
-    <app-user-roles-card [user]="userData">
+    <app-user-roles-card class="col-lg-5" [user]="userData">
       <ng-container *ngIf="canEditUser && canEditRoles">
         <ik-icon
           title="Edit"
@@ -95,7 +46,7 @@
         ></ik-icon>
       </ng-container>
     </app-user-roles-card>
-  </div> -->
+  </div>
 </ng-container>
 
 <app-delete-user-modal #deleteUserModal [userId]="userData?.id"></app-delete-user-modal>

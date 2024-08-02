@@ -7,8 +7,8 @@
 <ik-card *ngFor="let g of guardians">
   <ik-card-header [title]="g | formatUserName"></ik-card-header>
   <div class="row" *ngFor="let c of newChildren; index as i">
-    <ik-card-info [header]="'Child ' + (i + 1)" class="col-md-6"
-      ><input class="form-input__normal" [value]="c | formatUserName" placeholder="Child Name" readonly />
+    <ik-card-info [header]="'Child ' + (i + 1)" class="col-md-6">
+      <input class="form-input__normal" [value]="c | formatUserName" placeholder="Child Name" readonly />
     </ik-card-info>
     <ik-card-info header="Relationship to Child*" class="col-md-6">
       <ik-single-select

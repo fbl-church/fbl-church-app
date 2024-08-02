@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { NavigationService } from 'projects/insite-kit/src/service/navigation/navigation.service';
 
 @Component({
   selector: 'app-authenticated-layout',
@@ -7,7 +8,9 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class AuthenticatedLayoutComponent implements OnInit {
   innerWidth: any;
-  IPAD_SIZE = 768;
+  IPAD_SIZE = 850;
+
+  constructor(private readonly navigationService: NavigationService) {}
 
   ngOnInit() {
     this.innerWidth = window.innerWidth;
@@ -22,5 +25,9 @@ export class AuthenticatedLayoutComponent implements OnInit {
     if (innerWidth <= this.IPAD_SIZE) {
       sidenav.toggle();
     }
+  }
+
+  onScheduleRoute() {
+    this.navigationService.navigate('/profile/schedule');
   }
 }

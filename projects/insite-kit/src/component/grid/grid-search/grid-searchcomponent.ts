@@ -10,8 +10,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
-import { CardHeaderNewComponent } from '../../card/card-header/card-header-new.component';
-import { CardNewComponent } from '../../card/card-new.component';
+import { CardModule } from '../../card/card.module';
 
 @Component({
   selector: 'ik-grid-search',
@@ -26,8 +25,7 @@ import { CardNewComponent } from '../../card/card-new.component';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    CardNewComponent,
-    CardHeaderNewComponent,
+    CardModule,
     MatChipsModule,
     NgFor,
     NgIf,
