@@ -11,6 +11,7 @@ import { CardModule } from 'projects/insite-kit/src/component/card/card.module';
 import { FormComponent } from 'projects/insite-kit/src/component/form/form.component';
 import { GridComponent } from 'projects/insite-kit/src/component/grid/grid.component';
 import { GridModule } from 'projects/insite-kit/src/component/grid/grid.module';
+import { BasicModalComponent } from 'projects/insite-kit/src/component/modal/basic-modal.component';
 import { UploadComponent } from 'projects/insite-kit/src/component/upload/upload.component';
 import { InsiteKitModule } from 'projects/insite-kit/src/insite-kit.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
@@ -23,7 +24,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
  * @since August 18, 2022
  */
 @NgModule({
-  imports: [GridComponent, UploadComponent, FormComponent],
+  imports: [GridComponent, UploadComponent, FormComponent, BasicModalComponent],
   exports: [
     BrowserModule,
     RouterModule,
@@ -40,6 +41,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     CardModule,
     UploadComponent,
     FormComponent,
+    BasicModalComponent,
   ],
 })
 export class BaseInitModule {}

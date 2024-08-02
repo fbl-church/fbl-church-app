@@ -24,8 +24,16 @@
     border-radius: 50px !important;
   }
 
+  &--default {
+    background-color: #78909c !important;
+  }
+
   &--primary {
     background-color: #0095ff !important;
+  }
+
+  &--danger {
+    background-color: #ff4943 !important;
   }
 }
 

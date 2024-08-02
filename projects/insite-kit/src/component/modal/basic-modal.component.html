@@ -1,0 +1,27 @@
+<h1
+  *ngIf="data?.title"
+  mat-dialog-title
+  class="ik-modal-dialog__header"
+  [ngClass]="'ik-modal-dialog__header--' + data?.type"
+>
+  {{ data.title }}
+</h1>
+<mat-dialog-content class="ik-modal-dialog__container">
+  <div class="ik-modal-dialog__body" *ngIf="data?.message">{{ data.message }}</div>
+
+  <mat-dialog-actions class="ik-modal-dialog__actions" *ngIf="data?.actionLeft || data?.actionRight">
+    <button *ngIf="data?.actionLeft" mat-button class="btn-mat btn-mat--default" (click)="dialogRef.close()">
+      {{ data.actionLeft }}
+    </button>
+    <button
+      *ngIf="data?.actionRight"
+      mat-button
+      class="btn-mat"
+      [mat-dialog-close]="data?.actionRight"
+      [ngClass]="'btn-mat--' + data?.type"
+      cdkFocusInitial
+    >
+      {{ data.actionRight }}
+    </button>
+  </mat-dialog-actions>
+</mat-dialog-content>

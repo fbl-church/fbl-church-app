@@ -46,3 +46,57 @@
 .ik-modal-header-close-icon {
   cursor: pointer;
 }
+
+.ik-modal-dialog {
+  .mat-mdc-dialog-container .mdc-dialog__surface {
+    border-radius: 8px !important;
+  }
+
+  &__header {
+    font-weight: 700;
+    background-color: var(--modal-header-background);
+    border-bottom: 1px solid var(--modal-header-border);
+    color: var(--text-color) !important;
+    padding: 10px 16px !important;
+    margin: 0 !important;
+
+    &--danger {
+      color: white !important;
+      background-color: #ff3648;
+      border-bottom: 0.5px solid #ff3648;
+    }
+
+    &--info {
+      color: white !important;
+      background-color: $primary;
+      border-bottom: 0.5px solid $primary;
+    }
+
+    &--warning {
+      color: white !important;
+      background-color: #ffab30;
+      border-bottom: 0.5px solid #ffab30;
+    }
+
+    &:before {
+      display: block !important;
+      height: 0 !important;
+    }
+  }
+
+  &__container {
+    padding: 16px !important;
+  }
+
+  &__body {
+    font-size: 16px;
+    color: var(--text-color) !important;
+  }
+
+  &__actions {
+    padding: 24px 0 0 0 !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+}
