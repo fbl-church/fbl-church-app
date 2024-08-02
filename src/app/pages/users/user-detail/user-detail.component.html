@@ -13,7 +13,7 @@
       </button>
       <button
         class="btn btn-danger header-button"
-        (click)="deleteUserModal.modal.open()"
+        (click)="onDeleteUserClick()"
         *featureAccess="[Application.USERS, FeatureType.DETAIL, Access.DELETE]"
       >
         <ik-icon icon="trash-can" classOverride="btn-icon"></ik-icon>
@@ -49,7 +49,6 @@
   </div>
 </ng-container>
 
-<app-delete-user-modal #deleteUserModal [userId]="userData?.id"></app-delete-user-modal>
 <app-reset-password-modal
   #resetPasswordModal
   [userId]="userData?.id"

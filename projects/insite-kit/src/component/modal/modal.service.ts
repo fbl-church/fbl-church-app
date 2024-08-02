@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ComponentType } from 'ngx-toastr';
 
 @Injectable({
@@ -9,13 +9,14 @@ import { ComponentType } from 'ngx-toastr';
 export class ModalService {
   constructor(private readonly dialog: MatDialog) {}
 
-  public open<T, D>(component: ComponentType<T>, config?: MatDialogConfig<D>) {
+  public open<T, D>(component: ComponentType<T>, config?: MatDialogConfig<D>): MatDialogRef<T, any> {
     const combinedConfig = {
       width: '500px',
+      maxWidth: '95vw',
       position: { top: '50px' },
       panelClass: 'ik-modal-dialog',
       ...config,
     };
-    this.dialog.open(component, combinedConfig);
+    return this.dialog.open(component, combinedConfig);
   }
 }
